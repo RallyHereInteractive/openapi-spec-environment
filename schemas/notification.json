@@ -1,0 +1,1869 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "notification-api",
+    "description": "Hi-Rez Studios notification-api.",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/notification"
+    }
+  ],
+  "paths": {
+    "/v1/playerid/me/stream/notification/lp": {
+      "get": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Long Poll For Notifications Self",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom earlier to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.",
+        "operationId": "playerid_long_poll_for_notifications_self",
+        "parameters": [
+          {
+            "description": "Max number of entries to return at one time",
+            "required": false,
+            "schema": {
+              "title": "Max Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Max number of entries to return at one time",
+              "default": 10
+            },
+            "name": "max_page_size",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OffsetReset"
+                }
+              ],
+              "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+              "default": "latest"
+            },
+            "name": "offset_reset_strategy",
+            "in": "query"
+          },
+          {
+            "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+            "required": false,
+            "schema": {
+              "title": "Deadline",
+              "maximum": 900,
+              "minimum": 0,
+              "type": "integer",
+              "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+              "default": 30
+            },
+            "name": "deadline",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/playerid/{player_id}/stream/notification/lp": {
+      "get": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Long Poll For Notifications",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom earlier to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "playerid_long_poll_for_notifications",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "description": "Max number of entries to return at one time",
+            "required": false,
+            "schema": {
+              "title": "Max Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Max number of entries to return at one time",
+              "default": 10
+            },
+            "name": "max_page_size",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OffsetReset"
+                }
+              ],
+              "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+              "default": "latest"
+            },
+            "name": "offset_reset_strategy",
+            "in": "query"
+          },
+          {
+            "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+            "required": false,
+            "schema": {
+              "title": "Deadline",
+              "maximum": 900,
+              "minimum": 0,
+              "type": "integer",
+              "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+              "default": 30
+            },
+            "name": "deadline",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/playerid/me/notification": {
+      "get": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Get Notifications Page Self",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important stress that this endpoint returns notifications in reverse order from a stream of notifications.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.",
+        "operationId": "playerid_get_notifications_page_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Start At",
+              "type": "string",
+              "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "start_at",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/playerid/{player_id}/notification": {
+      "get": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Get Notifications Page",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important stress that this endpoint returns notifications in reverse order from a stream of notifications.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "playerid_get_notifications_page",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Start At",
+              "type": "string",
+              "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "start_at",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Create Notification",
+        "description": "Create new notification for client.  Requires permission to create for a different client",
+        "operationId": "playerid_create_notification",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationCreates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationCreateResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/playerid/me/notification/{notification_id}": {
+      "get": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Get Notification By Id Self",
+        "description": "Retrieve a single notification by id",
+        "operationId": "playerid_get_notification_by_id_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Notification Id",
+              "type": "string"
+            },
+            "name": "notification_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/playerid/{player_id}/notification/{notification_id}": {
+      "get": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Get Notification By Id",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "playerid_get_notification_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Notification Id",
+              "type": "string"
+            },
+            "name": "notification_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/me/stream/notification/lp": {
+      "get": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Long Poll For Notifications Self",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom earlier to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.",
+        "operationId": "player_long_poll_for_notifications_self",
+        "parameters": [
+          {
+            "description": "Max number of entries to return at one time",
+            "required": false,
+            "schema": {
+              "title": "Max Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Max number of entries to return at one time",
+              "default": 10
+            },
+            "name": "max_page_size",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OffsetReset"
+                }
+              ],
+              "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+              "default": "latest"
+            },
+            "name": "offset_reset_strategy",
+            "in": "query"
+          },
+          {
+            "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+            "required": false,
+            "schema": {
+              "title": "Deadline",
+              "maximum": 900,
+              "minimum": 0,
+              "type": "integer",
+              "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+              "default": 30
+            },
+            "name": "deadline",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_uuid}/stream/notification/lp": {
+      "get": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Long Poll For Notifications",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom earlier to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "player_long_poll_for_notifications",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "Max number of entries to return at one time",
+            "required": false,
+            "schema": {
+              "title": "Max Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Max number of entries to return at one time",
+              "default": 10
+            },
+            "name": "max_page_size",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OffsetReset"
+                }
+              ],
+              "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+              "default": "latest"
+            },
+            "name": "offset_reset_strategy",
+            "in": "query"
+          },
+          {
+            "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+            "required": false,
+            "schema": {
+              "title": "Deadline",
+              "maximum": 900,
+              "minimum": 0,
+              "type": "integer",
+              "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+              "default": 30
+            },
+            "name": "deadline",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/me/notification": {
+      "get": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Get Notifications Page Self",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important stress that this endpoint returns notifications in reverse order from a stream of notifications.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.",
+        "operationId": "player_get_notifications_page_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Start At",
+              "type": "string",
+              "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "start_at",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_uuid}/notification": {
+      "get": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Get Notifications Page",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important stress that this endpoint returns notifications in reverse order from a stream of notifications.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "player_get_notifications_page",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Start At",
+              "type": "string",
+              "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "start_at",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Create Notification",
+        "description": "Create new notification for client.  Requires permission to create for a different client",
+        "operationId": "player_create_notification",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationCreates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationCreateResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/me/notification/{notification_id}": {
+      "get": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Get Notification By Id Self",
+        "description": "Retrieve a single notification by id",
+        "operationId": "player_get_notification_by_id_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Notification Id",
+              "type": "string"
+            },
+            "name": "notification_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_uuid}/notification/{notification_id}": {
+      "get": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Get Notification By Id",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "player_get_notification_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Notification Id",
+              "type": "string"
+            },
+            "name": "notification_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/instance/{instance_id}/stream/notification/lp": {
+      "get": {
+        "tags": [
+          "instance-notification"
+        ],
+        "summary": "Long Poll For Notifications",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom earlier to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "instance_long_poll_for_notifications",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Instance Id",
+              "type": "string"
+            },
+            "name": "instance_id",
+            "in": "path"
+          },
+          {
+            "description": "Max number of entries to return at one time",
+            "required": false,
+            "schema": {
+              "title": "Max Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "description": "Max number of entries to return at one time",
+              "default": 10
+            },
+            "name": "max_page_size",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OffsetReset"
+                }
+              ],
+              "description": "When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest",
+              "default": "latest"
+            },
+            "name": "offset_reset_strategy",
+            "in": "query"
+          },
+          {
+            "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+            "required": false,
+            "schema": {
+              "title": "Deadline",
+              "maximum": 900,
+              "minimum": 0,
+              "type": "integer",
+              "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
+              "default": 30
+            },
+            "name": "deadline",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/instance/{instance_id}/notification": {
+      "get": {
+        "tags": [
+          "instance-notification"
+        ],
+        "summary": "Get Notifications Page",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important stress that this endpoint returns notifications in reverse order from a stream of notifications.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "instance_get_notifications_page",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Instance Id",
+              "type": "string"
+            },
+            "name": "instance_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Start At",
+              "type": "string",
+              "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "start_at",
+            "in": "query"
+          },
+          {
+            "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
+            "required": false,
+            "schema": {
+              "title": "Exclude Before",
+              "type": "string",
+              "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
+            },
+            "name": "exclude_before",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notifications"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "instance-notification"
+        ],
+        "summary": "Create Notification",
+        "description": "Create new notification for client.  Requires permission to create for a different client",
+        "operationId": "instance_create_notification",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Instance Id",
+              "type": "string"
+            },
+            "name": "instance_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationCreates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationCreateResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/instance/{instance_id}/notification/{notification_id}": {
+      "get": {
+        "tags": [
+          "instance-notification"
+        ],
+        "summary": "Get Notification By Id",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for arbitrary clients with permission",
+        "operationId": "instance_get_notification_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Notification Id",
+              "type": "string"
+            },
+            "name": "notification_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Instance Id",
+              "type": "string"
+            },
+            "name": "instance_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "Notification": {
+        "title": "Notification",
+        "required": [
+          "message",
+          "custom_data",
+          "notification_id",
+          "created"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "maxLength": 4096,
+            "type": "string",
+            "description": "Base Message for the notification"
+          },
+          "rh_url": {
+            "title": "Rh Url",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string",
+            "description": "Path to get additional data about this notification"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom values for the notification"
+          },
+          "notification_id": {
+            "title": "Notification Id",
+            "type": "string",
+            "description": "Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque"
+          },
+          "created": {
+            "title": "Created",
+            "type": "string",
+            "description": "When this notification was added",
+            "format": "date-time"
+          }
+        }
+      },
+      "NotificationCreate": {
+        "title": "NotificationCreate",
+        "required": [
+          "message",
+          "custom_data"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "maxLength": 4096,
+            "type": "string",
+            "description": "Base Message for the notification"
+          },
+          "rh_url": {
+            "title": "Rh Url",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string",
+            "description": "Path to get additional data about this notification"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom values for the notification"
+          }
+        }
+      },
+      "NotificationCreateResult": {
+        "title": "NotificationCreateResult",
+        "required": [
+          "notification_id"
+        ],
+        "type": "object",
+        "properties": {
+          "notification_id": {
+            "title": "Notification Id",
+            "type": "string",
+            "description": "Unique Identifier for the last notification created.  You cannot depend on the format of this string, and it must be considered opaque"
+          }
+        }
+      },
+      "NotificationCreates": {
+        "title": "NotificationCreates",
+        "type": "object",
+        "properties": {
+          "notifications": {
+            "title": "Notifications",
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationCreate"
+            },
+            "description": "List of notifications creation requests",
+            "default": []
+          }
+        }
+      },
+      "Notifications": {
+        "title": "Notifications",
+        "type": "object",
+        "properties": {
+          "notifications": {
+            "title": "Notifications",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": "List of notifications",
+            "default": []
+          }
+        }
+      },
+      "OffsetReset": {
+        "title": "OffsetReset",
+        "enum": [
+          "latest",
+          "earliest"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "player-notification",
+      "description": "Operations on Player Notifications"
+    },
+    {
+      "name": "instance-notification",
+      "description": "Operations on Instance Notifications"
+    }
+  ]
+}

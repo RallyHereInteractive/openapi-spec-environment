@@ -1,0 +1,2692 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "friends-api",
+    "description": "Hi-Rez Studios Friends API. These set of APIS will are used to manage a Players list of Friends and Blocked Players. <br /> <br />\n<b>Note:</b> When the other Player declines the Player's Friend request, the FriendShip status is set to FRIENDSHIP_DECLINED_BY_OTHER_PLAYER and counts towards the Player's Friend limit. Clients are expected to delete the relationship and optionally inform the Player about the declined request.\n",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "/friends"
+    }
+  ],
+  "paths": {
+    "/v2/player/{player_uuid}/friend": {
+      "get": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Get Friends List For Player V2",
+        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "operationId": "get_friends_list_for_player_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page",
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Limit",
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendsList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Delete Friends V2",
+        "description": "Remove the friend's relationship status with the other players",
+        "operationId": "delete_friends_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Friends"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/friend/{other_player_uuid}": {
+      "get": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Get Friend Relationship V2",
+        "description": "Get the relationship status with the other Player. <br /> <br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                    it has not changed or to use it to modify the relationship without loosing updates. ",
+        "operationId": "get_friend_relationship_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationship"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Add Friend V2",
+        "description": "Update the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                    the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                    include a body.<br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "operationId": "add_friend_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationship"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Delete Friend V2",
+        "description": "Remove the friend's relationship status with the other Player. \n                    This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "operationId": "delete_friend_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/friend/{other_player_uuid}/notes": {
+      "put": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Add Notes V2",
+        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "operationId": "add_notes_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notes"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationship"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Delete Notes V2",
+        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "operationId": "delete_notes_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/friend": {
+      "get": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Get Friends List For Player",
+        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "operationId": "get_friends_list_for_player",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page",
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Limit",
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendsListV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Delete Friends",
+        "description": "Remove the friend's relationship status with the other players",
+        "operationId": "delete_friends",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FriendsV1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/friend/{other_player_id}": {
+      "get": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Get Friend Relationship",
+        "description": "Get the relationship status with the other Player. <br /> <br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                it has not changed or to use it to modify the relationship without loosing updates. ",
+        "operationId": "get_friend_relationship",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationshipV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Add Friend",
+        "description": "Update the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "operationId": "add_friend",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationshipV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Delete Friend",
+        "description": "Remove the friend's relationship status with the other Player. \n                This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "operationId": "delete_friend",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/friend/{other_player_id}/notes": {
+      "put": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Add Notes",
+        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "operationId": "add_notes",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notes"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationshipV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V1"
+        ],
+        "summary": "Delete Notes",
+        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "operationId": "delete_notes",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "title": "If-Match",
+              "type": "string",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/block": {
+      "get": {
+        "tags": [
+          "Blocked V2"
+        ],
+        "summary": "Get Blocked List For Player V2",
+        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "operationId": "get_blocked_list_for_player_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page",
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Limit",
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockedList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/block/{other_player_uuid}": {
+      "get": {
+        "tags": [
+          "Blocked V2"
+        ],
+        "summary": "Get Blocked V2",
+        "description": "Get the Blocked Player",
+        "operationId": "get_blocked_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockedPlayer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Blocked V2"
+        ],
+        "summary": "Block V2",
+        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).",
+        "operationId": "block_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockedPlayer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Blocked V2"
+        ],
+        "summary": "Unblock V2",
+        "description": "Unblock the other Player",
+        "operationId": "unblock_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/block": {
+      "get": {
+        "tags": [
+          "Blocked V1"
+        ],
+        "summary": "Get Blocked List For Player",
+        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "operationId": "get_blocked_list_for_player",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page",
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Limit",
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockedListV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/block/{other_player_id}": {
+      "get": {
+        "tags": [
+          "Blocked V1"
+        ],
+        "summary": "Get Blocked",
+        "description": "Get the Blocked Player",
+        "operationId": "get_blocked",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockedPlayerV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Blocked V1"
+        ],
+        "summary": "Block",
+        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).",
+        "operationId": "block",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockedPlayerV1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Blocked V1"
+        ],
+        "summary": "Unblock",
+        "description": "Unblock the other Player",
+        "operationId": "unblock",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Other Player Id",
+              "type": "integer"
+            },
+            "name": "other_player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/configuration": {
+      "get": {
+        "tags": [
+          "Configuration V1"
+        ],
+        "summary": "Get Friends And Block Limits",
+        "description": "Fetch the configuration used by Friends API, e.g. friend_limit, block_limit, etc.",
+        "operationId": "get_friends_and_block_limits",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendsApiConfig"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BlockedList": {
+        "title": "BlockedList",
+        "required": [
+          "player_uuid",
+          "blocked",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "player_uuid": {
+            "title": "Player's UUID",
+            "type": "string",
+            "format": "uuid"
+          },
+          "blocked": {
+            "title": "Player's Block list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockedPlayer"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        }
+      },
+      "BlockedListV1": {
+        "title": "BlockedListV1",
+        "required": [
+          "player_id",
+          "player_uuid",
+          "blocked",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "title": "Player's ID",
+            "type": "integer"
+          },
+          "player_uuid": {
+            "title": "Player's UUID",
+            "type": "string",
+            "format": "uuid"
+          },
+          "blocked": {
+            "title": "Player's Block list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockedPlayerV1"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        }
+      },
+      "BlockedPlayer": {
+        "title": "BlockedPlayer",
+        "required": [
+          "blocked_player_uuid",
+          "last_modified_on"
+        ],
+        "type": "object",
+        "properties": {
+          "blocked_player_uuid": {
+            "title": "Player UUID of Blocked Player",
+            "type": "string",
+            "format": "uuid"
+          },
+          "last_modified_on": {
+            "title": "The time when the friends relationship was last modified",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BlockedPlayerV1": {
+        "title": "BlockedPlayerV1",
+        "required": [
+          "blocked_player_id",
+          "blocked_player_uuid",
+          "last_modified_on"
+        ],
+        "type": "object",
+        "properties": {
+          "blocked_player_id": {
+            "title": "Blocked Player's ID",
+            "type": "integer"
+          },
+          "blocked_player_uuid": {
+            "title": "Friend's Player ID",
+            "type": "string",
+            "format": "uuid"
+          },
+          "last_modified_on": {
+            "title": "The time when the friends relationship was last modified",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FriendRelationship": {
+        "title": "FriendRelationship",
+        "required": [
+          "friends_player_uuid",
+          "status",
+          "last_modified_on"
+        ],
+        "type": "object",
+        "properties": {
+          "friends_player_uuid": {
+            "title": "Player UUID of Friend",
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FriendshipStatus"
+          },
+          "notes": {
+            "title": "Player's notes about the other player",
+            "type": "string"
+          },
+          "last_modified_on": {
+            "title": "The time when the friends relationship was last modified",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FriendRelationshipV1": {
+        "title": "FriendRelationshipV1",
+        "required": [
+          "friends_player_uuid",
+          "friends_player_id",
+          "status",
+          "last_modified_on"
+        ],
+        "type": "object",
+        "properties": {
+          "friends_player_uuid": {
+            "title": "Player UUID of Friend",
+            "type": "string",
+            "format": "uuid"
+          },
+          "friends_player_id": {
+            "title": "Player ID of Friend",
+            "type": "integer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FriendshipStatus"
+          },
+          "notes": {
+            "title": "Player's notes about the other player",
+            "type": "string"
+          },
+          "last_modified_on": {
+            "title": "The time when the friends relationship was last modified",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Friends": {
+        "title": "Friends",
+        "required": [
+          "friends"
+        ],
+        "type": "object",
+        "properties": {
+          "friends": {
+            "title": "List of Player UUIDs to operate on",
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "FriendsApiConfig": {
+        "title": "FriendsApiConfig",
+        "type": "object",
+        "properties": {
+          "friend_limit": {
+            "title": "Friend Limit",
+            "type": "integer",
+            "default": 10000
+          },
+          "block_limit": {
+            "title": "Block Limit",
+            "type": "integer",
+            "default": 10000
+          }
+        }
+      },
+      "FriendsList": {
+        "title": "FriendsList",
+        "required": [
+          "player_uuid",
+          "friends",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "player_uuid": {
+            "title": "Player's UUID",
+            "type": "string",
+            "format": "uuid"
+          },
+          "friends": {
+            "title": "Players Friend list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FriendRelationship"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        }
+      },
+      "FriendsListV1": {
+        "title": "FriendsListV1",
+        "required": [
+          "player_uuid",
+          "player_id",
+          "friends",
+          "page"
+        ],
+        "type": "object",
+        "properties": {
+          "player_uuid": {
+            "title": "Player's UUID",
+            "type": "string",
+            "format": "uuid"
+          },
+          "player_id": {
+            "title": "Player's ID",
+            "type": "integer"
+          },
+          "friends": {
+            "title": "Players Friend list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FriendRelationshipV1"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        }
+      },
+      "FriendsV1": {
+        "title": "FriendsV1",
+        "required": [
+          "friends"
+        ],
+        "type": "object",
+        "properties": {
+          "friends": {
+            "title": "List of Player IDs to operate on",
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "FriendshipStatus": {
+        "title": "FriendshipStatus",
+        "enum": [
+          "NONE",
+          "FRIENDS",
+          "FRIEND_REQUEST_SENT",
+          "FRIEND_REQUEST_PENDING",
+          "FRIEND_REQUEST_DECLINED_BY_OTHER"
+        ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "Notes": {
+        "title": "Notes",
+        "type": "object",
+        "properties": {
+          "notes": {
+            "title": "Notes to set for the Player's friend. If you don't want to modify notes, no not include a body when adding a friend.",
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "PageMeta": {
+        "title": "PageMeta",
+        "required": [
+          "page",
+          "limit",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "title": "Requested page",
+            "type": "integer"
+          },
+          "limit": {
+            "title": "Page size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total collection size",
+            "type": "integer"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Friends V1",
+      "description": "Operations to fetch and modify a player's friends"
+    },
+    {
+      "name": "Friends V2",
+      "description": "Operations to fetch and modify a player's friends using player uuids"
+    },
+    {
+      "name": "Blocked V1",
+      "description": "Operations to fetch and modify a player's blocked list"
+    },
+    {
+      "name": "Blocked V2",
+      "description": "Operations to fetch and modify a player's blocked list using player uuids"
+    },
+    {
+      "name": "Configuration V1",
+      "description": "Operations to view configuration for friends and blocked lists"
+    }
+  ]
+}

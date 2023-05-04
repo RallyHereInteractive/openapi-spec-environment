@@ -1,0 +1,2516 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "presence-api",
+    "description": "RallyHere presence-api.",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/presence"
+    }
+  ],
+  "paths": {
+    "/v1/player/me/presence": {
+      "get": {
+        "tags": [
+          "presence"
+        ],
+        "summary": "Get Player Presence Self",
+        "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
+        "operationId": "get_player_presence_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "presence"
+        ],
+        "summary": "Update Player Presence Self",
+        "description": "Update the player's online status and other presence data.\nIf the player reports their online status as online or away, their \"last_seen\" presence info is updated.\nPlayer clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds.\nOtherwise they will be considered offline.",
+        "operationId": "update_player_presence_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerPresenceUpdateSelf"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/uuid/{player_uuid}/presence": {
+      "get": {
+        "tags": [
+          "presence"
+        ],
+        "summary": "Get Player Presence Public By Uuid",
+        "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
+        "operationId": "get_player_presence_public_by_uuid",
+        "parameters": [
+          {
+            "description": "A valid UUID identifying a player. Rejects integer player identification.",
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "description": "A valid UUID identifying a player. Rejects integer player identification.",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/id/{player_id}/presence": {
+      "get": {
+        "tags": [
+          "presence"
+        ],
+        "summary": "Get Player Presence Public By Id",
+        "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
+        "operationId": "get_player_presence_public_by_id",
+        "parameters": [
+          {
+            "description": "A valid integer identifying a player. Rejects UUID player identification.",
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer",
+              "description": "A valid integer identifying a player. Rejects UUID player identification."
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/settings": {
+      "get": {
+        "tags": [
+          "presence"
+        ],
+        "summary": "Get Presence Settings",
+        "description": "Settings which help tell the client how it should interact with this service.",
+        "operationId": "get_presence_settings",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientVisibleSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/player/uuid/{player_uuid}/last_seen": {
+      "patch": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Update Player Last Seen",
+        "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
+        "operationId": "admin_update_player_last_seen",
+        "parameters": [
+          {
+            "description": "A valid UUID identifying a player. Rejects integer player identification.",
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "description": "A valid UUID identifying a player. Rejects integer player identification.",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerLastSeenUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/player/id/{player_id}/last_seen": {
+      "patch": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Update Player Last Seen Id",
+        "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
+        "operationId": "admin_update_player_last_seen_id",
+        "parameters": [
+          {
+            "description": "A valid integer identifying a player. Rejects UUID player identification.",
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer",
+              "description": "A valid integer identifying a player. Rejects UUID player identification."
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerLastSeenUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/player/uuid/{player_uuid}/presence": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Player Presence",
+        "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
+        "operationId": "admin_get_player_presence",
+        "parameters": [
+          {
+            "description": "A valid UUID identifying a player. Rejects integer player identification.",
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "description": "A valid UUID identifying a player. Rejects integer player identification.",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/player/id/{player_id}/presence": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Player Presence Id",
+        "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
+        "operationId": "admin_get_player_presence_id",
+        "parameters": [
+          {
+            "description": "A valid integer identifying a player. Rejects UUID player identification.",
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer",
+              "description": "A valid integer identifying a player. Rejects UUID player identification."
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/total/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Total Ccu",
+        "description": "Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time\nperiod. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
+        "operationId": "admin_get_total_ccu",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/total/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Total Ccu Individual",
+        "description": "Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These\nvalues should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine\nthe values within a time range without counting the same player multiple times.",
+        "operationId": "admin_get_total_ccu_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/requesting/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Requesting Ccu",
+        "description": "Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
+        "operationId": "admin_get_requesting_ccu",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/requesting/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Requesting Ccu Individual",
+        "description": "Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
+        "operationId": "admin_get_requesting_ccu_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/updating/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Updating Ccu",
+        "description": "Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
+        "operationId": "admin_get_updating_ccu",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/updating/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Updating Ccu Individual",
+        "description": "Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
+        "operationId": "admin_get_updating_ccu_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/platforms": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Known Platforms",
+        "description": "Get all of the platforms that presence has been told about by players updating their presence",
+        "operationId": "admin_get_known_platforms",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/total/allplatforms/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Total Ccu All Platform Individual",
+        "operationId": "admin_get_total_ccu_all_platform_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/total/allplatforms/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Total Ccu All Platform Combined",
+        "operationId": "admin_get_total_ccu_all_platform_combined",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/requesting/allplatforms/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Requesting Ccu All Platform Individual",
+        "operationId": "admin_get_requesting_ccu_all_platform_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/requesting/allplatforms/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Requesting Ccu All Platform Combined",
+        "operationId": "admin_get_requesting_ccu_all_platform_combined",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/updating/allplatforms/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Updating Ccu All Platform Individual",
+        "operationId": "admin_get_updating_ccu_all_platform_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/updating/allplatforms/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Updating Ccu All Platform Combined",
+        "operationId": "admin_get_updating_ccu_all_platform_combined",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/total/platform/{platform}/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Total Ccu Platform Individual",
+        "operationId": "admin_get_total_ccu_platform_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/total/platform/{platform}/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Total Ccu Platform Combined",
+        "operationId": "admin_get_total_ccu_platform_combined",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/requesting/platform/{platform}/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Requesting Ccu Platform Individual",
+        "operationId": "admin_get_requesting_ccu_platform_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/requesting/platform/{platform}/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Requesting Ccu Platform Combined",
+        "operationId": "admin_get_requesting_ccu_platform_combined",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/updating/platform/{platform}/individual": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Updating Ccu Platform Individual",
+        "operationId": "admin_get_updating_ccu_platform_individual",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/admin/ccu/updating/platform/{platform}/combined": {
+      "get": {
+        "tags": [
+          "presence-admin"
+        ],
+        "summary": "Admin Get Updating Ccu Platform Combined",
+        "operationId": "admin_get_updating_ccu_platform_combined",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "begin",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "TZAware",
+              "type": "string",
+              "description": "A date-time with timezone data.",
+              "format": "date-time"
+            },
+            "name": "end",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Use Cache",
+              "type": "boolean",
+              "default": true
+            },
+            "name": "use_cache",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClientVisibleSettings": {
+        "title": "ClientVisibleSettings",
+        "type": "object",
+        "properties": {
+          "self_ping_interval_seconds": {
+            "title": "Self Ping Interval Seconds",
+            "type": "integer",
+            "description": "How frequently the client should tell this service that it's online.",
+            "default": 30
+          },
+          "last_seen_age_considered_offline_seconds": {
+            "title": "Last Seen Age Considered Offline Seconds",
+            "type": "integer",
+            "description": "If a client hasn't said that it's online within this time period, it will be treated as offline when others query its presence.",
+            "default": 60
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "OnlineStatus": {
+        "title": "OnlineStatus",
+        "enum": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
+        ]
+      },
+      "PlayerLastSeenUpdate": {
+        "title": "PlayerLastSeenUpdate",
+        "required": [
+          "time"
+        ],
+        "type": "object",
+        "properties": {
+          "time": {
+            "title": "Time",
+            "type": "string",
+            "description": "Last time this player reported their online status",
+            "format": "date-time"
+          },
+          "platform": {
+            "title": "Platform",
+            "type": "string",
+            "description": "Platform the user was online in"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string",
+            "description": "Player Display Name"
+          }
+        }
+      },
+      "PlayerPresence": {
+        "title": "PlayerPresence",
+        "required": [
+          "platform",
+          "display_name",
+          "player_uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineStatus"
+              }
+            ],
+            "description": "Is the player currently online?",
+            "default": "offline"
+          },
+          "message": {
+            "title": "Message",
+            "maxLength": 256,
+            "type": "string",
+            "description": "Optional custom message to display alongside the user's online status",
+            "default": ""
+          },
+          "platform": {
+            "title": "Platform",
+            "type": "string",
+            "description": "Platform the user was online in"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string",
+            "description": "Player Display Name"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "custom fields for the player to update about their presence",
+            "default": {}
+          },
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer",
+            "description": "Player ID for the player if it was provided as part of the request"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string",
+            "description": "UUID of the player whose presence this represents",
+            "format": "uuid"
+          },
+          "do_not_disturb": {
+            "title": "Do Not Disturb",
+            "type": "boolean",
+            "description": "Disables notifications and invites. Only set for self or admin."
+          },
+          "last_seen": {
+            "title": "Last Seen",
+            "type": "string",
+            "description": "Info about the player the last time they reported their status. Only set for self or admin",
+            "format": "date-time"
+          }
+        }
+      },
+      "PlayerPresenceUpdateSelf": {
+        "title": "PlayerPresenceUpdateSelf",
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineStatus"
+              }
+            ],
+            "description": "Is the player currently online?"
+          },
+          "message": {
+            "title": "Message",
+            "maxLength": 256,
+            "type": "string",
+            "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
+          },
+          "do_not_disturb": {
+            "title": "Do Not Disturb",
+            "type": "boolean",
+            "description": "Disables notifications and invites. Leaving this unset will not change the value."
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "presence",
+      "description": "RallyHere Presence API\n\nThis API is intended to generally store presence information and be used in order to track the concurrent users for the game as a whole.\n\n## Basic Usage\n\nOn login, a client should go through the following steps.\n\n1. Get any existing current presence data and store that locally using GET `/v1/player/me/presence`.\n2. Mark online by patching their own presence with an empty update using PATCH `/v1/player/presence`.\n3. Request the client visible settings using GET `/v1/settings` and store them.\n4. Every `self_ping_interval_seconds` the client should mark online again by patching their own presence with an empty update using PATCH `/v1/player/presence`\n\n## Setting Presence\n\nWhen updating your presence the `display_name` and `platform` are not set directly. They are instead derived from the JWT provided by the users-api.\n\nThe presence you set is considered public, so do not set any values that should be considered private data in either the `status_message` or the\n`custom_data`.\n\n## Fetching Presence\n\nYou may fetch the presence of another user by either their `player_id` or `player_uuid`. You should prefer the `player_uuid` whenever it is available\nas the `player_id` is deprecated.\n\n\n## Private Presence Data\n\n`last_seen` is only available when requesting presence for yourself or as an admin.\n\n## Concurrent Users Updates\nIt's expected that users of this API will regularly patch their own presence with an empty update. This will signal that they are still online without\nchanging any of their presence information. This should be done on a cycle based on the `self_ping_interval_setting` settings provided by the API on\nthe `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n\nIf a client takes longer than the `last_seen_age_considered_offline_seconds` setting to perform this update they will be considered offline by other\nclients. This setting is provided by the API on the `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n"
+    },
+    {
+      "name": "presence-admin",
+      "description": "RallyHere Presence Admin API\n\nThis API is only available to administrators. It provides access to CCU data and to set specific values for presence that aren't available to\nunprivileged clients.\n\nEach time a user interacts with this API their uuid is added to a time-keyed HyperLogLog. This enables us to track the number of users stochastically\nrather than having to create a complete entry for every interaction. Their uuid is also added to a HyperLogLog keyed by both time and the platform the\nuser authenticated on.\n\nThe three actions CCU tracks are total, updating, and requesting. Comparing the numbers between the three will help identify if there are users who are\nscanning the API rather than using it for normal presence operations.\n\nWhen requesting the CCU you generally have two major options: Combined and Individual.\n\nThe Combined methods count up the number of users internally and therefor handle duplicates correctly.\n\nThe Individual methods return the individual counts for each timestamp. This data can be useful, but can't be summed up directly unless you're okay\nwith counting players multiple times.\n\nFor example, if you want to know the 24-hour CCU you should *not* get the Individual CCUs and add them up yourself. You should request the Combined\nCCU over that time period.\n"
+    }
+  ]
+}

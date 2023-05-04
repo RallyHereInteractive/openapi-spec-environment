@@ -1,0 +1,2955 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "users-api",
+    "description": "Provides support for authentication and the creation of access and refresh tokens.  Also provides access to user information.\n\nAccess tokens are short-lived tokens for use against other Hi-Rez Studios APIs for the same base url.\nRefresh tokens are longer-lived tokens for re-authenticating and creating new Access Tokens.\n",
+    "version": "5.3.0"
+  },
+  "servers": [
+    {
+      "url": "/users"
+    }
+  ],
+  "paths": {
+    "/v1/verify": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Verify",
+        "operationId": "verify",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Login",
+        "operationId": "login",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Agent",
+              "type": "string"
+            },
+            "name": "user-agent",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "X-Forwarded-For",
+              "type": "string"
+            },
+            "name": "x-forwarded-for",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_login_v1_login_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBasic": []
+          }
+        ]
+      }
+    },
+    "/v1/portaltoken/details": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get Portal Token Details",
+        "operationId": "get_portal_token_details",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_get_portal_token_details_v1_portaltoken_details_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Portal Token Details V1 Portaltoken Details Post",
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logout",
+        "operationId": "logout",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/publickeys": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get All Public Keys",
+        "description": "Get all the current public keys.\n\nIt is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)",
+        "operationId": "get_all_public_keys",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicKeyList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/publickeys/{key_id}": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get Public Key By Id",
+        "operationId": "get_public_key_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Key Id",
+              "type": "string"
+            },
+            "name": "key_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicKey"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/generateKey": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Generate Key",
+        "description": "Generate and return a new key that matches the configuration required for private keys.\n\nThis does NOT add the key to any internal list, and is purely for convenience for maintainers",
+        "operationId": "generate_key",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/v1/player/{player_id}/uuid": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Uuid From Player Id",
+        "description": "Get a player's uuid from their id.",
+        "operationId": "get_player_uuid_from_player_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Player Uuid From Player Id V1 Player  Player Id  Uuid Get",
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_id}/uuid": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Uuid From Player Id V2",
+        "description": "Get a player's uuid from their id.",
+        "operationId": "get_player_uuid_from_player_id_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerUuidFromId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/id": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Id From Player Uuid",
+        "description": "Get a player's id from their uuid.",
+        "operationId": "get_player_id_from_player_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerIdWrapper"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/links": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Links",
+        "operationId": "get_player_links",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerLinkedPortalsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/linked_portals": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Linked Portals",
+        "operationId": "get_player_linked_portals",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerLinkedPortalsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Lookup Player",
+        "description": "Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.",
+        "operationId": "lookup_player",
+        "parameters": [
+          {
+            "description": "Lookup players by display names",
+            "required": false,
+            "schema": {
+              "title": "Display Name",
+              "type": "array",
+              "items": {
+                "maxLength": 256,
+                "type": "string"
+              },
+              "description": "Lookup players by display names",
+              "default": []
+            },
+            "name": "display_name",
+            "in": "query"
+          },
+          {
+            "description": "Lookup players by their portal identity for this platform",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Portal"
+                }
+              ],
+              "description": "Lookup players by their portal identity for this platform"
+            },
+            "name": "identity_platform",
+            "in": "query"
+          },
+          {
+            "description": "Lookup players by their Portal Identity",
+            "required": false,
+            "schema": {
+              "title": "Identities",
+              "type": "array",
+              "items": {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              "description": "Lookup players by their Portal Identity",
+              "default": []
+            },
+            "name": "identities",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupResults"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/{person_id}/info": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Person",
+        "operationId": "get_person",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonInfoResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update Person",
+        "operationId": "update_person",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_update_person_v1_person__person_id__info_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/{person_id}/email/list": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Person Email List",
+        "operationId": "get_person_email_list",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonEmailListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update Person Email List",
+        "operationId": "update_person_email_list",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonEmailListRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/me/purge": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Queue Purge Status For Me",
+        "operationId": "get_queue_purge_status_for_me",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurgeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Queue Me For Purge",
+        "operationId": "queue_me_for_purge",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurgeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurgeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Dequeue Me For Purge",
+        "operationId": "dequeue_me_for_purge",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/{person_id}/purge": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Queue Purge Status For Person",
+        "operationId": "get_queue_purge_status_for_person",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurgeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Queue Person For Purge",
+        "operationId": "queue_person_for_purge",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurgeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurgeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Dequeue Person For Purge",
+        "operationId": "dequeue_person_for_purge",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Person Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/oauth/login/{platform}": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Oauth Login",
+        "operationId": "oauth_login",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/OAuthPortal"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "State",
+              "maxLength": 4096,
+              "type": "string"
+            },
+            "name": "state",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Redirect Uri",
+              "type": "string"
+            },
+            "name": "redirect_uri",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Agent",
+              "type": "string"
+            },
+            "name": "user-agent",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "X-Forwarded-For",
+              "type": "string"
+            },
+            "name": "x-forwarded-for",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/oauth/response/{platform}": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Oauth Response",
+        "operationId": "oauth_response",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/OAuthPortal"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Code",
+              "type": "string",
+              "default": ""
+            },
+            "name": "code",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "State",
+              "type": "string",
+              "default": ""
+            },
+            "name": "state",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Agent",
+              "type": "string"
+            },
+            "name": "user-agent",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "X-Forwarded-For",
+              "type": "string"
+            },
+            "name": "x-forwarded-for",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/oauth/token": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Oauth Token Exchange",
+        "operationId": "oauth_token_exchange",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Agent",
+              "type": "string"
+            },
+            "name": "user-agent",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "X-Forwarded-For",
+              "type": "string"
+            },
+            "name": "x-forwarded-for",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OAuthTokenExchange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OAuthTokenResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/oauth/token": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Token",
+        "operationId": "token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBasic": []
+          }
+        ]
+      }
+    },
+    "/v1/link": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Link",
+        "operationId": "link",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HTTPAuthorizationCredentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/unlink": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Unlink",
+        "operationId": "unlink",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/cross-progression/enable": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Enable Cross Progression",
+        "operationId": "enable_cross_progression",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/cross-progression/disable": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Disable Cross Progression",
+        "operationId": "disable_cross_progression",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/sendinblue/contact": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create Update Contact",
+        "operationId": "create_update_contact",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendInBlueContact"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgreementMessage": {
+        "title": "AgreementMessage",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "needs_eula": {
+            "title": "Needs Eula",
+            "type": "boolean",
+            "default": false
+          },
+          "needs_tos": {
+            "title": "Needs Tos",
+            "type": "boolean",
+            "default": false
+          },
+          "needs_privacy_policy": {
+            "title": "Needs Privacy Policy",
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "Body_get_portal_token_details_v1_portaltoken_details_post": {
+        "title": "Body_get_portal_token_details_v1_portaltoken_details_post",
+        "required": [
+          "grant_type",
+          "portal_access_token"
+        ],
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "$ref": "#/components/schemas/PortalTokenDetailsGrantType"
+          },
+          "portal_access_token": {
+            "title": "Portal Access Token",
+            "type": "string",
+            "description": "token or secret used to authenticate the provided grant type"
+          }
+        }
+      },
+      "Body_login_v1_login_post": {
+        "title": "Body_login_v1_login_post",
+        "required": [
+          "grant_type",
+          "portal_access_token"
+        ],
+        "type": "object",
+        "properties": {
+          "include_refresh": {
+            "title": "Include Refresh",
+            "type": "boolean",
+            "default": false
+          },
+          "accept_eula": {
+            "title": "Accept Eula",
+            "type": "boolean",
+            "default": false
+          },
+          "accept_tos": {
+            "title": "Accept Tos",
+            "type": "boolean",
+            "default": false
+          },
+          "accept_privacy_policy": {
+            "title": "Accept Privacy Policy",
+            "type": "boolean",
+            "default": false
+          },
+          "grant_type": {
+            "$ref": "#/components/schemas/GrantType"
+          },
+          "portal_access_token": {
+            "title": "Portal Access Token",
+            "type": "string",
+            "description": "token or secret used to authenticate the provided grant type"
+          },
+          "portal_display_name": {
+            "title": "Portal Display Name",
+            "type": "string",
+            "description": "Some grant types support client-provided names",
+            "default": ""
+          },
+          "portal_parent_access_token": {
+            "title": "Portal Parent Access Token",
+            "type": "string",
+            "description": "Some grant types have 2 tier authentication and require a second token/secret",
+            "default": ""
+          },
+          "portal_parent_display_name": {
+            "title": "Portal Parent Display Name",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "Body_update_person_v1_person__person_id__info_post": {
+        "title": "Body_update_person_v1_person__person_id__info_post",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        }
+      },
+      "GrantType": {
+        "title": "GrantType",
+        "enum": [
+          "google",
+          "apple",
+          "refresh",
+          "epic",
+          "xboxlive",
+          "ps4_v1",
+          "ps4_v3",
+          "ps5_v3",
+          "nintendo",
+          "nintendo_switch",
+          "steam",
+          "basic",
+          "anon"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "ANON"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "HTTPAuthorizationCredentials": {
+        "title": "HTTPAuthorizationCredentials",
+        "required": [
+          "scheme",
+          "credentials"
+        ],
+        "type": "object",
+        "properties": {
+          "scheme": {
+            "title": "Scheme",
+            "type": "string"
+          },
+          "credentials": {
+            "title": "Credentials",
+            "type": "string"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "LoginResult": {
+        "title": "LoginResult",
+        "required": [
+          "portal_id",
+          "portal_user_id",
+          "display_name",
+          "active_player_id",
+          "person_id",
+          "publisher_uuid",
+          "tenant_uuid",
+          "config_elector_uuid",
+          "client_uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "portal_id": {
+            "title": "Portal Id",
+            "type": "integer"
+          },
+          "portal_user_id": {
+            "title": "Portal User Id",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "portal_parent_auth_result": {
+            "$ref": "#/components/schemas/PortalUserInfo"
+          },
+          "permissions": {
+            "title": "Permissions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of permissions for this user.",
+            "default": []
+          },
+          "restrictions": {
+            "title": "Restrictions",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Restriction"
+            },
+            "description": "List of restrictions on this player",
+            "default": []
+          },
+          "active_player_id": {
+            "title": "Active Player Id",
+            "type": "integer"
+          },
+          "active_player_uuid": {
+            "title": "Active Player Uuid",
+            "type": "string",
+            "format": "uuid"
+          },
+          "role_id": {
+            "title": "Role Id",
+            "type": "integer"
+          },
+          "person_id": {
+            "title": "Person Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "access_token": {
+            "title": "Access Token",
+            "type": "string",
+            "default": ""
+          },
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          },
+          "publisher_uuid": {
+            "title": "Publisher Uuid",
+            "type": "string",
+            "format": "uuid"
+          },
+          "tenant_uuid": {
+            "title": "Tenant Uuid",
+            "type": "string",
+            "format": "uuid"
+          },
+          "config_elector_uuid": {
+            "title": "Config Elector Uuid",
+            "type": "string",
+            "format": "uuid"
+          },
+          "client_uuid": {
+            "title": "Client Uuid",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "LogoutRequest": {
+        "title": "LogoutRequest",
+        "required": [
+          "refresh_token"
+        ],
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "title": "Refresh Token",
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "LookupResults": {
+        "title": "LookupResults",
+        "type": "object",
+        "properties": {
+          "display_names": {
+            "title": "Display Names",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PlayerResponse"
+                }
+              }
+            },
+            "default": []
+          },
+          "identity_platforms": {
+            "title": "Identity Platforms",
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PlatformIdentityLookupResults"
+              }
+            },
+            "default": {}
+          }
+        }
+      },
+      "MessageOnly": {
+        "title": "MessageOnly",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        }
+      },
+      "OAuthGrantType": {
+        "title": "OAuthGrantType",
+        "enum": [
+          "client_credentials"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration."
+        ]
+      },
+      "OAuthPortal": {
+        "title": "OAuthPortal",
+        "enum": [
+          "google",
+          "apple",
+          "epic",
+          "xbox",
+          "psn",
+          "nintendo",
+          "steam",
+          "amazon",
+          "twitch"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "OAuthTokenExchange": {
+        "title": "OAuthTokenExchange",
+        "required": [
+          "grant_type",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "title": "Grant Type",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "accepted_eula": {
+            "title": "Accepted Eula",
+            "type": "boolean"
+          },
+          "accepted_tos": {
+            "title": "Accepted Tos",
+            "type": "boolean"
+          },
+          "accepted_privacy_policy": {
+            "title": "Accepted Privacy Policy",
+            "type": "boolean"
+          }
+        }
+      },
+      "OAuthTokenResponse": {
+        "title": "OAuthTokenResponse",
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          },
+          "needs_eula": {
+            "title": "Needs Eula",
+            "type": "boolean"
+          },
+          "needs_tos": {
+            "title": "Needs Tos",
+            "type": "boolean"
+          },
+          "needs_privacy_policy": {
+            "title": "Needs Privacy Policy",
+            "type": "boolean"
+          },
+          "regenerated_code": {
+            "title": "Regenerated Code",
+            "type": "string"
+          },
+          "error_message": {
+            "title": "Error Message",
+            "type": "string"
+          }
+        }
+      },
+      "PersonEmailListRequest": {
+        "title": "PersonEmailListRequest",
+        "type": "object",
+        "properties": {
+          "email_list_ids": {
+            "title": "List of all SendInBlue email list ids the user is subscribed to, even if already subscribed before request",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "default": []
+          }
+        }
+      },
+      "PersonEmailListResponse": {
+        "title": "PersonEmailListResponse",
+        "required": [
+          "email_list_ids"
+        ],
+        "type": "object",
+        "properties": {
+          "email_list_ids": {
+            "title": "Email List Ids",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "PersonInfoResponse": {
+        "title": "PersonInfoResponse",
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "title": "Person Id",
+            "type": "string"
+          },
+          "active_player_id": {
+            "title": "Active Player Id",
+            "type": "integer"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        }
+      },
+      "PlatformIdentityLookupResults": {
+        "title": "PlatformIdentityLookupResults",
+        "type": "object",
+        "properties": {
+          "identity": {
+            "title": "Identity",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PlayerResponse"
+            },
+            "default": {}
+          }
+        }
+      },
+      "PlayerIdWrapper": {
+        "title": "PlayerIdWrapper",
+        "required": [
+          "player_id"
+        ],
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer"
+          }
+        }
+      },
+      "PlayerLinkedPortalsResponse": {
+        "title": "PlayerLinkedPortalsResponse",
+        "required": [
+          "player",
+          "linked_portals"
+        ],
+        "type": "object",
+        "properties": {
+          "player": {
+            "$ref": "#/components/schemas/PlayerPersonResponse"
+          },
+          "linked_portals": {
+            "title": "Linked Portals",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PortalUserResponse"
+            }
+          }
+        }
+      },
+      "PlayerPersonResponse": {
+        "title": "PlayerPersonResponse",
+        "required": [
+          "player_id",
+          "player_uuid",
+          "person_id"
+        ],
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string"
+          },
+          "active_player_id": {
+            "title": "Active Player Id",
+            "type": "integer"
+          },
+          "active_player_uuid": {
+            "title": "Active Player Uuid",
+            "type": "string"
+          },
+          "person_id": {
+            "title": "Person Id",
+            "type": "string"
+          }
+        }
+      },
+      "PlayerResponse": {
+        "title": "PlayerResponse",
+        "required": [
+          "player_id",
+          "player_uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string"
+          }
+        }
+      },
+      "PlayerUuidFromId": {
+        "title": "PlayerUuidFromId",
+        "required": [
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "title": "Uuid",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "Portal": {
+        "title": "Portal",
+        "enum": [
+          2,
+          4,
+          5,
+          9,
+          10,
+          11,
+          13,
+          16,
+          22,
+          24,
+          26,
+          28,
+          33
+        ],
+        "type": "integer",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "PortalTokenDetailsGrantType": {
+        "title": "PortalTokenDetailsGrantType",
+        "enum": [
+          "ps4_v1",
+          "ps4_v3",
+          "ps5_v3"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "PortalUserInfo": {
+        "title": "PortalUserInfo",
+        "required": [
+          "portal_id",
+          "portal_user_id",
+          "display_name"
+        ],
+        "type": "object",
+        "properties": {
+          "portal_id": {
+            "$ref": "#/components/schemas/Portal"
+          },
+          "portal_user_id": {
+            "title": "Portal User Id",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          }
+        }
+      },
+      "PortalUserResponse": {
+        "title": "PortalUserResponse",
+        "required": [
+          "portal_id",
+          "player_id",
+          "player_uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "portal_user_id": {
+            "title": "Portal User Id",
+            "type": "string"
+          },
+          "portal_id": {
+            "title": "Portal Id",
+            "type": "integer"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string"
+          }
+        }
+      },
+      "PublicKey": {
+        "title": "PublicKey",
+        "required": [
+          "kid",
+          "kty",
+          "n",
+          "e"
+        ],
+        "type": "object",
+        "properties": {
+          "kid": {
+            "title": "Kid",
+            "type": "string"
+          },
+          "kty": {
+            "title": "Kty",
+            "type": "string"
+          },
+          "n": {
+            "title": "N",
+            "type": "string"
+          },
+          "e": {
+            "title": "E",
+            "type": "string"
+          }
+        }
+      },
+      "PublicKeyList": {
+        "title": "PublicKeyList",
+        "required": [
+          "keys"
+        ],
+        "type": "object",
+        "properties": {
+          "keys": {
+            "title": "Keys",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicKey"
+            }
+          }
+        }
+      },
+      "PurgeRequest": {
+        "title": "PurgeRequest",
+        "type": "object",
+        "properties": {
+          "suggested_purge_time": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          }
+        }
+      },
+      "PurgeResponse": {
+        "title": "PurgeResponse",
+        "required": [
+          "person_id",
+          "purge_on",
+          "created_on",
+          "last_modified_on",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "title": "Person Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "purge_on": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "created_on": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "last_modified_on": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        }
+      },
+      "Restriction": {
+        "title": "Restriction",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RestrictionType"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "expiration": {
+            "title": "Expiration",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RestrictionType": {
+        "title": "RestrictionType",
+        "enum": [
+          "account_ban",
+          "account_lockout",
+          "account_pending_deletion"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "SendInBlueContact": {
+        "title": "SendInBlueContact",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "attributes": {
+            "title": "Attributes",
+            "type": "object"
+          },
+          "emailBlacklisted": {
+            "title": "Emailblacklisted",
+            "type": "boolean"
+          },
+          "listIds": {
+            "title": "Listids",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "unlinkListIds": {
+            "title": "Unlinklistids",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "updateEnabled": {
+            "title": "Updateenabled",
+            "type": "boolean"
+          }
+        }
+      },
+      "TokenRequest": {
+        "title": "TokenRequest",
+        "required": [
+          "grant_type"
+        ],
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "$ref": "#/components/schemas/OAuthGrantType"
+          }
+        }
+      },
+      "TokenResponse": {
+        "title": "TokenResponse",
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ],
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "token_type": {
+            "title": "Token Type",
+            "type": "string"
+          },
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          },
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "HTTPBasic": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  }
+}

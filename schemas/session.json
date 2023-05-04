@@ -1,0 +1,4946 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "session-api",
+    "description": "Hi-Rez Studios session-api.",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/session"
+    }
+  ],
+  "paths": {
+    "/v1/template": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get All Session Templates",
+        "description": "Get All Session Template definitions",
+        "operationId": "get_all_session_templates",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionTemplates"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/template/{session_type}": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session Template By Type",
+        "description": "Get Session Template by ID",
+        "operationId": "get_session_template_by_type",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Type",
+              "type": "string"
+            },
+            "name": "session_type",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionTemplate"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/browser": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Browser Sessions By Type",
+        "description": "Get all public sessions of specific type",
+        "operationId": "get_browser_sessions_by_type",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Type",
+              "type": "string"
+            },
+            "name": "session_type",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Cursor",
+              "type": "integer",
+              "default": 0
+            },
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrowserResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Create Or Join Session",
+        "description": "Player would like to join the first available session of the type. If there is no available public session,\nand the type allows it, the player would like to have a new session created for them and join it.",
+        "operationId": "create_or_join_session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrJoinRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionJoinResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session By Id",
+        "description": "Get Session by ID.  This request will return limited results for non-members of the session, such as excluding info for how to connect to the instance.  Elevated permissions can bypass that restriction",
+        "operationId": "get_session_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Update Session By Id",
+        "description": "Update session info by session id",
+        "operationId": "update_session_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/allocation/{allocation_id}": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session By Allocation Id",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id",
+        "operationId": "get_session_by_allocation_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Allocation Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "allocation_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/browser": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Post Browser Info",
+        "description": "Register session in the public browser",
+        "operationId": "post_browser_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BrowserInfo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrowserInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Delete Browser Info",
+        "description": "Delete the session from the public browser",
+        "operationId": "delete_browser_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Update Browser Info",
+        "description": "Update the browser info for the session",
+        "operationId": "update_browser_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BrowserInfo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrowserInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/instance": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Handle Instance Request",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance",
+        "operationId": "handle_instance_request",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "End Instance",
+        "description": "Unregister the instance from the session.",
+        "operationId": "end_instance",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Update Instance Info",
+        "description": "Update info about the instance",
+        "operationId": "update_instance_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceInfoUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/match": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Start Match",
+        "description": "Begin a new match for the current session, on the current instance",
+        "operationId": "start_match",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchCreateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "End Match",
+        "description": "Unregister the match from the session.",
+        "operationId": "end_match",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Update Match Info",
+        "description": "Update info about the match",
+        "operationId": "update_match_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/player/me": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Join Session By Id Self",
+        "description": "Join a session",
+        "operationId": "join_session_by_id_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelfSessionPlayerUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPlayerUpdateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Leave Session By Id Self",
+        "description": "Leave a session",
+        "operationId": "leave_session_by_id_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/player/uuid/{player_uuid}": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Update Session Player By Uuid",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session",
+        "operationId": "update_session_player_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionPlayerUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPlayerUpdateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Kick Player From Session By Uuid",
+        "description": "Kick/Remove a player from a session or cancel an invite for a player to the session",
+        "operationId": "kick_player_from_session_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/player/id/{player_id}": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Update Session Player By Id",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session",
+        "operationId": "update_session_player_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionPlayerUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPlayerUpdateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Kick Player From Session By Id",
+        "description": "Kick/Remove a player from a session or cancel an invite for a player to the session",
+        "operationId": "kick_player_from_session_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/event": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Session Events",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.",
+        "operationId": "get_session_events",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Num",
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "name": "page_num",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionEvents"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Create Session Event",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.",
+        "operationId": "create_session_event",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionEventCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/platform/{platform_id}/session/{platform_session_id_base64}": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Platform Session Info",
+        "description": "Get information about a platform session",
+        "operationId": "get_platform_session_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformID"
+            },
+            "name": "platform_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform Session Id Base64",
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "platform_session_id_base64",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSession"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Platform Session doesn't exist.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/platform/{platform_id}/session/{platform_session_id_base64}/player/me": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Join Session By Platform Session Id Self",
+        "description": "Join a platform session by ID, and the parent session",
+        "operationId": "join_session_by_platform_session_id_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform Session Id Base64",
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "platform_session_id_base64",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformID"
+            },
+            "name": "platform_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/platform/{platform_id}/session/{platform_session_id_base64}/player/uuid/{player_uuid}": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Join Session By Platform Session By Uuid",
+        "description": "Join a platform session by ID, and the parent session",
+        "operationId": "join_session_by_platform_session_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform Session Id Base64",
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "platform_session_id_base64",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "integer"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformID"
+            },
+            "name": "platform_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/platform/{platform_id}/session/{platform_session_id_base64}/player/id/{player_id}": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Join Session By Platform Session Id",
+        "description": "Join a platform session by ID, and the parent session",
+        "operationId": "join_session_by_platform_session_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Platform Session Id Base64",
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "platform_session_id_base64",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformID"
+            },
+            "name": "platform_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/me/session": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Player Sessions Self",
+        "description": "Get Sessions associated the current player",
+        "operationId": "get_player_sessions_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerSessions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/uuid/{player_uuid}/session": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Player Sessions By Uuid",
+        "description": "Get Sessions associated with a player by id",
+        "operationId": "get_player_sessions_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerSessions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/id/{player_id}/session": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Player Sessions",
+        "description": "Get Sessions associated with a player by id",
+        "operationId": "get_player_sessions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerSessions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/connection-info": {
+      "get": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Get Connection Info Self",
+        "description": "Get connection info for self",
+        "operationId": "get_connection_info_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "X-Forwarded-For",
+              "type": "string",
+              "default": ""
+            },
+            "name": "x-forwarded-for",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/queue": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Join Queue",
+        "description": "Add session to a matchmaking queue",
+        "operationId": "join_queue",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueueJoinRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueueJoinResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Leave Queue",
+        "description": "Remove session from a matchmaking queue",
+        "operationId": "leave_queue",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/match-made-session": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Create Match",
+        "description": "Create a match session based on matchmaking results",
+        "operationId": "create_match",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchMakingSessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/queues": {
+      "get": {
+        "tags": [
+          "queues"
+        ],
+        "summary": "Get All Queue Info",
+        "description": "Get all the available queues, maps, and map selection lists",
+        "operationId": "get_all_queue_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Page",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuesResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/instance-launch-templates/{instance_launch_template_id}": {
+      "get": {
+        "tags": [
+          "queues"
+        ],
+        "summary": "Get All Map Game Info",
+        "description": "Get all the match game info",
+        "operationId": "get_all_map_game_info",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Instance Launch Template Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "instance_launch_template_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceLaunchTemplate"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/match-making-templates/{template_group_id}": {
+      "get": {
+        "tags": [
+          "queues"
+        ],
+        "summary": "Get Match Making Templates",
+        "description": "Get match making templates and rules",
+        "operationId": "get_match_making_templates",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Template Group Id",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "template_group_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchMakingTemplateGroup"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/session/{session_id}/instance/fubar": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Report Fubar",
+        "description": "Report an instance as fubar",
+        "operationId": "report_fubar",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "session_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceFubar"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FubarResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BrowserInfo": {
+        "title": "BrowserInfo",
+        "type": "object",
+        "properties": {
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data with the listing of the instance in the Session browser",
+            "default": {}
+          }
+        }
+      },
+      "BrowserResponse": {
+        "title": "BrowserResponse",
+        "required": [
+          "cursor",
+          "browser_sessions"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "title": "Cursor",
+            "type": "integer",
+            "description": "Cursor to continue iterating through browser sessions. 0 means we have returned the last entry"
+          },
+          "browser_sessions": {
+            "title": "Browser Sessions",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BrowserSessionInfo"
+            },
+            "description": "List of sessions in the browser"
+          }
+        }
+      },
+      "BrowserSessionInfo": {
+        "title": "BrowserSessionInfo",
+        "required": [
+          "session_id"
+        ],
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "title": "Session Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID for the session"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data with the listing of the instance in the Session browser"
+          }
+        }
+      },
+      "ClientSettings": {
+        "title": "ClientSettings",
+        "required": [
+          "platform_id",
+          "input"
+        ],
+        "type": "object",
+        "properties": {
+          "platform_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformID"
+              }
+            ],
+            "description": "Which platform this client is one"
+          },
+          "input": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Input"
+              }
+            ],
+            "description": "Which input type this client is using"
+          }
+        }
+      },
+      "ConnectionInfo": {
+        "title": "ConnectionInfo",
+        "required": [
+          "ip"
+        ],
+        "type": "object",
+        "properties": {
+          "ip": {
+            "title": "Ip",
+            "type": "string",
+            "description": "IP that sent the request"
+          }
+        }
+      },
+      "CreateOrJoinRequest": {
+        "title": "CreateOrJoinRequest",
+        "required": [
+          "client_version",
+          "client_settings",
+          "session_type"
+        ],
+        "type": "object",
+        "properties": {
+          "client_version": {
+            "title": "Client Version",
+            "type": "string",
+            "description": "String representation of semver for client"
+          },
+          "client_settings": {
+            "title": "Client Settings",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ClientSettings"
+              }
+            ],
+            "description": "Which input type and platform the client is using"
+          },
+          "crossplay_preferences": {
+            "title": "Crossplay Preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayPreferences"
+              }
+            ],
+            "description": "Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible"
+          },
+          "session_type": {
+            "title": "Session Type",
+            "type": "string",
+            "description": "Type of session client is creating or joining"
+          },
+          "site_id": {
+            "title": "Site Id",
+            "type": "integer",
+            "description": "Preferred site for the instance and match to take place in"
+          }
+        }
+      },
+      "CrossplayInput": {
+        "title": "CrossplayInput",
+        "enum": [
+          "desired_inputs_any",
+          "desired_inputs_keyboardandmouse",
+          "desired_inputs_gamepad",
+          "desired_inputs_touch"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "CrossplayPlatform": {
+        "title": "CrossplayPlatform",
+        "enum": [
+          "desired_platforms_any",
+          "desired_platforms_xboxlike",
+          "desired_platforms_playstationlike"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "CrossplayPreferences": {
+        "title": "CrossplayPreferences",
+        "required": [
+          "permitted_platform",
+          "permitted_input"
+        ],
+        "type": "object",
+        "properties": {
+          "permitted_platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayPlatform"
+              }
+            ],
+            "description": "The platform type that the client is allowed to play with (any, xbox-like only, playstation-like only etc.)"
+          },
+          "permitted_input": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayInput"
+              }
+            ],
+            "description": "The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.)"
+          }
+        }
+      },
+      "Determiner": {
+        "title": "Determiner",
+        "enum": [
+          "allOf",
+          "anyOf",
+          "oneOf",
+          "noneOf"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "FubarResponse": {
+        "title": "FubarResponse",
+        "type": "object",
+        "properties": {}
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HostType": {
+        "title": "HostType",
+        "enum": [
+          "dedicated",
+          "player"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "dedicated",
+          "player"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "Input": {
+        "title": "Input",
+        "enum": [
+          "keyboardandmouse",
+          "gamepad",
+          "touch"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "InstanceFubar": {
+        "title": "InstanceFubar",
+        "required": [
+          "instance_id",
+          "error",
+          "site",
+          "matchmaking_profile_id",
+          "instance_source_provider"
+        ],
+        "type": "object",
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string",
+            "description": "ID for which instance was marked as FUBAR"
+          },
+          "error": {
+            "title": "Error",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Error string describing what caused the instance failure"
+          },
+          "site": {
+            "title": "Site",
+            "type": "integer",
+            "description": "What site the failed instance was in"
+          },
+          "matchmaking_profile_id": {
+            "title": "Matchmaking Profile Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID for which matchmaking profile was used to generate the failed instance"
+          },
+          "instance_source_provider": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceSourceProvider"
+              }
+            ],
+            "description": "Which instance provider allocated this failed instance"
+          }
+        }
+      },
+      "InstanceInfo": {
+        "title": "InstanceInfo",
+        "required": [
+          "host_type",
+          "join_status",
+          "created"
+        ],
+        "type": "object",
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Allocation ID for instance that's been spun up"
+          },
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string",
+            "description": "Unique ID for the host/session relationship"
+          },
+          "host_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HostType"
+              }
+            ],
+            "description": "Type of the host"
+          },
+          "host_player_id": {
+            "title": "Host Player Id",
+            "type": "integer",
+            "description": "Player ID of the host, if the host type is player"
+          },
+          "host_player_uuid": {
+            "title": "Host Player Uuid",
+            "type": "string",
+            "description": "Player UUID of the host, if the host type is player",
+            "format": "uuid"
+          },
+          "host_dedicated_process_id": {
+            "title": "Host Dedicated Process Id",
+            "type": "string",
+            "description": "Unique ID for the process that is running this instance"
+          },
+          "host_dedicated_server_id": {
+            "title": "Host Dedicated Server Id",
+            "type": "string",
+            "description": "Unique ID for the machine running the instance"
+          },
+          "join_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceJoinableStatus"
+              }
+            ],
+            "description": "Is the instance joinable at this time?"
+          },
+          "join_params": {
+            "title": "Join Params",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JoinParams"
+              }
+            ],
+            "description": "Parameters to join the instance"
+          },
+          "instance_startup_params": {
+            "title": "Instance Startup Params",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceStartupParams"
+              }
+            ],
+            "description": "Parameters used by the host to startup. For UE5 this will contain the map and gamemode"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string",
+            "description": "Product Client Version number.  Used for compatibility checking with players",
+            "format": "semver",
+            "example": "21.3.15-beta+12345"
+          },
+          "created": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "instance-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "InstanceInfoUpdate": {
+        "title": "InstanceInfoUpdate",
+        "type": "object",
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Allocation ID for instance that's been spun up"
+          },
+          "join_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceJoinableStatus"
+              }
+            ],
+            "description": "Is the instance joinable at this time?"
+          },
+          "join_params": {
+            "title": "Join Params",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JoinParams"
+              }
+            ],
+            "description": "Parameters to join the instance"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string",
+            "description": "Product Client Version number.  Used for compatibility checking with players.  Must be compatible with all players to spawn",
+            "format": "semver",
+            "example": "21.3.15-beta+12345"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "instance-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "InstanceJoinableStatus": {
+        "title": "InstanceJoinableStatus",
+        "enum": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "closed"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found",
+          "Host has arrived",
+          "Host is ready to accept players",
+          "Host has left, been timed out, or could not be found"
+        ]
+      },
+      "InstanceLaunchTemplate": {
+        "title": "InstanceLaunchTemplate",
+        "required": [
+          "instance_launch_template_id",
+          "map_selection_list",
+          "custom_data"
+        ],
+        "type": "object",
+        "properties": {
+          "instance_launch_template_id": {
+            "title": "Instance Launch Template Id",
+            "type": "string",
+            "description": "ID to uniquely identify this instance launch template",
+            "format": "uuid"
+          },
+          "map_selection_list": {
+            "title": "Map Selection List",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MapSelectionList"
+              }
+            ],
+            "description": "A selection list of maps that can be chosen to launch into"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data that will be passed to the session during the instance launch request"
+          }
+        }
+      },
+      "InstanceRequest": {
+        "title": "InstanceRequest",
+        "required": [
+          "host_type"
+        ],
+        "type": "object",
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string",
+            "description": "Unique ID for the instance, a new one will be generated if not provided"
+          },
+          "instance_startup_params": {
+            "title": "Instance Startup Params",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceStartupParams"
+              }
+            ],
+            "description": "Parameters used by the host to startup. For UE5 this will contain the map and gamemode"
+          },
+          "host_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HostType"
+              }
+            ],
+            "description": "Type of the host"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "instance-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "InstanceSourceProvider": {
+        "title": "InstanceSourceProvider",
+        "enum": [
+          "player",
+          "sic",
+          "multiplay"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "PLAYER",
+          "SIC",
+          "MULTIPLAY"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "InstanceStartupParams": {
+        "title": "InstanceStartupParams",
+        "required": [
+          "map",
+          "misc_params"
+        ],
+        "type": "object",
+        "properties": {
+          "map": {
+            "title": "Map",
+            "type": "string",
+            "description": "Name of the map for the instance to spawn with"
+          },
+          "mode": {
+            "title": "Mode",
+            "type": "string",
+            "description": "Game mode for the instance to spawn in"
+          },
+          "misc_params": {
+            "title": "Misc Params",
+            "type": "string",
+            "description": "Additional commandline parameters for the instance"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data to pass through to the instance",
+            "default": {}
+          }
+        }
+      },
+      "JoinParams": {
+        "title": "JoinParams",
+        "required": [
+          "public_conn_str",
+          "private_conn_str"
+        ],
+        "type": "object",
+        "properties": {
+          "public_conn_str": {
+            "title": "Public Conn Str",
+            "type": "string",
+            "description": "Public connection string for instance"
+          },
+          "private_conn_str": {
+            "title": "Private Conn Str",
+            "type": "string",
+            "description": "Private connection string for instance"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data to join a instance",
+            "default": {}
+          }
+        }
+      },
+      "MMRGroupingMethod": {
+        "title": "MMRGroupingMethod",
+        "enum": [
+          "worst",
+          "best",
+          "avg_weighted_by_sigma",
+          "avg"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "MapConfig": {
+        "title": "MapConfig",
+        "required": [
+          "map_game_id",
+          "map_name",
+          "selection_chance"
+        ],
+        "type": "object",
+        "properties": {
+          "map_game_id": {
+            "title": "Map Game Id",
+            "type": "integer",
+            "description": "ID to uniquely identify this map game"
+          },
+          "map_name": {
+            "title": "Map Name",
+            "type": "string",
+            "description": "Name of the map the instance should load into"
+          },
+          "mode": {
+            "title": "Mode",
+            "type": "string",
+            "description": "Game mode for the instance to spawn in"
+          },
+          "selection_chance": {
+            "title": "Selection Chance",
+            "maximum": 100,
+            "minimum": 0,
+            "type": "number",
+            "description": "Chance that this map will get selected in a rotation list"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data to pass through to the instance",
+            "default": {}
+          }
+        }
+      },
+      "MapSelectionList": {
+        "title": "MapSelectionList",
+        "required": [
+          "map_selection_list_id",
+          "maps"
+        ],
+        "type": "object",
+        "properties": {
+          "map_selection_list_id": {
+            "title": "Map Selection List Id",
+            "type": "integer",
+            "description": "ID to uniquely identify this map selection list"
+          },
+          "maps": {
+            "title": "Maps",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MapConfig"
+            },
+            "description": "List of maps that can be chosen in this selection list"
+          }
+        }
+      },
+      "MatchCreateRequest": {
+        "title": "MatchCreateRequest",
+        "required": [
+          "match_id"
+        ],
+        "type": "object",
+        "properties": {
+          "match_id": {
+            "title": "Match Id",
+            "type": "string",
+            "description": "Unique ID"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "instance-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "MatchCreateResponse": {
+        "title": "MatchCreateResponse",
+        "required": [
+          "match_id"
+        ],
+        "type": "object",
+        "properties": {
+          "match_id": {
+            "title": "Match Id",
+            "type": "string",
+            "description": "Unique ID"
+          }
+        }
+      },
+      "MatchInfo": {
+        "title": "MatchInfo",
+        "required": [
+          "match_id",
+          "created"
+        ],
+        "type": "object",
+        "properties": {
+          "match_id": {
+            "title": "Match Id",
+            "type": "string",
+            "description": "Unique ID"
+          },
+          "created": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "instance-defined custom data",
+            "default": {}
+          },
+          "ticket_ids": {
+            "title": "Ticket Ids",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of tickets that were assigned to this match if created by matchmaking",
+            "default": []
+          }
+        }
+      },
+      "MatchMakingProfile": {
+        "title": "MatchMakingProfile",
+        "required": [
+          "profile_id",
+          "instance_launch_template_id"
+        ],
+        "type": "object",
+        "properties": {
+          "profile_id": {
+            "title": "Profile Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID of the matchmaking profile to join"
+          },
+          "join_mode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProfileJoinMode"
+              }
+            ],
+            "description": "What mode to set on the matchmaking profile (normal, backfill etc)",
+            "default": "normal"
+          },
+          "instance_launch_template_id": {
+            "title": "Instance Launch Template Id",
+            "type": "string",
+            "description": "Which instance template to use when launching a match in this profile",
+            "format": "uuid"
+          }
+        }
+      },
+      "MatchMakingSessionRequest": {
+        "title": "MatchMakingSessionRequest",
+        "required": [
+          "teams",
+          "session_tickets",
+          "instance_launch_template_id",
+          "site_id",
+          "match_id"
+        ],
+        "type": "object",
+        "properties": {
+          "teams": {
+            "title": "Teams",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionTeam"
+            },
+            "description": "List of teams that are to be invited to session"
+          },
+          "session_tickets": {
+            "title": "Session Tickets",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "List of sessions and tickets the match was made with. Used to verify this match should still be created"
+          },
+          "instance_launch_template_id": {
+            "title": "Instance Launch Template Id",
+            "type": "string",
+            "description": "Which launch template should be used to request an instance",
+            "format": "uuid"
+          },
+          "site_id": {
+            "title": "Site Id",
+            "type": "integer",
+            "description": "Site to start the instance in"
+          },
+          "match_id": {
+            "title": "Match Id",
+            "type": "string",
+            "description": "Unique ID for this generated match"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom data about the match",
+            "default": {}
+          }
+        }
+      },
+      "MatchMakingTemplate": {
+        "title": "MatchMakingTemplate",
+        "required": [
+          "mmr_group_method",
+          "profiles"
+        ],
+        "type": "object",
+        "properties": {
+          "mmr_group_method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MMRGroupingMethod"
+              }
+            ],
+            "description": "What method should be used to calculate a group's MMR based on the individual player's ranks"
+          },
+          "ruleset": {
+            "title": "Ruleset",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Ruleset"
+              }
+            ],
+            "description": "A set of rules that determine whether or not this matchmaking config should be used."
+          },
+          "profiles": {
+            "title": "Profiles",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MatchMakingProfile"
+            },
+            "description": "A list of which match making profiles are going to be created on the ticket"
+          }
+        }
+      },
+      "MatchMakingTemplateGroup": {
+        "title": "MatchMakingTemplateGroup",
+        "required": [
+          "template_group_id",
+          "template_options"
+        ],
+        "type": "object",
+        "properties": {
+          "template_group_id": {
+            "title": "Template Group Id",
+            "type": "string",
+            "description": "ID for this set of potential matchmaking templates",
+            "format": "uuid"
+          },
+          "template_options": {
+            "title": "Template Options",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MatchMakingTemplate"
+            },
+            "description": "List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template"
+          },
+          "required_item_ids": {
+            "title": "Required Item Ids",
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Set of all the item ids that are required to validate every rule contained in this template group",
+            "default": []
+          }
+        }
+      },
+      "MatchmakingInfo": {
+        "title": "MatchmakingInfo",
+        "required": [
+          "ticket_id"
+        ],
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "title": "Ticket Id",
+            "type": "string",
+            "description": "Unique ID for this attempt at matchmaking"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "session-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "Operation": {
+        "title": "Operation",
+        "enum": [
+          "eq",
+          "ne",
+          "lt",
+          "le",
+          "gt",
+          "ge"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "PlatformID": {
+        "title": "PlatformID",
+        "enum": [
+          2,
+          4,
+          5,
+          9,
+          10,
+          11,
+          13,
+          16,
+          22,
+          24,
+          26,
+          28
+        ],
+        "type": "integer",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "PlatformSession": {
+        "title": "PlatformSession",
+        "required": [
+          "platform_id",
+          "platform_session_id_base64",
+          "players"
+        ],
+        "type": "object",
+        "properties": {
+          "platform_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformID"
+              }
+            ],
+            "description": "Platform that this session is for"
+          },
+          "platform_session_id_base64": {
+            "title": "Platform Session Id Base64",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string",
+            "description": "Platform session's unique identifier"
+          },
+          "players": {
+            "title": "Players",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlatformSessionPlayer"
+            },
+            "description": "Players in the platform session"
+          }
+        }
+      },
+      "PlatformSessionPlayer": {
+        "title": "PlatformSessionPlayer",
+        "required": [
+          "player_id",
+          "player_uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string",
+            "format": "uuid"
+          },
+          "leader": {
+            "title": "Leader",
+            "type": "boolean",
+            "description": "Is this player the leader of the platform session?  When setting up the parent session, if all players are from the same platform session, leadership is coordinated",
+            "default": false
+          }
+        }
+      },
+      "PlatformSessionTemplate": {
+        "title": "PlatformSessionTemplate",
+        "required": [
+          "platform_id",
+          "platform_session_type"
+        ],
+        "type": "object",
+        "properties": {
+          "platform_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformID"
+              }
+            ],
+            "description": "Platform"
+          },
+          "platform_session_type": {
+            "title": "Platform Session Type",
+            "type": "string",
+            "description": "Platform-Specific Identifier for the Platform's template"
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Product-defined custom metadata",
+            "default": {}
+          }
+        }
+      },
+      "PlayerSession": {
+        "title": "PlayerSession",
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Type",
+            "type": "string",
+            "description": "template type"
+          },
+          "session_ids": {
+            "title": "Session Ids",
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Sessions the player is currently a part of for this session type, if any.",
+            "default": []
+          },
+          "pending_invites": {
+            "title": "Pending Invites",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PlayerSessionInvite"
+            },
+            "description": "Pending invites, if any, for the current player in this session type",
+            "default": {}
+          }
+        }
+      },
+      "PlayerSessionInvite": {
+        "title": "PlayerSessionInvite",
+        "required": [
+          "session_id"
+        ],
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "title": "Session Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Session ID for the invite"
+          },
+          "inviting_player_uuid": {
+            "title": "Inviting Player Uuid",
+            "type": "string",
+            "description": "Player who sent the invite",
+            "format": "uuid"
+          }
+        }
+      },
+      "PlayerSessions": {
+        "title": "PlayerSessions",
+        "type": "object",
+        "properties": {
+          "sessions": {
+            "title": "Sessions",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PlayerSession"
+            },
+            "description": "Session associated with this player, and any pending invites",
+            "default": {}
+          }
+        }
+      },
+      "ProfileJoinMode": {
+        "title": "ProfileJoinMode",
+        "enum": [
+          "normal",
+          "backfill",
+          "created_before"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "QueueConfig": {
+        "title": "QueueConfig",
+        "required": [
+          "queue_id",
+          "active",
+          "ranking_type",
+          "num_sides",
+          "max_players_per_side",
+          "min_players_per_side",
+          "max_queue_group_size",
+          "match_making_template_group_id"
+        ],
+        "type": "object",
+        "properties": {
+          "queue_id": {
+            "title": "Queue Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID to uniquely identify this queue"
+          },
+          "active": {
+            "title": "Active",
+            "type": "boolean",
+            "description": "Flag for whether or not the queue is active, and can be joined or sessions created from it"
+          },
+          "ranking_type": {
+            "title": "Ranking Type",
+            "type": "integer",
+            "description": "Which rank this queue should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example)"
+          },
+          "num_sides": {
+            "title": "Num Sides",
+            "type": "integer",
+            "description": "The number of sides a game in this queue will have (2 in a 1v1 and 3 in a 1v1v1 for example"
+          },
+          "max_players_per_side": {
+            "title": "Max Players Per Side",
+            "type": "integer",
+            "description": "The maximum number of players that can be on each team"
+          },
+          "min_players_per_side": {
+            "title": "Min Players Per Side",
+            "type": "integer",
+            "description": "The minimum number of players that can be on each team"
+          },
+          "max_queue_group_size": {
+            "title": "Max Queue Group Size",
+            "type": "integer",
+            "description": "The maximum size of a group that can join this queue"
+          },
+          "match_making_template_group_id": {
+            "title": "Match Making Template Group Id",
+            "type": "string",
+            "description": "ID for which group of matchmaking templates/rules will be used when joining this queue",
+            "format": "uuid"
+          }
+        }
+      },
+      "QueueJoinRequest": {
+        "title": "QueueJoinRequest",
+        "required": [
+          "queue_id",
+          "map_preferences"
+        ],
+        "type": "object",
+        "properties": {
+          "queue_id": {
+            "title": "Queue Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID of the queue to join"
+          },
+          "additional_tags": {
+            "title": "Additional Tags",
+            "type": "array",
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Additional tags for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields)"
+          },
+          "map_preferences": {
+            "title": "Map Preferences",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "List of map preferences in order from most desired, to least desired"
+          }
+        }
+      },
+      "QueueJoinResponse": {
+        "title": "QueueJoinResponse",
+        "required": [
+          "ticket_id"
+        ],
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "title": "Ticket Id",
+            "type": "string",
+            "description": "ID for the newly created match making ticket"
+          }
+        }
+      },
+      "QueuesResponse": {
+        "title": "QueuesResponse",
+        "required": [
+          "queues"
+        ],
+        "type": "object",
+        "properties": {
+          "queues": {
+            "title": "Queues",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueueConfig"
+            },
+            "description": "List of queues"
+          }
+        }
+      },
+      "Rule": {
+        "title": "Rule",
+        "required": [
+          "operation",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "operation": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Operation"
+              }
+            ],
+            "description": "Comparison operation to be performed"
+          },
+          "value": {
+            "title": "Value",
+            "type": "integer",
+            "description": "Value to compare to"
+          }
+        }
+      },
+      "Ruleset": {
+        "title": "Ruleset",
+        "required": [
+          "rules",
+          "determiner"
+        ],
+        "type": "object",
+        "properties": {
+          "rules": {
+            "title": "Rules",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Rule"
+            }
+          },
+          "determiner": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Determiner"
+              }
+            ],
+            "description": "Determiner of how many rules must be satisfied in this rulest (all, any, one, none)"
+          }
+        }
+      },
+      "SelfSessionPlayerUpdateRequest": {
+        "title": "SelfSessionPlayerUpdateRequest",
+        "required": [
+          "client_version",
+          "client_settings",
+          "team_id"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionPlayerStatus"
+              }
+            ],
+            "description": "Status that the player would like after the request is complete. Note that some join operations may promote the player from `member` to `leader`",
+            "default": "member"
+          },
+          "client_version": {
+            "title": "Client Version",
+            "type": "string",
+            "description": "Semver for updated client"
+          },
+          "client_settings": {
+            "title": "Client Settings",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ClientSettings"
+              }
+            ],
+            "description": "Which input type and platform the client is using"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "minimum": 0,
+            "type": "integer",
+            "description": "Which team the player is one"
+          },
+          "crossplay_preferences": {
+            "title": "Crossplay Preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayPreferences"
+              }
+            ],
+            "description": "Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "player-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "Session": {
+        "title": "Session",
+        "required": [
+          "type",
+          "session_id",
+          "joinable",
+          "teams",
+          "created"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Type",
+            "type": "string",
+            "description": "template type"
+          },
+          "session_id": {
+            "title": "Session Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "unique ID for this session within its type"
+          },
+          "instance": {
+            "title": "Instance",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceInfo"
+              }
+            ],
+            "description": "Info about the current active instance for the session"
+          },
+          "match": {
+            "title": "Match",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchInfo"
+              }
+            ],
+            "description": "Info about the current match in the instance"
+          },
+          "matchmaking": {
+            "title": "Matchmaking",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchmakingInfo"
+              }
+            ],
+            "description": "Info about the matchmaking state of the session, if it is in the process of matchmaking"
+          },
+          "browser": {
+            "title": "Browser",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BrowserInfo"
+              }
+            ],
+            "description": "Info about the browser state of the session"
+          },
+          "joinable": {
+            "title": "Joinable",
+            "type": "boolean",
+            "description": "Is this session freely joinable by players without an invite?"
+          },
+          "teams": {
+            "title": "Teams",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionTeam"
+            },
+            "description": "List of teams of players currently in the session"
+          },
+          "platform_session": {
+            "title": "Platform Session",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlatformSession"
+            },
+            "description": "Child Platform Sessions for this session.  A player joining one of the child platform sessions implicitly joins the parent session",
+            "default": []
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Leader Player or instance defined custom data about this session",
+            "default": {}
+          },
+          "created": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "site_id": {
+            "title": "Site Id",
+            "type": "integer",
+            "description": "Preferred site for the instance and match to take place in"
+          },
+          "created_by_matchmaking": {
+            "title": "Created By Matchmaking",
+            "type": "boolean",
+            "description": "Flag of whether or not this session was created by matchmaking or not",
+            "default": false
+          }
+        }
+      },
+      "SessionEvent": {
+        "title": "SessionEvent",
+        "required": [
+          "event_code",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "event_code": {
+            "title": "Event Code",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "Code that identifies this type of event.  See CommonEventCode for common examples."
+          },
+          "description": {
+            "title": "Description",
+            "maxLength": 4096,
+            "minLength": 0,
+            "type": "string",
+            "description": "Description metadata about the event",
+            "default": ""
+          },
+          "source_player_id": {
+            "title": "Source Player Id",
+            "type": "integer",
+            "description": "Player who triggered the event"
+          },
+          "source_player_uuid": {
+            "title": "Source Player Uuid",
+            "type": "string",
+            "description": "Player who triggered the event",
+            "format": "uuid"
+          },
+          "target_player_id": {
+            "title": "Target Player Id",
+            "type": "integer",
+            "description": "Player who the event was targetted toward, if relevant"
+          },
+          "target_player_uuid": {
+            "title": "Target Player Uuid",
+            "type": "string",
+            "description": "Player who the event was targetted toward, if relevant",
+            "format": "uuid"
+          },
+          "instance": {
+            "title": "Instance",
+            "type": "string",
+            "description": "Instance that was active at the time of the event"
+          },
+          "match": {
+            "title": "Match",
+            "type": "string",
+            "description": "Match that was active at the time of the event"
+          },
+          "platform_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformID"
+              }
+            ],
+            "description": "Relevant platform"
+          },
+          "platform_session_id_base64": {
+            "title": "Platform Session Id Base64",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string",
+            "description": "Relevant platform session id"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "custom data about this event",
+            "default": {}
+          },
+          "timestamp": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          }
+        }
+      },
+      "SessionEventCreateRequest": {
+        "title": "SessionEventCreateRequest",
+        "required": [
+          "event_code",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "event_code": {
+            "title": "Event Code",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "Code that identifies this type of event.  See CommonEventCode for common examples."
+          },
+          "description": {
+            "title": "Description",
+            "maxLength": 4096,
+            "minLength": 0,
+            "type": "string",
+            "description": "Description metadata about the event",
+            "default": ""
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "custom data about this event",
+            "default": {}
+          },
+          "timestamp": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          }
+        }
+      },
+      "SessionEvents": {
+        "title": "SessionEvents",
+        "type": "object",
+        "properties": {
+          "events": {
+            "title": "Events",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionEvent"
+            },
+            "default": []
+          }
+        }
+      },
+      "SessionJoinResponse": {
+        "title": "SessionJoinResponse",
+        "required": [
+          "session_id"
+        ],
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "title": "Session Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Session ID the player is now a part of"
+          }
+        }
+      },
+      "SessionPlayer": {
+        "title": "SessionPlayer",
+        "required": [
+          "player_uuid",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer",
+            "description": "Legacy id for this player"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string",
+            "description": "UUID for this player",
+            "format": "uuid"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionPlayerStatus"
+              }
+            ],
+            "description": "Status of the player in the session"
+          },
+          "inviting_player_uuid": {
+            "title": "Inviting Player Uuid",
+            "type": "string",
+            "description": "If the player is only a pending invite, this is the player that requested the invite",
+            "format": "uuid"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "player-defined custom data",
+            "default": {}
+          },
+          "version": {
+            "title": "Version",
+            "type": "string",
+            "description": "Product Client Version number.  Used for compatibility checking with other players and instances",
+            "format": "semver",
+            "example": "21.3.15-beta+12345"
+          },
+          "client_settings": {
+            "title": "Client Settings",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ClientSettings"
+              }
+            ],
+            "description": "Which input type and platform the client is using"
+          },
+          "crossplay_preferences": {
+            "title": "Crossplay Preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayPreferences"
+              }
+            ],
+            "description": "Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible"
+          },
+          "invited": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          },
+          "joined": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
+          }
+        }
+      },
+      "SessionPlayerStatus": {
+        "title": "SessionPlayerStatus",
+        "enum": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
+      "SessionPlayerUpdateRequest": {
+        "title": "SessionPlayerUpdateRequest",
+        "required": [
+          "team_id"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionPlayerStatus"
+              }
+            ],
+            "description": "Status that the player would like after the request is complete.  Note that some join operations may promote the player from `member` to `leader`",
+            "default": "member"
+          },
+          "team_id": {
+            "title": "Team Id",
+            "minimum": 0,
+            "type": "integer",
+            "description": "Which team the player should be on"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "player-defined custom data",
+            "default": {}
+          }
+        }
+      },
+      "SessionPlayerUpdateResponse": {
+        "title": "SessionPlayerUpdateResponse",
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionPlayerStatus"
+              }
+            ],
+            "description": "Status of the player after the request is completed"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Resulting custom data about the player",
+            "default": {}
+          }
+        }
+      },
+      "SessionTeam": {
+        "title": "SessionTeam",
+        "required": [
+          "players",
+          "max_size"
+        ],
+        "type": "object",
+        "properties": {
+          "players": {
+            "title": "Players",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionPlayer"
+            },
+            "description": "Players currently on this team"
+          },
+          "max_size": {
+            "title": "Max Size",
+            "minimum": 1,
+            "type": "integer",
+            "description": "Maximum number of players allowed on this team"
+          }
+        }
+      },
+      "SessionTemplate": {
+        "title": "SessionTemplate",
+        "required": [
+          "session_type"
+        ],
+        "type": "object",
+        "properties": {
+          "session_type": {
+            "title": "Session Type",
+            "type": "string",
+            "description": "unique name for this template"
+          },
+          "engine_session_type": {
+            "title": "Engine Session Type",
+            "type": "string",
+            "description": "Engine identifier for sessions of this type.  For UE, this is commonly `Party` or `Game`.",
+            "default": "Game"
+          },
+          "can_join_matchmaking": {
+            "title": "Can Join Matchmaking",
+            "type": "boolean",
+            "description": "Are sessions of this type allowed to join matchmaking?",
+            "default": false
+          },
+          "can_be_created_by_players_directly": {
+            "title": "Can Be Created By Players Directly",
+            "type": "boolean",
+            "description": "Are players allowed to create sessions of this type?",
+            "default": false
+          },
+          "joinable": {
+            "title": "Joinable",
+            "type": "boolean",
+            "description": "Should players join existing sessions of this type before creating a new one",
+            "default": false
+          },
+          "auto_add_to_browser": {
+            "title": "Auto Add To Browser",
+            "type": "boolean",
+            "description": "Should session be automatically added to the browser list",
+            "default": false
+          },
+          "auto_browser_params": {
+            "title": "Auto Browser Params",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Browser parameters that can be used to filter results",
+            "default": {}
+          },
+          "can_be_added_to_server_browser": {
+            "title": "Can Be Added To Server Browser",
+            "type": "boolean",
+            "description": "Are sessions of this type able to be added to the server browser by players?",
+            "default": false
+          },
+          "keep_alive_on_empty": {
+            "title": "Keep Alive On Empty",
+            "type": "boolean",
+            "description": "Should the session stay around, or be destroyed when the last player leaves it?",
+            "default": false
+          },
+          "platform_templates": {
+            "title": "Platform Templates",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PlatformSessionTemplate"
+            },
+            "description": "Platform-Specific session mappings that are used to coordinate Rally Here sessions with OnlineSubsystem sessions",
+            "default": {}
+          },
+          "auto_startup_params": {
+            "title": "Auto Startup Params",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceStartupParams"
+              }
+            ],
+            "description": "Parameters used to start an instance for this session when it is created"
+          },
+          "min_session_count": {
+            "title": "Min Session Count",
+            "type": "integer",
+            "description": "Minimum number of this type of session to be running at any given time per site.",
+            "default": 0
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Product-defined custom metadata",
+            "default": {}
+          },
+          "num_teams": {
+            "title": "Num Teams",
+            "minimum": 1,
+            "type": "integer",
+            "description": "The number of teams this session type can have",
+            "default": 1
+          },
+          "players_per_team": {
+            "title": "Players Per Team",
+            "minimum": 1,
+            "type": "integer",
+            "description": "The number of players that can be on each team",
+            "default": 4
+          },
+          "can_change_own_team": {
+            "title": "Can Change Own Team",
+            "type": "boolean",
+            "description": "Whether or not a player can change which team they are on. If true, they are able to. If False, they player's team can only be changed by an admin",
+            "default": true
+          }
+        }
+      },
+      "SessionTemplates": {
+        "title": "SessionTemplates",
+        "type": "object",
+        "properties": {
+          "templates": {
+            "title": "Templates",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SessionTemplate"
+            },
+            "default": {}
+          }
+        }
+      },
+      "SessionUpdate": {
+        "title": "SessionUpdate",
+        "type": "object",
+        "properties": {
+          "site_id": {
+            "title": "Site Id",
+            "type": "integer",
+            "description": "Preferred site for the instance and match to take place in"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Leader Player or instance defined custom data about this session",
+            "default": {}
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "session",
+      "description": "Operations on session-api"
+    }
+  ]
+}

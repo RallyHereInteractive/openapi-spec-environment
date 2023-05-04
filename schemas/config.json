@@ -1,0 +1,356 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "config-api",
+    "description": "Hi-Rez Studios config-api.",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/config"
+    }
+  ],
+  "paths": {
+    "/v1/app_settings/server": {
+      "get": {
+        "tags": [
+          "config"
+        ],
+        "summary": "Get App Settings Server",
+        "operationId": "get_app_settings_server",
+        "parameters": [
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get App Settings Server V1 App Settings Server Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppSetting"
+                  }
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/app_settings/client": {
+      "get": {
+        "tags": [
+          "config"
+        ],
+        "summary": "Get App Settings Client",
+        "operationId": "get_app_settings_client",
+        "parameters": [
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get App Settings Client V1 App Settings Client Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppSetting"
+                  }
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery": {
+      "get": {
+        "tags": [
+          "discovery"
+        ],
+        "summary": "Get Discovery",
+        "operationId": "get_discovery",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoveryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/site": {
+      "get": {
+        "tags": [
+          "site"
+        ],
+        "summary": "Get Site Settings",
+        "description": "Returns a list of all the enabled Sites/Regions.",
+        "operationId": "get_site_settings",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Site Settings V1 Site Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SiteSettings"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AppSetting": {
+        "title": "AppSetting",
+        "required": [
+          "key",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        }
+      },
+      "DiscoveryResponse": {
+        "title": "DiscoveryResponse",
+        "required": [
+          "addresses"
+        ],
+        "type": "object",
+        "properties": {
+          "addresses": {
+            "title": "Addresses",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "server_status": {
+            "title": "Server Status",
+            "type": "string",
+            "default": "unknown"
+          },
+          "command_line_args": {
+            "title": "Command Line Args",
+            "type": "string",
+            "default": " "
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "SiteSettings": {
+        "title": "SiteSettings",
+        "required": [
+          "site_id",
+          "sort_order",
+          "custom_only"
+        ],
+        "type": "object",
+        "properties": {
+          "site_id": {
+            "title": "Site Id",
+            "type": "integer"
+          },
+          "sort_order": {
+            "title": "Sort Order",
+            "type": "integer"
+          },
+          "custom_only": {
+            "title": "Custom Only",
+            "type": "boolean"
+          },
+          "message_name": {
+            "title": "Message Name",
+            "type": "string"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "config",
+      "description": "Operations on config-api"
+    }
+  ]
+}

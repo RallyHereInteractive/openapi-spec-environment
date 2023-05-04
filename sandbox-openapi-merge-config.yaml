@@ -1,0 +1,89 @@
+{
+  "inputs": [
+    {
+      "inputFile": "./sandbox-openapi-base-schema.json",
+    },
+    {
+      "inputFile": "./schemas/ad.json",
+      "pathModification": {
+        "prepend": "/ad"
+      },
+      "dispute": {
+        "prefix": "Ad"
+      },
+    },
+    {
+      "inputFile": "./schemas/friends.json",
+      "pathModification": {
+        "prepend": "/friends"
+      },
+      "dispute": {
+        "prefix": "Friends"
+      },
+    },
+    {
+      "inputFile": "./schemas/settings.json",
+      "pathModification": {
+        "prepend": "/settings"
+      },
+      "dispute": {
+        "prefix": "Settings"
+      },
+    },
+    {
+      "inputFile": "./schemas/users.json",
+      "pathModification": {
+        "prepend": "/users"
+      },
+      "dispute": {
+        "prefix": "Users"
+      },
+    },
+    {
+      "inputFile": "./schemas/session.json",
+      "pathModification": {
+        "prepend": "/session"
+      },
+      "dispute": {
+        "prefix": "Session"
+      },
+    },
+    {
+      "inputFile": "./schemas/inventory.json",
+      "pathModification": {
+        "prepend": "/inventory"
+      },
+      "dispute": {
+        "prefix": "Inventory"
+      },
+    },
+    {
+      "inputFile": "./schemas/presence.json",
+      "pathModification": {
+        "prepend": "/presence"
+      },
+      "dispute": {
+        "prefix": "Presence"
+      },
+    },
+    {
+      "inputFile": "./schemas/notification.json",
+      "pathModification": {
+        "prepend": "/notification"
+      },
+      "dispute": {
+        "prefix": "Notification"
+      },
+    },
+    {
+      "inputFile": "./schemas/config.json",
+      "pathModification": {
+        "prepend": "/config"
+      },
+      "dispute": {
+        "prefix": "Config"
+      },
+    },
+  ],
+  "output": "./sandbox.openapi.json"
+}

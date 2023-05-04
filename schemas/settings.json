@@ -1,0 +1,1387 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "settings-api",
+    "description": "Hi-Rez Studios settings-api.",
+    "version": "6.5.0"
+  },
+  "servers": [
+    {
+      "url": "/settings"
+    }
+  ],
+  "paths": {
+    "/v1/player/{player_id}/setting_type/{setting_type_id}/key": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get All Player Id Settings For Setting Type",
+        "description": "Get a list of all player settings for a specific Setting Type",
+        "operationId": "get_all_player_id_settings_for_setting_type",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Key",
+              "type": "array",
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "name": "key",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get All Player Id Settings For Setting Type V1 Player  Player Id  Setting Type  Setting Type Id  Key Get",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingData"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Delete All Player Id Settings For Setting Type",
+        "description": "Delete all player setting for a specific type",
+        "operationId": "delete_all_player_id_settings_for_setting_type",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/setting_type/{setting_type_id}/key": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get All Player Uuid Settings For Setting Type",
+        "description": "Get a list of all player settings for a specific Setting Type",
+        "operationId": "get_all_player_uuid_settings_for_setting_type",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Key",
+              "type": "array",
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "name": "key",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get All Player Uuid Settings For Setting Type V2 Player  Player Uuid  Setting Type  Setting Type Id  Key Get",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingData"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Delete All Player Uuid Settings For Setting Type",
+        "description": "Delete all player setting for a specific type",
+        "operationId": "delete_all_player_uuid_settings_for_setting_type",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get Single Player Uuid Setting",
+        "description": "Get a single player setting",
+        "operationId": "get_single_player_uuid_setting",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "key",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Set Single Player Uuid Setting",
+        "description": "Update the value of a single player setting.\n\nTo maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "operationId": "set_single_player_uuid_setting",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "key",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_set_single_player_uuid_setting_v2_player__player_uuid__setting_type__setting_type_id__key__key__put"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Set Single Player Uuid Setting V2 Player  Player Uuid  Setting Type  Setting Type Id  Key  Key  Put",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingData"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Delete Single Player Uuid Setting",
+        "description": "Delete a single player setting",
+        "operationId": "delete_single_player_uuid_setting",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Uuid",
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "key",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get Single Player Id Setting",
+        "description": "Get a single player setting",
+        "operationId": "get_single_player_id_setting",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "key",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Set Single Player Id Setting",
+        "description": "Update the value of a single player setting.\n\nTo maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "operationId": "set_single_player_id_setting",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "key",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_set_single_player_id_setting_v1_player__player_id__setting_type__setting_type_id__key__key__put"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Set Single Player Id Setting V1 Player  Player Id  Setting Type  Setting Type Id  Key  Key  Put",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingData"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Delete Single Player Id Setting",
+        "description": "Delete a single player setting",
+        "operationId": "delete_single_player_id_setting",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Player Id",
+              "type": "integer"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "key",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/setting_type": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get Config For All Setting Types",
+        "description": "Get all setting types and their configuration.",
+        "operationId": "get_config_for_all_setting_types",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Config For All Setting Types V1 Setting Type Get",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/setting_type/{setting_type_id}/v": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get Config For Single Setting Type All Versions",
+        "description": "Get a configuration and all versions for a given setting type ID.",
+        "operationId": "get_config_for_single_setting_type_all_versions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Config For Single Setting Type All Versions V1 Setting Type  Setting Type Id  V Get",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingTypeVersion"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/setting_type/{setting_type_id}/v/{setting_version_id}": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "Get Config For Single Setting Type And Version",
+        "description": "Get a specific version of a specific setting type.",
+        "operationId": "get_config_for_single_setting_type_and_version",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Type Id",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "setting_type_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Setting Version Id",
+              "type": "integer"
+            },
+            "name": "setting_version_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingTypeVersion"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_set_single_player_id_setting_v1_player__player_id__setting_type__setting_type_id__key__key__put": {
+        "title": "Body_set_single_player_id_setting_v1_player__player_id__setting_type__setting_type_id__key__key__put",
+        "required": [
+          "v",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "v": {
+            "title": "V",
+            "type": "integer"
+          },
+          "value": {
+            "title": "Value"
+          }
+        }
+      },
+      "Body_set_single_player_uuid_setting_v2_player__player_uuid__setting_type__setting_type_id__key__key__put": {
+        "title": "Body_set_single_player_uuid_setting_v2_player__player_uuid__setting_type__setting_type_id__key__key__put",
+        "required": [
+          "v",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "v": {
+            "title": "V",
+            "type": "integer"
+          },
+          "value": {
+            "title": "Value"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "HzApiErrorModel": {
+        "title": "HzApiErrorModel",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "type": "object",
+        "properties": {
+          "auth_success": {
+            "title": "Auth Success",
+            "type": "boolean",
+            "default": true
+          },
+          "error_code": {
+            "title": "Error Code",
+            "type": "string"
+          },
+          "desc": {
+            "title": "Desc",
+            "type": "string"
+          }
+        }
+      },
+      "SettingData": {
+        "title": "SettingData",
+        "required": [
+          "v"
+        ],
+        "type": "object",
+        "properties": {
+          "v": {
+            "title": "V",
+            "type": "integer"
+          },
+          "value": {
+            "title": "Value"
+          }
+        }
+      },
+      "SettingType": {
+        "title": "SettingType",
+        "required": [
+          "versions"
+        ],
+        "type": "object",
+        "properties": {
+          "versions": {
+            "title": "Versions",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SettingTypeVersion"
+            }
+          }
+        }
+      },
+      "SettingTypeVersion": {
+        "title": "SettingTypeVersion",
+        "required": [
+          "value_jsonschema"
+        ],
+        "type": "object",
+        "properties": {
+          "allow_update": {
+            "title": "Allow Update",
+            "type": "boolean",
+            "description": "Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings.",
+            "default": true
+          },
+          "key_regex": {
+            "title": "Key Regex",
+            "type": "string",
+            "description": "Regex that is used to verify keys at assignment time",
+            "default": "^.+$"
+          },
+          "value_jsonschema": {
+            "title": "Value Jsonschema",
+            "type": "object",
+            "description": "[jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time"
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "settings",
+      "description": "Operations to modify a player's settings"
+    }
+  ]
+}
