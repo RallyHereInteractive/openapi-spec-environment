@@ -25,7 +25,7 @@ sudo apt install openjdk-8-jdk jq npm
 ## generate.bash
 
 Script that does the work of running all generators
-1. download the latest versions of the OpenAPI specs for each of the RallyHere Sandbox APIs to the `schemas` directory3. Merges
+1. download the latest versions of the OpenAPI specs for each of the RallyHere Sandbox APIs to the `schemas` directory
 2. Merge all the OpenAPI specs into a single spec file in `sandbox.openapi.json`
 
 ## `schemas` directory
