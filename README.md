@@ -35,7 +35,7 @@ Script that does the work of running all generators
 
 ## `schemas` directory
 
-This contains the base openapi spec files for all RallyHere APIs.  These are merged into the above file.
+This contains the base openapi spec files for all RallyHere APIs.  These are merged into the following openapi.json file.
 
 ## `sandbox.openapi.json` file
 
