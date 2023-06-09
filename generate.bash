@@ -8,12 +8,25 @@ pushd $DIR
 SPEC_BASE_URL="https://platform-dev-api.roguecompany.com"
 
 ########################################
-# Check flag params
-while getopts ":u:" opt; do
-    case "${opt}" in
-    u) SPEC_BASE_URL=$OPTARG ;;
-    esac
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -u|--sandbox-base-url)
+      SPEC_BASE_URL="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
 done
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 ########################################
 # Download the API Specs
@@ -29,6 +42,7 @@ if [[ ! -z "$SPEC_BASE_URL" ]]; then
     curl "${SPEC_BASE_URL}/inventory/openapi.json" -o schemas/inventory.tmp
     curl "${SPEC_BASE_URL}/presence/openapi.json" -o schemas/presence.tmp
     curl "${SPEC_BASE_URL}/notification/openapi.json" -o schemas/notification.tmp
+    curl "${SPEC_BASE_URL}/rank/openapi.json" -o schemas/rank.tmp
 
     ########################################
     # Pretty Print the API Specs
