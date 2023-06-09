@@ -11,7 +11,7 @@ This repo is for merging the various RallyHere Sandbox OpenAPI spec files into a
 6. Create a Ubuntu terminal if it does not auto popup as part of the reboot
 7. Let Ubuntu finish installing, which takes a few minutes
 
-## How to Install Depedencies for Ubuntu
+## How to Install Dependencies for Ubuntu
 ```
 sudo apt update
 sudo apt install openjdk-8-jdk jq npm
