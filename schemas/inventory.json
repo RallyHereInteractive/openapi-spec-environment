@@ -554,7 +554,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/XpTable"
+                  "$ref": "#/components/schemas/InventoryBucketUseRuleSet"
                 }
               }
             }
@@ -724,7 +724,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/XpTable"
+                  "$ref": "#/components/schemas/PricePoint"
                 }
               }
             }
@@ -1231,7 +1231,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vendor"
+                  "$ref": "#/components/schemas/Loot"
                 }
               }
             }
@@ -1311,7 +1311,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Loots"
+                  "$ref": "#/components/schemas/TimeFrames"
                 }
               }
             }
@@ -1400,7 +1400,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vendor"
+                  "$ref": "#/components/schemas/TimeFrame"
                 }
               }
             }
@@ -1541,22 +1541,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -1605,22 +1605,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -1770,22 +1770,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -1846,22 +1846,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -1990,22 +1990,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2055,22 +2055,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2220,22 +2220,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2296,22 +2296,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2375,22 +2375,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2463,22 +2463,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2541,22 +2541,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2629,22 +2629,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -2671,122 +2671,6 @@
           }
         },
         "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v2/player/me/dynamic-loot": {
-      "get": {
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "Get Dynamic Loot Self",
-        "description": "Get dynamically generated loot for your player",
-        "operationId": "get_dynamic_loot_self",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DynamicLoot"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v2/player/{player_uuid}/dynamic-loot": {
-      "get": {
-        "tags": [
-          "Inventory"
-        ],
-        "summary": "Get Dynamic Loot",
-        "description": "Get dynamically generated loot for a player",
-        "operationId": "get_dynamic_loot",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "title": "Player Uuid",
-              "type": "string",
-              "format": "uuid"
-            },
-            "name": "player_uuid",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DynamicLoot"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -3305,7 +3189,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_process_platform_entitlements_by_player_uuid_v2_player__player_uuid__entitlement_post"
+                "$ref": "#/components/schemas/PlatformEntitlementProcessRequest"
               }
             }
           },
@@ -3356,7 +3240,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results",
+        "description": "Get the status of a platform entitlement request by request id",
         "operationId": "retrieve_entitlements_for_me",
         "parameters": [
           {
@@ -3369,20 +3253,6 @@
             "in": "path"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "title": "At Least One From Set",
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "default": []
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3428,7 +3298,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results",
+        "description": "Get the status of a platform entitlement request by request id",
         "operationId": "retrieve_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -3451,20 +3321,6 @@
             "in": "path"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "title": "At Least One From Set",
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "default": []
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -3621,8 +3477,18 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerOrder"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
@@ -3798,22 +3664,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -3964,8 +3830,18 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerOrder"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
@@ -4141,22 +4017,22 @@
           "required": true
         },
         "responses": {
-          "202": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrderCreate"
+                  "$ref": "#/components/schemas/PlayerOrder"
                 }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerOrder"
+                  "$ref": "#/components/schemas/PlayerOrderCreate"
                 }
               }
             }
@@ -4553,9 +4429,9 @@
         "tags": [
           "Key Entitlements"
         ],
-        "summary": "Process Player Uuid Entitlements",
+        "summary": "Process Key Entitlements Player Uuid",
         "description": "Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
-        "operationId": "process_player_uuid_entitlements",
+        "operationId": "process_key_entitlements_player_uuid",
         "parameters": [
           {
             "required": true,
@@ -4628,9 +4504,9 @@
         "tags": [
           "Key Entitlements"
         ],
-        "summary": "Process My Entitlements",
+        "summary": "Process Key Entitlements Self",
         "description": "Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
-        "operationId": "process_my_entitlements",
+        "operationId": "process_key_entitlements_self",
         "parameters": [
           {
             "required": true,
@@ -4694,9 +4570,9 @@
         "tags": [
           "Key Entitlements"
         ],
-        "summary": "Process Entitlements",
+        "summary": "Process Key Entitlements",
         "description": "Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
-        "operationId": "process_entitlements",
+        "operationId": "process_key_entitlements",
         "parameters": [
           {
             "required": true,
@@ -5803,26 +5679,6 @@
   },
   "components": {
     "schemas": {
-      "Body_process_platform_entitlements_by_player_uuid_v2_player__player_uuid__entitlement_post": {
-        "title": "Body_process_platform_entitlements_by_player_uuid_v2_player__player_uuid__entitlement_post",
-        "required": [
-          "entitlement_request"
-        ],
-        "type": "object",
-        "properties": {
-          "entitlement_request": {
-            "$ref": "#/components/schemas/PlatformEntitlementProcessRequest"
-          },
-          "at_least_one_from_set": {
-            "title": "At Least One From Set",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "default": []
-          }
-        }
-      },
       "CacheInfo": {
         "title": "CacheInfo",
         "required": [
@@ -6024,23 +5880,6 @@
           "PERSISTENT",
           "TRANSIENT"
         ]
-      },
-      "DynamicLoot": {
-        "title": "DynamicLoot",
-        "type": "object",
-        "properties": {
-          "vendors": {
-            "title": "Vendors",
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/Vendor"
-            },
-            "default": {}
-          },
-          "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
-          }
-        }
       },
       "EntitlementErrorCode": {
         "title": "EntitlementErrorCode",
@@ -7378,7 +7217,8 @@
               "$ref": "#/components/schemas/PlayerOrderEntryCreate"
             }
           }
-        }
+        },
+        "description": "Create a new Player Order. `use_inventory_bucket` will be ignored on the PlayerOrderEntryCreate if the `source` equals `CLIENT`."
       },
       "PlayerOrderDetail": {
         "title": "PlayerOrderDetail",

@@ -14,11 +14,24 @@
     "/v1/template": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get All Session Template definitions",
+        "description": "Get the config about all session templates\n\nRequired Auth Permissions: `session:read:config`\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
+        "parameters": [
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -47,6 +60,16 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -59,10 +82,10 @@
     "/v1/template/{session_type}": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get Session Template by ID",
+        "description": "Get config about a session template by ID\n\nRequired Auth Permissions: `{AuthPermissions.SESSION_READ_CONFIG}`\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -73,6 +96,17 @@
             },
             "name": "session_type",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -125,10 +159,10 @@
     "/v1/browser": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of specific type",
+        "description": "Get all public sessions of a specific type\n\nRequired Auth Permissions: `session:read:browser`\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -166,6 +200,14 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -205,10 +247,10 @@
     "/v1/session": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Player would like to join the first available session of the type. If there is no available public session,\nand the type allows it, the player would like to have a new session created for them and join it.",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Auth Permissions: `session:update:self`\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -262,10 +304,10 @@
     "/v1/session/{session_id}": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID.  This request will return limited results for non-members of the session, such as excluding info for how to connect to the instance.  Elevated permissions can bypass that restriction",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Auth Permissions: `session:read:self` for users requesting complete data about sessions they are in\n`session:read:any` for users requesting complete data about sessions they are not in\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -278,6 +320,17 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -328,10 +381,10 @@
       },
       "patch": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id",
+        "description": "Update session info by session id\n\nRequired Auth Permissions: `session:update:self` for users patching sessions they are in.\n`session:update:any` for users patching sessions they are not in.\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -406,10 +459,10 @@
     "/v1/session/allocation/{allocation_id}": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Auth Permissions: `session:read:allocation`\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -422,6 +475,17 @@
             },
             "name": "allocation_id",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -474,10 +538,10 @@
     "/v1/session/{session_id}/browser": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser",
+        "description": "Register session in the public browser\n\nRequired Auth Permissions: `session:update:self` for users registering sessions they are in \n`session:update:any` for users registering any session\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -542,10 +606,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser",
+        "description": "Delete the session from the public browser\n\nRequired Auth Permissions: `session:update:self` for users deleting sessions they are in from the browser\n`session:update:any` for users deleting any session from the browser\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -593,10 +657,10 @@
       },
       "patch": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session",
+        "description": "Update the browser info for the session\n\nRequired Auth Permissions: `session:update:self` for users patching sessions they are in\n`session:update:any` for users patching any session\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -663,10 +727,10 @@
     "/v1/session/{session_id}/instance": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Handle Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Auth Permissions: `session:update:self` for users requesting instances for sessions they are in \n`session:update:any` for users requesting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "handle_instance_request",
         "parameters": [
           {
@@ -731,10 +795,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.",
+        "description": "Unregister the instance from the session.\n\nRequired Auth Permissions: `session:update:self` for users deleting instances for sessions they are in \n`session:update:any` for users deleting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -755,6 +819,17 @@
             "content": {
               "application/json": {
                 "schema": {}
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -787,10 +862,10 @@
       },
       "patch": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance",
+        "description": "Update info about the instance\n\nRequired Auth Permissions: `session:update:self` for users patching instances for sessions they are in \n`session:update:any` for users patching instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -857,10 +932,10 @@
     "/v1/session/{session_id}/match": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Auth Permissions: `session:update:self` for users starting matches for sessions they are in \n`session:update:any` for users starting matches for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -925,10 +1000,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.",
+        "description": "Unregister the match from the session.\n               \nRequired Auth Permissions: `session:update:self` for users deleting matches for sessions they are in \n`session:update:any` for users deleting matches for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -981,10 +1056,10 @@
       },
       "patch": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about the match",
+        "description": "Update info about a match\n\nRequired Auth Permissions: `session:update:self` for users patching matches for sessions they are in \n`session:update:any` for users patching matches for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -1049,10 +1124,10 @@
     "/v1/session/{session_id}/player/me": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session",
+        "description": "Join a session with currently authed player\n\nRequired Auth Permissions: `session:update:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -1080,6 +1155,14 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1127,10 +1210,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Leave Session By Id Self",
-        "description": "Leave a session",
+        "description": "Leave a session with currently authed player\n\nRequired Auth Permissions: `session:update:self`\n\nRequired Permissions: None",
         "operationId": "leave_session_by_id_self",
         "parameters": [
           {
@@ -1190,10 +1273,10 @@
     "/v1/session/{session_id}/player/uuid/{player_uuid}": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Auth Permissions: `session:update:self` for users acting on themselves, or inviting to a session they are in\n`session:update:any` for users acting on others, or sessions they are not in\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -1231,6 +1314,14 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1278,10 +1369,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick/Remove a player from a session or cancel an invite for a player to the session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Auth Permissions: `session:update:self` for users operating on themselves or sessions they are in\n`session:update:any` for operating on sessions the user is not in\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -1308,7 +1399,15 @@
         ],
         "responses": {
           "204": {
-            "description": "Successful Response"
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "403": {
             "description": "Forbidden",
@@ -1351,10 +1450,10 @@
     "/v1/session/{session_id}/player/id/{player_id}": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Auth Permissions: `session:update:self` for users acting on themselves, or inviting to a session they are in\n`session:update:any` for users acting on others, or sessions they are not in\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -1439,10 +1538,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick/Remove a player from a session or cancel an invite for a player to the session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Auth Permissions: `session:update:self` for users operating on sessions they are in.\n`session:update:any` for users operating on sessions they are not in\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -1512,10 +1611,10 @@
     "/v1/session/{session_id}/event": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Auth Permissions: `session:read-event:active` for users getting events about sessions they are in.\n`session:read-event:any` for users getting events about sessions they are not in\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read-event:any` auth permission",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -1593,10 +1692,10 @@
       },
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Auth Permissions: `session:update-event:active` for users posting events about sessions they are in.\n`session:update-event:any` for users posting events about sessions they are not in\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update-event:any` auth permission",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -1671,10 +1770,10 @@
     "/v1/platform/{platform_id}/session/{platform_session_id_base64}": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Platform Session Info",
-        "description": "Get information about a platform session",
+        "description": "Get information about a platform session\n\nRequired Auth Permissions: `session:read:self` for users requesting data about platform sessions they are in\n`session:read:any` for users requesting data about platform sessions they are not in\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
         "operationId": "get_platform_session_info",
         "parameters": [
           {
@@ -1700,14 +1799,6 @@
         "responses": {
           "200": {
             "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1757,10 +1848,10 @@
     "/v1/platform/{platform_id}/session/{platform_session_id_base64}/player/me": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Auth Permissions: `session:update:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -1833,10 +1924,10 @@
     "/v1/platform/{platform_id}/session/{platform_session_id_base64}/player/uuid/{player_uuid}": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by ID, and the parent session",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Auth Permissions: `session:update:self` for users acting on themselves\n`session:update:any` for users who are updating a different user\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -1918,10 +2009,10 @@
     "/v1/platform/{platform_id}/session/{platform_session_id_base64}/player/id/{player_id}": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Join Session By Platform Session Id",
-        "description": "Join a platform session by ID, and the parent session",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Auth Permissions: `session:update:self` for users acting on themselves\n`session:update:any` for users who are updating a different user\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player/uuid endpoint instead",
         "operationId": "join_session_by_platform_session_id",
         "parameters": [
           {
@@ -1993,6 +2084,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -2003,11 +2095,24 @@
     "/v1/player/me/session": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Player Sessions Self",
-        "description": "Get Sessions associated the current player",
+        "description": "Get Sessions associated the current player\n\nRequired Auth Permissions: `session:read:self`\n            \nRequired Session Permissions: None",
         "operationId": "get_player_sessions_self",
+        "parameters": [
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -2036,6 +2141,16 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2048,10 +2163,10 @@
     "/v1/player/uuid/{player_uuid}/session": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by id",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Auth Permissions: `session:read:self` for users requesting data about themselves\n`session:read:any` for users requesting data about others\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -2063,6 +2178,17 @@
             },
             "name": "player_uuid",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -2115,10 +2241,10 @@
     "/v1/player/id/{player_id}/session": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id",
+        "description": "Get Sessions associated with a player by id\n\nRequired Auth Permissions: `session:read:self` for users requesting data about themselves\n`session:read:any` for users requesting data about others\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player/uuid endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -2134,14 +2260,6 @@
         "responses": {
           "200": {
             "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2182,10 +2300,10 @@
     "/v1/connection-info": {
       "get": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get connection info for self",
+        "description": "Get public connection info for self\n\nRequired Auth Permissions: `session:read:self`\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -2241,10 +2359,10 @@
     "/v1/session/{session_id}/queue": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -2272,14 +2390,6 @@
         "responses": {
           "200": {
             "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2317,10 +2427,10 @@
       },
       "delete": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue",
+        "description": "Remove session from a matchmaking queue\n               \nRequired Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -2380,10 +2490,10 @@
     "/v1/match-made-session": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Create Match",
-        "description": "Create a match session based on matchmaking results",
+        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: `SessionPermissions.session_admin`",
         "operationId": "create_match",
         "requestBody": {
           "content": {
@@ -2445,32 +2555,44 @@
     "/v1/queues": {
       "get": {
         "tags": [
-          "queues"
+          "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available queues, maps, and map selection lists",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: None",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "title": "Page",
-              "minimum": 0,
-              "type": "integer"
+              "title": "Cursor",
+              "type": "integer",
+              "default": 0
             },
-            "name": "page",
+            "name": "cursor",
             "in": "query"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
               "title": "Page Size",
               "maximum": 50,
               "minimum": 1,
-              "type": "integer"
+              "type": "integer",
+              "default": 50
             },
             "name": "page_size",
             "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -2523,10 +2645,10 @@
     "/v1/instance-launch-templates/{instance_launch_template_id}": {
       "get": {
         "tags": [
-          "queues"
+          "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get all the match game info",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: None",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -2538,6 +2660,17 @@
             },
             "name": "instance_launch_template_id",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -2590,10 +2723,10 @@
     "/v1/match-making-templates/{template_group_id}": {
       "get": {
         "tags": [
-          "queues"
+          "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates and rules",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `/v1/queues` endpoint\n            \nRequired Permissions: None",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -2605,6 +2738,17 @@
             },
             "name": "template_group_id",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "title": "If-None-Match",
+              "type": "string",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
@@ -2657,10 +2801,10 @@
     "/v1/session/{session_id}/instance/fubar": {
       "post": {
         "tags": [
-          "session"
+          "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -2723,10 +2867,129 @@
           }
         ]
       }
+    },
+    "/v1/regions": {
+      "get": {
+        "tags": [
+          "Regions"
+        ],
+        "summary": "Get All Regions",
+        "description": "Get all of the enabled regions and their configuration",
+        "operationId": "get_all_regions",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Cursor",
+              "type": "integer",
+              "default": 0
+            },
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegionsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
+      "AdditionalJoinParams": {
+        "title": "AdditionalJoinParams",
+        "type": "object",
+        "properties": {
+          "double_args": {
+            "title": "Double Args",
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            },
+            "description": "Additional double arguments to add to the matchmaking ticket",
+            "default": {}
+          },
+          "string_args": {
+            "title": "String Args",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Additional string arguments to add to the matchmaking ticket",
+            "default": {}
+          },
+          "tags": {
+            "title": "Tags",
+            "type": "array",
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Additional tags to add to the matchmaking ticket",
+            "default": []
+          },
+          "extensions": {
+            "title": "Extensions",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Additional extensions to add to the matchmaking ticket. Value is a base64 string representation of the protobuf binary data. The data will be converted back to binary before being put on the ticket",
+            "default": {}
+          }
+        }
+      },
       "BrowserInfo": {
         "title": "BrowserInfo",
         "type": "object",
@@ -2870,10 +3133,12 @@
             "type": "string",
             "description": "Type of session client is creating or joining"
           },
-          "site_id": {
-            "title": "Site Id",
-            "type": "integer",
-            "description": "Preferred site for the instance and match to take place in"
+          "region_id": {
+            "title": "Region Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Preferred region for the instance and match to take place in"
           }
         }
       },
@@ -3052,14 +3317,14 @@
         "required": [
           "instance_id",
           "error",
-          "site",
-          "matchmaking_profile_id",
-          "instance_source_provider"
+          "region"
         ],
         "type": "object",
         "properties": {
           "instance_id": {
             "title": "Instance Id",
+            "maxLength": 128,
+            "minLength": 1,
             "type": "string",
             "description": "ID for which instance was marked as FUBAR"
           },
@@ -3070,10 +3335,12 @@
             "type": "string",
             "description": "Error string describing what caused the instance failure"
           },
-          "site": {
-            "title": "Site",
-            "type": "integer",
-            "description": "What site the failed instance was in"
+          "region": {
+            "title": "Region",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "What region the failed instance was in"
           },
           "matchmaking_profile_id": {
             "title": "Matchmaking Profile Id",
@@ -3110,6 +3377,8 @@
           },
           "instance_id": {
             "title": "Instance Id",
+            "maxLength": 128,
+            "minLength": 1,
             "type": "string",
             "description": "Unique ID for the host/session relationship"
           },
@@ -3313,6 +3582,8 @@
         "properties": {
           "instance_id": {
             "title": "Instance Id",
+            "maxLength": 128,
+            "minLength": 1,
             "type": "string",
             "description": "Unique ID for the instance, a new one will be generated if not provided"
           },
@@ -3635,13 +3906,39 @@
           }
         }
       },
+      "MatchMakingRuleset": {
+        "title": "MatchMakingRuleset",
+        "required": [
+          "rules",
+          "determiner"
+        ],
+        "type": "object",
+        "properties": {
+          "rules": {
+            "title": "Rules",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Rule"
+            },
+            "description": "A list of the rules to be checked for this ruleset"
+          },
+          "determiner": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Determiner"
+              }
+            ],
+            "description": "Determiner of how many rules must be satisfied in this rulest (all, any, one, none)"
+          }
+        }
+      },
       "MatchMakingSessionRequest": {
         "title": "MatchMakingSessionRequest",
         "required": [
           "teams",
           "session_tickets",
           "instance_launch_template_id",
-          "site_id",
+          "region_id",
           "match_id"
         ],
         "type": "object",
@@ -3668,10 +3965,12 @@
             "description": "Which launch template should be used to request an instance",
             "format": "uuid"
           },
-          "site_id": {
-            "title": "Site Id",
-            "type": "integer",
-            "description": "Site to start the instance in"
+          "region_id": {
+            "title": "Region Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Region to start the instance in"
           },
           "match_id": {
             "title": "Match Id",
@@ -3711,7 +4010,7 @@
             "title": "Ruleset",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Ruleset"
+                "$ref": "#/components/schemas/MatchMakingRuleset"
               }
             ],
             "description": "A set of rules that determine whether or not this matchmaking config should be used."
@@ -3905,11 +4204,13 @@
         "properties": {
           "player_id": {
             "title": "Player Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "Player ID representing the current player"
           },
           "player_uuid": {
             "title": "Player Uuid",
             "type": "string",
+            "description": "Player UUID representing the current player",
             "format": "uuid"
           },
           "leader": {
@@ -4118,15 +4419,14 @@
             "type": "string",
             "description": "ID of the queue to join"
           },
-          "additional_tags": {
-            "title": "Additional Tags",
-            "type": "array",
-            "items": {
-              "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
-            },
-            "description": "Additional tags for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields)"
+          "additional_join_params": {
+            "title": "Additional Join Params",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdditionalJoinParams"
+              }
+            ],
+            "description": "Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields)"
           },
           "map_preferences": {
             "title": "Map Preferences",
@@ -4169,6 +4469,65 @@
           }
         }
       },
+      "Region": {
+        "title": "Region",
+        "required": [
+          "region_id",
+          "sort_order",
+          "custom_only"
+        ],
+        "type": "object",
+        "properties": {
+          "region_id": {
+            "title": "Region Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "ID for this region"
+          },
+          "sort_order": {
+            "title": "Sort Order",
+            "minimum": 0,
+            "type": "integer",
+            "description": "The sorting priority order for this region"
+          },
+          "custom_only": {
+            "title": "Custom Only",
+            "type": "boolean",
+            "description": "Indicates if the region is for custom games only"
+          },
+          "description": {
+            "title": "Description",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string",
+            "description": "Text description of the region"
+          }
+        }
+      },
+      "RegionsResponse": {
+        "title": "RegionsResponse",
+        "required": [
+          "regions",
+          "cursor"
+        ],
+        "type": "object",
+        "properties": {
+          "regions": {
+            "title": "Regions",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Region"
+            },
+            "description": "List of all regions"
+          },
+          "cursor": {
+            "title": "Cursor",
+            "type": "integer",
+            "description": "Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end"
+          }
+        }
+      },
       "Rule": {
         "title": "Rule",
         "required": [
@@ -4189,31 +4548,6 @@
             "title": "Value",
             "type": "integer",
             "description": "Value to compare to"
-          }
-        }
-      },
-      "Ruleset": {
-        "title": "Ruleset",
-        "required": [
-          "rules",
-          "determiner"
-        ],
-        "type": "object",
-        "properties": {
-          "rules": {
-            "title": "Rules",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Rule"
-            }
-          },
-          "determiner": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Determiner"
-              }
-            ],
-            "description": "Determiner of how many rules must be satisfied in this rulest (all, any, one, none)"
           }
         }
       },
@@ -4375,10 +4709,12 @@
             "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
             "format": "date-time"
           },
-          "site_id": {
-            "title": "Site Id",
-            "type": "integer",
-            "description": "Preferred site for the instance and match to take place in"
+          "region_id": {
+            "title": "Region Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Preferred region for the instance and match to take place in"
           },
           "created_by_matchmaking": {
             "title": "Created By Matchmaking",
@@ -4435,6 +4771,8 @@
           },
           "instance": {
             "title": "Instance",
+            "maxLength": 128,
+            "minLength": 1,
             "type": "string",
             "description": "Instance that was active at the time of the event"
           },
@@ -4529,6 +4867,7 @@
             "items": {
               "$ref": "#/components/schemas/SessionEvent"
             },
+            "description": "A list of the events that have occurred in a given session",
             "default": []
           }
         }
@@ -4826,7 +5165,7 @@
           "min_session_count": {
             "title": "Min Session Count",
             "type": "integer",
-            "description": "Minimum number of this type of session to be running at any given time per site.",
+            "description": "Minimum number of this type of session to be running at any given time per region.",
             "default": 0
           },
           "metadata": {
@@ -4870,6 +5209,7 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/SessionTemplate"
             },
+            "description": "Dictionary of SessionTemplates keyed on their template type",
             "default": {}
           }
         }
@@ -4878,10 +5218,12 @@
         "title": "SessionUpdate",
         "type": "object",
         "properties": {
-          "site_id": {
-            "title": "Site Id",
-            "type": "integer",
-            "description": "Preferred site for the instance and match to take place in"
+          "region_id": {
+            "title": "Region Id",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Preferred region for the instance and match to take place in"
           },
           "custom_data": {
             "title": "Custom Data",
@@ -4939,8 +5281,16 @@
   },
   "tags": [
     {
-      "name": "session",
-      "description": "Operations on session-api"
+      "name": "Sessions",
+      "description": "\nThis API is for the creation and management of sessions, which are just generic groups of players, and operations\non those sessions, such as joining matchmaking.\n"
+    },
+    {
+      "name": "Queues",
+      "description": "\nThe queue endpoints are for requesting information and configuration about queues, instance launch templates, and\nmatchmaking profiles\n"
+    },
+    {
+      "name": "Regions",
+      "description": "\nRegion endpoints for clients to request client visible regions and configuration around them\n"
     }
   ]
 }

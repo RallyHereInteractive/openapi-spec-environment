@@ -69,7 +69,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_login_v1_login_post"
+                "$ref": "#/components/schemas/LoginRequestV1"
               }
             }
           },
@@ -125,7 +125,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_get_portal_token_details_v1_portaltoken_details_post"
+                "$ref": "#/components/schemas/PortalTokenDetailsRequest"
               }
             }
           },
@@ -296,6 +296,66 @@
         "deprecated": true
       }
     },
+    "/v1/player/me/uuid": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Uuid From Player Id For Self",
+        "description": "Get a player's uuid from their id for the active player on the access token.",
+        "operationId": "get_player_uuid_from_player_id_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Player Uuid From Player Id For Self V1 Player Me Uuid Get",
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v1/player/{player_id}/uuid": {
       "get": {
         "tags": [
@@ -364,6 +424,64 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/me/uuid": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Uuid From Player Id For Self V2",
+        "description": "Get a player's uuid from their id for the active player on the access token.",
+        "operationId": "get_player_uuid_from_player_id_for_self_v2",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerUuidFromId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
                 }
               }
             }
@@ -442,6 +560,73 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/me/id": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Id From Player Uuid For Self",
+        "description": "Get a player's id from their uuid for the active player on the access token.",
+        "operationId": "get_player_id_from_player_uuid_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerIdWrapper"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
                 }
               }
             }
@@ -543,12 +728,70 @@
         ]
       }
     },
+    "/v2/player/me/links": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Player Links For Self",
+        "description": "Get a player's linked portals for the active player on the access token.",
+        "operationId": "get_player_links_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerLinkedPortalsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v2/player/{player_uuid}/links": {
       "get": {
         "tags": [
           "users"
         ],
         "summary": "Get Player Links",
+        "description": "Get a player's linked portals.",
         "operationId": "get_player_links",
         "parameters": [
           {
@@ -627,6 +870,7 @@
           "users"
         ],
         "summary": "Get Player Linked Portals",
+        "description": "Get a player's linked portals.",
         "operationId": "get_player_linked_portals",
         "parameters": [
           {
@@ -691,6 +935,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -803,12 +1048,219 @@
         ]
       }
     },
+    "/v2/player:iterate": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Players Paged",
+        "description": "Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.\nThere is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.",
+        "operationId": "get_players_paged",
+        "parameters": [
+          {
+            "description": "cursor to continue iteration.  Leaving this empty will begin a new query",
+            "required": false,
+            "schema": {
+              "title": "Cursor",
+              "maxLength": 4096,
+              "type": "string",
+              "description": "cursor to continue iteration.  Leaving this empty will begin a new query",
+              "default": ""
+            },
+            "name": "cursor",
+            "in": "query"
+          },
+          {
+            "description": "number of players to return",
+            "required": false,
+            "schema": {
+              "title": "Page Size",
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer",
+              "description": "number of players to return",
+              "default": 100
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerIterateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/me/info": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Person For Self",
+        "description": "Get information for the person on the access token.",
+        "operationId": "get_person_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonInfoResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update Person For Self",
+        "description": "Update information for the person on the access token.",
+        "operationId": "update_person_for_self",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePersonInfoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v1/person/{person_id}/info": {
       "get": {
         "tags": [
           "users"
         ],
         "summary": "Get Person",
+        "description": "Get information for a person.",
         "operationId": "get_person",
         "parameters": [
           {
@@ -875,6 +1327,7 @@
           "users"
         ],
         "summary": "Update Person",
+        "description": "Update the information for a person.",
         "operationId": "update_person",
         "parameters": [
           {
@@ -892,7 +1345,117 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_update_person_v1_person__person_id__info_post"
+                "$ref": "#/components/schemas/UpdatePersonInfoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/me/email/list": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Person Email List For Self",
+        "description": "Get the email list ids for a person on the access token",
+        "operationId": "get_person_email_list_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonEmailListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageOnly"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update Person Email List For Self",
+        "description": "Update the email list for person on the access token.  This is used to control which emails a person receives.",
+        "operationId": "update_person_email_list_for_self",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonEmailListRequest"
               }
             }
           },
@@ -951,6 +1514,7 @@
           "users"
         ],
         "summary": "Get Person Email List",
+        "description": "Get the email list ids for a person",
         "operationId": "get_person_email_list",
         "parameters": [
           {
@@ -1017,6 +1581,7 @@
           "users"
         ],
         "summary": "Update Person Email List",
+        "description": "Update the email list for a person.  This is used to control which emails a person receives.",
         "operationId": "update_person_email_list",
         "parameters": [
           {
@@ -1093,6 +1658,7 @@
           "users"
         ],
         "summary": "Get Queue Purge Status For Me",
+        "description": "Get the purge status for a person of the access token.",
         "operationId": "get_queue_purge_status_for_me",
         "responses": {
           "200": {
@@ -1147,6 +1713,7 @@
           "users"
         ],
         "summary": "Queue Me For Purge",
+        "description": "Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.",
         "operationId": "queue_me_for_purge",
         "requestBody": {
           "content": {
@@ -1221,6 +1788,7 @@
           "users"
         ],
         "summary": "Dequeue Me For Purge",
+        "description": "Dequeue the active person of the access token if they are queued to be purged. This will only work if the purge has not already begun.",
         "operationId": "dequeue_me_for_purge",
         "responses": {
           "204": {
@@ -1260,6 +1828,7 @@
           "users"
         ],
         "summary": "Get Queue Purge Status For Person",
+        "description": "Get the purge status for a person. Requires permission: purge:person:admin",
         "operationId": "get_queue_purge_status_for_person",
         "parameters": [
           {
@@ -1336,6 +1905,7 @@
           "users"
         ],
         "summary": "Queue Person For Purge",
+        "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`. Requires permission: purge:person:admin",
         "operationId": "queue_person_for_purge",
         "parameters": [
           {
@@ -1412,6 +1982,7 @@
           "users"
         ],
         "summary": "Dequeue Person For Purge",
+        "description": "Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. Requires permission: purge:person:admin",
         "operationId": "dequeue_person_for_purge",
         "parameters": [
           {
@@ -1687,6 +2258,7 @@
           "auth"
         ],
         "summary": "Token",
+        "description": "OAuth2 Token Endpoint. For more information see: <a href=\"https://datatracker.ietf.org/doc/html/rfc6749#section-3.2\" target=\"_blank\">Token Endpoint Spec</a>.",
         "operationId": "token",
         "requestBody": {
           "content": {
@@ -1860,8 +2432,9 @@
         "tags": [
           "users"
         ],
-        "summary": "Create Update Contact",
-        "operationId": "create_update_contact",
+        "summary": "Upsert Contact",
+        "description": "Create or update a contact with SendInBlue, Requires permission: user:sendinblue:write",
+        "operationId": "upsert_contact",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1950,92 +2523,6 @@
           }
         }
       },
-      "Body_get_portal_token_details_v1_portaltoken_details_post": {
-        "title": "Body_get_portal_token_details_v1_portaltoken_details_post",
-        "required": [
-          "grant_type",
-          "portal_access_token"
-        ],
-        "type": "object",
-        "properties": {
-          "grant_type": {
-            "$ref": "#/components/schemas/PortalTokenDetailsGrantType"
-          },
-          "portal_access_token": {
-            "title": "Portal Access Token",
-            "type": "string",
-            "description": "token or secret used to authenticate the provided grant type"
-          }
-        }
-      },
-      "Body_login_v1_login_post": {
-        "title": "Body_login_v1_login_post",
-        "required": [
-          "grant_type",
-          "portal_access_token"
-        ],
-        "type": "object",
-        "properties": {
-          "include_refresh": {
-            "title": "Include Refresh",
-            "type": "boolean",
-            "default": false
-          },
-          "accept_eula": {
-            "title": "Accept Eula",
-            "type": "boolean",
-            "default": false
-          },
-          "accept_tos": {
-            "title": "Accept Tos",
-            "type": "boolean",
-            "default": false
-          },
-          "accept_privacy_policy": {
-            "title": "Accept Privacy Policy",
-            "type": "boolean",
-            "default": false
-          },
-          "grant_type": {
-            "$ref": "#/components/schemas/GrantType"
-          },
-          "portal_access_token": {
-            "title": "Portal Access Token",
-            "type": "string",
-            "description": "token or secret used to authenticate the provided grant type"
-          },
-          "portal_display_name": {
-            "title": "Portal Display Name",
-            "type": "string",
-            "description": "Some grant types support client-provided names",
-            "default": ""
-          },
-          "portal_parent_access_token": {
-            "title": "Portal Parent Access Token",
-            "type": "string",
-            "description": "Some grant types have 2 tier authentication and require a second token/secret",
-            "default": ""
-          },
-          "portal_parent_display_name": {
-            "title": "Portal Parent Display Name",
-            "type": "string",
-            "default": ""
-          }
-        }
-      },
-      "Body_update_person_v1_person__person_id__info_post": {
-        "title": "Body_update_person_v1_person__person_id__info_post",
-        "required": [
-          "email"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "title": "Email",
-            "type": "string"
-          }
-        }
-      },
       "GrantType": {
         "title": "GrantType",
         "enum": [
@@ -2054,7 +2541,7 @@
           "anon"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Supported grant types for V1 Login Flow",
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -2071,19 +2558,19 @@
           "ANON"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "Google Grant Type",
+          "Apple Grant Type",
+          "Refresh Grant Type",
+          "Epic Grant Type",
+          "Xbox Live Grant Type",
+          "Playstation 4 Version 1 Grant Type",
+          "Playstation 4 Version 1 Grant Type",
+          "Playstation 5 Version 3 Grant Type",
+          "Nintendo Grant Type",
+          "Nintendo Switch Grant Type",
+          "Steam Grant Type",
+          "Basic Grant Type",
+          "Anonymous Grant Type"
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -2137,6 +2624,71 @@
           "desc": {
             "title": "Desc",
             "type": "string"
+          }
+        }
+      },
+      "LoginRequestV1": {
+        "title": "LoginRequestV1",
+        "required": [
+          "grant_type",
+          "portal_access_token"
+        ],
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GrantType"
+              }
+            ],
+            "description": "The grant type to use for authentication"
+          },
+          "portal_access_token": {
+            "title": "Portal Access Token",
+            "type": "string",
+            "description": "Token or secret used to authenticate the provided grant type"
+          },
+          "portal_display_name": {
+            "title": "Portal Display Name",
+            "type": "string",
+            "description": "Some grant types support client-provided names",
+            "default": ""
+          },
+          "portal_parent_access_token": {
+            "title": "Portal Parent Access Token",
+            "type": "string",
+            "description": "Some grant types have 2 tier authentication and require a second token/secret",
+            "default": ""
+          },
+          "portal_parent_display_name": {
+            "title": "Portal Parent Display Name",
+            "type": "string",
+            "description": "Some grant types have 2 tier authentication and support a second display name",
+            "default": ""
+          },
+          "include_refresh": {
+            "title": "Include Refresh",
+            "type": "boolean",
+            "description": "Indicates if the client wants a refresh token returned",
+            "default": false
+          },
+          "accept_eula": {
+            "title": "Accept Eula",
+            "type": "boolean",
+            "description": "If true, the user has accepted the EULA",
+            "default": false
+          },
+          "accept_tos": {
+            "title": "Accept Tos",
+            "type": "boolean",
+            "description": "If true, the user has accepted the Terms of Service",
+            "default": false
+          },
+          "accept_privacy_policy": {
+            "title": "Accept Privacy Policy",
+            "type": "boolean",
+            "description": "If true, the user has accepted the Privacy Policy",
+            "default": false
           }
         }
       },
@@ -2301,12 +2853,12 @@
           "client_credentials"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Supported OAuth2 grant types",
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
         ],
         "x-enum-descriptions": [
-          "An enumeration."
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -2323,7 +2875,7 @@
           "twitch"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Supported OAuth portals for V1 Login Flow",
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -2336,15 +2888,15 @@
           "TWITCH"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenExchange": {
@@ -2447,7 +2999,8 @@
         "properties": {
           "person_id": {
             "title": "Person Id",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "active_player_id": {
             "title": "Active Player Id",
@@ -2486,6 +3039,25 @@
           }
         }
       },
+      "PlayerIterateResponse": {
+        "title": "PlayerIterateResponse",
+        "type": "object",
+        "properties": {
+          "players": {
+            "title": "Players",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlayerResponse"
+            },
+            "default": []
+          },
+          "cursor": {
+            "title": "Cursor",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
       "PlayerLinkedPortalsResponse": {
         "title": "PlayerLinkedPortalsResponse",
         "required": [
@@ -2521,7 +3093,8 @@
           },
           "player_uuid": {
             "title": "Player Uuid",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "active_player_id": {
             "title": "Active Player Id",
@@ -2529,7 +3102,8 @@
           },
           "active_player_uuid": {
             "title": "Active Player Uuid",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "person_id": {
             "title": "Person Id",
@@ -2551,7 +3125,8 @@
           },
           "player_uuid": {
             "title": "Player Uuid",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           }
         }
       },
@@ -2587,7 +3162,7 @@
           33
         ],
         "type": "integer",
-        "description": "An enumeration.",
+        "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -2604,19 +3179,19 @@
           "NINTENDO_PPID"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "PortalTokenDetailsGrantType": {
@@ -2627,17 +3202,35 @@
           "ps5_v3"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "The grant type used to authenticate the portal tokens",
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "Playstation 4 Grant Version 1",
+          "Playstation 4 Grant Version 3",
+          "Playstation 5 Grant Version 3"
         ]
+      },
+      "PortalTokenDetailsRequest": {
+        "title": "PortalTokenDetailsRequest",
+        "required": [
+          "grant_type",
+          "portal_access_token"
+        ],
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "$ref": "#/components/schemas/PortalTokenDetailsGrantType"
+          },
+          "portal_access_token": {
+            "title": "Portal Access Token",
+            "type": "string",
+            "description": "Token or secret used to authenticate the provided grant type"
+          }
+        }
       },
       "PortalUserInfo": {
         "title": "PortalUserInfo",
@@ -2688,7 +3281,8 @@
           },
           "player_uuid": {
             "title": "Player Uuid",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           }
         }
       },
@@ -2814,19 +3408,22 @@
         "enum": [
           "account_ban",
           "account_lockout",
-          "account_pending_deletion"
+          "account_pending_deletion",
+          "account_deny_auth"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION"
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "Account is banned",
+          "Account is locked out",
+          "Account is pending deletion and will be deleted in the future",
+          "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned."
         ]
       },
       "SendInBlueContact": {
@@ -2907,6 +3504,19 @@
           }
         }
       },
+      "UpdatePersonInfoRequest": {
+        "title": "UpdatePersonInfoRequest",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        }
+      },
       "ValidationError": {
         "title": "ValidationError",
         "required": [
@@ -2951,5 +3561,11 @@
         "scheme": "basic"
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "auth",
+      "description": "RallyHere Authentication API\n\nThis API is used by clients to retrieve an access token to be used when accessing other RallyHere APIs.\n\n## User-based Client Logins\n\nThe /v1/login endpoint supports user-based authentication for a variety of platforms by \"wrapping\" a user's platform\naccess token using a multi-step process:\n\n1. The client must authenticate the user and retrieve an access token for their respective platform.\n2. The client must subsequently authenticate the user using the /v1/login endpoint by setting the `grant_type` to the\nappropriate platform, and setting the `portal_access_token` to the access token retrieved above, which will return a\nnew access token to be used for RallyHere APIs.\n\n## OAuth\n\n### Version 1\n\nThe /v1/oauth endpoints support user-based client authentication for a variety of different platforms, utilizing secure\nredirects to third-party authentication URLs. The OAuth flow allows authentication to the RallyHere APIs without the use\nof a game client.\n\n### Version 2\n\nCurrently, the /v2/oauth endpoints only support a `grant_type` value of `client_credentials`, for the purposes of\nuser-less client authentication, utilizing Basic authentication containing a RallyHere client ID and client secret. This\ntype of authentication enables trusted clients (such as backend game instances) to access the RallyHere APIs without\nuser-specific authentication.\n\nThe /v2/oauth endpoint will be updated in the future to include user-based authentication modes.\n\n"
+    }
+  ]
 }

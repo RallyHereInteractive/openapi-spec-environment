@@ -17,6 +17,7 @@
           "config"
         ],
         "summary": "Get App Settings Server",
+        "description": "Returns app settings that are configured to be available to the server. Requires permission: config:app_settings:server:read",
         "operationId": "get_app_settings_server",
         "parameters": [
           {
@@ -91,6 +92,7 @@
           "config"
         ],
         "summary": "Get App Settings Client",
+        "description": "Returns app settings that are configured to be available to the client.",
         "operationId": "get_app_settings_client",
         "parameters": [
           {
@@ -150,6 +152,7 @@
           "discovery"
         ],
         "summary": "Get Discovery",
+        "description": "Returns the configured connection manager IPs for the game client to connect to. Deprecated as there is no longer a need for this endpoint after MCTS was removed.",
         "operationId": "get_discovery",
         "responses": {
           "200": {
@@ -162,7 +165,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/v1/site": {
@@ -171,7 +175,7 @@
           "site"
         ],
         "summary": "Get Site Settings",
-        "description": "Returns a list of all the enabled Sites/Regions.",
+        "description": "Returns a list of all the enabled Sites/Regions. \n            Deprecated as this endpoint has moved to the session api.",
         "operationId": "get_site_settings",
         "responses": {
           "200": {
@@ -187,13 +191,48 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
           }
         ]
+      }
+    },
+    "/v1/time/utc": {
+      "get": {
+        "tags": [
+          "time"
+        ],
+        "summary": "Get Utc Time",
+        "description": "Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API's time and create a offset to act upon.",
+        "operationId": "get_utc_time",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Utc Time V1 Time Utc Get",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -290,19 +329,23 @@
         "properties": {
           "site_id": {
             "title": "Site Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The site ID"
           },
           "sort_order": {
             "title": "Sort Order",
-            "type": "integer"
+            "type": "integer",
+            "description": "The priority order of this site"
           },
           "custom_only": {
             "title": "Custom Only",
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the site is a custom games only"
           },
           "message_name": {
             "title": "Message Name",
-            "type": "string"
+            "type": "string",
+            "description": "The message associated with this site"
           }
         }
       },
@@ -350,7 +393,19 @@
   "tags": [
     {
       "name": "config",
-      "description": "Operations on config-api"
+      "description": "Getting client and server app settings"
+    },
+    {
+      "name": "discovery",
+      "description": "Discovery endpoint for MCTS compatible games"
+    },
+    {
+      "name": "sites",
+      "description": "Endpoint for getting site settings"
+    },
+    {
+      "name": "time",
+      "description": "Endpoint for UTC now time"
     }
   ]
 }

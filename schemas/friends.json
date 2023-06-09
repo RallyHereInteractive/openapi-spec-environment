@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "friends-api",
-    "description": "Hi-Rez Studios Friends API. These set of APIS will are used to manage a Players list of Friends and Blocked Players. <br /> <br />\n<b>Note:</b> When the other Player declines the Player's Friend request, the FriendShip status is set to FRIENDSHIP_DECLINED_BY_OTHER_PLAYER and counts towards the Player's Friend limit. Clients are expected to delete the relationship and optionally inform the Player about the declined request.\n",
+    "description": "RallyHere Friends API. These set of APIS will are used to manage a Players list of Friends and Blocked Players. <br /> <br />\n<b>Note:</b> When the other Player declines the Player's Friend request, the FriendShip status is set to FRIENDSHIP_DECLINED_BY_OTHER_PLAYER and counts towards the Player's Friend limit. Clients are expected to delete the relationship and optionally inform the Player about the declined request.\n",
     "version": "0.1.0"
   },
   "servers": [
@@ -17,7 +17,7 @@
           "Friends V2"
         ],
         "summary": "Get Friends List For Player V2",
-        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.",
         "operationId": "get_friends_list_for_player_v2",
         "parameters": [
           {
@@ -221,7 +221,7 @@
           "Friends V2"
         ],
         "summary": "Get Friend Relationship V2",
-        "description": "Get the relationship status with the other Player. <br /> <br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                    it has not changed or to use it to modify the relationship without loosing updates. ",
+        "description": "Get the relationship status with the other Player. <br /> <br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                    it has not changed or to use it to modify the relationship without loosing updates. \n                    <br/><br />Permissions Required: friend:friend_list:read",
         "operationId": "get_friend_relationship_v2",
         "parameters": [
           {
@@ -330,7 +330,7 @@
           "Friends V2"
         ],
         "summary": "Add Friend V2",
-        "description": "Update the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                    the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                    include a body.<br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "description": "Update the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                    the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                    include a body.<br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                    <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "add_friend_v2",
         "parameters": [
           {
@@ -448,7 +448,7 @@
           "Friends V2"
         ],
         "summary": "Delete Friend V2",
-        "description": "Remove the friend's relationship status with the other Player. \n                    This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "description": "Remove the friend's relationship status with the other Player. \n                    This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                    <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "delete_friend_v2",
         "parameters": [
           {
@@ -552,7 +552,7 @@
           "Friends V2"
         ],
         "summary": "Add Notes V2",
-        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n                    The notes will be removed when the relationship is ended.\n                    <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "add_notes_v2",
         "parameters": [
           {
@@ -668,7 +668,7 @@
           "Friends V2"
         ],
         "summary": "Delete Notes V2",
-        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n                    The notes will be removed when the relationship is ended.\n                    <br/><br />Permissions Required: {FriendPermissions.FRIEND_LIST_WRITE}",
         "operationId": "delete_notes_v2",
         "parameters": [
           {
@@ -761,7 +761,7 @@
           "Friends V1"
         ],
         "summary": "Get Friends List For Player",
-        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. \n                <br/><br />Permissions Required: friend:friend_list:read",
         "operationId": "get_friends_list_for_player",
         "parameters": [
           {
@@ -871,6 +871,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -882,7 +883,7 @@
           "Friends V1"
         ],
         "summary": "Delete Friends",
-        "description": "Remove the friend's relationship status with the other players",
+        "description": "Remove the friend's relationship status with the other players <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "delete_friends",
         "parameters": [
           {
@@ -950,6 +951,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -963,7 +965,7 @@
           "Friends V1"
         ],
         "summary": "Get Friend Relationship",
-        "description": "Get the relationship status with the other Player. <br /> <br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                it has not changed or to use it to modify the relationship without loosing updates. ",
+        "description": "Get the relationship status with the other Player. <br /> <br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                it has not changed or to use it to modify the relationship without loosing updates. \n                <br/><br />Permissions Required: friend:friend_list:read",
         "operationId": "get_friend_relationship",
         "parameters": [
           {
@@ -1059,6 +1061,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -1070,7 +1073,7 @@
           "Friends V1"
         ],
         "summary": "Add Friend",
-        "description": "Update the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "description": "Update the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "add_friend",
         "parameters": [
           {
@@ -1175,6 +1178,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -1186,7 +1190,7 @@
           "Friends V1"
         ],
         "summary": "Delete Friend",
-        "description": "Remove the friend's relationship status with the other Player. \n                This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. ",
+        "description": "Remove the friend's relationship status with the other Player. \n                This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "delete_friend",
         "parameters": [
           {
@@ -1275,6 +1279,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -1288,7 +1293,7 @@
           "Friends V1"
         ],
         "summary": "Add Notes",
-        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.\n    <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "add_notes",
         "parameters": [
           {
@@ -1391,6 +1396,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -1402,7 +1408,7 @@
           "Friends V1"
         ],
         "summary": "Delete Notes",
-        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.",
+        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.\n    <br/><br />Permissions Required: friend:friend_list:write",
         "operationId": "delete_notes",
         "parameters": [
           {
@@ -1480,6 +1486,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -1493,7 +1500,7 @@
           "Blocked V2"
         ],
         "summary": "Get Blocked List For Player V2",
-        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.\n                        <br/><br />Permissions Required: friend:block_list:read",
         "operationId": "get_blocked_list_for_player_v2",
         "parameters": [
           {
@@ -1617,7 +1624,7 @@
           "Blocked V2"
         ],
         "summary": "Get Blocked V2",
-        "description": "Get the Blocked Player",
+        "description": "Get the Blocked Player <br/><br />Permissions Required: friend:block_list:read",
         "operationId": "get_blocked_v2",
         "parameters": [
           {
@@ -1704,7 +1711,7 @@
           "Blocked V2"
         ],
         "summary": "Block V2",
-        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).",
+        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).\n                    <br/><br />Permissions Required: friend:block_list:write",
         "operationId": "block_v2",
         "parameters": [
           {
@@ -1791,7 +1798,7 @@
           "Blocked V2"
         ],
         "summary": "Unblock V2",
-        "description": "Unblock the other Player",
+        "description": "Unblock the other Player <br/><br />Permissions Required: friend:block_list:write",
         "operationId": "unblock_v2",
         "parameters": [
           {
@@ -1873,7 +1880,7 @@
           "Blocked V1"
         ],
         "summary": "Get Blocked List For Player",
-        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. ",
+        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. \n                        <br/><br />Permissions Required: friend:block_list:read",
         "operationId": "get_blocked_list_for_player",
         "parameters": [
           {
@@ -1983,6 +1990,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -1996,7 +2004,7 @@
           "Blocked V1"
         ],
         "summary": "Get Blocked",
-        "description": "Get the Blocked Player",
+        "description": "Get the Blocked Player<br/><br />Permissions Required: friend:block_list:read",
         "operationId": "get_blocked",
         "parameters": [
           {
@@ -2070,6 +2078,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -2081,7 +2090,7 @@
           "Blocked V1"
         ],
         "summary": "Block",
-        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).",
+        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).\n                    <br/><br />Permissions Required: friend:block_list:write",
         "operationId": "block",
         "parameters": [
           {
@@ -2155,6 +2164,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -2166,7 +2176,7 @@
           "Blocked V1"
         ],
         "summary": "Unblock",
-        "description": "Unblock the other Player",
+        "description": "Unblock the other Player<br/><br />Permissions Required: friend:block_list:write",
         "operationId": "unblock",
         "parameters": [
           {
@@ -2233,6 +2243,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -2255,6 +2266,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FriendsApiConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -2294,7 +2315,8 @@
           "page": {
             "$ref": "#/components/schemas/PageMeta"
           }
-        }
+        },
+        "description": "The list of players that is blocked."
       },
       "BlockedListV1": {
         "title": "BlockedListV1",
@@ -2325,7 +2347,8 @@
           "page": {
             "$ref": "#/components/schemas/PageMeta"
           }
-        }
+        },
+        "description": "The list of players that is blocked. V1 includes player_id and player_uuid."
       },
       "BlockedPlayer": {
         "title": "BlockedPlayer",
@@ -2345,7 +2368,8 @@
             "type": "string",
             "format": "date-time"
           }
-        }
+        },
+        "description": "The player that is being blocked."
       },
       "BlockedPlayerV1": {
         "title": "BlockedPlayerV1",
@@ -2370,7 +2394,8 @@
             "type": "string",
             "format": "date-time"
           }
-        }
+        },
+        "description": "The player that is being blocked. V1 includes player_id and player_uuid."
       },
       "FriendRelationship": {
         "title": "FriendRelationship",
@@ -2398,7 +2423,8 @@
             "type": "string",
             "format": "date-time"
           }
-        }
+        },
+        "description": "Represents the relationship with a potential friend."
       },
       "FriendRelationshipV1": {
         "title": "FriendRelationshipV1",
@@ -2431,7 +2457,8 @@
             "type": "string",
             "format": "date-time"
           }
-        }
+        },
+        "description": "Represents the relationship with a potential friend. V1 includes player_id and player_uuid."
       },
       "Friends": {
         "title": "Friends",
@@ -2450,7 +2477,8 @@
               "format": "uuid"
             }
           }
-        }
+        },
+        "description": "List of player_uuids to operate on."
       },
       "FriendsApiConfig": {
         "title": "FriendsApiConfig",
@@ -2459,11 +2487,13 @@
           "friend_limit": {
             "title": "Friend Limit",
             "type": "integer",
+            "description": "Maximum number of friends a user can have",
             "default": 10000
           },
           "block_limit": {
             "title": "Block Limit",
             "type": "integer",
+            "description": "Maximum number of blocked users a user can have",
             "default": 10000
           }
         }
@@ -2492,7 +2522,8 @@
           "page": {
             "$ref": "#/components/schemas/PageMeta"
           }
-        }
+        },
+        "description": "List of the player's friends. Includes sent friend requests and received friends requests."
       },
       "FriendsListV1": {
         "title": "FriendsListV1",
@@ -2523,7 +2554,8 @@
           "page": {
             "$ref": "#/components/schemas/PageMeta"
           }
-        }
+        },
+        "description": "List of the player's friends. Includes sent friend requests and received friends requests."
       },
       "FriendsV1": {
         "title": "FriendsV1",
@@ -2541,7 +2573,8 @@
               "type": "integer"
             }
           }
-        }
+        },
+        "description": "List of player_ids to operate on."
       },
       "FriendshipStatus": {
         "title": "FriendshipStatus",
@@ -2601,7 +2634,8 @@
             "minLength": 1,
             "type": "string"
           }
-        }
+        },
+        "description": "Notes to set for the Player's friend. If you don't want to modify notes, no not include in body when adding a friend."
       },
       "PageMeta": {
         "title": "PageMeta",
@@ -2670,7 +2704,7 @@
   "tags": [
     {
       "name": "Friends V1",
-      "description": "Operations to fetch and modify a player's friends"
+      "description": "Operations to fetch and modify a player's friends. Note: V1 and V2 are not be be used together. Once you begin using V2, you must not use V1 anymore."
     },
     {
       "name": "Friends V2",
@@ -2678,7 +2712,7 @@
     },
     {
       "name": "Blocked V1",
-      "description": "Operations to fetch and modify a player's blocked list"
+      "description": "Operations to fetch and modify a player's blocked list. Note: V1 and V2 are not be be used together. Once you begin using V2, you must not use V1 anymore."
     },
     {
       "name": "Blocked V2",
