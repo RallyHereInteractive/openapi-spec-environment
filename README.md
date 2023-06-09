@@ -28,6 +28,11 @@ Script that does the work of running all generators
 1. download the latest versions of the OpenAPI specs for each of the RallyHere Sandbox APIs to the `schemas` directory
 2. Merge all the OpenAPI specs into a single spec file in `sandbox.openapi.json`
 
+| Parameter | Optional | Description |
+| ---- | --- | --- |
+| `-u` | Yes | Override the sandbox base URL used when generating the spec |
+|  `--sandbox-base-url` | Yes | Override the sandbox base URL used when generating the spec |
+
 ## `schemas` directory
 
 This contains the base openapi spec files for all RallyHere APIs.  These are merged into the above file.
