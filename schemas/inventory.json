@@ -5760,19 +5760,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Unknown client type",
-          "Windows client type",
-          "Mac client type",
-          "XboxOne client type",
-          "Playstation 4 client type",
-          "Nintendo Switch client type",
-          "Android client type",
-          "iOS client type",
-          "Playstation 5 client type",
-          "Linux client type",
-          "XSX client type"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WIN",
@@ -5785,6 +5772,19 @@
           "PS5",
           "LINUX",
           "XSX"
+        ],
+        "x-enum-descriptions": [
+          "Unknown client type",
+          "Windows client type",
+          "Mac client type",
+          "XboxOne client type",
+          "Playstation 4 client type",
+          "Nintendo Switch client type",
+          "Android client type",
+          "iOS client type",
+          "Playstation 5 client type",
+          "Linux client type",
+          "XSX client type"
         ]
       },
       "CreateInventoryRequest": {
@@ -5872,13 +5872,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "EntitlementErrorCode": {
@@ -5901,22 +5901,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "No error occured",
-          "Failed to find or validate the auth token",
-          "Missing information in the request",
-          "Failed to consume the entitlement",
-          "No SKU found for this entitlement on the backend",
-          "Entitlement is defined with a different SKU type than the one provided",
-          "Durable entitlements are not allowed by this platform",
-          "Durable single use entitlements are not allowed by this platform",
-          "Consumable entitlements are not allowed by this platform",
-          "Unknown SKU type provided",
-          "Failed to submit the order to the backend",
-          "Durable single use entitlement has already been applied",
-          "Quantity was zero, nothing to apply",
-          "Entitlement was previously applied"
-        ],
         "x-enum-varnames": [
           "NONE",
           "AUTH_TOKEN_FAILURE",
@@ -5932,6 +5916,22 @@
           "ALREADY_APPLIED_DURABLE_SINGLE_USE",
           "QUANTITY_ZERO",
           "PREVIOUSLY_APPLIED"
+        ],
+        "x-enum-descriptions": [
+          "No error occured",
+          "Failed to find or validate the auth token",
+          "Missing information in the request",
+          "Failed to consume the entitlement",
+          "No SKU found for this entitlement on the backend",
+          "Entitlement is defined with a different SKU type than the one provided",
+          "Durable entitlements are not allowed by this platform",
+          "Durable single use entitlements are not allowed by this platform",
+          "Consumable entitlements are not allowed by this platform",
+          "Unknown SKU type provided",
+          "Failed to submit the order to the backend",
+          "Durable single use entitlement has already been applied",
+          "Quantity was zero, nothing to apply",
+          "Entitlement was previously applied"
         ]
       },
       "EntitlementStatus": {
@@ -5945,19 +5945,19 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Entitlement status is unknown",
-          "Entitlement has been submitted to the backend",
-          "Entitlement has been fulfilled",
-          "Entitlement has failed, check error_code for more information",
-          "Entitlement was previously applied"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
           "PREVIOUSLY_APPLIED"
+        ],
+        "x-enum-descriptions": [
+          "Entitlement status is unknown",
+          "Entitlement has been submitted to the backend",
+          "Entitlement has been fulfilled",
+          "Entitlement has failed, check error_code for more information",
+          "Entitlement was previously applied"
         ]
       },
       "HTTPValidationError": {
@@ -6035,24 +6035,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Inventory given away for free.",
-          "Inventory earned by players through in game activities.",
-          "Inventory that doesn't belong to any known platform.",
-          "Inventory assigned to the anonymous platform.",
-          "Inventory assigned to the amazon platform.",
-          "Inventory assigned to the steam platform.",
-          "Inventory assigned to the playstation platform.",
-          "Inventory assigned to the Xbox platform.",
-          "Inventory assigned to the Google platform.",
-          "Inventory assigned to the Twitch platform.",
-          "Inventory assigned to the Nintendo Switch platform.",
-          "Inventory assigned to the Apple platform.",
-          "Inventory assigned to the Nintendo platform.",
-          "Inventory assigned to the Epic platform.",
-          "Inventory assigned to the Google Play platform.",
-          "Inventory assigned to the Nintendo PPID platform."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -6070,6 +6052,24 @@
           "EPIC",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Inventory given away for free.",
+          "Inventory earned by players through in game activities.",
+          "Inventory that doesn't belong to any known platform.",
+          "Inventory assigned to the anonymous platform.",
+          "Inventory assigned to the amazon platform.",
+          "Inventory assigned to the steam platform.",
+          "Inventory assigned to the playstation platform.",
+          "Inventory assigned to the Xbox platform.",
+          "Inventory assigned to the Google platform.",
+          "Inventory assigned to the Twitch platform.",
+          "Inventory assigned to the Nintendo Switch platform.",
+          "Inventory assigned to the Apple platform.",
+          "Inventory assigned to the Nintendo platform.",
+          "Inventory assigned to the Epic platform.",
+          "Inventory assigned to the Google Play platform.",
+          "Inventory assigned to the Nintendo PPID platform."
         ]
       },
       "InventoryBucketUseRuleSet": {
@@ -6139,15 +6139,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "invalid",
           "add",
@@ -6156,6 +6147,15 @@
           "check_greater_than_or_equal",
           "check_less_than",
           "check_greater_than_or_equal_and_subtract"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "InventoryRecord": {
@@ -6225,14 +6225,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "invalid",
           "own",
@@ -6240,6 +6232,14 @@
           "rent_timeframe_locked",
           "own_transient",
           "inherit_entitlement_inventory"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "InventorySession": {
@@ -6304,15 +6304,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT",
           "ALWAYS_OWNED"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Item": {
@@ -6431,19 +6431,19 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "unit",
           "recipe",
           "recipe_with_price_reduction",
           "entitlement",
           "dynamic_bundle"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Items": {
@@ -6851,22 +6851,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -6882,6 +6866,22 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformEntitlement": {
@@ -7079,15 +7079,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Unknown region",
-          "North America region",
-          "Europe Union region"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "NA",
           "EU"
+        ],
+        "x-enum-descriptions": [
+          "Unknown region",
+          "North America region",
+          "Europe Union region"
         ]
       },
       "PlayerInventoryChange": {
@@ -7254,14 +7254,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "INVENTORY_CHANGE",
@@ -7269,6 +7261,14 @@
           "CLAIM_PROMO_CODE",
           "RETURN_PROMO_CODE",
           "NEW_ORDER"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlayerOrderEntry": {
@@ -7530,55 +7530,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "SUCCESS",
           "INTERNAL_ERROR",
@@ -7627,6 +7578,55 @@
           "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
           "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
           "AVAILABLE_UNTIL_IS_IN_PAST"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlayerOrderEntryType": {
@@ -7646,19 +7646,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Fill a loot item.",
-          "Purchase a loot item.",
-          "Purchase a dynamic bundle.",
-          "Claim a promotion code.",
-          "Fill a transient loot item.",
-          "Fill an loot entitlement.",
-          "Create persistent Inventory.",
-          "Deprecated. Use update_inventory instead.",
-          "Create transient Inventory.",
-          "Deprecated. Use update_inventory instead.",
-          "Update existing Inventory."
-        ],
         "x-enum-varnames": [
           "FILL_LOOT",
           "PURCHASE_LOOT",
@@ -7671,6 +7658,19 @@
           "CREATE_NEW_TRANSIENT_INVENTORY",
           "UPDATE_EXISTING_TRANSIENT_INVENTORY",
           "UPDATE_INVENTORY"
+        ],
+        "x-enum-descriptions": [
+          "Fill a loot item.",
+          "Purchase a loot item.",
+          "Purchase a dynamic bundle.",
+          "Claim a promotion code.",
+          "Fill a transient loot item.",
+          "Fill an loot entitlement.",
+          "Create persistent Inventory.",
+          "Deprecated. Use update_inventory instead.",
+          "Create transient Inventory.",
+          "Deprecated. Use update_inventory instead.",
+          "Update existing Inventory."
         ]
       },
       "PlayerOrdersResponse": {
@@ -7735,44 +7735,6 @@
         ],
         "type": "integer",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -7810,6 +7772,44 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PortalUseRuleset": {
@@ -7958,13 +7958,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "relative",
           "absolute"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "SortOrder": {
@@ -7975,13 +7975,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ASCENDING",
           "DESCENDING"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Source": {
@@ -8052,70 +8052,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WEB_ORDER_REPAIR",
@@ -8179,6 +8115,70 @@
           "AMAZON",
           "SIMULMEDIA",
           "LUNA"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "TimeFrame": {
@@ -8449,13 +8449,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "recipe",
           "randomly_sampled"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Vendors": {
@@ -8485,17 +8485,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "none",
           "from_current_xp_to_target_additional_level_min_xp",
           "from_current_level_min_xp_to_target_additional_level_min_xp",
           "from_zero_to_target_exact_level_min_xp"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "XpTable": {

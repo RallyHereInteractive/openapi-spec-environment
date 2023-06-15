@@ -5,7 +5,7 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 pushd $DIR
 
-SPEC_BASE_URL="https://platform-dev-api.roguecompany.com"
+SPEC_BASE_URL="https://554b0f7e-4f66-4969-8bd9-6f6aecd06e25.rally-here.io"
 
 ########################################
 POSITIONAL_ARGS=()
