@@ -17,6 +17,7 @@
           "ad"
         ],
         "summary": "Begin New Session",
+        "description": "Start a new session for the user. This will generate a new ad api token that is returned in the response header.",
         "operationId": "begin_new_session",
         "parameters": [
           {
@@ -35,7 +36,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_begin_new_session_v1_session_post"
+                "$ref": "#/components/schemas/Body_begin_new_session"
               }
             }
           },
@@ -103,6 +104,7 @@
           "ad"
         ],
         "summary": "Find Opportunities",
+        "description": "Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.",
         "operationId": "find_opportunities",
         "parameters": [
           {
@@ -121,7 +123,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_find_opportunities_v1_opportunity_post"
+                "$ref": "#/components/schemas/Body_find_opportunities"
               }
             }
           },
@@ -191,6 +193,7 @@
           "ad"
         ],
         "summary": "Update Opportunity By Id",
+        "description": "Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.",
         "operationId": "update_opportunity_by_id",
         "parameters": [
           {
@@ -219,7 +222,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_update_opportunity_by_id_v1_opportunity__opportunity_id__post"
+                "$ref": "#/components/schemas/Body_update_opportunity_by_id"
               }
             }
           },
@@ -484,22 +487,25 @@
         "properties": {
           "ad_url": {
             "title": "Ad Url",
-            "type": "string"
+            "type": "string",
+            "description": "The URL to the ad"
           },
           "seconds": {
             "title": "Seconds",
             "minimum": 0,
-            "type": "integer"
+            "type": "integer",
+            "description": "The number of seconds the ad is"
           },
           "opportunity_id": {
             "title": "Opportunity Id",
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the ad opportunity"
           }
         }
       },
-      "Body_begin_new_session_v1_session_post": {
-        "title": "Body_begin_new_session_v1_session_post",
+      "Body_begin_new_session": {
+        "title": "Body_begin_new_session",
         "required": [
           "country_code"
         ],
@@ -521,8 +527,8 @@
           }
         }
       },
-      "Body_find_opportunities_v1_opportunity_post": {
-        "title": "Body_find_opportunities_v1_opportunity_post",
+      "Body_find_opportunities": {
+        "title": "Body_find_opportunities",
         "required": [
           "country_code",
           "language_code"
@@ -531,11 +537,13 @@
         "properties": {
           "screen_pixel_width": {
             "title": "Screen Pixel Width",
-            "type": "integer"
+            "type": "integer",
+            "description": "Width of the screen in pixels"
           },
           "screen_pixel_height": {
             "title": "Screen Pixel Height",
-            "type": "integer"
+            "type": "integer",
+            "description": "Height of the screen in pixels"
           },
           "country_code": {
             "title": "Country Code",
@@ -560,18 +568,28 @@
           }
         }
       },
-      "Body_update_opportunity_by_id_v1_opportunity__opportunity_id__post": {
-        "title": "Body_update_opportunity_by_id_v1_opportunity__opportunity_id__post",
+      "Body_update_opportunity_by_id": {
+        "title": "Body_update_opportunity_by_id",
         "required": [
           "state"
         ],
         "type": "object",
         "properties": {
           "state": {
-            "$ref": "#/components/schemas/OpportunityState"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OpportunityState"
+              }
+            ],
+            "description": "State of the opportunity"
           },
           "abort_reason": {
-            "$ref": "#/components/schemas/OpportunityAbortReason"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OpportunityAbortReason"
+              }
+            ],
+            "description": "Reason for aborting the opportunity"
           },
           "abort_seconds": {
             "title": "Abort Seconds",
@@ -625,13 +643,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CANCEL",
-          "OTHER"
-        ],
         "x-enum-descriptions": [
           "Ad was closed by the user",
           "Ad was closed from a misc cause"
+        ],
+        "x-enum-varnames": [
+          "CANCEL",
+          "OTHER"
         ]
       },
       "OpportunityState": {
@@ -643,15 +661,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "START",
-          "COMPLETE",
-          "ABORT"
-        ],
         "x-enum-descriptions": [
           "User started watching the ad",
           "User finished watching the ad",
           "User stopped watching the ad partway through"
+        ],
+        "x-enum-varnames": [
+          "START",
+          "COMPLETE",
+          "ABORT"
         ]
       },
       "ValidationError": {

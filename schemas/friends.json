@@ -2374,7 +2374,6 @@
       "BlockedPlayerV1": {
         "title": "BlockedPlayerV1",
         "required": [
-          "blocked_player_id",
           "blocked_player_uuid",
           "last_modified_on"
         ],
@@ -2382,7 +2381,8 @@
         "properties": {
           "blocked_player_id": {
             "title": "Blocked Player's ID",
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "blocked_player_uuid": {
             "title": "Friend's Player ID",
@@ -2430,7 +2430,6 @@
         "title": "FriendRelationshipV1",
         "required": [
           "friends_player_uuid",
-          "friends_player_id",
           "status",
           "last_modified_on"
         ],
@@ -2443,7 +2442,8 @@
           },
           "friends_player_id": {
             "title": "Player ID of Friend",
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "status": {
             "$ref": "#/components/schemas/FriendshipStatus"

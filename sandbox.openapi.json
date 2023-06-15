@@ -119,6 +119,7 @@
           "ad"
         ],
         "summary": "Begin New Session",
+        "description": "Start a new session for the user. This will generate a new ad api token that is returned in the response header.",
         "operationId": "begin_new_session",
         "parameters": [
           {
@@ -137,7 +138,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_begin_new_session_v1_session_post"
+                "$ref": "#/components/schemas/Body_begin_new_session"
               }
             }
           },
@@ -205,6 +206,7 @@
           "ad"
         ],
         "summary": "Find Opportunities",
+        "description": "Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.",
         "operationId": "find_opportunities",
         "parameters": [
           {
@@ -223,7 +225,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_find_opportunities_v1_opportunity_post"
+                "$ref": "#/components/schemas/Body_find_opportunities"
               }
             }
           },
@@ -293,6 +295,7 @@
           "ad"
         ],
         "summary": "Update Opportunity By Id",
+        "description": "Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.",
         "operationId": "update_opportunity_by_id",
         "parameters": [
           {
@@ -321,7 +324,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_update_opportunity_by_id_v1_opportunity__opportunity_id__post"
+                "$ref": "#/components/schemas/Body_update_opportunity_by_id"
               }
             }
           },
@@ -18572,7 +18575,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
         "operationId": "player_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -18675,7 +18678,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
         "operationId": "player_long_poll_for_notifications",
         "parameters": [
           {
@@ -18798,7 +18801,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
         "operationId": "player_get_notifications_page_self",
         "parameters": [
           {
@@ -18895,7 +18898,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
         "operationId": "player_get_notifications_page",
         "parameters": [
           {
@@ -19089,7 +19092,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
         "operationId": "player_get_notification_by_id_self",
         "parameters": [
           {
@@ -19157,7 +19160,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
         "operationId": "player_get_notification_by_id",
         "parameters": [
           {
@@ -19245,7 +19248,7 @@
           "instance-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_long_poll_for_notifications",
         "parameters": [
           {
@@ -19367,7 +19370,7 @@
           "instance-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_get_notifications_page",
         "parameters": [
           {
@@ -19559,7 +19562,7 @@
           "instance-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_get_notification_by_id",
         "parameters": [
           {
@@ -20420,22 +20423,25 @@
         "properties": {
           "ad_url": {
             "title": "Ad Url",
-            "type": "string"
+            "type": "string",
+            "description": "The URL to the ad"
           },
           "seconds": {
             "title": "Seconds",
             "minimum": 0,
-            "type": "integer"
+            "type": "integer",
+            "description": "The number of seconds the ad is"
           },
           "opportunity_id": {
             "title": "Opportunity Id",
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the ad opportunity"
           }
         }
       },
-      "Body_begin_new_session_v1_session_post": {
-        "title": "Body_begin_new_session_v1_session_post",
+      "Body_begin_new_session": {
+        "title": "Body_begin_new_session",
         "required": [
           "country_code"
         ],
@@ -20457,8 +20463,8 @@
           }
         }
       },
-      "Body_find_opportunities_v1_opportunity_post": {
-        "title": "Body_find_opportunities_v1_opportunity_post",
+      "Body_find_opportunities": {
+        "title": "Body_find_opportunities",
         "required": [
           "country_code",
           "language_code"
@@ -20467,11 +20473,13 @@
         "properties": {
           "screen_pixel_width": {
             "title": "Screen Pixel Width",
-            "type": "integer"
+            "type": "integer",
+            "description": "Width of the screen in pixels"
           },
           "screen_pixel_height": {
             "title": "Screen Pixel Height",
-            "type": "integer"
+            "type": "integer",
+            "description": "Height of the screen in pixels"
           },
           "country_code": {
             "title": "Country Code",
@@ -20496,18 +20504,28 @@
           }
         }
       },
-      "Body_update_opportunity_by_id_v1_opportunity__opportunity_id__post": {
-        "title": "Body_update_opportunity_by_id_v1_opportunity__opportunity_id__post",
+      "Body_update_opportunity_by_id": {
+        "title": "Body_update_opportunity_by_id",
         "required": [
           "state"
         ],
         "type": "object",
         "properties": {
           "state": {
-            "$ref": "#/components/schemas/OpportunityState"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OpportunityState"
+              }
+            ],
+            "description": "State of the opportunity"
           },
           "abort_reason": {
-            "$ref": "#/components/schemas/OpportunityAbortReason"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OpportunityAbortReason"
+              }
+            ],
+            "description": "Reason for aborting the opportunity"
           },
           "abort_seconds": {
             "title": "Abort Seconds",
@@ -20561,13 +20579,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CANCEL",
-          "OTHER"
-        ],
         "x-enum-descriptions": [
           "Ad was closed by the user",
           "Ad was closed from a misc cause"
+        ],
+        "x-enum-varnames": [
+          "CANCEL",
+          "OTHER"
         ]
       },
       "OpportunityState": {
@@ -20579,15 +20597,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "START",
-          "COMPLETE",
-          "ABORT"
-        ],
         "x-enum-descriptions": [
           "User started watching the ad",
           "User finished watching the ad",
           "User stopped watching the ad partway through"
+        ],
+        "x-enum-varnames": [
+          "START",
+          "COMPLETE",
+          "ABORT"
         ]
       },
       "ValidationError": {
@@ -20706,7 +20724,6 @@
       "BlockedPlayerV1": {
         "title": "BlockedPlayerV1",
         "required": [
-          "blocked_player_id",
           "blocked_player_uuid",
           "last_modified_on"
         ],
@@ -20714,7 +20731,8 @@
         "properties": {
           "blocked_player_id": {
             "title": "Blocked Player's ID",
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "blocked_player_uuid": {
             "title": "Friend's Player ID",
@@ -20762,7 +20780,6 @@
         "title": "FriendRelationshipV1",
         "required": [
           "friends_player_uuid",
-          "friends_player_id",
           "status",
           "last_modified_on"
         ],
@@ -20775,7 +20792,8 @@
           },
           "friends_player_id": {
             "title": "Player ID of Friend",
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "status": {
             "$ref": "#/components/schemas/FriendshipStatus"
@@ -22234,17 +22252,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "CrossplayPlatform": {
@@ -22256,15 +22274,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "CrossplayPreferences": {
@@ -22303,17 +22321,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "FubarResponse": {
@@ -22329,13 +22347,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Input": {
@@ -22347,15 +22365,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "InstanceFubar": {
@@ -22568,19 +22586,19 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found",
-          "Host has arrived",
-          "Host is ready to accept players",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
           "pending",
           "joinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found",
+          "Host has arrived",
+          "Host is ready to accept players",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -22672,15 +22690,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "PLAYER",
           "SIC",
           "MULTIPLAY"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "InstanceStartupParams": {
@@ -22760,17 +22778,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "MapConfig": {
@@ -23142,14 +23160,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -23157,6 +23167,14 @@
           "LESS_THAN_EQUAL",
           "GREATER_THAN",
           "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformID": {
@@ -23177,20 +23195,6 @@
         ],
         "type": "integer",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -23204,6 +23208,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformSession": {
@@ -23380,15 +23398,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "QueueConfig": {
@@ -24027,17 +24045,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -27387,13 +27405,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "latest",
-          "earliest"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
         ]
       },
       "PlayerRankRequestResponse": {
