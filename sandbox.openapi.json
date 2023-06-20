@@ -7784,9 +7784,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Handle Instance Request",
+        "summary": "Create Instance Request",
         "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Auth Permissions: `session:update:self` for users requesting instances for sessions they are in \n`session:update:any` for users requesting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
-        "operationId": "handle_instance_request",
+        "operationId": "create_instance_request",
         "parameters": [
           {
             "required": true,
@@ -7853,7 +7853,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Auth Permissions: `session:update:self` for users deleting instances for sessions they are in \n`session:update:any` for users deleting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Auth Permissions: `session:update:self` for users deleting instances for sessions they are in \n`session:update:any` for users deleting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -7920,7 +7920,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance\n\nRequired Auth Permissions: `session:update:self` for users patching instances for sessions they are in \n`session:update:any` for users patching instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance\n\nRequired Auth Permissions: `session:update:self` for users patching instances for sessions they are in \n`session:update:any` for users patching instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -10000,6 +10000,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog All",
+        "description": "Get the entire catalog.",
         "operationId": "get_catalog_all",
         "parameters": [
           {
@@ -10080,6 +10081,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Xp All",
+        "description": "Get all XP Tables.",
         "operationId": "get_catalog_xp_all",
         "parameters": [
           {
@@ -10160,6 +10162,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Xp Table",
+        "description": "Get a specific XP Table.",
         "operationId": "get_catalog_xp_table",
         "parameters": [
           {
@@ -10249,6 +10252,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Portal Use Rulesets All",
+        "description": "Get all Portal Use Rulesets.",
         "operationId": "get_catalog_portal_use_rulesets_all",
         "parameters": [
           {
@@ -10330,6 +10334,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Portal Use Ruleset",
+        "description": "Get a specific Portal Use Ruleset.",
         "operationId": "get_catalog_portal_use_ruleset",
         "parameters": [
           {
@@ -10420,6 +10425,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Inventory Bucket Use Rule Sets All",
+        "description": "Get all Inventory Bucket Use Rule Sets.",
         "operationId": "get_catalog_inventory_bucket_use_rule_sets_all",
         "parameters": [
           {
@@ -10500,6 +10506,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Inventory Bucket Use Rule Set",
+        "description": "Get a specific Inventory Bucket Use Rule Set.",
         "operationId": "get_catalog_inventory_bucket_use_rule_set",
         "parameters": [
           {
@@ -10589,6 +10596,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Price Points All",
+        "description": "Get all Price Points.",
         "operationId": "get_catalog_price_points_all",
         "parameters": [
           {
@@ -10669,6 +10677,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Price Point",
+        "description": "Get a specific Price Point.",
         "operationId": "get_catalog_price_point",
         "parameters": [
           {
@@ -10759,6 +10768,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Items All",
+        "description": "Get all Items.",
         "operationId": "get_catalog_items_all",
         "parameters": [
           {
@@ -10839,6 +10849,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Item",
+        "description": "Get a specific Item.",
         "operationId": "get_catalog_item",
         "parameters": [
           {
@@ -10928,6 +10939,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Vendors All",
+        "description": "Get all Vendors.",
         "operationId": "get_catalog_vendors_all",
         "parameters": [
           {
@@ -11008,6 +11020,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Vendor",
+        "description": "Get a specific Vendor.",
         "operationId": "get_catalog_vendor",
         "parameters": [
           {
@@ -11097,6 +11110,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Loots All",
+        "description": "Get all Loot.",
         "operationId": "get_catalog_loots_all",
         "parameters": [
           {
@@ -11177,6 +11191,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Loot",
+        "description": "Get a specific Loot.",
         "operationId": "get_catalog_loot",
         "parameters": [
           {
@@ -11266,6 +11281,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Time Frames All",
+        "description": "Get all Time Frames.",
         "operationId": "get_catalog_time_frames_all",
         "parameters": [
           {
@@ -11346,6 +11362,7 @@
           "Catalog"
         ],
         "summary": "Get Catalog Time Frame",
+        "description": "Get a specific Time Frame.",
         "operationId": "get_catalog_time_frame",
         "parameters": [
           {
@@ -11435,6 +11452,7 @@
           "Inventory"
         ],
         "summary": "Get Player Inventory Uuid Self",
+        "description": "Get the Inventory for the currently authenticated player.",
         "operationId": "get_player_inventory_uuid_self",
         "parameters": [
           {
@@ -11512,6 +11530,7 @@
           "Inventory"
         ],
         "summary": "Modify Many Player Inventory Uuid Self",
+        "description": "Modify many Inventory records for the currently authenticated player.",
         "operationId": "modify_many_player_inventory_uuid_self",
         "requestBody": {
           "content": {
@@ -11576,6 +11595,7 @@
           "Inventory"
         ],
         "summary": "Create Player Inventory Uuid Self",
+        "description": "Create Inventory for the currently authenticated player.",
         "operationId": "create_player_inventory_uuid_self",
         "requestBody": {
           "content": {
@@ -11642,6 +11662,7 @@
           "Inventory"
         ],
         "summary": "Get Player Inventory Uuid",
+        "description": "Get the Inventory for the specified player.",
         "operationId": "get_player_inventory_uuid",
         "parameters": [
           {
@@ -11729,6 +11750,7 @@
           "Inventory"
         ],
         "summary": "Modify Many Player Inventory Uuid",
+        "description": "Modify many Inventory records for the specified player.",
         "operationId": "modify_many_player_inventory_uuid",
         "parameters": [
           {
@@ -11805,6 +11827,7 @@
           "Inventory"
         ],
         "summary": "Create Player Inventory Uuid",
+        "description": "Create Inventory for the specified player.",
         "operationId": "create_player_inventory_uuid",
         "parameters": [
           {
@@ -11883,6 +11906,7 @@
           "Inventory"
         ],
         "summary": "Get Player Inventory Self",
+        "description": "Get the Inventory for the currently authenticated player.",
         "operationId": "get_player_inventory_self",
         "parameters": [
           {
@@ -11961,6 +11985,7 @@
           "Inventory"
         ],
         "summary": "Modify Many Player Inventory Self",
+        "description": "Modify many Inventory records for the currently authenticated player.",
         "operationId": "modify_many_player_inventory_self",
         "requestBody": {
           "content": {
@@ -12026,6 +12051,7 @@
           "Inventory"
         ],
         "summary": "Create Player Inventory Self",
+        "description": "Create Inventory for the currently authenticated player.",
         "operationId": "create_player_inventory_self",
         "requestBody": {
           "content": {
@@ -12093,6 +12119,7 @@
           "Inventory"
         ],
         "summary": "Get Player Inventory",
+        "description": "Get the Inventory for the specified player.",
         "operationId": "get_player_inventory",
         "parameters": [
           {
@@ -12180,6 +12207,7 @@
           "Inventory"
         ],
         "summary": "Modify Many Player Inventory",
+        "description": "Modify many Inventory records for the specified player.",
         "operationId": "modify_many_player_inventory",
         "parameters": [
           {
@@ -12256,6 +12284,7 @@
           "Inventory"
         ],
         "summary": "Create Player Inventory",
+        "description": "Create Inventory for the specified player.",
         "operationId": "create_player_inventory",
         "parameters": [
           {
@@ -12334,6 +12363,7 @@
           "Inventory"
         ],
         "summary": "Modify Player Inventory Uuid Self",
+        "description": "Modify a single Inventory record for the currently authenticated player.",
         "operationId": "modify_player_inventory_uuid_self",
         "parameters": [
           {
@@ -12412,6 +12442,7 @@
           "Inventory"
         ],
         "summary": "Modify Player Inventory Uuid",
+        "description": "Modify a single Inventory record for the specified player.",
         "operationId": "modify_player_inventory_uuid",
         "parameters": [
           {
@@ -12500,6 +12531,7 @@
           "Inventory"
         ],
         "summary": "Modify Player Inventory Self",
+        "description": "Modify a single Inventory record for the currently authenticated player.",
         "operationId": "modify_player_inventory_self",
         "parameters": [
           {
@@ -12579,6 +12611,7 @@
           "Inventory"
         ],
         "summary": "Modify Player Inventory",
+        "description": "Modify a single Inventory record for the specified player.",
         "operationId": "modify_player_inventory",
         "parameters": [
           {
@@ -12667,6 +12700,7 @@
           "Inventory"
         ],
         "summary": "Get Inventory Session Info By Player Uuid Self",
+        "description": "Get an Inventory Session for the currently logged in player.",
         "operationId": "get_inventory_session_info_by_player_uuid_self",
         "responses": {
           "200": {
@@ -12701,6 +12735,7 @@
           "Inventory"
         ],
         "summary": "Create New Inventory Session By Player Uuid Self",
+        "description": "Create a new Inventory Session for the currently logged in player.",
         "operationId": "create_new_inventory_session_by_player_uuid_self",
         "requestBody": {
           "content": {
@@ -12757,6 +12792,7 @@
           "Inventory"
         ],
         "summary": "Get Inventory Session Info By Player Uuid",
+        "description": "Get an Inventory Session for the specified player.",
         "operationId": "get_inventory_session_info_by_player_uuid",
         "parameters": [
           {
@@ -12813,6 +12849,7 @@
           "Inventory"
         ],
         "summary": "Create New Inventory Session By Player Uuid",
+        "description": "Create a new Inventory Session for the specified player.",
         "operationId": "create_new_inventory_session_by_player_uuid",
         "parameters": [
           {
@@ -12881,6 +12918,7 @@
           "Inventory"
         ],
         "summary": "Get Inventory Session Info Self",
+        "description": "Get an Inventory Session for the currently logged in player.",
         "operationId": "get_inventory_session_info_self",
         "responses": {
           "200": {
@@ -12916,6 +12954,7 @@
           "Inventory"
         ],
         "summary": "Create New Inventory Session Self",
+        "description": "Create a new Inventory Session for the currently logged in player.",
         "operationId": "create_new_inventory_session_self",
         "requestBody": {
           "content": {
@@ -12973,6 +13012,7 @@
           "Inventory"
         ],
         "summary": "Get Inventory Session Info",
+        "description": "Get an Inventory Session for the specified player.",
         "operationId": "get_inventory_session_info",
         "parameters": [
           {
@@ -13029,6 +13069,7 @@
           "Inventory"
         ],
         "summary": "Create New Inventory Session",
+        "description": "Create a new Inventory Session for the specified player.",
         "operationId": "create_new_inventory_session",
         "parameters": [
           {
@@ -13448,6 +13489,7 @@
           "Inventory"
         ],
         "summary": "Create New Player Uuid Order Self",
+        "description": "Create a new Order for the current logged in player.\n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.",
         "operationId": "create_new_player_uuid_order_self",
         "requestBody": {
           "content": {
@@ -13623,6 +13665,7 @@
           "Inventory"
         ],
         "summary": "Create New Player Uuid Order",
+        "description": "Create a new Order for a specific player.\n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.",
         "operationId": "create_new_player_uuid_order",
         "parameters": [
           {
@@ -13801,6 +13844,7 @@
           "Inventory"
         ],
         "summary": "Create New Player Order Self",
+        "description": "Create a new Order for the current logged in player.\n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.",
         "operationId": "create_new_player_order_self",
         "requestBody": {
           "content": {
@@ -13977,6 +14021,7 @@
           "Inventory"
         ],
         "summary": "Create New Player Order",
+        "description": "Create a new Order for a specific player.\n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.",
         "operationId": "create_new_player_order",
         "parameters": [
           {
@@ -22606,6 +22651,7 @@
         "required": [
           "instance_launch_template_id",
           "map_selection_list",
+          "default_host_type",
           "custom_data"
         ],
         "type": "object",
@@ -22624,6 +22670,14 @@
               }
             ],
             "description": "A selection list of maps that can be chosen to launch into"
+          },
+          "default_host_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HostType"
+              }
+            ],
+            "description": "Default host type for this template. Can be overriden in instance requests"
           },
           "custom_data": {
             "title": "Custom Data",
@@ -22667,6 +22721,12 @@
               }
             ],
             "description": "Type of the host"
+          },
+          "host_player_uuid": {
+            "title": "Host Player Uuid",
+            "type": "string",
+            "description": "Player UUID of the host, if the host type is player",
+            "format": "uuid"
           },
           "custom_data": {
             "title": "Custom Data",
@@ -23051,6 +23111,12 @@
             },
             "description": "Custom data about the match",
             "default": {}
+          },
+          "host_player_uuid": {
+            "title": "Host Player Uuid",
+            "type": "string",
+            "description": "Player UUID of the host, if the host type is player",
+            "format": "uuid"
           }
         }
       },
@@ -24318,38 +24384,94 @@
             "title": "Str Rep",
             "type": "string"
           }
-        }
+        },
+        "description": "Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers"
       },
       "Catalog": {
         "title": "Catalog",
         "type": "object",
         "properties": {
           "xp_tables": {
-            "$ref": "#/components/schemas/XpTables"
+            "title": "Xp Tables",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/XpTables"
+              }
+            ],
+            "description": "The XP Tables."
           },
           "portal_use_rulesets": {
-            "$ref": "#/components/schemas/PortalUseRulesets"
+            "title": "Portal Use Rulesets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PortalUseRulesets"
+              }
+            ],
+            "description": "The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead.",
+            "deprecated": true
           },
           "inventory_bucket_use_rule_sets": {
-            "$ref": "#/components/schemas/InventoryBucketUseRuleSets"
+            "title": "Inventory Bucket Use Rule Sets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryBucketUseRuleSets"
+              }
+            ],
+            "description": "The rules on how to use Inventory Buckets."
           },
           "vendors": {
-            "$ref": "#/components/schemas/Vendors"
+            "title": "Vendors",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vendors"
+              }
+            ],
+            "description": "The Vendors."
           },
           "loot": {
-            "$ref": "#/components/schemas/Loots"
+            "title": "Loot",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Loots"
+              }
+            ],
+            "description": "The Loots."
           },
           "items": {
-            "$ref": "#/components/schemas/Items"
+            "title": "Items",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Items"
+              }
+            ],
+            "description": "The Items."
           },
           "price_points": {
-            "$ref": "#/components/schemas/PricePoints"
+            "title": "Price Points",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PricePoints"
+              }
+            ],
+            "description": "The Price Points."
           },
           "time_frames": {
-            "$ref": "#/components/schemas/TimeFrames"
+            "title": "Time Frames",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimeFrames"
+              }
+            ],
+            "description": "The Time Frames."
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Catalog."
           }
         },
         "description": "Full list of all loaded objects for the catalog.  Organized in a normalized model"
@@ -24382,20 +24504,7 @@
           "XSX"
         ],
         "type": "string",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WIN",
-          "MAC",
-          "XBOXONE",
-          "PS4",
-          "SWITCH",
-          "ANDROID",
-          "IOS",
-          "PS5",
-          "LINUX",
-          "XSX"
-        ],
+        "description": "Client type for Entitlements",
         "x-enum-descriptions": [
           "Unknown client type",
           "Windows client type",
@@ -24408,6 +24517,19 @@
           "Playstation 5 client type",
           "Linux client type",
           "XSX client type"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WIN",
+          "MAC",
+          "XBOXONE",
+          "PS4",
+          "SWITCH",
+          "ANDROID",
+          "IOS",
+          "PS5",
+          "LINUX",
+          "XSX"
         ]
       },
       "CreateInventoryRequest": {
@@ -24423,11 +24545,13 @@
                 "$ref": "#/components/schemas/InventoryBucket"
               }
             ],
+            "description": "Inventory Bucket for this Inventory Operation.",
             "default": "none"
           },
           "count": {
             "title": "Count",
             "type": "integer",
+            "description": "Count for this Inventory Operation.",
             "default": 1
           },
           "expires": {
@@ -24441,7 +24565,8 @@
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
+            },
+            "description": "Arbitrary data map that can be set to add additional data to Inventory."
           },
           "item_id": {
             "title": "Item Id",
@@ -24455,7 +24580,8 @@
             ],
             "default": "persistent"
           }
-        }
+        },
+        "description": "Request to Create a new Inventory."
       },
       "CreateInventoryRequests": {
         "title": "CreateInventoryRequests",
@@ -24470,11 +24596,13 @@
                 "$ref": "#/components/schemas/Source"
               }
             ],
+            "description": "Source of this Inventory Operation.",
             "default": "CLIENT"
           },
           "client_order_ref_id": {
             "title": "Client Order Ref Id",
             "type": "string",
+            "description": "Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.",
             "format": "uuid"
           },
           "inventory": {
@@ -24485,7 +24613,8 @@
               "$ref": "#/components/schemas/CreateInventoryRequest"
             }
           }
-        }
+        },
+        "description": "Collection of Create Inventory Requests. This will create new Inventory for each request. Each individual entry will be processed in the order they are specified in the collection.\n\n<b>Note: Partial success is possible as each request is processed individually.</b>"
       },
       "CreateInventoryType": {
         "title": "CreateInventoryType",
@@ -24495,13 +24624,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "Inventory that persists between Inventory Sessions.",
+          "Inventory that does not persist between Inventory Sessions."
+        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "EntitlementErrorCode": {
@@ -24523,23 +24652,7 @@
           "previously_applied"
         ],
         "type": "string",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "NONE",
-          "AUTH_TOKEN_FAILURE",
-          "MISSING_INFORMATION",
-          "FAILED_TO_CONSUME",
-          "NO_SKU_FOUND",
-          "WRONG_SKU_TYPE_PROVIDED",
-          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
-          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
-          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
-          "UNKNOWN_SKU_TYPE_PROVIDED",
-          "FAILED_TO_SUBMIT_ORDER",
-          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
-          "QUANTITY_ZERO",
-          "PREVIOUSLY_APPLIED"
-        ],
+        "description": "Error codes for Entitlements",
         "x-enum-descriptions": [
           "No error occured",
           "Failed to find or validate the auth token",
@@ -24555,6 +24668,22 @@
           "Durable single use entitlement has already been applied",
           "Quantity was zero, nothing to apply",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "AUTH_TOKEN_FAILURE",
+          "MISSING_INFORMATION",
+          "FAILED_TO_CONSUME",
+          "NO_SKU_FOUND",
+          "WRONG_SKU_TYPE_PROVIDED",
+          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
+          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
+          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
+          "UNKNOWN_SKU_TYPE_PROVIDED",
+          "FAILED_TO_SUBMIT_ORDER",
+          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
+          "QUANTITY_ZERO",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "EntitlementStatus": {
@@ -24567,20 +24696,20 @@
           "PREVIOUSLY_APPLIED"
         ],
         "type": "string",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "SUBMITTED",
-          "FULFILLED",
-          "FAILED",
-          "PREVIOUSLY_APPLIED"
-        ],
+        "description": "Status of an Entitlement",
         "x-enum-descriptions": [
           "Entitlement status is unknown",
           "Entitlement has been submitted to the backend",
           "Entitlement has been fulfilled",
           "Entitlement has failed, check error_code for more information",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "SUBMITTED",
+          "FULFILLED",
+          "FAILED",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "Inventory": {
@@ -24593,12 +24722,20 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/ItemInventory"
             },
+            "description": "Item Inventories for this Inventory.",
             "default": {}
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache Info for this Inventory."
           }
-        }
+        },
+        "description": "Inventory for a Player organized by Item ID."
       },
       "InventoryBucket": {
         "title": "InventoryBucket",
@@ -24621,25 +24758,7 @@
           "nintendo_ppid"
         ],
         "type": "string",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "NONE",
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
+        "description": "Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.",
         "x-enum-descriptions": [
           "Inventory given away for free.",
           "Inventory earned by players through in game activities.",
@@ -24657,6 +24776,24 @@
           "Inventory assigned to the Epic platform.",
           "Inventory assigned to the Google Play platform.",
           "Inventory assigned to the Nintendo PPID platform."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "NONE",
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "InventoryBucketUseRuleSet": {
@@ -24677,7 +24814,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of Inventory Bucket Use Rules."
       },
       "InventoryBucketUseRuleSets": {
         "title": "InventoryBucketUseRuleSets",
@@ -24694,7 +24832,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of Inventory Bucket Use Rule Sets. A rule set determine how item can be used across buckets."
       },
       "InventoryContextResponse": {
         "title": "InventoryContextResponse",
@@ -24707,11 +24846,13 @@
                 "$ref": "#/components/schemas/Inventory"
               }
             ],
+            "description": "Inventory Context for a Player.",
             "default": {
               "items": {}
             }
           }
-        }
+        },
+        "description": "Inventory Context for a Player."
       },
       "InventoryOperation": {
         "title": "InventoryOperation",
@@ -24725,7 +24866,16 @@
           "check_greater_than_or_equal_and_subtract"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.\n\nSort Order:\n1. check_greater_then_or_equal/check_less_than\n2. check_greater_than_or_equal_and_subtract/subtract\n3. add/set",
+        "x-enum-descriptions": [
+          "Invalid Inventory Operation.",
+          "Add the quantity or expiration of the Inventory.",
+          "Subtract the quantity or expiration of the Inventory.",
+          "Set the quantity or expiration of the Inventory.",
+          "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
+          "Check if the quantity or expiration of the Inventory is less than the value.",
+          "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
+        ],
         "x-enum-varnames": [
           "invalid",
           "add",
@@ -24734,15 +24884,6 @@
           "check_greater_than_or_equal",
           "check_less_than",
           "check_greater_than_or_equal_and_subtract"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "InventoryRecord": {
@@ -24758,14 +24899,21 @@
           "inventory_id": {
             "title": "Inventory Id",
             "type": "string",
+            "description": "Unique ID for this Inventory Record.",
             "format": "uuid"
           },
           "type": {
-            "$ref": "#/components/schemas/InventoryType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryType"
+              }
+            ],
+            "description": "Type of Inventory Record."
           },
           "legacy_inventory_id": {
             "title": "Legacy Inventory Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "Legacy Inventory ID."
           },
           "bucket": {
             "allOf": [
@@ -24773,11 +24921,13 @@
                 "$ref": "#/components/schemas/InventoryBucket"
               }
             ],
+            "description": "Bucket for this Inventory Record.",
             "default": "none"
           },
           "count": {
             "title": "Count",
-            "type": "integer"
+            "type": "integer",
+            "description": "Instance count for this Inventory Record."
           },
           "acquired": {
             "title": "Time Zone Aware Datetime",
@@ -24796,9 +24946,11 @@
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
+            },
+            "description": "Arbitrary map of data for this Inventory Record."
           }
-        }
+        },
+        "description": "Inventory Record for a Player"
       },
       "InventorySelector": {
         "title": "InventorySelector",
@@ -24811,7 +24963,15 @@
           "inherit_entitlement_inventory"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Determines way Inventory Selected and to be modified.",
+        "x-enum-descriptions": [
+          "Invalid Inventory Selector.",
+          "The Inventory will be stored across Inventory Sessions.",
+          "The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory's expiration time.",
+          "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
+          "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
+          "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
+        ],
         "x-enum-varnames": [
           "invalid",
           "own",
@@ -24819,48 +24979,54 @@
           "rent_timeframe_locked",
           "own_transient",
           "inherit_entitlement_inventory"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "InventorySession": {
         "title": "InventorySession",
         "required": [
-          "session_id",
-          "applied_durable_loot"
+          "session_id"
         ],
         "type": "object",
         "properties": {
           "session_id": {
             "title": "Session Id",
-            "type": "string"
+            "type": "string",
+            "description": "Unique ID for this Inventory Session."
           },
           "session_platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform for this Inventory Session."
           },
           "applied_durable_loot": {
             "title": "Applied Durable Loot",
             "type": "array",
             "items": {
               "type": "integer"
-            }
+            },
+            "description": "Durable Loot that has been applied when this Inventory Session was created.",
+            "default": []
           }
-        }
+        },
+        "description": "Inventory Session for a Player."
       },
       "InventorySessionCreateRequest": {
         "title": "InventorySessionCreateRequest",
         "type": "object",
         "properties": {
           "session_platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform for the session."
           }
-        }
+        },
+        "description": "Request body for creating a new Inventory Session."
       },
       "InventorySessionCreateResponse": {
         "title": "InventorySessionCreateResponse",
@@ -24871,16 +25037,24 @@
         "properties": {
           "session_id": {
             "title": "Session Id",
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the session."
           },
           "session_platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform for the session."
           },
           "order_id": {
             "title": "Order Id",
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the Order generated for any Loot given during the creation of the Inventory Session."
           }
-        }
+        },
+        "description": "Response body for creating a new Inventory Session."
       },
       "InventoryType": {
         "title": "InventoryType",
@@ -24891,15 +25065,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "Inventory that persists between Inventory Sessions.",
+          "Stays around for the length of the Inventory Sessions.",
+          "Items that are given to all Players and cannot be modified."
+        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT",
           "ALWAYS_OWNED"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "Item": {
@@ -24912,6 +25086,7 @@
                 "$ref": "#/components/schemas/ItemType"
               }
             ],
+            "description": "The type of item.",
             "default": "unit"
           },
           "legacy_type": {
@@ -24929,7 +25104,8 @@
           "ref_item_id": {
             "title": "Ref Item Id",
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "deprecated": true
           },
           "availability_flags": {
             "title": "Availability Flags",
@@ -24940,41 +25116,51 @@
           "entitled_loot_id": {
             "title": "Entitled Loot Id",
             "type": "integer",
+            "description": "This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot ID that will be fulfilled.",
             "default": 0
           },
           "level_xp_table_id": {
             "title": "Level Xp Table Id",
             "type": "integer",
+            "description": "The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item.",
             "default": 0
           },
           "level_vendor_id": {
             "title": "Level Vendor Id",
             "type": "integer",
+            "description": "The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item.",
             "default": 0
           },
           "coupon_discount_currency_item_id": {
             "title": "Coupon Discount Currency Item Id",
             "type": "integer",
+            "description": "The item of the currency used by this coupon. This is only valid for an unit Item.",
             "default": 0
           },
           "coupon_discount_percentage": {
             "title": "Coupon Discount Percentage",
+            "maximum": 1,
+            "minimum": 0,
             "type": "number",
+            "description": "The percentage of the discount. This is only valid for an unit Item.",
             "default": 0
           },
           "coupon_consume_on_use": {
             "title": "Coupon Consume On Use",
             "type": "boolean",
+            "description": "If true, the coupon will be consumed when used; reducing the Player's Inventory quantity by 1. This is only valid for an unit Item.",
             "default": false
           },
           "item_portal_use_ruleset_id": {
             "title": "Item Portal Use Ruleset Id",
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "deprecated": true
           },
           "inventory_bucket_use_rule_set_id": {
             "title": "Inventory Bucket Use Rule Set Id",
-            "type": "string"
+            "type": "string",
+            "description": "The Inventory Bucket Use Rule Set ID that determines how this item can be used across buckets."
           },
           "coupon_discount_loot": {
             "title": "Coupon Discount Loot",
@@ -24986,9 +25172,16 @@
             "default": []
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache information for this item."
           }
-        }
+        },
+        "description": "An Item. Item come in a couple of different flavors; determined by the `type` field.\n`Unit` items are stored in a player's inventory.\n`Recipe` items are not stored in a player's inventory and are used to fulfill SubVendor Loot.\n`RecipeWithPriceReduction` items are not stored in a player's inventory and are used to fulfill SubVendor Loot but at a reduced cost if the Player owns some of the Loot.\n`Entitlement` items are stored in a player's inventory and are fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player."
       },
       "ItemInventory": {
         "title": "ItemInventory",
@@ -25000,12 +25193,20 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/InventoryRecord"
             },
+            "description": "Inventory Records for this Item Inventory.",
             "default": {}
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache Info for this Item Inventory."
           }
-        }
+        },
+        "description": "Inventory of a particular Item for a Player organized by Inventory ID."
       },
       "ItemType": {
         "title": "ItemType",
@@ -25017,20 +25218,20 @@
           "dynamic_bundle"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "The type of item.",
+        "x-enum-descriptions": [
+          "An item that is stored in a player's inventory.",
+          "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
+          "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
+          "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
+          "Not support at this time."
+        ],
         "x-enum-varnames": [
           "unit",
           "recipe",
           "recipe_with_price_reduction",
           "entitlement",
           "dynamic_bundle"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "Items": {
@@ -25043,12 +25244,20 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/Item"
             },
+            "description": "A collection of Items by Item ID",
             "default": {}
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Item's cache information."
           }
-        }
+        },
+        "description": "A collections of Items by Item ID."
       },
       "KeyClaim": {
         "title": "KeyClaim",
@@ -25139,7 +25348,8 @@
             "title": "Type",
             "type": "string"
           }
-        }
+        },
+        "description": "A Key Type is a type of key that can be claimed from a Marketing Campaign."
       },
       "Loot": {
         "title": "Loot",
@@ -25151,26 +25361,37 @@
         "properties": {
           "loot_id": {
             "title": "Loot Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Loot ID"
           },
           "vendor_id": {
             "title": "Vendor Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Vendor ID"
           },
           "item_id": {
             "title": "Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Item ID. Optional Item that will be granted to the player if Sub Vendor ID is not specified."
           },
           "item": {
-            "$ref": "#/components/schemas/Item"
+            "title": "Item",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Item"
+              }
+            ],
+            "description": "In-line Item definition. Optional Item that will be granted to the player if Sub Vendor ID is not specified."
           },
           "sub_vendor_id": {
             "title": "Sub Vendor Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Sub Vendor ID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item."
           },
           "quantity": {
             "title": "Quantity",
             "type": "integer",
+            "description": "The quantity of the Item or Sub Vendor to fulfill. This will be multiplied by the quantity of fulfilled Loot and the parent Loot if quantity_type is relative.",
             "default": 0
           },
           "inventory_selector_type": {
@@ -25179,6 +25400,7 @@
                 "$ref": "#/components/schemas/InventorySelector"
               }
             ],
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified.",
             "default": "invalid"
           },
           "inventory_operation": {
@@ -25187,27 +25409,31 @@
                 "$ref": "#/components/schemas/InventoryOperation"
               }
             ],
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in.",
             "default": "invalid"
           },
           "active": {
             "title": "Active",
             "type": "boolean",
+            "description": "Determines if the Loot is active. Inactive Loot will not be fulfilled.",
             "default": false
           },
           "sort_order": {
             "title": "Sort Order",
             "type": "integer",
+            "description": "The sort order of the Loot. Lower sort order will be fulfilled first. This is used as a tie breaker for loots with the same Inventory Operation.",
             "default": 0
           },
           "drop_weight": {
             "title": "Drop Weight",
             "type": "integer",
+            "description": "The drop weight of the Loot. Higher drop weight will be more likely to be fulfilled.",
             "default": 0
           },
           "fill_in_new_order": {
             "title": "Fill In New Order",
             "type": "boolean",
-            "description": "When dropped in a randomly sampled vendor, will this create a new order or fill inline?",
+            "description": "When dropped in a randomly sampled vendor, will this create a new order or fill inline?. The primary use case for this is when you want the same loot to be dropped multiple times in a randomly sampled vendor.",
             "default": false
           },
           "allow_partial_bundles": {
@@ -25230,18 +25456,20 @@
           "stack_limit": {
             "title": "Stack Limit",
             "type": "integer",
-            "description": "Amount of owned/rented of this Loot's item that will prevent this loot from droppping in a randomly sampled vendor",
+            "description": "Amount of owned/rented of this Loot's item that will prevent this Loot from dropping in a randomly sampled vendor",
             "default": 0
           },
           "ui_hint": {
             "title": "Ui Hint",
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "deprecated": true
           },
           "effective_from": {
             "title": "Effective From",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "deprecated": true
           },
           "quantity_type": {
             "allOf": [
@@ -25249,20 +25477,24 @@
                 "$ref": "#/components/schemas/QuantityType"
               }
             ],
+            "description": "Determines how the quantity is modified in the context it is fulfilled in.",
             "default": "relative"
           },
           "quantity_mult_inventory_item_id": {
             "title": "Quantity Mult Inventory Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory."
           },
           "is_claimable_by_client": {
             "title": "Is Claimable By Client",
             "type": "boolean",
+            "description": "Determines if the Loot can be claimed by the client. This is dangerous without the correct loot confiuration as a client could claim Loot multiple times.",
             "default": false
           },
           "time_frame_id": {
             "title": "Time Frame Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled."
           },
           "use_inventory_bucket": {
             "allOf": [
@@ -25278,20 +25510,29 @@
                 "$ref": "#/components/schemas/XpQuantityTransform"
               }
             ],
+            "description": "Allows treating quantity as additional levels to grant to the Player.",
             "default": "none"
           },
           "current_price_point_guid": {
             "title": "Current Price Point Guid",
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The current price point guid. Optional Price Point ID that will be used to determine the price of the Loot when it is fulfilled."
           },
           "pre_sale_price_point_guid": {
             "title": "Pre Sale Price Point Guid",
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The pre sale price point guid. Optional Price Point ID that will be used to show the previous price of the Loot."
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Loot."
           },
           "hard_quantity_maximum": {
             "title": "Hard Quantity Maximum",
@@ -25299,7 +25540,8 @@
             "description": "Hard cap on quantity of an item this Loot can give. Disabled with 0",
             "default": 0
           }
-        }
+        },
+        "description": "Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both."
       },
       "Loots": {
         "title": "Loots",
@@ -25316,7 +25558,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of Loot by Loot ID."
       },
       "MarketingCampaign": {
         "title": "MarketingCampaign",
@@ -25416,7 +25659,8 @@
             "description": "The number of Orders to return",
             "default": 10
           }
-        }
+        },
+        "description": "Metadata about the page of results"
       },
       "Platform": {
         "title": "Platform",
@@ -25438,22 +25682,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -25469,6 +25697,22 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "PlatformEntitlement": {
@@ -25519,7 +25763,8 @@
             "type": "string",
             "description": "Order ID for this entitlement"
           }
-        }
+        },
+        "description": "Entitlement for a platform. This takes in a sku and platform entitlement id and checks to see if the user has the entitlement on the platform"
       },
       "PlatformEntitlementProcessRequest": {
         "title": "PlatformEntitlementProcessRequest",
@@ -25572,7 +25817,8 @@
             "description": "Platform entitlements to process",
             "default": []
           }
-        }
+        },
+        "description": "Request to process a platform entitlement"
       },
       "PlatformEntitlementProcessResult": {
         "title": "PlatformEntitlementProcessResult",
@@ -25655,7 +25901,8 @@
             "description": "True if the server entitlements were skipped",
             "default": false
           }
-        }
+        },
+        "description": "Result of processing a platform entitlement"
       },
       "PlatformRegion": {
         "title": "PlatformRegion",
@@ -25665,16 +25912,16 @@
           "EU"
         ],
         "type": "string",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "NA",
-          "EU"
-        ],
+        "description": "Region for Entitlements",
         "x-enum-descriptions": [
           "Unknown region",
           "North America region",
           "Europe Union region"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "NA",
+          "EU"
         ]
       },
       "PlayerInventoryChange": {
@@ -25683,19 +25930,34 @@
         "properties": {
           "before_item_id": {
             "title": "Before Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Item ID of the Item before the change."
           },
           "after_item_id": {
             "title": "After Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Item ID of the Item after the change."
           },
           "before": {
-            "$ref": "#/components/schemas/InventoryRecord"
+            "title": "Before",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryRecord"
+              }
+            ],
+            "description": "The Inventory Record before the change."
           },
           "after": {
-            "$ref": "#/components/schemas/InventoryRecord"
+            "title": "After",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryRecord"
+              }
+            ],
+            "description": "The Inventory Record after the change."
           }
-        }
+        },
+        "description": "Represents the change that occurred to an entry in the Player's Inventory. The before fields contain the state before the change, after fields contain the state after the change."
       },
       "PlayerOrder": {
         "title": "PlayerOrder",
@@ -25713,40 +25975,54 @@
                 "$ref": "#/components/schemas/Source"
               }
             ],
+            "description": "The source of the Player Order.",
             "default": "CLIENT"
           },
           "client_order_ref_id": {
             "title": "Client Order Ref Id",
             "type": "string",
+            "description": "Arbitrary UUID clients can use to track Orders between request to response.",
             "format": "uuid"
           },
           "portal_id": {
-            "$ref": "#/components/schemas/InventoryPortal"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryPortal"
+              }
+            ],
+            "description": "Portal of the Portal User the Player Order belongs to.",
+            "deprecated": true
           },
           "portal_user_id": {
             "title": "Portal User Id",
-            "type": "string"
+            "type": "string",
+            "description": "Portal User Id for the Player this Player Order belongs to."
           },
           "instance_id": {
             "title": "Instance Id",
-            "type": "string"
+            "type": "string",
+            "description": "Instance Id for the Instance who submits the Player Order."
           },
           "match_id": {
             "title": "Match Id",
-            "type": "string"
+            "type": "string",
+            "description": "Match Id for the Match that generated the Player Order."
           },
           "order_id": {
             "title": "Order Id",
-            "type": "string"
+            "type": "string",
+            "description": "Unique Identifier for the Order."
           },
           "player_uuid": {
             "title": "Player Uuid",
             "type": "string",
+            "description": "Player UUID of the Player this Player Order belongs to.",
             "format": "uuid"
           },
           "created_time": {
             "title": "Created Time",
             "type": "string",
+            "description": "Time the Player Order was created.",
             "format": "date-time"
           },
           "entries": {
@@ -25754,9 +26030,11 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PlayerOrderEntry"
-            }
+            },
+            "description": "List of Player Order Entries for the Player Order."
           }
-        }
+        },
+        "description": "Represents a Player Order."
       },
       "PlayerOrderCreate": {
         "title": "PlayerOrderCreate",
@@ -25771,41 +26049,54 @@
                 "$ref": "#/components/schemas/Source"
               }
             ],
+            "description": "The source of the Player Order.",
             "default": "CLIENT"
           },
           "client_order_ref_id": {
             "title": "Client Order Ref Id",
             "type": "string",
+            "description": "Arbitrary UUID clients can use to track Orders between request to response.",
             "format": "uuid"
           },
           "portal_id": {
-            "$ref": "#/components/schemas/InventoryPortal"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryPortal"
+              }
+            ],
+            "description": "Portal of the Portal User the Player Order belongs to.",
+            "deprecated": true
           },
           "portal_user_id": {
             "title": "Portal User Id",
-            "type": "string"
+            "type": "string",
+            "description": "Portal User Id for the Player this Player Order belongs to."
           },
           "instance_id": {
             "title": "Instance Id",
-            "type": "string"
+            "type": "string",
+            "description": "Instance Id for the Instance who submits the Player Order."
           },
           "match_id": {
             "title": "Match Id",
-            "type": "string"
+            "type": "string",
+            "description": "Match Id for the Match that generated the Player Order."
           },
           "order_id": {
             "title": "Order Id",
-            "type": "string"
+            "type": "string",
+            "description": "Unique Identifier for the Order."
           },
           "entries": {
             "title": "Entries",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PlayerOrderEntryCreate"
-            }
+            },
+            "description": "List of Player Order Entries for the Player Order."
           }
         },
-        "description": "Create a new Player Order. `use_inventory_bucket` will be ignored on the PlayerOrderEntryCreate if the `source` equals `CLIENT`."
+        "description": "Create a new Player Order.\n\n<b>Note: `use_inventory_bucket` will be ignored on the PlayerOrderEntryCreate if the `source` equals `CLIENT`.</b>"
       },
       "PlayerOrderDetail": {
         "title": "PlayerOrderDetail",
@@ -25815,19 +26106,38 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/PlayerOrderDetailType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerOrderDetailType"
+              }
+            ],
+            "description": "The type of detail."
           },
           "loot_id": {
             "title": "Loot Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Loot ID."
           },
           "inv_change": {
-            "$ref": "#/components/schemas/PlayerInventoryChange"
+            "title": "Inv Change",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerInventoryChange"
+              }
+            ],
+            "description": "The Inventory change that occurred as part of this detail."
           },
           "order": {
-            "$ref": "#/components/schemas/PlayerOrderCreate"
+            "title": "Order",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerOrderCreate"
+              }
+            ],
+            "description": "Reference to the Player Order that this detail belongs to."
           }
-        }
+        },
+        "description": "Represents details of what occurred in a Player Order Entry."
       },
       "PlayerOrderDetailType": {
         "title": "PlayerOrderDetailType",
@@ -25840,7 +26150,15 @@
           "new_order"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Player Order Detail Type.",
+        "x-enum-descriptions": [
+          "Unknown.",
+          "Inventory change.",
+          "Dynamic Bundle LTI.",
+          "Claim Promo Code.",
+          "Return Promo Code.",
+          "New Order."
+        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "INVENTORY_CHANGE",
@@ -25848,14 +26166,6 @@
           "CLAIM_PROMO_CODE",
           "RETURN_PROMO_CODE",
           "NEW_ORDER"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "PlayerOrderEntry": {
@@ -25868,7 +26178,12 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/PlayerOrderEntryType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerOrderEntryType"
+              }
+            ],
+            "description": "The type of entry."
           },
           "loot_id": {
             "title": "Loot Id",
@@ -25897,10 +26212,17 @@
             "type": "array",
             "items": {
               "type": "integer"
-            }
+            },
+            "description": "List of Loot IDs for the dynamic bundle."
           },
           "purchase_price": {
-            "$ref": "#/components/schemas/PurchasePrice"
+            "title": "Purchase Price",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PurchasePrice"
+              }
+            ],
+            "description": "The purchase price of the Loot."
           },
           "external_tran_id": {
             "title": "External Tran Id",
@@ -25909,14 +26231,21 @@
           },
           "external_item_sku": {
             "title": "External Item Sku",
-            "type": "string"
+            "type": "string",
+            "description": "External item SKU for the Order Entry."
           },
           "use_inventory_bucket": {
-            "$ref": "#/components/schemas/InventoryBucket"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryBucket"
+              }
+            ],
+            "description": "Inventory Bucket to use for the Order Entry."
           },
           "player_portal_event_id": {
             "title": "Player Portal Event Id",
             "type": "integer",
+            "description": "Player Portal Event Id for the Order Entry.",
             "format": "int64"
           },
           "inventory_id": {
@@ -25952,10 +26281,16 @@
           },
           "entry_id": {
             "title": "Entry Id",
-            "type": "string"
+            "type": "string",
+            "description": "Unique Identifier for the Order Entry."
           },
           "result": {
-            "$ref": "#/components/schemas/PlayerOrderEntryResult"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerOrderEntryResult"
+              }
+            ],
+            "description": "Entry result type."
           },
           "details": {
             "title": "Details",
@@ -25963,9 +26298,11 @@
             "items": {
               "$ref": "#/components/schemas/PlayerOrderDetail"
             },
+            "description": "Details for the Order Entry.",
             "default": []
           }
-        }
+        },
+        "description": "Represents a line item in the Player Order and the results of the line item."
       },
       "PlayerOrderEntryCreate": {
         "title": "PlayerOrderEntryCreate",
@@ -25976,7 +26313,12 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/PlayerOrderEntryType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerOrderEntryType"
+              }
+            ],
+            "description": "The type of entry."
           },
           "loot_id": {
             "title": "Loot Id",
@@ -26005,10 +26347,17 @@
             "type": "array",
             "items": {
               "type": "integer"
-            }
+            },
+            "description": "List of Loot IDs for the dynamic bundle."
           },
           "purchase_price": {
-            "$ref": "#/components/schemas/PurchasePrice"
+            "title": "Purchase Price",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PurchasePrice"
+              }
+            ],
+            "description": "The purchase price of the Loot."
           },
           "external_tran_id": {
             "title": "External Tran Id",
@@ -26017,14 +26366,21 @@
           },
           "external_item_sku": {
             "title": "External Item Sku",
-            "type": "string"
+            "type": "string",
+            "description": "External item SKU for the Order Entry."
           },
           "use_inventory_bucket": {
-            "$ref": "#/components/schemas/InventoryBucket"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryBucket"
+              }
+            ],
+            "description": "Inventory Bucket to use for the Order Entry."
           },
           "player_portal_event_id": {
             "title": "Player Portal Event Id",
             "type": "integer",
+            "description": "Player Portal Event Id for the Order Entry.",
             "format": "int64"
           },
           "inventory_id": {
@@ -26060,9 +26416,11 @@
           },
           "entry_id": {
             "title": "Entry Id",
-            "type": "string"
+            "type": "string",
+            "description": "Unique Identifier for the Order Entry."
           }
-        }
+        },
+        "description": "Request to create a Player Order Entry."
       },
       "PlayerOrderEntryResult": {
         "title": "PlayerOrderEntryResult",
@@ -26116,7 +26474,56 @@
           "available_until_is_in_past"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Result of a Player Order Entry.",
+        "x-enum-descriptions": [
+          "The Order Entry was successful.",
+          "An internal error occurred when processing Order Entry.",
+          "Order Entry type is invalid.",
+          "Order Entry is not allowed on the current platform.",
+          "The Loot was not found.",
+          "The Loot was not active at the time of processing.",
+          "The Item was configured as the Price was not found.",
+          "The Price is not allowed for the given Loot.",
+          "The given Dynamic Bundle was invalid.",
+          "Too many requests were made in during the evaluation window.",
+          "Given Price does not match the expected Price.",
+          "Vendor version does not match the expected version.",
+          "Dynamic Bundle Loot does not match expected Loot.",
+          "Player cannot afford the given Price.",
+          "Player cannot afford the given Coupon.",
+          "Failed to spend the given Price.",
+          "Failed to spend the given Coupon.",
+          "The given Loot is not for sale with the given Price Item.",
+          "Coupons are disabled.",
+          "The Item configured for the Coupon was not found.",
+          "The Coupon Item is not active.",
+          "Coupon Item is not applicable for the given quantity.",
+          "Coupon Item is not applicable for the given Price Item.",
+          "Coupon Item is not applicable for the given Loot.",
+          "Quantity is not allowed for the given Loot.",
+          "Promotion has expired.",
+          "Promotion was not found.",
+          "Promotion has no uses left.",
+          "Promotion is not available.",
+          "Promotion has already been claimed.",
+          "Dynamic Bundles are not available.",
+          "Transient Single Loot has already been applied.",
+          "Loot is not claimable from the client.",
+          "Permission denied.",
+          "Failed to find any sub loot.",
+          "Failed to fill any sub loot.",
+          "Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.",
+          "Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.",
+          "Failed to consume the given Loot required.",
+          "Failed to submit a new order.",
+          "Failed to modify inventory.",
+          "Inventory was not found.",
+          "Item was not found.",
+          "Item is not active.",
+          "Too many inventory custom attributes provided.",
+          "Always owned inventory cannot be modified.",
+          "Available until is in the past."
+        ],
         "x-enum-varnames": [
           "SUCCESS",
           "INTERNAL_ERROR",
@@ -26165,55 +26572,6 @@
           "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
           "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
           "AVAILABLE_UNTIL_IS_IN_PAST"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "PlayerOrderEntryType": {
@@ -26232,20 +26590,7 @@
           "update_inventory"
         ],
         "type": "string",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FILL_LOOT",
-          "PURCHASE_LOOT",
-          "PURCHASE_DYNAMIC_BUNDLE",
-          "PROMOTION_CODE",
-          "FILL_LOOT_SINGLE_TRANSIENT",
-          "FILL_ENTITLED_LOOT",
-          "CREATE_NEW_PERSISTENT_INVENTORY",
-          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
-          "CREATE_NEW_TRANSIENT_INVENTORY",
-          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
-          "UPDATE_INVENTORY"
-        ],
+        "description": "Player Order Entry Type.",
         "x-enum-descriptions": [
           "Fill a loot item.",
           "Purchase a loot item.",
@@ -26258,6 +26603,19 @@
           "Create transient Inventory.",
           "Deprecated. Use update_inventory instead.",
           "Update existing Inventory."
+        ],
+        "x-enum-varnames": [
+          "FILL_LOOT",
+          "PURCHASE_LOOT",
+          "PURCHASE_DYNAMIC_BUNDLE",
+          "PROMOTION_CODE",
+          "FILL_LOOT_SINGLE_TRANSIENT",
+          "FILL_ENTITLED_LOOT",
+          "CREATE_NEW_PERSISTENT_INVENTORY",
+          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
+          "CREATE_NEW_TRANSIENT_INVENTORY",
+          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
+          "UPDATE_INVENTORY"
         ]
       },
       "PlayerOrdersResponse": {
@@ -26273,12 +26631,20 @@
             "items": {
               "$ref": "#/components/schemas/PlayerOrder"
             },
+            "description": "A collection of Player Orders.",
             "default": []
           },
           "page": {
-            "$ref": "#/components/schemas/InventoryPageMeta"
+            "title": "Page",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryPageMeta"
+              }
+            ],
+            "description": "Page metadata for the Player Orders."
           }
-        }
+        },
+        "description": "A collection of Player Orders."
       },
       "InventoryPortal": {
         "title": "Portal",
@@ -26322,6 +26688,44 @@
         ],
         "type": "integer",
         "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -26359,44 +26763,6 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "PortalUseRuleset": {
@@ -26417,7 +26783,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of Portal Use Rules."
       },
       "PortalUseRulesets": {
         "title": "PortalUseRulesets",
@@ -26434,7 +26801,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of Portal Use Rulesets. A ruleset determine how item can be used across portals."
       },
       "PriceBreakpoint": {
         "title": "PriceBreakpoint",
@@ -26457,7 +26825,8 @@
             "title": "Price",
             "type": "integer"
           }
-        }
+        },
+        "description": "Price based on quantity and the Item ID of the currency used."
       },
       "PricePoint": {
         "title": "PricePoint",
@@ -26465,16 +26834,19 @@
         "properties": {
           "name": {
             "title": "Name",
-            "type": "string"
+            "type": "string",
+            "description": "The name of the Price Point."
           },
           "strict_flag": {
             "title": "Strict Flag",
             "type": "boolean",
+            "description": "Forces the quantity to be equal to a quantity on a Price Breakpoint.",
             "default": false
           },
           "cap_flag": {
             "title": "Cap Flag",
             "type": "boolean",
+            "description": "Only allows quantity to be fulfilled up the highest quantity on the Price Breakpoints",
             "default": false
           },
           "current_breakpoints": {
@@ -26483,6 +26855,7 @@
             "items": {
               "$ref": "#/components/schemas/PriceBreakpoint"
             },
+            "description": "Current Price Breakpoints.",
             "default": []
           },
           "pre_sale_breakpoints": {
@@ -26491,12 +26864,20 @@
             "items": {
               "$ref": "#/components/schemas/PriceBreakpoint"
             },
+            "description": "Previous Price Breakpoints.",
             "default": []
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Price Point."
           }
-        }
+        },
+        "description": "A collection of Price Breakpoints (volume pricing)."
       },
       "PricePoints": {
         "title": "PricePoints",
@@ -26508,12 +26889,20 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/PricePoint"
             },
+            "description": "Price Points mapped by Price Point ID.",
             "default": {}
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Price Points."
           }
-        }
+        },
+        "description": "A collection of Price Points by Price Point ID."
       },
       "PurchasePrice": {
         "title": "PurchasePrice",
@@ -26525,17 +26914,21 @@
         "properties": {
           "price_item_id": {
             "title": "Price Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Item used as the currency for the purchase."
           },
           "price": {
             "title": "Price",
-            "type": "integer"
+            "type": "integer",
+            "description": "The price of the Item."
           },
           "price_coupon_item_id": {
             "title": "Price Coupon Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "The Item used as the coupon for the purchase."
           }
-        }
+        },
+        "description": "The purchase price of an Item."
       },
       "QuantityType": {
         "title": "QuantityType",
@@ -26544,14 +26937,14 @@
           "absolute"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Determines how the quantity is to be modified.\n\nRelative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.\n\nAbsolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.",
+        "x-enum-descriptions": [
+          "The quantity will be modified relative to the context in which it is fulfilled.",
+          "The quantity will be modified regardless of the context in which it is fulfilled."
+        ],
         "x-enum-varnames": [
           "relative",
           "absolute"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "SortOrder": {
@@ -26561,14 +26954,14 @@
           "desc"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Determine the direction of the sort",
+        "x-enum-descriptions": [
+          "Determine the direction of the sort",
+          "Determine the direction of the sort"
+        ],
         "x-enum-varnames": [
           "ASCENDING",
           "DESCENDING"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "Source": {
@@ -26638,7 +27031,71 @@
           "LUNA"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "The source of Player Orders.",
+        "x-enum-descriptions": [
+          "Unknown source.",
+          "Repair Order send from the Web to fix up Inventory mistakes.",
+          "Order granted in-game.",
+          "Order send from the Web site.",
+          "No sale.",
+          "Order granted by Support.",
+          "Order granted by an activity.",
+          "Order granted by a refund.",
+          "Order granted by the system.",
+          "Order granted by as a reward.",
+          "Order granted by Esports.",
+          "Order granted by Treasure.",
+          "Order granted by Console.",
+          "Order granted by Odyssey.",
+          "Order granted by Steam.",
+          "Order granted by a return.",
+          "Order granted by the JSON gate.",
+          "Order granted by sending a gift.",
+          "Order granted by receiving a gift.",
+          "Order granted by Steam DLC.",
+          "Order granted by hitting a Twitch milestone.",
+          "Order granted by Twitch Prime.",
+          "Order granted by PSN.",
+          "Order granted by Xbox.",
+          "Order granted by PTS.",
+          "Order granted by an instance.",
+          "Order granted by an account transfer.",
+          "Order granted by a promocode.",
+          "Order granted by the Triumph system.",
+          "Order granted by logging in.",
+          "Order granted by an uncapped EOM .",
+          "Order granted by a capped EOM reward.",
+          "Order granted by a Facebook drop.",
+          "Order granted by a database script.",
+          "Order granted by account linking.",
+          "Order granted by a clan.",
+          "Order granted by a conversion.",
+          "Order granted by Apple.",
+          "Order granted by Google.",
+          "Order granted by Google Play.",
+          "Order granted by a portal durable.",
+          "Order granted by a partner achievement.",
+          "Order granted by a Mixer drop.",
+          "Order granted by Nintendo.",
+          "Order granted by stream viewing progress.",
+          "Order granted by Discord.",
+          "Order granted by first login.",
+          "Order granted by Twitch Fuel.",
+          "Order granted by Discord DLC.",
+          "Order granted by NetEase.",
+          "Order granted by Epic Games.",
+          "Order granted by Forte.",
+          "Order granted by Facebook.",
+          "Order granted by Hi-Rez.",
+          "Order granted by a daily reward.",
+          "Order granted by adding an account email.",
+          "Order granted by a client claim.",
+          "Order granted by the client.",
+          "Order granted by entitlements.",
+          "Order granted by Amazon.",
+          "Order granted by Simulmedia.",
+          "Order granted by Luna."
+        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WEB_ORDER_REPAIR",
@@ -26702,70 +27159,6 @@
           "AMAZON",
           "SIMULMEDIA",
           "LUNA"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "TimeFrame": {
@@ -26778,22 +27171,26 @@
         "properties": {
           "name": {
             "title": "Name",
-            "type": "string"
+            "type": "string",
+            "description": "The name of the Time Frame."
           },
           "active": {
             "title": "Active",
             "type": "boolean",
+            "description": "Whether or not the Time Frame is active.",
             "default": false
           },
           "episode": {
             "title": "Episode",
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "deprecated": true
           },
           "episode_type": {
             "title": "Episode Type",
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "deprecated": true
           },
           "hour_interval": {
             "title": "Hour Interval",
@@ -26814,9 +27211,16 @@
             "format": "date-time"
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Time Frame."
           }
-        }
+        },
+        "description": "Time Frames are used to calculate the expiration of Inventory"
       },
       "TimeFrames": {
         "title": "TimeFrames",
@@ -26828,12 +27232,20 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/TimeFrame"
             },
+            "description": "Time Frames mapped by Time Frame ID.",
             "default": {}
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Time Frames."
           }
-        }
+        },
+        "description": "A collection of Time Frames by Time Frame ID."
       },
       "UpdateInventoryRequest": {
         "title": "UpdateInventoryRequest",
@@ -26845,11 +27257,13 @@
                 "$ref": "#/components/schemas/Source"
               }
             ],
+            "description": "Source of this Inventory Operation.",
             "default": "CLIENT"
           },
           "client_order_ref_id": {
             "title": "Client Order Ref Id",
             "type": "string",
+            "description": "Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.",
             "format": "uuid"
           },
           "bucket": {
@@ -26858,11 +27272,13 @@
                 "$ref": "#/components/schemas/InventoryBucket"
               }
             ],
+            "description": "Inventory Bucket for this Inventory Operation.",
             "default": "none"
           },
           "count": {
             "title": "Count",
             "type": "integer",
+            "description": "Count for this Inventory Operation.",
             "default": 1
           },
           "expires": {
@@ -26876,13 +27292,16 @@
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
+            },
+            "description": "Arbitrary data map that can be set to add additional data to Inventory."
           },
           "item_id": {
             "title": "Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "Item ID for this Inventory Operation. If the Item ID is not set during an Update Inventory Request, then the Item ID will not be modified on the existing Inventory Record."
           }
-        }
+        },
+        "description": "Request to Update an existing Inventory entry. If the Inventory entry does not exist, then the request will fail."
       },
       "UpdateInventoryRequestById": {
         "title": "UpdateInventoryRequestById",
@@ -26897,11 +27316,13 @@
                 "$ref": "#/components/schemas/InventoryBucket"
               }
             ],
+            "description": "Inventory Bucket for this Inventory Operation.",
             "default": "none"
           },
           "count": {
             "title": "Count",
             "type": "integer",
+            "description": "Count for this Inventory Operation.",
             "default": 1
           },
           "expires": {
@@ -26915,18 +27336,22 @@
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
+            },
+            "description": "Arbitrary data map that can be set to add additional data to Inventory."
           },
           "item_id": {
             "title": "Item Id",
-            "type": "integer"
+            "type": "integer",
+            "description": "Item ID for this Inventory Operation. If the Item ID is not set during an Update Inventory Request, then the Item ID will not be modified on the existing Inventory Record."
           },
           "inventory_id": {
             "title": "Inventory Id",
             "type": "string",
+            "description": "Inventory ID for this Inventory Operation.",
             "format": "uuid"
           }
-        }
+        },
+        "description": "Request to Update Inventory by an existing Inventory ID. If the Inventory entry does not exist, then the request will fail."
       },
       "UpdateInventoryRequests": {
         "title": "UpdateInventoryRequests",
@@ -26941,11 +27366,13 @@
                 "$ref": "#/components/schemas/Source"
               }
             ],
+            "description": "Source of this Inventory Operation.",
             "default": "CLIENT"
           },
           "client_order_ref_id": {
             "title": "Client Order Ref Id",
             "type": "string",
+            "description": "Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.",
             "format": "uuid"
           },
           "inventory": {
@@ -26954,9 +27381,11 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UpdateInventoryRequestById"
-            }
+            },
+            "description": "Collection of Update Inventory Requests."
           }
-        }
+        },
+        "description": "Collection of Update Inventory Requests. The Inventory referenced in the Update Inventory Requests must exist otherwise the request will fail. Each individual entry will be processed in the order they are specified in the collection.\n\n<b>Note: Partial success is possible as each request is processed individually.</b>"
       },
       "Vendor": {
         "title": "Vendor",
@@ -26968,6 +27397,7 @@
                 "$ref": "#/components/schemas/VendorType"
               }
             ],
+            "description": "Determines how the Vendor fulfills the loot",
             "default": "recipe"
           },
           "legacy_type": {
@@ -26988,12 +27418,20 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/Loot"
             },
+            "description": "The Loot the Vendor will fulfill mapped by Loot ID.",
             "default": {}
           },
           "cache_info": {
-            "$ref": "#/components/schemas/CacheInfo"
+            "title": "Cache Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "description": "Cache info for the Vendor."
           }
-        }
+        },
+        "description": "A collection of Loot and how to fulfill them."
       },
       "VendorType": {
         "title": "VendorType",
@@ -27002,14 +27440,14 @@
           "randomly_sampled"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Determines how the Vendor fulfills the loot.",
+        "x-enum-descriptions": [
+          "A Vendor that will always drop all of the Loot in the Loot table.",
+          "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
+        ],
         "x-enum-varnames": [
           "recipe",
           "randomly_sampled"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "Vendors": {
@@ -27027,7 +27465,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of Vendors by Vendor ID."
       },
       "XpQuantityTransform": {
         "title": "XpQuantityTransform",
@@ -27038,18 +27477,18 @@
           "from_zero_to_target_exact_level_min_xp"
         ],
         "type": "string",
-        "description": "An enumeration.",
+        "description": "Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.\n\nThe following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:\n1: 20\n2: 50\n3: 100\n4: 200\n5: 400\n\nfrom_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 200 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 400 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 400 total xp.\n\nfrom_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 250 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 450 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 450 total xp.\n\nfrom_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.\nExample 1: fulfill quantity 1\n    Player will be level 3 with 170 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 4 with 200 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 4 with 250 total xp.",
+        "x-enum-descriptions": [
+          "Quantity will be treated as XP and will not be transformed.",
+          "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
+          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
+          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
+        ],
         "x-enum-varnames": [
           "none",
           "from_current_xp_to_target_additional_level_min_xp",
           "from_current_level_min_xp_to_target_additional_level_min_xp",
           "from_zero_to_target_exact_level_min_xp"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "XpTable": {
@@ -27068,7 +27507,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of XP Levels from 1 to N. Each level has a minimum XP value."
       },
       "XpTables": {
         "title": "XpTables",
@@ -27085,7 +27525,8 @@
           "cache_info": {
             "$ref": "#/components/schemas/CacheInfo"
           }
-        }
+        },
+        "description": "A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. Each level has a minimum XP value."
       },
       "ClientVisibleSettings": {
         "title": "ClientVisibleSettings",

@@ -729,9 +729,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Handle Instance Request",
+        "summary": "Create Instance Request",
         "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Auth Permissions: `session:update:self` for users requesting instances for sessions they are in \n`session:update:any` for users requesting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
-        "operationId": "handle_instance_request",
+        "operationId": "create_instance_request",
         "parameters": [
           {
             "required": true,
@@ -798,7 +798,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Auth Permissions: `session:update:self` for users deleting instances for sessions they are in \n`session:update:any` for users deleting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Auth Permissions: `session:update:self` for users deleting instances for sessions they are in \n`session:update:any` for users deleting instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -865,7 +865,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance\n\nRequired Auth Permissions: `session:update:self` for users patching instances for sessions they are in \n`session:update:any` for users patching instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance\n\nRequired Auth Permissions: `session:update:self` for users patching instances for sessions they are in \n`session:update:any` for users patching instances for any session\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -3542,6 +3542,7 @@
         "required": [
           "instance_launch_template_id",
           "map_selection_list",
+          "default_host_type",
           "custom_data"
         ],
         "type": "object",
@@ -3560,6 +3561,14 @@
               }
             ],
             "description": "A selection list of maps that can be chosen to launch into"
+          },
+          "default_host_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HostType"
+              }
+            ],
+            "description": "Default host type for this template. Can be overriden in instance requests"
           },
           "custom_data": {
             "title": "Custom Data",
@@ -3603,6 +3612,12 @@
               }
             ],
             "description": "Type of the host"
+          },
+          "host_player_uuid": {
+            "title": "Host Player Uuid",
+            "type": "string",
+            "description": "Player UUID of the host, if the host type is player",
+            "format": "uuid"
           },
           "custom_data": {
             "title": "Custom Data",
@@ -3987,6 +4002,12 @@
             },
             "description": "Custom data about the match",
             "default": {}
+          },
+          "host_player_uuid": {
+            "title": "Host Player Uuid",
+            "type": "string",
+            "description": "Player UUID of the host, if the host type is player",
+            "format": "uuid"
           }
         }
       },
