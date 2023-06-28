@@ -948,9 +948,9 @@
         "tags": [
           "users"
         ],
-        "summary": "Lookup Player",
+        "summary": "Lookup Player By Portal",
         "description": "Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.",
-        "operationId": "lookup_player",
+        "operationId": "lookup_player_by_portal",
         "parameters": [
           {
             "description": "Lookup players by display names",
@@ -971,6 +971,7 @@
           {
             "description": "Lookup players by their portal identity for this platform",
             "required": false,
+            "deprecated": true,
             "schema": {
               "allOf": [
                 {
@@ -980,6 +981,20 @@
               "description": "Lookup players by their portal identity for this platform"
             },
             "name": "identity_platform",
+            "in": "query"
+          },
+          {
+            "description": "Lookup players by their platform identity. Will override identity_platform if set.",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "Lookup players by their platform identity. Will override identity_platform if set."
+            },
+            "name": "platform",
             "in": "query"
           },
           {
@@ -2695,6 +2710,7 @@
       "LoginResult": {
         "title": "LoginResult",
         "required": [
+          "platform",
           "portal_id",
           "portal_user_id",
           "display_name",
@@ -2707,6 +2723,9 @@
         ],
         "type": "object",
         "properties": {
+          "platform": {
+            "$ref": "#/components/schemas/Platform"
+          },
           "portal_id": {
             "title": "Portal Id",
             "type": "integer"
@@ -2823,6 +2842,17 @@
           },
           "identity_platforms": {
             "title": "Identity Platforms",
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PlatformIdentityLookupResults"
+              }
+            },
+            "default": {}
+          },
+          "identity_platforms_by_platform": {
+            "title": "Identity Platforms By Platform",
             "type": "object",
             "additionalProperties": {
               "type": "array",
@@ -3011,6 +3041,59 @@
             "type": "string"
           }
         }
+      },
+      "Platform": {
+        "title": "Platform",
+        "enum": [
+          "Anon",
+          "Basic",
+          "XboxLive",
+          "PSN",
+          "NintendoNAID",
+          "NintendoSwitch",
+          "NintendoPPID",
+          "Google",
+          "GooglePlay",
+          "Apple",
+          "Epic",
+          "Steam",
+          "Amazon",
+          "Twitch"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
       },
       "PlatformIdentityLookupResults": {
         "title": "PlatformIdentityLookupResults",
@@ -3235,12 +3318,16 @@
       "PortalUserInfo": {
         "title": "PortalUserInfo",
         "required": [
+          "platform",
           "portal_id",
           "portal_user_id",
           "display_name"
         ],
         "type": "object",
         "properties": {
+          "platform": {
+            "$ref": "#/components/schemas/Platform"
+          },
           "portal_id": {
             "$ref": "#/components/schemas/Portal"
           },

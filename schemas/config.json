@@ -248,13 +248,16 @@
         "properties": {
           "key": {
             "title": "Key",
-            "type": "string"
+            "type": "string",
+            "description": "The key for the setting"
           },
           "value": {
             "title": "Value",
-            "type": "string"
+            "type": "string",
+            "description": "The value for the setting"
           }
-        }
+        },
+        "description": "A key/value pair that represents a setting to be used by the client."
       },
       "DiscoveryResponse": {
         "title": "DiscoveryResponse",
@@ -268,19 +271,23 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "The list of addresses for the connection managers"
           },
           "server_status": {
             "title": "Server Status",
             "type": "string",
+            "description": "The status of the connection managers",
             "default": "unknown"
           },
           "command_line_args": {
             "title": "Command Line Args",
             "type": "string",
+            "description": "The command line arguments used to be used by the client",
             "default": " "
           }
-        }
+        },
+        "description": "Contains information that aids the client in communicating with the connection managers."
       },
       "HTTPValidationError": {
         "title": "HTTPValidationError",
@@ -347,7 +354,8 @@
             "type": "string",
             "description": "The message associated with this site"
           }
-        }
+        },
+        "description": "Contains information about a site/region."
       },
       "ValidationError": {
         "title": "ValidationError",

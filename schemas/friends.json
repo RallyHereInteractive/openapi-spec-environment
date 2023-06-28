@@ -2412,7 +2412,12 @@
             "format": "uuid"
           },
           "status": {
-            "$ref": "#/components/schemas/FriendshipStatus"
+            "title": "The status of the friendship",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FriendshipStatus"
+              }
+            ]
           },
           "notes": {
             "title": "Player's notes about the other player",
@@ -2446,7 +2451,12 @@
             "default": 0
           },
           "status": {
-            "$ref": "#/components/schemas/FriendshipStatus"
+            "title": "The status of the friendship",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FriendshipStatus"
+              }
+            ]
           },
           "notes": {
             "title": "Player's notes about the other player",
