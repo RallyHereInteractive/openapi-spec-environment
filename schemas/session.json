@@ -4343,6 +4343,12 @@
             },
             "description": "Session associated with this player, and any pending invites",
             "default": {}
+          },
+          "last_updated_timestamp": {
+            "title": "Time Zone Aware Datetime",
+            "type": "string",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+            "format": "date-time"
           }
         }
       },

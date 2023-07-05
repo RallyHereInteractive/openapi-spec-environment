@@ -3155,7 +3155,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -3212,7 +3212,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -3281,7 +3281,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves) any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_for_me",
         "parameters": [
           {
@@ -3339,7 +3339,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves) any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -6698,7 +6698,7 @@
           "external_key_type": {
             "title": "External Key Type",
             "type": "string",
-            "description": "This can be used to allow the player to claim different types based on their preferrence.hile we don't have requirement for what should contain, it must match a key type assigned to the external campaign."
+            "description": "This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign."
           },
           "created_on": {
             "title": "Created On",
@@ -6725,7 +6725,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/KeyClaim"
-            }
+            },
+            "description": "List of Key Claims available to the Player"
           }
         },
         "description": "List of Key Claims available to the player."
@@ -6739,7 +6740,8 @@
         "properties": {
           "type": {
             "title": "Type",
-            "type": "string"
+            "type": "string",
+            "description": "The type of key"
           }
         },
         "description": "A Key Type is a type of key that can be claimed from a Marketing Campaign."
@@ -7015,7 +7017,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MarketingCampaign"
-            }
+            },
+            "description": "List of external Marketing Campaigns"
           }
         },
         "description": "List of external Marketing Campaigns."
@@ -7401,6 +7404,12 @@
             "type": "string",
             "description": "Match Id for the Match that generated the Player Order."
           },
+          "is_transaction": {
+            "title": "Is Transaction",
+            "type": "boolean",
+            "description": "If an order is a transaction, any failed entries will roll back changes from all other entries.",
+            "default": true
+          },
           "order_id": {
             "title": "Order Id",
             "type": "string",
@@ -7474,6 +7483,12 @@
             "title": "Match Id",
             "type": "string",
             "description": "Match Id for the Match that generated the Player Order."
+          },
+          "is_transaction": {
+            "title": "Is Transaction",
+            "type": "boolean",
+            "description": "If an order is a transaction, any failed entries will roll back changes from all other entries.",
+            "default": true
           },
           "order_id": {
             "title": "Order Id",
@@ -7864,7 +7879,9 @@
           "item_not_active",
           "too_many_inv_custom_attributes",
           "always_owned_inventory_cannot_be_modified",
-          "available_until_is_in_past"
+          "available_until_is_in_past",
+          "rollback",
+          "not_started"
         ],
         "type": "string",
         "description": "Result of a Player Order Entry.",
@@ -7915,7 +7932,9 @@
           "ITEM_NOT_ACTIVE",
           "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
           "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
-          "AVAILABLE_UNTIL_IS_IN_PAST"
+          "AVAILABLE_UNTIL_IS_IN_PAST",
+          "ROLLBACK",
+          "NOT_STARTED"
         ],
         "x-enum-descriptions": [
           "The Order Entry was successful.",
@@ -7964,7 +7983,9 @@
           "Item is not active.",
           "Too many inventory custom attributes provided.",
           "Always owned inventory cannot be modified.",
-          "Available until is in the past."
+          "Available until is in the past.",
+          "Order Entry was successfully fulfilled, but was rolled back.",
+          "Order Entry fulfillment has not started."
         ]
       },
       "PlayerOrderEntryType": {
@@ -8353,8 +8374,8 @@
           "DESCENDING"
         ],
         "x-enum-descriptions": [
-          "Determine the direction of the sort",
-          "Determine the direction of the sort"
+          "Sort in ascending order",
+          "Sort in descending order"
         ]
       },
       "Source": {
