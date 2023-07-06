@@ -2557,21 +2557,6 @@
         ],
         "type": "string",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google Grant Type",
-          "Apple Grant Type",
-          "Refresh Grant Type",
-          "Epic Grant Type",
-          "Xbox Live Grant Type",
-          "Playstation 4 Version 1 Grant Type",
-          "Playstation 4 Version 1 Grant Type",
-          "Playstation 5 Version 3 Grant Type",
-          "Nintendo Grant Type",
-          "Nintendo Switch Grant Type",
-          "Steam Grant Type",
-          "Basic Grant Type",
-          "Anonymous Grant Type"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -2586,6 +2571,21 @@
           "STEAM",
           "BASIC",
           "ANON"
+        ],
+        "x-enum-descriptions": [
+          "Google Grant Type",
+          "Apple Grant Type",
+          "Refresh Grant Type",
+          "Epic Grant Type",
+          "Xbox Live Grant Type",
+          "Playstation 4 Version 1 Grant Type",
+          "Playstation 4 Version 1 Grant Type",
+          "Playstation 5 Version 3 Grant Type",
+          "Nintendo Grant Type",
+          "Nintendo Switch Grant Type",
+          "Steam Grant Type",
+          "Basic Grant Type",
+          "Anonymous Grant Type"
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -2884,11 +2884,11 @@
         ],
         "type": "string",
         "description": "Supported OAuth2 grant types",
-        "x-enum-descriptions": [
-          "The OAuth2 client credentials grant type"
-        ],
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -2906,17 +2906,6 @@
         ],
         "type": "string",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google OAuth Portal",
-          "Apple OAuth Portal",
-          "Epic OAuth Portal",
-          "Xbox OAuth Portal",
-          "Playstation Network OAuth Portal",
-          "Nintendo OAuth Portal",
-          "Steam OAuth Portal",
-          "Amazon OAuth Portal",
-          "Twitch OAuth Portal"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -2927,6 +2916,17 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenExchange": {
@@ -3062,22 +3062,6 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -3093,6 +3077,22 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -3246,21 +3246,6 @@
         ],
         "type": "integer",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-descriptions": [
-          "Anonymous portal used for testing. This is not intended to be used by real players.",
-          "Amazon portal",
-          "Steam portal",
-          "Playstation Network portal",
-          "Xbox Live portal",
-          "Basic portal",
-          "Google portal",
-          "Twitch portal",
-          "Nintendo Switch portal",
-          "Apple portal",
-          "Nintendo portal",
-          "Epic portal",
-          "Nintendo PPID portal"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -3275,6 +3260,21 @@
           "NINTENDO",
           "EPIC",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "PortalTokenDetailsGrantType": {
@@ -3286,15 +3286,15 @@
         ],
         "type": "string",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-descriptions": [
-          "Playstation 4 Grant Version 1",
-          "Playstation 4 Grant Version 3",
-          "Playstation 5 Grant Version 3"
-        ],
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "Playstation 4 Grant Version 1",
+          "Playstation 4 Grant Version 3",
+          "Playstation 5 Grant Version 3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -3504,17 +3504,17 @@
         ],
         "type": "string",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-descriptions": [
-          "Account is banned",
-          "Account is locked out",
-          "Account is pending deletion and will be deleted in the future",
-          "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned."
-        ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
           "ACCOUNT_PENDING_DELETION",
           "ACCOUNT_DENY_AUTH"
+        ],
+        "x-enum-descriptions": [
+          "Account is banned",
+          "Account is locked out",
+          "Account is pending deletion and will be deleted in the future",
+          "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned."
         ]
       },
       "SendInBlueContact": {
