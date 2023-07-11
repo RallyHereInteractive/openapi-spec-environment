@@ -4602,7 +4602,14 @@
             }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -4618,13 +4625,14 @@
           "auth"
         ],
         "summary": "Login",
+        "description": "This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.\n    \nThis endpoint supports user-based authentication for a variety of platforms.",
         "operationId": "login",
         "parameters": [
           {
             "required": false,
             "schema": {
-              "title": "User-Agent",
-              "type": "string"
+              "type": "string",
+              "title": "User-Agent"
             },
             "name": "user-agent",
             "in": "header"
@@ -4632,8 +4640,8 @@
           {
             "required": false,
             "schema": {
-              "title": "X-Forwarded-For",
-              "type": "string"
+              "type": "string",
+              "title": "X-Forwarded-For"
             },
             "name": "x-forwarded-for",
             "in": "header"
@@ -4661,7 +4669,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_key_url_not_found` - Nintendo key url not found\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -4711,21 +4719,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Portal Token Details V1 Portaltoken Details Post",
-                  "type": "object",
                   "additionalProperties": {
                     "type": "string"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Get Portal Token Details V1 Portaltoken Details Post"
                 }
               }
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_key_url_not_found` - Nintendo key url not found\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -4815,8 +4823,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Key Id",
-              "type": "string"
+              "type": "string",
+              "title": "Key Id"
             },
             "name": "key_id",
             "in": "path"
@@ -4884,9 +4892,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Player Uuid From Player Id For Self V1 Player Me Uuid Get",
                   "type": "string",
-                  "format": "uuid"
+                  "format": "uuid",
+                  "title": "Response Get Player Uuid From Player Id For Self V1 Player Me Uuid Get"
                 }
               }
             }
@@ -4942,8 +4950,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -4955,9 +4963,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Player Uuid From Player Id V1 Player  Player Id  Uuid Get",
                   "type": "string",
-                  "format": "uuid"
+                  "format": "uuid",
+                  "title": "Response Get Player Uuid From Player Id V1 Player  Player Id  Uuid Get"
                 }
               }
             }
@@ -5080,8 +5088,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -5225,9 +5233,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -5371,9 +5379,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -5450,8 +5458,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -5530,12 +5538,12 @@
             "description": "Lookup players by display names",
             "required": false,
             "schema": {
-              "title": "Display Name",
-              "type": "array",
               "items": {
-                "maxLength": 256,
-                "type": "string"
+                "type": "string",
+                "maxLength": 256
               },
+              "type": "array",
+              "title": "Display Name",
               "description": "Lookup players by display names",
               "default": []
             },
@@ -5575,12 +5583,12 @@
             "description": "Lookup players by their Portal Identity",
             "required": false,
             "schema": {
-              "title": "Identities",
-              "type": "array",
               "items": {
-                "maxLength": 2048,
-                "type": "string"
+                "type": "string",
+                "maxLength": 2048
               },
+              "type": "array",
+              "title": "Identities",
               "description": "Lookup players by their Portal Identity",
               "default": []
             },
@@ -5650,9 +5658,9 @@
             "description": "cursor to continue iteration.  Leaving this empty will begin a new query",
             "required": false,
             "schema": {
-              "title": "Cursor",
-              "maxLength": 4096,
               "type": "string",
+              "maxLength": 4096,
+              "title": "Cursor",
               "description": "cursor to continue iteration.  Leaving this empty will begin a new query",
               "default": ""
             },
@@ -5663,10 +5671,10 @@
             "description": "number of players to return",
             "required": false,
             "schema": {
-              "title": "Page Size",
+              "type": "integer",
               "maximum": 1000,
               "minimum": 1,
-              "type": "integer",
+              "title": "Page Size",
               "description": "number of players to return",
               "default": 100
             },
@@ -5855,9 +5863,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -5922,9 +5930,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -6109,9 +6117,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -6176,9 +6184,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -6423,9 +6431,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -6500,9 +6508,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -6577,9 +6585,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Person Id",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Person Id"
             },
             "name": "person_id",
             "in": "path"
@@ -6633,31 +6641,42 @@
           "auth"
         ],
         "summary": "Oauth Login",
+        "description": "This endpoint is used to initiate the OAuth authentication flow for a user.\n\nIf the platform has been configured correctly, this endpoint will redirect to the platform's login page.  \nOnce the user has logged in, the platform should redirect them to the `/users/v1/oauth/response/{platform}` endpoint for the associated platform.  \n\nErrors will be immediately redirected to the requested `redirect_uri` (or the first configured redirect URI, if the requested URI is not configured).",
         "operationId": "oauth_login",
         "parameters": [
           {
+            "description": "The platform to use for authentication",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/OAuthPortal"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OAuthPortal"
+                }
+              ],
+              "description": "The platform to use for authentication"
             },
             "name": "platform",
             "in": "path"
           },
           {
+            "description": "A client state value to be forwarded with this request to the redirect URI.",
             "required": false,
             "schema": {
-              "title": "State",
+              "type": "string",
               "maxLength": 4096,
-              "type": "string"
+              "title": "State",
+              "description": "A client state value to be forwarded with this request to the redirect URI."
             },
             "name": "state",
             "in": "query"
           },
           {
+            "description": "The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used.",
             "required": false,
             "schema": {
+              "type": "string",
               "title": "Redirect Uri",
-              "type": "string"
+              "description": "The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used."
             },
             "name": "redirect_uri",
             "in": "query"
@@ -6665,8 +6684,8 @@
           {
             "required": false,
             "schema": {
-              "title": "User-Agent",
-              "type": "string"
+              "type": "string",
+              "title": "User-Agent"
             },
             "name": "user-agent",
             "in": "header"
@@ -6674,19 +6693,22 @@
           {
             "required": false,
             "schema": {
-              "title": "X-Forwarded-For",
-              "type": "string"
+              "type": "string",
+              "title": "X-Forwarded-For"
             },
             "name": "x-forwarded-for",
             "in": "header"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
+          "307": {
+            "description": "Redirect to next step in OAuth flow",
+            "headers": {
+              "location": {
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_key_url_not_found` - Nintendo key url not found\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "schema": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -6709,31 +6731,42 @@
           "auth"
         ],
         "summary": "Oauth Response",
+        "description": "Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the `/users/v1/oauth/token` endpoint to get an access token for the user.",
         "operationId": "oauth_response",
         "parameters": [
           {
+            "description": "The platform to use for authentication",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/OAuthPortal"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OAuthPortal"
+                }
+              ],
+              "description": "The platform to use for authentication"
             },
             "name": "platform",
             "in": "path"
           },
           {
+            "description": "The code or token from the platform that can be used to validate the user's identity",
             "required": false,
             "schema": {
-              "title": "Code",
               "type": "string",
+              "title": "Code",
+              "description": "The code or token from the platform that can be used to validate the user's identity",
               "default": ""
             },
             "name": "code",
             "in": "query"
           },
           {
+            "description": "The state value sent to the platform provider that is used to continue with the oauth request.",
             "required": false,
             "schema": {
-              "title": "State",
               "type": "string",
+              "title": "State",
+              "description": "The state value sent to the platform provider that is used to continue with the oauth request.",
               "default": ""
             },
             "name": "state",
@@ -6742,8 +6775,8 @@
           {
             "required": false,
             "schema": {
-              "title": "User-Agent",
-              "type": "string"
+              "type": "string",
+              "title": "User-Agent"
             },
             "name": "user-agent",
             "in": "header"
@@ -6751,19 +6784,22 @@
           {
             "required": false,
             "schema": {
-              "title": "X-Forwarded-For",
-              "type": "string"
+              "type": "string",
+              "title": "X-Forwarded-For"
             },
             "name": "x-forwarded-for",
             "in": "header"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
+          "307": {
+            "description": "Redirect to next step in OAuth flow",
+            "headers": {
+              "location": {
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_key_url_not_found` - Nintendo key url not found\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "schema": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -6786,13 +6822,14 @@
           "auth"
         ],
         "summary": "Oauth Token Exchange",
+        "description": "Exchange an authorization_code from the `/users/v1/oauth/response/{platform}` endpoint for an access token and refresh token.",
         "operationId": "oauth_token_exchange",
         "parameters": [
           {
             "required": false,
             "schema": {
-              "title": "User-Agent",
-              "type": "string"
+              "type": "string",
+              "title": "User-Agent"
             },
             "name": "user-agent",
             "in": "header"
@@ -6800,8 +6837,8 @@
           {
             "required": false,
             "schema": {
-              "title": "X-Forwarded-For",
-              "type": "string"
+              "type": "string",
+              "title": "X-Forwarded-For"
             },
             "name": "x-forwarded-for",
             "in": "header"
@@ -6824,6 +6861,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OAuthTokenResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `authorization_code_not_found`: Authorization code not found or expired\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -7081,6 +7128,57 @@
         ]
       }
     },
+    "/users/v1/role": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get All Roles",
+        "description": "Get all current roles. Including their custom_data and login_loot_rewards.",
+        "operationId": "get_all_roles",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Role"
+                  },
+                  "type": "array",
+                  "title": "Response Get All Roles V1 Role Get"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/template": {
       "get": {
         "tags": [
@@ -7232,7 +7330,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:read:browser`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7321,7 +7419,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:create`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -7378,7 +7476,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:read:any`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:read:any`, `session:*`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7455,7 +7553,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7533,7 +7631,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7612,7 +7710,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -7680,7 +7778,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -7731,7 +7829,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -7801,7 +7899,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -7869,7 +7967,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -7936,7 +8034,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -8006,7 +8104,7 @@
           "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -8074,7 +8172,7 @@
           "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -8130,7 +8228,7 @@
           "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\tFor the player themselves: `session:update:self`\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -8347,7 +8445,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:promote:any`, `session:promote:self`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8524,7 +8622,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:promote:any`, `session:promote:self`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8685,7 +8783,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:read-player:any`, `session:read:event`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:read:event`, `session:read-player:any`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8766,7 +8864,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:event`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:event`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9108,7 +9206,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n\tFor the player themselves: `session:update:self`\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9176,7 +9274,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n\tFor the player themselves: `session:update:self`\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9239,7 +9337,7 @@
           "Sessions"
         ],
         "summary": "Create Match",
-        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:any`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_match",
         "requestBody": {
           "content": {
@@ -9551,7 +9649,7 @@
           "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:fubar`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:fubar`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -9693,7 +9791,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session, and be made its leader\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session, and be made its leader\n\nRequired Permissions: \n\tFor any player (including themselves) any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -9730,6 +9828,14 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9821,11 +9927,30 @@
             },
             "name": "platform_session_id_base64",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9923,6 +10048,14 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10095,11 +10228,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "maxLength": 4096,
-              "minLength": 1,
-              "title": "Platform Session Id Base64"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
-            "name": "platform_session_id_base64",
+            "name": "player_uuid",
             "in": "path"
           },
           {
@@ -10114,16 +10246,25 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
+              "maxLength": 4096,
+              "minLength": 1,
+              "title": "Platform Session Id Base64"
             },
-            "name": "player_uuid",
+            "name": "platform_session_id_base64",
             "in": "path"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10220,6 +10361,14 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -21489,35 +21638,45 @@
         }
       },
       "AgreementMessage": {
-        "title": "AgreementMessage",
-        "required": [
-          "message"
-        ],
-        "type": "object",
         "properties": {
-          "message": {
-            "title": "Message",
-            "type": "string"
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
           },
           "needs_eula": {
-            "title": "Needs Eula",
             "type": "boolean",
+            "title": "Needs Eula",
             "default": false
           },
           "needs_tos": {
-            "title": "Needs Tos",
             "type": "boolean",
+            "title": "Needs Tos",
             "default": false
           },
           "needs_privacy_policy": {
-            "title": "Needs Privacy Policy",
             "type": "boolean",
+            "title": "Needs Privacy Policy",
             "default": false
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "title": "AgreementMessage"
       },
       "GrantType": {
-        "title": "GrantType",
+        "type": "string",
         "enum": [
           "google",
           "apple",
@@ -21533,23 +21692,8 @@
           "basic",
           "anon"
         ],
-        "type": "string",
+        "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "ANON"
-        ],
         "x-enum-descriptions": [
           "Google Grant Type",
           "Apple Grant Type",
@@ -21564,33 +21708,42 @@
           "Steam Grant Type",
           "Basic Grant Type",
           "Anonymous Grant Type"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "ANON"
         ]
       },
       "HTTPAuthorizationCredentials": {
-        "title": "HTTPAuthorizationCredentials",
+        "properties": {
+          "scheme": {
+            "type": "string",
+            "title": "Scheme"
+          },
+          "credentials": {
+            "type": "string",
+            "title": "Credentials"
+          }
+        },
+        "type": "object",
         "required": [
           "scheme",
           "credentials"
         ],
-        "type": "object",
-        "properties": {
-          "scheme": {
-            "title": "Scheme",
-            "type": "string"
-          },
-          "credentials": {
-            "title": "Credentials",
-            "type": "string"
-          }
-        }
+        "title": "HTTPAuthorizationCredentials"
       },
       "LoginRequestV1": {
-        "title": "LoginRequestV1",
-        "required": [
-          "grant_type",
-          "portal_access_token"
-        ],
-        "type": "object",
         "properties": {
           "grant_type": {
             "allOf": [
@@ -21601,56 +21754,147 @@
             "description": "The grant type to use for authentication"
           },
           "portal_access_token": {
-            "title": "Portal Access Token",
             "type": "string",
+            "title": "Portal Access Token",
             "description": "Token or secret used to authenticate the provided grant type"
           },
           "portal_display_name": {
-            "title": "Portal Display Name",
             "type": "string",
+            "title": "Portal Display Name",
             "description": "Some grant types support client-provided names",
             "default": ""
           },
           "portal_parent_access_token": {
-            "title": "Portal Parent Access Token",
             "type": "string",
+            "title": "Portal Parent Access Token",
             "description": "Some grant types have 2 tier authentication and require a second token/secret",
             "default": ""
           },
           "portal_parent_display_name": {
-            "title": "Portal Parent Display Name",
             "type": "string",
+            "title": "Portal Parent Display Name",
             "description": "Some grant types have 2 tier authentication and support a second display name",
             "default": ""
           },
           "include_refresh": {
-            "title": "Include Refresh",
             "type": "boolean",
+            "title": "Include Refresh",
             "description": "Indicates if the client wants a refresh token returned",
             "default": false
           },
           "accept_eula": {
-            "title": "Accept Eula",
             "type": "boolean",
+            "title": "Accept Eula",
             "description": "If true, the user has accepted the EULA",
             "default": false
           },
           "accept_tos": {
-            "title": "Accept Tos",
             "type": "boolean",
+            "title": "Accept Tos",
             "description": "If true, the user has accepted the Terms of Service",
             "default": false
           },
           "accept_privacy_policy": {
-            "title": "Accept Privacy Policy",
             "type": "boolean",
+            "title": "Accept Privacy Policy",
             "description": "If true, the user has accepted the Privacy Policy",
             "default": false
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "grant_type",
+          "portal_access_token"
+        ],
+        "title": "LoginRequestV1"
       },
       "LoginResult": {
-        "title": "LoginResult",
+        "properties": {
+          "platform": {
+            "$ref": "#/components/schemas/Platform"
+          },
+          "portal_id": {
+            "type": "integer",
+            "title": "Portal Id"
+          },
+          "portal_user_id": {
+            "type": "string",
+            "title": "Portal User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "portal_parent_auth_result": {
+            "$ref": "#/components/schemas/PortalUserInfo"
+          },
+          "permissions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Permissions",
+            "description": "List of permissions for this user.",
+            "default": []
+          },
+          "restrictions": {
+            "items": {
+              "$ref": "#/components/schemas/Restriction"
+            },
+            "type": "array",
+            "title": "Restrictions",
+            "description": "List of restrictions on this player",
+            "default": []
+          },
+          "active_player_id": {
+            "type": "integer",
+            "title": "Active Player Id"
+          },
+          "active_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Active Player Uuid"
+          },
+          "role_id": {
+            "type": "integer",
+            "title": "Role Id"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id"
+          },
+          "access_token": {
+            "type": "string",
+            "title": "Access Token",
+            "default": ""
+          },
+          "refresh_token": {
+            "type": "string",
+            "title": "Refresh Token"
+          },
+          "publisher_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Publisher Uuid"
+          },
+          "tenant_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Tenant Uuid"
+          },
+          "config_elector_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Config Elector Uuid"
+          },
+          "client_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Client Uuid"
+          }
+        },
+        "type": "object",
         "required": [
           "platform",
           "portal_id",
@@ -21663,178 +21907,93 @@
           "config_elector_uuid",
           "client_uuid"
         ],
-        "type": "object",
-        "properties": {
-          "platform": {
-            "$ref": "#/components/schemas/Platform"
-          },
-          "portal_id": {
-            "title": "Portal Id",
-            "type": "integer"
-          },
-          "portal_user_id": {
-            "title": "Portal User Id",
-            "type": "string"
-          },
-          "display_name": {
-            "title": "Display Name",
-            "type": "string"
-          },
-          "portal_parent_auth_result": {
-            "$ref": "#/components/schemas/PortalUserInfo"
-          },
-          "permissions": {
-            "title": "Permissions",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "List of permissions for this user.",
-            "default": []
-          },
-          "restrictions": {
-            "title": "Restrictions",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Restriction"
-            },
-            "description": "List of restrictions on this player",
-            "default": []
-          },
-          "active_player_id": {
-            "title": "Active Player Id",
-            "type": "integer"
-          },
-          "active_player_uuid": {
-            "title": "Active Player Uuid",
-            "type": "string",
-            "format": "uuid"
-          },
-          "role_id": {
-            "title": "Role Id",
-            "type": "integer"
-          },
-          "person_id": {
-            "title": "Person Id",
-            "type": "string",
-            "format": "uuid"
-          },
-          "access_token": {
-            "title": "Access Token",
-            "type": "string",
-            "default": ""
-          },
-          "refresh_token": {
-            "title": "Refresh Token",
-            "type": "string"
-          },
-          "publisher_uuid": {
-            "title": "Publisher Uuid",
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenant_uuid": {
-            "title": "Tenant Uuid",
-            "type": "string",
-            "format": "uuid"
-          },
-          "config_elector_uuid": {
-            "title": "Config Elector Uuid",
-            "type": "string",
-            "format": "uuid"
-          },
-          "client_uuid": {
-            "title": "Client Uuid",
-            "type": "string",
-            "format": "uuid"
-          }
-        }
+        "title": "LoginResult"
       },
       "LogoutRequest": {
-        "title": "LogoutRequest",
+        "properties": {
+          "refresh_token": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Refresh Token"
+          }
+        },
+        "type": "object",
         "required": [
           "refresh_token"
         ],
-        "type": "object",
-        "properties": {
-          "refresh_token": {
-            "title": "Refresh Token",
-            "minLength": 1,
-            "type": "string"
-          }
-        }
+        "title": "LogoutRequest"
       },
       "LookupResults": {
-        "title": "LookupResults",
-        "type": "object",
         "properties": {
           "display_names": {
-            "title": "Display Names",
-            "type": "array",
             "items": {
-              "type": "object",
               "additionalProperties": {
-                "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/PlayerResponse"
-                }
-              }
+                },
+                "type": "array"
+              },
+              "type": "object"
             },
+            "type": "array",
+            "title": "Display Names",
             "default": []
           },
           "identity_platforms": {
-            "title": "Identity Platforms",
-            "type": "object",
             "additionalProperties": {
-              "type": "array",
               "items": {
                 "$ref": "#/components/schemas/PlatformIdentityLookupResults"
-              }
+              },
+              "type": "array"
             },
+            "type": "object",
+            "title": "Identity Platforms",
             "default": {}
           },
           "identity_platforms_by_platform": {
-            "title": "Identity Platforms By Platform",
-            "type": "object",
             "additionalProperties": {
-              "type": "array",
               "items": {
                 "$ref": "#/components/schemas/PlatformIdentityLookupResults"
-              }
+              },
+              "type": "array"
             },
+            "type": "object",
+            "title": "Identity Platforms By Platform",
             "default": {}
           }
-        }
+        },
+        "type": "object",
+        "title": "LookupResults"
       },
       "MessageOnly": {
-        "title": "MessageOnly",
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
         "required": [
           "message"
         ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "title": "Message",
-            "type": "string"
-          }
-        }
+        "title": "MessageOnly"
       },
       "OAuthGrantType": {
-        "title": "OAuthGrantType",
+        "type": "string",
         "enum": [
           "client_credentials"
         ],
-        "type": "string",
+        "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
-        "title": "OAuthPortal",
+        "type": "string",
         "enum": [
           "google",
           "apple",
@@ -21846,19 +22005,8 @@
           "amazon",
           "twitch"
         ],
-        "type": "string",
+        "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -21869,120 +22017,169 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
+        ]
+      },
+      "OAuthTokenEchangeGrantType": {
+        "type": "string",
+        "enum": [
+          "authorization_code"
+        ],
+        "title": "OAuthTokenEchangeGrantType",
+        "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
-        "title": "OAuthTokenExchange",
+        "properties": {
+          "grant_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OAuthTokenEchangeGrantType"
+              }
+            ],
+            "description": "Grant type for the OAuth exchange."
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Code",
+            "description": "authorization_code for the OAuth exchange."
+          },
+          "accepted_eula": {
+            "type": "boolean",
+            "title": "Accepted Eula",
+            "description": "If true, the user has accepted the EULA.",
+            "default": false
+          },
+          "accepted_tos": {
+            "type": "boolean",
+            "title": "Accepted Tos",
+            "description": "If true, the user has accepted the TOS.",
+            "default": false
+          },
+          "accepted_privacy_policy": {
+            "type": "boolean",
+            "title": "Accepted Privacy Policy",
+            "description": "If true, the user has accepted the Privacy Policy.",
+            "default": false
+          }
+        },
+        "type": "object",
         "required": [
           "grant_type",
           "code"
         ],
-        "type": "object",
-        "properties": {
-          "grant_type": {
-            "title": "Grant Type",
-            "type": "string"
-          },
-          "code": {
-            "title": "Code",
-            "type": "string"
-          },
-          "accepted_eula": {
-            "title": "Accepted Eula",
-            "type": "boolean"
-          },
-          "accepted_tos": {
-            "title": "Accepted Tos",
-            "type": "boolean"
-          },
-          "accepted_privacy_policy": {
-            "title": "Accepted Privacy Policy",
-            "type": "boolean"
-          }
-        }
+        "title": "OAuthTokenExchange",
+        "description": "OAuth token exchange request."
       },
       "OAuthTokenResponse": {
-        "title": "OAuthTokenResponse",
-        "type": "object",
         "properties": {
           "access_token": {
+            "type": "string",
             "title": "Access Token",
-            "type": "string"
+            "description": "Access token for the user."
           },
           "refresh_token": {
+            "type": "string",
             "title": "Refresh Token",
-            "type": "string"
+            "description": "Refresh token for the user."
           },
           "needs_eula": {
+            "type": "boolean",
             "title": "Needs Eula",
-            "type": "boolean"
+            "description": "If true, the user must accept the EULA before a token can be generated.",
+            "default": false
           },
           "needs_tos": {
+            "type": "boolean",
             "title": "Needs Tos",
-            "type": "boolean"
+            "description": "If true, the user must accept the TOS before a token can be generated.",
+            "default": false
           },
           "needs_privacy_policy": {
+            "type": "boolean",
             "title": "Needs Privacy Policy",
-            "type": "boolean"
+            "description": "If true, the user must accept the Privacy Policy before a token can be generated.",
+            "default": false
           },
           "regenerated_code": {
+            "type": "string",
             "title": "Regenerated Code",
-            "type": "string"
+            "description": "If present, a new code was generated and can be used after the user accepts the required agreements."
           },
           "error_message": {
+            "type": "string",
             "title": "Error Message",
-            "type": "string"
+            "description": "Error message if an error occurred."
           }
-        }
+        },
+        "type": "object",
+        "title": "OAuthTokenResponse",
+        "description": "OAuth token exchange response.  Successful response will contain an access_token and refresh_token.\n\nIf the user has not accepted all required agreements, the response will contain the appropriate\nneeds_* flags and a regenerated_code.  The regenerated_code is an authorization_code that can be used\nafter the user has accepted the required agreements."
       },
       "PersonEmailListRequest": {
-        "title": "PersonEmailListRequest",
-        "type": "object",
         "properties": {
           "email_list_ids": {
-            "title": "List of all SendInBlue email list ids the user is subscribed to, even if already subscribed before request",
-            "type": "array",
             "items": {
               "type": "integer"
             },
+            "type": "array",
+            "title": "List of all SendInBlue email list ids the user is subscribed to, even if already subscribed before request",
             "default": []
           }
-        }
+        },
+        "type": "object",
+        "title": "PersonEmailListRequest"
       },
       "PersonEmailListResponse": {
-        "title": "PersonEmailListResponse",
+        "properties": {
+          "email_list_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Email List Ids"
+          }
+        },
+        "type": "object",
         "required": [
           "email_list_ids"
         ],
-        "type": "object",
-        "properties": {
-          "email_list_ids": {
-            "title": "Email List Ids",
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        }
+        "title": "PersonEmailListResponse"
       },
       "PersonInfoResponse": {
-        "title": "PersonInfoResponse",
-        "type": "object",
         "properties": {
           "person_id": {
-            "title": "Person Id",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "title": "Person Id"
           },
           "active_player_id": {
-            "title": "Active Player Id",
-            "type": "integer"
+            "type": "integer",
+            "title": "Active Player Id"
           },
           "email": {
-            "title": "Email",
-            "type": "string"
+            "type": "string",
+            "title": "Email"
           }
-        }
+        },
+        "type": "object",
+        "title": "PersonInfoResponse"
       },
       "Platform": {
         "type": "string",
@@ -22038,139 +22235,140 @@
         ]
       },
       "PlatformIdentityLookupResults": {
-        "title": "PlatformIdentityLookupResults",
-        "type": "object",
         "properties": {
           "identity": {
-            "title": "Identity",
-            "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/PlayerResponse"
             },
+            "type": "object",
+            "title": "Identity",
             "default": {}
           }
-        }
+        },
+        "type": "object",
+        "title": "PlatformIdentityLookupResults"
       },
       "PlayerIdWrapper": {
-        "title": "PlayerIdWrapper",
+        "properties": {
+          "player_id": {
+            "type": "integer",
+            "title": "Player Id"
+          }
+        },
+        "type": "object",
         "required": [
           "player_id"
         ],
-        "type": "object",
-        "properties": {
-          "player_id": {
-            "title": "Player Id",
-            "type": "integer"
-          }
-        }
+        "title": "PlayerIdWrapper"
       },
       "PlayerIterateResponse": {
-        "title": "PlayerIterateResponse",
-        "type": "object",
         "properties": {
           "players": {
-            "title": "Players",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/PlayerResponse"
             },
+            "type": "array",
+            "title": "Players",
             "default": []
           },
           "cursor": {
-            "title": "Cursor",
             "type": "string",
+            "title": "Cursor",
             "default": ""
           }
-        }
+        },
+        "type": "object",
+        "title": "PlayerIterateResponse"
       },
       "PlayerLinkedPortalsResponse": {
-        "title": "PlayerLinkedPortalsResponse",
-        "required": [
-          "player",
-          "linked_portals"
-        ],
-        "type": "object",
         "properties": {
           "player": {
             "$ref": "#/components/schemas/PlayerPersonResponse"
           },
           "linked_portals": {
-            "title": "Linked Portals",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/PortalUserResponse"
-            }
+            },
+            "type": "array",
+            "title": "Linked Portals"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "player",
+          "linked_portals"
+        ],
+        "title": "PlayerLinkedPortalsResponse"
       },
       "PlayerPersonResponse": {
-        "title": "PlayerPersonResponse",
+        "properties": {
+          "player_id": {
+            "type": "integer",
+            "title": "Player Id"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "active_player_id": {
+            "type": "integer",
+            "title": "Active Player Id"
+          },
+          "active_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Active Player Uuid"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id"
+          }
+        },
+        "type": "object",
         "required": [
           "player_id",
           "player_uuid",
           "person_id"
         ],
-        "type": "object",
-        "properties": {
-          "player_id": {
-            "title": "Player Id",
-            "type": "integer"
-          },
-          "player_uuid": {
-            "title": "Player Uuid",
-            "type": "string",
-            "format": "uuid"
-          },
-          "active_player_id": {
-            "title": "Active Player Id",
-            "type": "integer"
-          },
-          "active_player_uuid": {
-            "title": "Active Player Uuid",
-            "type": "string",
-            "format": "uuid"
-          },
-          "person_id": {
-            "title": "Person Id",
-            "type": "string"
-          }
-        }
+        "title": "PlayerPersonResponse"
       },
       "PlayerResponse": {
-        "title": "PlayerResponse",
+        "properties": {
+          "player_id": {
+            "type": "integer",
+            "title": "Player Id"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          }
+        },
+        "type": "object",
         "required": [
           "player_id",
           "player_uuid"
         ],
-        "type": "object",
-        "properties": {
-          "player_id": {
-            "title": "Player Id",
-            "type": "integer"
-          },
-          "player_uuid": {
-            "title": "Player Uuid",
-            "type": "string",
-            "format": "uuid"
-          }
-        }
+        "title": "PlayerResponse"
       },
       "PlayerUuidFromId": {
-        "title": "PlayerUuidFromId",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Uuid"
+          }
+        },
+        "type": "object",
         "required": [
           "uuid"
         ],
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "title": "Uuid",
-            "type": "string",
-            "format": "uuid"
-          }
-        }
+        "title": "PlayerUuidFromId"
       },
       "Portal": {
-        "title": "Portal",
+        "type": "integer",
         "enum": [
           2,
           4,
@@ -22186,23 +22384,8 @@
           28,
           33
         ],
-        "type": "integer",
+        "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -22217,55 +22400,62 @@
           "Nintendo portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "PortalTokenDetailsGrantType": {
-        "title": "PortalTokenDetailsGrantType",
+        "type": "string",
         "enum": [
           "ps4_v1",
           "ps4_v3",
           "ps5_v3"
         ],
-        "type": "string",
+        "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation 4 Grant Version 1",
           "Playstation 4 Grant Version 3",
           "Playstation 5 Grant Version 3"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
-        "title": "PortalTokenDetailsRequest",
-        "required": [
-          "grant_type",
-          "portal_access_token"
-        ],
-        "type": "object",
         "properties": {
           "grant_type": {
             "$ref": "#/components/schemas/PortalTokenDetailsGrantType"
           },
           "portal_access_token": {
-            "title": "Portal Access Token",
             "type": "string",
+            "title": "Portal Access Token",
             "description": "Token or secret used to authenticate the provided grant type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "grant_type",
+          "portal_access_token"
+        ],
+        "title": "PortalTokenDetailsRequest"
       },
       "PortalUserInfo": {
-        "title": "PortalUserInfo",
-        "required": [
-          "platform",
-          "portal_id",
-          "portal_user_id",
-          "display_name"
-        ],
-        "type": "object",
         "properties": {
           "platform": {
             "$ref": "#/components/schemas/Platform"
@@ -22274,109 +22464,146 @@
             "$ref": "#/components/schemas/Portal"
           },
           "portal_user_id": {
-            "title": "Portal User Id",
-            "type": "string"
+            "type": "string",
+            "title": "Portal User Id"
           },
           "display_name": {
-            "title": "Display Name",
-            "type": "string"
+            "type": "string",
+            "title": "Display Name"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "portal_id",
+          "portal_user_id",
+          "display_name"
+        ],
+        "title": "PortalUserInfo"
       },
       "PortalUserResponse": {
-        "title": "PortalUserResponse",
+        "properties": {
+          "portal_user_id": {
+            "type": "string",
+            "title": "Portal User Id"
+          },
+          "portal_id": {
+            "type": "integer",
+            "title": "Portal Id"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/Platform"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "player_id": {
+            "type": "integer",
+            "title": "Player Id"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          }
+        },
+        "type": "object",
         "required": [
           "portal_id",
           "platform",
           "player_id",
           "player_uuid"
         ],
-        "type": "object",
-        "properties": {
-          "portal_user_id": {
-            "title": "Portal User Id",
-            "type": "string"
-          },
-          "portal_id": {
-            "title": "Portal Id",
-            "type": "integer"
-          },
-          "platform": {
-            "$ref": "#/components/schemas/Platform"
-          },
-          "display_name": {
-            "title": "Display Name",
-            "type": "string"
-          },
-          "player_id": {
-            "title": "Player Id",
-            "type": "integer"
-          },
-          "player_uuid": {
-            "title": "Player Uuid",
-            "type": "string",
-            "format": "uuid"
-          }
-        }
+        "title": "PortalUserResponse"
       },
       "PublicKey": {
-        "title": "PublicKey",
+        "properties": {
+          "kid": {
+            "type": "string",
+            "title": "Kid"
+          },
+          "kty": {
+            "type": "string",
+            "title": "Kty"
+          },
+          "n": {
+            "type": "string",
+            "title": "N"
+          },
+          "e": {
+            "type": "string",
+            "title": "E"
+          }
+        },
+        "type": "object",
         "required": [
           "kid",
           "kty",
           "n",
           "e"
         ],
-        "type": "object",
-        "properties": {
-          "kid": {
-            "title": "Kid",
-            "type": "string"
-          },
-          "kty": {
-            "title": "Kty",
-            "type": "string"
-          },
-          "n": {
-            "title": "N",
-            "type": "string"
-          },
-          "e": {
-            "title": "E",
-            "type": "string"
-          }
-        }
+        "title": "PublicKey"
       },
       "PublicKeyList": {
-        "title": "PublicKeyList",
+        "properties": {
+          "keys": {
+            "items": {
+              "$ref": "#/components/schemas/PublicKey"
+            },
+            "type": "array",
+            "title": "Keys"
+          }
+        },
+        "type": "object",
         "required": [
           "keys"
         ],
-        "type": "object",
-        "properties": {
-          "keys": {
-            "title": "Keys",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicKey"
-            }
-          }
-        }
+        "title": "PublicKeyList"
       },
       "PurgeRequest": {
-        "title": "PurgeRequest",
-        "type": "object",
         "properties": {
           "suggested_purge_time": {
-            "title": "Time Zone Aware Datetime",
             "type": "string",
-            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           }
-        }
+        },
+        "type": "object",
+        "title": "PurgeRequest"
       },
       "PurgeResponse": {
-        "title": "PurgeResponse",
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id"
+          },
+          "purge_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "created_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "last_modified_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
         "required": [
           "person_id",
           "purge_on",
@@ -22384,171 +22611,168 @@
           "last_modified_on",
           "status"
         ],
-        "type": "object",
-        "properties": {
-          "person_id": {
-            "title": "Person Id",
-            "type": "string",
-            "format": "uuid"
-          },
-          "purge_on": {
-            "title": "Time Zone Aware Datetime",
-            "type": "string",
-            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-            "format": "date-time"
-          },
-          "created_on": {
-            "title": "Time Zone Aware Datetime",
-            "type": "string",
-            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-            "format": "date-time"
-          },
-          "last_modified_on": {
-            "title": "Time Zone Aware Datetime",
-            "type": "string",
-            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-            "format": "date-time"
-          },
-          "status": {
-            "title": "Status",
-            "type": "string"
-          }
-        }
+        "title": "PurgeResponse"
       },
       "Restriction": {
-        "title": "Restriction",
-        "required": [
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/RestrictionType"
           },
           "reason": {
-            "title": "Reason",
-            "type": "string"
+            "type": "string",
+            "title": "Reason"
           },
           "expiration": {
-            "title": "Expiration",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Expiration"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "Restriction"
       },
       "RestrictionType": {
-        "title": "RestrictionType",
+        "type": "string",
         "enum": [
           "account_ban",
           "account_lockout",
           "account_pending_deletion",
           "account_deny_auth"
         ],
-        "type": "string",
+        "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
           "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned."
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
+      "Role": {
+        "properties": {
+          "role_id": {
+            "type": "string",
+            "title": "Role Id"
+          },
+          "custom_data": {
+            "type": "object",
+            "title": "Custom Data",
+            "default": {}
+          },
+          "login_loot_rewards": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Login Loot Rewards",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "role_id"
+        ],
+        "title": "Role"
+      },
       "SendInBlueContact": {
-        "title": "SendInBlueContact",
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "attributes": {
+            "type": "object",
+            "title": "Attributes"
+          },
+          "emailBlacklisted": {
+            "type": "boolean",
+            "title": "Emailblacklisted"
+          },
+          "listIds": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Listids"
+          },
+          "unlinkListIds": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Unlinklistids"
+          },
+          "updateEnabled": {
+            "type": "boolean",
+            "title": "Updateenabled"
+          }
+        },
+        "type": "object",
         "required": [
           "email"
         ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "title": "Email",
-            "type": "string"
-          },
-          "attributes": {
-            "title": "Attributes",
-            "type": "object"
-          },
-          "emailBlacklisted": {
-            "title": "Emailblacklisted",
-            "type": "boolean"
-          },
-          "listIds": {
-            "title": "Listids",
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "unlinkListIds": {
-            "title": "Unlinklistids",
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "updateEnabled": {
-            "title": "Updateenabled",
-            "type": "boolean"
-          }
-        }
+        "title": "SendInBlueContact"
       },
       "TokenRequest": {
-        "title": "TokenRequest",
-        "required": [
-          "grant_type"
-        ],
-        "type": "object",
         "properties": {
           "grant_type": {
             "$ref": "#/components/schemas/OAuthGrantType"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "grant_type"
+        ],
+        "title": "TokenRequest"
       },
       "TokenResponse": {
-        "title": "TokenResponse",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type"
+          },
+          "refresh_token": {
+            "type": "string",
+            "title": "Refresh Token"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In"
+          }
+        },
+        "type": "object",
         "required": [
           "access_token",
           "token_type",
           "expires_in"
         ],
-        "type": "object",
-        "properties": {
-          "access_token": {
-            "title": "Access Token",
-            "type": "string"
-          },
-          "token_type": {
-            "title": "Token Type",
-            "type": "string"
-          },
-          "refresh_token": {
-            "title": "Refresh Token",
-            "type": "string"
-          },
-          "expires_in": {
-            "title": "Expires In",
-            "type": "integer"
-          }
-        }
+        "title": "TokenResponse"
       },
       "UpdatePersonInfoRequest": {
-        "title": "UpdatePersonInfoRequest",
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          }
+        },
+        "type": "object",
         "required": [
           "email"
         ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "title": "Email",
-            "type": "string"
-          }
-        }
+        "title": "UpdatePersonInfoRequest"
       },
       "AdditionalJoinParams": {
         "properties": {
@@ -23842,6 +24066,14 @@
       },
       "PlatformSessionTemplate": {
         "properties": {
+          "platform_id": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformID"
+              }
+            ],
+            "description": "DEPRECATED. ID for the platform type for this template. Use 'platform' instead"
+          },
           "platform": {
             "allOf": [
               {
@@ -23877,6 +24109,7 @@
         },
         "type": "object",
         "required": [
+          "platform_id",
           "platform",
           "platform_session_type"
         ],
@@ -24310,12 +24543,12 @@
             "title": "Teams",
             "description": "List of teams of players currently in the session"
           },
-          "platform_sessions": {
+          "platform_session": {
             "items": {
               "$ref": "#/components/schemas/PlatformSession"
             },
             "type": "array",
-            "title": "Platform Sessions",
+            "title": "Platform Session",
             "description": "Child Platform Sessions for this session.  A player joining one of the child platform sessions implicitly joins the parent session",
             "default": []
           },
