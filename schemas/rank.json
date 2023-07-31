@@ -579,9 +579,10 @@
             "items": {
               "$ref": "#/components/schemas/PlayerRankResponse"
             },
-            "description": "List of players ranks"
+            "description": "List of player's ranks"
           }
-        }
+        },
+        "description": "Response to successfully requesting all of a player's ranks"
       },
       "PlayerRankResponse": {
         "title": "PlayerRankResponse",
@@ -613,7 +614,8 @@
             "type": "integer",
             "description": "ID for this rank"
           }
-        }
+        },
+        "description": "Response to successfully requesting a player's rank"
       },
       "PlayerRankUpdateRequest": {
         "title": "PlayerRankUpdateRequest",
@@ -638,7 +640,8 @@
             ],
             "description": "Current rank info about player"
           }
-        }
+        },
+        "description": "Request body to update generic rank data"
       },
       "PlayerRankUpdateResponse": {
         "title": "PlayerRankUpdateResponse",
@@ -655,7 +658,8 @@
             },
             "description": "List of players and their updated ranks"
           }
-        }
+        },
+        "description": "Response to successfully updating players' ranks"
       },
       "RankConfig": {
         "title": "RankConfig",
@@ -717,7 +721,8 @@
             "type": "number",
             "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
           }
-        }
+        },
+        "description": "Configuration about a specific rank type"
       },
       "RankConfigRequestResponse": {
         "title": "RankConfigRequestResponse",
@@ -734,7 +739,8 @@
             },
             "description": "List of rank configurations"
           }
-        }
+        },
+        "description": "Response to successfully requesting all rank config"
       },
       "RankData": {
         "title": "RankData",
@@ -765,7 +771,8 @@
             "description": "Custom key-value player rank data",
             "default": {}
           }
-        }
+        },
+        "description": "Trueskill oriented ranked data about a player's skill and confidence levels"
       },
       "TrueskillRank": {
         "title": "TrueskillRank",
@@ -797,7 +804,8 @@
             "type": "integer",
             "description": "How many seconds this player was in the match"
           }
-        }
+        },
+        "description": "Additional data about a specific player's rank and previous match in order to make trueskill calculations"
       },
       "TrueskillTeam": {
         "title": "TrueskillTeam",
@@ -821,7 +829,8 @@
             "type": "integer",
             "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
           }
-        }
+        },
+        "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
       },
       "TrueskillUpdateRequest": {
         "title": "TrueskillUpdateRequest",
@@ -859,7 +868,8 @@
             },
             "description": "List of teams that participated in this match"
           }
-        }
+        },
+        "description": "A request body to update players' trueskill ratings from a match"
       },
       "ValidationError": {
         "title": "ValidationError",
@@ -904,7 +914,7 @@
   },
   "tags": [
     {
-      "name": "RallyHere Rank API",
+      "name": "rank",
       "description": "\n\nThis API is used to update players ranks after matches\n\n"
     }
   ]

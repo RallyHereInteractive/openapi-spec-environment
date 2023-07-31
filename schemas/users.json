@@ -2666,19 +2666,19 @@
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
         "x-enum-descriptions": [
-          "Google Grant Type",
-          "Apple Grant Type",
-          "Refresh Grant Type",
-          "Epic Grant Type",
-          "Xbox Live Grant Type",
-          "Playstation 4 Version 1 Grant Type",
-          "Playstation 4 Version 1 Grant Type",
-          "Playstation 5 Version 3 Grant Type",
-          "Nintendo Grant Type",
-          "Nintendo Switch Grant Type",
-          "Steam Grant Type",
-          "Basic Grant Type",
-          "Anonymous Grant Type"
+          "Google authentication",
+          "Apple authentication",
+          "Refresh Token authentication",
+          "Epic Online Services authentication",
+          "Xbox Live authentication",
+          "Playstation Network v1 authentication using the configured PS4 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Nintendo Account authentication",
+          "Nintendo Service Account (for Nintendo Switch) authentication",
+          "Steam authentication",
+          "Basic Username/Password authentication",
+          "Anonymous authentication"
         ],
         "x-enum-varnames": [
           "GOOGLE",
@@ -3043,7 +3043,7 @@
           "authorization_code"
         ],
         "title": "OAuthTokenEchangeGrantType",
-        "description": "An enumeration.",
+        "description": "Supported grant types for OAuth Token Exchange process",
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
         ],
@@ -3434,9 +3434,9 @@
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
         "x-enum-descriptions": [
-          "Playstation 4 Grant Version 1",
-          "Playstation 4 Grant Version 3",
-          "Playstation 5 Grant Version 3"
+          "Playstation Network v1 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS5 credentials"
         ],
         "x-enum-varnames": [
           "PS4_V1",
@@ -3655,7 +3655,7 @@
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
-          "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned."
+          "Account has been banned from authentication"
         ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",

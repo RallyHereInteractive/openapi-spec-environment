@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "settings-api",
     "description": "API for managing user settings documents",
@@ -24,8 +24,8 @@
             "description": "Player to get settings for",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "Player to get settings for"
             },
             "name": "player_id",
@@ -35,10 +35,10 @@
             "description": "Setting Type to get settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to get settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -48,13 +48,13 @@
             "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned",
             "required": false,
             "schema": {
-              "title": "Key",
-              "type": "array",
               "items": {
+                "type": "string",
                 "maxLength": 256,
-                "minLength": 1,
-                "type": "string"
+                "minLength": 1
               },
+              "type": "array",
+              "title": "Key",
               "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
             },
             "name": "key",
@@ -67,11 +67,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get All Player Id Settings For Setting Type",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Get All Player Id Settings For Setting Type"
                 }
               }
             }
@@ -135,8 +135,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -144,10 +144,10 @@
           {
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string"
+              "title": "Setting Type Id"
             },
             "name": "setting_type_id",
             "in": "path"
@@ -224,10 +224,10 @@
             "description": "Setting Type to get settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to get settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -237,13 +237,13 @@
             "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned",
             "required": false,
             "schema": {
-              "title": "Key",
-              "type": "array",
               "items": {
+                "type": "string",
                 "maxLength": 256,
-                "minLength": 1,
-                "type": "string"
+                "minLength": 1
               },
+              "type": "array",
+              "title": "Key",
               "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
             },
             "name": "key",
@@ -256,11 +256,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get All Player Uuid Settings For Setting Type Self",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Get All Player Uuid Settings For Setting Type Self"
                 }
               }
             }
@@ -324,10 +324,10 @@
             "description": "Setting Type to delete settings for.  Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to delete settings for.  Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -404,10 +404,10 @@
             "description": "Player to get settings for",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "Player to get settings for",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to get settings for"
             },
             "name": "player_uuid",
             "in": "path"
@@ -416,10 +416,10 @@
             "description": "Setting Type to get settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to get settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -429,13 +429,13 @@
             "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned",
             "required": false,
             "schema": {
-              "title": "Key",
-              "type": "array",
               "items": {
+                "type": "string",
                 "maxLength": 256,
-                "minLength": 1,
-                "type": "string"
+                "minLength": 1
               },
+              "type": "array",
+              "title": "Key",
               "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
             },
             "name": "key",
@@ -448,11 +448,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get All Player Uuid Settings For Setting Type",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Get All Player Uuid Settings For Setting Type"
                 }
               }
             }
@@ -516,10 +516,10 @@
             "description": "Player to delete setting for",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "Player to delete setting for",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to delete setting for"
             },
             "name": "player_uuid",
             "in": "path"
@@ -528,10 +528,10 @@
             "description": "Setting Type to delete settings for.  Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to delete settings for.  Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -608,10 +608,10 @@
             "description": "Setting Type to get settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to get settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -621,10 +621,10 @@
             "description": "Setting Key to get settings for",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to get settings for"
             },
             "name": "key",
@@ -701,10 +701,10 @@
             "description": "Setting Type to update settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to update settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -714,10 +714,10 @@
             "description": "Setting Key to update setting for.  Must conform to the setting type key format",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to update setting for.  Must conform to the setting type key format"
             },
             "name": "key",
@@ -740,11 +740,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Set Single Player Uuid Setting Self",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Set Single Player Uuid Setting Self"
                 }
               }
             }
@@ -818,10 +818,10 @@
             "description": "Setting Type to delete settings for.  Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to delete settings for.  Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -831,10 +831,10 @@
             "description": "Setting Key to delete setting for",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to delete setting for"
             },
             "name": "key",
@@ -911,10 +911,10 @@
             "description": "Player to get settings for",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "Player to get settings for",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to get settings for"
             },
             "name": "player_uuid",
             "in": "path"
@@ -923,10 +923,10 @@
             "description": "Setting Type to get settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to get settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -936,10 +936,10 @@
             "description": "Setting Key to get settings for",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to get settings for"
             },
             "name": "key",
@@ -1016,10 +1016,10 @@
             "description": "Player to update setting for",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "Player to update setting for",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to update setting for"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1028,10 +1028,10 @@
             "description": "Setting Type to update settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to update settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -1041,10 +1041,10 @@
             "description": "Setting Key to update setting for.  Must conform to the setting type key format",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to update setting for.  Must conform to the setting type key format"
             },
             "name": "key",
@@ -1067,11 +1067,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Set Single Player Uuid Setting",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Set Single Player Uuid Setting"
                 }
               }
             }
@@ -1145,10 +1145,10 @@
             "description": "Player to delete setting for",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "Player to delete setting for",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to delete setting for"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1157,10 +1157,10 @@
             "description": "Setting Type to delete settings for.  Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to delete settings for.  Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -1170,10 +1170,10 @@
             "description": "Setting Key to delete setting for",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to delete setting for"
             },
             "name": "key",
@@ -1250,8 +1250,8 @@
             "description": "Player to get settings for",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "Player to get settings for"
             },
             "name": "player_id",
@@ -1261,10 +1261,10 @@
             "description": "Setting Type to get settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to get settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -1274,10 +1274,10 @@
             "description": "Setting Key to get settings for",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to get settings for"
             },
             "name": "key",
@@ -1355,8 +1355,8 @@
             "description": "Player to update setting for",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "Player to update setting for"
             },
             "name": "player_id",
@@ -1366,10 +1366,10 @@
             "description": "Setting Type to update settings for. Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to update settings for. Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -1379,10 +1379,10 @@
             "description": "Setting Key to update setting for.  Must conform to the setting type key format",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to update setting for.  Must conform to the setting type key format"
             },
             "name": "key",
@@ -1405,11 +1405,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Set Single Player Id Setting",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Set Single Player Id Setting"
                 }
               }
             }
@@ -1484,8 +1484,8 @@
             "description": "Player to delete setting for",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "Player to delete setting for"
             },
             "name": "player_id",
@@ -1495,10 +1495,10 @@
             "description": "Setting Type to delete settings for.  Must be one of the known setting types",
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string",
+              "title": "Setting Type Id",
               "description": "Setting Type to delete settings for.  Must be one of the known setting types"
             },
             "name": "setting_type_id",
@@ -1508,10 +1508,10 @@
             "description": "Setting Key to delete setting for",
             "required": true,
             "schema": {
-              "title": "Key",
+              "type": "string",
               "maxLength": 256,
               "minLength": 1,
-              "type": "string",
+              "title": "Key",
               "description": "Setting Key to delete setting for"
             },
             "name": "key",
@@ -1590,11 +1590,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Config For All Setting Types",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingType"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Get Config For All Setting Types"
                 }
               }
             }
@@ -1619,10 +1619,10 @@
           {
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string"
+              "title": "Setting Type Id"
             },
             "name": "setting_type_id",
             "in": "path"
@@ -1634,11 +1634,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Config For Single Setting Type All Versions",
-                  "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingTypeVersion"
-                  }
+                  },
+                  "type": "object",
+                  "title": "Response Get Config For Single Setting Type All Versions"
                 }
               }
             }
@@ -1693,10 +1693,10 @@
           {
             "required": true,
             "schema": {
-              "title": "Setting Type Id",
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "type": "string"
+              "title": "Setting Type Id"
             },
             "name": "setting_type_id",
             "in": "path"
@@ -1704,8 +1704,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Setting Version Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Setting Version Id"
             },
             "name": "setting_version_id",
             "in": "path"
@@ -1764,52 +1764,46 @@
   "components": {
     "schemas": {
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "HzApiErrorModel": {
-        "title": "HzApiErrorModel",
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
         "required": [
           "error_code",
           "desc"
         ],
-        "type": "object",
-        "properties": {
-          "auth_success": {
-            "title": "Auth Success",
-            "type": "boolean",
-            "default": true
-          },
-          "error_code": {
-            "title": "Error Code",
-            "type": "string"
-          },
-          "desc": {
-            "title": "Desc",
-            "type": "string"
-          }
-        }
+        "title": "HzApiErrorModel"
       },
       "SetSinglePlayerSettingRequest": {
-        "title": "SetSinglePlayerSettingRequest",
-        "required": [
-          "v",
-          "value"
-        ],
-        "type": "object",
         "properties": {
           "v": {
-            "title": "V",
             "type": "integer",
+            "title": "V",
             "description": "Setting Type Version to update setting for.  Must be a valid version for the setting type"
           },
           "value": {
@@ -1817,18 +1811,19 @@
             "description": "New value for the setting.  Must conform to the jsonschema defined for the setting type+version"
           }
         },
+        "type": "object",
+        "required": [
+          "v",
+          "value"
+        ],
+        "title": "SetSinglePlayerSettingRequest",
         "description": "Updatable contents of a setting for a player"
       },
       "SettingData": {
-        "title": "SettingData",
-        "required": [
-          "v"
-        ],
-        "type": "object",
         "properties": {
           "v": {
-            "title": "V",
             "type": "integer",
+            "title": "V",
             "description": "Setting Version"
           },
           "value": {
@@ -1836,63 +1831,59 @@
             "description": "Setting Value document"
           }
         },
+        "type": "object",
+        "required": [
+          "v"
+        ],
+        "title": "SettingData",
         "description": "Setting version/value data from a specific setting type/key for a player"
       },
       "SettingType": {
-        "title": "SettingType",
-        "required": [
-          "versions"
-        ],
-        "type": "object",
         "properties": {
           "versions": {
-            "title": "Versions",
-            "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/SettingTypeVersion"
             },
+            "type": "object",
+            "title": "Versions",
             "description": "Map of setting type version ids to the version"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "versions"
+        ],
+        "title": "SettingType"
       },
       "SettingTypeVersion": {
-        "title": "SettingTypeVersion",
-        "required": [
-          "value_jsonschema"
-        ],
-        "type": "object",
         "properties": {
           "allow_update": {
-            "title": "Allow Update",
             "type": "boolean",
+            "title": "Allow Update",
             "description": "Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings.",
             "default": true
           },
           "key_regex": {
-            "title": "Key Regex",
             "type": "string",
+            "title": "Key Regex",
             "description": "Regex that is used to verify keys at assignment time",
             "default": "^.+$"
           },
           "value_jsonschema": {
-            "title": "Value Jsonschema",
             "type": "object",
+            "title": "Value Jsonschema",
             "description": "[jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "value_jsonschema"
+        ],
+        "title": "SettingTypeVersion"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -1902,17 +1893,26 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     },
     "securitySchemes": {
