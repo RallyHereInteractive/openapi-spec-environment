@@ -57,4 +57,6 @@ fi
 # Run the merge process of the separate API specs
 npx openapi-merge-cli --config sandbox-openapi-merge-config.yaml
 
+echo "$(jq -c . sandbox.openapi.json)" > sandbox.openapi.min.json
+
 popd
