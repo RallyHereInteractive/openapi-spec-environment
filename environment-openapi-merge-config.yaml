@@ -93,6 +93,15 @@
         "prefix": "Config"
       },
     },
+    {
+      "inputFile": "./schemas/custom.json",
+      "pathModification": {
+        "prepend": "/custom"
+      },
+      "dispute": {
+        "prefix": "Custom"
+      },
+    },
   ],
   "output": "./environment.openapi.json"
 }

@@ -1,0 +1,178 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "custom-api",
+    "description": "RallyHere custom-api.",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/fastapi"
+    }
+  ],
+  "paths": {
+    "/v1/custom/{endpoint_id}": {
+      "post": {
+        "tags": [
+          "custom"
+        ],
+        "summary": "Custom Endpoint Send",
+        "description": "Hit a predetermined URL specified by the passed in endpoint_id, the response from that URL is returned here.",
+        "operationId": "custom_endpoint_send",
+        "parameters": [
+          {
+            "description": "The endpoint id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Endpoint Id",
+              "description": "The endpoint id"
+            },
+            "name": "endpoint_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Content-Type",
+              "default": "application/json"
+            },
+            "name": "content-type",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HzApiErrorModel": {
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "title": "HzApiErrorModel"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "custom",
+      "description": "Endpoints for hitting custom urls"
+    }
+  ]
+}
