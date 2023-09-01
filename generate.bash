@@ -48,7 +48,6 @@ if [[ ! -z "$SPEC_BASE_URL" ]]; then
     # Pretty Print the API Specs
     for filename in schemas/*.min.json; do
         outfile=$(echo ${filename} | sed -e 's/\.min\.json/\.json/')
-        echo "pretty printing ${filename} to ${outfile}"
         echo "$(jq -r . ${filename})" >"${outfile}"
     done
 fi
