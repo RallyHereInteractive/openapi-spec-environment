@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "friends-api",
     "description": "RallyHere Friends API. These set of APIS will are used to manage a Players list of Friends and Blocked Players. <br /> <br />\n<b>Note:</b> When the other Player declines the Player's Friend request, the FriendShip status is set to FRIENDSHIP_DECLINED_BY_OTHER_PLAYER and counts towards the Player's Friend limit. Clients are expected to delete the relationship and optionally inform the Player about the declined request.\n",
@@ -23,9 +23,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -33,9 +33,9 @@
           {
             "required": false,
             "schema": {
-              "title": "Page",
-              "minimum": 0,
               "type": "integer",
+              "minimum": 0,
+              "title": "Page",
               "default": 0
             },
             "name": "page",
@@ -44,10 +44,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Limit",
+              "type": "integer",
               "maximum": 10000,
               "minimum": 1,
-              "type": "integer",
+              "title": "Limit",
               "default": 50
             },
             "name": "limit",
@@ -57,8 +57,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -145,9 +145,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -227,9 +227,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -237,9 +237,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -248,8 +248,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -336,9 +336,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -346,9 +346,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -357,8 +357,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -454,9 +454,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -464,9 +464,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -475,8 +475,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -558,9 +558,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -568,9 +568,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -579,8 +579,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -674,9 +674,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -684,9 +684,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -695,8 +695,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -767,8 +767,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -776,9 +776,9 @@
           {
             "required": false,
             "schema": {
-              "title": "Page",
-              "minimum": 0,
               "type": "integer",
+              "minimum": 0,
+              "title": "Page",
               "default": 0
             },
             "name": "page",
@@ -787,10 +787,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Limit",
+              "type": "integer",
               "maximum": 10000,
               "minimum": 1,
-              "type": "integer",
+              "title": "Limit",
               "default": 50
             },
             "name": "limit",
@@ -800,8 +800,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -889,8 +889,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -971,8 +971,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -980,8 +980,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -990,8 +990,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -1079,8 +1079,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -1088,8 +1088,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -1098,8 +1098,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-match",
@@ -1196,8 +1196,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -1205,8 +1205,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -1215,8 +1215,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -1299,8 +1299,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -1308,8 +1308,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -1318,8 +1318,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -1414,8 +1414,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -1423,8 +1423,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -1433,8 +1433,8 @@
             "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
             "required": false,
             "schema": {
-              "title": "If-Match",
               "type": "string",
+              "title": "If-Match",
               "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
             },
             "name": "if-match",
@@ -1506,9 +1506,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1516,9 +1516,9 @@
           {
             "required": false,
             "schema": {
-              "title": "Page",
-              "minimum": 0,
               "type": "integer",
+              "minimum": 0,
+              "title": "Page",
               "default": 0
             },
             "name": "page",
@@ -1527,10 +1527,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Limit",
+              "type": "integer",
               "maximum": 10000,
               "minimum": 1,
-              "type": "integer",
+              "title": "Limit",
               "default": 50
             },
             "name": "limit",
@@ -1540,8 +1540,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -1630,9 +1630,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1640,9 +1640,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -1717,9 +1717,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1727,9 +1727,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -1804,9 +1804,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1814,9 +1814,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
             "name": "other_player_uuid",
             "in": "path"
@@ -1886,8 +1886,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -1895,9 +1895,9 @@
           {
             "required": false,
             "schema": {
-              "title": "Page",
-              "minimum": 0,
               "type": "integer",
+              "minimum": 0,
+              "title": "Page",
               "default": 0
             },
             "name": "page",
@@ -1906,10 +1906,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Limit",
+              "type": "integer",
               "maximum": 10000,
               "minimum": 1,
-              "type": "integer",
+              "title": "Limit",
               "default": 50
             },
             "name": "limit",
@@ -1919,8 +1919,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -2010,8 +2010,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -2019,8 +2019,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -2096,8 +2096,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -2105,8 +2105,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -2182,8 +2182,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -2191,8 +2191,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Other Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Other Player Id"
             },
             "name": "other_player_id",
             "in": "path"
@@ -2292,302 +2292,302 @@
   "components": {
     "schemas": {
       "BlockedList": {
-        "title": "BlockedList",
-        "required": [
-          "player_uuid",
-          "blocked",
-          "page"
-        ],
-        "type": "object",
         "properties": {
           "player_uuid": {
-            "title": "Player's UUID",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "title": "Player's UUID"
           },
           "blocked": {
-            "title": "Player's Block list",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/BlockedPlayer"
-            }
+            },
+            "type": "array",
+            "title": "Player's Block list"
           },
           "page": {
             "$ref": "#/components/schemas/PageMeta"
           }
         },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "blocked",
+          "page"
+        ],
+        "title": "BlockedList",
         "description": "The list of players that is blocked."
       },
       "BlockedListV1": {
-        "title": "BlockedListV1",
+        "properties": {
+          "player_id": {
+            "type": "integer",
+            "title": "Player's ID"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player's UUID"
+          },
+          "blocked": {
+            "items": {
+              "$ref": "#/components/schemas/BlockedPlayerV1"
+            },
+            "type": "array",
+            "title": "Player's Block list"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        },
+        "type": "object",
         "required": [
           "player_id",
           "player_uuid",
           "blocked",
           "page"
         ],
-        "type": "object",
-        "properties": {
-          "player_id": {
-            "title": "Player's ID",
-            "type": "integer"
-          },
-          "player_uuid": {
-            "title": "Player's UUID",
-            "type": "string",
-            "format": "uuid"
-          },
-          "blocked": {
-            "title": "Player's Block list",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BlockedPlayerV1"
-            }
-          },
-          "page": {
-            "$ref": "#/components/schemas/PageMeta"
-          }
-        },
+        "title": "BlockedListV1",
         "description": "The list of players that is blocked. V1 includes player_id and player_uuid."
       },
       "BlockedPlayer": {
-        "title": "BlockedPlayer",
+        "properties": {
+          "blocked_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player UUID of Blocked Player"
+          },
+          "last_modified_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "The time when the friends relationship was last modified"
+          }
+        },
+        "type": "object",
         "required": [
           "blocked_player_uuid",
           "last_modified_on"
         ],
-        "type": "object",
-        "properties": {
-          "blocked_player_uuid": {
-            "title": "Player UUID of Blocked Player",
-            "type": "string",
-            "format": "uuid"
-          },
-          "last_modified_on": {
-            "title": "The time when the friends relationship was last modified",
-            "type": "string",
-            "format": "date-time"
-          }
-        },
+        "title": "BlockedPlayer",
         "description": "The player that is being blocked."
       },
       "BlockedPlayerV1": {
-        "title": "BlockedPlayerV1",
+        "properties": {
+          "blocked_player_id": {
+            "type": "integer",
+            "title": "Blocked Player's ID",
+            "default": 0
+          },
+          "blocked_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Friend's Player ID"
+          },
+          "last_modified_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "The time when the friends relationship was last modified"
+          }
+        },
+        "type": "object",
         "required": [
           "blocked_player_uuid",
           "last_modified_on"
         ],
-        "type": "object",
-        "properties": {
-          "blocked_player_id": {
-            "title": "Blocked Player's ID",
-            "type": "integer",
-            "default": 0
-          },
-          "blocked_player_uuid": {
-            "title": "Friend's Player ID",
-            "type": "string",
-            "format": "uuid"
-          },
-          "last_modified_on": {
-            "title": "The time when the friends relationship was last modified",
-            "type": "string",
-            "format": "date-time"
-          }
-        },
+        "title": "BlockedPlayerV1",
         "description": "The player that is being blocked. V1 includes player_id and player_uuid."
       },
       "FriendRelationship": {
-        "title": "FriendRelationship",
+        "properties": {
+          "friends_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player UUID of Friend"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FriendshipStatus"
+              }
+            ],
+            "title": "The status of the friendship"
+          },
+          "notes": {
+            "type": "string",
+            "title": "Player's notes about the other player"
+          },
+          "last_modified_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "The time when the friends relationship was last modified"
+          }
+        },
+        "type": "object",
         "required": [
           "friends_player_uuid",
           "status",
           "last_modified_on"
         ],
-        "type": "object",
-        "properties": {
-          "friends_player_uuid": {
-            "title": "Player UUID of Friend",
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "title": "The status of the friendship",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FriendshipStatus"
-              }
-            ]
-          },
-          "notes": {
-            "title": "Player's notes about the other player",
-            "type": "string"
-          },
-          "last_modified_on": {
-            "title": "The time when the friends relationship was last modified",
-            "type": "string",
-            "format": "date-time"
-          }
-        },
+        "title": "FriendRelationship",
         "description": "Represents the relationship with a potential friend."
       },
       "FriendRelationshipV1": {
-        "title": "FriendRelationshipV1",
+        "properties": {
+          "friends_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player UUID of Friend"
+          },
+          "friends_player_id": {
+            "type": "integer",
+            "title": "Player ID of Friend",
+            "default": 0
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FriendshipStatus"
+              }
+            ],
+            "title": "The status of the friendship"
+          },
+          "notes": {
+            "type": "string",
+            "title": "Player's notes about the other player"
+          },
+          "last_modified_on": {
+            "type": "string",
+            "format": "date-time",
+            "title": "The time when the friends relationship was last modified"
+          }
+        },
+        "type": "object",
         "required": [
           "friends_player_uuid",
           "status",
           "last_modified_on"
         ],
-        "type": "object",
-        "properties": {
-          "friends_player_uuid": {
-            "title": "Player UUID of Friend",
-            "type": "string",
-            "format": "uuid"
-          },
-          "friends_player_id": {
-            "title": "Player ID of Friend",
-            "type": "integer",
-            "default": 0
-          },
-          "status": {
-            "title": "The status of the friendship",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FriendshipStatus"
-              }
-            ]
-          },
-          "notes": {
-            "title": "Player's notes about the other player",
-            "type": "string"
-          },
-          "last_modified_on": {
-            "title": "The time when the friends relationship was last modified",
-            "type": "string",
-            "format": "date-time"
-          }
-        },
+        "title": "FriendRelationshipV1",
         "description": "Represents the relationship with a potential friend. V1 includes player_id and player_uuid."
       },
       "Friends": {
-        "title": "Friends",
-        "required": [
-          "friends"
-        ],
-        "type": "object",
         "properties": {
           "friends": {
-            "title": "List of Player UUIDs to operate on",
-            "maxItems": 50,
-            "minItems": 1,
-            "type": "array",
             "items": {
               "type": "string",
               "format": "uuid"
-            }
+            },
+            "type": "array",
+            "maxItems": 50,
+            "minItems": 1,
+            "title": "List of Player UUIDs to operate on"
           }
         },
+        "type": "object",
+        "required": [
+          "friends"
+        ],
+        "title": "Friends",
         "description": "List of player_uuids to operate on."
       },
       "FriendsApiConfig": {
-        "title": "FriendsApiConfig",
-        "type": "object",
         "properties": {
           "friend_limit": {
-            "title": "Friend Limit",
             "type": "integer",
+            "title": "Friend Limit",
             "description": "Maximum number of friends a user can have",
             "default": 10000
           },
           "block_limit": {
-            "title": "Block Limit",
             "type": "integer",
+            "title": "Block Limit",
             "description": "Maximum number of blocked users a user can have",
             "default": 10000
           }
-        }
+        },
+        "type": "object",
+        "title": "FriendsApiConfig"
       },
       "FriendsList": {
-        "title": "FriendsList",
-        "required": [
-          "player_uuid",
-          "friends",
-          "page"
-        ],
-        "type": "object",
         "properties": {
           "player_uuid": {
-            "title": "Player's UUID",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "title": "Player's UUID"
           },
           "friends": {
-            "title": "Players Friend list",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/FriendRelationship"
-            }
+            },
+            "type": "array",
+            "title": "Players Friend list"
           },
           "page": {
             "$ref": "#/components/schemas/PageMeta"
           }
         },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "friends",
+          "page"
+        ],
+        "title": "FriendsList",
         "description": "List of the player's friends. Includes sent friend requests and received friends requests."
       },
       "FriendsListV1": {
-        "title": "FriendsListV1",
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player's UUID"
+          },
+          "player_id": {
+            "type": "integer",
+            "title": "Player's ID"
+          },
+          "friends": {
+            "items": {
+              "$ref": "#/components/schemas/FriendRelationshipV1"
+            },
+            "type": "array",
+            "title": "Players Friend list"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        },
+        "type": "object",
         "required": [
           "player_uuid",
           "player_id",
           "friends",
           "page"
         ],
-        "type": "object",
-        "properties": {
-          "player_uuid": {
-            "title": "Player's UUID",
-            "type": "string",
-            "format": "uuid"
-          },
-          "player_id": {
-            "title": "Player's ID",
-            "type": "integer"
-          },
-          "friends": {
-            "title": "Players Friend list",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FriendRelationshipV1"
-            }
-          },
-          "page": {
-            "$ref": "#/components/schemas/PageMeta"
-          }
-        },
+        "title": "FriendsListV1",
         "description": "List of the player's friends. Includes sent friend requests and received friends requests."
       },
       "FriendsV1": {
-        "title": "FriendsV1",
+        "properties": {
+          "friends": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "minItems": 1,
+            "title": "List of Player IDs to operate on"
+          }
+        },
+        "type": "object",
         "required": [
           "friends"
         ],
-        "type": "object",
-        "properties": {
-          "friends": {
-            "title": "List of Player IDs to operate on",
-            "maxItems": 50,
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          }
-        },
+        "title": "FriendsV1",
         "description": "List of player_ids to operate on."
       },
       "FriendshipStatus": {
-        "title": "FriendshipStatus",
+        "type": "string",
         "enum": [
           "NONE",
           "FRIENDS",
@@ -2595,93 +2595,84 @@
           "FRIEND_REQUEST_PENDING",
           "FRIEND_REQUEST_DECLINED_BY_OTHER"
         ],
-        "type": "string",
+        "title": "FriendshipStatus",
         "description": "An enumeration."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "HzApiErrorModel": {
-        "title": "HzApiErrorModel",
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
         "required": [
           "error_code",
           "desc"
         ],
-        "type": "object",
-        "properties": {
-          "auth_success": {
-            "title": "Auth Success",
-            "type": "boolean",
-            "default": true
-          },
-          "error_code": {
-            "title": "Error Code",
-            "type": "string"
-          },
-          "desc": {
-            "title": "Desc",
-            "type": "string"
-          }
-        }
+        "title": "HzApiErrorModel"
       },
       "Notes": {
-        "title": "Notes",
-        "type": "object",
         "properties": {
           "notes": {
-            "title": "Notes to set for the Player's friend. If you don't want to modify notes, no not include a body when adding a friend.",
+            "type": "string",
             "maxLength": 4000,
             "minLength": 1,
-            "type": "string"
+            "title": "Notes to set for the Player's friend. If you don't want to modify notes, no not include a body when adding a friend."
           }
         },
+        "type": "object",
+        "title": "Notes",
         "description": "Notes to set for the Player's friend. If you don't want to modify notes, no not include in body when adding a friend."
       },
       "PageMeta": {
-        "title": "PageMeta",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "title": "Requested page"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Page size"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total collection size"
+          }
+        },
+        "type": "object",
         "required": [
           "page",
           "limit",
           "total"
         ],
-        "type": "object",
-        "properties": {
-          "page": {
-            "title": "Requested page",
-            "type": "integer"
-          },
-          "limit": {
-            "title": "Page size",
-            "type": "integer"
-          },
-          "total": {
-            "title": "Total collection size",
-            "type": "integer"
-          }
-        }
+        "title": "PageMeta"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -2691,17 +2682,26 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     },
     "securitySchemes": {

@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "config-api",
     "description": "Hi-Rez Studios config-api.",
@@ -24,8 +24,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
             },
             "name": "if-none-match",
@@ -46,11 +46,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get App Settings Server V1 App Settings Server Get",
-                  "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/AppSetting"
-                  }
+                  },
+                  "type": "array",
+                  "title": "Response Get App Settings Server V1 App Settings Server Get"
                 }
               }
             }
@@ -99,8 +99,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
             },
             "name": "if-none-match",
@@ -121,11 +121,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get App Settings Client V1 App Settings Client Get",
-                  "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/AppSetting"
-                  }
+                  },
+                  "type": "array",
+                  "title": "Response Get App Settings Client V1 App Settings Client Get"
                 }
               }
             }
@@ -183,11 +183,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Site Settings V1 Site Get",
-                  "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/SiteSettings"
-                  }
+                  },
+                  "type": "array",
+                  "title": "Response Get Site Settings V1 Site Get"
                 }
               }
             }
@@ -225,9 +225,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Get Utc Time V1 Time Utc Get",
                   "type": "string",
-                  "format": "date-time"
+                  "format": "date-time",
+                  "title": "Response Get Utc Time V1 Time Utc Get"
                 }
               }
             }
@@ -239,136 +239,132 @@
   "components": {
     "schemas": {
       "AppSetting": {
-        "title": "AppSetting",
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key",
+            "description": "The key for the setting"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value",
+            "description": "The value for the setting"
+          },
+          "notes": {
+            "type": "string",
+            "title": "Notes",
+            "description": "Notes to describe the key value pair"
+          }
+        },
+        "type": "object",
         "required": [
           "key",
           "value"
         ],
-        "type": "object",
-        "properties": {
-          "key": {
-            "title": "Key",
-            "type": "string",
-            "description": "The key for the setting"
-          },
-          "value": {
-            "title": "Value",
-            "type": "string",
-            "description": "The value for the setting"
-          }
-        },
+        "title": "AppSetting",
         "description": "A key/value pair that represents a setting to be used by the client."
       },
       "DiscoveryResponse": {
-        "title": "DiscoveryResponse",
-        "required": [
-          "addresses"
-        ],
-        "type": "object",
         "properties": {
           "addresses": {
-            "title": "Addresses",
-            "type": "array",
             "items": {
               "type": "string"
             },
+            "type": "array",
+            "title": "Addresses",
             "description": "The list of addresses for the connection managers"
           },
           "server_status": {
-            "title": "Server Status",
             "type": "string",
+            "title": "Server Status",
             "description": "The status of the connection managers",
             "default": "unknown"
           },
           "command_line_args": {
-            "title": "Command Line Args",
             "type": "string",
+            "title": "Command Line Args",
             "description": "The command line arguments used to be used by the client",
             "default": " "
           }
         },
+        "type": "object",
+        "required": [
+          "addresses"
+        ],
+        "title": "DiscoveryResponse",
         "description": "Contains information that aids the client in communicating with the connection managers."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "HzApiErrorModel": {
-        "title": "HzApiErrorModel",
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
         "required": [
           "error_code",
           "desc"
         ],
-        "type": "object",
-        "properties": {
-          "auth_success": {
-            "title": "Auth Success",
-            "type": "boolean",
-            "default": true
-          },
-          "error_code": {
-            "title": "Error Code",
-            "type": "string"
-          },
-          "desc": {
-            "title": "Desc",
-            "type": "string"
-          }
-        }
+        "title": "HzApiErrorModel"
       },
       "SiteSettings": {
-        "title": "SiteSettings",
+        "properties": {
+          "site_id": {
+            "type": "integer",
+            "title": "Site Id",
+            "description": "The site ID"
+          },
+          "sort_order": {
+            "type": "integer",
+            "title": "Sort Order",
+            "description": "The priority order of this site"
+          },
+          "custom_only": {
+            "type": "boolean",
+            "title": "Custom Only",
+            "description": "Indicates if the site is a custom games only"
+          },
+          "message_name": {
+            "type": "string",
+            "title": "Message Name",
+            "description": "The message associated with this site"
+          }
+        },
+        "type": "object",
         "required": [
           "site_id",
           "sort_order",
           "custom_only"
         ],
-        "type": "object",
-        "properties": {
-          "site_id": {
-            "title": "Site Id",
-            "type": "integer",
-            "description": "The site ID"
-          },
-          "sort_order": {
-            "title": "Sort Order",
-            "type": "integer",
-            "description": "The priority order of this site"
-          },
-          "custom_only": {
-            "title": "Custom Only",
-            "type": "boolean",
-            "description": "Indicates if the site is a custom games only"
-          },
-          "message_name": {
-            "title": "Message Name",
-            "type": "string",
-            "description": "The message associated with this site"
-          }
-        },
+        "title": "SiteSettings",
         "description": "Contains information about a site/region."
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -378,17 +374,26 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     },
     "securitySchemes": {
