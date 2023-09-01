@@ -43,6 +43,7 @@ if [[ ! -z "$SPEC_BASE_URL" ]]; then
     curl "${SPEC_BASE_URL}/presence/openapi.json" -o schemas/presence.tmp
     curl "${SPEC_BASE_URL}/notification/openapi.json" -o schemas/notification.tmp
     curl "${SPEC_BASE_URL}/rank/openapi.json" -o schemas/rank.tmp
+    curl "${SPEC_BASE_URL}/custom/openapi.json" -o schemas/custom.tmp
 
     ########################################
     # Pretty Print the API Specs
