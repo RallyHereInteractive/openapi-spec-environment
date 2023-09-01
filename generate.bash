@@ -33,25 +33,17 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 if [[ ! -z "$SPEC_BASE_URL" ]]; then
     rm -rf schemas
     mkdir -p schemas
-    curl "${SPEC_BASE_URL}/users/openapi.json" -o schemas/users.tmp
-    curl "${SPEC_BASE_URL}/ad/openapi.json" -o schemas/ad.tmp
-    curl "${SPEC_BASE_URL}/settings/openapi.json" -o schemas/settings.tmp
-    curl "${SPEC_BASE_URL}/friends/openapi.json" -o schemas/friends.tmp
-    curl "${SPEC_BASE_URL}/session/openapi.json" -o schemas/session.tmp
-    curl "${SPEC_BASE_URL}/config/openapi.json" -o schemas/config.tmp
-    curl "${SPEC_BASE_URL}/inventory/openapi.json" -o schemas/inventory.tmp
-    curl "${SPEC_BASE_URL}/presence/openapi.json" -o schemas/presence.tmp
-    curl "${SPEC_BASE_URL}/notification/openapi.json" -o schemas/notification.tmp
-    curl "${SPEC_BASE_URL}/rank/openapi.json" -o schemas/rank.tmp
-    curl "${SPEC_BASE_URL}/custom/openapi.json" -o schemas/custom.tmp
 
-    ########################################
-    # Pretty Print the API Specs
-    for filename in schemas/*.tmp; do
-        outfile=$(echo ${filename} | sed -e 's/\.tmp/\.json/')
-        echo "$(jq -r . ${filename})" >"${outfile}"
+    APIS="users ad settings friends session config inventory presence notification rank custom"
+
+    for api in ${APIS[@]}; do
+        echo "Downloading ${api} API Spec"
+        curl "${SPEC_BASE_URL}/${api}/openapi.json" -o schemas/${api}.tmp
+
+        echo "Pretty Printing ${api} API Spec"
+        echo "$(jq -r . schemas/${api}.tmp)" >"schemas/${api}.json"
+        rm schemas/${api}.tmp
     done
-    rm schemas/*.tmp
 fi
 
 ########################################
