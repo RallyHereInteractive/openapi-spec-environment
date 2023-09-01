@@ -32,16 +32,15 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 # Download the API Specs
 if [[ ! -z "$SPEC_BASE_URL" ]]; then
     rm -rf schemas
-    mkdir -p schemas
     APIS="users ad settings friends session config inventory presence notification rank"
 
     for api in ${APIS[@]}; do
+        mkdir -p "schemas/${api}/min"
         echo "Downloading ${api} API Spec"
-        curl "${SPEC_BASE_URL}/${api}/openapi.json" -o schemas/${api}.min.json
+        curl "${SPEC_BASE_URL}/${api}/openapi.json" -o schemas/${api}/min/openapi.json
 
         echo "Pretty Printing ${api} API Spec"
-        outfile=$(echo ${filename} | sed -e 's/\.min\.json/\.json/')
-        echo "$(jq -r . schemas/${api}.min.json)" >"schemas/${api}.json"
+        echo "$(jq -r . schemas/${api}/min/openapi.json)" >"schemas/${api}/openapi.json"
     done
 fi
 
@@ -49,6 +48,7 @@ fi
 # Run the merge process of the separate API specs
 npx openapi-merge-cli --config environment-openapi-merge-config.yaml
 
-echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
+mkdir -p min
+echo "$(jq -c . openapi.json)" > min/openapi.json
 
 popd
