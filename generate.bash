@@ -11,7 +11,7 @@ SPEC_BASE_URL="https://554b0f7e-4f66-4969-8bd9-6f6aecd06e25.rally-here.io"
 POSITIONAL_ARGS=()
 while [[ $# -gt 0 ]]; do
   case $1 in
-    -u|--sandbox-base-url)
+    -u|--environment-base-url)
       SPEC_BASE_URL="$2"
       shift # past argument
       shift # past value
@@ -55,8 +55,8 @@ fi
 
 ########################################
 # Run the merge process of the separate API specs
-npx openapi-merge-cli --config sandbox-openapi-merge-config.yaml
+npx openapi-merge-cli --config environment-openapi-merge-config.yaml
 
-echo "$(jq -c . sandbox.openapi.json)" > sandbox.openapi.min.json
+echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
 
 popd
