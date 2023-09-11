@@ -7189,7 +7189,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -7257,7 +7257,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -7334,7 +7334,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:browser`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7423,7 +7423,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:create`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -7480,7 +7480,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:self`, `session:read:any`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:read:any`, `session:*`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7557,7 +7557,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7714,7 +7714,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -7782,7 +7782,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -7833,7 +7833,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -7903,7 +7903,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -7971,7 +7971,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -8030,7 +8030,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -8100,7 +8100,7 @@
           "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -8168,7 +8168,7 @@
           "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -8224,7 +8224,7 @@
           "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -8292,7 +8292,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -8441,7 +8441,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:promote:self`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8537,7 +8537,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8618,7 +8618,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:promote:self`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8706,7 +8706,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8779,7 +8779,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:*`, `session:read-player:any`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:read-player:any`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8860,7 +8860,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:event`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:event`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9006,7 +9006,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -9084,7 +9084,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player/uuid endpoint instead",
+        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player/uuid endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -9143,7 +9143,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -9202,7 +9202,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9270,7 +9270,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9333,7 +9333,7 @@
           "Sessions"
         ],
         "summary": "Create Match",
-        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_match",
         "requestBody": {
           "content": {
@@ -9398,7 +9398,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -9490,7 +9490,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -9581,7 +9581,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -9660,7 +9660,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -9738,7 +9738,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `/v1/queues` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `/v1/queues` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -9816,7 +9816,7 @@
           "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:fubar`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:fubar`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -9886,7 +9886,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -9958,7 +9958,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session, and be made its leader\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session, and be made its leader\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -10073,7 +10073,7 @@
           "Sessions"
         ],
         "summary": "Get Platform Session Info",
-        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
+        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
         "operationId": "get_platform_session_info",
         "parameters": [
           {
@@ -10170,7 +10170,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -10282,7 +10282,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -10371,7 +10371,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10502,7 +10502,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -13739,7 +13739,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -13796,7 +13796,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -13865,7 +13865,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_for_me",
         "parameters": [
           {
@@ -13923,7 +13923,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -19659,7 +19659,7 @@
           "player-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:*`, `notification:player:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:write`, `notification:player:*`",
         "operationId": "player_create_notification",
         "parameters": [
           {
@@ -19894,7 +19894,7 @@
           "instance-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
         "operationId": "instance_long_poll_for_notifications",
         "parameters": [
           {
@@ -20016,7 +20016,7 @@
           "instance-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
         "operationId": "instance_get_notifications_page",
         "parameters": [
           {
@@ -20130,7 +20130,7 @@
           "instance-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:instance:write`, `notification:instance:*`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:instance:*`, `notification:instance:write`",
         "operationId": "instance_create_notification",
         "parameters": [
           {
@@ -20208,7 +20208,7 @@
           "instance-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
         "operationId": "instance_get_notification_by_id",
         "parameters": [
           {
@@ -21060,6 +21060,16 @@
             "in": "header"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Body",
+                "description": "The body of the request"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -21303,13 +21313,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Ad was closed by the user",
-          "Ad was closed from a misc cause"
-        ],
         "x-enum-varnames": [
           "CANCEL",
           "OTHER"
+        ],
+        "x-enum-descriptions": [
+          "Ad was closed by the user",
+          "Ad was closed from a misc cause"
         ]
       },
       "OpportunityState": {
@@ -21321,15 +21331,15 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "User started watching the ad",
-          "User finished watching the ad",
-          "User stopped watching the ad partway through"
-        ],
         "x-enum-varnames": [
           "START",
           "COMPLETE",
           "ABORT"
+        ],
+        "x-enum-descriptions": [
+          "User started watching the ad",
+          "User finished watching the ad",
+          "User stopped watching the ad partway through"
         ]
       },
       "ValidationError": {
@@ -22354,22 +22364,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -22385,6 +22379,22 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -25636,19 +25646,6 @@
         ],
         "title": "ClientType",
         "description": "Client type for Entitlements",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WIN",
-          "MAC",
-          "XBOXONE",
-          "PS4",
-          "SWITCH",
-          "ANDROID",
-          "IOS",
-          "PS5",
-          "LINUX",
-          "XSX"
-        ],
         "x-enum-descriptions": [
           "Unknown client type",
           "Windows client type",
@@ -25661,6 +25658,19 @@
           "Playstation 5 client type",
           "Linux client type",
           "XSX client type"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WIN",
+          "MAC",
+          "XBOXONE",
+          "PS4",
+          "SWITCH",
+          "ANDROID",
+          "IOS",
+          "PS5",
+          "LINUX",
+          "XSX"
         ]
       },
       "CreateInventoryRequest": {
@@ -25755,13 +25765,13 @@
         ],
         "title": "CreateInventoryType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "PERSISTENT",
-          "TRANSIENT"
-        ],
         "x-enum-descriptions": [
           "Inventory that persists between Inventory Sessions.",
           "Inventory that does not persist between Inventory Sessions."
+        ],
+        "x-enum-varnames": [
+          "PERSISTENT",
+          "TRANSIENT"
         ]
       },
       "EntitlementErrorCode": {
@@ -25784,22 +25794,6 @@
         ],
         "title": "EntitlementErrorCode",
         "description": "Error codes for Entitlements",
-        "x-enum-varnames": [
-          "NONE",
-          "AUTH_TOKEN_FAILURE",
-          "MISSING_INFORMATION",
-          "FAILED_TO_CONSUME",
-          "NO_SKU_FOUND",
-          "WRONG_SKU_TYPE_PROVIDED",
-          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
-          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
-          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
-          "UNKNOWN_SKU_TYPE_PROVIDED",
-          "FAILED_TO_SUBMIT_ORDER",
-          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
-          "QUANTITY_ZERO",
-          "PREVIOUSLY_APPLIED"
-        ],
         "x-enum-descriptions": [
           "No error occured",
           "Failed to find or validate the auth token",
@@ -25815,6 +25809,22 @@
           "Durable single use entitlement has already been applied",
           "Quantity was zero, nothing to apply",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "AUTH_TOKEN_FAILURE",
+          "MISSING_INFORMATION",
+          "FAILED_TO_CONSUME",
+          "NO_SKU_FOUND",
+          "WRONG_SKU_TYPE_PROVIDED",
+          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
+          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
+          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
+          "UNKNOWN_SKU_TYPE_PROVIDED",
+          "FAILED_TO_SUBMIT_ORDER",
+          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
+          "QUANTITY_ZERO",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "EntitlementStatus": {
@@ -25828,19 +25838,19 @@
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "SUBMITTED",
-          "FULFILLED",
-          "FAILED",
-          "PREVIOUSLY_APPLIED"
-        ],
         "x-enum-descriptions": [
           "Entitlement status is unknown",
           "Entitlement has been submitted to the backend",
           "Entitlement has been fulfilled",
           "Entitlement has failed, check error_code for more information",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "SUBMITTED",
+          "FULFILLED",
+          "FAILED",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "Inventory": {
@@ -25890,24 +25900,6 @@
         ],
         "title": "InventoryBucket",
         "description": "Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "NONE",
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Inventory given away for free.",
           "Inventory earned by players through in game activities.",
@@ -25925,10 +25917,37 @@
           "Inventory assigned to the Epic platform.",
           "Inventory assigned to the Google Play platform.",
           "Inventory assigned to the Nintendo PPID platform."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "NONE",
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "InventoryBucketUseRuleSet": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "rules": {
             "additionalProperties": {
               "items": {
@@ -25998,15 +26017,6 @@
         ],
         "title": "InventoryOperation",
         "description": "Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.\n\nSort Order:\n1. check_greater_then_or_equal/check_less_than\n2. check_greater_than_or_equal_and_subtract/subtract\n3. add/set",
-        "x-enum-varnames": [
-          "invalid",
-          "add",
-          "subtract",
-          "set",
-          "check_greater_than_or_equal",
-          "check_less_than",
-          "check_greater_than_or_equal_and_subtract"
-        ],
         "x-enum-descriptions": [
           "Invalid Inventory Operation.",
           "Add the quantity or expiration of the Inventory.",
@@ -26015,6 +26025,15 @@
           "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
           "Check if the quantity or expiration of the Inventory is less than the value.",
           "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
+        ],
+        "x-enum-varnames": [
+          "invalid",
+          "add",
+          "subtract",
+          "set",
+          "check_greater_than_or_equal",
+          "check_less_than",
+          "check_greater_than_or_equal_and_subtract"
         ]
       },
       "InventoryRecord": {
@@ -26096,14 +26115,6 @@
         ],
         "title": "InventorySelector",
         "description": "Determines way Inventory Selected and to be modified.",
-        "x-enum-varnames": [
-          "invalid",
-          "own",
-          "rent",
-          "rent_timeframe_locked",
-          "own_transient",
-          "inherit_entitlement_inventory"
-        ],
         "x-enum-descriptions": [
           "Invalid Inventory Selector.",
           "The Inventory will be stored across Inventory Sessions.",
@@ -26111,6 +26122,14 @@
           "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
           "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
           "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
+        ],
+        "x-enum-varnames": [
+          "invalid",
+          "own",
+          "rent",
+          "rent_timeframe_locked",
+          "own_transient",
+          "inherit_entitlement_inventory"
         ]
       },
       "InventorySession": {
@@ -26197,19 +26216,28 @@
         ],
         "title": "InventoryType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "PERSISTENT",
-          "TRANSIENT",
-          "ALWAYS_OWNED"
-        ],
         "x-enum-descriptions": [
           "Inventory that persists between Inventory Sessions.",
           "Stays around for the length of the Inventory Sessions.",
           "Items that are given to all Players and cannot be modified."
+        ],
+        "x-enum-varnames": [
+          "PERSISTENT",
+          "TRANSIENT",
+          "ALWAYS_OWNED"
         ]
       },
       "Item": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "type": {
             "allOf": [
               {
@@ -26351,19 +26379,19 @@
         ],
         "title": "ItemType",
         "description": "The type of item.",
-        "x-enum-varnames": [
-          "unit",
-          "recipe",
-          "recipe_with_price_reduction",
-          "entitlement",
-          "dynamic_bundle"
-        ],
         "x-enum-descriptions": [
           "An item that is stored in a player's inventory.",
           "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
           "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
           "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
           "Not support at this time."
+        ],
+        "x-enum-varnames": [
+          "unit",
+          "recipe",
+          "recipe_with_price_reduction",
+          "entitlement",
+          "dynamic_bundle"
         ]
       },
       "Items": {
@@ -26487,6 +26515,15 @@
       },
       "Loot": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "loot_id": {
             "type": "integer",
             "title": "Loot Id",
@@ -26995,15 +27032,15 @@
         ],
         "title": "PlatformRegion",
         "description": "Region for Entitlements",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "NA",
-          "EU"
-        ],
         "x-enum-descriptions": [
           "Unknown region",
           "North America region",
           "Europe Union region"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "NA",
+          "EU"
         ]
       },
       "PlayerInventoryChange": {
@@ -27245,14 +27282,6 @@
         ],
         "title": "PlayerOrderDetailType",
         "description": "Player Order Detail Type.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "INVENTORY_CHANGE",
-          "DYNAMIC_BUNDLE_LTI",
-          "CLAIM_PROMO_CODE",
-          "RETURN_PROMO_CODE",
-          "NEW_ORDER"
-        ],
         "x-enum-descriptions": [
           "Unknown.",
           "Inventory change.",
@@ -27260,6 +27289,14 @@
           "Claim Promo Code.",
           "Return Promo Code.",
           "New Order."
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "INVENTORY_CHANGE",
+          "DYNAMIC_BUNDLE_LTI",
+          "CLAIM_PROMO_CODE",
+          "RETURN_PROMO_CODE",
+          "NEW_ORDER"
         ]
       },
       "PlayerOrderEntry": {
@@ -27571,57 +27608,6 @@
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
-        "x-enum-varnames": [
-          "SUCCESS",
-          "INTERNAL_ERROR",
-          "INVALID_ENTRY_TYPE",
-          "NOT_ALLOWED_ON_CURRENT_PORTAL",
-          "LOOT_NOT_FOUND",
-          "LOOT_NOT_ACTIVE",
-          "PRICE_ITEM_NOT_FOUND",
-          "PRICE_NOT_ALLOWED",
-          "DYNAMIC_BUNDLE_INVALID",
-          "TOO_MANY_REQUESTS",
-          "PRICE_DOES_NOT_MATCH",
-          "VENDOR_VERSION_DOES_NOT_MATCH",
-          "DYNAMIC_BUNDLE_LTIS_DO_NOT_MATCH",
-          "CANNOT_AFFORD_PRICE",
-          "CANNOT_AFFORD_COUPON",
-          "FAILED_TO_SPEND_PRICE",
-          "FAILED_TO_SPEND_COUPON",
-          "LOOT_NOT_FOR_SALE_WITH_PRICE_ITEM",
-          "COUPONS_DISABLED",
-          "COUPON_ITEM_NOT_FOUND",
-          "COUPON_ITEM_NOT_ACTIVE",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_QUANTITY",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_PRICE_ITEM",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_LOOT",
-          "QUANTITY_NOT_ALLOWED",
-          "PROMOTION_EXPIRED",
-          "PROMOTION_NOT_FOUND",
-          "PROMOTION_NO_USES_LEFT",
-          "PROMOTION_NOT_AVAILABLE",
-          "PROMOTION_CLAIMED_ALREADY",
-          "DYNAMIC_BUNDLES_NOT_AVAILABLE",
-          "TRANSIENT_SINGLE_LOOT_ALREADY_APPLIED",
-          "LOOT_NOT_FILLABLE_FROM_CLIENT",
-          "PERMISSION_DENIED",
-          "FAILED_TO_FIND_ANY_SUB_LOOT",
-          "FAILED_TO_FILL_ANY_SUB_LOOT",
-          "CANNOT_MEET_LOOT_BLOCKER",
-          "CANNOT_MEET_LOOT_REQUIRED",
-          "FAILED_TO_CONSUME_LOOT_REQUIRED",
-          "FAILED_TO_SUBMIT_NEW_ORDER",
-          "FAILED_TO_MODIFY_INVENTORY",
-          "INVENTORY_NOT_FOUND",
-          "ITEM_NOT_FOUND",
-          "ITEM_NOT_ACTIVE",
-          "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
-          "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
-          "AVAILABLE_UNTIL_IS_IN_PAST",
-          "ROLLBACK",
-          "NOT_STARTED"
-        ],
         "x-enum-descriptions": [
           "The Order Entry was successful.",
           "An internal error occurred when processing Order Entry.",
@@ -27672,6 +27658,57 @@
           "Available until is in the past.",
           "Order Entry was successfully fulfilled, but was rolled back.",
           "Order Entry fulfillment has not started."
+        ],
+        "x-enum-varnames": [
+          "SUCCESS",
+          "INTERNAL_ERROR",
+          "INVALID_ENTRY_TYPE",
+          "NOT_ALLOWED_ON_CURRENT_PORTAL",
+          "LOOT_NOT_FOUND",
+          "LOOT_NOT_ACTIVE",
+          "PRICE_ITEM_NOT_FOUND",
+          "PRICE_NOT_ALLOWED",
+          "DYNAMIC_BUNDLE_INVALID",
+          "TOO_MANY_REQUESTS",
+          "PRICE_DOES_NOT_MATCH",
+          "VENDOR_VERSION_DOES_NOT_MATCH",
+          "DYNAMIC_BUNDLE_LTIS_DO_NOT_MATCH",
+          "CANNOT_AFFORD_PRICE",
+          "CANNOT_AFFORD_COUPON",
+          "FAILED_TO_SPEND_PRICE",
+          "FAILED_TO_SPEND_COUPON",
+          "LOOT_NOT_FOR_SALE_WITH_PRICE_ITEM",
+          "COUPONS_DISABLED",
+          "COUPON_ITEM_NOT_FOUND",
+          "COUPON_ITEM_NOT_ACTIVE",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_QUANTITY",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_PRICE_ITEM",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_LOOT",
+          "QUANTITY_NOT_ALLOWED",
+          "PROMOTION_EXPIRED",
+          "PROMOTION_NOT_FOUND",
+          "PROMOTION_NO_USES_LEFT",
+          "PROMOTION_NOT_AVAILABLE",
+          "PROMOTION_CLAIMED_ALREADY",
+          "DYNAMIC_BUNDLES_NOT_AVAILABLE",
+          "TRANSIENT_SINGLE_LOOT_ALREADY_APPLIED",
+          "LOOT_NOT_FILLABLE_FROM_CLIENT",
+          "PERMISSION_DENIED",
+          "FAILED_TO_FIND_ANY_SUB_LOOT",
+          "FAILED_TO_FILL_ANY_SUB_LOOT",
+          "CANNOT_MEET_LOOT_BLOCKER",
+          "CANNOT_MEET_LOOT_REQUIRED",
+          "FAILED_TO_CONSUME_LOOT_REQUIRED",
+          "FAILED_TO_SUBMIT_NEW_ORDER",
+          "FAILED_TO_MODIFY_INVENTORY",
+          "INVENTORY_NOT_FOUND",
+          "ITEM_NOT_FOUND",
+          "ITEM_NOT_ACTIVE",
+          "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
+          "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
+          "AVAILABLE_UNTIL_IS_IN_PAST",
+          "ROLLBACK",
+          "NOT_STARTED"
         ]
       },
       "PlayerOrderEntryType": {
@@ -27691,19 +27728,6 @@
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
-        "x-enum-varnames": [
-          "FILL_LOOT",
-          "PURCHASE_LOOT",
-          "PURCHASE_DYNAMIC_BUNDLE",
-          "PROMOTION_CODE",
-          "FILL_LOOT_SINGLE_TRANSIENT",
-          "FILL_ENTITLED_LOOT",
-          "CREATE_NEW_PERSISTENT_INVENTORY",
-          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
-          "CREATE_NEW_TRANSIENT_INVENTORY",
-          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
-          "UPDATE_INVENTORY"
-        ],
         "x-enum-descriptions": [
           "Fill a loot item.",
           "Purchase a loot item.",
@@ -27716,6 +27740,19 @@
           "Create transient Inventory.",
           "Deprecated. Use update_inventory instead.",
           "Update existing Inventory."
+        ],
+        "x-enum-varnames": [
+          "FILL_LOOT",
+          "PURCHASE_LOOT",
+          "PURCHASE_DYNAMIC_BUNDLE",
+          "PROMOTION_CODE",
+          "FILL_LOOT_SINGLE_TRANSIENT",
+          "FILL_ENTITLED_LOOT",
+          "CREATE_NEW_PERSISTENT_INVENTORY",
+          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
+          "CREATE_NEW_TRANSIENT_INVENTORY",
+          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
+          "UPDATE_INVENTORY"
         ]
       },
       "PlayerOrdersResponse": {
@@ -27788,44 +27825,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "UNUSED_14",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "UNUSED_27",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -27863,10 +27862,57 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "UNUSED_14",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "UNUSED_27",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "PortalUseRuleset": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "rules": {
             "additionalProperties": {
               "items": {
@@ -27888,6 +27934,15 @@
       },
       "PortalUseRulesets": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "rulesets": {
             "additionalProperties": {
               "$ref": "#/components/schemas/PortalUseRuleset"
@@ -27930,6 +27985,15 @@
       },
       "PricePoint": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "name": {
             "type": "string",
             "title": "Name",
@@ -28038,13 +28102,13 @@
         ],
         "title": "QuantityType",
         "description": "Determines how the quantity is to be modified.\n\nRelative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.\n\nAbsolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.",
-        "x-enum-varnames": [
-          "relative",
-          "absolute"
-        ],
         "x-enum-descriptions": [
           "The quantity will be modified relative to the context in which it is fulfilled.",
           "The quantity will be modified regardless of the context in which it is fulfilled."
+        ],
+        "x-enum-varnames": [
+          "relative",
+          "absolute"
         ]
       },
       "SortOrder": {
@@ -28055,13 +28119,13 @@
         ],
         "title": "SortOrder",
         "description": "Determine the direction of the sort",
-        "x-enum-varnames": [
-          "ASCENDING",
-          "DESCENDING"
-        ],
         "x-enum-descriptions": [
           "Sort in ascending order",
           "Sort in descending order"
+        ],
+        "x-enum-varnames": [
+          "ASCENDING",
+          "DESCENDING"
         ]
       },
       "Source": {
@@ -28132,70 +28196,6 @@
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WEB_ORDER_REPAIR",
-          "IN_GAME",
-          "WEB_SITE",
-          "NO_SALE",
-          "SUPPORT",
-          "ACTIVITY",
-          "REFUND",
-          "SYSTEM",
-          "REWARDS",
-          "ESPORTS",
-          "TREASURE",
-          "CONSOLE",
-          "ODYSSEY",
-          "STEAM",
-          "RETURN",
-          "JSON_GATE",
-          "SEND_GIFT",
-          "RECEIVE_GIFT",
-          "STEAM_DLC",
-          "TWITCH_MILESTONE",
-          "TWITCH_PRIME",
-          "PSN",
-          "XBOX",
-          "PTS_GRANT",
-          "INSTANCE",
-          "ACCOUNT_TRANSFER",
-          "PROMOCODE",
-          "TRIUMPH_SYSTEM",
-          "LOGIN_GRANT",
-          "EOM_UNCAPPED",
-          "EOM_CAPPED",
-          "FACEBOOK_DROP",
-          "DATABASE_SCRIPT",
-          "ACCOUNT_LINKING",
-          "CLAN",
-          "CONVERSION",
-          "APPLE",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "PORTAL_DURABLE",
-          "PARTNER_ACHIEVEMENT",
-          "MIXER_DROP",
-          "NINTENDO",
-          "STREAM_VIEWING_PROGRESS",
-          "DISCORD",
-          "FIRST_LOGIN_GRANT",
-          "TWITCH_FUEL",
-          "DISCORD_DLC",
-          "NETEASE",
-          "EPIC_GAMES",
-          "FORTE",
-          "FACEBOOK",
-          "HIREZ",
-          "DAILY_REWARD",
-          "ADD_ACCOUNT_EMAIL_REWARD",
-          "CLIENT_CLAIM",
-          "CLIENT",
-          "ENTITLEMENTS",
-          "AMAZON",
-          "SIMULMEDIA",
-          "LUNA"
-        ],
         "x-enum-descriptions": [
           "Unknown source.",
           "Repair Order send from the Web to fix up Inventory mistakes.",
@@ -28259,6 +28259,70 @@
           "Order granted by Amazon.",
           "Order granted by Simulmedia.",
           "Order granted by Luna."
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WEB_ORDER_REPAIR",
+          "IN_GAME",
+          "WEB_SITE",
+          "NO_SALE",
+          "SUPPORT",
+          "ACTIVITY",
+          "REFUND",
+          "SYSTEM",
+          "REWARDS",
+          "ESPORTS",
+          "TREASURE",
+          "CONSOLE",
+          "ODYSSEY",
+          "STEAM",
+          "RETURN",
+          "JSON_GATE",
+          "SEND_GIFT",
+          "RECEIVE_GIFT",
+          "STEAM_DLC",
+          "TWITCH_MILESTONE",
+          "TWITCH_PRIME",
+          "PSN",
+          "XBOX",
+          "PTS_GRANT",
+          "INSTANCE",
+          "ACCOUNT_TRANSFER",
+          "PROMOCODE",
+          "TRIUMPH_SYSTEM",
+          "LOGIN_GRANT",
+          "EOM_UNCAPPED",
+          "EOM_CAPPED",
+          "FACEBOOK_DROP",
+          "DATABASE_SCRIPT",
+          "ACCOUNT_LINKING",
+          "CLAN",
+          "CONVERSION",
+          "APPLE",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "PORTAL_DURABLE",
+          "PARTNER_ACHIEVEMENT",
+          "MIXER_DROP",
+          "NINTENDO",
+          "STREAM_VIEWING_PROGRESS",
+          "DISCORD",
+          "FIRST_LOGIN_GRANT",
+          "TWITCH_FUEL",
+          "DISCORD_DLC",
+          "NETEASE",
+          "EPIC_GAMES",
+          "FORTE",
+          "FACEBOOK",
+          "HIREZ",
+          "DAILY_REWARD",
+          "ADD_ACCOUNT_EMAIL_REWARD",
+          "CLIENT_CLAIM",
+          "CLIENT",
+          "ENTITLEMENTS",
+          "AMAZON",
+          "SIMULMEDIA",
+          "LUNA"
         ]
       },
       "TimeFrame": {
@@ -28489,6 +28553,15 @@
       },
       "Vendor": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "type": {
             "allOf": [
               {
@@ -28541,13 +28614,13 @@
         ],
         "title": "VendorType",
         "description": "Determines how the Vendor fulfills the loot.",
-        "x-enum-varnames": [
-          "recipe",
-          "randomly_sampled"
-        ],
         "x-enum-descriptions": [
           "A Vendor that will always drop all of the Loot in the Loot table.",
           "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
+        ],
+        "x-enum-varnames": [
+          "recipe",
+          "randomly_sampled"
         ]
       },
       "Vendors": {
@@ -28578,21 +28651,30 @@
         ],
         "title": "XpQuantityTransform",
         "description": "Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.\n\nThe following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:\n1: 20\n2: 50\n3: 100\n4: 200\n5: 400\n\nfrom_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 200 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 400 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 400 total xp.\n\nfrom_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 250 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 450 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 450 total xp.\n\nfrom_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.\nExample 1: fulfill quantity 1\n    Player will be level 3 with 170 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 4 with 200 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 4 with 250 total xp.",
-        "x-enum-varnames": [
-          "none",
-          "from_current_xp_to_target_additional_level_min_xp",
-          "from_current_level_min_xp_to_target_additional_level_min_xp",
-          "from_zero_to_target_exact_level_min_xp"
-        ],
         "x-enum-descriptions": [
           "Quantity will be treated as XP and will not be transformed.",
           "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
           "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
           "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
+        ],
+        "x-enum-varnames": [
+          "none",
+          "from_current_xp_to_target_additional_level_min_xp",
+          "from_current_level_min_xp_to_target_additional_level_min_xp",
+          "from_zero_to_target_exact_level_min_xp"
         ]
       },
       "XpTable": {
         "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
           "xp_entries": {
             "additionalProperties": {
               "type": "integer",
@@ -28656,17 +28738,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Player is current online",
-          "Player is current online, but away.  Functionally identical to online",
-          "Player will appear offline to other players",
-          "Player is offline"
-        ],
         "x-enum-varnames": [
           "online",
           "away",
           "invisible",
           "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
         ]
       },
       "PlayerLastSeenUpdate": {
@@ -28946,13 +29028,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "latest",
-          "earliest"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
         ]
       },
       "PlayerRankRequestResponse": {
