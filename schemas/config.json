@@ -146,6 +146,81 @@
         }
       }
     },
+    "/v1/kv": {
+      "get": {
+        "tags": [
+          "config"
+        ],
+        "summary": "Get App Settings All",
+        "description": "If authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.",
+        "operationId": "get_app_settings_all",
+        "parameters": [
+          {
+            "description": "If specified, will only return the KVs with the specified keys",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "title": "Keys To Include",
+              "description": "If specified, will only return the KVs with the specified keys"
+            },
+            "name": "keys_to_include",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KVsResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v1/discovery": {
       "get": {
         "tags": [
@@ -329,6 +404,30 @@
           "desc"
         ],
         "title": "HzApiErrorModel"
+      },
+      "KVsResponse": {
+        "properties": {
+          "kvs": {
+            "items": {
+              "$ref": "#/components/schemas/AppSetting"
+            },
+            "type": "array",
+            "title": "Kvs",
+            "description": "The list of key/value pairs",
+            "default": []
+          },
+          "secret_kvs": {
+            "items": {
+              "$ref": "#/components/schemas/AppSetting"
+            },
+            "type": "array",
+            "title": "Secret Kvs",
+            "description": "The list of secret key/value pairs",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "KVsResponse"
       },
       "SiteSettings": {
         "properties": {

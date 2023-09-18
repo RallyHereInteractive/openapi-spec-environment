@@ -2626,16 +2626,19 @@
           "needs_eula": {
             "type": "boolean",
             "title": "Needs Eula",
+            "description": "Whether the user needs to accept the End User License Agreement",
             "default": false
           },
           "needs_tos": {
             "type": "boolean",
             "title": "Needs Tos",
+            "description": "Whether the user needs to accept the Terms of Service",
             "default": false
           },
           "needs_privacy_policy": {
             "type": "boolean",
             "title": "Needs Privacy Policy",
+            "description": "Whether the user needs to accept the Privacy Policy",
             "default": false
           }
         },
@@ -2644,7 +2647,8 @@
           "error_code",
           "desc"
         ],
-        "title": "AgreementMessage"
+        "title": "AgreementMessage",
+        "description": "Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy"
       },
       "GrantType": {
         "type": "string",
@@ -2818,22 +2822,37 @@
       "LoginResult": {
         "properties": {
           "platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform"
           },
           "portal_id": {
             "type": "integer",
-            "title": "Portal Id"
+            "title": "Portal Id",
+            "description": "Portal ID *DEPRECATED* use `platform` instead",
+            "deprecated": true
           },
           "portal_user_id": {
             "type": "string",
-            "title": "Portal User Id"
+            "title": "Portal User Id",
+            "description": "Portal user ID"
           },
           "display_name": {
             "type": "string",
-            "title": "Display Name"
+            "title": "Display Name",
+            "description": "Display name"
           },
           "portal_parent_auth_result": {
-            "$ref": "#/components/schemas/PortalUserInfo"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PortalUserInfo"
+              }
+            ],
+            "title": "Portal Parent Auth Result",
+            "description": "Parent portal auth result"
           },
           "permissions": {
             "items": {
@@ -2855,50 +2874,65 @@
           },
           "active_player_id": {
             "type": "integer",
-            "title": "Active Player Id"
+            "title": "Active Player Id",
+            "description": "Active player ID. *DEPRECATED* use `active_player_uuid` instead",
+            "deprecated": true
           },
           "active_player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Active Player Uuid"
+            "title": "Active Player Uuid",
+            "description": "Active player UUID"
           },
           "role_id": {
             "type": "integer",
-            "title": "Role Id"
+            "title": "Role Id",
+            "description": "Role ID"
           },
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID"
           },
           "access_token": {
             "type": "string",
             "title": "Access Token",
+            "description": "Access token that can be used for future requests",
             "default": ""
           },
           "refresh_token": {
             "type": "string",
-            "title": "Refresh Token"
+            "title": "Refresh Token",
+            "description": "Refresh token that can be used to refresh authentication for a new access token"
           },
           "publisher_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Publisher Uuid"
+            "title": "Publisher Uuid",
+            "description": "Publisher UUID",
+            "deprecated": true
           },
           "tenant_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Tenant Uuid"
+            "title": "Tenant Uuid",
+            "description": "Tenant UUID",
+            "deprecated": true
           },
           "config_elector_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Config Elector Uuid"
+            "title": "Config Elector Uuid",
+            "description": "Config elector UUID",
+            "deprecated": true
           },
           "client_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Client Uuid"
+            "title": "Client Uuid",
+            "description": "Client UUID",
+            "deprecated": true
           }
         },
         "type": "object",
@@ -2914,21 +2948,24 @@
           "config_elector_uuid",
           "client_uuid"
         ],
-        "title": "LoginResult"
+        "title": "LoginResult",
+        "description": "Login result"
       },
       "LogoutRequest": {
         "properties": {
           "refresh_token": {
             "type": "string",
             "minLength": 1,
-            "title": "Refresh Token"
+            "title": "Refresh Token",
+            "description": "Refresh token to be invalidated"
           }
         },
         "type": "object",
         "required": [
           "refresh_token"
         ],
-        "title": "LogoutRequest"
+        "title": "LogoutRequest",
+        "description": "Logout request"
       },
       "LookupResults": {
         "properties": {
@@ -2944,6 +2981,7 @@
             },
             "type": "array",
             "title": "Display Names",
+            "description": "List of display names and the players that match that display name",
             "default": []
           },
           "identity_platforms": {
@@ -2955,7 +2993,9 @@
             },
             "type": "object",
             "title": "Identity Platforms",
-            "default": {}
+            "description": "*DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id",
+            "default": {},
+            "deprecated": true
           },
           "identity_platforms_by_platform": {
             "additionalProperties": {
@@ -2966,24 +3006,28 @@
             },
             "type": "object",
             "title": "Identity Platforms By Platform",
+            "description": "List of platforms and the players that match that platform user id",
             "default": {}
           }
         },
         "type": "object",
-        "title": "LookupResults"
+        "title": "LookupResults",
+        "description": "Lookup results for a player query"
       },
       "MessageOnly": {
         "properties": {
           "message": {
             "type": "string",
-            "title": "Message"
+            "title": "Message",
+            "description": "Message"
           }
         },
         "type": "object",
         "required": [
           "message"
         ],
-        "title": "MessageOnly"
+        "title": "MessageOnly",
+        "description": "Message only response"
       },
       "OAuthGrantType": {
         "type": "string",
@@ -3146,12 +3190,14 @@
               "type": "integer"
             },
             "type": "array",
-            "title": "List of all SendInBlue email list ids the user is subscribed to, even if already subscribed before request",
+            "title": "Email List Ids",
+            "description": "List of all email list ids the user is subscribed to, even if already subscribed before request",
             "default": []
           }
         },
         "type": "object",
-        "title": "PersonEmailListRequest"
+        "title": "PersonEmailListRequest",
+        "description": "Request to update a person's email list subscriptions"
       },
       "PersonEmailListResponse": {
         "properties": {
@@ -3160,33 +3206,39 @@
               "type": "integer"
             },
             "type": "array",
-            "title": "Email List Ids"
+            "title": "Email List Ids",
+            "description": "List of all email list ids the user is subscribed to"
           }
         },
         "type": "object",
         "required": [
           "email_list_ids"
         ],
-        "title": "PersonEmailListResponse"
+        "title": "PersonEmailListResponse",
+        "description": "Response for updating a person's email list subscriptions"
       },
       "PersonInfoResponse": {
         "properties": {
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID"
           },
           "active_player_id": {
             "type": "integer",
-            "title": "Active Player Id"
+            "title": "Active Player Id",
+            "description": "Active player ID, if the person has an active player."
           },
           "email": {
             "type": "string",
-            "title": "Email"
+            "title": "Email",
+            "description": "Email address"
           }
         },
         "type": "object",
-        "title": "PersonInfoResponse"
+        "title": "PersonInfoResponse",
+        "description": "Response for getting a person's info"
       },
       "Platform": {
         "type": "string",
@@ -3249,24 +3301,28 @@
             },
             "type": "object",
             "title": "Identity",
+            "description": "List of platform user ids and the players that match that platform user id",
             "default": {}
           }
         },
         "type": "object",
-        "title": "PlatformIdentityLookupResults"
+        "title": "PlatformIdentityLookupResults",
+        "description": "Lookup results for a platform user id"
       },
       "PlayerIdWrapper": {
         "properties": {
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID"
           }
         },
         "type": "object",
         "required": [
           "player_id"
         ],
-        "title": "PlayerIdWrapper"
+        "title": "PlayerIdWrapper",
+        "description": "Model for getting a player ID from a player UUID"
       },
       "PlayerIterateResponse": {
         "properties": {
@@ -3276,28 +3332,38 @@
             },
             "type": "array",
             "title": "Players",
+            "description": "List of players.  An empty list means iteration is complete",
             "default": []
           },
           "cursor": {
             "type": "string",
             "title": "Cursor",
+            "description": "Cursor to continue iteration",
             "default": ""
           }
         },
         "type": "object",
-        "title": "PlayerIterateResponse"
+        "title": "PlayerIterateResponse",
+        "description": "Response from the player iteration API"
       },
       "PlayerLinkedPortalsResponse": {
         "properties": {
           "player": {
-            "$ref": "#/components/schemas/PlayerPersonResponse"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerPersonResponse"
+              }
+            ],
+            "title": "Player",
+            "description": "Player info"
           },
           "linked_portals": {
             "items": {
               "$ref": "#/components/schemas/PortalUserResponse"
             },
             "type": "array",
-            "title": "Linked Portals"
+            "title": "Linked Portals",
+            "description": "List of linked portals"
           }
         },
         "type": "object",
@@ -3305,32 +3371,40 @@
           "player",
           "linked_portals"
         ],
-        "title": "PlayerLinkedPortalsResponse"
+        "title": "PlayerLinkedPortalsResponse",
+        "description": "Response for getting a player's linked portals"
       },
       "PlayerPersonResponse": {
         "properties": {
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID *DEPRECATED* use `player_uuid` instead",
+            "deprecated": true
           },
           "player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Player Uuid"
+            "title": "Player Uuid",
+            "description": "Player UUID"
           },
           "active_player_id": {
             "type": "integer",
-            "title": "Active Player Id"
+            "title": "Active Player Id",
+            "description": "*DEPRECATED* use `active_player_uuid` instead.  Active player ID, if the player has an active player.",
+            "deprecated": true
           },
           "active_player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Active Player Uuid"
+            "title": "Active Player Uuid",
+            "description": "Active player UUID, if the player has an active player."
           },
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID"
           }
         },
         "type": "object",
@@ -3339,18 +3413,22 @@
           "player_uuid",
           "person_id"
         ],
-        "title": "PlayerPersonResponse"
+        "title": "PlayerPersonResponse",
+        "description": "Response for getting a player's info"
       },
       "PlayerResponse": {
         "properties": {
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID *DEPRECATED* use `player_uuid` instead",
+            "deprecated": true
           },
           "player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Player Uuid"
+            "title": "Player Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
@@ -3358,21 +3436,24 @@
           "player_id",
           "player_uuid"
         ],
-        "title": "PlayerResponse"
+        "title": "PlayerResponse",
+        "description": "Response for getting a player's info"
       },
       "PlayerUuidFromId": {
         "properties": {
           "uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Uuid"
+            "title": "Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
         "required": [
           "uuid"
         ],
-        "title": "PlayerUuidFromId"
+        "title": "PlayerUuidFromId",
+        "description": "Model for getting a player UUID from a player ID"
       },
       "Portal": {
         "type": "integer",
@@ -3465,18 +3546,31 @@
       "PortalUserInfo": {
         "properties": {
           "platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform for the user"
           },
           "portal_id": {
-            "$ref": "#/components/schemas/Portal"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Portal"
+              }
+            ],
+            "description": "Portal ID. *DEPRECATED* use `platform` instead",
+            "deprecated": true
           },
           "portal_user_id": {
             "type": "string",
-            "title": "Portal User Id"
+            "title": "Portal User Id",
+            "description": "Platform User ID"
           },
           "display_name": {
             "type": "string",
-            "title": "Display Name"
+            "title": "Display Name",
+            "description": "Display name"
           }
         },
         "type": "object",
@@ -3486,33 +3580,46 @@
           "portal_user_id",
           "display_name"
         ],
-        "title": "PortalUserInfo"
+        "title": "PortalUserInfo",
+        "description": "Portal user info"
       },
       "PortalUserResponse": {
         "properties": {
           "portal_user_id": {
             "type": "string",
-            "title": "Portal User Id"
+            "title": "Portal User Id",
+            "description": "Portal user ID"
           },
           "portal_id": {
             "type": "integer",
-            "title": "Portal Id"
+            "title": "Portal Id",
+            "description": "Portal ID *DEPRECATED* use `platform` instead",
+            "deprecated": true
           },
           "platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform"
           },
           "display_name": {
             "type": "string",
-            "title": "Display Name"
+            "title": "Display Name",
+            "description": "Display name"
           },
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID *DEPRECATED* use `player_uuid` instead",
+            "deprecated": true
           },
           "player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Player Uuid"
+            "title": "Player Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
@@ -3528,19 +3635,23 @@
         "properties": {
           "kid": {
             "type": "string",
-            "title": "Kid"
+            "title": "Kid",
+            "description": "Key ID - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.5"
           },
           "kty": {
             "type": "string",
-            "title": "Kty"
+            "title": "Kty",
+            "description": "Key Type - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.1"
           },
           "n": {
             "type": "string",
-            "title": "N"
+            "title": "N",
+            "description": "Modulus - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1"
           },
           "e": {
             "type": "string",
-            "title": "E"
+            "title": "E",
+            "description": "Exponent - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1"
           }
         },
         "type": "object",
@@ -3550,7 +3661,8 @@
           "n",
           "e"
         ],
-        "title": "PublicKey"
+        "title": "PublicKey",
+        "description": "Public key for verifying Access Token JWTs\n\nThis is in the JWK format as defined in https://datatracker.ietf.org/doc/html/rfc7517#section-4"
       },
       "PublicKeyList": {
         "properties": {
@@ -3559,14 +3671,16 @@
               "$ref": "#/components/schemas/PublicKey"
             },
             "type": "array",
-            "title": "Keys"
+            "title": "Keys",
+            "description": "List of public keys for verifying Access Token JWTs"
           }
         },
         "type": "object",
         "required": [
           "keys"
         ],
-        "title": "PublicKeyList"
+        "title": "PublicKeyList",
+        "description": "List of public keys for verifying Access Token JWTs.\n\nThis is in the JWK Set format as defined in https://datatracker.ietf.org/doc/html/rfc7517#section-5"
       },
       "PurgeRequest": {
         "properties": {
@@ -3578,14 +3692,16 @@
           }
         },
         "type": "object",
-        "title": "PurgeRequest"
+        "title": "PurgeRequest",
+        "description": "Purge request to purge a person from the system.  This will remove all data about that player from the system."
       },
       "PurgeResponse": {
         "properties": {
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID that will be purged"
           },
           "purge_on": {
             "type": "string",
@@ -3607,7 +3723,8 @@
           },
           "status": {
             "type": "string",
-            "title": "Status"
+            "title": "Status",
+            "description": "Status of the purge request"
           }
         },
         "type": "object",
@@ -3618,28 +3735,37 @@
           "last_modified_on",
           "status"
         ],
-        "title": "PurgeResponse"
+        "title": "PurgeResponse",
+        "description": "Purge response from a purge request"
       },
       "Restriction": {
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/RestrictionType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionType"
+              }
+            ],
+            "description": "Type of restriction"
           },
           "reason": {
             "type": "string",
-            "title": "Reason"
+            "title": "Reason",
+            "description": "Reason the restriction was applied"
           },
           "expiration": {
             "type": "string",
             "format": "date-time",
-            "title": "Expiration"
+            "title": "Expiration",
+            "description": "Date the restriction expires.  Null means the restriction is permanent"
           }
         },
         "type": "object",
         "required": [
           "type"
         ],
-        "title": "Restriction"
+        "title": "Restriction",
+        "description": "Restriction applied to a player"
       },
       "RestrictionType": {
         "type": "string",
@@ -3668,11 +3794,13 @@
         "properties": {
           "role_id": {
             "type": "string",
-            "title": "Role Id"
+            "title": "Role Id",
+            "description": "Unique Role ID"
           },
           "custom_data": {
             "type": "object",
             "title": "Custom Data",
+            "description": "Custom data for the role",
             "default": {}
           },
           "login_loot_rewards": {
@@ -3681,6 +3809,7 @@
             },
             "type": "array",
             "title": "Login Loot Rewards",
+            "description": "List of loot table item ids that are fulfilled for the player when they begin a new inventory session",
             "default": []
           }
         },
@@ -3688,76 +3817,94 @@
         "required": [
           "role_id"
         ],
-        "title": "Role"
+        "title": "Role",
+        "description": "Role object that is used to define a role for a player"
       },
       "SendInBlueContact": {
         "properties": {
           "email": {
             "type": "string",
-            "title": "Email"
+            "title": "Email",
+            "description": "Email address"
           },
           "attributes": {
             "type": "object",
-            "title": "Attributes"
+            "title": "Attributes",
+            "description": "Attributes"
           },
           "emailBlacklisted": {
             "type": "boolean",
-            "title": "Emailblacklisted"
+            "title": "Emailblacklisted",
+            "description": "Email blacklisted"
           },
           "listIds": {
             "items": {
               "type": "integer"
             },
             "type": "array",
-            "title": "Listids"
+            "title": "Listids",
+            "description": "List IDs"
           },
           "unlinkListIds": {
             "items": {
               "type": "integer"
             },
             "type": "array",
-            "title": "Unlinklistids"
+            "title": "Unlinklistids",
+            "description": "Unlink list IDs"
           },
           "updateEnabled": {
             "type": "boolean",
-            "title": "Updateenabled"
+            "title": "Updateenabled",
+            "description": "Update enabled"
           }
         },
         "type": "object",
         "required": [
           "email"
         ],
-        "title": "SendInBlueContact"
+        "title": "SendInBlueContact",
+        "description": "SendInBlue contact"
       },
       "TokenRequest": {
         "properties": {
           "grant_type": {
-            "$ref": "#/components/schemas/OAuthGrantType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OAuthGrantType"
+              }
+            ],
+            "description": "OAuth2 grant type"
           }
         },
         "type": "object",
         "required": [
           "grant_type"
         ],
-        "title": "TokenRequest"
+        "title": "TokenRequest",
+        "description": "OAuth2 Token Request"
       },
       "TokenResponse": {
         "properties": {
           "access_token": {
             "type": "string",
-            "title": "Access Token"
+            "title": "Access Token",
+            "description": "Result access token"
           },
           "token_type": {
             "type": "string",
-            "title": "Token Type"
+            "title": "Token Type",
+            "description": "Result token type"
           },
           "refresh_token": {
             "type": "string",
-            "title": "Refresh Token"
+            "title": "Refresh Token",
+            "description": "Result refresh token that can be used to get new access tokens"
           },
           "expires_in": {
             "type": "integer",
-            "title": "Expires In"
+            "title": "Expires In",
+            "description": "Result access token expiration time in seconds"
           }
         },
         "type": "object",
@@ -3766,20 +3913,23 @@
           "token_type",
           "expires_in"
         ],
-        "title": "TokenResponse"
+        "title": "TokenResponse",
+        "description": "OAuth2 Token Response"
       },
       "UpdatePersonInfoRequest": {
         "properties": {
           "email": {
             "type": "string",
-            "title": "Email"
+            "title": "Email",
+            "description": "Email address to update to"
           }
         },
         "type": "object",
         "required": [
           "email"
         ],
-        "title": "UpdatePersonInfoRequest"
+        "title": "UpdatePersonInfoRequest",
+        "description": "Request to update a person's info"
       },
       "ValidationError": {
         "properties": {

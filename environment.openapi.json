@@ -7189,7 +7189,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -7257,7 +7257,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -7334,7 +7334,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:browser`\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7480,7 +7480,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:read:any`, `session:*`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:self`, `session:read:any`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7557,7 +7557,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7714,7 +7714,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -7782,7 +7782,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -7833,7 +7833,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -7903,7 +7903,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -7971,7 +7971,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -8030,7 +8030,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -8100,7 +8100,7 @@
           "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -8168,7 +8168,7 @@
           "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -8224,7 +8224,7 @@
           "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -8292,7 +8292,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -8441,7 +8441,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:promote:self`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8537,7 +8537,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8618,7 +8618,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:promote:self`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8706,7 +8706,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8779,7 +8779,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:read-player:any`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8860,7 +8860,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:event`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:event`, `session:update:any`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9143,7 +9143,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -9202,7 +9202,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9270,7 +9270,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9333,7 +9333,7 @@
           "Sessions"
         ],
         "summary": "Create Match",
-        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`\n\n\nRequired Session Permissions: None",
         "operationId": "create_match",
         "requestBody": {
           "content": {
@@ -9398,7 +9398,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -9490,7 +9490,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -9581,7 +9581,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -9660,7 +9660,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -9738,7 +9738,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `/v1/queues` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -9803,6 +9803,86 @@
             }
           }
         },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v2/match-making-templates/{template_group_id}": {
+      "get": {
+        "tags": [
+          "Queues"
+        ],
+        "summary": "Get Match Making Templates",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "operationId": "Sessionget_match_making_templates",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Template Group Id"
+            },
+            "name": "template_group_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchMakingTemplateGroupV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -9816,7 +9896,7 @@
           "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:fubar`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:fubar`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -9886,7 +9966,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -10170,7 +10250,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -10282,7 +10362,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -10371,7 +10451,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10502,7 +10582,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -20940,6 +21020,81 @@
         }
       }
     },
+    "/config/v1/kv": {
+      "get": {
+        "tags": [
+          "config"
+        ],
+        "summary": "Get App Settings All",
+        "description": "If authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.",
+        "operationId": "get_app_settings_all",
+        "parameters": [
+          {
+            "description": "If specified, will only return the KVs with the specified keys",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "title": "Keys To Include",
+              "description": "If specified, will only return the KVs with the specified keys"
+            },
+            "name": "keys_to_include",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KVsResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/config/v1/discovery": {
       "get": {
         "tags": [
@@ -21818,16 +21973,19 @@
           "needs_eula": {
             "type": "boolean",
             "title": "Needs Eula",
+            "description": "Whether the user needs to accept the End User License Agreement",
             "default": false
           },
           "needs_tos": {
             "type": "boolean",
             "title": "Needs Tos",
+            "description": "Whether the user needs to accept the Terms of Service",
             "default": false
           },
           "needs_privacy_policy": {
             "type": "boolean",
             "title": "Needs Privacy Policy",
+            "description": "Whether the user needs to accept the Privacy Policy",
             "default": false
           }
         },
@@ -21836,7 +21994,8 @@
           "error_code",
           "desc"
         ],
-        "title": "AgreementMessage"
+        "title": "AgreementMessage",
+        "description": "Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy"
       },
       "GrantType": {
         "type": "string",
@@ -21974,22 +22133,37 @@
       "LoginResult": {
         "properties": {
           "platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform"
           },
           "portal_id": {
             "type": "integer",
-            "title": "Portal Id"
+            "title": "Portal Id",
+            "description": "Portal ID *DEPRECATED* use `platform` instead",
+            "deprecated": true
           },
           "portal_user_id": {
             "type": "string",
-            "title": "Portal User Id"
+            "title": "Portal User Id",
+            "description": "Portal user ID"
           },
           "display_name": {
             "type": "string",
-            "title": "Display Name"
+            "title": "Display Name",
+            "description": "Display name"
           },
           "portal_parent_auth_result": {
-            "$ref": "#/components/schemas/PortalUserInfo"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PortalUserInfo"
+              }
+            ],
+            "title": "Portal Parent Auth Result",
+            "description": "Parent portal auth result"
           },
           "permissions": {
             "items": {
@@ -22011,50 +22185,65 @@
           },
           "active_player_id": {
             "type": "integer",
-            "title": "Active Player Id"
+            "title": "Active Player Id",
+            "description": "Active player ID. *DEPRECATED* use `active_player_uuid` instead",
+            "deprecated": true
           },
           "active_player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Active Player Uuid"
+            "title": "Active Player Uuid",
+            "description": "Active player UUID"
           },
           "role_id": {
             "type": "integer",
-            "title": "Role Id"
+            "title": "Role Id",
+            "description": "Role ID"
           },
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID"
           },
           "access_token": {
             "type": "string",
             "title": "Access Token",
+            "description": "Access token that can be used for future requests",
             "default": ""
           },
           "refresh_token": {
             "type": "string",
-            "title": "Refresh Token"
+            "title": "Refresh Token",
+            "description": "Refresh token that can be used to refresh authentication for a new access token"
           },
           "publisher_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Publisher Uuid"
+            "title": "Publisher Uuid",
+            "description": "Publisher UUID",
+            "deprecated": true
           },
           "tenant_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Tenant Uuid"
+            "title": "Tenant Uuid",
+            "description": "Tenant UUID",
+            "deprecated": true
           },
           "config_elector_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Config Elector Uuid"
+            "title": "Config Elector Uuid",
+            "description": "Config elector UUID",
+            "deprecated": true
           },
           "client_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Client Uuid"
+            "title": "Client Uuid",
+            "description": "Client UUID",
+            "deprecated": true
           }
         },
         "type": "object",
@@ -22070,21 +22259,24 @@
           "config_elector_uuid",
           "client_uuid"
         ],
-        "title": "LoginResult"
+        "title": "LoginResult",
+        "description": "Login result"
       },
       "LogoutRequest": {
         "properties": {
           "refresh_token": {
             "type": "string",
             "minLength": 1,
-            "title": "Refresh Token"
+            "title": "Refresh Token",
+            "description": "Refresh token to be invalidated"
           }
         },
         "type": "object",
         "required": [
           "refresh_token"
         ],
-        "title": "LogoutRequest"
+        "title": "LogoutRequest",
+        "description": "Logout request"
       },
       "LookupResults": {
         "properties": {
@@ -22100,6 +22292,7 @@
             },
             "type": "array",
             "title": "Display Names",
+            "description": "List of display names and the players that match that display name",
             "default": []
           },
           "identity_platforms": {
@@ -22111,7 +22304,9 @@
             },
             "type": "object",
             "title": "Identity Platforms",
-            "default": {}
+            "description": "*DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id",
+            "default": {},
+            "deprecated": true
           },
           "identity_platforms_by_platform": {
             "additionalProperties": {
@@ -22122,24 +22317,28 @@
             },
             "type": "object",
             "title": "Identity Platforms By Platform",
+            "description": "List of platforms and the players that match that platform user id",
             "default": {}
           }
         },
         "type": "object",
-        "title": "LookupResults"
+        "title": "LookupResults",
+        "description": "Lookup results for a player query"
       },
       "MessageOnly": {
         "properties": {
           "message": {
             "type": "string",
-            "title": "Message"
+            "title": "Message",
+            "description": "Message"
           }
         },
         "type": "object",
         "required": [
           "message"
         ],
-        "title": "MessageOnly"
+        "title": "MessageOnly",
+        "description": "Message only response"
       },
       "OAuthGrantType": {
         "type": "string",
@@ -22302,12 +22501,14 @@
               "type": "integer"
             },
             "type": "array",
-            "title": "List of all SendInBlue email list ids the user is subscribed to, even if already subscribed before request",
+            "title": "Email List Ids",
+            "description": "List of all email list ids the user is subscribed to, even if already subscribed before request",
             "default": []
           }
         },
         "type": "object",
-        "title": "PersonEmailListRequest"
+        "title": "PersonEmailListRequest",
+        "description": "Request to update a person's email list subscriptions"
       },
       "PersonEmailListResponse": {
         "properties": {
@@ -22316,33 +22517,39 @@
               "type": "integer"
             },
             "type": "array",
-            "title": "Email List Ids"
+            "title": "Email List Ids",
+            "description": "List of all email list ids the user is subscribed to"
           }
         },
         "type": "object",
         "required": [
           "email_list_ids"
         ],
-        "title": "PersonEmailListResponse"
+        "title": "PersonEmailListResponse",
+        "description": "Response for updating a person's email list subscriptions"
       },
       "PersonInfoResponse": {
         "properties": {
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID"
           },
           "active_player_id": {
             "type": "integer",
-            "title": "Active Player Id"
+            "title": "Active Player Id",
+            "description": "Active player ID, if the person has an active player."
           },
           "email": {
             "type": "string",
-            "title": "Email"
+            "title": "Email",
+            "description": "Email address"
           }
         },
         "type": "object",
-        "title": "PersonInfoResponse"
+        "title": "PersonInfoResponse",
+        "description": "Response for getting a person's info"
       },
       "Platform": {
         "type": "string",
@@ -22405,24 +22612,28 @@
             },
             "type": "object",
             "title": "Identity",
+            "description": "List of platform user ids and the players that match that platform user id",
             "default": {}
           }
         },
         "type": "object",
-        "title": "PlatformIdentityLookupResults"
+        "title": "PlatformIdentityLookupResults",
+        "description": "Lookup results for a platform user id"
       },
       "PlayerIdWrapper": {
         "properties": {
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID"
           }
         },
         "type": "object",
         "required": [
           "player_id"
         ],
-        "title": "PlayerIdWrapper"
+        "title": "PlayerIdWrapper",
+        "description": "Model for getting a player ID from a player UUID"
       },
       "PlayerIterateResponse": {
         "properties": {
@@ -22432,28 +22643,38 @@
             },
             "type": "array",
             "title": "Players",
+            "description": "List of players.  An empty list means iteration is complete",
             "default": []
           },
           "cursor": {
             "type": "string",
             "title": "Cursor",
+            "description": "Cursor to continue iteration",
             "default": ""
           }
         },
         "type": "object",
-        "title": "PlayerIterateResponse"
+        "title": "PlayerIterateResponse",
+        "description": "Response from the player iteration API"
       },
       "PlayerLinkedPortalsResponse": {
         "properties": {
           "player": {
-            "$ref": "#/components/schemas/PlayerPersonResponse"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerPersonResponse"
+              }
+            ],
+            "title": "Player",
+            "description": "Player info"
           },
           "linked_portals": {
             "items": {
               "$ref": "#/components/schemas/PortalUserResponse"
             },
             "type": "array",
-            "title": "Linked Portals"
+            "title": "Linked Portals",
+            "description": "List of linked portals"
           }
         },
         "type": "object",
@@ -22461,32 +22682,40 @@
           "player",
           "linked_portals"
         ],
-        "title": "PlayerLinkedPortalsResponse"
+        "title": "PlayerLinkedPortalsResponse",
+        "description": "Response for getting a player's linked portals"
       },
       "PlayerPersonResponse": {
         "properties": {
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID *DEPRECATED* use `player_uuid` instead",
+            "deprecated": true
           },
           "player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Player Uuid"
+            "title": "Player Uuid",
+            "description": "Player UUID"
           },
           "active_player_id": {
             "type": "integer",
-            "title": "Active Player Id"
+            "title": "Active Player Id",
+            "description": "*DEPRECATED* use `active_player_uuid` instead.  Active player ID, if the player has an active player.",
+            "deprecated": true
           },
           "active_player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Active Player Uuid"
+            "title": "Active Player Uuid",
+            "description": "Active player UUID, if the player has an active player."
           },
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID"
           }
         },
         "type": "object",
@@ -22495,18 +22724,22 @@
           "player_uuid",
           "person_id"
         ],
-        "title": "PlayerPersonResponse"
+        "title": "PlayerPersonResponse",
+        "description": "Response for getting a player's info"
       },
       "PlayerResponse": {
         "properties": {
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID *DEPRECATED* use `player_uuid` instead",
+            "deprecated": true
           },
           "player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Player Uuid"
+            "title": "Player Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
@@ -22514,21 +22747,24 @@
           "player_id",
           "player_uuid"
         ],
-        "title": "PlayerResponse"
+        "title": "PlayerResponse",
+        "description": "Response for getting a player's info"
       },
       "PlayerUuidFromId": {
         "properties": {
           "uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Uuid"
+            "title": "Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
         "required": [
           "uuid"
         ],
-        "title": "PlayerUuidFromId"
+        "title": "PlayerUuidFromId",
+        "description": "Model for getting a player UUID from a player ID"
       },
       "Portal": {
         "type": "integer",
@@ -22621,18 +22857,31 @@
       "PortalUserInfo": {
         "properties": {
           "platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform for the user"
           },
           "portal_id": {
-            "$ref": "#/components/schemas/Portal"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Portal"
+              }
+            ],
+            "description": "Portal ID. *DEPRECATED* use `platform` instead",
+            "deprecated": true
           },
           "portal_user_id": {
             "type": "string",
-            "title": "Portal User Id"
+            "title": "Portal User Id",
+            "description": "Platform User ID"
           },
           "display_name": {
             "type": "string",
-            "title": "Display Name"
+            "title": "Display Name",
+            "description": "Display name"
           }
         },
         "type": "object",
@@ -22642,33 +22891,46 @@
           "portal_user_id",
           "display_name"
         ],
-        "title": "PortalUserInfo"
+        "title": "PortalUserInfo",
+        "description": "Portal user info"
       },
       "PortalUserResponse": {
         "properties": {
           "portal_user_id": {
             "type": "string",
-            "title": "Portal User Id"
+            "title": "Portal User Id",
+            "description": "Portal user ID"
           },
           "portal_id": {
             "type": "integer",
-            "title": "Portal Id"
+            "title": "Portal Id",
+            "description": "Portal ID *DEPRECATED* use `platform` instead",
+            "deprecated": true
           },
           "platform": {
-            "$ref": "#/components/schemas/Platform"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform"
           },
           "display_name": {
             "type": "string",
-            "title": "Display Name"
+            "title": "Display Name",
+            "description": "Display name"
           },
           "player_id": {
             "type": "integer",
-            "title": "Player Id"
+            "title": "Player Id",
+            "description": "Player ID *DEPRECATED* use `player_uuid` instead",
+            "deprecated": true
           },
           "player_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Player Uuid"
+            "title": "Player Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
@@ -22684,19 +22946,23 @@
         "properties": {
           "kid": {
             "type": "string",
-            "title": "Kid"
+            "title": "Kid",
+            "description": "Key ID - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.5"
           },
           "kty": {
             "type": "string",
-            "title": "Kty"
+            "title": "Kty",
+            "description": "Key Type - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.1"
           },
           "n": {
             "type": "string",
-            "title": "N"
+            "title": "N",
+            "description": "Modulus - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1"
           },
           "e": {
             "type": "string",
-            "title": "E"
+            "title": "E",
+            "description": "Exponent - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1"
           }
         },
         "type": "object",
@@ -22706,7 +22972,8 @@
           "n",
           "e"
         ],
-        "title": "PublicKey"
+        "title": "PublicKey",
+        "description": "Public key for verifying Access Token JWTs\n\nThis is in the JWK format as defined in https://datatracker.ietf.org/doc/html/rfc7517#section-4"
       },
       "PublicKeyList": {
         "properties": {
@@ -22715,14 +22982,16 @@
               "$ref": "#/components/schemas/PublicKey"
             },
             "type": "array",
-            "title": "Keys"
+            "title": "Keys",
+            "description": "List of public keys for verifying Access Token JWTs"
           }
         },
         "type": "object",
         "required": [
           "keys"
         ],
-        "title": "PublicKeyList"
+        "title": "PublicKeyList",
+        "description": "List of public keys for verifying Access Token JWTs.\n\nThis is in the JWK Set format as defined in https://datatracker.ietf.org/doc/html/rfc7517#section-5"
       },
       "PurgeRequest": {
         "properties": {
@@ -22734,14 +23003,16 @@
           }
         },
         "type": "object",
-        "title": "PurgeRequest"
+        "title": "PurgeRequest",
+        "description": "Purge request to purge a person from the system.  This will remove all data about that player from the system."
       },
       "PurgeResponse": {
         "properties": {
           "person_id": {
             "type": "string",
             "format": "uuid",
-            "title": "Person Id"
+            "title": "Person Id",
+            "description": "Person ID that will be purged"
           },
           "purge_on": {
             "type": "string",
@@ -22763,7 +23034,8 @@
           },
           "status": {
             "type": "string",
-            "title": "Status"
+            "title": "Status",
+            "description": "Status of the purge request"
           }
         },
         "type": "object",
@@ -22774,28 +23046,37 @@
           "last_modified_on",
           "status"
         ],
-        "title": "PurgeResponse"
+        "title": "PurgeResponse",
+        "description": "Purge response from a purge request"
       },
       "Restriction": {
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/RestrictionType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionType"
+              }
+            ],
+            "description": "Type of restriction"
           },
           "reason": {
             "type": "string",
-            "title": "Reason"
+            "title": "Reason",
+            "description": "Reason the restriction was applied"
           },
           "expiration": {
             "type": "string",
             "format": "date-time",
-            "title": "Expiration"
+            "title": "Expiration",
+            "description": "Date the restriction expires.  Null means the restriction is permanent"
           }
         },
         "type": "object",
         "required": [
           "type"
         ],
-        "title": "Restriction"
+        "title": "Restriction",
+        "description": "Restriction applied to a player"
       },
       "RestrictionType": {
         "type": "string",
@@ -22824,11 +23105,13 @@
         "properties": {
           "role_id": {
             "type": "string",
-            "title": "Role Id"
+            "title": "Role Id",
+            "description": "Unique Role ID"
           },
           "custom_data": {
             "type": "object",
             "title": "Custom Data",
+            "description": "Custom data for the role",
             "default": {}
           },
           "login_loot_rewards": {
@@ -22837,6 +23120,7 @@
             },
             "type": "array",
             "title": "Login Loot Rewards",
+            "description": "List of loot table item ids that are fulfilled for the player when they begin a new inventory session",
             "default": []
           }
         },
@@ -22844,76 +23128,94 @@
         "required": [
           "role_id"
         ],
-        "title": "Role"
+        "title": "Role",
+        "description": "Role object that is used to define a role for a player"
       },
       "SendInBlueContact": {
         "properties": {
           "email": {
             "type": "string",
-            "title": "Email"
+            "title": "Email",
+            "description": "Email address"
           },
           "attributes": {
             "type": "object",
-            "title": "Attributes"
+            "title": "Attributes",
+            "description": "Attributes"
           },
           "emailBlacklisted": {
             "type": "boolean",
-            "title": "Emailblacklisted"
+            "title": "Emailblacklisted",
+            "description": "Email blacklisted"
           },
           "listIds": {
             "items": {
               "type": "integer"
             },
             "type": "array",
-            "title": "Listids"
+            "title": "Listids",
+            "description": "List IDs"
           },
           "unlinkListIds": {
             "items": {
               "type": "integer"
             },
             "type": "array",
-            "title": "Unlinklistids"
+            "title": "Unlinklistids",
+            "description": "Unlink list IDs"
           },
           "updateEnabled": {
             "type": "boolean",
-            "title": "Updateenabled"
+            "title": "Updateenabled",
+            "description": "Update enabled"
           }
         },
         "type": "object",
         "required": [
           "email"
         ],
-        "title": "SendInBlueContact"
+        "title": "SendInBlueContact",
+        "description": "SendInBlue contact"
       },
       "TokenRequest": {
         "properties": {
           "grant_type": {
-            "$ref": "#/components/schemas/OAuthGrantType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OAuthGrantType"
+              }
+            ],
+            "description": "OAuth2 grant type"
           }
         },
         "type": "object",
         "required": [
           "grant_type"
         ],
-        "title": "TokenRequest"
+        "title": "TokenRequest",
+        "description": "OAuth2 Token Request"
       },
       "TokenResponse": {
         "properties": {
           "access_token": {
             "type": "string",
-            "title": "Access Token"
+            "title": "Access Token",
+            "description": "Result access token"
           },
           "token_type": {
             "type": "string",
-            "title": "Token Type"
+            "title": "Token Type",
+            "description": "Result token type"
           },
           "refresh_token": {
             "type": "string",
-            "title": "Refresh Token"
+            "title": "Refresh Token",
+            "description": "Result refresh token that can be used to get new access tokens"
           },
           "expires_in": {
             "type": "integer",
-            "title": "Expires In"
+            "title": "Expires In",
+            "description": "Result access token expiration time in seconds"
           }
         },
         "type": "object",
@@ -22922,20 +23224,23 @@
           "token_type",
           "expires_in"
         ],
-        "title": "TokenResponse"
+        "title": "TokenResponse",
+        "description": "OAuth2 Token Response"
       },
       "UpdatePersonInfoRequest": {
         "properties": {
           "email": {
             "type": "string",
-            "title": "Email"
+            "title": "Email",
+            "description": "Email address to update to"
           }
         },
         "type": "object",
         "required": [
           "email"
         ],
-        "title": "UpdatePersonInfoRequest"
+        "title": "UpdatePersonInfoRequest",
+        "description": "Request to update a person's info"
       },
       "AdditionalJoinParams": {
         "properties": {
@@ -23624,7 +23929,7 @@
           "map_selection_list": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MapSelectionList"
+                "$ref": "#/components/schemas/MapSelectionListV2"
               }
             ],
             "title": "Map Selection List",
@@ -23773,6 +24078,52 @@
       },
       "MapConfig": {
         "properties": {
+          "map_game_id": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Map Game Id",
+            "description": "ID to uniquely identify this map game",
+            "default": 0
+          },
+          "map_name": {
+            "type": "string",
+            "title": "Map Name",
+            "description": "Name of the map the instance should load into"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "description": "Game mode for the instance to spawn in"
+          },
+          "selection_chance": {
+            "type": "number",
+            "maximum": 100,
+            "minimum": 0,
+            "title": "Selection Chance",
+            "description": "Chance that this map will get selected in a rotation list",
+            "default": 0
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data to pass through to the instance",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "map_name"
+        ],
+        "title": "MapConfig",
+        "description": "DEPRECATED Configuration about a specific map for an instance to load into"
+      },
+      "MapConfigV2": {
+        "properties": {
           "map_id": {
             "type": "string",
             "title": "Map Id",
@@ -23813,7 +24164,7 @@
           "map_name",
           "map_weight"
         ],
-        "title": "MapConfig",
+        "title": "MapConfigV2",
         "description": "Configuration about a specific map for an instance to load into"
       },
       "MapSelectionList": {
@@ -23838,7 +24189,30 @@
           "maps"
         ],
         "title": "MapSelectionList",
-        "description": "A list of maps that can be chosen from when an instance is launching"
+        "description": "DEPRECATED A list of maps that can be chosen from when an instance is launching"
+      },
+      "MapSelectionListV2": {
+        "properties": {
+          "map_selection_list_id": {
+            "type": "string",
+            "title": "Map Selection List Id",
+            "description": "ID to uniquely identify this map selection list"
+          },
+          "maps": {
+            "items": {
+              "$ref": "#/components/schemas/MapConfigV2"
+            },
+            "type": "array",
+            "title": "Maps",
+            "description": "List of maps that can be chosen in this selection list"
+          }
+        },
+        "type": "object",
+        "required": [
+          "map_selection_list_id",
+          "maps"
+        ],
+        "title": "MapSelectionListV2"
       },
       "MatchCreateRequest": {
         "properties": {
@@ -23941,6 +24315,70 @@
             "description": "What mode to set on the matchmaking profile (normal, backfill etc)",
             "default": "normal"
           },
+          "instance_launch_template_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instance Launch Template Id",
+            "description": "Which instance template to use when launching a match in this profile"
+          },
+          "rank_id": {
+            "type": "string",
+            "title": "Rank Id",
+            "description": "Which rank this profile should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example)"
+          },
+          "num_sides": {
+            "type": "integer",
+            "title": "Num Sides",
+            "description": "The number of sides a game in this profile will have (2 in a 1v1 and 3 in a 1v1v1 for example"
+          },
+          "max_players_per_side": {
+            "type": "integer",
+            "title": "Max Players Per Side",
+            "description": "The maximum number of players that can be on each team"
+          },
+          "min_players_per_side": {
+            "type": "integer",
+            "title": "Min Players Per Side",
+            "description": "The minimum number of players that can be on each team"
+          },
+          "legacy_config": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Legacy Config",
+            "description": "Legacy config to help migrate clients",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "profile_id",
+          "instance_launch_template_id"
+        ],
+        "title": "MatchMakingProfile",
+        "description": "DEPRECATED A profile that describes what pools of players a session will be a part of when matchmaking"
+      },
+      "MatchMakingProfileV2": {
+        "properties": {
+          "profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Profile Id",
+            "description": "ID of the matchmaking profile to join"
+          },
+          "join_mode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProfileJoinMode"
+              }
+            ],
+            "description": "What mode to set on the matchmaking profile (normal, backfill etc)",
+            "default": "normal"
+          },
           "instance_request_template_id": {
             "type": "string",
             "format": "uuid",
@@ -23984,7 +24422,7 @@
           "profile_id",
           "instance_request_template_id"
         ],
-        "title": "MatchMakingProfile",
+        "title": "MatchMakingProfileV2",
         "description": "A profile that describes what pools of players a session will be a part of when matchmaking"
       },
       "MatchMakingRuleset": {
@@ -24124,7 +24562,7 @@
           "profiles"
         ],
         "title": "MatchMakingTemplate",
-        "description": "Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of"
+        "description": "DEPRECATED Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of"
       },
       "MatchMakingTemplateGroup": {
         "properties": {
@@ -24159,7 +24597,84 @@
           "template_options"
         ],
         "title": "MatchMakingTemplateGroup",
+        "description": "DEPRECATED A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used"
+      },
+      "MatchMakingTemplateGroupV2": {
+        "properties": {
+          "template_group_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Template Group Id",
+            "description": "ID for this set of potential matchmaking templates"
+          },
+          "template_options": {
+            "items": {
+              "$ref": "#/components/schemas/MatchMakingTemplateV2"
+            },
+            "type": "array",
+            "title": "Template Options",
+            "description": "List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template"
+          },
+          "required_item_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Required Item Ids",
+            "description": "Set of all the item ids that are required to validate every rule contained in this template group",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "template_group_id",
+          "template_options"
+        ],
+        "title": "MatchMakingTemplateGroupV2",
         "description": "A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used"
+      },
+      "MatchMakingTemplateV2": {
+        "properties": {
+          "match_making_template_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Match Making Template Id",
+            "description": "ID for this unique MatchMakingTemplate"
+          },
+          "mmr_grouping_method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MMRGroupingMethod"
+              }
+            ],
+            "description": "What method should be used to calculate a group's MMR based on the individual player's ranks"
+          },
+          "ruleset": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchMakingRuleset"
+              }
+            ],
+            "title": "Ruleset",
+            "description": "A set of rules that determine whether or not this matchmaking config should be used."
+          },
+          "profiles": {
+            "items": {
+              "$ref": "#/components/schemas/MatchMakingProfileV2"
+            },
+            "type": "array",
+            "title": "Profiles",
+            "description": "A list of which match making profiles are going to be created on the ticket"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mmr_grouping_method",
+          "profiles"
+        ],
+        "title": "MatchMakingTemplateV2",
+        "description": "Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of"
       },
       "MatchmakingInfo": {
         "properties": {
@@ -25501,8 +26016,12 @@
             },
             "type": "object",
             "title": "Custom Data",
-            "description": "Leader Player or instance defined custom data about this session",
-            "default": {}
+            "description": "Leader Player or instance defined custom data about this session"
+          },
+          "joinable": {
+            "type": "boolean",
+            "title": "Joinable",
+            "description": "Flag for if players can freely join this session without an invite"
           }
         },
         "type": "object",
@@ -29397,6 +29916,30 @@
         ],
         "title": "DiscoveryResponse",
         "description": "Contains information that aids the client in communicating with the connection managers."
+      },
+      "KVsResponse": {
+        "properties": {
+          "kvs": {
+            "items": {
+              "$ref": "#/components/schemas/AppSetting"
+            },
+            "type": "array",
+            "title": "Kvs",
+            "description": "The list of key/value pairs",
+            "default": []
+          },
+          "secret_kvs": {
+            "items": {
+              "$ref": "#/components/schemas/AppSetting"
+            },
+            "type": "array",
+            "title": "Secret Kvs",
+            "description": "The list of secret key/value pairs",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "KVsResponse"
       },
       "SiteSettings": {
         "properties": {
