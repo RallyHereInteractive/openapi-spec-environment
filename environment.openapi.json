@@ -1,24 +1,148 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "rank-api",
-    "description": "RallyHere rank-api.",
-    "version": "0.2.0"
+    "title": "Rally Here Environment APIs",
+    "description": "Rally Here Environment APIs",
+    "version": "0.1.0"
   },
+  "servers": [],
+  "tags": [
+    {
+      "name": "ad",
+      "description": "Operations on ad"
+    },
+    {
+      "name": "Friends V1",
+      "description": "Operations to fetch and modify a player's friends. Note: V1 and V2 are not be be used together. Once you begin using V2, you must not use V1 anymore."
+    },
+    {
+      "name": "Friends V2",
+      "description": "Operations to fetch and modify a player's friends using player uuids"
+    },
+    {
+      "name": "Blocked V1",
+      "description": "Operations to fetch and modify a player's blocked list. Note: V1 and V2 are not be be used together. Once you begin using V2, you must not use V1 anymore."
+    },
+    {
+      "name": "Blocked V2",
+      "description": "Operations to fetch and modify a player's blocked list using player uuids"
+    },
+    {
+      "name": "Configuration V1",
+      "description": "Operations to view configuration for friends and blocked lists"
+    },
+    {
+      "name": "settings",
+      "description": "\nEndpoints to get setting configuration and player settings\n\nPlayer Settings are meant to be used as a document storage for players settings.\n\nSettings are organized around Setting Types.  Each Setting Type can contain one or more Setting Versions.  Each Type+Version pair includes a jsonschema that is used to validate any update that apply to the setting.  This does NOT validate data for the get endpoints.  If the data is invalid, the get endpoint will return the data as it was stored.\n"
+    },
+    {
+      "name": "auth",
+      "description": "RallyHere Authentication API\n\nThis API is used by clients to retrieve an access token to be used when accessing other RallyHere APIs.\n\n## User-based Client Logins\n\nThe /v1/login endpoint supports user-based authentication for a variety of platforms by \"wrapping\" a user's platform\naccess token using a multi-step process:\n\n1. The client must authenticate the user and retrieve an access token for their respective platform.\n2. The client must subsequently authenticate the user using the /v1/login endpoint by setting the `grant_type` to the\nappropriate platform, and setting the `portal_access_token` to the access token retrieved above, which will return a\nnew access token to be used for RallyHere APIs.\n\n## OAuth\n\n### Version 1\n\nThe /v1/oauth endpoints support user-based client authentication for a variety of different platforms, utilizing secure\nredirects to third-party authentication URLs. The OAuth flow allows authentication to the RallyHere APIs without the use\nof a game client.\n\n### Version 2\n\nCurrently, the /v2/oauth endpoints only support a `grant_type` value of `client_credentials`, for the purposes of\nuser-less client authentication, utilizing Basic authentication containing a RallyHere client ID and client secret. This\ntype of authentication enables trusted clients (such as backend game instances) to access the RallyHere APIs without\nuser-specific authentication.\n\nThe /v2/oauth endpoint will be updated in the future to include user-based authentication modes.\n\n"
+    },
+    {
+      "name": "Sessions",
+      "description": "\nThis API is for the creation and management of sessions, which are just generic groups of players, and operations\non those sessions, such as joining matchmaking.\n"
+    },
+    {
+      "name": "Queues",
+      "description": "\nThe queue endpoints are for requesting information and configuration about queues, instance launch templates, and\nmatchmaking profiles\n"
+    },
+    {
+      "name": "Regions",
+      "description": "\nRegion endpoints for clients to request client visible regions and configuration around them\n"
+    },
+    {
+      "name": "Inventory",
+      "description": "Operations on inventory data"
+    },
+    {
+      "name": "Catalog",
+      "description": "Operations on catalog data"
+    },
+    {
+      "name": "Entitlements",
+      "description": "Operations on entitlements. Key Entitlements are used to grant Players Key Claims for an external Marketing Campaign."
+    },
+    {
+      "name": "Key Claims",
+      "description": "Operations to Fetch and Claim Key Claims. Key Claims are used to give Players keys as a reward to fulfilling the requirements of an external Marketing Campaign. Examples: Beta Keys, Extra Game keys for Friends, etc."
+    },
+    {
+      "name": "Marketing",
+      "description": "Operations on Market Campaigns. There is currently no way to add Market Campaigns via API. Reach out to your Rally Here representative to add a new campaign."
+    },
+    {
+      "name": "presence",
+      "description": "RallyHere Presence API\n\nThis API is intended to generally store presence information and be used in order to track the concurrent users for the game as a whole.\n\n## Basic Usage\n\nOn login, a client should go through the following steps.\n\n1. Get any existing current presence data and store that locally using GET `/v1/player/me/presence`.\n2. Mark online by patching their own presence with an empty update using PATCH `/v1/player/presence`.\n3. Request the client visible settings using GET `/v1/settings` and store them.\n4. Every `self_ping_interval_seconds` the client should mark online again by patching their own presence with an empty update using PATCH `/v1/player/presence`\n\n## Setting Presence\n\nWhen updating your presence the `display_name` and `platform` are not set directly. They are instead derived from the JWT provided by the users-api.\n\nThe presence you set is considered public, so do not set any values that should be considered private data in either the `status_message` or the\n`custom_data`.\n\n## Fetching Presence\n\nYou may fetch the presence of another user by either their `player_id` or `player_uuid`. You should prefer the `player_uuid` whenever it is available\nas the `player_id` is deprecated.\n\n\n## Private Presence Data\n\n`last_seen` is only available when requesting presence for yourself or as an admin.\n\n## Concurrent Users Updates\nIt's expected that users of this API will regularly patch their own presence with an empty update. This will signal that they are still online without\nchanging any of their presence information. This should be done on a cycle based on the `self_ping_interval_setting` settings provided by the API on\nthe `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n\nIf a client takes longer than the `last_seen_age_considered_offline_seconds` setting to perform this update they will be considered offline by other\nclients. This setting is provided by the API on the `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n"
+    },
+    {
+      "name": "presence-admin",
+      "description": "RallyHere Presence Admin API\n\nThis API is only available to administrators. It provides access to CCU data and to set specific values for presence that aren't available to\nunprivileged clients.\n\nEach time a user interacts with this API their uuid is added to a time-keyed HyperLogLog. This enables us to track the number of users stochastically\nrather than having to create a complete entry for every interaction. Their uuid is also added to a HyperLogLog keyed by both time and the platform the\nuser authenticated on.\n\nThe three actions CCU tracks are total, updating, and requesting. Comparing the numbers between the three will help identify if there are users who are\nscanning the API rather than using it for normal presence operations.\n\nWhen requesting the CCU you generally have two major options: Combined and Individual.\n\nThe Combined methods count up the number of users internally and therefor handle duplicates correctly.\n\nThe Individual methods return the individual counts for each timestamp. This data can be useful, but can't be summed up directly unless you're okay\nwith counting players multiple times.\n\nFor example, if you want to know the 24-hour CCU you should *not* get the Individual CCUs and add them up yourself. You should request the Combined\nCCU over that time period.\n"
+    },
+    {
+      "name": "player-notification",
+      "description": "Operations on Player Notifications"
+    },
+    {
+      "name": "player-id-notification",
+      "description": "Operations on Player Notifications"
+    },
+    {
+      "name": "instance-notification",
+      "description": "Operations on Instance Notifications"
+    },
+    {
+      "name": "rank",
+      "description": "\n\nThis API is used to update players ranks after matches\n\n"
+    },
+    {
+      "name": "config",
+      "description": "Getting client and server app settings"
+    },
+    {
+      "name": "discovery",
+      "description": "Discovery endpoint for MCTS compatible games"
+    },
+    {
+      "name": "sites",
+      "description": "Endpoint for getting site settings"
+    },
+    {
+      "name": "time",
+      "description": "Endpoint for UTC now time"
+    },
+    {
+      "name": "custom",
+      "description": "Endpoints for hitting custom urls"
+    }
+  ],
   "paths": {
-    "/v1/rank:calculate-trueskill": {
+    "/ad/v1/session": {
       "post": {
         "tags": [
-          "rank"
+          "ad"
         ],
-        "summary": "Update Rankings Trueskill V1",
-        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`",
-        "operationId": "update_rankings_trueskill_v1",
+        "summary": "Begin New Session",
+        "description": "Start a new session for the user. This will generate a new ad api token that is returned in the response header.",
+        "operationId": "begin_new_session",
+        "parameters": [
+          {
+            "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated.",
+            "required": false,
+            "schema": {
+              "title": "X-Hz-Ad-Api-Token",
+              "type": "string",
+              "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated."
+            },
+            "name": "x-hz-ad-api-token",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TrueskillUpdateRequest"
+                "$ref": "#/components/schemas/Body_begin_new_session"
               }
             }
           },
@@ -27,10 +151,105 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "x-hz-ad-api-token": {
+                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerRankUpdateResponse"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "x-hz-ad-api-token": {
+                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/ad/v1/opportunity": {
+      "post": {
+        "tags": [
+          "ad"
+        ],
+        "summary": "Find Opportunities",
+        "description": "Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.",
+        "operationId": "find_opportunities",
+        "parameters": [
+          {
+            "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated.",
+            "required": false,
+            "schema": {
+              "title": "X-Hz-Ad-Api-Token",
+              "type": "string",
+              "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated."
+            },
+            "name": "x-hz-ad-api-token",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_find_opportunities"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "x-hz-ad-api-token": {
+                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdOpportunities"
                 }
               }
             }
@@ -41,6 +260,200 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "x-hz-ad-api-token": {
+                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/ad/v1/opportunity/{opportunity_id}": {
+      "post": {
+        "tags": [
+          "ad"
+        ],
+        "summary": "Update Opportunity By Id",
+        "description": "Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.",
+        "operationId": "update_opportunity_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Opportunity Id",
+              "minLength": 1,
+              "type": "string"
+            },
+            "name": "opportunity_id",
+            "in": "path"
+          },
+          {
+            "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated.",
+            "required": false,
+            "schema": {
+              "title": "X-Hz-Ad-Api-Token",
+              "type": "string",
+              "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated."
+            },
+            "name": "x-hz-ad-api-token",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_update_opportunity_by_id"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "x-hz-ad-api-token": {
+                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "x-hz-ad-api-token": {
+                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/ad/v1/unity/ad/watched": {
+      "get": {
+        "tags": [
+          "ad"
+        ],
+        "summary": "Unity Ad Watched",
+        "description": "Callback URL for the Unity Ad API. Docs here https://docs.unity.com/ads/ImplementingS2SRedeemCallbacks.html",
+        "operationId": "unity_ad_watched",
+        "parameters": [
+          {
+            "description": "Product ID in the Unity console",
+            "required": true,
+            "schema": {
+              "title": "Productid",
+              "type": "integer",
+              "description": "Product ID in the Unity console"
+            },
+            "name": "productid",
+            "in": "query"
+          },
+          {
+            "description": "Server ID that contains custom data. Expected to be a comma separated list of platform and player ID",
+            "required": true,
+            "schema": {
+              "title": "Sid",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string",
+              "description": "Server ID that contains custom data. Expected to be a comma separated list of platform and player ID"
+            },
+            "example": "ios,12345",
+            "name": "sid",
+            "in": "query"
+          },
+          {
+            "description": "Unique ID for the ad view generated by Unity",
+            "required": true,
+            "schema": {
+              "title": "Oid",
+              "type": "string",
+              "description": "Unique ID for the ad view generated by Unity"
+            },
+            "name": "oid",
+            "in": "query"
+          },
+          {
+            "description": "The HMAC-MD5 hash of the parameter string used to validate the request",
+            "required": true,
+            "schema": {
+              "title": "Hmac",
+              "type": "string",
+              "description": "The HMAC-MD5 hash of the parameter string used to validate the request"
+            },
+            "name": "hmac",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -58,38 +471,196 @@
         }
       }
     },
-    "/v1/player/me/rank/{rank_id}": {
+    "/ad/v1/unity/mediation/watched": {
       "get": {
         "tags": [
-          "rank"
+          "ad"
         ],
-        "summary": "Get Player Uuid Rank Self",
-        "description": "Get current player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self`",
-        "operationId": "get_player_uuid_rank_self",
+        "summary": "Unity Mediation Ad Watched",
+        "description": "Callback URL for the Unity Ad API. Docs here https://docs.unity.com/mediation/S2SRedeemCallbacks.html",
+        "operationId": "unity_mediation_ad_watched",
         "parameters": [
           {
+            "description": "Custom data provide by client. Expected to be client type",
             "required": true,
             "schema": {
-              "type": "integer",
-              "title": "Rank Id"
+              "title": "Customized Data",
+              "type": "string",
+              "description": "Custom data provide by client. Expected to be client type"
             },
-            "name": "rank_id",
-            "in": "path"
+            "example": "android",
+            "name": "customized_data",
+            "in": "query"
+          },
+          {
+            "description": "User ID provided by the client",
+            "required": true,
+            "schema": {
+              "title": "Userid",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string",
+              "description": "User ID provided by the client"
+            },
+            "name": "userId",
+            "in": "query"
+          },
+          {
+            "description": "Unique ID for the ad view generated by Unity",
+            "required": true,
+            "schema": {
+              "title": "Eventid",
+              "type": "string",
+              "description": "Unique ID for the ad view generated by Unity"
+            },
+            "name": "eventId",
+            "in": "query"
+          },
+          {
+            "description": "Timestamp of an ad event in Unix format",
+            "required": true,
+            "schema": {
+              "title": "Timestamp",
+              "type": "integer",
+              "description": "Timestamp of an ad event in Unix format"
+            },
+            "name": "timestamp",
+            "in": "query"
+          },
+          {
+            "description": "The HMAC-MD5 hash of the parameter string used to validate the request",
+            "required": true,
+            "schema": {
+              "title": "Signature",
+              "type": "string",
+              "description": "The HMAC-MD5 hash of the parameter string used to validate the request"
+            },
+            "name": "signature",
+            "in": "query"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerRankRequestResponse"
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friends/v2/player/{player_uuid}/friend": {
+      "get": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Get Friends List For Player V2",
+        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.",
+        "operationId": "get_friends_list_for_player_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "title": "Page",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 10000,
+              "minimum": 1,
+              "title": "Limit",
+              "default": 50
+            },
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendsList"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -115,21 +686,22 @@
           }
         ]
       },
-      "post": {
+      "delete": {
         "tags": [
-          "rank"
+          "Friends V2"
         ],
-        "summary": "Update Player Uuid Rank Self",
-        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`",
-        "operationId": "update_player_uuid_rank_self",
+        "summary": "Delete Friends V2",
+        "description": "Remove the friend's relationship status with the other players",
+        "operationId": "delete_friends_v2",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "type": "integer",
-              "title": "Rank Id"
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
             },
-            "name": "rank_id",
+            "name": "player_uuid",
             "in": "path"
           }
         ],
@@ -137,25 +709,38 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRankUpdateRequest"
+                "$ref": "#/components/schemas/Friends"
               }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "Successful Response",
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerRankUpdateResponse"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -182,14 +767,14 @@
         ]
       }
     },
-    "/v1/player/{player_uuid}/rank/{rank_id}": {
+    "/friends/v2/player/{player_uuid}/friend/{other_player_uuid}": {
       "get": {
         "tags": [
-          "rank"
+          "Friends V2"
         ],
-        "summary": "Get Player Uuid Rank",
-        "description": "Get a specific player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`",
-        "operationId": "get_player_uuid_rank",
+        "summary": "Get Friend Relationship V2",
+        "description": "Get the relationship status with the other Player. <br /> <br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                    it has not changed or to use it to modify the relationship without loosing updates. \n                    <br/><br />Permissions Required: friend:friend_list:read",
+        "operationId": "get_friend_relationship_v2",
         "parameters": [
           {
             "required": true,
@@ -204,26 +789,69 @@
           {
             "required": true,
             "schema": {
-              "type": "integer",
-              "title": "Rank Id"
+              "type": "string",
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
-            "name": "rank_id",
+            "name": "other_player_uuid",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerRankRequestResponse"
+                  "$ref": "#/components/schemas/FriendRelationship"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -249,13 +877,13 @@
           }
         ]
       },
-      "post": {
+      "put": {
         "tags": [
-          "rank"
+          "Friends V2"
         ],
-        "summary": "Update Player Uuid Rank",
-        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`",
-        "operationId": "update_player_uuid_rank",
+        "summary": "Add Friend V2",
+        "description": "Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                    the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                    include a body.<br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                    <br/><br />Permissions Required: friend:friend_list:write",
+        "operationId": "add_friend_v2",
         "parameters": [
           {
             "required": true,
@@ -270,18 +898,252 @@
           {
             "required": true,
             "schema": {
-              "type": "integer",
-              "title": "Rank Id"
+              "type": "string",
+              "format": "uuid",
+              "title": "Other Player Uuid"
             },
-            "name": "rank_id",
+            "name": "other_player_uuid",
             "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-Match",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRankUpdateRequest"
+                "$ref": "#/components/schemas/Notes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FriendRelationship"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Delete Friend V2",
+        "description": "Remove the friend's relationship status with the other Player. \n                    This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                    <br/><br />Permissions Required: friend:friend_list:write",
+        "operationId": "delete_friend_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Other Player Uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-Match",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/friends/v2/player/{player_uuid}/friend/{other_player_uuid}/notes": {
+      "put": {
+        "tags": [
+          "Friends V2"
+        ],
+        "summary": "Add Notes V2",
+        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n                    The notes will be removed when the relationship is ended.\n                    <br/><br />Permissions Required: friend:friend_list:write",
+        "operationId": "add_notes_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Other Player Uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-Match",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notes"
               }
             }
           },
@@ -290,16 +1152,44 @@
         "responses": {
           "200": {
             "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerRankUpdateResponse"
+                  "$ref": "#/components/schemas/FriendRelationship"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -324,53 +1214,14 @@
             "HTTPBearerHeadersOrCookie": []
           }
         ]
-      }
-    },
-    "/v1/player/me/rank": {
-      "get": {
+      },
+      "delete": {
         "tags": [
-          "rank"
+          "Friends V2"
         ],
-        "summary": "Get All Player Uuid Ranks Self",
-        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`",
-        "operationId": "get_all_player_uuid_ranks_self",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerRankRequestResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/player/{player_uuid}/rank": {
-      "get": {
-        "tags": [
-          "rank"
-        ],
-        "summary": "Get All Player Uuid Ranks",
-        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`",
-        "operationId": "get_all_player_uuid_ranks",
+        "summary": "Delete Notes V2",
+        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n                    The notes will be removed when the relationship is ended.\n                    <br/><br />Permissions Required: {FriendPermissions.FRIEND_LIST_WRITE}",
+        "operationId": "delete_notes_v2",
         "parameters": [
           {
             "required": true,
@@ -381,21 +1232,55 @@
             },
             "name": "player_uuid",
             "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Other Player Uuid"
+            },
+            "name": "other_player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-Match",
+              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
+            },
+            "name": "if-match",
+            "in": "header"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful Response",
+          "204": {
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerRankRequestResponse"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -422,49 +1307,6 @@
         ]
       }
     },
-    "/v1/rank": {
-      "get": {
-        "tags": [
-          "rank"
-        ],
-        "summary": "Get All Rank Config",
-        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
-        "operationId": "get_all_rank_config",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RankConfigRequestResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-<<<<<<< HEAD
-    "/v1/rank/{rank_id}": {
-      "get": {
-        "tags": [
-          "rank"
-=======
     "/friends/v1/player/{player_id}/friend": {
       "get": {
         "tags": [
@@ -6347,7 +7189,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -6415,7 +7257,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -6492,7 +7334,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:browser`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -6581,7 +7423,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:create`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -6638,7 +7480,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:self`, `session:read:any`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:any`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -6793,7 +7635,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7450,7 +8292,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -7593,13 +8435,13 @@
         ]
       }
     },
-    "/session/v1/session/{session_id}/player/uuid/{player_uuid}": {
+    "/session/v1/session/{session_id}/player/{player_uuid}": {
       "post": {
         "tags": [
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -7695,7 +8537,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -7770,13 +8612,192 @@
         ]
       }
     },
+    "/session/v1/session/{session_id}/player/uuid/{player_uuid}": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Update Session Player By Uuid Long Path",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "operationId": "update_session_player_by_uuid_long_path",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionPlayerUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPlayerUpdateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Kick Player From Session By Uuid Long Path",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "operationId": "kick_player_from_session_by_uuid_long_path",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/session/{session_id}/player/id/{player_id}": {
       "post": {
         "tags": [
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -7864,7 +8885,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player/uuid endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -7937,7 +8958,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:*`, `session:read-player:any`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8018,7 +9039,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:event`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:event`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -8158,13 +9179,13 @@
         ]
       }
     },
-    "/session/v1/player/uuid/{player_uuid}/session": {
+    "/session/v1/player/{player_uuid}/session": {
       "get": {
         "tags": [
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -8236,13 +9257,92 @@
         ]
       }
     },
+    "/session/v1/player/uuid/{player_uuid}/session": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get Player Sessions By Uuid",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "operationId": "Sessionget_player_sessions_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerSessions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/player/id/{player_id}/session": {
       "get": {
         "tags": [
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player/uuid endpoint instead",
+        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player/uuid endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -8301,7 +9401,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -8556,7 +9656,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -8648,7 +9748,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -8739,7 +9839,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -8818,7 +9918,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -8896,7 +9996,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -8975,7 +10075,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "Sessionget_match_making_templates",
         "parameters": [
           {
@@ -9124,7 +10224,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -9196,7 +10296,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session, and be made its leader\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session, and be made its leader\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -9408,7 +10508,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -9520,7 +10620,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -9609,7 +10709,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -9740,7 +10840,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -21179,21 +22279,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google authentication",
-          "Apple authentication",
-          "Refresh Token authentication",
-          "Epic Online Services authentication",
-          "Xbox Live authentication",
-          "Playstation Network v1 authentication using the configured PS4 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Account authentication",
-          "Nintendo Service Account (for Nintendo Switch) authentication",
-          "Steam authentication",
-          "Basic Username/Password authentication",
-          "Anonymous authentication"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -21208,6 +22293,21 @@
           "STEAM",
           "BASIC",
           "ANON"
+        ],
+        "x-enum-descriptions": [
+          "Google authentication",
+          "Apple authentication",
+          "Refresh Token authentication",
+          "Epic Online Services authentication",
+          "Xbox Live authentication",
+          "Playstation Network v1 authentication using the configured PS4 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Nintendo Account authentication",
+          "Nintendo Service Account (for Nintendo Switch) authentication",
+          "Steam authentication",
+          "Basic Username/Password authentication",
+          "Anonymous authentication"
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -21510,11 +22610,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-descriptions": [
-          "The OAuth2 client credentials grant type"
-        ],
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -21532,17 +22632,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google OAuth Portal",
-          "Apple OAuth Portal",
-          "Epic OAuth Portal",
-          "Xbox OAuth Portal",
-          "Playstation Network OAuth Portal",
-          "Nintendo OAuth Portal",
-          "Steam OAuth Portal",
-          "Amazon OAuth Portal",
-          "Twitch OAuth Portal"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -21553,6 +22642,17 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -21562,11 +22662,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-descriptions": [
-          "Authorization code grant type for OAuth token exchange."
-        ],
         "x-enum-varnames": [
           "authorization_code"
+        ],
+        "x-enum-descriptions": [
+          "Authorization code grant type for OAuth token exchange."
         ]
       },
       "OAuthTokenExchange": {
@@ -21948,21 +23048,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-descriptions": [
-          "Anonymous portal used for testing. This is not intended to be used by real players.",
-          "Amazon portal",
-          "Steam portal",
-          "Playstation Network portal",
-          "Xbox Live portal",
-          "Basic portal",
-          "Google portal",
-          "Twitch portal",
-          "Nintendo Switch portal",
-          "Apple portal",
-          "Nintendo portal",
-          "Epic portal",
-          "Nintendo PPID portal"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -21977,6 +23062,21 @@
           "NINTENDO",
           "EPIC",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "PortalTokenDetailsGrantType": {
@@ -21988,15 +23088,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-descriptions": [
-          "Playstation Network v1 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS5 credentials"
-        ],
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "Playstation Network v1 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS5 credentials"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -22251,17 +23351,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-descriptions": [
-          "Account is banned",
-          "Account is locked out",
-          "Account is pending deletion and will be deleted in the future",
-          "Account has been banned from authentication"
-        ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
           "ACCOUNT_PENDING_DELETION",
           "ACCOUNT_DENY_AUTH"
+        ],
+        "x-enum-descriptions": [
+          "Account is banned",
+          "Account is locked out",
+          "Account is pending deletion and will be deleted in the future",
+          "Account has been banned from authentication"
         ]
       },
       "Role": {
@@ -24306,13 +25406,13 @@
             },
             "type": "array",
             "title": "Map Preferences",
-            "description": "List of map preferences in order from most desired, to least desired"
+            "description": "List of map preferences in order from most desired, to least desired",
+            "default": []
           }
         },
         "type": "object",
         "required": [
-          "queue_id",
-          "map_preferences"
+          "queue_id"
         ],
         "title": "QueueJoinRequest",
         "description": "A request body to enter into a matchmaking queue"
@@ -28464,99 +29564,260 @@
           "platform",
           "display_name",
           "player_uuid"
->>>>>>> main
         ],
-        "summary": "Get Rank Config",
-        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
-        "operationId": "get_rank_config",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Rank Id"
-            },
-            "name": "rank_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RankConfigRequestResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "HTTPValidationError": {
-        "properties": {
-          "detail": {
-            "items": {
-              "$ref": "#/components/schemas/ValidationError"
-            },
-            "type": "array",
-            "title": "Detail"
-          }
-        },
         "type": "object",
-        "title": "HTTPValidationError"
-      },
-      "HzApiErrorModel": {
         "properties": {
-          "auth_success": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineStatus"
+              }
+            ],
+            "description": "Is the player currently online?",
+            "default": "offline"
+          },
+          "message": {
+            "title": "Message",
+            "maxLength": 256,
+            "type": "string",
+            "description": "Optional custom message to display alongside the user's online status",
+            "default": ""
+          },
+          "platform": {
+            "title": "Platform",
+            "type": "string",
+            "description": "Platform the user was online in"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string",
+            "description": "Player Display Name"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "custom fields for the player to update about their presence",
+            "default": {}
+          },
+          "player_id": {
+            "title": "Player Id",
+            "type": "integer",
+            "description": "Player ID for the player if it was provided as part of the request"
+          },
+          "player_uuid": {
+            "title": "Player Uuid",
+            "type": "string",
+            "description": "UUID of the player whose presence this represents",
+            "format": "uuid"
+          },
+          "do_not_disturb": {
+            "title": "Do Not Disturb",
             "type": "boolean",
-            "title": "Auth Success",
-            "default": true
+            "description": "Disables notifications and invites. Only set for self or admin."
           },
-          "error_code": {
+          "last_seen": {
+            "title": "Last Seen",
             "type": "string",
-            "title": "Error Code"
-          },
-          "desc": {
-            "type": "string",
-            "title": "Desc"
+            "description": "Info about the player the last time they reported their status. Only set for self or admin",
+            "format": "date-time"
           }
-        },
+        }
+      },
+      "PlayerPresenceUpdateSelf": {
+        "title": "PlayerPresenceUpdateSelf",
         "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineStatus"
+              }
+            ],
+            "description": "Is the player currently online?"
+          },
+          "message": {
+            "title": "Message",
+            "maxLength": 256,
+            "type": "string",
+            "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
+          },
+          "do_not_disturb": {
+            "title": "Do Not Disturb",
+            "type": "boolean",
+            "description": "Disables notifications and invites. Leaving this unset will not change the value."
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
+          }
+        }
+      },
+      "Notification": {
+        "title": "Notification",
         "required": [
-          "error_code",
-          "desc"
+          "message",
+          "notification_id",
+          "created"
         ],
-        "title": "HzApiErrorModel"
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "maxLength": 4096,
+            "type": "string",
+            "description": "Base Message for the notification"
+          },
+          "rh_url": {
+            "title": "Rh Url",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string",
+            "description": "Path to get additional data about this notification"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom values for the notification",
+            "default": {}
+          },
+          "etag": {
+            "title": "Etag",
+            "minLength": 1,
+            "type": "string",
+            "description": "ETag for the resource at rh_url at the time of this notification"
+          },
+          "notification_id": {
+            "title": "Notification Id",
+            "type": "string",
+            "description": "Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque"
+          },
+          "created": {
+            "title": "Created",
+            "type": "string",
+            "description": "When this notification was added",
+            "format": "date-time"
+          }
+        }
+      },
+      "NotificationCreate": {
+        "title": "NotificationCreate",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "maxLength": 4096,
+            "type": "string",
+            "description": "Base Message for the notification"
+          },
+          "rh_url": {
+            "title": "Rh Url",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string",
+            "description": "Path to get additional data about this notification"
+          },
+          "custom_data": {
+            "title": "Custom Data",
+            "type": "object",
+            "additionalProperties": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Custom values for the notification",
+            "default": {}
+          },
+          "etag": {
+            "title": "Etag",
+            "minLength": 1,
+            "type": "string",
+            "description": "ETag for the resource at rh_url at the time of this notification"
+          }
+        }
+      },
+      "NotificationCreateResult": {
+        "title": "NotificationCreateResult",
+        "required": [
+          "notification_id"
+        ],
+        "type": "object",
+        "properties": {
+          "notification_id": {
+            "title": "Notification Id",
+            "type": "string",
+            "description": "Unique Identifier for the last notification created.  You cannot depend on the format of this string, and it must be considered opaque"
+          }
+        }
+      },
+      "NotificationCreates": {
+        "title": "NotificationCreates",
+        "required": [
+          "notifications"
+        ],
+        "type": "object",
+        "properties": {
+          "notifications": {
+            "title": "Notifications",
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationCreate"
+            },
+            "description": "List of notifications creation requests"
+          }
+        }
+      },
+      "Notifications": {
+        "title": "Notifications",
+        "type": "object",
+        "properties": {
+          "notifications": {
+            "title": "Notifications",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "description": "List of notifications",
+            "default": []
+          }
+        }
+      },
+      "OffsetReset": {
+        "title": "OffsetReset",
+        "enum": [
+          "latest",
+          "earliest"
+        ],
+        "type": "string",
+        "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
+        ]
       },
       "PlayerRankRequestResponse": {
         "properties": {
@@ -28595,10 +29856,7 @@
           },
           "rank_id": {
             "type": "integer",
-<<<<<<< HEAD
-=======
             "exclusiveMinimum": true,
->>>>>>> main
             "title": "Rank Id",
             "description": "ID for this rank",
             "minimum": 0
@@ -28661,10 +29919,7 @@
         "properties": {
           "rank_id": {
             "type": "integer",
-<<<<<<< HEAD
-=======
             "exclusiveMinimum": true,
->>>>>>> main
             "title": "Rank Id",
             "description": "ID for this rank type",
             "minimum": 0
@@ -28706,13 +29961,8 @@
           },
           "trueskill_draw_probability": {
             "type": "number",
-<<<<<<< HEAD
-            "exclusiveMaximum": 1.0,
-            "minimum": 0.0,
-=======
             "exclusiveMaximum": true,
             "minimum": 0,
->>>>>>> main
             "title": "Trueskill Draw Probability",
             "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)",
             "maximum": 1
@@ -28799,7 +30049,7 @@
           },
           "seconds_in_match": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
             "title": "Seconds In Match",
             "description": "How many seconds this player was in the match"
           }
@@ -28825,7 +30075,7 @@
           },
           "team_rank": {
             "type": "integer",
-            "minimum": 1.0,
+            "minimum": 1,
             "title": "Team Rank",
             "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
           }
@@ -28849,17 +30099,14 @@
           },
           "rank_id": {
             "type": "integer",
-<<<<<<< HEAD
-=======
             "exclusiveMinimum": true,
->>>>>>> main
             "title": "Rank Id",
             "description": "ID for the rank type used in this match",
             "minimum": 0
           },
           "match_length_seconds": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
             "title": "Match Length Seconds",
             "description": "How many seconds the match lasted"
           },
@@ -28881,51 +30128,118 @@
         "title": "TrueskillUpdateRequest",
         "description": "A request body to update players' trueskill ratings from a match"
       },
-      "ValidationError": {
+      "AppSetting": {
         "properties": {
-          "loc": {
-            "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "integer"
-                }
-              ]
-            },
-            "type": "array",
-            "title": "Location"
-          },
-          "msg": {
+          "key": {
             "type": "string",
-            "title": "Message"
+            "title": "Key",
+            "description": "The key for the setting"
           },
-          "type": {
+          "value": {
             "type": "string",
-            "title": "Error Type"
+            "title": "Value",
+            "description": "The value for the setting"
+          },
+          "notes": {
+            "type": "string",
+            "title": "Notes",
+            "description": "Notes to describe the key value pair"
           }
         },
         "type": "object",
         "required": [
-          "loc",
-          "msg",
-          "type"
+          "key",
+          "value"
         ],
-        "title": "ValidationError"
-      }
-    },
-    "securitySchemes": {
-      "HTTPBearerHeadersOrCookie": {
-        "type": "http",
-        "scheme": "bearer"
+        "title": "AppSetting",
+        "description": "A key/value pair that represents a setting to be used by the client."
+      },
+      "DiscoveryResponse": {
+        "properties": {
+          "addresses": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Addresses",
+            "description": "The list of addresses for the connection managers"
+          },
+          "server_status": {
+            "type": "string",
+            "title": "Server Status",
+            "description": "The status of the connection managers",
+            "default": "unknown"
+          },
+          "command_line_args": {
+            "type": "string",
+            "title": "Command Line Args",
+            "description": "The command line arguments used to be used by the client",
+            "default": " "
+          }
+        },
+        "type": "object",
+        "required": [
+          "addresses"
+        ],
+        "title": "DiscoveryResponse",
+        "description": "Contains information that aids the client in communicating with the connection managers."
+      },
+      "KVsResponse": {
+        "properties": {
+          "kvs": {
+            "items": {
+              "$ref": "#/components/schemas/AppSetting"
+            },
+            "type": "array",
+            "title": "Kvs",
+            "description": "The list of key/value pairs",
+            "default": []
+          },
+          "secret_kvs": {
+            "items": {
+              "$ref": "#/components/schemas/AppSetting"
+            },
+            "type": "array",
+            "title": "Secret Kvs",
+            "description": "The list of secret key/value pairs",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "KVsResponse"
+      },
+      "SiteSettings": {
+        "properties": {
+          "site_id": {
+            "type": "integer",
+            "title": "Site Id",
+            "description": "The site ID"
+          },
+          "sort_order": {
+            "type": "integer",
+            "title": "Sort Order",
+            "description": "The priority order of this site"
+          },
+          "custom_only": {
+            "type": "boolean",
+            "title": "Custom Only",
+            "description": "Indicates if the site is a custom games only"
+          },
+          "message_name": {
+            "type": "string",
+            "title": "Message Name",
+            "description": "The message associated with this site"
+          }
+        },
+        "type": "object",
+        "required": [
+          "site_id",
+          "sort_order",
+          "custom_only"
+        ],
+        "title": "SiteSettings",
+        "description": "Contains information about a site/region."
       }
     }
-  },
-  "tags": [
-    {
-      "name": "rank",
-      "description": "\n\nThis API is used to update players ranks after matches\n\n"
-    }
-  ]
+  }
 }
