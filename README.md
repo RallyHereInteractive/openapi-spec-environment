@@ -29,7 +29,10 @@ The rest of this document is instructions and notes for running the generation o
 ### How to Install Dependencies for Ubuntu
 ```
 sudo apt update
-sudo apt install jq npm
+sudo apt install jq npm wget
+curl -O https://github.com/Tufin/oasdiff/releases/download/v1.7.10/oasdiff_1.7.10_linux_amd64.deb
+sudo dpkg --install oasdiff_1.7.10_linux_amd64.deb
+rm oasdiff_1.7.10_linux_amd64.deb
 ```
 
 ### How do I add a new API?
