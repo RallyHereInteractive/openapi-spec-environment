@@ -49,7 +49,14 @@ fi
 ########################################
 # Run the merge process of the separate API specs
 npx openapi-merge-cli --config environment-openapi-merge-config.yaml
-
 echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
+
+########################################
+# Generate changelog of newly generated changes
+./update_changelog.bash
+
+########################################
+# Generate changelog of newly generated changes
+./check_breaking.bash
 
 popd

@@ -52,3 +52,9 @@ This script does the following:
 | ---- | --- | --- |
 | `-u` | Yes | Override the environment base URL used when generating the spec |
 |  `--environment-base-url` | Yes | Override the environment base URL used when generating the spec |
+
+### Breaking Changes
+
+The `check_breaking.bash` script will compare locally updated spec files against the latest from this repository to check for any breaking changes.
+
+If you need to check individual APIs for breakage, the `check_breaking_individual.bash` script will iterate each spec file and run a similar comparison.
