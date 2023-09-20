@@ -20691,9 +20691,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Rank Id",
+              "type": "integer",
               "exclusiveMinimum": 0,
-              "type": "integer"
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -20748,9 +20748,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Rank Id",
+              "type": "integer",
               "exclusiveMinimum": 0,
-              "type": "integer"
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -20817,9 +20817,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -20827,9 +20827,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Rank Id",
+              "type": "integer",
               "exclusiveMinimum": 0,
-              "type": "integer"
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -20884,9 +20884,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -20894,9 +20894,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Rank Id",
+              "type": "integer",
               "exclusiveMinimum": 0,
-              "type": "integer"
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -21000,9 +21000,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -21096,9 +21096,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Rank Id",
+              "type": "integer",
               "exclusiveMinimum": 0,
-              "type": "integer"
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -29815,102 +29815,152 @@
         ]
       },
       "PlayerRankRequestResponse": {
-        "title": "PlayerRankRequestResponse",
-        "required": [
-          "player_ranks"
-        ],
-        "type": "object",
         "properties": {
           "player_ranks": {
-            "title": "Player Ranks",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/PlayerRankResponse"
             },
+            "type": "array",
+            "title": "Player Ranks",
             "description": "List of player's ranks"
           }
         },
+        "type": "object",
+        "required": [
+          "player_ranks"
+        ],
+        "title": "PlayerRankRequestResponse",
         "description": "Response to successfully requesting all of a player's ranks"
       },
       "PlayerRankResponse": {
-        "title": "PlayerRankResponse",
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          },
+          "rank_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Rank Id",
+            "description": "ID for this rank"
+          }
+        },
+        "type": "object",
         "required": [
           "player_uuid",
           "rank",
           "rank_id"
         ],
-        "type": "object",
-        "properties": {
-          "player_uuid": {
-            "title": "Player Uuid",
-            "type": "string",
-            "description": "UUID for this specific player",
-            "format": "uuid"
-          },
-          "rank": {
-            "title": "Rank",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RankData"
-              }
-            ],
-            "description": "Current rank info about player"
-          },
-          "rank_id": {
-            "title": "Rank Id",
-            "exclusiveMinimum": 0,
-            "type": "integer",
-            "description": "ID for this rank"
-          }
-        },
+        "title": "PlayerRankResponse",
         "description": "Response to successfully requesting a player's rank"
       },
       "PlayerRankUpdateRequest": {
-        "title": "PlayerRankUpdateRequest",
-        "required": [
-          "rank"
-        ],
-        "type": "object",
         "properties": {
           "instance_id": {
-            "title": "Instance Id",
+            "type": "string",
             "maxLength": 128,
             "minLength": 1,
-            "type": "string",
+            "title": "Instance Id",
             "description": "ID for the instance the match took place on"
           },
           "rank": {
-            "title": "Rank",
             "allOf": [
               {
                 "$ref": "#/components/schemas/RankData"
               }
             ],
+            "title": "Rank",
             "description": "Current rank info about player"
           }
         },
+        "type": "object",
+        "required": [
+          "rank"
+        ],
+        "title": "PlayerRankUpdateRequest",
         "description": "Request body to update generic rank data"
       },
       "PlayerRankUpdateResponse": {
-        "title": "PlayerRankUpdateResponse",
-        "required": [
-          "updated_players"
-        ],
-        "type": "object",
         "properties": {
           "updated_players": {
-            "title": "Updated Players",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/PlayerRankResponse"
             },
+            "type": "array",
+            "title": "Updated Players",
             "description": "List of players and their updated ranks"
           }
         },
+        "type": "object",
+        "required": [
+          "updated_players"
+        ],
+        "title": "PlayerRankUpdateResponse",
         "description": "Response to successfully updating players' ranks"
       },
       "RankConfig": {
-        "title": "RankConfig",
+        "properties": {
+          "rank_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Rank Id",
+            "description": "ID for this rank type"
+          },
+          "default_rank": {
+            "type": "number",
+            "title": "Default Rank",
+            "description": "The default rank value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_variance": {
+            "type": "number",
+            "title": "Default Variance",
+            "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
+          },
+          "max_rank_allowed": {
+            "type": "number",
+            "title": "Max Rank Allowed",
+            "description": "The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_rank_allowed": {
+            "type": "number",
+            "title": "Min Rank Allowed",
+            "description": "The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_variance_allowed": {
+            "type": "number",
+            "title": "Min Variance Allowed",
+            "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+          },
+          "trueskill_beta": {
+            "type": "number",
+            "title": "Trueskill Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+          },
+          "trueskill_tau": {
+            "type": "number",
+            "title": "Trueskill Tau",
+            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01)"
+          },
+          "trueskill_draw_probability": {
+            "type": "number",
+            "exclusiveMaximum": 1,
+            "minimum": 0,
+            "title": "Trueskill Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+          }
+        },
+        "type": "object",
         "required": [
           "rank_id",
           "default_rank",
@@ -29919,204 +29969,154 @@
           "min_rank_allowed",
           "min_variance_allowed"
         ],
-        "type": "object",
-        "properties": {
-          "rank_id": {
-            "title": "Rank Id",
-            "exclusiveMinimum": 0,
-            "type": "integer",
-            "description": "ID for this rank type"
-          },
-          "default_rank": {
-            "title": "Default Rank",
-            "type": "number",
-            "description": "The default rank value for this rank id. Will be used when players do not have any rank history"
-          },
-          "default_variance": {
-            "title": "Default Variance",
-            "type": "number",
-            "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
-          },
-          "max_rank_allowed": {
-            "title": "Max Rank Allowed",
-            "type": "number",
-            "description": "The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
-          },
-          "min_rank_allowed": {
-            "title": "Min Rank Allowed",
-            "type": "number",
-            "description": "The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
-          },
-          "min_variance_allowed": {
-            "title": "Min Variance Allowed",
-            "type": "number",
-            "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
-          },
-          "trueskill_beta": {
-            "title": "Trueskill Beta",
-            "type": "number",
-            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
-          },
-          "trueskill_tau": {
-            "title": "Trueskill Tau",
-            "type": "number",
-            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01)"
-          },
-          "trueskill_draw_probability": {
-            "title": "Trueskill Draw Probability",
-            "exclusiveMaximum": 1,
-            "minimum": 0,
-            "type": "number",
-            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
-          }
-        },
+        "title": "RankConfig",
         "description": "Configuration about a specific rank type"
       },
       "RankConfigRequestResponse": {
-        "title": "RankConfigRequestResponse",
-        "required": [
-          "rank_configs"
-        ],
-        "type": "object",
         "properties": {
           "rank_configs": {
-            "title": "Rank Configs",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/RankConfig"
             },
+            "type": "array",
+            "title": "Rank Configs",
             "description": "List of rank configurations"
           }
         },
+        "type": "object",
+        "required": [
+          "rank_configs"
+        ],
+        "title": "RankConfigRequestResponse",
         "description": "Response to successfully requesting all rank config"
       },
       "RankData": {
-        "title": "RankData",
-        "required": [
-          "mu",
-          "sigma"
-        ],
-        "type": "object",
         "properties": {
           "mu": {
-            "title": "Mu",
             "type": "number",
+            "title": "Mu",
             "description": "Trueskill mu. This is a measure of perceived skill in a player"
           },
           "sigma": {
-            "title": "Sigma",
             "type": "number",
+            "title": "Sigma",
             "description": "Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident)"
           },
           "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
             "additionalProperties": {
+              "type": "string",
               "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
+              "minLength": 1
             },
+            "type": "object",
+            "title": "Custom Data",
             "description": "Custom key-value player rank data",
             "default": {}
           }
         },
+        "type": "object",
+        "required": [
+          "mu",
+          "sigma"
+        ],
+        "title": "RankData",
         "description": "Trueskill oriented ranked data about a player's skill and confidence levels"
       },
       "TrueskillRank": {
-        "title": "TrueskillRank",
-        "required": [
-          "player_uuid",
-          "rank",
-          "seconds_in_match"
-        ],
-        "type": "object",
         "properties": {
           "player_uuid": {
-            "title": "Player Uuid",
             "type": "string",
-            "description": "UUID for this specific player",
-            "format": "uuid"
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
           },
           "rank": {
-            "title": "Rank",
             "allOf": [
               {
                 "$ref": "#/components/schemas/RankData"
               }
             ],
+            "title": "Rank",
             "description": "Current rank info about player"
           },
           "seconds_in_match": {
-            "title": "Seconds In Match",
-            "minimum": 0,
             "type": "integer",
+            "minimum": 0,
+            "title": "Seconds In Match",
             "description": "How many seconds this player was in the match"
           }
         },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank",
+          "seconds_in_match"
+        ],
+        "title": "TrueskillRank",
         "description": "Additional data about a specific player's rank and previous match in order to make trueskill calculations"
       },
       "TrueskillTeam": {
-        "title": "TrueskillTeam",
+        "properties": {
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillRank"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of PlayerRankUpdate objects that give stats about a specific player from the match"
+          },
+          "team_rank": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Team Rank",
+            "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
+          }
+        },
+        "type": "object",
         "required": [
           "players",
           "team_rank"
         ],
-        "type": "object",
-        "properties": {
-          "players": {
-            "title": "Players",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TrueskillRank"
-            },
-            "description": "List of PlayerRankUpdate objects that give stats about a specific player from the match"
-          },
-          "team_rank": {
-            "title": "Team Rank",
-            "minimum": 1,
-            "type": "integer",
-            "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
-          }
-        },
+        "title": "TrueskillTeam",
         "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
       },
       "TrueskillUpdateRequest": {
-        "title": "TrueskillUpdateRequest",
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID for the instance the match took place on"
+          },
+          "rank_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Rank Id",
+            "description": "ID for the rank type used in this match"
+          },
+          "match_length_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
+          }
+        },
+        "type": "object",
         "required": [
           "rank_id",
           "match_length_seconds",
           "teams"
         ],
-        "type": "object",
-        "properties": {
-          "instance_id": {
-            "title": "Instance Id",
-            "maxLength": 128,
-            "minLength": 1,
-            "type": "string",
-            "description": "ID for the instance the match took place on"
-          },
-          "rank_id": {
-            "title": "Rank Id",
-            "exclusiveMinimum": 0,
-            "type": "integer",
-            "description": "ID for the rank type used in this match"
-          },
-          "match_length_seconds": {
-            "title": "Match Length Seconds",
-            "minimum": 0,
-            "type": "integer",
-            "description": "How many seconds the match lasted"
-          },
-          "teams": {
-            "title": "Teams",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TrueskillTeam"
-            },
-            "description": "List of teams that participated in this match"
-          }
-        },
+        "title": "TrueskillUpdateRequest",
         "description": "A request body to update players' trueskill ratings from a match"
       },
       "AppSetting": {
