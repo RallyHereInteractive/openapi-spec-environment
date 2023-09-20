@@ -20434,8 +20434,9 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": 0,
-              "title": "Rank Id"
+              "exclusiveMinimum": true,
+              "title": "Rank Id",
+              "minimum": 0
             },
             "name": "rank_id",
             "in": "path"
@@ -20491,8 +20492,9 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": 0,
-              "title": "Rank Id"
+              "exclusiveMinimum": true,
+              "title": "Rank Id",
+              "minimum": 0
             },
             "name": "rank_id",
             "in": "path"
@@ -20570,8 +20572,9 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": 0,
-              "title": "Rank Id"
+              "exclusiveMinimum": true,
+              "title": "Rank Id",
+              "minimum": 0
             },
             "name": "rank_id",
             "in": "path"
@@ -20637,8 +20640,9 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": 0,
-              "title": "Rank Id"
+              "exclusiveMinimum": true,
+              "title": "Rank Id",
+              "minimum": 0
             },
             "name": "rank_id",
             "in": "path"
@@ -20839,8 +20843,9 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": 0,
-              "title": "Rank Id"
+              "exclusiveMinimum": true,
+              "title": "Rank Id",
+              "minimum": 0
             },
             "name": "rank_id",
             "in": "path"
@@ -29593,9 +29598,10 @@
           },
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "exclusiveMinimum": true,
             "title": "Rank Id",
-            "description": "ID for this rank"
+            "description": "ID for this rank",
+            "minimum": 0
           }
         },
         "type": "object",
@@ -29655,9 +29661,10 @@
         "properties": {
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "exclusiveMinimum": true,
             "title": "Rank Id",
-            "description": "ID for this rank type"
+            "description": "ID for this rank type",
+            "minimum": 0
           },
           "default_rank": {
             "type": "number",
@@ -29696,10 +29703,11 @@
           },
           "trueskill_draw_probability": {
             "type": "number",
-            "exclusiveMaximum": 1,
+            "exclusiveMaximum": true,
             "minimum": 0,
             "title": "Trueskill Draw Probability",
-            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)",
+            "maximum": 1
           }
         },
         "type": "object",
@@ -29833,9 +29841,10 @@
           },
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "exclusiveMinimum": true,
             "title": "Rank Id",
-            "description": "ID for the rank type used in this match"
+            "description": "ID for the rank type used in this match",
+            "minimum": 0
           },
           "match_length_seconds": {
             "type": "integer",
