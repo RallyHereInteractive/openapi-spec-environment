@@ -56,7 +56,7 @@ echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
 ./update_changelog.bash
 
 ########################################
-# Generate changelog of newly generated changes
+# Print any breaking changes to the console
 ./check_breaking.bash
 
 popd
