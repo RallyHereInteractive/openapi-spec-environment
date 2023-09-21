@@ -29,7 +29,10 @@ The rest of this document is instructions and notes for running the generation o
 ### How to Install Dependencies for Ubuntu
 ```
 sudo apt update
-sudo apt install jq npm
+sudo apt install jq npm wget
+curl -O https://github.com/Tufin/oasdiff/releases/download/v1.7.10/oasdiff_1.7.10_linux_amd64.deb
+sudo dpkg --install oasdiff_1.7.10_linux_amd64.deb
+rm oasdiff_1.7.10_linux_amd64.deb
 ```
 
 ### How do I add a new API?
@@ -49,3 +52,9 @@ This script does the following:
 | ---- | --- | --- |
 | `-u` | Yes | Override the environment base URL used when generating the spec |
 |  `--environment-base-url` | Yes | Override the environment base URL used when generating the spec |
+
+### Breaking Changes
+
+The `check_breaking.bash` script will compare locally updated spec files against the latest from this repository to check for any breaking changes.
+
+If you need to check individual APIs for breakage, the `check_breaking_individual.bash` script will iterate each spec file and run a similar comparison.
