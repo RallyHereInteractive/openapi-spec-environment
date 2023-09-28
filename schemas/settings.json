@@ -1873,6 +1873,15 @@
             "type": "object",
             "title": "Value Jsonschema",
             "description": "[jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data that was provided when the setting type was created",
+            "default": {}
           }
         },
         "type": "object",
