@@ -1359,7 +1359,7 @@
           "instance-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_long_poll_for_notifications",
         "parameters": [
           {
@@ -1481,7 +1481,7 @@
           "instance-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_get_notifications_page",
         "parameters": [
           {
@@ -1673,7 +1673,7 @@
           "instance-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:read`,`notification:instance:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_get_notification_by_id",
         "parameters": [
           {
@@ -1940,13 +1940,13 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "latest",
           "earliest"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "ValidationError": {
