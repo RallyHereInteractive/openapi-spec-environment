@@ -42,6 +42,16 @@
             "in": "header"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Body",
+                "description": "The body of the request"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
