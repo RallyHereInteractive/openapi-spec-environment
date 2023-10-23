@@ -36,6 +36,8 @@ if [[ ! -z "$SPEC_BASE_URL" ]]; then
 
     APIS="users ad settings friends session config inventory presence notification rank custom"
 
+    echo "Using baseurl ${SPEC_BASE_URL}"
+
     for api in ${APIS[@]}; do
         echo "Downloading ${api} API Spec"
         curl "${SPEC_BASE_URL}/${api}/openapi.json" -o schemas/${api}.tmp
