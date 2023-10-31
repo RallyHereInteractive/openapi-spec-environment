@@ -1,0 +1,190 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "event-tracking-api",
+    "description": "RallyHere event-tracking-api.",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/events"
+    }
+  ],
+  "paths": {
+    "/v1/events": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Receive Events V1",
+        "description": "Post game events, return number of events being posted to Event Hub",
+        "operationId": "receive_events_v1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventList"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostGameEventsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EventList": {
+        "properties": {
+          "eventList": {
+            "items": {
+              "$ref": "#/components/schemas/RallyHereEvent"
+            },
+            "type": "array",
+            "title": "Eventlist",
+            "description": "List of events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "eventList"
+        ],
+        "title": "EventList"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PostGameEventsResponse": {
+        "properties": {
+          "posted_events": {
+            "type": "integer",
+            "title": "Posted Events",
+            "description": "Number of events successfully posted to Event Hub"
+          }
+        },
+        "type": "object",
+        "required": [
+          "posted_events"
+        ],
+        "title": "PostGameEventsResponse"
+      },
+      "RallyHereEvent": {
+        "properties": {
+          "eventUUID": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Eventuuid",
+            "description": "Unique Event ID for this instance of the event"
+          },
+          "eventName": {
+            "type": "string",
+            "title": "Eventname",
+            "description": "Type of event to process this as."
+          },
+          "eventTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Eventtimestamp",
+            "description": "Time the event was triggered"
+          },
+          "userID": {
+            "type": "string",
+            "title": "Userid",
+            "description": "User who submitted the event"
+          },
+          "sessionID": {
+            "type": "string",
+            "title": "Sessionid",
+            "description": "Session ID to associate the event with"
+          },
+          "eventParams": {
+            "type": "object",
+            "title": "Eventparams",
+            "description": "Event specific parameters"
+          }
+        },
+        "type": "object",
+        "required": [
+          "eventUUID",
+          "eventName",
+          "eventTimestamp",
+          "userID",
+          "sessionID",
+          "eventParams"
+        ],
+        "title": "RallyHereEvent"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Events",
+      "description": "Event Tracking"
+    }
+  ]
+}

@@ -114,6 +114,10 @@
     {
       "name": "custom",
       "description": "Endpoints for hitting custom urls"
+    },
+    {
+      "name": "Events",
+      "description": "Event Tracking"
     }
   ],
   "paths": {
@@ -7189,7 +7193,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -7257,7 +7261,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -7434,7 +7438,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:create`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -7491,7 +7495,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:any`, `session:*`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:any`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7578,7 +7582,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7656,7 +7660,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7934,7 +7938,7 @@
           "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -8002,7 +8006,7 @@
           "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -8058,7 +8062,7 @@
           "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -8126,7 +8130,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -8275,7 +8279,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -8371,7 +8375,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -8452,7 +8456,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8549,7 +8553,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8631,7 +8635,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8719,7 +8723,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8792,7 +8796,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:read-player:any`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:*`, `session:read-player:any`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8873,7 +8877,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:event`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:event`, `session:*`, `session:update:any`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9235,7 +9239,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -9294,7 +9298,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9362,7 +9366,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9425,7 +9429,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -9493,7 +9497,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -9552,7 +9556,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:any`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -9692,7 +9696,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Config",
-        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nsession:instance:health",
+        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nsession:instance:health",
         "operationId": "instance_health_config",
         "responses": {
           "200": {
@@ -9799,7 +9803,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -9922,7 +9926,7 @@
           "Sessions"
         ],
         "summary": "Delete Platform Session From Rally Here Session",
-        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "delete_platform_session_from_rally_here_session",
         "parameters": [
           {
@@ -10032,7 +10036,7 @@
           "Sessions"
         ],
         "summary": "Get Platform Session Info",
-        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
+        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
         "operationId": "get_platform_session_info",
         "parameters": [
           {
@@ -10129,7 +10133,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -10241,7 +10245,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -10330,7 +10334,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10461,7 +10465,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10560,7 +10564,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -10652,7 +10656,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -10743,7 +10747,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -10822,7 +10826,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -10900,7 +10904,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -10979,7 +10983,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates V2",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates_v2",
         "parameters": [
           {
@@ -11057,7 +11061,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -14267,7 +14271,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -14324,7 +14328,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -14393,7 +14397,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_for_me",
         "parameters": [
           {
@@ -14451,7 +14455,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -19080,7 +19084,7 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -19183,7 +19187,7 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_long_poll_for_notifications",
         "parameters": [
           {
@@ -19305,7 +19309,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notifications_page_self",
         "parameters": [
           {
@@ -19402,7 +19406,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notifications_page",
         "parameters": [
           {
@@ -19516,7 +19520,7 @@
           "player-id-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:playerid:*`, `notification:playerid:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:playerid:write`, `notification:playerid:*`",
         "operationId": "playerid_create_notification",
         "parameters": [
           {
@@ -19594,7 +19598,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notification_by_id_self",
         "parameters": [
           {
@@ -19662,7 +19666,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notification_by_id",
         "parameters": [
           {
@@ -19749,7 +19753,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -19852,7 +19856,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_long_poll_for_notifications",
         "parameters": [
           {
@@ -19975,7 +19979,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notifications_page_self",
         "parameters": [
           {
@@ -20072,7 +20076,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notifications_page",
         "parameters": [
           {
@@ -20187,7 +20191,7 @@
           "player-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:write`, `notification:player:*`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:*`, `notification:player:write`",
         "operationId": "player_create_notification",
         "parameters": [
           {
@@ -20266,7 +20270,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notification_by_id_self",
         "parameters": [
           {
@@ -20334,7 +20338,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notification_by_id",
         "parameters": [
           {
@@ -20658,7 +20662,7 @@
           "instance-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:instance:write`, `notification:instance:*`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:instance:*`, `notification:instance:write`",
         "operationId": "instance_create_notification",
         "parameters": [
           {
@@ -20823,7 +20827,7 @@
           "rank"
         ],
         "summary": "Update Rankings Trueskill V1",
-        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`",
+        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`\n**DEPRECATED** Use the v2 endpoint instead",
         "operationId": "update_rankings_trueskill_v1",
         "requestBody": {
           "content": {
@@ -20866,7 +20870,13 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/rank/v1/player/me/rank/{rank_id}": {
@@ -20875,16 +20885,15 @@
           "rank"
         ],
         "summary": "Get Player Uuid Rank Self",
-        "description": "Get current player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self`",
+        "description": "Get current player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "get_player_uuid_rank_self",
         "parameters": [
           {
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -20922,6 +20931,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -20933,16 +20943,15 @@
           "rank"
         ],
         "summary": "Update Player Uuid Rank Self",
-        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`",
+        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "update_player_uuid_rank_self",
         "parameters": [
           {
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -20990,6 +20999,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -21003,7 +21013,7 @@
           "rank"
         ],
         "summary": "Get Player Uuid Rank",
-        "description": "Get a specific player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`",
+        "description": "Get a specific player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "get_player_uuid_rank",
         "parameters": [
           {
@@ -21020,9 +21030,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -21060,6 +21069,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -21071,7 +21081,7 @@
           "rank"
         ],
         "summary": "Update Player Uuid Rank",
-        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`",
+        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`\n**DEPRECATED** Use V2 endpoints",
         "operationId": "update_player_uuid_rank",
         "parameters": [
           {
@@ -21088,9 +21098,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -21138,6 +21147,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -21151,7 +21161,7 @@
           "rank"
         ],
         "summary": "Get All Player Uuid Ranks Self",
-        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`",
+        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`\n**DEPRECATED** Use the V2 endpoints",
         "operationId": "get_all_player_uuid_ranks_self",
         "responses": {
           "200": {
@@ -21175,6 +21185,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -21188,7 +21199,7 @@
           "rank"
         ],
         "summary": "Get All Player Uuid Ranks",
-        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`",
+        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "get_all_player_uuid_ranks",
         "parameters": [
           {
@@ -21234,6 +21245,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -21247,7 +21259,7 @@
           "rank"
         ],
         "summary": "Get All Rank Config",
-        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
+        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`\n**DEPRECATED** Use the v2 endpoint",
         "operationId": "get_all_rank_config",
         "responses": {
           "200": {
@@ -21271,6 +21283,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -21284,16 +21297,15 @@
           "rank"
         ],
         "summary": "Get Rank Config",
-        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
+        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`\n**DEPRECATED** Use V2 endpoint instead",
         "operationId": "get_rank_config",
         "parameters": [
           {
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -21306,6 +21318,528 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RankConfigRequestResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/rank:calculate-trueskill": {
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Update V2 Rankings Trueskill",
+        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`",
+        "operationId": "update_v2_rankings_trueskill",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrueskillUpdateRequestV2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Rank Config V2",
+        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
+        "operationId": "get_all_rank_config_v2",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Rank Config V2",
+        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
+        "operationId": "get_rank_config_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/player/me/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Player Uuid Rank Self V2",
+        "description": "Get current player's rank for a specific rank id\n\nRequired Permissions: `rank:read:self`",
+        "operationId": "get_player_uuid_rank_self_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Update Player Uuid Rank Self V2",
+        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`",
+        "operationId": "update_player_uuid_rank_self_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRankUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/player/{player_uuid}/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Player Uuid Rank V2",
+        "description": "Get a specific player's rank for a specific rank id\n\nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`",
+        "operationId": "get_player_uuid_rank_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Update Player Uuid Rank V2",
+        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`",
+        "operationId": "update_player_uuid_rank_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRankUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/player/me/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Player Uuid Ranks Self V2",
+        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`",
+        "operationId": "get_all_player_uuid_ranks_self_v2",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v2/player/{player_uuid}/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Player Uuid Ranks V2",
+        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`",
+        "operationId": "get_all_player_uuid_ranks_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
                 }
               }
             }
@@ -21723,6 +22257,48 @@
             "HTTPBearerHeadersOrCookie": []
           }
         ]
+      }
+    },
+    "/events/v1/events": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Receive Events V1",
+        "description": "Post game events, return number of events being posted to Event Hub",
+        "operationId": "receive_events_v1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventList"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostGameEventsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -22478,21 +23054,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google authentication",
-          "Apple authentication",
-          "Refresh Token authentication",
-          "Epic Online Services authentication",
-          "Xbox Live authentication",
-          "Playstation Network v1 authentication using the configured PS4 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Account authentication",
-          "Nintendo Service Account (for Nintendo Switch) authentication",
-          "Steam authentication",
-          "Basic Username/Password authentication",
-          "Anonymous authentication"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -22507,6 +23068,21 @@
           "STEAM",
           "BASIC",
           "ANON"
+        ],
+        "x-enum-descriptions": [
+          "Google authentication",
+          "Apple authentication",
+          "Refresh Token authentication",
+          "Epic Online Services authentication",
+          "Xbox Live authentication",
+          "Playstation Network v1 authentication using the configured PS4 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Nintendo Account authentication",
+          "Nintendo Service Account (for Nintendo Switch) authentication",
+          "Steam authentication",
+          "Basic Username/Password authentication",
+          "Anonymous authentication"
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -22809,11 +23385,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-descriptions": [
-          "The OAuth2 client credentials grant type"
-        ],
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -22831,17 +23407,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google OAuth Portal",
-          "Apple OAuth Portal",
-          "Epic OAuth Portal",
-          "Xbox OAuth Portal",
-          "Playstation Network OAuth Portal",
-          "Nintendo OAuth Portal",
-          "Steam OAuth Portal",
-          "Amazon OAuth Portal",
-          "Twitch OAuth Portal"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -22852,6 +23417,17 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -22861,11 +23437,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-descriptions": [
-          "Authorization code grant type for OAuth token exchange."
-        ],
         "x-enum-varnames": [
           "authorization_code"
+        ],
+        "x-enum-descriptions": [
+          "Authorization code grant type for OAuth token exchange."
         ]
       },
       "OAuthTokenExchange": {
@@ -23247,21 +23823,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-descriptions": [
-          "Anonymous portal used for testing. This is not intended to be used by real players.",
-          "Amazon portal",
-          "Steam portal",
-          "Playstation Network portal",
-          "Xbox Live portal",
-          "Basic portal",
-          "Google portal",
-          "Twitch portal",
-          "Nintendo Switch portal",
-          "Apple portal",
-          "Nintendo portal",
-          "Epic portal",
-          "Nintendo PPID portal"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -23276,6 +23837,21 @@
           "NINTENDO",
           "EPIC",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "PortalTokenDetailsGrantType": {
@@ -23287,15 +23863,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-descriptions": [
-          "Playstation Network v1 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS5 credentials"
-        ],
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "Playstation Network v1 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS5 credentials"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -23550,17 +24126,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-descriptions": [
-          "Account is banned",
-          "Account is locked out",
-          "Account is pending deletion and will be deleted in the future",
-          "Account has been banned from authentication"
-        ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
           "ACCOUNT_PENDING_DELETION",
           "ACCOUNT_DENY_AUTH"
+        ],
+        "x-enum-descriptions": [
+          "Account is banned",
+          "Account is locked out",
+          "Account is pending deletion and will be deleted in the future",
+          "Account has been banned from authentication"
         ]
       },
       "Role": {
@@ -23920,6 +24496,15 @@
             "minLength": 1,
             "title": "Region Id",
             "description": "Preferred region for the instance and match to take place in"
+          },
+          "player": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SelfSessionPlayerUpdateRequest"
+              }
+            ],
+            "title": "Player",
+            "description": "Optional information about player in order to join the new/existing session. V2 version of CreateOrJoin will require this"
           }
         },
         "type": "object",
@@ -26372,8 +26957,7 @@
         "type": "object",
         "required": [
           "players",
-          "max_size",
-          "team_id"
+          "max_size"
         ],
         "title": "SessionTeam",
         "description": "A team of SessionPlayers in a session"
@@ -26406,7 +26990,19 @@
           "joinable": {
             "type": "boolean",
             "title": "Joinable",
+            "description": "DEPRECATED. Use 'attempt_auto_join' instead. Should players join existing sessions of this type before creating a new one",
+            "default": false
+          },
+          "attempt_auto_join": {
+            "type": "boolean",
+            "title": "Attempt Auto Join",
             "description": "Should players join existing sessions of this type before creating a new one",
+            "default": false
+          },
+          "default_public": {
+            "type": "boolean",
+            "title": "Default Public",
+            "description": "Should sessions of this type should be publicly joinable by default",
             "default": false
           },
           "auto_add_to_browser": {
@@ -29773,17 +30369,17 @@
         ],
         "type": "string",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Player is current online",
-          "Player is current online, but away.  Functionally identical to online",
-          "Player will appear offline to other players",
-          "Player is offline"
-        ],
         "x-enum-varnames": [
           "online",
           "away",
           "invisible",
           "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
         ]
       },
       "PlayerLastSeenUpdate": {
@@ -30088,6 +30684,24 @@
           "player_ranks"
         ],
         "title": "PlayerRankRequestResponse",
+        "description": "DEPRECATED Response to successfully requesting all of a player's ranks"
+      },
+      "PlayerRankRequestResponseV2": {
+        "properties": {
+          "player_ranks": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerRankResponseV2"
+            },
+            "type": "array",
+            "title": "Player Ranks",
+            "description": "List of player's ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_ranks"
+        ],
+        "title": "PlayerRankRequestResponseV2",
         "description": "Response to successfully requesting all of a player's ranks"
       },
       "PlayerRankResponse": {
@@ -30109,10 +30723,9 @@
           },
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": true,
+            "minimum": 1,
             "title": "Rank Id",
-            "description": "ID for this rank",
-            "minimum": 0
+            "description": "ID for this rank"
           }
         },
         "type": "object",
@@ -30122,6 +30735,39 @@
           "rank_id"
         ],
         "title": "PlayerRankResponse",
+        "description": "DEPRECATED Response to successfully requesting a player's rank"
+      },
+      "PlayerRankResponseV2": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          },
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for this rank"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank",
+          "rank_id"
+        ],
+        "title": "PlayerRankResponseV2",
         "description": "Response to successfully requesting a player's rank"
       },
       "PlayerRankUpdateRequest": {
@@ -30166,16 +30812,33 @@
           "updated_players"
         ],
         "title": "PlayerRankUpdateResponse",
+        "description": "DEPRECATED Response to successfully updating players' ranks"
+      },
+      "PlayerRankUpdateResponseV2": {
+        "properties": {
+          "updated_players": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerRankResponseV2"
+            },
+            "type": "array",
+            "title": "Updated Players",
+            "description": "List of players and their updated ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "updated_players"
+        ],
+        "title": "PlayerRankUpdateResponseV2",
         "description": "Response to successfully updating players' ranks"
       },
       "RankConfig": {
         "properties": {
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": true,
+            "minimum": 1,
             "title": "Rank Id",
-            "description": "ID for this rank type",
-            "minimum": 0
+            "description": "ID for this rank type"
           },
           "default_rank": {
             "type": "number",
@@ -30214,11 +30877,10 @@
           },
           "trueskill_draw_probability": {
             "type": "number",
-            "exclusiveMaximum": true,
+            "maximum": 1,
             "minimum": 0,
             "title": "Trueskill Draw Probability",
-            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)",
-            "maximum": 1
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
           }
         },
         "type": "object",
@@ -30231,7 +30893,7 @@
           "min_variance_allowed"
         ],
         "title": "RankConfig",
-        "description": "Configuration about a specific rank type"
+        "description": "DEPRECATED Configuration about a specific rank type"
       },
       "RankConfigRequestResponse": {
         "properties": {
@@ -30249,7 +30911,88 @@
           "rank_configs"
         ],
         "title": "RankConfigRequestResponse",
+        "description": "DEPRECATED Response to successfully requesting all rank config"
+      },
+      "RankConfigRequestResponseV2": {
+        "properties": {
+          "rank_configs": {
+            "items": {
+              "$ref": "#/components/schemas/RankConfigV2"
+            },
+            "type": "array",
+            "title": "Rank Configs",
+            "description": "List of rank configurations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_configs"
+        ],
+        "title": "RankConfigRequestResponseV2",
         "description": "Response to successfully requesting all rank config"
+      },
+      "RankConfigV2": {
+        "properties": {
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for this rank type"
+          },
+          "default_rank": {
+            "type": "number",
+            "title": "Default Rank",
+            "description": "The default rank value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_variance": {
+            "type": "number",
+            "title": "Default Variance",
+            "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
+          },
+          "max_rank_allowed": {
+            "type": "number",
+            "title": "Max Rank Allowed",
+            "description": "The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_rank_allowed": {
+            "type": "number",
+            "title": "Min Rank Allowed",
+            "description": "The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_variance_allowed": {
+            "type": "number",
+            "title": "Min Variance Allowed",
+            "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+          },
+          "trueskill_beta": {
+            "type": "number",
+            "title": "Trueskill Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+          },
+          "trueskill_tau": {
+            "type": "number",
+            "title": "Trueskill Tau",
+            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01)"
+          },
+          "trueskill_draw_probability": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Trueskill Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_id",
+          "default_rank",
+          "default_variance",
+          "max_rank_allowed",
+          "min_rank_allowed",
+          "min_variance_allowed"
+        ],
+        "title": "RankConfigV2",
+        "description": "Configuration about a specific rank type"
       },
       "RankData": {
         "properties": {
@@ -30352,10 +31095,9 @@
           },
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": true,
+            "minimum": 1,
             "title": "Rank Id",
-            "description": "ID for the rank type used in this match",
-            "minimum": 0
+            "description": "ID for the rank type used in this match"
           },
           "match_length_seconds": {
             "type": "integer",
@@ -30379,6 +31121,45 @@
           "teams"
         ],
         "title": "TrueskillUpdateRequest",
+        "description": "DEPRECATED A request body to update players' trueskill ratings from a match"
+      },
+      "TrueskillUpdateRequestV2": {
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID for the instance the match took place on"
+          },
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for the rank type used in this match"
+          },
+          "match_length_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_id",
+          "match_length_seconds",
+          "teams"
+        ],
+        "title": "TrueskillUpdateRequestV2",
         "description": "A request body to update players' trueskill ratings from a match"
       },
       "AppSetting": {
@@ -30492,6 +31273,83 @@
         ],
         "title": "SiteSettings",
         "description": "Contains information about a site/region."
+      },
+      "EventList": {
+        "properties": {
+          "eventList": {
+            "items": {
+              "$ref": "#/components/schemas/RallyHereEvent"
+            },
+            "type": "array",
+            "title": "Eventlist",
+            "description": "List of events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "eventList"
+        ],
+        "title": "EventList"
+      },
+      "PostGameEventsResponse": {
+        "properties": {
+          "posted_events": {
+            "type": "integer",
+            "title": "Posted Events",
+            "description": "Number of events successfully posted to Event Hub"
+          }
+        },
+        "type": "object",
+        "required": [
+          "posted_events"
+        ],
+        "title": "PostGameEventsResponse"
+      },
+      "RallyHereEvent": {
+        "properties": {
+          "eventUUID": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Eventuuid",
+            "description": "Unique Event ID for this instance of the event"
+          },
+          "eventName": {
+            "type": "string",
+            "title": "Eventname",
+            "description": "Type of event to process this as."
+          },
+          "eventTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Eventtimestamp",
+            "description": "Time the event was triggered"
+          },
+          "userID": {
+            "type": "string",
+            "title": "Userid",
+            "description": "User who submitted the event"
+          },
+          "sessionID": {
+            "type": "string",
+            "title": "Sessionid",
+            "description": "Session ID to associate the event with"
+          },
+          "eventParams": {
+            "type": "object",
+            "title": "Eventparams",
+            "description": "Event specific parameters"
+          }
+        },
+        "type": "object",
+        "required": [
+          "eventUUID",
+          "eventName",
+          "eventTimestamp",
+          "userID",
+          "sessionID",
+          "eventParams"
+        ],
+        "title": "RallyHereEvent"
       }
     }
   }

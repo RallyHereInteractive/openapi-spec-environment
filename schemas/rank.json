@@ -17,7 +17,7 @@
           "rank"
         ],
         "summary": "Update Rankings Trueskill V1",
-        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`",
+        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`\n**DEPRECATED** Use the v2 endpoint instead",
         "operationId": "update_rankings_trueskill_v1",
         "requestBody": {
           "content": {
@@ -60,7 +60,13 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/player/me/rank/{rank_id}": {
@@ -69,16 +75,15 @@
           "rank"
         ],
         "summary": "Get Player Uuid Rank Self",
-        "description": "Get current player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self`",
+        "description": "Get current player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "get_player_uuid_rank_self",
         "parameters": [
           {
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -116,6 +121,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -127,16 +133,15 @@
           "rank"
         ],
         "summary": "Update Player Uuid Rank Self",
-        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`",
+        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "update_player_uuid_rank_self",
         "parameters": [
           {
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -184,6 +189,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -197,7 +203,7 @@
           "rank"
         ],
         "summary": "Get Player Uuid Rank",
-        "description": "Get a specific player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`",
+        "description": "Get a specific player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "get_player_uuid_rank",
         "parameters": [
           {
@@ -214,9 +220,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -254,6 +259,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -265,7 +271,7 @@
           "rank"
         ],
         "summary": "Update Player Uuid Rank",
-        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`",
+        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`\n**DEPRECATED** Use V2 endpoints",
         "operationId": "update_player_uuid_rank",
         "parameters": [
           {
@@ -282,9 +288,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -332,6 +337,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -345,7 +351,7 @@
           "rank"
         ],
         "summary": "Get All Player Uuid Ranks Self",
-        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`",
+        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`\n**DEPRECATED** Use the V2 endpoints",
         "operationId": "get_all_player_uuid_ranks_self",
         "responses": {
           "200": {
@@ -369,6 +375,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -382,7 +389,7 @@
           "rank"
         ],
         "summary": "Get All Player Uuid Ranks",
-        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`",
+        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`\n**DEPRECATED** Use the V2 endpoint",
         "operationId": "get_all_player_uuid_ranks",
         "parameters": [
           {
@@ -428,6 +435,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -441,7 +449,7 @@
           "rank"
         ],
         "summary": "Get All Rank Config",
-        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
+        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`\n**DEPRECATED** Use the v2 endpoint",
         "operationId": "get_all_rank_config",
         "responses": {
           "200": {
@@ -465,6 +473,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -478,16 +487,15 @@
           "rank"
         ],
         "summary": "Get Rank Config",
-        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
+        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`\n**DEPRECATED** Use V2 endpoint instead",
         "operationId": "get_rank_config",
         "parameters": [
           {
             "required": true,
             "schema": {
               "type": "integer",
-              "exclusiveMinimum": true,
-              "title": "Rank Id",
-              "minimum": 0
+              "minimum": 1,
+              "title": "Rank Id"
             },
             "name": "rank_id",
             "in": "path"
@@ -500,6 +508,528 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RankConfigRequestResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/rank:calculate-trueskill": {
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Update V2 Rankings Trueskill",
+        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`",
+        "operationId": "update_v2_rankings_trueskill",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrueskillUpdateRequestV2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Rank Config V2",
+        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
+        "operationId": "get_all_rank_config_v2",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Rank Config V2",
+        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
+        "operationId": "get_rank_config_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/me/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Player Uuid Rank Self V2",
+        "description": "Get current player's rank for a specific rank id\n\nRequired Permissions: `rank:read:self`",
+        "operationId": "get_player_uuid_rank_self_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Update Player Uuid Rank Self V2",
+        "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`",
+        "operationId": "update_player_uuid_rank_self_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRankUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Player Uuid Rank V2",
+        "description": "Get a specific player's rank for a specific rank id\n\nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`",
+        "operationId": "get_player_uuid_rank_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Update Player Uuid Rank V2",
+        "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`",
+        "operationId": "update_player_uuid_rank_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRankUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/me/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Player Uuid Ranks Self V2",
+        "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`",
+        "operationId": "get_all_player_uuid_ranks_self_v2",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Player Uuid Ranks V2",
+        "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`",
+        "operationId": "get_all_player_uuid_ranks_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankRequestResponseV2"
                 }
               }
             }
@@ -587,6 +1117,24 @@
           "player_ranks"
         ],
         "title": "PlayerRankRequestResponse",
+        "description": "DEPRECATED Response to successfully requesting all of a player's ranks"
+      },
+      "PlayerRankRequestResponseV2": {
+        "properties": {
+          "player_ranks": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerRankResponseV2"
+            },
+            "type": "array",
+            "title": "Player Ranks",
+            "description": "List of player's ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_ranks"
+        ],
+        "title": "PlayerRankRequestResponseV2",
         "description": "Response to successfully requesting all of a player's ranks"
       },
       "PlayerRankResponse": {
@@ -608,10 +1156,9 @@
           },
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": true,
+            "minimum": 1,
             "title": "Rank Id",
-            "description": "ID for this rank",
-            "minimum": 0
+            "description": "ID for this rank"
           }
         },
         "type": "object",
@@ -621,6 +1168,39 @@
           "rank_id"
         ],
         "title": "PlayerRankResponse",
+        "description": "DEPRECATED Response to successfully requesting a player's rank"
+      },
+      "PlayerRankResponseV2": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          },
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for this rank"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank",
+          "rank_id"
+        ],
+        "title": "PlayerRankResponseV2",
         "description": "Response to successfully requesting a player's rank"
       },
       "PlayerRankUpdateRequest": {
@@ -665,16 +1245,33 @@
           "updated_players"
         ],
         "title": "PlayerRankUpdateResponse",
+        "description": "DEPRECATED Response to successfully updating players' ranks"
+      },
+      "PlayerRankUpdateResponseV2": {
+        "properties": {
+          "updated_players": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerRankResponseV2"
+            },
+            "type": "array",
+            "title": "Updated Players",
+            "description": "List of players and their updated ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "updated_players"
+        ],
+        "title": "PlayerRankUpdateResponseV2",
         "description": "Response to successfully updating players' ranks"
       },
       "RankConfig": {
         "properties": {
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": true,
+            "minimum": 1,
             "title": "Rank Id",
-            "description": "ID for this rank type",
-            "minimum": 0
+            "description": "ID for this rank type"
           },
           "default_rank": {
             "type": "number",
@@ -713,11 +1310,10 @@
           },
           "trueskill_draw_probability": {
             "type": "number",
-            "exclusiveMaximum": true,
+            "maximum": 1,
             "minimum": 0,
             "title": "Trueskill Draw Probability",
-            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)",
-            "maximum": 1
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
           }
         },
         "type": "object",
@@ -730,7 +1326,7 @@
           "min_variance_allowed"
         ],
         "title": "RankConfig",
-        "description": "Configuration about a specific rank type"
+        "description": "DEPRECATED Configuration about a specific rank type"
       },
       "RankConfigRequestResponse": {
         "properties": {
@@ -748,7 +1344,88 @@
           "rank_configs"
         ],
         "title": "RankConfigRequestResponse",
+        "description": "DEPRECATED Response to successfully requesting all rank config"
+      },
+      "RankConfigRequestResponseV2": {
+        "properties": {
+          "rank_configs": {
+            "items": {
+              "$ref": "#/components/schemas/RankConfigV2"
+            },
+            "type": "array",
+            "title": "Rank Configs",
+            "description": "List of rank configurations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_configs"
+        ],
+        "title": "RankConfigRequestResponseV2",
         "description": "Response to successfully requesting all rank config"
+      },
+      "RankConfigV2": {
+        "properties": {
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for this rank type"
+          },
+          "default_rank": {
+            "type": "number",
+            "title": "Default Rank",
+            "description": "The default rank value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_variance": {
+            "type": "number",
+            "title": "Default Variance",
+            "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
+          },
+          "max_rank_allowed": {
+            "type": "number",
+            "title": "Max Rank Allowed",
+            "description": "The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_rank_allowed": {
+            "type": "number",
+            "title": "Min Rank Allowed",
+            "description": "The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_variance_allowed": {
+            "type": "number",
+            "title": "Min Variance Allowed",
+            "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+          },
+          "trueskill_beta": {
+            "type": "number",
+            "title": "Trueskill Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+          },
+          "trueskill_tau": {
+            "type": "number",
+            "title": "Trueskill Tau",
+            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01)"
+          },
+          "trueskill_draw_probability": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Trueskill Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_id",
+          "default_rank",
+          "default_variance",
+          "max_rank_allowed",
+          "min_rank_allowed",
+          "min_variance_allowed"
+        ],
+        "title": "RankConfigV2",
+        "description": "Configuration about a specific rank type"
       },
       "RankData": {
         "properties": {
@@ -851,10 +1528,9 @@
           },
           "rank_id": {
             "type": "integer",
-            "exclusiveMinimum": true,
+            "minimum": 1,
             "title": "Rank Id",
-            "description": "ID for the rank type used in this match",
-            "minimum": 0
+            "description": "ID for the rank type used in this match"
           },
           "match_length_seconds": {
             "type": "integer",
@@ -878,6 +1554,45 @@
           "teams"
         ],
         "title": "TrueskillUpdateRequest",
+        "description": "DEPRECATED A request body to update players' trueskill ratings from a match"
+      },
+      "TrueskillUpdateRequestV2": {
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID for the instance the match took place on"
+          },
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for the rank type used in this match"
+          },
+          "match_length_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_id",
+          "match_length_seconds",
+          "teams"
+        ],
+        "title": "TrueskillUpdateRequestV2",
         "description": "A request body to update players' trueskill ratings from a match"
       },
       "ValidationError": {
