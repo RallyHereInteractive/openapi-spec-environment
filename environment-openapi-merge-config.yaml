@@ -102,6 +102,15 @@
         "prefix": "Custom"
       },
     },
+    {
+      "inputFile": "./schemas/events.json",
+      "pathModification": {
+        "prepend": "/events"
+      },
+      "dispute": {
+        "prefix": "Events"
+      },
+    },
   ],
   "output": "./environment.openapi.json"
 }
