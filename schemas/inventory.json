@@ -3155,7 +3155,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -3212,7 +3212,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -3281,7 +3281,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_for_me",
         "parameters": [
           {
@@ -3339,7 +3339,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_by_player_uuid",
         "parameters": [
           {
