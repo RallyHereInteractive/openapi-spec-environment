@@ -1280,6 +1280,7 @@
           },
           "default_variance": {
             "type": "number",
+            "minimum": 5,
             "title": "Default Variance",
             "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
           },
@@ -1295,6 +1296,7 @@
           },
           "min_variance_allowed": {
             "type": "number",
+            "minimum": 5,
             "title": "Min Variance Allowed",
             "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
           },
@@ -1379,6 +1381,7 @@
           },
           "default_variance": {
             "type": "number",
+            "minimum": 5,
             "title": "Default Variance",
             "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
           },
@@ -1394,6 +1397,7 @@
           },
           "min_variance_allowed": {
             "type": "number",
+            "minimum": 5,
             "title": "Min Variance Allowed",
             "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
           },
@@ -1436,6 +1440,7 @@
           },
           "sigma": {
             "type": "number",
+            "minimum": 5,
             "title": "Sigma",
             "description": "Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident)"
           },
