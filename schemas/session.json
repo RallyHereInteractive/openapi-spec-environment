@@ -17,7 +17,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -85,7 +85,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -162,7 +162,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:browser`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -262,7 +262,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:create`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -319,7 +319,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:any`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:any`, `session:read:self`, `session:*`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -406,7 +406,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -484,7 +484,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -563,7 +563,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -641,7 +641,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -692,7 +692,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:browser`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -762,7 +762,7 @@
           "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -830,7 +830,7 @@
           "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -886,7 +886,7 @@
           "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -954,7 +954,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -1103,7 +1103,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -1199,7 +1199,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -1280,7 +1280,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -1377,7 +1377,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -1459,7 +1459,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:self`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -1547,7 +1547,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -1620,7 +1620,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`, `session:read:event`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:read-player:any`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -1701,7 +1701,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:event`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:event`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -1847,7 +1847,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid V2",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid_v2",
         "parameters": [
           {
@@ -1925,7 +1925,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -2004,7 +2004,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
+        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -2063,7 +2063,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -2122,7 +2122,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -2190,7 +2190,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -2253,7 +2253,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -2321,7 +2321,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -2380,7 +2380,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -2520,7 +2520,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Config",
-        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
+        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`",
         "operationId": "instance_health_config",
         "responses": {
           "200": {
@@ -2557,7 +2557,7 @@
           "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:fubar`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:fubar`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -2627,7 +2627,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -2750,7 +2750,7 @@
           "Sessions"
         ],
         "summary": "Delete Platform Session From Rally Here Session",
-        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "delete_platform_session_from_rally_here_session",
         "parameters": [
           {
@@ -2860,7 +2860,7 @@
           "Sessions"
         ],
         "summary": "Get Platform Session Info",
-        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
+        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
         "operationId": "get_platform_session_info",
         "parameters": [
           {
@@ -2957,7 +2957,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -3069,7 +3069,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -3158,7 +3158,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -3289,7 +3289,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -3388,7 +3388,7 @@
           "Sessions"
         ],
         "summary": "Backfill Config",
-        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
+        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`",
         "operationId": "backfill_config",
         "responses": {
           "200": {
@@ -3419,7 +3419,7 @@
         ]
       }
     },
-    "/v1/backfill/session/{session_id}/": {
+    "/v1/backfill/session/{session_id}": {
       "post": {
         "tags": [
           "Sessions"
@@ -3507,9 +3507,7 @@
             "HTTPBearerHeadersOrCookie": []
           }
         ]
-      }
-    },
-    "/v1/backfill/session/{session_id}": {
+      },
       "patch": {
         "tags": [
           "Sessions"
@@ -3592,13 +3590,13 @@
         ]
       }
     },
-    "/v1/session/{session_id}/target-session/{target_session_id}:invite": {
+    "/v1/session/{session_id}/invited-session/{invited_session_id}:invite": {
       "post": {
         "tags": [
           "Sessions"
         ],
         "summary": "Invite Cohort To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_cohort_to_session",
         "parameters": [
           {
@@ -3618,9 +3616,9 @@
               "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "title": "Target Session Id"
+              "title": "Invited Session Id"
             },
-            "name": "target_session_id",
+            "name": "invited_session_id",
             "in": "path"
           }
         ],
@@ -3691,13 +3689,13 @@
         ]
       }
     },
-    "/v1/session/{session_id}/target-session/{target_session_id}": {
+    "/v1/session/{session_id}/kicked-session/{kicked_session_id}": {
       "delete": {
         "tags": [
           "Sessions"
         ],
         "summary": "Kick Cohort From Session",
-        "description": "Remove players from a target session `{target_session_id}` if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:self`, `session:update-player:any`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_cohort_from_session",
         "parameters": [
           {
@@ -3717,9 +3715,9 @@
               "type": "string",
               "maxLength": 128,
               "minLength": 1,
-              "title": "Target Session Id"
+              "title": "Kicked Session Id"
             },
-            "name": "target_session_id",
+            "name": "kicked_session_id",
             "in": "path"
           }
         ],
@@ -3771,7 +3769,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -3863,7 +3861,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -3954,7 +3952,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -4033,7 +4031,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -4111,7 +4109,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -4190,7 +4188,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates V2",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates_v2",
         "parameters": [
           {
@@ -4268,7 +4266,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -4355,6 +4353,15 @@
             "minLength": 1,
             "title": "Instance Id",
             "description": "The instance ID for the instance acknowledging backfill."
+          },
+          "overflow_action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TeamOverflowAction"
+              }
+            ],
+            "description": "How to handle getting sent back too many players for any specific team",
+            "default": "fail"
           }
         },
         "type": "object",
@@ -4367,17 +4374,15 @@
         "properties": {
           "backfilled_players": {
             "items": {
-              "type": "string",
-              "format": "uuid"
+              "$ref": "#/components/schemas/SessionPlayer"
             },
             "type": "array",
-            "title": "Backfilled Players"
+            "title": "Backfilled Players",
+            "description": "List of players that were backfilled. If empty, no players were backfilled",
+            "default": []
           }
         },
         "type": "object",
-        "required": [
-          "backfilled_players"
-        ],
         "title": "AcknowledgeBackfillResponse"
       },
       "AdditionalJoinParams": {
@@ -4469,6 +4474,28 @@
           "timeout"
         ],
         "title": "BackfillSettingsResponse"
+      },
+      "BackfillTeam": {
+        "properties": {
+          "players_required": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Players Required",
+            "description": "The number of players we want to backfill"
+          },
+          "team_id": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Team Id",
+            "description": "Id for the team that requires backfilled players"
+          }
+        },
+        "type": "object",
+        "required": [
+          "players_required",
+          "team_id"
+        ],
+        "title": "BackfillTeam"
       },
       "BrowserInfo": {
         "properties": {
@@ -7451,7 +7478,8 @@
           "fail",
           "allow_overflow",
           "partial_with_overflow",
-          "partial_without_overflow"
+          "partial_without_overflow",
+          "overfill"
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
@@ -7459,13 +7487,15 @@
           "fail",
           "allow_overflow",
           "partial_with_overflow",
-          "partial_without_overflow"
+          "partial_without_overflow",
+          "overfill"
         ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited"
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "UpdateBackfillRequest": {
@@ -7485,6 +7515,15 @@
             "minLength": 1,
             "title": "Instance Id",
             "description": "The instance ID for the instance acknowledging backfill."
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/BackfillTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "The teams and number of players that need to be backfilled. Leaving this out (or supplying an empty list) is treated as no players are currently required",
+            "default": []
           }
         },
         "type": "object",
