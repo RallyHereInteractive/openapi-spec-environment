@@ -40,6 +40,26 @@
               }
             }
           },
+          "207": {
+            "description": "\n        Error Codes:\n        - `events_multi_results` - Some of the events from the request failed to process, and uploaded to deadletter blob storage\n        ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\n            Error Codes:\n            - `events_all_failed` - All of events from the request failed to process, and uploaded to deadletter blob storage\n            ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -86,12 +106,41 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
+      "HzApiErrorModel": {
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "title": "HzApiErrorModel"
+      },
       "PostGameEventsResponse": {
         "properties": {
           "posted_events": {
             "type": "integer",
             "title": "Posted Events",
             "description": "Number of events successfully posted to Event Hub"
+          },
+          "errors": {
+            "items": {},
+            "type": "array",
+            "title": "Errors",
+            "description": "list of validation failure for each event."
           }
         },
         "type": "object",
@@ -110,6 +159,8 @@
           },
           "eventName": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Eventname",
             "description": "Type of event to process this as."
           },
@@ -119,29 +170,43 @@
             "title": "Eventtimestamp",
             "description": "Time the event was triggered"
           },
+          "eventParams": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Eventparams",
+            "description": "Event specific parameters"
+          },
+          "customData": {
+            "type": "object",
+            "title": "Customdata",
+            "description": "Event custom data",
+            "default": {}
+          },
           "userID": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Userid",
             "description": "User who submitted the event"
           },
           "sessionID": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Sessionid",
             "description": "Session ID to associate the event with"
-          },
-          "eventParams": {
-            "type": "object",
-            "title": "Eventparams",
-            "description": "Event specific parameters"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "eventUUID",
           "eventName",
           "eventTimestamp",
-          "userID",
-          "sessionID",
           "eventParams"
         ],
         "title": "RallyHereEvent"
