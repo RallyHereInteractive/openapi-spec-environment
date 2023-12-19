@@ -309,6 +309,28 @@
           }
         }
       }
+    },
+    "/v1/environment": {
+      "get": {
+        "tags": [
+          "environment"
+        ],
+        "summary": "Get Environment Id",
+        "description": "Returns the Environment configuration.",
+        "operationId": "get_environment_id",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentConfig"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -368,6 +390,38 @@
         ],
         "title": "DiscoveryResponse",
         "description": "Contains information that aids the client in communicating with the connection managers."
+      },
+      "EnvironmentConfig": {
+        "properties": {
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Org Id"
+          },
+          "product_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Product Id"
+          },
+          "environment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Environment Id"
+          },
+          "sandbox_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sandbox Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "org_id",
+          "product_id",
+          "environment_id",
+          "sandbox_id"
+        ],
+        "title": "EnvironmentConfig"
       },
       "HTTPValidationError": {
         "properties": {
@@ -512,12 +566,16 @@
       "description": "Discovery endpoint for MCTS compatible games"
     },
     {
-      "name": "sites",
+      "name": "site",
       "description": "Endpoint for getting site settings"
     },
     {
       "name": "time",
       "description": "Endpoint for UTC now time"
+    },
+    {
+      "name": "environment",
+      "description": "Getting Sandbox configuration"
     }
   ]
 }

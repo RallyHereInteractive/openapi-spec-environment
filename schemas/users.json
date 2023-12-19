@@ -2777,6 +2777,26 @@
         ],
         "title": "HzApiErrorModel"
       },
+      "LoginLootReward": {
+        "properties": {
+          "loot_id": {
+            "type": "string",
+            "title": "Loot Id",
+            "description": "Loot ID"
+          },
+          "legacy_loot_id": {
+            "type": "integer",
+            "title": "Legacy Loot Id",
+            "description": "Legacy Loot ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "legacy_loot_id"
+        ],
+        "title": "LoginLootReward",
+        "description": "Login loot reward"
+      },
       "LoginRequestV1": {
         "properties": {
           "grant_type": {
@@ -3825,6 +3845,12 @@
             "title": "Role Id",
             "description": "Unique Role ID"
           },
+          "legacy_role_id": {
+            "type": "integer",
+            "title": "Legacy Role Id",
+            "description": "Legacy role ID",
+            "default": 0
+          },
           "custom_data": {
             "type": "object",
             "title": "Custom Data",
@@ -3842,11 +3868,11 @@
           },
           "login_loot_rewards": {
             "items": {
-              "type": "integer"
+              "$ref": "#/components/schemas/LoginLootReward"
             },
             "type": "array",
             "title": "Login Loot Rewards",
-            "description": "List of loot table item ids that are fulfilled for the player when they begin a new inventory session",
+            "description": "List of loot ids that are fulfilled for the player when they begin a new inventory session",
             "default": []
           }
         },

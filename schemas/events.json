@@ -78,18 +78,18 @@
     "schemas": {
       "EventList": {
         "properties": {
-          "eventList": {
+          "event_list": {
             "items": {
               "$ref": "#/components/schemas/RallyHereEvent"
             },
             "type": "array",
-            "title": "Eventlist",
+            "title": "Event List",
             "description": "List of events"
           }
         },
         "type": "object",
         "required": [
-          "eventList"
+          "event_list"
         ],
         "title": "EventList"
       },
@@ -151,63 +151,89 @@
       },
       "RallyHereEvent": {
         "properties": {
-          "eventUUID": {
+          "event_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Eventuuid",
+            "title": "Event Uuid",
             "description": "Unique Event ID for this instance of the event"
           },
-          "eventName": {
+          "event_name": {
             "type": "string",
             "maxLength": 128,
             "minLength": 1,
-            "title": "Eventname",
+            "title": "Event Name",
             "description": "Type of event to process this as."
           },
-          "eventTimestamp": {
+          "event_timestamp": {
             "type": "string",
             "format": "date-time",
-            "title": "Eventtimestamp",
+            "title": "Event Timestamp",
             "description": "Time the event was triggered"
           },
-          "eventParams": {
-            "additionalProperties": {
-              "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
-            },
+          "event_params": {
             "type": "object",
-            "title": "Eventparams",
+            "title": "Event Params",
             "description": "Event specific parameters"
           },
-          "customData": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
             "type": "object",
-            "title": "Customdata",
+            "title": "Custom Data",
             "description": "Event custom data",
             "default": {}
           },
-          "userID": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Userid",
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id",
             "description": "User who submitted the event"
           },
-          "sessionID": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Sessionid",
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
             "description": "Session ID to associate the event with"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id",
+            "description": "Correlation ID to associate the event with"
           }
         },
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "eventUUID",
-          "eventName",
-          "eventTimestamp",
-          "eventParams"
+          "event_uuid",
+          "event_name",
+          "event_timestamp",
+          "event_params"
         ],
         "title": "RallyHereEvent"
       },

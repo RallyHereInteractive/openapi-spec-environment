@@ -104,12 +104,16 @@
       "description": "Discovery endpoint for MCTS compatible games"
     },
     {
-      "name": "sites",
+      "name": "site",
       "description": "Endpoint for getting site settings"
     },
     {
       "name": "time",
       "description": "Endpoint for UTC now time"
+    },
+    {
+      "name": "environment",
+      "description": "Getting Sandbox configuration"
     },
     {
       "name": "custom",
@@ -7213,7 +7217,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -7281,7 +7285,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -7515,7 +7519,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:any`, `session:read:self`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:*`, `session:read:any`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7602,7 +7606,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7680,7 +7684,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7958,7 +7962,7 @@
           "Sessions"
         ],
         "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "start_match",
         "parameters": [
           {
@@ -8026,7 +8030,7 @@
           "Sessions"
         ],
         "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "end_match",
         "parameters": [
           {
@@ -8082,7 +8086,7 @@
           "Sessions"
         ],
         "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "update_match_info",
         "parameters": [
           {
@@ -8299,7 +8303,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -8395,7 +8399,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -8476,7 +8480,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8573,7 +8577,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8655,7 +8659,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8743,7 +8747,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8897,7 +8901,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:event`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:event`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9259,7 +9263,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -9318,7 +9322,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9386,7 +9390,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9399,6 +9403,19 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DeleteTicketReason"
+                }
+              ],
+              "default": "left_queue"
+            },
+            "name": "reason",
+            "in": "query"
           }
         ],
         "responses": {
@@ -9449,7 +9466,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -9517,7 +9534,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -9576,7 +9593,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -9716,7 +9733,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Config",
-        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
+        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`",
         "operationId": "instance_health_config",
         "responses": {
           "200": {
@@ -9753,7 +9770,7 @@
           "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:fubar`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:fubar`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -10584,7 +10601,7 @@
           "Sessions"
         ],
         "summary": "Backfill Config",
-        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
+        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`",
         "operationId": "backfill_config",
         "responses": {
           "200": {
@@ -10792,7 +10809,7 @@
           "Sessions"
         ],
         "summary": "Invite Session To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_session_to_session",
         "parameters": [
           {
@@ -10891,7 +10908,7 @@
           "Sessions"
         ],
         "summary": "Kick Session From Session",
-        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_session_from_session",
         "parameters": [
           {
@@ -10965,7 +10982,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -11057,7 +11074,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -11148,7 +11165,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -11227,7 +11244,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -11305,7 +11322,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -11384,7 +11401,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates V2",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates_v2",
         "parameters": [
           {
@@ -11462,7 +11479,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -14672,7 +14689,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -14729,7 +14746,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -14798,7 +14815,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_for_me",
         "parameters": [
           {
@@ -14856,7 +14873,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`\n\tFor the player themselves: `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -17250,8 +17267,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17315,8 +17332,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17401,10 +17418,10 @@
             "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
             "name": "player_uuid",
             "in": "path"
@@ -17412,8 +17429,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17423,8 +17440,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -17501,8 +17518,8 @@
             "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
             "name": "player_id",
@@ -17511,8 +17528,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17522,8 +17539,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -17622,10 +17639,10 @@
             "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
             "name": "player_uuid",
             "in": "path"
@@ -17633,8 +17650,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17714,8 +17731,8 @@
             "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
             "name": "player_id",
@@ -17724,8 +17741,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17810,10 +17827,10 @@
             "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
             "name": "player_uuid",
             "in": "path"
@@ -17821,8 +17838,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17891,8 +17908,8 @@
             "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
             "name": "player_id",
@@ -17901,8 +17918,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -17970,10 +17987,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -17981,10 +17998,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -17992,8 +18009,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18049,10 +18066,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18060,10 +18077,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18071,8 +18088,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18128,10 +18145,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18139,10 +18156,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18150,8 +18167,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18207,10 +18224,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18218,10 +18235,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18229,8 +18246,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18286,10 +18303,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18297,10 +18314,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18308,8 +18325,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18365,10 +18382,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18376,10 +18393,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18387,8 +18404,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18444,8 +18461,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18500,10 +18517,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18511,10 +18528,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18522,8 +18539,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18578,10 +18595,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18589,10 +18606,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18600,8 +18617,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18656,10 +18673,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18667,10 +18684,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18678,8 +18695,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18734,10 +18751,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18745,10 +18762,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18756,8 +18773,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18812,10 +18829,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18823,10 +18840,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18834,8 +18851,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18890,10 +18907,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18901,10 +18918,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18912,8 +18929,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -18925,7 +18942,17 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformUnionCCUs"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformUnionCCUsAnyPlatform"
+                    }
+                  ],
+                  "title": "Response Admin Get Updating Ccu All Platform Combined V1 Admin Ccu Updating Allplatforms Combined Get"
+                }
               }
             }
           },
@@ -18968,8 +18995,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -18977,10 +19004,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -18988,10 +19015,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -18999,8 +19026,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -19055,8 +19082,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -19064,10 +19091,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -19075,10 +19102,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -19086,8 +19113,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -19142,8 +19169,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -19151,10 +19178,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -19162,10 +19189,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -19173,8 +19200,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -19229,8 +19256,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -19238,10 +19265,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -19249,10 +19276,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -19260,8 +19287,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -19316,8 +19343,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -19325,10 +19352,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -19336,10 +19363,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -19347,8 +19374,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -19403,8 +19430,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -19412,10 +19439,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -19423,10 +19450,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -19434,8 +19461,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -20592,7 +20619,7 @@
           "player-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:*`, `notification:player:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:write`, `notification:player:*`",
         "operationId": "player_create_notification",
         "parameters": [
           {
@@ -22572,6 +22599,28 @@
         }
       }
     },
+    "/config/v1/environment": {
+      "get": {
+        "tags": [
+          "environment"
+        ],
+        "summary": "Get Environment Id",
+        "description": "Returns the Environment configuration.",
+        "operationId": "get_environment_id",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentConfig"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/custom/v1/custom/{endpoint_id}": {
       "post": {
         "tags": [
@@ -23526,6 +23575,26 @@
           "credentials"
         ],
         "title": "HTTPAuthorizationCredentials"
+      },
+      "LoginLootReward": {
+        "properties": {
+          "loot_id": {
+            "type": "string",
+            "title": "Loot Id",
+            "description": "Loot ID"
+          },
+          "legacy_loot_id": {
+            "type": "integer",
+            "title": "Legacy Loot Id",
+            "description": "Legacy Loot ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "legacy_loot_id"
+        ],
+        "title": "LoginLootReward",
+        "description": "Login loot reward"
       },
       "LoginRequestV1": {
         "properties": {
@@ -24575,6 +24644,12 @@
             "title": "Role Id",
             "description": "Unique Role ID"
           },
+          "legacy_role_id": {
+            "type": "integer",
+            "title": "Legacy Role Id",
+            "description": "Legacy role ID",
+            "default": 0
+          },
           "custom_data": {
             "type": "object",
             "title": "Custom Data",
@@ -24592,11 +24667,11 @@
           },
           "login_loot_rewards": {
             "items": {
-              "type": "integer"
+              "$ref": "#/components/schemas/LoginLootReward"
             },
             "type": "array",
             "title": "Login Loot Rewards",
-            "description": "List of loot table item ids that are fulfilled for the player when they begin a new inventory session",
+            "description": "List of loot ids that are fulfilled for the player when they begin a new inventory session",
             "default": []
           }
         },
@@ -24756,6 +24831,15 @@
             "type": "object",
             "title": "Extensions",
             "description": "Additional extensions to add to the Assignment for the backfill resource associated with the session"
+          },
+          "overflow_action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TeamOverflowAction"
+              }
+            ],
+            "description": "How to handle backfills that return too many players for a team",
+            "default": "fail"
           }
         },
         "type": "object",
@@ -25088,17 +25172,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay input preferences. Can play with players using any input",
-          "Can only play with players using a keyboard and mouse",
-          "Can only player with players using a gamepad/controller",
-          "Can only player with players using a touch screen"
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay input preferences. Can play with players using any input",
+          "Can only play with players using a keyboard and mouse",
+          "Can only player with players using a gamepad/controller",
+          "Can only player with players using a touch screen"
         ]
       },
       "CrossplayPlatform": {
@@ -25110,15 +25194,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay platform preferences. Can play with players any platforms",
-          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
-          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay platform preferences. Can play with players any platforms",
+          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
+          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
         ]
       },
       "CrossplayPreferences": {
@@ -25148,6 +25232,26 @@
         "title": "CrossplayPreferences",
         "description": "A session's or player's preferences around crossplay platforms and inputs. Permitted platforms and inputs will be checked when new players attempt to join a session"
       },
+      "DeleteTicketReason": {
+        "type": "string",
+        "enum": [
+          "assigned",
+          "left_queue",
+          "timeout"
+        ],
+        "title": "DeleteTicketReason",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "assigned",
+          "left_queue",
+          "timeout"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
       "Determiner": {
         "type": "string",
         "enum": [
@@ -25158,17 +25262,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-descriptions": [
-          "All rules must be satisfied",
-          "At least one rule must be satisfied",
-          "Exactly one rule must be satisfied",
-          "All rules must not be satisfied"
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "All rules must be satisfied",
+          "At least one rule must be satisfied",
+          "Exactly one rule must be satisfied",
+          "All rules must not be satisfied"
         ]
       },
       "FubarResponse": {
@@ -25185,13 +25289,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-descriptions": [
-          "A dedicated, standalone instance",
-          "A player hosted instance"
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player"
+        ],
+        "x-enum-descriptions": [
+          "A dedicated, standalone instance",
+          "A player hosted instance"
         ]
       },
       "Input": {
@@ -25203,15 +25307,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-descriptions": [
-          "Input for players using a keyboard and mouse",
-          "Input for players using a gamepad/controller",
-          "Input for players using a touch screen"
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "Input for players using a keyboard and mouse",
+          "Input for players using a gamepad/controller",
+          "Input for players using a touch screen"
         ]
       },
       "InstanceFubar": {
@@ -25304,17 +25408,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Instance is in a healthy state",
-          "Instance is in an unhealthy state and cannot handle connections",
-          "Instance performance is degraded, and may be unable to handle new or existing connections",
-          "Instance health checks have stopped, and instance status is unknown"
-        ],
         "x-enum-varnames": [
           "HEALTHY",
           "UNHEALTHY",
           "DEGRADED",
           "UNKNOWN"
+        ],
+        "x-enum-descriptions": [
+          "Instance is in a healthy state",
+          "Instance is in an unhealthy state and cannot handle connections",
+          "Instance performance is degraded, and may be unable to handle new or existing connections",
+          "Instance health checks have stopped, and instance status is unknown"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -25463,6 +25567,13 @@
               }
             ],
             "description": "The current status of the instance"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "The profile id that this instance was spawned from"
           }
         },
         "type": "object",
@@ -25535,19 +25646,19 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found, and is loading its session information",
-          "Host has arrived and is loading",
-          "Host is ready to accept players",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
           "pending",
           "joinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found, and is loading its session information",
+          "Host has arrived and is loading",
+          "Host is ready to accept players",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -25702,15 +25813,15 @@
         ],
         "title": "InstanceSourceProvider",
         "description": "What type of provider is hosting the instance",
-        "x-enum-descriptions": [
-          "Instance is being hosted by a player",
-          "Instance is hosted by the RallyHere SIC system",
-          "Instance is being hosted by Multiplay"
-        ],
         "x-enum-varnames": [
           "PLAYER",
           "SIC",
           "MULTIPLAY"
+        ],
+        "x-enum-descriptions": [
+          "Instance is being hosted by a player",
+          "Instance is hosted by the RallyHere SIC system",
+          "Instance is being hosted by Multiplay"
         ]
       },
       "InstanceStartupParams": {
@@ -25792,17 +25903,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-descriptions": [
-          "Use the lowest MMR of any player in the linking",
-          "Use the highest MMR of any player in the linking",
-          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
-          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "Use the lowest MMR of any player in the linking",
+          "Use the highest MMR of any player in the linking",
+          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
+          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
         ]
       },
       "MapConfig": {
@@ -26367,14 +26478,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-descriptions": [
-          "The two values must be equal",
-          "The two values must not be equal",
-          "Value A must be less than value B",
-          "Value A must be less than or equal to value B",
-          "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B"
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -26382,6 +26485,14 @@
           "LESS_THAN_EQUAL",
           "GREATER_THAN",
           "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "The two values must be equal",
+          "The two values must not be equal",
+          "Value A must be less than value B",
+          "Value A must be less than or equal to value B",
+          "Value A must be greater than value B",
+          "Value A must be greater than or equal to value B"
         ]
       },
       "PlatformID": {
@@ -26402,20 +26513,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-descriptions": [
-          "DEPRECATED. Use platform instead. ID for the platform Anon",
-          "DEPRECATED. Use platform instead. ID for the platform Amazon",
-          "DEPRECATED. Use platform instead. ID for the platform Steam",
-          "DEPRECATED. Use platform instead. ID for the platform PSN",
-          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
-          "DEPRECATED. Use platform instead. ID for the platform Basic",
-          "DEPRECATED. Use platform instead. ID for the platform Google",
-          "DEPRECATED. Use platform instead. ID for the platform Twitch",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
-          "DEPRECATED. Use platform instead. ID for the platform Apple",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -26429,6 +26526,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "DEPRECATED. Use platform instead. ID for the platform Anon",
+          "DEPRECATED. Use platform instead. ID for the platform Amazon",
+          "DEPRECATED. Use platform instead. ID for the platform Steam",
+          "DEPRECATED. Use platform instead. ID for the platform PSN",
+          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
+          "DEPRECATED. Use platform instead. ID for the platform Basic",
+          "DEPRECATED. Use platform instead. ID for the platform Google",
+          "DEPRECATED. Use platform instead. ID for the platform Twitch",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
+          "DEPRECATED. Use platform instead. ID for the platform Apple",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
+          "DEPRECATED. Use platform instead. ID for the platform Epic"
         ]
       },
       "PlatformSession": {
@@ -26654,15 +26765,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-descriptions": [
-          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
-          "Ticket will be used to fulfill backfill requests",
-          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
+          "Ticket will be used to fulfill backfill requests",
+          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
         ]
       },
       "QueueConfig": {
@@ -26966,13 +27077,13 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-descriptions": [
-          "Comparing the count of a specific item that a player owns",
-          "Comparing the size of the linking (the number of players) in the session to be queued"
-        ],
         "x-enum-varnames": [
           "INVENTORY",
           "LINKING_SIZE"
+        ],
+        "x-enum-descriptions": [
+          "Comparing the count of a specific item that a player owns",
+          "Comparing the size of the linking (the number of players) in the session to be queued"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -27478,17 +27589,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-descriptions": [
-          "Player is the leader of the session. Is allowed to perform admin actions on the session",
-          "Player is an active member of the session. Is allowed basic actions on the session",
-          "Player has been invited to the session, but has not accepted or declined",
-          "Player's spot has been reserved on the session, but the player has not yet been notified"
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "Player is the leader of the session. Is allowed to perform admin actions on the session",
+          "Player is an active member of the session. Is allowed basic actions on the session",
+          "Player has been invited to the session, but has not accepted or declined",
+          "Player's spot has been reserved on the session, but the player has not yet been notified"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -27518,6 +27629,15 @@
             "title": "Custom Data",
             "description": "player-defined custom data",
             "default": {}
+          },
+          "overflow_action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TeamOverflowAction"
+              }
+            ],
+            "description": "How we should handle too many players being invited to the chosen team",
+            "default": "fail"
           }
         },
         "type": "object",
@@ -27590,6 +27710,14 @@
             "minimum": 0,
             "title": "Team Id",
             "description": "Which team this is"
+          },
+          "ticket_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Ticket Ids",
+            "description": "Matchmaking tickets that were assigned to this team"
           }
         },
         "type": "object",
@@ -27789,19 +27917,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-descriptions": [
-          "Raise an error when too many players are invited to the same team",
-          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
-          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
-          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
-        ],
         "x-enum-varnames": [
           "fail",
           "allow_overflow",
           "partial_with_overflow",
           "partial_without_overflow",
           "overfill"
+        ],
+        "x-enum-descriptions": [
+          "Raise an error when too many players are invited to the same team",
+          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
+          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "UpdateBackfillRequest": {
@@ -31040,79 +31168,104 @@
         "description": "A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. Each level has a minimum XP value."
       },
       "ClientVisibleSettings": {
-        "title": "ClientVisibleSettings",
-        "type": "object",
         "properties": {
           "self_ping_interval_seconds": {
-            "title": "Self Ping Interval Seconds",
             "type": "integer",
+            "title": "Self Ping Interval Seconds",
             "description": "How frequently the client should tell this service that it's online.",
             "default": 30
           },
           "last_seen_age_considered_offline_seconds": {
-            "title": "Last Seen Age Considered Offline Seconds",
             "type": "integer",
+            "title": "Last Seen Age Considered Offline Seconds",
             "description": "If a client hasn't said that it's online within this time period, it will be treated as offline when others query its presence.",
             "default": 60
           }
-        }
+        },
+        "type": "object",
+        "title": "ClientVisibleSettings"
       },
       "OnlineStatus": {
-        "title": "OnlineStatus",
+        "type": "string",
         "enum": [
           "online",
           "away",
           "invisible",
           "offline"
         ],
-        "type": "string",
+        "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "online",
-          "away",
-          "invisible",
-          "offline"
-        ],
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
           "Player will appear offline to other players",
           "Player is offline"
+        ],
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
         ]
       },
-      "PlayerLastSeenUpdate": {
-        "title": "PlayerLastSeenUpdate",
-        "required": [
-          "time"
-        ],
+      "PlatformUnionCCUs": {
+        "properties": {
+          "platform_counts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/UnionCCU"
+            },
+            "type": "object",
+            "title": "Platform Counts"
+          }
+        },
         "type": "object",
+        "required": [
+          "platform_counts"
+        ],
+        "title": "PlatformUnionCCUs"
+      },
+      "PlatformUnionCCUsAnyPlatform": {
+        "properties": {
+          "platform_counts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/UnionCCU"
+            },
+            "type": "object",
+            "title": "Platform Counts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform_counts"
+        ],
+        "title": "PlatformUnionCCUsAnyPlatform"
+      },
+      "PlayerLastSeenUpdate": {
         "properties": {
           "time": {
-            "title": "Time",
             "type": "string",
-            "description": "Last time this player reported their online status",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Time",
+            "description": "Last time this player reported their online status"
           },
           "platform": {
-            "title": "Platform",
             "type": "string",
+            "title": "Platform",
             "description": "Platform the user was online in"
           },
           "display_name": {
-            "title": "Display Name",
             "type": "string",
+            "title": "Display Name",
             "description": "Player Display Name"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "time"
+        ],
+        "title": "PlayerLastSeenUpdate"
       },
       "PlayerPresence": {
-        "title": "PlayerPresence",
-        "required": [
-          "platform",
-          "display_name",
-          "player_uuid"
-        ],
-        "type": "object",
         "properties": {
           "status": {
             "allOf": [
@@ -31124,60 +31277,65 @@
             "default": "offline"
           },
           "message": {
-            "title": "Message",
-            "maxLength": 256,
             "type": "string",
+            "maxLength": 256,
+            "title": "Message",
             "description": "Optional custom message to display alongside the user's online status",
             "default": ""
           },
           "platform": {
-            "title": "Platform",
             "type": "string",
+            "title": "Platform",
             "description": "Platform the user was online in"
           },
           "display_name": {
-            "title": "Display Name",
             "type": "string",
+            "title": "Display Name",
             "description": "Player Display Name"
           },
           "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
             "additionalProperties": {
+              "type": "string",
               "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
+              "minLength": 1
             },
+            "type": "object",
+            "title": "Custom Data",
             "description": "custom fields for the player to update about their presence",
             "default": {}
           },
           "player_id": {
-            "title": "Player Id",
             "type": "integer",
+            "title": "Player Id",
             "description": "Player ID for the player if it was provided as part of the request"
           },
           "player_uuid": {
-            "title": "Player Uuid",
             "type": "string",
-            "description": "UUID of the player whose presence this represents",
-            "format": "uuid"
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID of the player whose presence this represents"
           },
           "do_not_disturb": {
-            "title": "Do Not Disturb",
             "type": "boolean",
+            "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Only set for self or admin."
           },
           "last_seen": {
-            "title": "Last Seen",
             "type": "string",
-            "description": "Info about the player the last time they reported their status. Only set for self or admin",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Last Seen",
+            "description": "Info about the player the last time they reported their status. Only set for self or admin"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "display_name",
+          "player_uuid"
+        ],
+        "title": "PlayerPresence"
       },
       "PlayerPresenceUpdateSelf": {
-        "title": "PlayerPresenceUpdateSelf",
-        "type": "object",
         "properties": {
           "status": {
             "allOf": [
@@ -31188,27 +31346,51 @@
             "description": "Is the player currently online?"
           },
           "message": {
-            "title": "Message",
-            "maxLength": 256,
             "type": "string",
+            "maxLength": 256,
+            "title": "Message",
             "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
           },
           "do_not_disturb": {
-            "title": "Do Not Disturb",
             "type": "boolean",
+            "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Leaving this unset will not change the value."
           },
           "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
             "additionalProperties": {
+              "type": "string",
               "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
+              "minLength": 1
             },
+            "type": "object",
+            "title": "Custom Data",
             "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
           }
-        }
+        },
+        "type": "object",
+        "title": "PlayerPresenceUpdateSelf"
+      },
+      "UnionCCU": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "timestamps": {
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "type": "array",
+            "title": "Timestamps"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "timestamps"
+        ],
+        "title": "UnionCCU"
       },
       "Notification": {
         "title": "Notification",
@@ -31921,6 +32103,38 @@
         "title": "DiscoveryResponse",
         "description": "Contains information that aids the client in communicating with the connection managers."
       },
+      "EnvironmentConfig": {
+        "properties": {
+          "org_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Org Id"
+          },
+          "product_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Product Id"
+          },
+          "environment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Environment Id"
+          },
+          "sandbox_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sandbox Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "org_id",
+          "product_id",
+          "environment_id",
+          "sandbox_id"
+        ],
+        "title": "EnvironmentConfig"
+      },
       "KVsResponse": {
         "properties": {
           "kvs": {
@@ -31979,18 +32193,18 @@
       },
       "EventList": {
         "properties": {
-          "eventList": {
+          "event_list": {
             "items": {
               "$ref": "#/components/schemas/RallyHereEvent"
             },
             "type": "array",
-            "title": "Eventlist",
+            "title": "Event List",
             "description": "List of events"
           }
         },
         "type": "object",
         "required": [
-          "eventList"
+          "event_list"
         ],
         "title": "EventList"
       },
@@ -32016,63 +32230,89 @@
       },
       "RallyHereEvent": {
         "properties": {
-          "eventUUID": {
+          "event_uuid": {
             "type": "string",
             "format": "uuid",
-            "title": "Eventuuid",
+            "title": "Event Uuid",
             "description": "Unique Event ID for this instance of the event"
           },
-          "eventName": {
+          "event_name": {
             "type": "string",
             "maxLength": 128,
             "minLength": 1,
-            "title": "Eventname",
+            "title": "Event Name",
             "description": "Type of event to process this as."
           },
-          "eventTimestamp": {
+          "event_timestamp": {
             "type": "string",
             "format": "date-time",
-            "title": "Eventtimestamp",
+            "title": "Event Timestamp",
             "description": "Time the event was triggered"
           },
-          "eventParams": {
-            "additionalProperties": {
-              "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
-            },
+          "event_params": {
             "type": "object",
-            "title": "Eventparams",
+            "title": "Event Params",
             "description": "Event specific parameters"
           },
-          "customData": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
             "type": "object",
-            "title": "Customdata",
+            "title": "Custom Data",
             "description": "Event custom data",
             "default": {}
           },
-          "userID": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Userid",
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id",
             "description": "User who submitted the event"
           },
-          "sessionID": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Sessionid",
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
             "description": "Session ID to associate the event with"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id",
+            "description": "Correlation ID to associate the event with"
           }
         },
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "eventUUID",
-          "eventName",
-          "eventTimestamp",
-          "eventParams"
+          "event_uuid",
+          "event_name",
+          "event_timestamp",
+          "event_params"
         ],
         "title": "RallyHereEvent"
       }

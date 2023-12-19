@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "presence-api",
     "description": "RallyHere presence-api.",
@@ -23,8 +23,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -88,8 +88,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -174,10 +174,10 @@
             "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
             "name": "player_uuid",
             "in": "path"
@@ -185,8 +185,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -196,8 +196,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -274,8 +274,8 @@
             "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
             "name": "player_id",
@@ -284,8 +284,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -295,8 +295,8 @@
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
             "name": "if-none-match",
@@ -395,10 +395,10 @@
             "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
             "name": "player_uuid",
             "in": "path"
@@ -406,8 +406,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -487,8 +487,8 @@
             "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
             "name": "player_id",
@@ -497,8 +497,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -583,10 +583,10 @@
             "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
             "name": "player_uuid",
             "in": "path"
@@ -594,8 +594,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -664,8 +664,8 @@
             "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
-              "title": "Player Id",
               "type": "integer",
+              "title": "Player Id",
               "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
             "name": "player_id",
@@ -674,8 +674,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -743,10 +743,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -754,10 +754,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -765,8 +765,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -822,10 +822,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -833,10 +833,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -844,8 +844,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -901,10 +901,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -912,10 +912,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -923,8 +923,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -980,10 +980,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -991,10 +991,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1002,8 +1002,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1059,10 +1059,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1070,10 +1070,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1081,8 +1081,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1138,10 +1138,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1149,10 +1149,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1160,8 +1160,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1217,8 +1217,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1273,10 +1273,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1284,10 +1284,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1295,8 +1295,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1351,10 +1351,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1362,10 +1362,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1373,8 +1373,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1429,10 +1429,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1440,10 +1440,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1451,8 +1451,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1507,10 +1507,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1518,10 +1518,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1529,8 +1529,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1585,10 +1585,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1596,10 +1596,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1607,8 +1607,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1663,10 +1663,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1674,10 +1674,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1685,8 +1685,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1698,7 +1698,17 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformUnionCCUs"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformUnionCCUsAnyPlatform"
+                    }
+                  ],
+                  "title": "Response Admin Get Updating Ccu All Platform Combined V1 Admin Ccu Updating Allplatforms Combined Get"
+                }
               }
             }
           },
@@ -1741,8 +1751,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -1750,10 +1760,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1761,10 +1771,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1772,8 +1782,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1828,8 +1838,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -1837,10 +1847,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1848,10 +1858,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1859,8 +1869,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -1915,8 +1925,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -1924,10 +1934,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -1935,10 +1945,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -1946,8 +1956,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -2002,8 +2012,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -2011,10 +2021,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -2022,10 +2032,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -2033,8 +2043,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -2089,8 +2099,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -2098,10 +2108,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -2109,10 +2119,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -2120,8 +2130,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -2176,8 +2186,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Platform",
-              "type": "string"
+              "type": "string",
+              "title": "Platform"
             },
             "name": "platform",
             "in": "path"
@@ -2185,10 +2195,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "begin",
             "in": "query"
@@ -2196,10 +2206,10 @@
           {
             "required": true,
             "schema": {
-              "title": "TZAware",
               "type": "string",
-              "description": "A date-time with timezone data.",
-              "format": "date-time"
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
             },
             "name": "end",
             "in": "query"
@@ -2207,8 +2217,8 @@
           {
             "required": false,
             "schema": {
-              "title": "Use Cache",
               "type": "boolean",
+              "title": "Use Cache",
               "default": true
             },
             "name": "use_cache",
@@ -2256,115 +2266,140 @@
   "components": {
     "schemas": {
       "ClientVisibleSettings": {
-        "title": "ClientVisibleSettings",
-        "type": "object",
         "properties": {
           "self_ping_interval_seconds": {
-            "title": "Self Ping Interval Seconds",
             "type": "integer",
+            "title": "Self Ping Interval Seconds",
             "description": "How frequently the client should tell this service that it's online.",
             "default": 30
           },
           "last_seen_age_considered_offline_seconds": {
-            "title": "Last Seen Age Considered Offline Seconds",
             "type": "integer",
+            "title": "Last Seen Age Considered Offline Seconds",
             "description": "If a client hasn't said that it's online within this time period, it will be treated as offline when others query its presence.",
             "default": 60
           }
-        }
+        },
+        "type": "object",
+        "title": "ClientVisibleSettings"
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "HzApiErrorModel": {
-        "title": "HzApiErrorModel",
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
         "required": [
           "error_code",
           "desc"
         ],
-        "type": "object",
-        "properties": {
-          "auth_success": {
-            "title": "Auth Success",
-            "type": "boolean",
-            "default": true
-          },
-          "error_code": {
-            "title": "Error Code",
-            "type": "string"
-          },
-          "desc": {
-            "title": "Desc",
-            "type": "string"
-          }
-        }
+        "title": "HzApiErrorModel"
       },
       "OnlineStatus": {
-        "title": "OnlineStatus",
+        "type": "string",
         "enum": [
           "online",
           "away",
           "invisible",
           "offline"
         ],
-        "type": "string",
+        "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "online",
-          "away",
-          "invisible",
-          "offline"
-        ],
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
           "Player will appear offline to other players",
           "Player is offline"
+        ],
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
         ]
       },
-      "PlayerLastSeenUpdate": {
-        "title": "PlayerLastSeenUpdate",
-        "required": [
-          "time"
-        ],
+      "PlatformUnionCCUs": {
+        "properties": {
+          "platform_counts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/UnionCCU"
+            },
+            "type": "object",
+            "title": "Platform Counts"
+          }
+        },
         "type": "object",
+        "required": [
+          "platform_counts"
+        ],
+        "title": "PlatformUnionCCUs"
+      },
+      "PlatformUnionCCUsAnyPlatform": {
+        "properties": {
+          "platform_counts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/UnionCCU"
+            },
+            "type": "object",
+            "title": "Platform Counts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform_counts"
+        ],
+        "title": "PlatformUnionCCUsAnyPlatform"
+      },
+      "PlayerLastSeenUpdate": {
         "properties": {
           "time": {
-            "title": "Time",
             "type": "string",
-            "description": "Last time this player reported their online status",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Time",
+            "description": "Last time this player reported their online status"
           },
           "platform": {
-            "title": "Platform",
             "type": "string",
+            "title": "Platform",
             "description": "Platform the user was online in"
           },
           "display_name": {
-            "title": "Display Name",
             "type": "string",
+            "title": "Display Name",
             "description": "Player Display Name"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "time"
+        ],
+        "title": "PlayerLastSeenUpdate"
       },
       "PlayerPresence": {
-        "title": "PlayerPresence",
-        "required": [
-          "platform",
-          "display_name",
-          "player_uuid"
-        ],
-        "type": "object",
         "properties": {
           "status": {
             "allOf": [
@@ -2376,60 +2411,65 @@
             "default": "offline"
           },
           "message": {
-            "title": "Message",
-            "maxLength": 256,
             "type": "string",
+            "maxLength": 256,
+            "title": "Message",
             "description": "Optional custom message to display alongside the user's online status",
             "default": ""
           },
           "platform": {
-            "title": "Platform",
             "type": "string",
+            "title": "Platform",
             "description": "Platform the user was online in"
           },
           "display_name": {
-            "title": "Display Name",
             "type": "string",
+            "title": "Display Name",
             "description": "Player Display Name"
           },
           "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
             "additionalProperties": {
+              "type": "string",
               "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
+              "minLength": 1
             },
+            "type": "object",
+            "title": "Custom Data",
             "description": "custom fields for the player to update about their presence",
             "default": {}
           },
           "player_id": {
-            "title": "Player Id",
             "type": "integer",
+            "title": "Player Id",
             "description": "Player ID for the player if it was provided as part of the request"
           },
           "player_uuid": {
-            "title": "Player Uuid",
             "type": "string",
-            "description": "UUID of the player whose presence this represents",
-            "format": "uuid"
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID of the player whose presence this represents"
           },
           "do_not_disturb": {
-            "title": "Do Not Disturb",
             "type": "boolean",
+            "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Only set for self or admin."
           },
           "last_seen": {
-            "title": "Last Seen",
             "type": "string",
-            "description": "Info about the player the last time they reported their status. Only set for self or admin",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Last Seen",
+            "description": "Info about the player the last time they reported their status. Only set for self or admin"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "display_name",
+          "player_uuid"
+        ],
+        "title": "PlayerPresence"
       },
       "PlayerPresenceUpdateSelf": {
-        "title": "PlayerPresenceUpdateSelf",
-        "type": "object",
         "properties": {
           "status": {
             "allOf": [
@@ -2440,40 +2480,55 @@
             "description": "Is the player currently online?"
           },
           "message": {
-            "title": "Message",
-            "maxLength": 256,
             "type": "string",
+            "maxLength": 256,
+            "title": "Message",
             "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
           },
           "do_not_disturb": {
-            "title": "Do Not Disturb",
             "type": "boolean",
+            "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Leaving this unset will not change the value."
           },
           "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
             "additionalProperties": {
+              "type": "string",
               "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
+              "minLength": 1
             },
+            "type": "object",
+            "title": "Custom Data",
             "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
           }
-        }
+        },
+        "type": "object",
+        "title": "PlayerPresenceUpdateSelf"
+      },
+      "UnionCCU": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "timestamps": {
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "type": "array",
+            "title": "Timestamps"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "timestamps"
+        ],
+        "title": "UnionCCU"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -2483,17 +2538,26 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     },
     "securitySchemes": {
