@@ -1,3 +1,3158 @@
+## Changes for Tue Jan 23 15:21:51 EST 2024
+### New Endpoints: 3
+--------------------
+POST /rank/v1/rank:calculate  
+GET /users/v1/platform-user  
+POST /users/v1/platform-user  
+
+### Deleted Endpoints: 2
+------------------------
+POST /rank/v1/rank:calculate-trueskill  
+POST /rank/v2/rank:calculate-trueskill  
+
+### Modified Endpoints: 132
+---------------------------
+POST /events/v1/events
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: event_list
+            - Items changed
+              - Properties changed
+                - Modified property: custom_data
+                  - Default changed from map[] to null
+
+GET /inventory/v1/marketing/campaign
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: campaigns
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v1/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Schemas added: [Portal]
+                                          - Schemas deleted: [InventoryPortal]
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v1/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Schemas added: [Portal]
+              - Schemas deleted: [InventoryPortal]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v1/player/{player_id}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/{player_id}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/{player_id}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Schemas added: [Portal]
+                                          - Schemas deleted: [InventoryPortal]
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v1/player/{player_id}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Schemas added: [Portal]
+              - Schemas deleted: [InventoryPortal]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v1/player/{player_id}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v2/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Schemas added: [Portal]
+                                          - Schemas deleted: [InventoryPortal]
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v2/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Schemas added: [Portal]
+              - Schemas deleted: [InventoryPortal]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+PUT /inventory/v2/player/{player_uuid}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/{player_uuid}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/{player_uuid}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Schemas added: [Portal]
+                                          - Schemas deleted: [InventoryPortal]
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Schemas added: [Portal]
+                      - Schemas deleted: [InventoryPortal]
+
+POST /inventory/v2/player/{player_uuid}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Schemas added: [Portal]
+              - Schemas deleted: [InventoryPortal]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /inventory/v2/player/{player_uuid}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [Portal]
+                                    - Schemas deleted: [InventoryPortal]
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Schemas added: [Portal]
+                - Schemas deleted: [InventoryPortal]
+
+GET /notification/v1/instance/{instance_id}/notification
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/instance/{instance_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/instance/{instance_id}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/instance/{instance_id}/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:instance:*`,`notification:instance:read`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:instance:*`,`notification:instance:read`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/me/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Requires permissions: Any of `notification:player:read`,`notification:player:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Requires permissions: Any of `notification:player:*`,`notification:player:read`'
+- Responses changed
+  - New response: 400
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+Requires permissions: Any of `notification:player:read`,`notification:player:*`' to 'Retrieve a single notification by id
+
+Requires permissions: Any of `notification:player:*`,`notification:player:read`'
+- Responses changed
+  - New response: 400
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Requires permissions: Any of `notification:player:read`,`notification:player:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Requires permissions: Any of `notification:player:*`,`notification:player:read`'
+- Responses changed
+  - New response: 400
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:player:read`,`notification:player:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:player:*`,`notification:player:read`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Description changed from 'Create new notification for client.  Requires permission to create for a different client
+
+Requires permissions: Any of `notification:player:write`, `notification:player:*`' to 'Create new notification for client.  Requires permission to create for a different client
+
+Requires permissions: Any of `notification:player:*`, `notification:player:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:player:read`,`notification:player:*`' to 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:player:*`,`notification:player:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:player:read`,`notification:player:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:player:*`,`notification:player:read`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/me/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`'
+- Responses changed
+  - New response: 400
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/me/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`' to 'Retrieve a single notification by id
+
+Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`'
+- Responses changed
+  - New response: 400
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/me/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`'
+- Responses changed
+  - New response: 400
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/{player_id}/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/playerid/{player_id}/notification
+- Description changed from 'Create new notification for client.  Requires permission to create for a different client
+
+Requires permissions: Any of `notification:playerid:write`, `notification:playerid:*`' to 'Create new notification for client.  Requires permission to create for a different client
+
+Requires permissions: Any of `notification:playerid:*`, `notification:playerid:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/{player_id}/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`' to 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/{player_id}/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: cursor
+          - Properties changed
+            - New property: cursor
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_role - Insufficient Role access
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /presence/v1/admin/ccu/platforms
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'Platforms'
+          - Required changed
+            - New required property: platforms
+          - Properties changed
+            - New property: platforms
+
+GET /presence/v1/admin/ccu/requesting/allplatforms/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformUnionCCUs'
+          - Required changed
+            - New required property: platform_counts
+          - Properties changed
+            - New property: platform_counts
+
+GET /presence/v1/admin/ccu/requesting/allplatforms/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformIndividualCCUs'
+          - Required changed
+            - New required property: platform_ccus
+          - Properties changed
+            - New property: platform_ccus
+
+GET /presence/v1/admin/ccu/requesting/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'UnionCCU'
+          - Required changed
+            - New required property: count
+            - New required property: timestamps
+          - Properties changed
+            - New property: count
+            - New property: timestamps
+
+GET /presence/v1/admin/ccu/requesting/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'IndividualCCUs'
+          - Required changed
+            - New required property: ccus
+          - Properties changed
+            - New property: ccus
+
+GET /presence/v1/admin/ccu/requesting/platform/{platform}/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformUnionCCUs'
+          - Required changed
+            - New required property: platform_counts
+          - Properties changed
+            - New property: platform_counts
+
+GET /presence/v1/admin/ccu/requesting/platform/{platform}/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformIndividualCCUs'
+          - Required changed
+            - New required property: platform_ccus
+          - Properties changed
+            - New property: platform_ccus
+
+GET /presence/v1/admin/ccu/total/allplatforms/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformUnionCCUs'
+          - Required changed
+            - New required property: platform_counts
+          - Properties changed
+            - New property: platform_counts
+
+GET /presence/v1/admin/ccu/total/allplatforms/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformIndividualCCUs'
+          - Required changed
+            - New required property: platform_ccus
+          - Properties changed
+            - New property: platform_ccus
+
+GET /presence/v1/admin/ccu/total/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'UnionCCU'
+          - Required changed
+            - New required property: count
+            - New required property: timestamps
+          - Properties changed
+            - New property: count
+            - New property: timestamps
+
+GET /presence/v1/admin/ccu/total/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'IndividualCCUs'
+          - Required changed
+            - New required property: ccus
+          - Properties changed
+            - New property: ccus
+
+GET /presence/v1/admin/ccu/total/platform/{platform}/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformUnionCCUs'
+          - Required changed
+            - New required property: platform_counts
+          - Properties changed
+            - New property: platform_counts
+
+GET /presence/v1/admin/ccu/total/platform/{platform}/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformIndividualCCUs'
+          - Required changed
+            - New required property: platform_ccus
+          - Properties changed
+            - New property: platform_ccus
+
+GET /presence/v1/admin/ccu/updating/allplatforms/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Property 'AnyOf' changed
+            - Schemas deleted: [PlatformUnionCCUs PlatformUnionCCUsAnyPlatform]
+          - Type changed from '' to 'object'
+          - Title changed from 'Response Admin Get Updating Ccu All Platform Combined V1 Admin Ccu Updating Allplatforms Combined Get' to 'PlatformUnionCCUs'
+          - Required changed
+            - New required property: platform_counts
+          - Properties changed
+            - New property: platform_counts
+
+GET /presence/v1/admin/ccu/updating/allplatforms/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformIndividualCCUs'
+          - Required changed
+            - New required property: platform_ccus
+          - Properties changed
+            - New property: platform_ccus
+
+GET /presence/v1/admin/ccu/updating/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'UnionCCU'
+          - Required changed
+            - New required property: count
+            - New required property: timestamps
+          - Properties changed
+            - New property: count
+            - New property: timestamps
+
+GET /presence/v1/admin/ccu/updating/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'IndividualCCUs'
+          - Required changed
+            - New required property: ccus
+          - Properties changed
+            - New property: ccus
+
+GET /presence/v1/admin/ccu/updating/platform/{platform}/combined
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformUnionCCUs'
+          - Required changed
+            - New required property: platform_counts
+          - Properties changed
+            - New property: platform_counts
+
+GET /presence/v1/admin/ccu/updating/platform/{platform}/individual
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Type changed from '' to 'object'
+          - Title changed from '' to 'PlatformIndividualCCUs'
+          - Required changed
+            - New required property: platform_ccus
+          - Properties changed
+            - New property: platform_ccus
+
+PATCH /presence/v1/admin/player/id/{player_id}/last_seen
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Deleted media type: application/json
+
+PATCH /presence/v1/player/me/presence
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Deleted media type: application/json
+
+GET /rank/v1/player/me/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v1/player/me/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+POST /rank/v1/player/me/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/RankData modified
+                - Properties changed
+                  - Modified property: sigma
+                    - Min changed from 5 to 2
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v1/player/{player_uuid}/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v1/player/{player_uuid}/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+POST /rank/v1/player/{player_uuid}/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/RankData modified
+                - Properties changed
+                  - Modified property: sigma
+                    - Min changed from 5 to 2
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v1/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rank_configs
+              - Items changed
+                - Properties changed
+                  - Modified property: default_variance
+                    - Min changed from 5 to 2
+                  - Modified property: min_variance_allowed
+                    - Min changed from 5 to 2
+
+GET /rank/v1/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rank_configs
+              - Items changed
+                - Properties changed
+                  - Modified property: default_variance
+                    - Min changed from 5 to 2
+                  - Modified property: min_variance_allowed
+                    - Min changed from 5 to 2
+
+GET /rank/v2/player/me/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v2/player/me/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+POST /rank/v2/player/me/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/RankData modified
+                - Properties changed
+                  - Modified property: sigma
+                    - Min changed from 5 to 2
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v2/player/{player_uuid}/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v2/player/{player_uuid}/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+POST /rank/v2/player/{player_uuid}/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/RankData modified
+                - Properties changed
+                  - Modified property: sigma
+                    - Min changed from 5 to 2
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/RankData modified
+                        - Properties changed
+                          - Modified property: sigma
+                            - Min changed from 5 to 2
+
+GET /rank/v2/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rank_configs
+              - Items changed
+                - Properties changed
+                  - Modified property: default_variance
+                    - Min changed from 5 to 2
+                  - Modified property: min_variance_allowed
+                    - Min changed from 5 to 2
+
+GET /rank/v2/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rank_configs
+              - Items changed
+                - Properties changed
+                  - Modified property: default_variance
+                    - Min changed from 5 to 2
+                  - Modified property: min_variance_allowed
+                    - Min changed from 5 to 2
+
+GET /session/v1/browser
+- Description changed from 'Get all public sessions of a specific type
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read:browser`
+
+
+Required Permissions: None' to 'Get all public sessions of a specific type
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:browser`, `session:*`
+
+
+Required Permissions: None'
+
+GET /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}
+- Description changed from 'Get information about a platform session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read:platform`
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission' to 'Get information about a platform session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:platform`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission'
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Description changed from 'Leave a platform session by platform ID and parent platform session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None' to 'Leave a platform session by platform ID and parent platform session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Description changed from 'Join a platform session by ID, and the parent session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None' to 'Join a platform session by ID, and the parent session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: instance_health
+                      - Property 'AnyOf' changed
+                        - Schemas added: [InstanceHealthStatus InstanceStatus]
+                      - Property 'AllOf' changed
+                        - Schemas deleted: [InstanceHealthStatus]
+                      - Title changed from '' to 'Instance Health'
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Description changed from 'Leave a platform session by platform ID and parent platform session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None' to 'Leave a platform session by platform ID and parent platform session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Description changed from 'Join a platform session by platform ID and parent platform session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None' to 'Join a platform session by platform ID and parent platform session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: instance_health
+                      - Property 'AnyOf' changed
+                        - Schemas added: [InstanceHealthStatus InstanceStatus]
+                      - Property 'AllOf' changed
+                        - Schemas deleted: [InstanceHealthStatus]
+                      - Title changed from '' to 'Instance Health'
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Description changed from 'Remove a platform session from a Rally Here session
+               
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:platform`
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission' to 'Remove a platform session from a Rally Here session
+               
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:platform`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Description changed from 'Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:platform`
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission' to 'Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:platform`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission'
+
+GET /session/v1/player/id/{player_id}/session
+- Description changed from 'Get Sessions associated with a player by id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+
+**DEPRECATED** - Use player endpoint instead' to 'Get Sessions associated with a player by id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+
+**DEPRECATED** - Use player endpoint instead'
+
+GET /session/v1/player/uuid/{player_uuid}/session
+- Description changed from 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+GET /session/v1/player/{player_uuid}/session
+- Description changed from 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None' to 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None'
+
+POST /session/v1/session
+- Description changed from 'Join the first publicly available session of given type. If there is no public session, and the session type
+permits player made sessions, create a new session and put the player in it
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:create`
+
+
+Required Session Permissions: None' to 'Join the first publicly available session of given type. If there is no public session, and the session type
+permits player made sessions, create a new session and put the player in it
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:create`, `session:*`
+
+
+Required Session Permissions: None'
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: instance_health
+                      - Property 'AnyOf' changed
+                        - Schemas added: [InstanceHealthStatus InstanceStatus]
+                      - Property 'AllOf' changed
+                        - Schemas deleted: [InstanceHealthStatus]
+                      - Title changed from '' to 'Instance Health'
+
+GET /session/v1/session/{session_id}
+- Description changed from 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:self`, `session:*`, `session:read:any`
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission' to 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:any`, `session:read:self`, `session:*`
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: instance_health
+                      - Property 'AnyOf' changed
+                        - Schemas added: [InstanceHealthStatus InstanceStatus]
+                      - Property 'AllOf' changed
+                        - Schemas deleted: [InstanceHealthStatus]
+                      - Title changed from '' to 'Instance Health'
+
+PATCH /session/v1/session/{session_id}
+- Description changed from 'Update session info by session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission' to 'Update session info by session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: instance_health
+                      - Property 'AnyOf' changed
+                        - Schemas added: [InstanceHealthStatus InstanceStatus]
+                      - Property 'AllOf' changed
+                        - Schemas deleted: [InstanceHealthStatus]
+                      - Title changed from '' to 'Instance Health'
+
+DELETE /session/v1/session/{session_id}/browser
+- Description changed from 'Delete the session from the public browser
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:browser`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Delete the session from the public browser
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:browser`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+PATCH /session/v1/session/{session_id}/browser
+- Description changed from 'Update the browser info for the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:browser`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Update the browser info for the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:browser`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+POST /session/v1/session/{session_id}/browser
+- Description changed from 'Register session in the public browser
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:browser`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Register session in the public browser
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:browser`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+GET /session/v1/session/{session_id}/event
+- Description changed from 'Get all events for the session.  Empty list means there is no event history for it.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read:event`, `session:read-player:any`
+
+
+Required Session Permissions: None' to 'Get all events for the session.  Empty list means there is no event history for it.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:read:event`, `session:*`
+
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/instance
+- Description changed from 'Unregister the instance from the session.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission' to 'Unregister the instance from the session.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission'
+
+PATCH /session/v1/session/{session_id}/instance
+- Description changed from 'Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.
+Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission' to 'Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.
+Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance_health
+              - Property 'AnyOf' changed
+                - Schemas added: [InstanceHealthStatus InstanceStatus]
+              - Property 'AllOf' changed
+                - Schemas deleted: [InstanceHealthStatus]
+              - Title changed from '' to 'Instance Health'
+
+POST /session/v1/session/{session_id}/instance
+- Description changed from 'Request an instance be spawned for the session, or register self as a host of the instance
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission' to 'Request an instance be spawned for the session, or register self as a host of the instance
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance_health
+              - Property 'AnyOf' changed
+                - Schemas added: [InstanceHealthStatus InstanceStatus]
+              - Property 'AllOf' changed
+                - Schemas deleted: [InstanceHealthStatus]
+              - Title changed from '' to 'Instance Health'
+
+POST /session/v1/session/{session_id}/invited-session/{invited_session_id}:invite
+- Description changed from 'Invite an entire session to a target session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ to invite any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Invite an entire session to a target session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ to invite any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/kicked-session/{kicked_session_id}
+- Description changed from 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions: 
+	For any player (including themselves): `session:*`
+ to kick any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions: 
+	For any player (including themselves): `session:*`
+ to kick any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/match
+- Description changed from 'Unregister the match from the session.
+               
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+             
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission' to 'Unregister the match from the session.
+               
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+             
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission'
+
+PATCH /session/v1/session/{session_id}/match
+- Description changed from 'Update info about a match
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+             
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission' to 'Update info about a match
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+             
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission'
+
+POST /session/v1/session/{session_id}/match
+- Description changed from 'Begin a new match for the current session, on the current instance
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+             
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission' to 'Begin a new match for the current session, on the current instance
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+             
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission'
+
+DELETE /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead'
+
+POST /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited.
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the player endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited.
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the player endpoint instead'
+
+POST /session/v1/session/{session_id}/player/me
+- Description changed from 'Join a session with currently authed player
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None' to 'Join a session with currently authed player
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+	For the player themselves: `session:update-player:self`
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+POST /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session'
+
+POST /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations'
+
+DELETE /session/v1/session/{session_id}/queue
+- Description changed from 'Remove session from a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+               
+Required Session Permissions: `SessionPermissions.session_admin`' to 'Remove session from a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+               
+Required Session Permissions: `SessionPermissions.session_admin`'
+
+POST /session/v1/session/{session_id}/queue
+- Description changed from 'Add session to a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
+
+
+Required Session Permissions: `SessionPermissions.session_admin`' to 'Add session to a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin`'
+
+POST /users/v1/link
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Description changed from '' to 'The HTTP authorization credentials in the result of using `HTTPBearer` or
+`HTTPDigest` in a dependency.
+
+The HTTP authorization header value is split by the first space.
+
+The first part is the `scheme`, the second part is the `credentials`.
+
+For example, in an HTTP Bearer token scheme, the client will send a header
+like:
+
+```
+Authorization: Bearer deadbeef12346
+```
+
+In this case:
+
+* `scheme` will have the value `"Bearer"`
+* `credentials` will have the value `"deadbeef12346"`'
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_parent_auth_result
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/PortalUserInfo modified
+                  - Properties changed
+                    - Modified property: portal_id
+                      - Property 'AllOf' changed
+                        - Schemas added: [dependencies__schemas__Portal]
+                        - Schemas deleted: [Portal]
+
+GET /users/v1/player
+- Modified query param: identity_platform
+  - Schema changed
+    - Property 'AllOf' changed
+      - Schemas added: [fastapicommon__platforms__Portal]
+      - Schemas deleted: [Portal]
 ## Changes for Mon Dec 18 19:42:39 EST 2023
 ### New Endpoints: 1
 --------------------

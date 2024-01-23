@@ -11,19 +11,19 @@
     }
   ],
   "paths": {
-    "/v1/rank:calculate-trueskill": {
+    "/v1/rank:calculate": {
       "post": {
         "tags": [
           "rank"
         ],
-        "summary": "Update Rankings Trueskill V1",
-        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`\n**DEPRECATED** Use the v2 endpoint instead",
-        "operationId": "update_rankings_trueskill_v1",
+        "summary": "Update Rankings V1",
+        "description": "Calculate and update on players and persist their new ranks\nRequires at least two teams, and the player's ranks before the last match was played\n\nRequired Permissions: `rank:update:any`\n**DEPRECATED** Use the v2 endpoint instead",
+        "operationId": "update_rankings_v1",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TrueskillUpdateRequest"
+                "$ref": "#/components/schemas/RankUpdateRequest"
               }
             }
           },
@@ -541,63 +541,6 @@
         ]
       }
     },
-    "/v2/rank:calculate-trueskill": {
-      "post": {
-        "tags": [
-          "rank"
-        ],
-        "summary": "Update V2 Rankings Trueskill",
-        "description": "Run Trueskill V1 rank update on players and persist their new ranks\nRequires at least two teams, and the player's trueskill values before the last match was played\n\nRequired Permissions: `rank:update:any`",
-        "operationId": "update_v2_rankings_trueskill",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TrueskillUpdateRequestV2"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
     "/v2/rank": {
       "get": {
         "tags": [
@@ -1065,6 +1008,39 @@
   },
   "components": {
     "schemas": {
+      "CalculatedRank": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          },
+          "seconds_in_match": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Seconds In Match",
+            "description": "How many seconds this player was in the match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank",
+          "seconds_in_match"
+        ],
+        "title": "CalculatedRank",
+        "description": "Additional data about a specific player's rank and previous match in order to make rank calculations"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -1280,7 +1256,7 @@
           },
           "default_variance": {
             "type": "number",
-            "minimum": 5,
+            "minimum": 2,
             "title": "Default Variance",
             "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
           },
@@ -1296,7 +1272,7 @@
           },
           "min_variance_allowed": {
             "type": "number",
-            "minimum": 5,
+            "minimum": 2,
             "title": "Min Variance Allowed",
             "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
           },
@@ -1381,7 +1357,7 @@
           },
           "default_variance": {
             "type": "number",
-            "minimum": 5,
+            "minimum": 2,
             "title": "Default Variance",
             "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
           },
@@ -1397,7 +1373,7 @@
           },
           "min_variance_allowed": {
             "type": "number",
-            "minimum": 5,
+            "minimum": 2,
             "title": "Min Variance Allowed",
             "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
           },
@@ -1440,7 +1416,7 @@
           },
           "sigma": {
             "type": "number",
-            "minimum": 5,
+            "minimum": 2,
             "title": "Sigma",
             "description": "Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident)"
           },
@@ -1464,48 +1440,54 @@
         "title": "RankData",
         "description": "Trueskill oriented ranked data about a player's skill and confidence levels"
       },
-      "TrueskillRank": {
+      "RankUpdateRequest": {
         "properties": {
-          "player_uuid": {
+          "instance_id": {
             "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid",
-            "description": "UUID for this specific player"
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID for the instance the match took place on"
           },
-          "rank": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RankData"
-              }
-            ],
-            "title": "Rank",
-            "description": "Current rank info about player"
+          "rank_id": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Rank Id",
+            "description": "ID for the rank type used in this match"
           },
-          "seconds_in_match": {
+          "match_length_seconds": {
             "type": "integer",
             "minimum": 0,
-            "title": "Seconds In Match",
-            "description": "How many seconds this player was in the match"
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/RankedTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
           }
         },
         "type": "object",
         "required": [
-          "player_uuid",
-          "rank",
-          "seconds_in_match"
+          "rank_id",
+          "match_length_seconds",
+          "teams"
         ],
-        "title": "TrueskillRank",
-        "description": "Additional data about a specific player's rank and previous match in order to make trueskill calculations"
+        "title": "RankUpdateRequest",
+        "description": "DEPRECATED A request body to calculate and update players' ratings from a match"
       },
-      "TrueskillTeam": {
+      "RankedTeam": {
         "properties": {
           "players": {
             "items": {
-              "$ref": "#/components/schemas/TrueskillRank"
+              "$ref": "#/components/schemas/CalculatedRank"
             },
             "type": "array",
             "title": "Players",
-            "description": "List of PlayerRankUpdate objects that give stats about a specific player from the match"
+            "description": "List of CalculatedRank objects that give stats about a specific player from the match"
           },
           "team_rank": {
             "type": "integer",
@@ -1519,86 +1501,8 @@
           "players",
           "team_rank"
         ],
-        "title": "TrueskillTeam",
+        "title": "RankedTeam",
         "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
-      },
-      "TrueskillUpdateRequest": {
-        "properties": {
-          "instance_id": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Instance Id",
-            "description": "ID for the instance the match took place on"
-          },
-          "rank_id": {
-            "type": "integer",
-            "minimum": 1,
-            "title": "Rank Id",
-            "description": "ID for the rank type used in this match"
-          },
-          "match_length_seconds": {
-            "type": "integer",
-            "minimum": 0,
-            "title": "Match Length Seconds",
-            "description": "How many seconds the match lasted"
-          },
-          "teams": {
-            "items": {
-              "$ref": "#/components/schemas/TrueskillTeam"
-            },
-            "type": "array",
-            "title": "Teams",
-            "description": "List of teams that participated in this match"
-          }
-        },
-        "type": "object",
-        "required": [
-          "rank_id",
-          "match_length_seconds",
-          "teams"
-        ],
-        "title": "TrueskillUpdateRequest",
-        "description": "DEPRECATED A request body to update players' trueskill ratings from a match"
-      },
-      "TrueskillUpdateRequestV2": {
-        "properties": {
-          "instance_id": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Instance Id",
-            "description": "ID for the instance the match took place on"
-          },
-          "rank_id": {
-            "type": "string",
-            "minLength": 1,
-            "title": "Rank Id",
-            "description": "ID for the rank type used in this match"
-          },
-          "match_length_seconds": {
-            "type": "integer",
-            "minimum": 0,
-            "title": "Match Length Seconds",
-            "description": "How many seconds the match lasted"
-          },
-          "teams": {
-            "items": {
-              "$ref": "#/components/schemas/TrueskillTeam"
-            },
-            "type": "array",
-            "title": "Teams",
-            "description": "List of teams that participated in this match"
-          }
-        },
-        "type": "object",
-        "required": [
-          "rank_id",
-          "match_length_seconds",
-          "teams"
-        ],
-        "title": "TrueskillUpdateRequestV2",
-        "description": "A request body to update players' trueskill ratings from a match"
       },
       "ValidationError": {
         "properties": {

@@ -116,11 +116,6 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
             }
           },
           "403": {
@@ -525,11 +520,6 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
             }
           },
           "403": {
@@ -778,7 +768,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/UnionCCU"
+                }
               }
             }
           },
@@ -857,7 +849,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IndividualCCUs"
+                }
               }
             }
           },
@@ -936,7 +930,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/UnionCCU"
+                }
               }
             }
           },
@@ -1015,7 +1011,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IndividualCCUs"
+                }
               }
             }
           },
@@ -1094,7 +1092,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/UnionCCU"
+                }
               }
             }
           },
@@ -1173,7 +1173,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/IndividualCCUs"
+                }
               }
             }
           },
@@ -1230,7 +1232,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/Platforms"
+                }
               }
             }
           },
@@ -1308,7 +1312,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformIndividualCCUs"
+                }
               }
             }
           },
@@ -1386,7 +1392,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUnionCCUs"
+                }
               }
             }
           },
@@ -1464,7 +1472,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformIndividualCCUs"
+                }
               }
             }
           },
@@ -1542,7 +1552,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUnionCCUs"
+                }
               }
             }
           },
@@ -1620,7 +1632,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformIndividualCCUs"
+                }
               }
             }
           },
@@ -1699,15 +1713,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/PlatformUnionCCUs"
-                    },
-                    {
-                      "$ref": "#/components/schemas/PlatformUnionCCUsAnyPlatform"
-                    }
-                  ],
-                  "title": "Response Admin Get Updating Ccu All Platform Combined V1 Admin Ccu Updating Allplatforms Combined Get"
+                  "$ref": "#/components/schemas/PlatformUnionCCUs"
                 }
               }
             }
@@ -1795,7 +1801,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformIndividualCCUs"
+                }
               }
             }
           },
@@ -1882,7 +1890,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUnionCCUs"
+                }
               }
             }
           },
@@ -1969,7 +1979,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformIndividualCCUs"
+                }
               }
             }
           },
@@ -2056,7 +2068,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUnionCCUs"
+                }
               }
             }
           },
@@ -2143,7 +2157,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformIndividualCCUs"
+                }
               }
             }
           },
@@ -2230,7 +2246,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUnionCCUs"
+                }
               }
             }
           },
@@ -2319,6 +2337,22 @@
         ],
         "title": "HzApiErrorModel"
       },
+      "IndividualCCUs": {
+        "properties": {
+          "ccus": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Ccus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ccus"
+        ],
+        "title": "IndividualCCUs"
+      },
       "OnlineStatus": {
         "type": "string",
         "enum": [
@@ -2329,18 +2363,34 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Player is current online",
-          "Player is current online, but away.  Functionally identical to online",
-          "Player will appear offline to other players",
-          "Player is offline"
-        ],
         "x-enum-varnames": [
           "online",
           "away",
           "invisible",
           "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
         ]
+      },
+      "PlatformIndividualCCUs": {
+        "properties": {
+          "platform_ccus": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndividualCCUs"
+            },
+            "type": "object",
+            "title": "Platform Ccus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform_ccus"
+        ],
+        "title": "PlatformIndividualCCUs"
       },
       "PlatformUnionCCUs": {
         "properties": {
@@ -2358,21 +2408,21 @@
         ],
         "title": "PlatformUnionCCUs"
       },
-      "PlatformUnionCCUsAnyPlatform": {
+      "Platforms": {
         "properties": {
-          "platform_counts": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/UnionCCU"
+          "platforms": {
+            "items": {
+              "type": "string"
             },
-            "type": "object",
-            "title": "Platform Counts"
+            "type": "array",
+            "title": "Platforms"
           }
         },
         "type": "object",
         "required": [
-          "platform_counts"
+          "platforms"
         ],
-        "title": "PlatformUnionCCUsAnyPlatform"
+        "title": "Platforms"
       },
       "PlayerLastSeenUpdate": {
         "properties": {

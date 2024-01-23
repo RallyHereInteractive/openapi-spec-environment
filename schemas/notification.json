@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "notification-api",
     "description": "Hi-Rez Studios notification-api.",
@@ -17,17 +17,17 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_long_poll_for_notifications_self",
         "parameters": [
           {
             "description": "Max number of entries to return at one time",
             "required": false,
             "schema": {
-              "title": "Max Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
             },
@@ -38,8 +38,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -64,10 +64,10 @@
             "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
             "required": false,
             "schema": {
-              "title": "Deadline",
+              "type": "integer",
               "maximum": 900,
               "minimum": 0,
-              "type": "integer",
+              "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
             },
@@ -87,7 +87,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -120,14 +130,14 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_long_poll_for_notifications",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -136,10 +146,10 @@
             "description": "Max number of entries to return at one time",
             "required": false,
             "schema": {
-              "title": "Max Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
             },
@@ -150,8 +160,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -176,10 +186,10 @@
             "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
             "required": false,
             "schema": {
-              "title": "Deadline",
+              "type": "integer",
               "maximum": 900,
               "minimum": 0,
-              "type": "integer",
+              "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
             },
@@ -199,7 +209,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -242,16 +252,16 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notifications_page_self",
         "parameters": [
           {
             "required": false,
             "schema": {
-              "title": "Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Page Size",
               "default": 10
             },
             "name": "page_size",
@@ -261,8 +271,8 @@
             "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Start At",
               "type": "string",
+              "title": "Start At",
               "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "start_at",
@@ -272,8 +282,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -283,8 +293,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
             },
             "name": "if-none-match",
@@ -303,7 +313,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -339,14 +359,14 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notifications_page",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -354,10 +374,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Page Size",
               "default": 10
             },
             "name": "page_size",
@@ -367,8 +387,8 @@
             "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Start At",
               "type": "string",
+              "title": "Start At",
               "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "start_at",
@@ -378,8 +398,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -389,8 +409,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
             },
             "name": "if-none-match",
@@ -409,7 +429,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -453,14 +473,14 @@
           "player-id-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:playerid:write`, `notification:playerid:*`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:playerid:*`, `notification:playerid:write`",
         "operationId": "playerid_create_notification",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -488,7 +508,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -531,14 +551,14 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notification_by_id_self",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Notification Id",
-              "type": "string"
+              "type": "string",
+              "title": "Notification Id"
             },
             "name": "notification_id",
             "in": "path"
@@ -556,7 +576,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -599,14 +629,14 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:read`,`notification:playerid:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
         "operationId": "playerid_get_notification_by_id",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Notification Id",
-              "type": "string"
+              "type": "string",
+              "title": "Notification Id"
             },
             "name": "notification_id",
             "in": "path"
@@ -614,8 +644,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Id",
-              "type": "integer"
+              "type": "integer",
+              "title": "Player Id"
             },
             "name": "player_id",
             "in": "path"
@@ -633,7 +663,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -686,17 +716,17 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_long_poll_for_notifications_self",
         "parameters": [
           {
             "description": "Max number of entries to return at one time",
             "required": false,
             "schema": {
-              "title": "Max Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
             },
@@ -707,8 +737,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -733,10 +763,10 @@
             "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
             "required": false,
             "schema": {
-              "title": "Deadline",
+              "type": "integer",
               "maximum": 900,
               "minimum": 0,
-              "type": "integer",
+              "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
             },
@@ -756,7 +786,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -789,15 +829,15 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_long_poll_for_notifications",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -806,10 +846,10 @@
             "description": "Max number of entries to return at one time",
             "required": false,
             "schema": {
-              "title": "Max Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
             },
@@ -820,8 +860,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -846,10 +886,10 @@
             "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
             "required": false,
             "schema": {
-              "title": "Deadline",
+              "type": "integer",
               "maximum": 900,
               "minimum": 0,
-              "type": "integer",
+              "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
             },
@@ -869,7 +909,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -912,16 +952,16 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notifications_page_self",
         "parameters": [
           {
             "required": false,
             "schema": {
-              "title": "Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Page Size",
               "default": 10
             },
             "name": "page_size",
@@ -931,8 +971,8 @@
             "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Start At",
               "type": "string",
+              "title": "Start At",
               "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "start_at",
@@ -942,8 +982,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -953,8 +993,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
             },
             "name": "if-none-match",
@@ -973,7 +1013,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1009,15 +1059,15 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notifications_page",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1025,10 +1075,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Page Size",
               "default": 10
             },
             "name": "page_size",
@@ -1038,8 +1088,8 @@
             "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Start At",
               "type": "string",
+              "title": "Start At",
               "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "start_at",
@@ -1049,8 +1099,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -1060,8 +1110,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
             },
             "name": "if-none-match",
@@ -1080,7 +1130,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1124,15 +1174,15 @@
           "player-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:write`, `notification:player:*`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:*`, `notification:player:write`",
         "operationId": "player_create_notification",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1160,7 +1210,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1203,14 +1253,14 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notification_by_id_self",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Notification Id",
-              "type": "string"
+              "type": "string",
+              "title": "Notification Id"
             },
             "name": "notification_id",
             "in": "path"
@@ -1228,7 +1278,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1271,14 +1331,14 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:read`,`notification:player:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
         "operationId": "player_get_notification_by_id",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Notification Id",
-              "type": "string"
+              "type": "string",
+              "title": "Notification Id"
             },
             "name": "notification_id",
             "in": "path"
@@ -1286,9 +1346,9 @@
           {
             "required": true,
             "schema": {
-              "title": "Player Uuid",
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "title": "Player Uuid"
             },
             "name": "player_uuid",
             "in": "path"
@@ -1306,7 +1366,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1359,14 +1419,14 @@
           "instance-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
         "operationId": "instance_long_poll_for_notifications",
         "parameters": [
           {
             "required": true,
             "schema": {
-              "title": "Instance Id",
-              "type": "string"
+              "type": "string",
+              "title": "Instance Id"
             },
             "name": "instance_id",
             "in": "path"
@@ -1375,10 +1435,10 @@
             "description": "Max number of entries to return at one time",
             "required": false,
             "schema": {
-              "title": "Max Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
             },
@@ -1389,8 +1449,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -1415,10 +1475,10 @@
             "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
             "required": false,
             "schema": {
-              "title": "Deadline",
+              "type": "integer",
               "maximum": 900,
               "minimum": 0,
-              "type": "integer",
+              "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
             },
@@ -1438,7 +1498,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1487,8 +1547,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Instance Id",
-              "type": "string"
+              "type": "string",
+              "title": "Instance Id"
             },
             "name": "instance_id",
             "in": "path"
@@ -1496,10 +1556,10 @@
           {
             "required": false,
             "schema": {
-              "title": "Page Size",
+              "type": "integer",
               "maximum": 100,
               "minimum": 1,
-              "type": "integer",
+              "title": "Page Size",
               "default": 10
             },
             "name": "page_size",
@@ -1509,8 +1569,8 @@
             "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Start At",
               "type": "string",
+              "title": "Start At",
               "description": "Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "start_at",
@@ -1520,8 +1580,8 @@
             "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque",
             "required": false,
             "schema": {
-              "title": "Exclude Before",
               "type": "string",
+              "title": "Exclude Before",
               "description": "All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque"
             },
             "name": "exclude_before",
@@ -1531,8 +1591,8 @@
             "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed",
             "required": false,
             "schema": {
-              "title": "If-None-Match",
               "type": "string",
+              "title": "If-None-Match",
               "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed"
             },
             "name": "if-none-match",
@@ -1551,7 +1611,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1601,8 +1661,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Instance Id",
-              "type": "string"
+              "type": "string",
+              "title": "Instance Id"
             },
             "name": "instance_id",
             "in": "path"
@@ -1630,7 +1690,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1679,8 +1739,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Notification Id",
-              "type": "string"
+              "type": "string",
+              "title": "Notification Id"
             },
             "name": "notification_id",
             "in": "path"
@@ -1688,8 +1748,8 @@
           {
             "required": true,
             "schema": {
-              "title": "Instance Id",
-              "type": "string"
+              "type": "string",
+              "title": "Instance Id"
             },
             "name": "instance_id",
             "in": "path"
@@ -1707,7 +1767,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_role - Insufficient Role access\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1758,187 +1818,195 @@
   "components": {
     "schemas": {
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "HzApiErrorModel": {
-        "title": "HzApiErrorModel",
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
         "required": [
           "error_code",
           "desc"
         ],
-        "type": "object",
-        "properties": {
-          "auth_success": {
-            "title": "Auth Success",
-            "type": "boolean",
-            "default": true
-          },
-          "error_code": {
-            "title": "Error Code",
-            "type": "string"
-          },
-          "desc": {
-            "title": "Desc",
-            "type": "string"
-          }
-        }
+        "title": "HzApiErrorModel"
       },
       "Notification": {
-        "title": "Notification",
+        "properties": {
+          "message": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Message",
+            "description": "Base Message for the notification"
+          },
+          "rh_url": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Rh Url",
+            "description": "Path to get additional data about this notification"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom values for the notification",
+            "default": {}
+          },
+          "etag": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Etag",
+            "description": "ETag for the resource at rh_url at the time of this notification"
+          },
+          "notification_id": {
+            "type": "string",
+            "title": "Notification Id",
+            "description": "Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created",
+            "description": "When this notification was added"
+          }
+        },
+        "type": "object",
         "required": [
           "message",
           "notification_id",
           "created"
         ],
-        "type": "object",
+        "title": "Notification"
+      },
+      "NotificationCreate": {
         "properties": {
           "message": {
-            "title": "Message",
-            "maxLength": 4096,
             "type": "string",
+            "maxLength": 4096,
+            "title": "Message",
             "description": "Base Message for the notification"
           },
           "rh_url": {
-            "title": "Rh Url",
+            "type": "string",
             "maxLength": 4096,
             "minLength": 1,
-            "type": "string",
+            "title": "Rh Url",
             "description": "Path to get additional data about this notification"
           },
           "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
             "additionalProperties": {
+              "type": "string",
               "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
+              "minLength": 1
             },
+            "type": "object",
+            "title": "Custom Data",
             "description": "Custom values for the notification",
             "default": {}
           },
           "etag": {
-            "title": "Etag",
+            "type": "string",
             "minLength": 1,
-            "type": "string",
+            "title": "Etag",
             "description": "ETag for the resource at rh_url at the time of this notification"
-          },
-          "notification_id": {
-            "title": "Notification Id",
-            "type": "string",
-            "description": "Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque"
-          },
-          "created": {
-            "title": "Created",
-            "type": "string",
-            "description": "When this notification was added",
-            "format": "date-time"
           }
-        }
-      },
-      "NotificationCreate": {
-        "title": "NotificationCreate",
+        },
+        "type": "object",
         "required": [
           "message"
         ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "title": "Message",
-            "maxLength": 4096,
-            "type": "string",
-            "description": "Base Message for the notification"
-          },
-          "rh_url": {
-            "title": "Rh Url",
-            "maxLength": 4096,
-            "minLength": 1,
-            "type": "string",
-            "description": "Path to get additional data about this notification"
-          },
-          "custom_data": {
-            "title": "Custom Data",
-            "type": "object",
-            "additionalProperties": {
-              "maxLength": 4096,
-              "minLength": 1,
-              "type": "string"
-            },
-            "description": "Custom values for the notification",
-            "default": {}
-          },
-          "etag": {
-            "title": "Etag",
-            "minLength": 1,
-            "type": "string",
-            "description": "ETag for the resource at rh_url at the time of this notification"
-          }
-        }
+        "title": "NotificationCreate"
       },
       "NotificationCreateResult": {
-        "title": "NotificationCreateResult",
+        "properties": {
+          "notification_id": {
+            "type": "string",
+            "title": "Notification Id",
+            "description": "Unique Identifier for the last notification created.  You cannot depend on the format of this string, and it must be considered opaque"
+          }
+        },
+        "type": "object",
         "required": [
           "notification_id"
         ],
-        "type": "object",
-        "properties": {
-          "notification_id": {
-            "title": "Notification Id",
-            "type": "string",
-            "description": "Unique Identifier for the last notification created.  You cannot depend on the format of this string, and it must be considered opaque"
-          }
-        }
+        "title": "NotificationCreateResult"
       },
       "NotificationCreates": {
-        "title": "NotificationCreates",
-        "required": [
-          "notifications"
-        ],
-        "type": "object",
         "properties": {
           "notifications": {
-            "title": "Notifications",
-            "maxItems": 100,
-            "minItems": 1,
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/NotificationCreate"
             },
+            "type": "array",
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Notifications",
             "description": "List of notifications creation requests"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "notifications"
+        ],
+        "title": "NotificationCreates"
       },
       "Notifications": {
-        "title": "Notifications",
-        "type": "object",
         "properties": {
           "notifications": {
-            "title": "Notifications",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/Notification"
             },
+            "type": "array",
+            "title": "Notifications",
             "description": "List of notifications",
             "default": []
+          },
+          "cursor": {
+            "type": "string",
+            "title": "Cursor",
+            "description": "Cursor to use for the next request"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "cursor"
+        ],
+        "title": "Notifications"
       },
       "OffsetReset": {
-        "title": "OffsetReset",
+        "type": "string",
         "enum": [
           "latest",
           "earliest"
         ],
-        "type": "string",
+        "title": "OffsetReset",
         "description": "An enumeration.",
         "x-enum-descriptions": [
           "An enumeration.",
@@ -1950,17 +2018,8 @@
         ]
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -1970,17 +2029,26 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       }
     },
     "securitySchemes": {
