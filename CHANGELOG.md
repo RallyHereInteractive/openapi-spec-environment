@@ -1,3 +1,563 @@
+## Changes for Tue Jan 30 14:55:57 EST 2024
+### New Endpoints: 3
+--------------------
+GET /events/v1/event-params-schema  
+GET /session/v1/match-making-profile/{match_making_profile_id}  
+GET /session/v2/match-making-profile/{match_making_profile_id}  
+
+### Deleted Endpoints: 3
+------------------------
+DELETE /session/v1/session/{session_id}/match  
+PATCH /session/v1/session/{session_id}/match  
+POST /session/v1/session/{session_id}/match  
+
+### Modified Endpoints: 29
+--------------------------
+POST /inventory/v2/player/me/entitlement
+- Description changed from 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions: 
+	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+	For the player themselves: `inv:platform_entitlements:self`' to 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions: 
+	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
+	For the player themselves: `inv:platform_entitlements:self`'
+
+GET /inventory/v2/player/me/entitlement/request/{request_id}
+- Description changed from 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions: 
+	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+	For the player themselves: `inv:platform_entitlements:self`' to 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions: 
+	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
+	For the player themselves: `inv:platform_entitlements:self`'
+
+POST /inventory/v2/player/{player_uuid}/entitlement
+- Description changed from 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions: 
+	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+	For the player themselves: `inv:platform_entitlements:self`' to 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions: 
+	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
+	For the player themselves: `inv:platform_entitlements:self`'
+
+GET /inventory/v2/player/{player_uuid}/entitlement/request/{request_id}
+- Description changed from 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions: 
+	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+	For the player themselves: `inv:platform_entitlements:self`' to 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions: 
+	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
+	For the player themselves: `inv:platform_entitlements:self`'
+
+GET /session/v1/browser
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: browser_sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: max_player_count
+                    - Max changed from null to 100
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: matchmaking_results
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Description changed from 'Information about a match' to 'DEPRECATED Information about a match'
+            - Modified property: matchmaking
+              - Description changed from 'Info about the matchmaking state of the session, if it is in the process of matchmaking' to 'DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking'
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: max_size
+                    - Max changed from null to 100
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: matchmaking_results
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Description changed from 'Information about a match' to 'DEPRECATED Information about a match'
+            - Modified property: matchmaking
+              - Description changed from 'Info about the matchmaking state of the session, if it is in the process of matchmaking' to 'DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking'
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: max_size
+                    - Max changed from null to 100
+
+GET /session/v1/player/id/{player_id}/session
+- Description changed from 'Get Sessions associated with a player by id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+
+**DEPRECATED** - Use player endpoint instead' to 'Get Sessions associated with a player by id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+
+**DEPRECATED** - Use player endpoint instead'
+
+GET /session/v1/player/uuid/{player_uuid}/session
+- Description changed from 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+GET /session/v1/player/{player_uuid}/session
+- Description changed from 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None' to 'Get Sessions associated with a player by uuid
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+	For the player themselves: `session:read-player:self`
+
+Required Session Permissions: None'
+
+GET /session/v1/session/allocation/{allocation_id}
+- Description changed from 'Get session by allocation ID. Returns the same limited results as getting the session by session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:read:allocation`
+
+
+Required Session Permissions: None' to 'Get session by allocation ID. Returns the same limited results as getting the session by session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:allocation`, `session:*`
+
+
+Required Session Permissions: None'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: matchmaking_results
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Description changed from 'Information about a match' to 'DEPRECATED Information about a match'
+            - Modified property: matchmaking
+              - Description changed from 'Info about the matchmaking state of the session, if it is in the process of matchmaking' to 'DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking'
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: max_size
+                    - Max changed from null to 100
+
+GET /session/v1/session/{session_id}
+- Description changed from 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:any`, `session:read:self`, `session:*`
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission' to 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:self`, `session:read:any`, `session:*`
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: matchmaking_results
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Description changed from 'Information about a match' to 'DEPRECATED Information about a match'
+            - Modified property: matchmaking
+              - Description changed from 'Info about the matchmaking state of the session, if it is in the process of matchmaking' to 'DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking'
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: max_size
+                    - Max changed from null to 100
+
+PATCH /session/v1/session/{session_id}
+- Description changed from 'Update session info by session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission' to 'Update session info by session id
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - MaxItems changed from null to 50
+            - Items changed
+              - Properties changed
+                - Modified property: max_size
+                  - Min changed from null to 1
+                  - Max changed from null to 100
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: matchmaking_results
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Description changed from 'Information about a match' to 'DEPRECATED Information about a match'
+            - Modified property: matchmaking
+              - Description changed from 'Info about the matchmaking state of the session, if it is in the process of matchmaking' to 'DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking'
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: max_size
+                    - Max changed from null to 100
+
+GET /session/v1/session/{session_id}/event
+- Description changed from 'Get all events for the session.  Empty list means there is no event history for it.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read:event`, `session:*`, `session:read-player:any`
+
+
+Required Session Permissions: None' to 'Get all events for the session.  Empty list means there is no event history for it.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:read-player:any`, `session:*`, `session:read:event`
+
+
+Required Session Permissions: None'
+
+POST /session/v1/session/{session_id}/event
+- Description changed from 'Create an event in the log for this session.
+Internal session operations will create new events that are accessible from the get request.
+
+Player clients and instances are expected to create events here when something occurs on their clients that is
+relevant.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:event`, `session:*`, `session:update:any`
+
+
+Required Session Permissions: None' to 'Create an event in the log for this session.
+Internal session operations will create new events that are accessible from the get request.
+
+Player clients and instances are expected to create events here when something occurs on their clients that is
+relevant.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:event`
+
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/instance
+- Description changed from 'Unregister the instance from the session.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission' to 'Unregister the instance from the session.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission'
+
+PATCH /session/v1/session/{session_id}/instance
+- Description changed from 'Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.
+Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission' to 'Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.
+Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission'
+
+POST /session/v1/session/{session_id}/instance
+- Description changed from 'Request an instance be spawned for the session, or register self as a host of the instance
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission' to 'Request an instance be spawned for the session, or register self as a host of the instance
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission'
+
+POST /session/v1/session/{session_id}/invited-session/{invited_session_id}:invite
+- Description changed from 'Invite an entire session to a target session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ to invite any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Invite an entire session to a target session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ to invite any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/kicked-session/{kicked_session_id}
+- Description changed from 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions: 
+	For any player (including themselves): `session:*`
+ to kick any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions: 
+	For any player (including themselves): `session:*`
+ to kick any session regardless of membership status
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session'
+
+DELETE /session/v1/session/{session_id}/queue
+- Description changed from 'Remove session from a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
+
+               
+Required Session Permissions: `SessionPermissions.session_admin`' to 'Remove session from a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`
+
+               
+Required Session Permissions: `SessionPermissions.session_admin`'
+
+POST /session/v1/session/{session_id}/queue
+- Description changed from 'Add session to a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
+
+
+Required Session Permissions: `SessionPermissions.session_admin`' to 'Add session to a matchmaking queue
+
+Required Permissions: 
+	For any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+Required Session Permissions: `SessionPermissions.session_admin`'
+
+GET /session/v1/template
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: templates
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: num_teams
+                    - Max changed from null to 50
+                  - Modified property: platform_templates
+                    - AdditionalProperties changed
+                      - Properties changed
+                        - Modified property: max_players
+                          - Max changed from null to 100
+                  - Modified property: players_per_team
+                    - Max changed from null to 100
+
+GET /session/v1/template/{session_type}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: num_teams
+              - Max changed from null to 50
+            - Modified property: platform_templates
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: max_players
+                    - Max changed from null to 100
+            - Modified property: players_per_team
+              - Max changed from null to 100
+
+GET /users/v1/platform-user
+- Description changed from 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:*`, `user:platform:read`' to 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:platform:read`, `user:*`'
+
+POST /users/v1/platform-user
+- Description changed from 'Create a new platform user from a platform identity.
+
+WARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:*`, `user:platform:create`' to 'Create a new platform user from a platform identity.
+
+WARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:platform:create`, `user:*`'
 ## Changes for Tue Jan 23 17:24:27 EST 2024
 ### New Endpoints: None
 -----------------------

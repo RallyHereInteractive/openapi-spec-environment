@@ -319,7 +319,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:any`, `session:read:self`, `session:*`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:read:any`, `session:*`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -406,7 +406,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -484,7 +484,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -725,198 +725,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/BrowserInfo"
                 }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/session/{session_id}/match": {
-      "post": {
-        "tags": [
-          "Sessions"
-        ],
-        "summary": "Start Match",
-        "description": "Begin a new match for the current session, on the current instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
-        "operationId": "start_match",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
-              "title": "Session Id"
-            },
-            "name": "session_id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchCreateRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchCreateResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Sessions"
-        ],
-        "summary": "End Match",
-        "description": "Unregister the match from the session.\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
-        "operationId": "end_match",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
-              "title": "Session Id"
-            },
-            "name": "session_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "Sessions"
-        ],
-        "summary": "Update Match Info",
-        "description": "Update info about a match\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n             \nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
-        "operationId": "update_match_info",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
-              "title": "Session Id"
-            },
-            "name": "session_id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchCreateRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
               }
             }
           },
@@ -1199,7 +1007,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -1377,7 +1185,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -1547,7 +1355,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -1620,7 +1428,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:event`, `session:*`, `session:read-player:any`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -1701,7 +1509,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:event`, `session:*`, `session:update:any`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:event`\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -1847,7 +1655,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid V2",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid_v2",
         "parameters": [
           {
@@ -1925,7 +1733,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -2004,7 +1812,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read-player:any`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
+        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -2122,7 +1930,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -2190,7 +1998,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -2266,7 +2074,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -2334,7 +2142,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -2393,7 +2201,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -3609,7 +3417,7 @@
           "Sessions"
         ],
         "summary": "Invite Session To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_session_to_session",
         "parameters": [
           {
@@ -3708,7 +3516,7 @@
           "Sessions"
         ],
         "summary": "Kick Session From Session",
-        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_session_from_session",
         "parameters": [
           {
@@ -4195,6 +4003,165 @@
         ]
       }
     },
+    "/v1/match-making-profile/{match_making_profile_id}": {
+      "get": {
+        "tags": [
+          "Queues"
+        ],
+        "summary": "Get Match Making Profile",
+        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "operationId": "get_match_making_profile",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Match Making Profile Id"
+            },
+            "name": "match_making_profile_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchMakingProfile"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/match-making-profile/{match_making_profile_id}": {
+      "get": {
+        "tags": [
+          "Queues"
+        ],
+        "summary": "Get Match Making Profile V2",
+        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "operationId": "get_match_making_profile_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Match Making Profile Id"
+            },
+            "name": "match_making_profile_id",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchMakingProfileV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v2/match-making-templates/{template_group_id}": {
       "get": {
         "tags": [
@@ -4570,6 +4537,7 @@
           },
           "max_player_count": {
             "type": "integer",
+            "maximum": 100,
             "minimum": 1,
             "title": "Max Player Count",
             "description": "Maximum number of players that can be in this session"
@@ -4707,17 +4675,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay input preferences. Can play with players using any input",
-          "Can only play with players using a keyboard and mouse",
-          "Can only player with players using a gamepad/controller",
-          "Can only player with players using a touch screen"
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay input preferences. Can play with players using any input",
+          "Can only play with players using a keyboard and mouse",
+          "Can only player with players using a gamepad/controller",
+          "Can only player with players using a touch screen"
         ]
       },
       "CrossplayPlatform": {
@@ -4729,15 +4697,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay platform preferences. Can play with players any platforms",
-          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
-          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay platform preferences. Can play with players any platforms",
+          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
+          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
         ]
       },
       "CrossplayPreferences": {
@@ -4776,15 +4744,15 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "assigned",
           "left_queue",
           "timeout"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Determiner": {
@@ -4797,17 +4765,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-descriptions": [
-          "All rules must be satisfied",
-          "At least one rule must be satisfied",
-          "Exactly one rule must be satisfied",
-          "All rules must not be satisfied"
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "All rules must be satisfied",
+          "At least one rule must be satisfied",
+          "Exactly one rule must be satisfied",
+          "All rules must not be satisfied"
         ]
       },
       "FubarResponse": {
@@ -4837,13 +4805,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-descriptions": [
-          "A dedicated, standalone instance",
-          "A player hosted instance"
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player"
+        ],
+        "x-enum-descriptions": [
+          "A dedicated, standalone instance",
+          "A player hosted instance"
         ]
       },
       "HzApiErrorModel": {
@@ -4878,15 +4846,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-descriptions": [
-          "Input for players using a keyboard and mouse",
-          "Input for players using a gamepad/controller",
-          "Input for players using a touch screen"
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "Input for players using a keyboard and mouse",
+          "Input for players using a gamepad/controller",
+          "Input for players using a touch screen"
         ]
       },
       "InstanceFubar": {
@@ -4979,17 +4947,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Instance is in a healthy state",
-          "Instance is in an unhealthy state and cannot handle connections",
-          "Instance performance is degraded, and may be unable to handle new or existing connections",
-          "Instance health checks have stopped, and instance status is unknown"
-        ],
         "x-enum-varnames": [
           "HEALTHY",
           "UNHEALTHY",
           "DEGRADED",
           "UNKNOWN"
+        ],
+        "x-enum-descriptions": [
+          "Instance is in a healthy state",
+          "Instance is in an unhealthy state and cannot handle connections",
+          "Instance performance is degraded, and may be unable to handle new or existing connections",
+          "Instance health checks have stopped, and instance status is unknown"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -5217,19 +5185,19 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found, and is loading its session information",
-          "Host has arrived and is loading",
-          "Host is ready to accept players",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
           "pending",
           "joinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found, and is loading its session information",
+          "Host has arrived and is loading",
+          "Host is ready to accept players",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -5384,15 +5352,15 @@
         ],
         "title": "InstanceSourceProvider",
         "description": "What type of provider is hosting the instance",
-        "x-enum-descriptions": [
-          "Instance is being hosted by a player",
-          "Instance is hosted by the RallyHere SIC system",
-          "Instance is being hosted by Multiplay"
-        ],
         "x-enum-varnames": [
           "PLAYER",
           "SIC",
           "MULTIPLAY"
+        ],
+        "x-enum-descriptions": [
+          "Instance is being hosted by a player",
+          "Instance is hosted by the RallyHere SIC system",
+          "Instance is being hosted by Multiplay"
         ]
       },
       "InstanceStartupParams": {
@@ -5474,17 +5442,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-descriptions": [
-          "Use the lowest MMR of any player in the linking",
-          "Use the highest MMR of any player in the linking",
-          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
-          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "Use the lowest MMR of any player in the linking",
+          "Use the highest MMR of any player in the linking",
+          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
+          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
         ]
       },
       "MapConfig": {
@@ -5625,47 +5593,6 @@
         ],
         "title": "MapSelectionListV2"
       },
-      "MatchCreateRequest": {
-        "properties": {
-          "match_id": {
-            "type": "string",
-            "title": "Match Id",
-            "description": "Unique ID"
-          },
-          "custom_data": {
-            "additionalProperties": {
-              "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
-            },
-            "type": "object",
-            "title": "Custom Data",
-            "description": "instance-defined custom data",
-            "default": {}
-          }
-        },
-        "type": "object",
-        "required": [
-          "match_id"
-        ],
-        "title": "MatchCreateRequest",
-        "description": "A request to create a match resource on a session"
-      },
-      "MatchCreateResponse": {
-        "properties": {
-          "match_id": {
-            "type": "string",
-            "title": "Match Id",
-            "description": "Unique ID"
-          }
-        },
-        "type": "object",
-        "required": [
-          "match_id"
-        ],
-        "title": "MatchCreateResponse",
-        "description": "The response to successfully creating a match on a session"
-      },
       "MatchInfo": {
         "properties": {
           "match_id": {
@@ -5706,7 +5633,7 @@
           "created"
         ],
         "title": "MatchInfo",
-        "description": "Information about a match"
+        "description": "DEPRECATED Information about a match"
       },
       "MatchMakingProfile": {
         "properties": {
@@ -6037,6 +5964,53 @@
         "title": "MatchmakingInfo",
         "description": "Info about the matchmaking status in a session"
       },
+      "MatchmakingResults": {
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "Unique ID"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "MMF defined custom data",
+            "default": {}
+          },
+          "ticket_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Ticket Ids",
+            "description": "List of tickets that were assigned to this match if created by matchmaking",
+            "default": []
+          },
+          "tickets_assigned": {
+            "type": "boolean",
+            "title": "Tickets Assigned",
+            "description": "Whether or not the tickets from these results have been assigned",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id",
+          "created"
+        ],
+        "title": "MatchmakingResults"
+      },
       "Operation": {
         "type": "string",
         "enum": [
@@ -6049,14 +6023,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-descriptions": [
-          "The two values must be equal",
-          "The two values must not be equal",
-          "Value A must be less than value B",
-          "Value A must be less than or equal to value B",
-          "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B"
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -6064,6 +6030,14 @@
           "LESS_THAN_EQUAL",
           "GREATER_THAN",
           "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "The two values must be equal",
+          "The two values must not be equal",
+          "Value A must be less than value B",
+          "Value A must be less than or equal to value B",
+          "Value A must be greater than value B",
+          "Value A must be greater than or equal to value B"
         ]
       },
       "Platform": {
@@ -6086,22 +6060,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -6117,6 +6075,22 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformID": {
@@ -6137,20 +6111,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-descriptions": [
-          "DEPRECATED. Use platform instead. ID for the platform Anon",
-          "DEPRECATED. Use platform instead. ID for the platform Amazon",
-          "DEPRECATED. Use platform instead. ID for the platform Steam",
-          "DEPRECATED. Use platform instead. ID for the platform PSN",
-          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
-          "DEPRECATED. Use platform instead. ID for the platform Basic",
-          "DEPRECATED. Use platform instead. ID for the platform Google",
-          "DEPRECATED. Use platform instead. ID for the platform Twitch",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
-          "DEPRECATED. Use platform instead. ID for the platform Apple",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -6164,6 +6124,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "DEPRECATED. Use platform instead. ID for the platform Anon",
+          "DEPRECATED. Use platform instead. ID for the platform Amazon",
+          "DEPRECATED. Use platform instead. ID for the platform Steam",
+          "DEPRECATED. Use platform instead. ID for the platform PSN",
+          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
+          "DEPRECATED. Use platform instead. ID for the platform Basic",
+          "DEPRECATED. Use platform instead. ID for the platform Google",
+          "DEPRECATED. Use platform instead. ID for the platform Twitch",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
+          "DEPRECATED. Use platform instead. ID for the platform Apple",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
+          "DEPRECATED. Use platform instead. ID for the platform Epic"
         ]
       },
       "PlatformSession": {
@@ -6274,6 +6248,7 @@
           },
           "max_players": {
             "type": "integer",
+            "maximum": 100,
             "minimum": 1,
             "title": "Max Players",
             "description": "The maximum number of players that can be a part of this platform session"
@@ -6389,15 +6364,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-descriptions": [
-          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
-          "Ticket will be used to fulfill backfill requests",
-          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
+          "Ticket will be used to fulfill backfill requests",
+          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
         ]
       },
       "QueueConfig": {
@@ -6701,13 +6676,13 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-descriptions": [
-          "Comparing the count of a specific item that a player owns",
-          "Comparing the size of the linking (the number of players) in the session to be queued"
-        ],
         "x-enum-varnames": [
           "INVENTORY",
           "LINKING_SIZE"
+        ],
+        "x-enum-descriptions": [
+          "Comparing the count of a specific item that a player owns",
+          "Comparing the size of the linking (the number of players) in the session to be queued"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -6803,6 +6778,15 @@
             "title": "Match",
             "description": "Info about the current match in the instance"
           },
+          "matchmaking_results": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchmakingResults"
+              }
+            ],
+            "title": "Matchmaking Results",
+            "description": "Info about the matchmaking results that resulted in this session"
+          },
           "matchmaking": {
             "allOf": [
               {
@@ -6810,7 +6794,7 @@
               }
             ],
             "title": "Matchmaking",
-            "description": "Info about the matchmaking state of the session, if it is in the process of matchmaking"
+            "description": "DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking"
           },
           "backfill": {
             "allOf": [
@@ -7213,17 +7197,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-descriptions": [
-          "Player is the leader of the session. Is allowed to perform admin actions on the session",
-          "Player is an active member of the session. Is allowed basic actions on the session",
-          "Player has been invited to the session, but has not accepted or declined",
-          "Player's spot has been reserved on the session, but the player has not yet been notified"
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "Player is the leader of the session. Is allowed to perform admin actions on the session",
+          "Player is an active member of the session. Is allowed basic actions on the session",
+          "Player has been invited to the session, but has not accepted or declined",
+          "Player's spot has been reserved on the session, but the player has not yet been notified"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -7325,6 +7309,7 @@
           },
           "max_size": {
             "type": "integer",
+            "maximum": 100,
             "minimum": 1,
             "title": "Max Size",
             "description": "Maximum number of players allowed on this team"
@@ -7459,6 +7444,7 @@
           },
           "num_teams": {
             "type": "integer",
+            "maximum": 50,
             "minimum": 1,
             "title": "Num Teams",
             "description": "The number of teams this session type can have",
@@ -7466,6 +7452,7 @@
           },
           "players_per_team": {
             "type": "integer",
+            "maximum": 100,
             "minimum": 1,
             "title": "Players Per Team",
             "description": "The number of players that can be on each team",
@@ -7530,6 +7517,7 @@
               "$ref": "#/components/schemas/TeamUpdate"
             },
             "type": "array",
+            "maxItems": 50,
             "title": "Teams",
             "description": "List of team size updates for this session. The length of the list represents the number of desired teams"
           }
@@ -7549,25 +7537,27 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-descriptions": [
-          "Raise an error when too many players are invited to the same team",
-          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
-          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
-          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
-        ],
         "x-enum-varnames": [
           "fail",
           "allow_overflow",
           "partial_with_overflow",
           "partial_without_overflow",
           "overfill"
+        ],
+        "x-enum-descriptions": [
+          "Raise an error when too many players are invited to the same team",
+          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
+          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "TeamUpdate": {
         "properties": {
           "max_size": {
             "type": "integer",
+            "maximum": 100,
+            "minimum": 1,
             "title": "Max Size",
             "description": "Maximum number of players for this team"
           }

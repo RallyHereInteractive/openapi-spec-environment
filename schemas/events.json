@@ -72,6 +72,28 @@
           }
         }
       }
+    },
+    "/v1/event-params-schema": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get All Event Schema",
+        "description": "get all rh standard event and custom event params schema",
+        "operationId": "get_all_event_schema",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventParamsSchemaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -92,6 +114,20 @@
           "event_list"
         ],
         "title": "EventList"
+      },
+      "EventParamsSchemaResponse": {
+        "properties": {
+          "event_param_schemas": {
+            "type": "object",
+            "title": "Event Param Schemas",
+            "description": "Dictionary contains event name and Json schema definition for its event_params parameter"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_param_schemas"
+        ],
+        "title": "EventParamsSchemaResponse"
       },
       "HTTPValidationError": {
         "properties": {
