@@ -5543,7 +5543,7 @@
           "users"
         ],
         "summary": "Find Platform User By Id",
-        "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:platform:read`, `user:*`",
+        "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:*`, `user:platform:read`",
         "operationId": "find_platform_user_by_id",
         "parameters": [
           {
@@ -5626,7 +5626,7 @@
           "users"
         ],
         "summary": "Create Platform User By Id",
-        "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:platform:create`, `user:*`",
+        "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:*`, `user:platform:create`",
         "operationId": "create_platform_user_by_id",
         "requestBody": {
           "content": {
@@ -7367,7 +7367,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -7435,7 +7435,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -7512,7 +7512,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:browser`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7612,7 +7612,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:create`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -7669,7 +7669,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:read:any`, `session:*`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:*`, `session:read:any`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7756,7 +7756,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7834,7 +7834,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:allocation`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -8112,7 +8112,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -8261,7 +8261,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -8357,7 +8357,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -8438,7 +8438,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8535,7 +8535,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8617,7 +8617,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8705,7 +8705,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8778,7 +8778,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:read:event`, `session:*`\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -9221,7 +9221,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -9280,7 +9280,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9348,7 +9348,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9424,7 +9424,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -9492,7 +9492,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -9551,7 +9551,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:self`, `session:update:any`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -9691,7 +9691,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Config",
-        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`",
+        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
         "operationId": "instance_health_config",
         "responses": {
           "200": {
@@ -9798,7 +9798,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -9921,7 +9921,7 @@
           "Sessions"
         ],
         "summary": "Delete Platform Session From Rally Here Session",
-        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "delete_platform_session_from_rally_here_session",
         "parameters": [
           {
@@ -10128,7 +10128,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -10240,7 +10240,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -10329,7 +10329,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10460,7 +10460,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10559,7 +10559,7 @@
           "Sessions"
         ],
         "summary": "Backfill Config",
-        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`",
+        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
         "operationId": "backfill_config",
         "responses": {
           "200": {
@@ -10641,6 +10641,87 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Backfill resource could not be found on the session, or in the open-match system",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Delete Backfill Request",
+        "description": "Manually delete the backfill associated with this session",
+        "operationId": "delete_backfill_request",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseBackfillRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "403": {
             "description": "Forbidden",
@@ -10767,7 +10848,7 @@
           "Sessions"
         ],
         "summary": "Invite Session To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_session_to_session",
         "parameters": [
           {
@@ -10866,7 +10947,7 @@
           "Sessions"
         ],
         "summary": "Kick Session From Session",
-        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_session_from_session",
         "parameters": [
           {
@@ -10940,7 +11021,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -11032,7 +11113,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -11123,7 +11204,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -11202,7 +11283,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -11280,7 +11361,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -11359,7 +11440,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Profile",
-        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_profile",
         "parameters": [
           {
@@ -11439,7 +11520,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Profile V2",
-        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_match_making_profile_v2",
         "parameters": [
           {
@@ -11518,7 +11599,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates V2",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates_v2",
         "parameters": [
           {
@@ -11596,7 +11677,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:config`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -19647,7 +19728,7 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`",
         "operationId": "playerid_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -19727,7 +19808,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -19760,7 +19841,7 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
         "operationId": "playerid_long_poll_for_notifications",
         "parameters": [
           {
@@ -19849,7 +19930,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -19882,7 +19963,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`",
         "operationId": "playerid_get_notifications_page_self",
         "parameters": [
           {
@@ -19956,7 +20037,72 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "player-id-notification"
+        ],
+        "summary": "Create Notification Self",
+        "description": "Create new notification for client.\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:write`, `notification:playerid:write`, `notification:playerid:self:*`",
+        "operationId": "playerid_create_notification_self",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationCreates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationCreateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -19989,7 +20135,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
         "operationId": "playerid_get_notifications_page",
         "parameters": [
           {
@@ -20072,7 +20218,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20103,7 +20249,7 @@
           "player-id-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:playerid:*`, `notification:playerid:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`\n\n- For the playerid themselves any of: `notification:playerid:self:write`, `notification:playerid:self:*`",
         "operationId": "playerid_create_notification",
         "parameters": [
           {
@@ -20148,7 +20294,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20181,7 +20327,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
+        "description": "Retrieve a single notification by id\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`",
         "operationId": "playerid_get_notification_by_id_self",
         "parameters": [
           {
@@ -20216,7 +20362,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20259,7 +20405,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:playerid:*`,`notification:playerid:read`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
         "operationId": "playerid_get_notification_by_id",
         "parameters": [
           {
@@ -20303,7 +20449,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20346,7 +20492,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:read`, `notification:player:self:read`",
         "operationId": "player_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -20426,7 +20572,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20459,7 +20605,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`\n\n- For the player themselves any of: `notification:player:self:*`, `notification:player:self:read`",
         "operationId": "player_long_poll_for_notifications",
         "parameters": [
           {
@@ -20549,7 +20695,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20582,7 +20728,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:read`, `notification:player:self:read`",
         "operationId": "player_get_notifications_page_self",
         "parameters": [
           {
@@ -20656,7 +20802,72 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "player-notification"
+        ],
+        "summary": "Create Notification Self",
+        "description": "Create new notification for client.\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:self:write`, `notification:player:write`",
+        "operationId": "player_create_notification_self",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationCreates"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationCreateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20689,7 +20900,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`\n\n- For the player themselves any of: `notification:player:self:*`, `notification:player:self:read`",
         "operationId": "player_get_notifications_page",
         "parameters": [
           {
@@ -20773,7 +20984,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20804,7 +21015,7 @@
           "player-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:player:*`, `notification:player:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:*`, `notification:player:write`\n\n- For the player themselves any of: `notification:player:self:*`, `notification:player:self:write`",
         "operationId": "player_create_notification",
         "parameters": [
           {
@@ -20850,7 +21061,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20883,7 +21094,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Retrieve a single notification by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:read`, `notification:player:self:read`",
         "operationId": "player_get_notification_by_id_self",
         "parameters": [
           {
@@ -20918,7 +21129,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20961,7 +21172,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:player:*`,`notification:player:read`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`\n\n- For the player themselves any of: `notification:player:self:*`, `notification:player:self:read`",
         "operationId": "player_get_notification_by_id",
         "parameters": [
           {
@@ -21006,7 +21217,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21049,7 +21260,7 @@
           "instance-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`",
         "operationId": "instance_long_poll_for_notifications",
         "parameters": [
           {
@@ -21138,7 +21349,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21171,7 +21382,7 @@
           "instance-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`",
         "operationId": "instance_get_notifications_page",
         "parameters": [
           {
@@ -21254,7 +21465,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21285,7 +21496,7 @@
           "instance-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequires permissions: Any of `notification:instance:*`, `notification:instance:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:write`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:write`",
         "operationId": "instance_create_notification",
         "parameters": [
           {
@@ -21330,7 +21541,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21363,7 +21574,7 @@
           "instance-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequires permissions: Any of `notification:instance:*`,`notification:instance:read`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`",
         "operationId": "instance_get_notification_by_id",
         "parameters": [
           {
@@ -21407,7 +21618,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n",
+            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25350,6 +25561,22 @@
         ],
         "title": "BackfillTeam"
       },
+      "BaseBackfillRequest": {
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "The instance ID for this backfill request"
+          }
+        },
+        "type": "object",
+        "required": [
+          "instance_id"
+        ],
+        "title": "BaseBackfillRequest"
+      },
       "BrowserInfo": {
         "properties": {
           "custom_data": {
@@ -26803,9 +27030,9 @@
       },
       "MatchmakingResults": {
         "properties": {
-          "match_id": {
+          "match_making_id": {
             "type": "string",
-            "title": "Match Id",
+            "title": "Match Making Id",
             "description": "Unique ID"
           },
           "created": {
@@ -26843,7 +27070,7 @@
         },
         "type": "object",
         "required": [
-          "match_id",
+          "match_making_id",
           "created"
         ],
         "title": "MatchmakingResults"
