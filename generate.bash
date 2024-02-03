@@ -81,7 +81,7 @@ fi
 if [[ "$SKIP_MERGE" = false ]]; then
     VERSION=$(jq -r '.openapi' environment-openapi-base-schema.json)
     jq --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > tmp.json && mv tmp.json environment.openapi.json
-    jq --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.min.json > tmp.json && mv tmp.json environment.openapi.min.json
+    jq -c --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > environment.openapi.min.json
 fi
 
 ########################################
