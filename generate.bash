@@ -7,6 +7,11 @@ pushd $DIR
 
 SPEC_BASE_URL="https://554b0f7e-4f66-4969-8bd9-6f6aecd06e25.rally-here.io"
 
+SKIP_DOWNLOAD=false
+SKIP_MERGE=false
+SKIP_CHANGELOG=false
+SKIP_CHECK_BREAKING=false
+
 ########################################
 POSITIONAL_ARGS=()
 while [[ $# -gt 0 ]]; do
@@ -15,6 +20,22 @@ while [[ $# -gt 0 ]]; do
       SPEC_BASE_URL="$2"
       shift # past argument
       shift # past value
+      ;;
+    --skip-download)
+      SKIP_DOWNLOAD=true
+      shift # past argument
+      ;;
+    --skip-merge)
+      SKIP_MERGE=true
+      shift # past argument
+      ;;
+    --skip-changelog)
+      SKIP_CHANGELOG=true
+      shift # past argument
+      ;;
+    --skip-check-breaking)
+      SKIP_CHECK_BREAKING=true
+      shift # past argument
       ;;
     -*|--*)
       echo "Unknown option $1"
@@ -30,7 +51,7 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 ########################################
 # Download the API Specs
-if [[ ! -z "$SPEC_BASE_URL" ]]; then
+if [[ ! -z "$SPEC_BASE_URL" && "$SKIP_DOWNLOAD" = false ]]; then
     rm -rf schemas
     mkdir -p schemas
 
@@ -50,15 +71,29 @@ fi
 
 ########################################
 # Run the merge process of the separate API specs
-npx openapi-merge-cli --config environment-openapi-merge-config.yaml
-echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
+if [[ "$SKIP_MERGE" = false ]]; then
+    npx openapi-merge-cli --config environment-openapi-merge-config.yaml
+    echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
+fi
+
+########################################
+# Update the openapi version based on environment-openapi-base-schema.json
+if [[ "$SKIP_MERGE" = false ]]; then
+    VERSION=$(jq -r '.openapi' environment-openapi-base-schema.json)
+    jq --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > tmp.json && mv tmp.json environment.openapi.json
+    jq -c --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > environment.openapi.min.json
+fi
 
 ########################################
 # Generate changelog of newly generated changes
-./update_changelog.bash
+if [[ "$SKIP_CHANGELOG" = false ]]; then
+    ./update_changelog.bash
+fi
 
 ########################################
 # Print any breaking changes to the console
-./check_breaking.bash
+if [[ "$SKIP_CHECK_BREAKING" = false ]]; then
+    ./check_breaking.bash
+fi
 
 popd
