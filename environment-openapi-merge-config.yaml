@@ -111,6 +111,15 @@
         "prefix": "Events"
       },
     },
+    {
+      "inputFile": "./schemas/match.json",
+      "pathModification": {
+        "prepend": "/match"
+      },
+      "dispute": {
+        "prefix": "Match"
+      },
+    },
   ],
   "output": "./environment.openapi.json"
 }

@@ -100,14 +100,6 @@
       "description": "Getting client and server app settings"
     },
     {
-      "name": "discovery",
-      "description": "Discovery endpoint for MCTS compatible games"
-    },
-    {
-      "name": "site",
-      "description": "Endpoint for getting site settings"
-    },
-    {
       "name": "time",
       "description": "Endpoint for UTC now time"
     },
@@ -122,6 +114,10 @@
     {
       "name": "Events",
       "description": "Event Tracking"
+    },
+    {
+      "name": "Match API",
+      "description": "Operations on match-api"
     }
   ],
   "paths": {
@@ -7367,7 +7363,7 @@
           "Sessions"
         ],
         "summary": "Get All Session Templates",
-        "description": "Get the config about all session templates\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config about all session templates\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_session_templates",
         "parameters": [
           {
@@ -7435,7 +7431,7 @@
           "Sessions"
         ],
         "summary": "Get Session Template By Type",
-        "description": "Get config about a session template by ID\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get config about a session template by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_template_by_type",
         "parameters": [
           {
@@ -7512,7 +7508,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:browser`, `session:*`\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:browser`, `session:*`\n\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7612,7 +7608,7 @@
           "Sessions"
         ],
         "summary": "Create Or Join Session",
-        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:create`\n\n\nRequired Session Permissions: None",
+        "description": "Join the first publicly available session of given type. If there is no public session, and the session type\npermits player made sessions, create a new session and put the player in it\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:create`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "create_or_join_session",
         "requestBody": {
           "content": {
@@ -7669,7 +7665,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:self`, `session:*`, `session:read:any`\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:any`, `session:read:self`, `session:*`\n\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7756,7 +7752,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7834,7 +7830,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:allocation`\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:allocation`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7913,7 +7909,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -7991,7 +7987,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -8042,7 +8038,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:browser`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -8112,7 +8108,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -8198,7 +8194,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Id Self",
-        "description": "Leave a session with currently authed player\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n\tFor the player themselves: `session:update:self`\n\nRequired Permissions: None",
+        "description": "Leave a session with currently authed player\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:*`\n\n- For the player themselves : `session:update:self`\n\nRequired Permissions: None",
         "operationId": "leave_session_by_id_self",
         "parameters": [
           {
@@ -8261,7 +8257,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -8357,7 +8353,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -8438,7 +8434,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8535,7 +8531,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8617,7 +8613,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8705,7 +8701,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8778,7 +8774,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:read:event`, `session:*`\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8859,7 +8855,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:event`\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:event`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9005,7 +9001,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid V2",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid_v2",
         "parameters": [
           {
@@ -9083,7 +9079,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -9162,7 +9158,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read-player:any`, `session:*`\n\tFor the player themselves: `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
+        "description": "Get Sessions associated with a player by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -9221,7 +9217,7 @@
           "Sessions"
         ],
         "summary": "Get Connection Info Self",
-        "description": "Get public connection info for self\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Permissions: None",
+        "description": "Get public connection info for self\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Permissions: None",
         "operationId": "get_connection_info_self",
         "parameters": [
           {
@@ -9280,7 +9276,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9348,7 +9344,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`\n\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9424,7 +9420,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -9492,7 +9488,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -9551,7 +9547,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -9621,7 +9617,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Check",
-        "description": "Endpoint to post health status of an instance\n\nRequired Permissions: \n\tFor any player (including themselves): `session:instance:health`\n\n\nsession:instance:health",
+        "description": "Endpoint to post health status of an instance\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:instance:health`\n\n\n\nsession:instance:health",
         "operationId": "instance_health_check",
         "parameters": [
           {
@@ -9691,7 +9687,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Config",
-        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
+        "description": "Get config about expected poll rates for instance health, and when instances will go missing/unhealthy\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`",
         "operationId": "instance_health_config",
         "responses": {
           "200": {
@@ -9728,7 +9724,7 @@
           "Sessions"
         ],
         "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update:fubar`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:fubar`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "report_fubar",
         "parameters": [
           {
@@ -9798,7 +9794,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:platform`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -9921,7 +9917,7 @@
           "Sessions"
         ],
         "summary": "Delete Platform Session From Rally Here Session",
-        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:update:platform`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:platform`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "delete_platform_session_from_rally_here_session",
         "parameters": [
           {
@@ -10031,7 +10027,7 @@
           "Sessions"
         ],
         "summary": "Get Platform Session Info",
-        "description": "Get information about a platform session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:read:platform`, `session:*`\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
+        "description": "Get information about a platform session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:platform`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
         "operationId": "get_platform_session_info",
         "parameters": [
           {
@@ -10128,7 +10124,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -10240,7 +10236,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -10329,7 +10325,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10460,7 +10456,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n\tFor the player themselves: `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10559,7 +10555,7 @@
           "Sessions"
         ],
         "summary": "Backfill Config",
-        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`",
+        "description": "Get config about how often backfill heartbeats must be sent in order to prevent the backfill resource from being deleted\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`",
         "operationId": "backfill_config",
         "responses": {
           "200": {
@@ -10848,7 +10844,7 @@
           "Sessions"
         ],
         "summary": "Invite Session To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`\n to invite any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n to invite any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_session_to_session",
         "parameters": [
           {
@@ -10947,7 +10943,7 @@
           "Sessions"
         ],
         "summary": "Kick Session From Session",
-        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions: \n\tFor any player (including themselves): `session:*`\n to kick any session regardless of membership status\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:*`\n\n to kick any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_session_from_session",
         "parameters": [
           {
@@ -11021,7 +11017,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the V2 endpoint instead",
         "operationId": "get_all_queue_info",
         "parameters": [
           {
@@ -11113,7 +11109,7 @@
           "Queues"
         ],
         "summary": "Get All Queue Info V2",
-        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all the available and active queues that sessions can try to join\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_queue_info_v2",
         "parameters": [
           {
@@ -11204,7 +11200,7 @@
           "Queues"
         ],
         "summary": "Get All Map Game Info",
-        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
+        "description": "Get the config used to launch an instance by the launch template id. Launch template ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None\n**DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal",
         "operationId": "get_all_map_game_info",
         "parameters": [
           {
@@ -11283,7 +11279,7 @@
           "Queues"
         ],
         "summary": "Get Instance Request Template",
-        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in\nMatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_instance_request_template",
         "parameters": [
           {
@@ -11361,7 +11357,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n            \nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates",
         "parameters": [
           {
@@ -11440,7 +11436,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Profile",
-        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get info about a specific match making profile\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_profile",
         "parameters": [
           {
@@ -11520,7 +11516,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Profile V2",
-        "description": "Get info about a specific match making profile\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get info about a specific match making profile\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_match_making_profile_v2",
         "parameters": [
           {
@@ -11599,7 +11595,7 @@
           "Queues"
         ],
         "summary": "Get Match Making Templates V2",
-        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
+        "description": "Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information\nfrom the `queues` config endpoints\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None\n**DEPRECATED** Use the V2 endpoint instead",
         "operationId": "get_match_making_templates_v2",
         "parameters": [
           {
@@ -11677,7 +11673,7 @@
           "Regions"
         ],
         "summary": "Get All Regions",
-        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `session:*`, `session:read:config`\n\n\nRequired Session Permissions: None",
+        "description": "Get all of the enabled regions and their configuration\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:config`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_all_regions",
         "parameters": [
           {
@@ -22185,6 +22181,63 @@
         ]
       }
     },
+    "/rank/v2/rank:calculate": {
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Calculate V2 Ranks",
+        "description": "Calculate a rank update on players and persist their new ranks\nRequires at least two teams, and the players' ranks before the last match was played\n\nRequired Permissions: `rank:update:any`",
+        "operationId": "calculate_v2_ranks",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RankUpdateRequestV2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/rank/v2/rank": {
       "get": {
         "tags": [
@@ -22859,71 +22912,6 @@
         ]
       }
     },
-    "/config/v1/discovery": {
-      "get": {
-        "tags": [
-          "discovery"
-        ],
-        "summary": "Get Discovery",
-        "description": "Returns the configured connection manager IPs for the game client to connect to. Deprecated as there is no longer a need for this endpoint after MCTS was removed.",
-        "operationId": "get_discovery",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DiscoveryResponse"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
-    "/config/v1/site": {
-      "get": {
-        "tags": [
-          "site"
-        ],
-        "summary": "Get Site Settings",
-        "description": "Returns a list of all the enabled Sites/Regions. \n            Deprecated as this endpoint has moved to the session api.",
-        "operationId": "get_site_settings",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/SiteSettings"
-                  },
-                  "type": "array",
-                  "title": "Response Get Site Settings V1 Site Get"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
     "/config/v1/time/utc": {
       "get": {
         "tags": [
@@ -23088,7 +23076,7 @@
             }
           },
           "207": {
-            "description": "\n        Error Codes:\n        - `events_multi_results` - Some of the events from the request failed to process, and uploaded to deadletter blob storage\n        ",
+            "description": "\nError Codes:\n- events_multi_results - Some of the events from the request failed to process, and uploaded to deadletter blob storage\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -23098,7 +23086,17 @@
             }
           },
           "400": {
-            "description": "\n            Error Codes:\n            - `events_all_failed` - All of events from the request failed to process, and uploaded to deadletter blob storage\n            ",
+            "description": "\nError Codes:\n- events_all_failed - All of events from the request failed to process, and uploaded to deadletter blob storage\n- event_lists_invalid - The input eventLists is invalid, failed pydantic validation\n- event_unsupported - Event name is not known\n- event_denied - Events of that name are currently denied\n- event_duplicated - Event has the same event_uuid as an event already received\n- event_params_invalid - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details. \n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- event_schema_invalid - event_params jsonschema is empty, failed to load from developer-api\n- event_schema_not_found - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -23135,6 +23133,1010 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EventParamsSchemaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/match": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Get Matches",
+        "description": "Get pages of matches",
+        "operationId": "get_matches",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "instance_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Instance Id"
+            }
+          },
+          {
+            "name": "allocation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allocation Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "host_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Host Player Uuid"
+            }
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Region Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
+              "default": "0",
+              "title": "Cursor"
+            },
+            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Create Match",
+        "description": "Create match by match_id",
+        "operationId": "create_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/match/{match_id}": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Get Match",
+        "description": "Get match by match_id",
+        "operationId": "get_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchWithPlayers"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Update Match",
+        "description": "Update match by match_id",
+        "operationId": "update_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Patch Match",
+        "description": "Update match by match_id only with provided fields",
+        "operationId": "patch_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Delete Match",
+        "description": "Delete match by match_id",
+        "operationId": "delete_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/player/me/match": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Get Player Self Matches",
+        "description": "Get all matches for self",
+        "operationId": "get_player_self_matches",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
+              "default": "0",
+              "title": "Cursor"
+            },
+            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedPlayerMatchResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/player/{player_uuid}/match": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Get Players Matches",
+        "description": "Get All matches for a provided player_uuid",
+        "operationId": "get_players_matches",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
+              "default": "0",
+              "title": "Cursor"
+            },
+            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedPlayerMatchResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/player/{player_uuid}/match/{match_id}": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Get Player Match",
+        "description": "Get a player match record for the provided player_uuid and match_id",
+        "operationId": "get_player_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerWithMatch"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Create Player Match",
+        "description": "Create player match record for the provided player_uuid and match_id",
+        "operationId": "create_player_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchPlayerResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Update Player Match",
+        "description": "Update player match record for the provided player_uuid and match_id",
+        "operationId": "update_player_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchPlayerResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Patch Player Match",
+        "description": "Update player match record for the provided player_uuid and match_id only with provided fields",
+        "operationId": "patch_player_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchPlayerResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Delete Player Match",
+        "description": "Delete player by player_uuid and match_id",
+        "operationId": "delete_player_match",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -25775,17 +26777,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -25797,15 +26799,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -25844,15 +26846,15 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "left_queue",
-          "timeout"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "left_queue",
+          "timeout"
         ]
       },
       "Determiner": {
@@ -25865,17 +26867,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "FubarResponse": {
@@ -25892,13 +26894,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player"
         ]
       },
       "Input": {
@@ -25910,15 +26912,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceFubar": {
@@ -26011,17 +27013,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -26249,19 +27251,19 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
           "Host has arrived and is loading",
           "Host is ready to accept players",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -26416,15 +27418,15 @@
         ],
         "title": "InstanceSourceProvider",
         "description": "What type of provider is hosting the instance",
-        "x-enum-varnames": [
-          "PLAYER",
-          "SIC",
-          "MULTIPLAY"
-        ],
         "x-enum-descriptions": [
           "Instance is being hosted by a player",
           "Instance is hosted by the RallyHere SIC system",
           "Instance is being hosted by Multiplay"
+        ],
+        "x-enum-varnames": [
+          "PLAYER",
+          "SIC",
+          "MULTIPLAY"
         ]
       },
       "InstanceStartupParams": {
@@ -26506,17 +27508,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -27087,14 +28089,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -27102,6 +28096,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "PlatformID": {
@@ -27122,20 +28124,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -27149,6 +28137,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -27375,15 +28377,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -27687,13 +28689,13 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -28208,17 +29210,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -28548,19 +29550,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -32671,6 +33673,45 @@
         "title": "RankUpdateRequest",
         "description": "DEPRECATED A request body to calculate and update players' ratings from a match"
       },
+      "RankUpdateRequestV2": {
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID for the instance the match took place on"
+          },
+          "rank_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Rank Id",
+            "description": "ID for the rank type used in this match"
+          },
+          "match_length_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_id",
+          "match_length_seconds",
+          "teams"
+        ],
+        "title": "RankUpdateRequestV2",
+        "description": "A request body to calculate and update players' ratings from a match"
+      },
       "RankedTeam": {
         "properties": {
           "players": {
@@ -32694,6 +33735,64 @@
           "team_rank"
         ],
         "title": "RankedTeam",
+        "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
+      },
+      "TrueskillRank": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          },
+          "seconds_in_match": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Seconds In Match",
+            "description": "How many seconds this player was in the match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank",
+          "seconds_in_match"
+        ],
+        "title": "TrueskillRank",
+        "description": "Additional data about a specific player's rank and previous match in order to make trueskill calculations"
+      },
+      "TrueskillTeam": {
+        "properties": {
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillRank"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of PlayerRankUpdate objects that give stats about a specific player from the match"
+          },
+          "team_rank": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Team Rank",
+            "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
+          }
+        },
+        "type": "object",
+        "required": [
+          "players",
+          "team_rank"
+        ],
+        "title": "TrueskillTeam",
         "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
       },
       "AppSetting": {
@@ -32721,36 +33820,6 @@
         ],
         "title": "AppSetting",
         "description": "A key/value pair that represents a setting to be used by the client."
-      },
-      "DiscoveryResponse": {
-        "properties": {
-          "addresses": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Addresses",
-            "description": "The list of addresses for the connection managers"
-          },
-          "server_status": {
-            "type": "string",
-            "title": "Server Status",
-            "description": "The status of the connection managers",
-            "default": "unknown"
-          },
-          "command_line_args": {
-            "type": "string",
-            "title": "Command Line Args",
-            "description": "The command line arguments used to be used by the client",
-            "default": " "
-          }
-        },
-        "type": "object",
-        "required": [
-          "addresses"
-        ],
-        "title": "DiscoveryResponse",
-        "description": "Contains information that aids the client in communicating with the connection managers."
       },
       "EnvironmentConfig": {
         "properties": {
@@ -32807,38 +33876,6 @@
         },
         "type": "object",
         "title": "KVsResponse"
-      },
-      "SiteSettings": {
-        "properties": {
-          "site_id": {
-            "type": "integer",
-            "title": "Site Id",
-            "description": "The site ID"
-          },
-          "sort_order": {
-            "type": "integer",
-            "title": "Sort Order",
-            "description": "The priority order of this site"
-          },
-          "custom_only": {
-            "type": "boolean",
-            "title": "Custom Only",
-            "description": "Indicates if the site is a custom games only"
-          },
-          "message_name": {
-            "type": "string",
-            "title": "Message Name",
-            "description": "The message associated with this site"
-          }
-        },
-        "type": "object",
-        "required": [
-          "site_id",
-          "sort_order",
-          "custom_only"
-        ],
-        "title": "SiteSettings",
-        "description": "Contains information about a site/region."
       },
       "EventList": {
         "properties": {
@@ -32977,6 +34014,915 @@
           "event_params"
         ],
         "title": "RallyHereEvent"
+      },
+      "MatchInstance": {
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instance Id",
+            "description": "Instance ID"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID the instance is in"
+          }
+        },
+        "type": "object",
+        "required": [
+          "instance_id"
+        ],
+        "title": "MatchInstance"
+      },
+      "MatchRequest": {
+        "properties": {
+          "start_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "type": "datetime",
+            "title": "Start Timestamp",
+            "description": "Start time of the match"
+          },
+          "end_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Timestamp",
+            "description": "End time of the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds of the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the match"
+          },
+          "sessions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sessions",
+            "description": "List of session IDs for the match"
+          },
+          "instances": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchInstance"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of MatchInstances for the match"
+          },
+          "allocations": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match"
+          }
+        },
+        "type": "object",
+        "title": "MatchRequest"
+      },
+      "MatchResponse": {
+        "properties": {
+          "last_modified_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Modified Timestamp",
+            "description": "Timestamp of when the resource was last modified"
+          },
+          "created_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created Timestamp",
+            "description": "Timestamp of when the resource was created"
+          },
+          "start_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "type": "datetime",
+            "title": "Start Timestamp",
+            "description": "Start time of the match"
+          },
+          "end_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Timestamp",
+            "description": "End time of the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds of the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the match"
+          },
+          "sessions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sessions",
+            "description": "List of session IDs for the match"
+          },
+          "instances": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchInstance"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of MatchInstances for the match"
+          },
+          "allocations": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
+          }
+        },
+        "type": "object",
+        "title": "MatchResponse"
+      },
+      "MatchWithPlayers": {
+        "properties": {
+          "last_modified_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Modified Timestamp",
+            "description": "Timestamp of when the resource was last modified"
+          },
+          "created_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created Timestamp",
+            "description": "Timestamp of when the resource was created"
+          },
+          "start_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "type": "datetime",
+            "title": "Start Timestamp",
+            "description": "Start time of the match"
+          },
+          "end_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Timestamp",
+            "description": "End time of the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds of the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the match"
+          },
+          "sessions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sessions",
+            "description": "List of session IDs for the match"
+          },
+          "instances": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchInstance"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of MatchInstances for the match"
+          },
+          "allocations": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
+          },
+          "players": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "MatchWithPlayers"
+      },
+      "PagedPlayerMatchResponse": {
+        "properties": {
+          "player_matches": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerWithMatch"
+            },
+            "type": "array",
+            "title": "Player Matches",
+            "description": "List of player's matches",
+            "default": []
+          },
+          "cursor": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Cursor",
+            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cursor"
+        ],
+        "title": "PagedPlayerMatchResponse"
+      },
+      "PlayerRequest": {
+        "properties": {
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match",
+            "description": "Time the player joined the match"
+          },
+          "left_match": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          }
+        },
+        "type": "object",
+        "title": "PlayerRequest"
+      },
+      "MatchPlayerResponse": {
+        "properties": {
+          "last_modified_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Modified Timestamp",
+            "description": "Timestamp of when the resource was last modified"
+          },
+          "created_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created Timestamp",
+            "description": "Timestamp of when the resource was created"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match",
+            "description": "Time the player joined the match"
+          },
+          "left_match": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          }
+        },
+        "type": "object",
+        "title": "PlayerResponse"
+      },
+      "PlayerWithMatch": {
+        "properties": {
+          "last_modified_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Modified Timestamp",
+            "description": "Timestamp of when the resource was last modified"
+          },
+          "created_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created Timestamp",
+            "description": "Timestamp of when the resource was created"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match",
+            "description": "Time the player joined the match"
+          },
+          "left_match": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchResponse"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Match the player was in"
+          }
+        },
+        "type": "object",
+        "title": "PlayerWithMatch"
       }
     }
   }

@@ -41,7 +41,7 @@
             }
           },
           "207": {
-            "description": "\n        Error Codes:\n        - `events_multi_results` - Some of the events from the request failed to process, and uploaded to deadletter blob storage\n        ",
+            "description": "\nError Codes:\n- events_multi_results - Some of the events from the request failed to process, and uploaded to deadletter blob storage\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -51,7 +51,17 @@
             }
           },
           "400": {
-            "description": "\n            Error Codes:\n            - `events_all_failed` - All of events from the request failed to process, and uploaded to deadletter blob storage\n            ",
+            "description": "\nError Codes:\n- events_all_failed - All of events from the request failed to process, and uploaded to deadletter blob storage\n- event_lists_invalid - The input eventLists is invalid, failed pydantic validation\n- event_unsupported - Event name is not known\n- event_denied - Events of that name are currently denied\n- event_duplicated - Event has the same event_uuid as an event already received\n- event_params_invalid - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details. \n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- event_schema_invalid - event_params jsonschema is empty, failed to load from developer-api\n- event_schema_not_found - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details.\n",
             "content": {
               "application/json": {
                 "schema": {
