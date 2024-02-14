@@ -1,3 +1,72 @@
+## Changes for Wed Feb 14 13:49:48 EST 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 8
+-------------------------
+GET /match/v1/match
+- Security changed
+  - New security requirements: HTTPBearerHeadersOrCookie
+
+GET /match/v1/player/me/match
+- New query param: cursor
+
+GET /match/v1/player/{player_uuid}/match
+- New query param: cursor
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Deleted media type: application/json
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchPlayerResponse' to 'MatchPlayerWithMatch'
+          - Required changed
+            - New required property: match
+          - Properties changed
+            - New property: match
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchPlayerResponse' to 'MatchPlayerWithMatch'
+          - Required changed
+            - New required property: match
+          - Properties changed
+            - New property: match
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchPlayerResponse' to 'MatchPlayerWithMatch'
+          - Required changed
+            - New required property: match
+          - Properties changed
+            - New property: match
+
+GET /users/v1/platform-user
+- Description changed from 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:*`, `user:platform:read`' to 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:platform:read`, `user:*`'
 ## Changes for Wed Feb 14 12:30:30 EST 2024
 ### New Endpoints: None
 -----------------------
