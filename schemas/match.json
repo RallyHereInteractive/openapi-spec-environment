@@ -19,12 +19,23 @@
         "summary": "Get Matches",
         "description": "Get pages of matches",
         "operationId": "get_matches",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
           {
             "name": "page_size",
             "in": "query",
@@ -127,25 +138,20 @@
             }
           },
           {
-            "name": "cursor",
+            "name": "player_uuid",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
+                  "type": "string"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
-              "default": "0",
-              "title": "Cursor"
-            },
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+              "title": "Player Uuid"
+            }
           }
         ],
         "responses": {
@@ -154,7 +160,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/PagedMatchResponse"
                 }
               }
             }
@@ -209,7 +215,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/MatchWithPlayers"
                 }
               }
             }
@@ -333,7 +339,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/MatchWithPlayers"
                 }
               }
             }
@@ -399,7 +405,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/MatchWithPlayers"
                 }
               }
             }
@@ -451,12 +457,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
+            "description": "Successful Response"
           },
           "403": {
             "content": {
@@ -486,9 +487,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Get Player Self Matches",
+        "summary": "Get Player Matches Self",
         "description": "Get all matches for self",
-        "operationId": "get_player_self_matches",
+        "operationId": "get_player_matches_self",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -506,27 +507,6 @@
               "title": "Page Size"
             },
             "description": "The maximum number of elements to be returned per call"
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
-              "default": "0",
-              "title": "Cursor"
-            },
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
           }
         ],
         "responses": {
@@ -598,27 +578,6 @@
               "title": "Page Size"
             },
             "description": "The maximum number of elements to be returned per call"
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
-              "default": "0",
-              "title": "Cursor"
-            },
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
           }
         ],
         "responses": {
@@ -695,7 +654,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerWithMatch"
+                  "$ref": "#/components/schemas/MatchPlayerWithMatch"
                 }
               }
             }
@@ -760,7 +719,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRequest"
+                "$ref": "#/components/schemas/MatchPlayerRequest"
               }
             }
           }
@@ -771,7 +730,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerResponse"
+                  "$ref": "#/components/schemas/MatchPlayerResponse"
                 }
               }
             }
@@ -836,7 +795,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRequest"
+                "$ref": "#/components/schemas/MatchPlayerRequest"
               }
             }
           }
@@ -847,7 +806,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerResponse"
+                  "$ref": "#/components/schemas/MatchPlayerResponse"
                 }
               }
             }
@@ -912,7 +871,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRequest"
+                "$ref": "#/components/schemas/MatchPlayerRequest"
               }
             }
           }
@@ -923,7 +882,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerResponse"
+                  "$ref": "#/components/schemas/MatchPlayerResponse"
                 }
               }
             }
@@ -1054,11 +1013,31 @@
         ],
         "title": "HzApiErrorModel"
       },
+      "MatchAllocation": {
+        "properties": {
+          "allocation_id": {
+            "type": "string",
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "allocation_id"
+        ],
+        "title": "MatchAllocation"
+      },
       "MatchInstance": {
         "properties": {
           "instance_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Instance Id",
             "description": "Instance ID"
           },
@@ -1086,16 +1065,468 @@
             ],
             "title": "Region Id",
             "description": "Region ID the instance is in"
+          },
+          "launch_request_template_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Launch Request Template Id",
+            "description": "Launch request template ID"
+          }
+        },
+        "type": "object",
+        "title": "MatchInstance"
+      },
+      "MatchPlayerRequest": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match Timestamp",
+            "description": "Time the player joined the match"
+          },
+          "left_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match Timestamp",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          }
+        },
+        "type": "object",
+        "title": "MatchPlayerRequest"
+      },
+      "MatchPlayerResponse": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match Timestamp",
+            "description": "Time the player joined the match"
+          },
+          "left_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match Timestamp",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          }
+        },
+        "type": "object",
+        "title": "MatchPlayerResponse"
+      },
+      "MatchPlayerWithMatch": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match Timestamp",
+            "description": "Time the player joined the match"
+          },
+          "left_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match Timestamp",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          },
+          "match": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchResponse"
+              }
+            ],
+            "description": "Match the player was in"
           }
         },
         "type": "object",
         "required": [
-          "instance_id"
+          "match"
         ],
-        "title": "MatchInstance"
+        "title": "MatchPlayerWithMatch"
       },
       "MatchRequest": {
         "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
+          },
           "start_timestamp": {
             "anyOf": [
               {
@@ -1153,46 +1584,53 @@
             "title": "Custom Data",
             "description": "Custom data for the match"
           },
-          "sessions": {
+          "correlation_id": {
             "anyOf": [
               {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
             "title": "Sessions",
-            "description": "List of session IDs for the match"
+            "description": "List of session IDs for the match",
+            "default": []
           },
           "instances": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchInstance"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "List of MatchInstances for the match"
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
           },
           "allocations": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
             "title": "Allocations",
-            "description": "List of allocation IDs for the match"
+            "description": "List of allocation IDs for the match",
+            "default": []
           }
         },
         "type": "object",
@@ -1201,36 +1639,41 @@
       "MatchResponse": {
         "properties": {
           "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
           },
           "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "type": {
             "anyOf": [
               {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
           },
           "start_timestamp": {
             "anyOf": [
@@ -1289,46 +1732,53 @@
             "title": "Custom Data",
             "description": "Custom data for the match"
           },
-          "sessions": {
+          "correlation_id": {
             "anyOf": [
               {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
             "title": "Sessions",
-            "description": "List of session IDs for the match"
+            "description": "List of session IDs for the match",
+            "default": []
           },
           "instances": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchInstance"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "List of MatchInstances for the match"
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
           },
           "allocations": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
             "title": "Allocations",
-            "description": "List of allocation IDs for the match"
+            "description": "List of allocation IDs for the match",
+            "default": []
           },
           "match_id": {
             "type": "string",
@@ -1338,39 +1788,79 @@
         "type": "object",
         "title": "MatchResponse"
       },
+      "MatchSession": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id",
+            "description": "Session ID"
+          },
+          "profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Id",
+            "description": "Profile ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id"
+        ],
+        "title": "MatchSession"
+      },
+      "MatchState": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "closed"
+        ],
+        "title": "MatchState",
+        "description": "Match States."
+      },
       "MatchWithPlayers": {
         "properties": {
           "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
           },
           "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "type": {
             "anyOf": [
               {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
           },
           "start_timestamp": {
             "anyOf": [
@@ -1429,69 +1919,94 @@
             "title": "Custom Data",
             "description": "Custom data for the match"
           },
-          "sessions": {
+          "correlation_id": {
             "anyOf": [
               {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Sessions",
-            "description": "List of session IDs for the match"
-          },
-          "instances": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchInstance"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "List of MatchInstances for the match"
-          },
-          "allocations": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Allocations",
-            "description": "List of allocation IDs for the match"
-          },
-          "match_id": {
-            "type": "string",
-            "title": "Match Id"
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
           },
           "players": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/MatchPlayerResponse"
             },
             "type": "array",
             "title": "Players",
             "description": "List of players in the match",
             "default": []
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
+            "title": "Sessions",
+            "description": "List of session IDs for the match",
+            "default": []
+          },
+          "instances": {
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
+          },
+          "allocations": {
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match",
+            "default": []
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
           }
         },
         "type": "object",
         "title": "MatchWithPlayers"
       },
+      "PagedMatchResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/MatchWithPlayers"
+            },
+            "type": "array",
+            "title": "Matches",
+            "description": "List of matches",
+            "default": []
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor",
+            "description": "Base64 encoded json that contains the filters and cursor position"
+          }
+        },
+        "type": "object",
+        "title": "PagedMatchResponse"
+      },
       "PagedPlayerMatchResponse": {
         "properties": {
           "player_matches": {
             "items": {
-              "$ref": "#/components/schemas/PlayerWithMatch"
+              "$ref": "#/components/schemas/MatchPlayerWithMatch"
             },
             "type": "array",
             "title": "Player Matches",
@@ -1499,469 +2014,20 @@
             "default": []
           },
           "cursor": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Cursor",
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+            "description": "Base64 encoded json that contains the filters and cursor position"
           }
         },
         "type": "object",
-        "required": [
-          "cursor"
-        ],
         "title": "PagedPlayerMatchResponse"
-      },
-      "PlayerRequest": {
-        "properties": {
-          "team_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Team Id",
-            "description": "Team ID the player was on"
-          },
-          "party_session_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Party Session Id",
-            "description": "Party session ID the player was in"
-          },
-          "placement": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Placement",
-            "description": "Placement of the player in the match"
-          },
-          "joined_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Joined Match",
-            "description": "Time the player joined the match"
-          },
-          "left_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Left Match",
-            "description": "Time the player left the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds the player was in the match"
-          },
-          "starting_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starting Rank",
-            "description": "Starting rank of the player in the match"
-          },
-          "finishing_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finishing Rank",
-            "description": "Finishing rank of the player in the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the player"
-          }
-        },
-        "type": "object",
-        "title": "PlayerRequest"
-      },
-      "PlayerResponse": {
-        "properties": {
-          "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
-          },
-          "created_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
-          },
-          "team_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Team Id",
-            "description": "Team ID the player was on"
-          },
-          "party_session_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Party Session Id",
-            "description": "Party session ID the player was in"
-          },
-          "placement": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Placement",
-            "description": "Placement of the player in the match"
-          },
-          "joined_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Joined Match",
-            "description": "Time the player joined the match"
-          },
-          "left_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Left Match",
-            "description": "Time the player left the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds the player was in the match"
-          },
-          "starting_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starting Rank",
-            "description": "Starting rank of the player in the match"
-          },
-          "finishing_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finishing Rank",
-            "description": "Finishing rank of the player in the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the player"
-          },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid"
-          }
-        },
-        "type": "object",
-        "title": "PlayerResponse"
-      },
-      "PlayerWithMatch": {
-        "properties": {
-          "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
-          },
-          "created_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
-          },
-          "team_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Team Id",
-            "description": "Team ID the player was on"
-          },
-          "party_session_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Party Session Id",
-            "description": "Party session ID the player was in"
-          },
-          "placement": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Placement",
-            "description": "Placement of the player in the match"
-          },
-          "joined_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Joined Match",
-            "description": "Time the player joined the match"
-          },
-          "left_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Left Match",
-            "description": "Time the player left the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds the player was in the match"
-          },
-          "starting_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starting Rank",
-            "description": "Starting rank of the player in the match"
-          },
-          "finishing_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finishing Rank",
-            "description": "Finishing rank of the player in the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the player"
-          },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid"
-          },
-          "match": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchResponse"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Match the player was in"
-          }
-        },
-        "type": "object",
-        "title": "PlayerWithMatch"
       },
       "ValidationError": {
         "properties": {
@@ -2006,7 +2072,7 @@
   },
   "tags": [
     {
-      "name": "Match API",
+      "name": "match",
       "description": "Operations on match-api"
     }
   ]

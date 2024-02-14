@@ -1,3 +1,1977 @@
+## Changes for Wed Feb 14 12:30:30 EST 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 35
+--------------------------
+GET /match/v1/match
+- New query param: player_uuid
+- Modified query param: cursor
+  - Description changed from 'Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration' to ''
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schema #1 modified
+        - MinLength changed from 1 to 0
+        - MaxLength changed from 128 to null
+    - Description changed from 'Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration' to ''
+    - Default changed from '0' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchResponse' to 'PagedMatchResponse'
+          - Properties changed
+            - New property: cursor
+            - New property: matches
+            - Deleted property: allocations
+            - Deleted property: created_timestamp
+            - Deleted property: custom_data
+            - Deleted property: duration_seconds
+            - Deleted property: end_timestamp
+            - Deleted property: instances
+            - Deleted property: last_modified_timestamp
+            - Deleted property: match_id
+            - Deleted property: sessions
+            - Deleted property: start_timestamp
+- Security changed
+  - Deleted security requirements: HTTPBearerHeadersOrCookie
+
+POST /match/v1/match
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: correlation_id
+          - New property: players
+          - New property: state
+          - New property: type
+          - Modified property: allocations
+            - Property 'AnyOf' changed
+              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+          - Modified property: instances
+            - Property 'AnyOf' changed
+              - Schemas deleted: [MatchInstance BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Title changed from '' to 'Instances'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+          - Modified property: sessions
+            - Property 'AnyOf' changed
+              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchResponse' to 'MatchWithPlayers'
+          - Properties changed
+            - New property: correlation_id
+            - New property: players
+            - New property: state
+            - New property: type
+            - Modified property: allocations
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: instances
+              - Property 'AnyOf' changed
+                - Schemas deleted: [MatchInstance BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Title changed from '' to 'Instances'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: sessions
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+
+DELETE /match/v1/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Deleted media type: application/json
+
+GET /match/v1/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: correlation_id
+            - New property: state
+            - New property: type
+            - Modified property: allocations
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: instances
+              - Property 'AnyOf' changed
+                - Schemas deleted: [MatchInstance BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Title changed from '' to 'Instances'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: players
+              - Items changed
+                - Type changed from 'string' to 'object'
+                - Title changed from '' to 'MatchPlayerResponse'
+                - Properties changed
+                  - New property: created_timestamp
+                  - New property: custom_data
+                  - New property: duration_seconds
+                  - New property: finishing_rank
+                  - New property: joined_match_timestamp
+                  - New property: last_modified_timestamp
+                  - New property: left_match_timestamp
+                  - New property: party_session_id
+                  - New property: placement
+                  - New property: player_uuid
+                  - New property: starting_rank
+                  - New property: team_id
+            - Modified property: sessions
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+
+PATCH /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: correlation_id
+          - New property: players
+          - New property: state
+          - New property: type
+          - Modified property: allocations
+            - Property 'AnyOf' changed
+              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+          - Modified property: instances
+            - Property 'AnyOf' changed
+              - Schemas deleted: [MatchInstance BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Title changed from '' to 'Instances'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+          - Modified property: sessions
+            - Property 'AnyOf' changed
+              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchResponse' to 'MatchWithPlayers'
+          - Properties changed
+            - New property: correlation_id
+            - New property: players
+            - New property: state
+            - New property: type
+            - Modified property: allocations
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: instances
+              - Property 'AnyOf' changed
+                - Schemas deleted: [MatchInstance BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Title changed from '' to 'Instances'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: sessions
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+
+PUT /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: correlation_id
+          - New property: players
+          - New property: state
+          - New property: type
+          - Modified property: allocations
+            - Property 'AnyOf' changed
+              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+          - Modified property: instances
+            - Property 'AnyOf' changed
+              - Schemas deleted: [MatchInstance BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Title changed from '' to 'Instances'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+          - Modified property: sessions
+            - Property 'AnyOf' changed
+              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+            - Type changed from '' to 'array'
+            - Default changed from null to []
+            - Items changed
+              - Schema added
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MatchResponse' to 'MatchWithPlayers'
+          - Properties changed
+            - New property: correlation_id
+            - New property: players
+            - New property: state
+            - New property: type
+            - Modified property: allocations
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: instances
+              - Property 'AnyOf' changed
+                - Schemas deleted: [MatchInstance BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Title changed from '' to 'Instances'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: sessions
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'array'
+              - Default changed from null to []
+              - Items changed
+                - Schema added
+
+GET /match/v1/player/me/match
+- Deleted query param: cursor
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: cursor
+          - Properties changed
+            - Modified property: cursor
+              - Property 'AnyOf' changed
+                - Schemas added: [RevisionSchema[0] RevisionSchema[1]]
+              - Type changed from 'string' to ''
+              - Description changed from 'Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration' to 'Base64 encoded json that contains the filters and cursor position'
+              - MinLength changed from 1 to 0
+              - MaxLength changed from 128 to null
+            - Modified property: player_matches
+              - Items changed
+                - Title changed from 'PlayerWithMatch' to 'MatchPlayerWithMatch'
+                - Required changed
+                  - New required property: match
+                - Properties changed
+                  - New property: joined_match_timestamp
+                  - New property: left_match_timestamp
+                  - Deleted property: joined_match
+                  - Deleted property: left_match
+                  - Modified property: created_timestamp
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+                    - Format changed from '' to 'date-time'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: last_modified_timestamp
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+                    - Format changed from '' to 'date-time'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: match
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [MatchResponse BaseSchema[1]]
+                    - Property 'AllOf' changed
+                      - Schemas added: [MatchResponse]
+                  - Modified property: placement
+                    - Property 'AnyOf' changed
+                      - Schema #1 modified
+                        - Type changed from 'string' to 'integer'
+
+GET /match/v1/player/{player_uuid}/match
+- Deleted query param: cursor
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: cursor
+          - Properties changed
+            - Modified property: cursor
+              - Property 'AnyOf' changed
+                - Schemas added: [RevisionSchema[0] RevisionSchema[1]]
+              - Type changed from 'string' to ''
+              - Description changed from 'Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration' to 'Base64 encoded json that contains the filters and cursor position'
+              - MinLength changed from 1 to 0
+              - MaxLength changed from 128 to null
+            - Modified property: player_matches
+              - Items changed
+                - Title changed from 'PlayerWithMatch' to 'MatchPlayerWithMatch'
+                - Required changed
+                  - New required property: match
+                - Properties changed
+                  - New property: joined_match_timestamp
+                  - New property: left_match_timestamp
+                  - Deleted property: joined_match
+                  - Deleted property: left_match
+                  - Modified property: created_timestamp
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+                    - Format changed from '' to 'date-time'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: last_modified_timestamp
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+                    - Format changed from '' to 'date-time'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: match
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [MatchResponse BaseSchema[1]]
+                    - Property 'AllOf' changed
+                      - Schemas added: [MatchResponse]
+                  - Modified property: placement
+                    - Property 'AnyOf' changed
+                      - Schema #1 modified
+                        - Type changed from 'string' to 'integer'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'PlayerWithMatch' to 'MatchPlayerWithMatch'
+          - Required changed
+            - New required property: match
+          - Properties changed
+            - New property: joined_match_timestamp
+            - New property: left_match_timestamp
+            - Deleted property: joined_match
+            - Deleted property: left_match
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: match
+              - Property 'AnyOf' changed
+                - Schemas deleted: [MatchResponse BaseSchema[1]]
+              - Property 'AllOf' changed
+                - Schemas added: [MatchResponse]
+            - Modified property: placement
+              - Property 'AnyOf' changed
+                - Schema #1 modified
+                  - Type changed from 'string' to 'integer'
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Title changed from 'PlayerRequest' to 'MatchPlayerRequest'
+        - Properties changed
+          - New property: joined_match_timestamp
+          - New property: left_match_timestamp
+          - New property: player_uuid
+          - Deleted property: joined_match
+          - Deleted property: left_match
+          - Modified property: placement
+            - Property 'AnyOf' changed
+              - Schema #1 modified
+                - Type changed from 'string' to 'integer'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'PlayerResponse' to 'MatchPlayerResponse'
+          - Properties changed
+            - New property: joined_match_timestamp
+            - New property: left_match_timestamp
+            - Deleted property: joined_match
+            - Deleted property: left_match
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: placement
+              - Property 'AnyOf' changed
+                - Schema #1 modified
+                  - Type changed from 'string' to 'integer'
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Title changed from 'PlayerRequest' to 'MatchPlayerRequest'
+        - Properties changed
+          - New property: joined_match_timestamp
+          - New property: left_match_timestamp
+          - New property: player_uuid
+          - Deleted property: joined_match
+          - Deleted property: left_match
+          - Modified property: placement
+            - Property 'AnyOf' changed
+              - Schema #1 modified
+                - Type changed from 'string' to 'integer'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'PlayerResponse' to 'MatchPlayerResponse'
+          - Properties changed
+            - New property: joined_match_timestamp
+            - New property: left_match_timestamp
+            - Deleted property: joined_match
+            - Deleted property: left_match
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: placement
+              - Property 'AnyOf' changed
+                - Schema #1 modified
+                  - Type changed from 'string' to 'integer'
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Title changed from 'PlayerRequest' to 'MatchPlayerRequest'
+        - Properties changed
+          - New property: joined_match_timestamp
+          - New property: left_match_timestamp
+          - New property: player_uuid
+          - Deleted property: joined_match
+          - Deleted property: left_match
+          - Modified property: placement
+            - Property 'AnyOf' changed
+              - Schema #1 modified
+                - Type changed from 'string' to 'integer'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'PlayerResponse' to 'MatchPlayerResponse'
+          - Properties changed
+            - New property: joined_match_timestamp
+            - New property: left_match_timestamp
+            - Deleted property: joined_match
+            - Deleted property: left_match
+            - Modified property: created_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Created Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: last_modified_timestamp
+              - Property 'AnyOf' changed
+                - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+              - Type changed from '' to 'string'
+              - Title changed from 'Last Modified Timestamp' to 'Time Zone Aware Datetime'
+              - Format changed from '' to 'date-time'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: placement
+              - Property 'AnyOf' changed
+                - Schema #1 modified
+                  - Type changed from 'string' to 'integer'
+
+GET /session/v1/browser
+- Description changed from 'Get all public sessions of a specific type
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:browser`, `session:*`
+
+
+
+Required Permissions: None' to 'Get all public sessions of a specific type
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read:browser`
+
+
+
+Required Permissions: None'
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Description changed from 'Remove a platform session from a Rally Here session
+               
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:platform`
+
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission' to 'Remove a platform session from a Rally Here session
+               
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:platform`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Description changed from 'Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:platform`
+
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission' to 'Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:platform`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission'
+
+GET /session/v1/session/allocation/{allocation_id}
+- Description changed from 'Get session by allocation ID. Returns the same limited results as getting the session by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:allocation`, `session:*`
+
+
+
+Required Session Permissions: None' to 'Get session by allocation ID. Returns the same limited results as getting the session by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read:allocation`
+
+
+
+Required Session Permissions: None'
+
+GET /session/v1/session/{session_id}
+- Description changed from 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:any`, `session:read:self`, `session:*`
+
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission' to 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:self`, `session:*`, `session:read:any`
+
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission'
+
+DELETE /session/v1/session/{session_id}/browser
+- Description changed from 'Delete the session from the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:browser`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Delete the session from the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:browser`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+PATCH /session/v1/session/{session_id}/browser
+- Description changed from 'Update the browser info for the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:browser`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Update the browser info for the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:browser`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+POST /session/v1/session/{session_id}/browser
+- Description changed from 'Register session in the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:browser`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Register session in the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:browser`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+GET /session/v1/session/{session_id}/event
+- Description changed from 'Get all events for the session.  Empty list means there is no event history for it.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read-player:any`, `session:*`, `session:read:event`
+
+
+
+Required Session Permissions: None' to 'Get all events for the session.  Empty list means there is no event history for it.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read-player:any`, `session:read:event`, `session:*`
+
+
+
+Required Session Permissions: None'
+
+POST /session/v1/session/{session_id}/event
+- Description changed from 'Create an event in the log for this session.
+Internal session operations will create new events that are accessible from the get request.
+
+Player clients and instances are expected to create events here when something occurs on their clients that is
+relevant.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:event`, `session:*`, `session:update:any`
+
+
+
+Required Session Permissions: None' to 'Create an event in the log for this session.
+Internal session operations will create new events that are accessible from the get request.
+
+Player clients and instances are expected to create events here when something occurs on their clients that is
+relevant.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:event`
+
+
+
+Required Session Permissions: None'
+
+POST /session/v1/session/{session_id}/invited-session/{invited_session_id}:invite
+- Description changed from 'Invite an entire session to a target session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`
+
+ to invite any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`
+
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Invite an entire session to a target session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`
+
+ to invite any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/kicked-session/{kicked_session_id}
+- Description changed from 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions:
+
+- For any player (including themselves) : `session:*`
+
+ to kick any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`
+
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions:
+
+- For any player (including themselves) : `session:*`
+
+ to kick any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`
+
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead'
+
+POST /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited.
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the player endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited.
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the player endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+POST /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session'
+
+POST /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations'
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 403
+    - Description changed from 'User authentication failed.  See error code and description for further details.
+
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+' to 'User authentication failed.  See error code and description for further details.
+
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+'
+
+GET /users/v1/oauth/login/{platform}
+- Responses changed
+  - Modified response: 307
+    - Headers changed
+      - Modified header: location
+        - Description changed from '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+' to '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+'
+
+GET /users/v1/oauth/response/{platform}
+- Responses changed
+  - Modified response: 307
+    - Headers changed
+      - Modified header: location
+        - Description changed from '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `code`: The authorization_code that can be exchanged for an access token for the user.
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+' to '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `code`: The authorization_code that can be exchanged for an access token for the user.
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+'
+
+POST /users/v1/platform-user
+- Description changed from 'Create a new platform user from a platform identity.
+
+WARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:*`, `user:platform:create`' to 'Create a new platform user from a platform identity.
+
+WARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:platform:create`, `user:*`'
+
+POST /users/v1/portaltoken/details
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+' to '
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+'
 ## Changes for Tue Feb  6 11:26:42 EST 2024
 ### New Endpoints: 14
 ---------------------

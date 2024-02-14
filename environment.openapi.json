@@ -116,7 +116,7 @@
       "description": "Event Tracking"
     },
     {
-      "name": "Match API",
+      "name": "match",
       "description": "Operations on match-api"
     }
   ],
@@ -4677,7 +4677,7 @@
             }
           },
           "403": {
-            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -4737,7 +4737,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -5622,7 +5622,7 @@
           "users"
         ],
         "summary": "Create Platform User By Id",
-        "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:*`, `user:platform:create`",
+        "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:platform:create`, `user:*`",
         "operationId": "create_platform_user_by_id",
         "requestBody": {
           "content": {
@@ -6863,7 +6863,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -6954,7 +6954,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -7508,7 +7508,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:browser`, `session:*`\n\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read:browser`\n\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7665,7 +7665,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:any`, `session:read:self`, `session:*`\n\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:self`, `session:*`, `session:read:any`\n\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7830,7 +7830,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:allocation`, `session:*`\n\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read:allocation`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7909,7 +7909,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -7987,7 +7987,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -8038,7 +8038,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -8257,7 +8257,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -8353,7 +8353,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -8434,7 +8434,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8531,7 +8531,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8613,7 +8613,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8701,7 +8701,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8774,7 +8774,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:read:event`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8855,7 +8855,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:event`, `session:*`, `session:update:any`\n\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:event`\n\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9794,7 +9794,7 @@
           "Sessions"
         ],
         "summary": "Add Platform Session To Rally Here Session",
-        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:platform`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:platform`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "add_platform_session_to_rally_here_session",
         "parameters": [
           {
@@ -9917,7 +9917,7 @@
           "Sessions"
         ],
         "summary": "Delete Platform Session From Rally Here Session",
-        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:platform`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Remove a platform session from a Rally Here session\n               \nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:platform`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
         "operationId": "delete_platform_session_from_rally_here_session",
         "parameters": [
           {
@@ -10844,7 +10844,7 @@
           "Sessions"
         ],
         "summary": "Invite Session To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n to invite any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n to invite any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_session_to_session",
         "parameters": [
           {
@@ -10943,7 +10943,7 @@
           "Sessions"
         ],
         "summary": "Kick Session From Session",
-        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:*`\n\n to kick any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`, `session:update-player:self`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:*`\n\n to kick any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_session_from_session",
         "parameters": [
           {
@@ -23148,12 +23148,23 @@
         "summary": "Get Matches",
         "description": "Get pages of matches",
         "operationId": "get_matches",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
           {
             "name": "page_size",
             "in": "query",
@@ -23256,25 +23267,20 @@
             }
           },
           {
-            "name": "cursor",
+            "name": "player_uuid",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
+                  "type": "string"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
-              "default": "0",
-              "title": "Cursor"
-            },
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+              "title": "Player Uuid"
+            }
           }
         ],
         "responses": {
@@ -23283,7 +23289,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/PagedMatchResponse"
                 }
               }
             }
@@ -23338,7 +23344,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/MatchWithPlayers"
                 }
               }
             }
@@ -23462,7 +23468,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/MatchWithPlayers"
                 }
               }
             }
@@ -23528,7 +23534,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MatchResponse"
+                  "$ref": "#/components/schemas/MatchWithPlayers"
                 }
               }
             }
@@ -23580,12 +23586,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
+            "description": "Successful Response"
           },
           "403": {
             "content": {
@@ -23615,9 +23616,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Get Player Self Matches",
+        "summary": "Get Player Matches Self",
         "description": "Get all matches for self",
-        "operationId": "get_player_self_matches",
+        "operationId": "get_player_matches_self",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -23635,27 +23636,6 @@
               "title": "Page Size"
             },
             "description": "The maximum number of elements to be returned per call"
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
-              "default": "0",
-              "title": "Cursor"
-            },
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
           }
         ],
         "responses": {
@@ -23727,27 +23707,6 @@
               "title": "Page Size"
             },
             "description": "The maximum number of elements to be returned per call"
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration",
-              "default": "0",
-              "title": "Cursor"
-            },
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
           }
         ],
         "responses": {
@@ -23824,7 +23783,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlayerWithMatch"
+                  "$ref": "#/components/schemas/MatchPlayerWithMatch"
                 }
               }
             }
@@ -23889,7 +23848,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRequest"
+                "$ref": "#/components/schemas/MatchPlayerRequest"
               }
             }
           }
@@ -23965,7 +23924,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRequest"
+                "$ref": "#/components/schemas/MatchPlayerRequest"
               }
             }
           }
@@ -24041,7 +24000,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlayerRequest"
+                "$ref": "#/components/schemas/MatchPlayerRequest"
               }
             }
           }
@@ -24930,22 +24889,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -24961,6 +24904,22 @@
           "Steam authentication",
           "Basic Username/Password authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -25289,11 +25248,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -25311,17 +25270,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -25332,6 +25280,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -25341,11 +25300,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -25780,15 +25739,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -26043,17 +26002,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
           "Account has been banned from authentication"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Role": {
@@ -26110,15 +26069,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "SendInBlueContact": {
@@ -26251,21 +26210,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -26280,6 +26224,21 @@
           "Nintendo portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -26324,44 +26283,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "UNUSED_14",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "UNUSED_27",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -26399,6 +26320,44 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "UNUSED_14",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "UNUSED_27",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "AcknowledgeBackfillRequest": {
@@ -26777,17 +26736,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay input preferences. Can play with players using any input",
-          "Can only play with players using a keyboard and mouse",
-          "Can only player with players using a gamepad/controller",
-          "Can only player with players using a touch screen"
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay input preferences. Can play with players using any input",
+          "Can only play with players using a keyboard and mouse",
+          "Can only player with players using a gamepad/controller",
+          "Can only player with players using a touch screen"
         ]
       },
       "CrossplayPlatform": {
@@ -26799,15 +26758,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay platform preferences. Can play with players any platforms",
-          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
-          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay platform preferences. Can play with players any platforms",
+          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
+          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
         ]
       },
       "CrossplayPreferences": {
@@ -26846,15 +26805,15 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "assigned",
           "left_queue",
           "timeout"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Determiner": {
@@ -26867,17 +26826,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-descriptions": [
-          "All rules must be satisfied",
-          "At least one rule must be satisfied",
-          "Exactly one rule must be satisfied",
-          "All rules must not be satisfied"
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "All rules must be satisfied",
+          "At least one rule must be satisfied",
+          "Exactly one rule must be satisfied",
+          "All rules must not be satisfied"
         ]
       },
       "FubarResponse": {
@@ -26894,13 +26853,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-descriptions": [
-          "A dedicated, standalone instance",
-          "A player hosted instance"
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player"
+        ],
+        "x-enum-descriptions": [
+          "A dedicated, standalone instance",
+          "A player hosted instance"
         ]
       },
       "Input": {
@@ -26912,15 +26871,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-descriptions": [
-          "Input for players using a keyboard and mouse",
-          "Input for players using a gamepad/controller",
-          "Input for players using a touch screen"
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "Input for players using a keyboard and mouse",
+          "Input for players using a gamepad/controller",
+          "Input for players using a touch screen"
         ]
       },
       "InstanceFubar": {
@@ -27013,17 +26972,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Instance is in a healthy state",
-          "Instance is in an unhealthy state and cannot handle connections",
-          "Instance performance is degraded, and may be unable to handle new or existing connections",
-          "Instance health checks have stopped, and instance status is unknown"
-        ],
         "x-enum-varnames": [
           "HEALTHY",
           "UNHEALTHY",
           "DEGRADED",
           "UNKNOWN"
+        ],
+        "x-enum-descriptions": [
+          "Instance is in a healthy state",
+          "Instance is in an unhealthy state and cannot handle connections",
+          "Instance performance is degraded, and may be unable to handle new or existing connections",
+          "Instance health checks have stopped, and instance status is unknown"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -27251,19 +27210,19 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found, and is loading its session information",
-          "Host has arrived and is loading",
-          "Host is ready to accept players",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
           "pending",
           "joinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found, and is loading its session information",
+          "Host has arrived and is loading",
+          "Host is ready to accept players",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -27418,15 +27377,15 @@
         ],
         "title": "InstanceSourceProvider",
         "description": "What type of provider is hosting the instance",
-        "x-enum-descriptions": [
-          "Instance is being hosted by a player",
-          "Instance is hosted by the RallyHere SIC system",
-          "Instance is being hosted by Multiplay"
-        ],
         "x-enum-varnames": [
           "PLAYER",
           "SIC",
           "MULTIPLAY"
+        ],
+        "x-enum-descriptions": [
+          "Instance is being hosted by a player",
+          "Instance is hosted by the RallyHere SIC system",
+          "Instance is being hosted by Multiplay"
         ]
       },
       "InstanceStartupParams": {
@@ -27508,17 +27467,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-descriptions": [
-          "Use the lowest MMR of any player in the linking",
-          "Use the highest MMR of any player in the linking",
-          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
-          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "Use the lowest MMR of any player in the linking",
+          "Use the highest MMR of any player in the linking",
+          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
+          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
         ]
       },
       "MapConfig": {
@@ -28089,14 +28048,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-descriptions": [
-          "The two values must be equal",
-          "The two values must not be equal",
-          "Value A must be less than value B",
-          "Value A must be less than or equal to value B",
-          "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B"
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -28104,6 +28055,14 @@
           "LESS_THAN_EQUAL",
           "GREATER_THAN",
           "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "The two values must be equal",
+          "The two values must not be equal",
+          "Value A must be less than value B",
+          "Value A must be less than or equal to value B",
+          "Value A must be greater than value B",
+          "Value A must be greater than or equal to value B"
         ]
       },
       "PlatformID": {
@@ -28124,20 +28083,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-descriptions": [
-          "DEPRECATED. Use platform instead. ID for the platform Anon",
-          "DEPRECATED. Use platform instead. ID for the platform Amazon",
-          "DEPRECATED. Use platform instead. ID for the platform Steam",
-          "DEPRECATED. Use platform instead. ID for the platform PSN",
-          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
-          "DEPRECATED. Use platform instead. ID for the platform Basic",
-          "DEPRECATED. Use platform instead. ID for the platform Google",
-          "DEPRECATED. Use platform instead. ID for the platform Twitch",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
-          "DEPRECATED. Use platform instead. ID for the platform Apple",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -28151,6 +28096,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "DEPRECATED. Use platform instead. ID for the platform Anon",
+          "DEPRECATED. Use platform instead. ID for the platform Amazon",
+          "DEPRECATED. Use platform instead. ID for the platform Steam",
+          "DEPRECATED. Use platform instead. ID for the platform PSN",
+          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
+          "DEPRECATED. Use platform instead. ID for the platform Basic",
+          "DEPRECATED. Use platform instead. ID for the platform Google",
+          "DEPRECATED. Use platform instead. ID for the platform Twitch",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
+          "DEPRECATED. Use platform instead. ID for the platform Apple",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
+          "DEPRECATED. Use platform instead. ID for the platform Epic"
         ]
       },
       "PlatformSession": {
@@ -28377,15 +28336,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-descriptions": [
-          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
-          "Ticket will be used to fulfill backfill requests",
-          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
+          "Ticket will be used to fulfill backfill requests",
+          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
         ]
       },
       "QueueConfig": {
@@ -28689,13 +28648,13 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-descriptions": [
-          "Comparing the count of a specific item that a player owns",
-          "Comparing the size of the linking (the number of players) in the session to be queued"
-        ],
         "x-enum-varnames": [
           "INVENTORY",
           "LINKING_SIZE"
+        ],
+        "x-enum-descriptions": [
+          "Comparing the count of a specific item that a player owns",
+          "Comparing the size of the linking (the number of players) in the session to be queued"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -29210,17 +29169,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-descriptions": [
-          "Player is the leader of the session. Is allowed to perform admin actions on the session",
-          "Player is an active member of the session. Is allowed basic actions on the session",
-          "Player has been invited to the session, but has not accepted or declined",
-          "Player's spot has been reserved on the session, but the player has not yet been notified"
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "Player is the leader of the session. Is allowed to perform admin actions on the session",
+          "Player is an active member of the session. Is allowed basic actions on the session",
+          "Player has been invited to the session, but has not accepted or declined",
+          "Player's spot has been reserved on the session, but the player has not yet been notified"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -29550,19 +29509,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-descriptions": [
-          "Raise an error when too many players are invited to the same team",
-          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
-          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
-          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
-        ],
         "x-enum-varnames": [
           "fail",
           "allow_overflow",
           "partial_with_overflow",
           "partial_without_overflow",
           "overfill"
+        ],
+        "x-enum-descriptions": [
+          "Raise an error when too many players are invited to the same team",
+          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
+          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "TeamUpdate": {
@@ -34015,11 +33974,31 @@
         ],
         "title": "RallyHereEvent"
       },
+      "MatchAllocation": {
+        "properties": {
+          "allocation_id": {
+            "type": "string",
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "allocation_id"
+        ],
+        "title": "MatchAllocation"
+      },
       "MatchInstance": {
         "properties": {
           "instance_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Instance Id",
             "description": "Instance ID"
           },
@@ -34047,16 +34026,468 @@
             ],
             "title": "Region Id",
             "description": "Region ID the instance is in"
+          },
+          "launch_request_template_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Launch Request Template Id",
+            "description": "Launch request template ID"
+          }
+        },
+        "type": "object",
+        "title": "MatchInstance"
+      },
+      "MatchPlayerRequest": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match Timestamp",
+            "description": "Time the player joined the match"
+          },
+          "left_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match Timestamp",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          }
+        },
+        "type": "object",
+        "title": "MatchPlayerRequest"
+      },
+      "MatchPlayerResponse": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match Timestamp",
+            "description": "Time the player joined the match"
+          },
+          "left_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match Timestamp",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          }
+        },
+        "type": "object",
+        "title": "MatchPlayerResponse"
+      },
+      "MatchPlayerWithMatch": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Id",
+            "description": "Team ID the player was on"
+          },
+          "party_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Party Session Id",
+            "description": "Party session ID the player was in"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placement",
+            "description": "Placement of the player in the match"
+          },
+          "joined_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Joined Match Timestamp",
+            "description": "Time the player joined the match"
+          },
+          "left_match_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left Match Timestamp",
+            "description": "Time the player left the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds the player was in the match"
+          },
+          "starting_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starting Rank",
+            "description": "Starting rank of the player in the match"
+          },
+          "finishing_rank": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finishing Rank",
+            "description": "Finishing rank of the player in the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the player"
+          },
+          "match": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchResponse"
+              }
+            ],
+            "description": "Match the player was in"
           }
         },
         "type": "object",
         "required": [
-          "instance_id"
+          "match"
         ],
-        "title": "MatchInstance"
+        "title": "MatchPlayerWithMatch"
       },
       "MatchRequest": {
         "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
+          },
           "start_timestamp": {
             "anyOf": [
               {
@@ -34114,46 +34545,53 @@
             "title": "Custom Data",
             "description": "Custom data for the match"
           },
-          "sessions": {
+          "correlation_id": {
             "anyOf": [
               {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
             "title": "Sessions",
-            "description": "List of session IDs for the match"
+            "description": "List of session IDs for the match",
+            "default": []
           },
           "instances": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchInstance"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "List of MatchInstances for the match"
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
           },
           "allocations": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
             "title": "Allocations",
-            "description": "List of allocation IDs for the match"
+            "description": "List of allocation IDs for the match",
+            "default": []
           }
         },
         "type": "object",
@@ -34162,36 +34600,41 @@
       "MatchResponse": {
         "properties": {
           "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
           },
           "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "type": {
             "anyOf": [
               {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
           },
           "start_timestamp": {
             "anyOf": [
@@ -34250,46 +34693,53 @@
             "title": "Custom Data",
             "description": "Custom data for the match"
           },
-          "sessions": {
+          "correlation_id": {
             "anyOf": [
               {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
             "title": "Sessions",
-            "description": "List of session IDs for the match"
+            "description": "List of session IDs for the match",
+            "default": []
           },
           "instances": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchInstance"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "List of MatchInstances for the match"
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
           },
           "allocations": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
             "title": "Allocations",
-            "description": "List of allocation IDs for the match"
+            "description": "List of allocation IDs for the match",
+            "default": []
           },
           "match_id": {
             "type": "string",
@@ -34299,39 +34749,79 @@
         "type": "object",
         "title": "MatchResponse"
       },
+      "MatchSession": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id",
+            "description": "Session ID"
+          },
+          "profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Id",
+            "description": "Profile ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id"
+        ],
+        "title": "MatchSession"
+      },
+      "MatchState": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "closed"
+        ],
+        "title": "MatchState",
+        "description": "Match States."
+      },
       "MatchWithPlayers": {
         "properties": {
           "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
           },
           "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "type": {
             "anyOf": [
               {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
           },
           "start_timestamp": {
             "anyOf": [
@@ -34390,69 +34880,94 @@
             "title": "Custom Data",
             "description": "Custom data for the match"
           },
-          "sessions": {
+          "correlation_id": {
             "anyOf": [
               {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Sessions",
-            "description": "List of session IDs for the match"
-          },
-          "instances": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchInstance"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "List of MatchInstances for the match"
-          },
-          "allocations": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Allocations",
-            "description": "List of allocation IDs for the match"
-          },
-          "match_id": {
-            "type": "string",
-            "title": "Match Id"
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
           },
           "players": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/MatchPlayerResponse"
             },
             "type": "array",
             "title": "Players",
             "description": "List of players in the match",
             "default": []
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
+            "title": "Sessions",
+            "description": "List of session IDs for the match",
+            "default": []
+          },
+          "instances": {
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
+          },
+          "allocations": {
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match",
+            "default": []
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
           }
         },
         "type": "object",
         "title": "MatchWithPlayers"
       },
+      "PagedMatchResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/MatchWithPlayers"
+            },
+            "type": "array",
+            "title": "Matches",
+            "description": "List of matches",
+            "default": []
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor",
+            "description": "Base64 encoded json that contains the filters and cursor position"
+          }
+        },
+        "type": "object",
+        "title": "PagedMatchResponse"
+      },
       "PagedPlayerMatchResponse": {
         "properties": {
           "player_matches": {
             "items": {
-              "$ref": "#/components/schemas/PlayerWithMatch"
+              "$ref": "#/components/schemas/MatchPlayerWithMatch"
             },
             "type": "array",
             "title": "Player Matches",
@@ -34460,469 +34975,20 @@
             "default": []
           },
           "cursor": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Cursor",
-            "description": "Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration"
+            "description": "Base64 encoded json that contains the filters and cursor position"
           }
         },
         "type": "object",
-        "required": [
-          "cursor"
-        ],
         "title": "PagedPlayerMatchResponse"
-      },
-      "PlayerRequest": {
-        "properties": {
-          "team_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Team Id",
-            "description": "Team ID the player was on"
-          },
-          "party_session_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Party Session Id",
-            "description": "Party session ID the player was in"
-          },
-          "placement": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Placement",
-            "description": "Placement of the player in the match"
-          },
-          "joined_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Joined Match",
-            "description": "Time the player joined the match"
-          },
-          "left_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Left Match",
-            "description": "Time the player left the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds the player was in the match"
-          },
-          "starting_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starting Rank",
-            "description": "Starting rank of the player in the match"
-          },
-          "finishing_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finishing Rank",
-            "description": "Finishing rank of the player in the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the player"
-          }
-        },
-        "type": "object",
-        "title": "PlayerRequest"
-      },
-      "MatchPlayerResponse": {
-        "properties": {
-          "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
-          },
-          "created_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
-          },
-          "team_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Team Id",
-            "description": "Team ID the player was on"
-          },
-          "party_session_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Party Session Id",
-            "description": "Party session ID the player was in"
-          },
-          "placement": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Placement",
-            "description": "Placement of the player in the match"
-          },
-          "joined_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Joined Match",
-            "description": "Time the player joined the match"
-          },
-          "left_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Left Match",
-            "description": "Time the player left the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds the player was in the match"
-          },
-          "starting_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starting Rank",
-            "description": "Starting rank of the player in the match"
-          },
-          "finishing_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finishing Rank",
-            "description": "Finishing rank of the player in the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the player"
-          },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid"
-          }
-        },
-        "type": "object",
-        "title": "PlayerResponse"
-      },
-      "PlayerWithMatch": {
-        "properties": {
-          "last_modified_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Modified Timestamp",
-            "description": "Timestamp of when the resource was last modified"
-          },
-          "created_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Created Timestamp",
-            "description": "Timestamp of when the resource was created"
-          },
-          "team_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Team Id",
-            "description": "Team ID the player was on"
-          },
-          "party_session_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Party Session Id",
-            "description": "Party session ID the player was in"
-          },
-          "placement": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Placement",
-            "description": "Placement of the player in the match"
-          },
-          "joined_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Joined Match",
-            "description": "Time the player joined the match"
-          },
-          "left_match": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Left Match",
-            "description": "Time the player left the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds the player was in the match"
-          },
-          "starting_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starting Rank",
-            "description": "Starting rank of the player in the match"
-          },
-          "finishing_rank": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finishing Rank",
-            "description": "Finishing rank of the player in the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the player"
-          },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid"
-          },
-          "match": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchResponse"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Match the player was in"
-          }
-        },
-        "type": "object",
-        "title": "PlayerWithMatch"
       }
     }
   }
