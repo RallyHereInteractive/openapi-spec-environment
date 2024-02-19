@@ -1,3 +1,824 @@
+## Changes for Mon Feb 19 13:13:11 EST 2024
+### New Endpoints: 5
+--------------------
+POST /match/v1/match/{match_id}/segment  
+DELETE /match/v1/match/{match_id}/segment/{segment_id}  
+GET /match/v1/match/{match_id}/segment/{segment_id}  
+PATCH /match/v1/match/{match_id}/segment/{segment_id}  
+PUT /match/v1/match/{match_id}/segment/{segment_id}  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 32
+--------------------------
+GET /match/v1/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matches
+              - Items changed
+                - Properties changed
+                  - New property: segments
+                  - Modified property: instances
+                    - Items changed
+                      - Properties changed
+                        - New property: game_mode
+                        - New property: host_type
+                        - New property: instance_request_template_id
+                        - New property: map
+                        - Deleted property: launch_request_template_id
+                  - Modified property: sessions
+                    - Items changed
+                      - Properties changed
+                        - New property: matchmaking_profile_id
+                        - Deleted property: profile_id
+
+POST /match/v1/match
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: segments
+          - Modified property: instances
+            - Items changed
+              - Properties changed
+                - New property: game_mode
+                - New property: host_type
+                - New property: instance_request_template_id
+                - New property: map
+                - Deleted property: launch_request_template_id
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - New property: matchmaking_profile_id
+                - Deleted property: profile_id
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: segments
+            - Modified property: instances
+              - Items changed
+                - Properties changed
+                  - New property: game_mode
+                  - New property: host_type
+                  - New property: instance_request_template_id
+                  - New property: map
+                  - Deleted property: launch_request_template_id
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - New property: matchmaking_profile_id
+                  - Deleted property: profile_id
+
+GET /match/v1/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: segments
+            - Modified property: instances
+              - Items changed
+                - Properties changed
+                  - New property: game_mode
+                  - New property: host_type
+                  - New property: instance_request_template_id
+                  - New property: map
+                  - Deleted property: launch_request_template_id
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - New property: matchmaking_profile_id
+                  - Deleted property: profile_id
+
+PATCH /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: segments
+          - Modified property: instances
+            - Items changed
+              - Properties changed
+                - New property: game_mode
+                - New property: host_type
+                - New property: instance_request_template_id
+                - New property: map
+                - Deleted property: launch_request_template_id
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - New property: matchmaking_profile_id
+                - Deleted property: profile_id
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: segments
+            - Modified property: instances
+              - Items changed
+                - Properties changed
+                  - New property: game_mode
+                  - New property: host_type
+                  - New property: instance_request_template_id
+                  - New property: map
+                  - Deleted property: launch_request_template_id
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - New property: matchmaking_profile_id
+                  - Deleted property: profile_id
+
+PUT /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: segments
+          - Modified property: instances
+            - Items changed
+              - Properties changed
+                - New property: game_mode
+                - New property: host_type
+                - New property: instance_request_template_id
+                - New property: map
+                - Deleted property: launch_request_template_id
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - New property: matchmaking_profile_id
+                - Deleted property: profile_id
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: segments
+            - Modified property: instances
+              - Items changed
+                - Properties changed
+                  - New property: game_mode
+                  - New property: host_type
+                  - New property: instance_request_template_id
+                  - New property: map
+                  - Deleted property: launch_request_template_id
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - New property: matchmaking_profile_id
+                  - Deleted property: profile_id
+
+GET /match/v1/player/me/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/MatchResponse modified
+                        - Properties changed
+                          - New property: segments
+                          - Modified property: instances
+                            - Items changed
+                              - Properties changed
+                                - New property: game_mode
+                                - New property: host_type
+                                - New property: instance_request_template_id
+                                - New property: map
+                                - Deleted property: launch_request_template_id
+                          - Modified property: sessions
+                            - Items changed
+                              - Properties changed
+                                - New property: matchmaking_profile_id
+                                - Deleted property: profile_id
+
+GET /match/v1/player/{player_uuid}/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/MatchResponse modified
+                        - Properties changed
+                          - New property: segments
+                          - Modified property: instances
+                            - Items changed
+                              - Properties changed
+                                - New property: game_mode
+                                - New property: host_type
+                                - New property: instance_request_template_id
+                                - New property: map
+                                - Deleted property: launch_request_template_id
+                          - Modified property: sessions
+                            - Items changed
+                              - Properties changed
+                                - New property: matchmaking_profile_id
+                                - Deleted property: profile_id
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchResponse modified
+                  - Properties changed
+                    - New property: segments
+                    - Modified property: instances
+                      - Items changed
+                        - Properties changed
+                          - New property: game_mode
+                          - New property: host_type
+                          - New property: instance_request_template_id
+                          - New property: map
+                          - Deleted property: launch_request_template_id
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - New property: matchmaking_profile_id
+                          - Deleted property: profile_id
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchResponse modified
+                  - Properties changed
+                    - New property: segments
+                    - Modified property: instances
+                      - Items changed
+                        - Properties changed
+                          - New property: game_mode
+                          - New property: host_type
+                          - New property: instance_request_template_id
+                          - New property: map
+                          - Deleted property: launch_request_template_id
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - New property: matchmaking_profile_id
+                          - Deleted property: profile_id
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchResponse modified
+                  - Properties changed
+                    - New property: segments
+                    - Modified property: instances
+                      - Items changed
+                        - Properties changed
+                          - New property: game_mode
+                          - New property: host_type
+                          - New property: instance_request_template_id
+                          - New property: map
+                          - Deleted property: launch_request_template_id
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - New property: matchmaking_profile_id
+                          - Deleted property: profile_id
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchResponse modified
+                  - Properties changed
+                    - New property: segments
+                    - Modified property: instances
+                      - Items changed
+                        - Properties changed
+                          - New property: game_mode
+                          - New property: host_type
+                          - New property: instance_request_template_id
+                          - New property: map
+                          - Deleted property: launch_request_template_id
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - New property: matchmaking_profile_id
+                          - Deleted property: profile_id
+
+GET /session/v1/browser
+- Description changed from 'Get all public sessions of a specific type
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read:browser`
+
+
+
+Required Permissions: None' to 'Get all public sessions of a specific type
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:browser`, `session:*`
+
+
+
+Required Permissions: None'
+
+GET /session/v1/session/allocation/{allocation_id}
+- Description changed from 'Get session by allocation ID. Returns the same limited results as getting the session by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read:allocation`
+
+
+
+Required Session Permissions: None' to 'Get session by allocation ID. Returns the same limited results as getting the session by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:allocation`, `session:*`
+
+
+
+Required Session Permissions: None'
+
+GET /session/v1/session/{session_id}
+- Description changed from 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:self`, `session:*`, `session:read:any`
+
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission' to 'Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for 
+how to connect to the instance. Elevated permissions can bypass that restriction
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:read:any`, `session:read:self`, `session:*`
+
+
+
+Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission'
+
+PATCH /session/v1/session/{session_id}
+- Description changed from 'Update session info by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission' to 'Update session info by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission'
+
+DELETE /session/v1/session/{session_id}/browser
+- Description changed from 'Delete the session from the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:browser`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Delete the session from the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:browser`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+PATCH /session/v1/session/{session_id}/browser
+- Description changed from 'Update the browser info for the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:browser`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Update the browser info for the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:browser`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+POST /session/v1/session/{session_id}/browser
+- Description changed from 'Register session in the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:browser`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission' to 'Register session in the public browser
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:browser`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission'
+
+POST /session/v1/session/{session_id}/event
+- Description changed from 'Create an event in the log for this session.
+Internal session operations will create new events that are accessible from the get request.
+
+Player clients and instances are expected to create events here when something occurs on their clients that is
+relevant.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:event`
+
+
+
+Required Session Permissions: None' to 'Create an event in the log for this session.
+Internal session operations will create new events that are accessible from the get request.
+
+Player clients and instances are expected to create events here when something occurs on their clients that is
+relevant.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:event`, `session:update:any`, `session:*`
+
+
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/instance
+- Description changed from 'Unregister the instance from the session.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`
+
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission' to 'Unregister the instance from the session.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission'
+
+PATCH /session/v1/session/{session_id}/instance
+- Description changed from 'Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.
+Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`
+
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission' to 'Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.
+Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission'
+
+POST /session/v1/session/{session_id}/instance
+- Description changed from 'Request an instance be spawned for the session, or register self as a host of the instance
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission' to 'Request an instance be spawned for the session, or register self as a host of the instance
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission'
+
+POST /session/v1/session/{session_id}/invited-session/{invited_session_id}:invite
+- Description changed from 'Invite an entire session to a target session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`
+
+ to invite any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Invite an entire session to a target session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:*`
+
+ to invite any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/kicked-session/{kicked_session_id}
+- Description changed from 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions:
+
+- For any player (including themselves) : `session:*`
+
+ to kick any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+ to invite a session you are part of
+
+Required Session Permissions: None' to 'Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`
+
+Required Permissions:
+
+- For any player (including themselves) : `session:*`
+
+ to kick any session regardless of membership status
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+
+ to invite a session you are part of
+
+Required Session Permissions: None'
+
+DELETE /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+
+
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead'
+
+POST /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited.
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the player endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited.
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the player endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+POST /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+
+
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session'
+
+POST /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:*`, `session:promote:any`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations'
+
+DELETE /session/v1/session/{session_id}/queue
+- Description changed from 'Remove session from a matchmaking queue
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`
+
+
+               
+Required Session Permissions: `SessionPermissions.session_admin`' to 'Remove session from a matchmaking queue
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+               
+Required Session Permissions: `SessionPermissions.session_admin`'
+
+POST /session/v1/session/{session_id}/queue
+- Description changed from 'Add session to a matchmaking queue
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:*`, `session:update:any`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin`' to 'Add session to a matchmaking queue
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin`'
+## Changes for Thu Feb 15 11:01:34 EST 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+GET /users/v1/platform-user
+- Description changed from 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:platform:read`, `user:*`' to 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:*`, `user:platform:read`'
 ## Changes for Wed Feb 14 13:49:48 EST 2024
 ### New Endpoints: None
 -----------------------
