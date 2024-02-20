@@ -1119,7 +1119,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest-Input"
+                "$ref": "#/components/schemas/MatchSegmentRequest"
               }
             }
           }
@@ -1194,7 +1194,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest-Input"
+                "$ref": "#/components/schemas/MatchSegmentRequest"
               }
             }
           }
@@ -1320,7 +1320,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest-Input"
+                "$ref": "#/components/schemas/MatchSegmentRequest"
               }
             }
           }
@@ -1919,7 +1919,7 @@
           "match": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MatchResponse"
+                "$ref": "#/components/schemas/MatchValuesOnly"
               }
             ],
             "description": "Match the player was in"
@@ -2025,15 +2025,6 @@
             "title": "Correlation Id",
             "description": "Correlation ID for the match"
           },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerRequest"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
-          },
           "sessions": {
             "items": {
               "$ref": "#/components/schemas/MatchSession"
@@ -2061,9 +2052,18 @@
             "description": "List of allocation IDs for the match",
             "default": []
           },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          },
           "segments": {
             "items": {
-              "$ref": "#/components/schemas/MatchSegmentRequest-Input"
+              "$ref": "#/components/schemas/MatchSegmentRequest"
             },
             "type": "array",
             "title": "Segments",
@@ -2074,168 +2074,7 @@
         "type": "object",
         "title": "MatchRequest"
       },
-      "MatchResponse": {
-        "properties": {
-          "last_modified_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was last modified",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
-          "created_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was created",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
-          "type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type",
-            "description": "Type of match"
-          },
-          "state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchState"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "State of the match"
-          },
-          "start_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "type": "datetime",
-            "title": "Start Timestamp",
-            "description": "Start time of the match"
-          },
-          "end_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Timestamp",
-            "description": "End time of the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds of the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the match"
-          },
-          "correlation_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Correlation Id",
-            "description": "Correlation ID for the match"
-          },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerRequest"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
-          },
-          "sessions": {
-            "items": {
-              "$ref": "#/components/schemas/MatchSession"
-            },
-            "type": "array",
-            "title": "Sessions",
-            "description": "List of session IDs for the match",
-            "default": []
-          },
-          "instances": {
-            "items": {
-              "$ref": "#/components/schemas/MatchInstance"
-            },
-            "type": "array",
-            "title": "Instances",
-            "description": "List of MatchInstances for the match",
-            "default": []
-          },
-          "allocations": {
-            "items": {
-              "$ref": "#/components/schemas/MatchAllocation"
-            },
-            "type": "array",
-            "title": "Allocations",
-            "description": "List of allocation IDs for the match",
-            "default": []
-          },
-          "segments": {
-            "items": {
-              "$ref": "#/components/schemas/MatchSegmentRequest-Output"
-            },
-            "type": "array",
-            "title": "Segments",
-            "description": "List of segments for the match",
-            "default": []
-          },
-          "match_id": {
-            "type": "string",
-            "title": "Match Id"
-          }
-        },
-        "type": "object",
-        "title": "MatchResponse"
-      },
-      "MatchSegmentRequest-Input": {
+      "MatchSegmentRequest": {
         "properties": {
           "match_segment": {
             "type": "string",
@@ -2334,15 +2173,6 @@
             ],
             "title": "Correlation Id",
             "description": "Correlation ID for the match"
-          },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerRequest"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
           },
           "sessions": {
             "items": {
@@ -2377,319 +2207,6 @@
           "match_segment"
         ],
         "title": "MatchSegmentRequest"
-      },
-      "MatchSegmentRequest-Output": {
-        "properties": {
-          "match_segment": {
-            "type": "string",
-            "maxLength": 16,
-            "title": "Match Segment",
-            "description": "Segment ID of the match"
-          },
-          "type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type",
-            "description": "Type of match"
-          },
-          "state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchState"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "State of the match"
-          },
-          "start_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "type": "datetime",
-            "title": "Start Timestamp",
-            "description": "Start time of the match"
-          },
-          "end_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Timestamp",
-            "description": "End time of the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds of the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the match"
-          },
-          "correlation_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Correlation Id",
-            "description": "Correlation ID for the match"
-          },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerRequest"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
-          },
-          "sessions": {
-            "items": {
-              "$ref": "#/components/schemas/MatchSession"
-            },
-            "type": "array",
-            "title": "Sessions",
-            "description": "List of session IDs for the match",
-            "default": []
-          },
-          "instances": {
-            "items": {
-              "$ref": "#/components/schemas/MatchInstance"
-            },
-            "type": "array",
-            "title": "Instances",
-            "description": "List of MatchInstances for the match",
-            "default": []
-          },
-          "allocations": {
-            "items": {
-              "$ref": "#/components/schemas/MatchAllocation"
-            },
-            "type": "array",
-            "title": "Allocations",
-            "description": "List of allocation IDs for the match",
-            "default": []
-          }
-        },
-        "type": "object",
-        "required": [
-          "match_segment"
-        ],
-        "title": "MatchSegmentRequest"
-      },
-      "MatchSegmentResponse": {
-        "properties": {
-          "last_modified_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was last modified",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
-          "created_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was created",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
-          "type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type",
-            "description": "Type of match"
-          },
-          "state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MatchState"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "State of the match"
-          },
-          "start_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "type": "datetime",
-            "title": "Start Timestamp",
-            "description": "Start time of the match"
-          },
-          "end_timestamp": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time",
-                "title": "Time Zone Aware Datetime",
-                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-                "example": "2023-01-23T21:07:02.000000+00:00"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Timestamp",
-            "description": "End time of the match"
-          },
-          "duration_seconds": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Duration Seconds",
-            "description": "Duration in seconds of the match"
-          },
-          "custom_data": {
-            "anyOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Custom Data",
-            "description": "Custom data for the match"
-          },
-          "correlation_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Correlation Id",
-            "description": "Correlation ID for the match"
-          },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerRequest"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
-          },
-          "sessions": {
-            "items": {
-              "$ref": "#/components/schemas/MatchSession"
-            },
-            "type": "array",
-            "title": "Sessions",
-            "description": "List of session IDs for the match",
-            "default": []
-          },
-          "instances": {
-            "items": {
-              "$ref": "#/components/schemas/MatchInstance"
-            },
-            "type": "array",
-            "title": "Instances",
-            "description": "List of MatchInstances for the match",
-            "default": []
-          },
-          "allocations": {
-            "items": {
-              "$ref": "#/components/schemas/MatchAllocation"
-            },
-            "type": "array",
-            "title": "Allocations",
-            "description": "List of allocation IDs for the match",
-            "default": []
-          },
-          "segments": {
-            "items": {
-              "$ref": "#/components/schemas/MatchSegmentRequest-Output"
-            },
-            "type": "array",
-            "title": "Segments",
-            "description": "List of segments for the match",
-            "default": []
-          },
-          "match_segment": {
-            "type": "string",
-            "maxLength": 16,
-            "title": "Match Segment",
-            "description": "Segment ID of the match"
-          },
-          "match_id": {
-            "type": "string",
-            "title": "Match Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "match_segment"
-        ],
-        "title": "MatchSegmentResponse"
       },
       "MatchSegmentWithPlayers": {
         "properties": {
@@ -2799,15 +2316,6 @@
             "title": "Correlation Id",
             "description": "Correlation ID for the match"
           },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerResponse"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
-          },
           "sessions": {
             "items": {
               "$ref": "#/components/schemas/MatchSession"
@@ -2835,15 +2343,6 @@
             "description": "List of allocation IDs for the match",
             "default": []
           },
-          "segments": {
-            "items": {
-              "$ref": "#/components/schemas/MatchSegmentRequest-Output"
-            },
-            "type": "array",
-            "title": "Segments",
-            "description": "List of segments for the match",
-            "default": []
-          },
           "match_segment": {
             "type": "string",
             "maxLength": 16,
@@ -2853,6 +2352,15 @@
           "match_id": {
             "type": "string",
             "title": "Match Id"
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerResponse"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
           }
         },
         "type": "object",
@@ -2895,6 +2403,149 @@
         ],
         "title": "MatchState",
         "description": "Match States."
+      },
+      "MatchValuesOnly": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
+          },
+          "start_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "type": "datetime",
+            "title": "Start Timestamp",
+            "description": "Start time of the match"
+          },
+          "end_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Timestamp",
+            "description": "End time of the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds of the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the match"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
+            "title": "Sessions",
+            "description": "List of session IDs for the match",
+            "default": []
+          },
+          "instances": {
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
+          },
+          "allocations": {
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match",
+            "default": []
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
+          }
+        },
+        "type": "object",
+        "title": "MatchValuesOnly"
       },
       "MatchWithPlayers": {
         "properties": {
@@ -3004,15 +2655,6 @@
             "title": "Correlation Id",
             "description": "Correlation ID for the match"
           },
-          "players": {
-            "items": {
-              "$ref": "#/components/schemas/MatchPlayerResponse"
-            },
-            "type": "array",
-            "title": "Players",
-            "description": "List of players in the match",
-            "default": []
-          },
           "sessions": {
             "items": {
               "$ref": "#/components/schemas/MatchSession"
@@ -3040,18 +2682,27 @@
             "description": "List of allocation IDs for the match",
             "default": []
           },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
+          },
           "segments": {
             "items": {
-              "$ref": "#/components/schemas/MatchSegmentResponse"
+              "$ref": "#/components/schemas/MatchSegmentWithPlayers"
             },
             "type": "array",
             "title": "Segments",
             "description": "List of segments for the match",
             "default": []
           },
-          "match_id": {
-            "type": "string",
-            "title": "Match Id"
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerResponse"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
           }
         },
         "type": "object",

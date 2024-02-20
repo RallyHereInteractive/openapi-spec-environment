@@ -1,3 +1,277 @@
+## Changes for Mon Feb 19 22:20:48 EST 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 16
+--------------------------
+GET /match/v1/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matches
+              - Items changed
+                - Properties changed
+                  - Modified property: segments
+                    - Items changed
+                      - Title changed from 'MatchSegmentResponse' to 'MatchSegmentWithPlayers'
+                      - Properties changed
+                        - Deleted property: segments
+                        - Modified property: players
+                          - Items changed
+                            - Title changed from 'MatchPlayerRequest' to 'MatchPlayerResponse'
+                            - Properties changed
+                              - New property: created_timestamp
+                              - New property: last_modified_timestamp
+
+POST /match/v1/match
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: segments
+            - Items changed
+              - Properties changed
+                - Deleted property: players
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: segments
+              - Items changed
+                - Title changed from 'MatchSegmentResponse' to 'MatchSegmentWithPlayers'
+                - Properties changed
+                  - Deleted property: segments
+                  - Modified property: players
+                    - Items changed
+                      - Title changed from 'MatchPlayerRequest' to 'MatchPlayerResponse'
+                      - Properties changed
+                        - New property: created_timestamp
+                        - New property: last_modified_timestamp
+
+GET /match/v1/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: segments
+              - Items changed
+                - Title changed from 'MatchSegmentResponse' to 'MatchSegmentWithPlayers'
+                - Properties changed
+                  - Deleted property: segments
+                  - Modified property: players
+                    - Items changed
+                      - Title changed from 'MatchPlayerRequest' to 'MatchPlayerResponse'
+                      - Properties changed
+                        - New property: created_timestamp
+                        - New property: last_modified_timestamp
+
+PATCH /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: segments
+            - Items changed
+              - Properties changed
+                - Deleted property: players
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: segments
+              - Items changed
+                - Title changed from 'MatchSegmentResponse' to 'MatchSegmentWithPlayers'
+                - Properties changed
+                  - Deleted property: segments
+                  - Modified property: players
+                    - Items changed
+                      - Title changed from 'MatchPlayerRequest' to 'MatchPlayerResponse'
+                      - Properties changed
+                        - New property: created_timestamp
+                        - New property: last_modified_timestamp
+
+PUT /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: segments
+            - Items changed
+              - Properties changed
+                - Deleted property: players
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: segments
+              - Items changed
+                - Title changed from 'MatchSegmentResponse' to 'MatchSegmentWithPlayers'
+                - Properties changed
+                  - Deleted property: segments
+                  - Modified property: players
+                    - Items changed
+                      - Title changed from 'MatchPlayerRequest' to 'MatchPlayerResponse'
+                      - Properties changed
+                        - New property: created_timestamp
+                        - New property: last_modified_timestamp
+
+POST /match/v1/match/{match_id}/segment
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Deleted property: players
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: segments
+
+GET /match/v1/match/{match_id}/segment/{segment_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: segments
+
+PATCH /match/v1/match/{match_id}/segment/{segment_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Deleted property: players
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: segments
+
+PUT /match/v1/match/{match_id}/segment/{segment_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Deleted property: players
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: segments
+
+GET /match/v1/player/me/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schemas added: [MatchValuesOnly]
+                      - Schemas deleted: [MatchResponse]
+
+GET /match/v1/player/{player_uuid}/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schemas added: [MatchValuesOnly]
+                      - Schemas deleted: [MatchResponse]
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas added: [MatchValuesOnly]
+                - Schemas deleted: [MatchResponse]
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas added: [MatchValuesOnly]
+                - Schemas deleted: [MatchResponse]
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas added: [MatchValuesOnly]
+                - Schemas deleted: [MatchResponse]
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas added: [MatchValuesOnly]
+                - Schemas deleted: [MatchResponse]
+
+GET /users/v1/platform-user
+- Description changed from 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:platform:read`, `user:*`' to 'Find an existing platform user with their platform identity.
+
+Required Permissions: 
+	For any player (including themselves)any of: `user:*`, `user:platform:read`'
 ## Changes for Mon Feb 19 13:13:11 EST 2024
 ### New Endpoints: 5
 --------------------
