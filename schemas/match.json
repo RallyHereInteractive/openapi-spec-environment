@@ -293,6 +293,16 @@
             },
             "description": "Forbidden"
           },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -656,9 +666,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Get Player Match",
+        "summary": "Get Match Player",
         "description": "Get a player match record for the provided player_uuid and match_id",
-        "operationId": "get_player_match",
+        "operationId": "get_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -722,9 +732,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Create Player Match",
+        "summary": "Create Match Player",
         "description": "Create player match record for the provided player_uuid and match_id",
-        "operationId": "create_player_match",
+        "operationId": "create_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -798,9 +808,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Update Player Match",
+        "summary": "Update Match Player",
         "description": "Update player match record for the provided player_uuid and match_id",
-        "operationId": "update_player_match",
+        "operationId": "update_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -874,9 +884,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Patch Player Match",
+        "summary": "Patch Match Player",
         "description": "Update player match record for the provided player_uuid and match_id only with provided fields",
-        "operationId": "patch_player_match",
+        "operationId": "patch_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -950,9 +960,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Delete Player Match",
+        "summary": "Delete Match Player",
         "description": "Delete player by player_uuid and match_id",
-        "operationId": "delete_player_match",
+        "operationId": "delete_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -982,359 +992,6 @@
         "responses": {
           "200": {
             "description": "Successful Response"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/match/{match_id}/segment/{segment_id}": {
-      "get": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Get Match Segment",
-        "description": "Get match segment by match_id and segment_id",
-        "operationId": "get_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Update Match Segment",
-        "description": "Update match segment by match_id and segment_id",
-        "operationId": "update_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Patch Match Segment",
-        "description": "Update match segment by match_id and segment_id only with provided fields",
-        "operationId": "patch_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Delete Match Segment",
-        "description": "Delete match segment by match_id and segment_id",
-        "operationId": "delete_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/match/{match_id}/segment": {
-      "post": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Create Match Segment",
-        "description": "Create match segment by match_id",
-        "operationId": "create_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
           },
           "403": {
             "content": {
@@ -1969,7 +1626,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -2118,7 +1774,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -2200,6 +1855,15 @@
             "title": "Allocations",
             "description": "List of allocation IDs for the match",
             "default": []
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
           }
         },
         "type": "object",
@@ -2260,7 +1924,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -2456,7 +2119,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -2599,7 +2261,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },

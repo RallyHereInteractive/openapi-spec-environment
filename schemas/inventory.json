@@ -1463,6 +1463,185 @@
         ]
       }
     },
+    "/v1/catalog/entitlement-sku": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Get Catalog Entitlement Sku All",
+        "description": "Get all Entitlement SKUs.",
+        "operationId": "get_catalog_entitlement_sku_all",
+        "parameters": [
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSKUs"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/catalog/entitlement-sku/{platform}/{sku}": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Get Catalog Entitlement Sku",
+        "description": "Get a specific Entitlement SKU.",
+        "operationId": "get_catalog_entitlement_sku",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Platform"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Sku"
+            },
+            "name": "sku",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSKU"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v2/player/me/inventory": {
       "get": {
         "tags": [
@@ -3155,7 +3334,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -3212,7 +3391,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -3280,9 +3459,9 @@
         "tags": [
           "Entitlements"
         ],
-        "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
-        "operationId": "retrieve_entitlements_for_me",
+        "summary": "Retrieve Entitlement Request For Me",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "retrieve_entitlement_request_for_me",
         "parameters": [
           {
             "required": true,
@@ -3338,9 +3517,9 @@
         "tags": [
           "Entitlements"
         ],
-        "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
-        "operationId": "retrieve_entitlements_by_player_uuid",
+        "summary": "Retrieve Entitlement Request By Player Uuid",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "retrieve_entitlement_request_by_player_uuid",
         "parameters": [
           {
             "required": true,
@@ -3375,6 +3554,166 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/entitlement-event": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Entitlement Events",
+        "description": "Get entitlement events for a player.  If no player is provided, all events will be returned.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:read`",
+        "operationId": "get_entitlement_events",
+        "parameters": [
+          {
+            "description": "Player to get entitlement events for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to get entitlement events for"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided",
+            "required": false,
+            "deprecated": true,
+            "schema": {
+              "type": "integer",
+              "title": "Player Id",
+              "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided"
+            },
+            "name": "player_id",
+            "in": "query"
+          },
+          {
+            "description": "Cursor for pagination",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "title": "Cursor",
+              "description": "Cursor for pagination"
+            },
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitlementEventList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Generate Entitlement Event",
+        "description": "Create an entitlement event - this is used to bypass platform providers and grant entitlement events directly. \n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:write`",
+        "operationId": "generate_entitlement_event",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntitlementEventRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitlementEvent"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -5818,6 +6157,15 @@
             "title": "Time Frames",
             "description": "The Time Frames."
           },
+          "skus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformSKUs"
+              }
+            ],
+            "title": "Skus",
+            "description": "The Platform SKUs."
+          },
           "cache_info": {
             "allOf": [
               {
@@ -5989,6 +6337,29 @@
           "Inventory that does not persist between Inventory Sessions."
         ]
       },
+      "EntitlementActionType": {
+        "type": "string",
+        "enum": [
+          "grant",
+          "refund",
+          "chargeback",
+          "chargeback_reversal"
+        ],
+        "title": "EntitlementActionType",
+        "description": "Action to take for the Entitlement on a user",
+        "x-enum-varnames": [
+          "grant",
+          "refund",
+          "chargeback",
+          "chargeback_reversal"
+        ],
+        "x-enum-descriptions": [
+          "Event for granting an Entitlement to the user",
+          "Event for refunding an Entitlement to the user",
+          "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
+          "Event for re-granting an Entitlement to the user after a chargeback was reversed"
+        ]
+      },
       "EntitlementErrorCode": {
         "type": "string",
         "enum": [
@@ -6042,6 +6413,246 @@
           "Entitlement was previously applied"
         ]
       },
+      "EntitlementEvent": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id",
+            "description": "The unique identifier for the event"
+          },
+          "action_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementActionType"
+              }
+            ],
+            "description": "The type of the event"
+          },
+          "entitlement_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementType"
+              }
+            ],
+            "description": "The type of entitlement when the event occurred"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementEventStatus"
+              }
+            ],
+            "description": "The status of the event"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "The player UUID for the event"
+          },
+          "player_id": {
+            "type": "integer",
+            "title": "Player Id",
+            "description": "The player ID for the event",
+            "deprecated": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform for the event"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "The platform user ID for the event"
+          },
+          "sku": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Sku",
+            "description": "The SKU for the event"
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "The quantity for the event"
+          },
+          "platform_transaction_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Platform Transaction Id",
+            "description": "The external transaction ID for the event"
+          },
+          "platform_data": {
+            "type": "object",
+            "title": "Platform Data",
+            "description": "The platform specific data for the event"
+          },
+          "order_id": {
+            "type": "string",
+            "title": "Order Id",
+            "description": "The order ID for the event"
+          },
+          "loot_id": {
+            "type": "integer",
+            "title": "Loot Id",
+            "description": "The loot ID for the event"
+          },
+          "key_claim_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Key Claim Uuid",
+            "description": "The portal user key claim id"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "last_modified": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_id",
+          "action_type",
+          "status",
+          "player_uuid",
+          "platform",
+          "platform_user_id",
+          "sku",
+          "quantity",
+          "created",
+          "last_modified"
+        ],
+        "title": "EntitlementEvent"
+      },
+      "EntitlementEventList": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EntitlementEvent"
+            },
+            "type": "array",
+            "title": "Events",
+            "description": "The list of events"
+          },
+          "cursor": {
+            "type": "string",
+            "title": "Cursor",
+            "description": "The cursor for the next page of events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "events"
+        ],
+        "title": "EntitlementEventList"
+      },
+      "EntitlementEventRequest": {
+        "properties": {
+          "action_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementActionType"
+              }
+            ],
+            "description": "The type of the event"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementEventStatus"
+              }
+            ],
+            "description": "The status of the event"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Override the player UUID for the event.  If not provided, the active player for the platform user will be used"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform for the event"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "The platform user ID for the event"
+          },
+          "sku": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Sku",
+            "description": "The SKU for the event"
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "The quantity for the event",
+            "default": 1
+          },
+          "platform_transaction_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Platform Transaction Id",
+            "description": "The external transaction ID for the event"
+          },
+          "platform_data": {
+            "type": "object",
+            "title": "Platform Data",
+            "description": "The platform specific data for the event"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action_type",
+          "platform",
+          "platform_user_id",
+          "sku",
+          "platform_transaction_id"
+        ],
+        "title": "EntitlementEventRequest"
+      },
+      "EntitlementEventStatus": {
+        "type": "string",
+        "enum": [
+          "success",
+          "sku_not_found",
+          "not_implemented",
+          "player_not_found"
+        ],
+        "title": "EntitlementEventStatus",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "success",
+          "sku_not_found",
+          "not_implemented",
+          "player_not_found"
+        ],
+        "x-enum-descriptions": [
+          "The event was successful",
+          "The SKU was not found",
+          "The requested operation is not implemented yet",
+          "The player was not found"
+        ]
+      },
       "EntitlementStatus": {
         "type": "string",
         "enum": [
@@ -6067,6 +6678,48 @@
           "Entitlement has failed, check error_code for more information",
           "Entitlement was previously applied"
         ]
+      },
+      "EntitlementType": {
+        "type": "string",
+        "enum": [
+          "consumable",
+          "durable",
+          "durable_single_use"
+        ],
+        "title": "EntitlementType",
+        "description": "The method of granting a Platform Entitlement SKU",
+        "x-enum-varnames": [
+          "consumable",
+          "durable",
+          "durable_single_use"
+        ],
+        "x-enum-descriptions": [
+          "Consumable entitlements are removed from the platform's record keeping system when used.",
+          "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
+          "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
+        ]
+      },
+      "ExternalKeyEntitlement": {
+        "properties": {
+          "external_key_campaign_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "External Key Campaign Id",
+            "description": "The External Key Campaign ID"
+          },
+          "quantity": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Quantity",
+            "description": "The quantity of the External Key Entitlement"
+          }
+        },
+        "type": "object",
+        "required": [
+          "external_key_campaign_id",
+          "quantity"
+        ],
+        "title": "ExternalKeyEntitlement"
       },
       "HTTPValidationError": {
         "properties": {
@@ -6965,6 +7618,45 @@
         "title": "Loot",
         "description": "Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both."
       },
+      "LootEntitlement": {
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementType"
+              }
+            ],
+            "description": "The action taken on the platform when granting this SKU"
+          },
+          "loot_id": {
+            "type": "integer",
+            "title": "Loot Id",
+            "description": "The Loot ID that will be granted to the player"
+          },
+          "refund_loot_id": {
+            "type": "integer",
+            "title": "Refund Loot Id",
+            "description": "The Loot ID that will be granted to the player when the SKU is refunded"
+          },
+          "chargeback_loot_id": {
+            "type": "integer",
+            "title": "Chargeback Loot Id",
+            "description": "The Loot ID that will be granted to the player when the SKU is charged back"
+          },
+          "chargeback_reversal_loot_id": {
+            "type": "integer",
+            "title": "Chargeback Reversal Loot Id",
+            "description": "The Loot ID that will be granted to the player when the SKU is charged back is reversed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "loot_id"
+        ],
+        "title": "LootEntitlement",
+        "description": "How a Platform SKU will be converted into Loot for a player"
+      },
       "Loots": {
         "properties": {
           "loot": {
@@ -7346,6 +8038,91 @@
           "North America region",
           "Europe Union region"
         ]
+      },
+      "PlatformSKU": {
+        "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform of the SKU"
+          },
+          "sku": {
+            "type": "string",
+            "title": "Sku",
+            "description": "The SKU of the platform"
+          },
+          "loot_entitlement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LootEntitlement"
+              }
+            ],
+            "title": "Loot Entitlement",
+            "description": "The Loot that will be granted to the player"
+          },
+          "external_key_entitlement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalKeyEntitlement"
+              }
+            ],
+            "title": "External Key Entitlement",
+            "description": "The External Key Entitlement"
+          },
+          "cache_info": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "title": "Cache Info",
+            "description": "Cache info for the Platform SKUs."
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "sku"
+        ],
+        "title": "PlatformSKU",
+        "description": "Platform SKU that can be converted to inventory or keys"
+      },
+      "PlatformSKUs": {
+        "properties": {
+          "skus": {
+            "items": {
+              "$ref": "#/components/schemas/PlatformSKU"
+            },
+            "type": "array",
+            "title": "Skus",
+            "description": "A collection of SKUs",
+            "default": []
+          },
+          "cache_info": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "title": "Cache Info",
+            "description": "Cache info for the Platform SKUs."
+          }
+        },
+        "type": "object",
+        "title": "PlatformSKUs",
+        "description": "A collection of SKUs."
       },
       "PlayerInventoryChange": {
         "properties": {

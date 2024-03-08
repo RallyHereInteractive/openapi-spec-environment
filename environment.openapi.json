@@ -5539,7 +5539,7 @@
           "users"
         ],
         "summary": "Find Platform User By Id",
-        "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:*`, `user:platform:read`",
+        "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:platform:read`, `user:*`",
         "operationId": "find_platform_user_by_id",
         "parameters": [
           {
@@ -7508,7 +7508,7 @@
           "Sessions"
         ],
         "summary": "Get Browser Sessions By Type",
-        "description": "Get all public sessions of a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:browser`, `session:*`\n\n\n\nRequired Permissions: None",
+        "description": "Get all public sessions of a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read:browser`\n\n\n\nRequired Permissions: None",
         "operationId": "get_browser_sessions_by_type",
         "parameters": [
           {
@@ -7665,7 +7665,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Id",
-        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:any`, `session:read:self`, `session:*`\n\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
+        "description": "Get Session by ID. This request will return limited results for non-members of the session, such as excluding info for \nhow to connect to the instance. Elevated permissions can bypass that restriction\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:self`, `session:*`, `session:read:any`\n\n\n\nRequired Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission",
         "operationId": "get_session_by_id",
         "parameters": [
           {
@@ -7752,7 +7752,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -7830,7 +7830,7 @@
           "Sessions"
         ],
         "summary": "Get Session By Allocation Id",
-        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:allocation`, `session:*`\n\n\n\nRequired Session Permissions: None",
+        "description": "Get session by allocation ID. Returns the same limited results as getting the session by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read:allocation`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_by_allocation_id",
         "parameters": [
           {
@@ -7909,7 +7909,7 @@
           "Sessions"
         ],
         "summary": "Post Browser Info",
-        "description": "Register session in the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Register session in the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "post_browser_info",
         "parameters": [
           {
@@ -7987,7 +7987,7 @@
           "Sessions"
         ],
         "summary": "Delete Browser Info",
-        "description": "Delete the session from the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Delete the session from the public browser\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "delete_browser_info",
         "parameters": [
           {
@@ -8038,7 +8038,7 @@
           "Sessions"
         ],
         "summary": "Update Browser Info",
-        "description": "Update the browser info for the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:browser`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
+        "description": "Update the browser info for the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:browser`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission",
         "operationId": "update_browser_info",
         "parameters": [
           {
@@ -8108,7 +8108,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Id Self",
-        "description": "Join a session with currently authed player\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a session with currently authed player\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_id_self",
         "parameters": [
           {
@@ -8257,7 +8257,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid V2",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations",
         "operationId": "update_session_player_by_uuid_v2",
         "parameters": [
           {
@@ -8353,7 +8353,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -8434,7 +8434,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -8531,7 +8531,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -8613,7 +8613,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Id",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited.\n`SessionPermissions.session_admin` for other operations\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "update_session_player_by_id",
         "parameters": [
           {
@@ -8701,7 +8701,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -8774,7 +8774,7 @@
           "Sessions"
         ],
         "summary": "Get Session Events",
-        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:read:event`, `session:*`\n\n\n\nRequired Session Permissions: None",
+        "description": "Get all events for the session.  Empty list means there is no event history for it.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`, `session:read:event`\n\n\n\nRequired Session Permissions: None",
         "operationId": "get_session_events",
         "parameters": [
           {
@@ -8855,7 +8855,7 @@
           "Sessions"
         ],
         "summary": "Create Session Event",
-        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:event`, `session:update:any`, `session:*`\n\n\n\nRequired Session Permissions: None",
+        "description": "Create an event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:event`, `session:*`\n\n\n\nRequired Session Permissions: None",
         "operationId": "create_session_event",
         "parameters": [
           {
@@ -9001,7 +9001,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid V2",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid_v2",
         "parameters": [
           {
@@ -9079,7 +9079,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -9158,7 +9158,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read-player:any`, `session:*`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
+        "description": "Get Sessions associated with a player by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -9276,7 +9276,7 @@
           "Sessions"
         ],
         "summary": "Join Queue",
-        "description": "Add session to a matchmaking queue\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Add session to a matchmaking queue\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "join_queue",
         "parameters": [
           {
@@ -9344,7 +9344,7 @@
           "Sessions"
         ],
         "summary": "Leave Queue",
-        "description": "Remove session from a matchmaking queue\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`\n\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
+        "description": "Remove session from a matchmaking queue\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`\n\n\n               \nRequired Session Permissions: `SessionPermissions.session_admin`",
         "operationId": "leave_queue",
         "parameters": [
           {
@@ -9420,7 +9420,7 @@
           "Sessions"
         ],
         "summary": "Create Instance Request",
-        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
+        "description": "Request an instance be spawned for the session, or register self as a host of the instance\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission",
         "operationId": "create_instance_request",
         "parameters": [
           {
@@ -9488,7 +9488,7 @@
           "Sessions"
         ],
         "summary": "End Instance",
-        "description": "Unregister the instance from the session.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Unregister the instance from the session.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "end_instance",
         "parameters": [
           {
@@ -9547,7 +9547,7 @@
           "Sessions"
         ],
         "summary": "Update Instance Info",
-        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
+        "description": "Update info about the instance. If the instance was a result of the instance allocation system, then it will have an allocation id.\nAllocated instances must send their allocation id for updates to ensure they are still the proper allocation.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission",
         "operationId": "update_instance_info",
         "parameters": [
           {
@@ -9706,76 +9706,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/session/v1/session/{session_id}/instance/fubar": {
-      "post": {
-        "tags": [
-          "Sessions"
-        ],
-        "summary": "Report Fubar",
-        "description": "Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update:fubar`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin`",
-        "operationId": "report_fubar",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
-              "title": "Session Id"
-            },
-            "name": "session_id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InstanceFubar"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FubarResponse"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -10027,7 +9957,7 @@
           "Sessions"
         ],
         "summary": "Get Platform Session Info",
-        "description": "Get information about a platform session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:read:platform`, `session:*`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
+        "description": "Get information about a platform session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read:platform`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission",
         "operationId": "get_platform_session_info",
         "parameters": [
           {
@@ -10124,7 +10054,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session Id Self",
-        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by ID, and the parent session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_id_self",
         "parameters": [
           {
@@ -10236,7 +10166,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session Self",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_self",
         "parameters": [
           {
@@ -10325,7 +10255,7 @@
           "Sessions"
         ],
         "summary": "Join Session By Platform Session By Uuid",
-        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Join a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "join_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10456,7 +10386,7 @@
           "Sessions"
         ],
         "summary": "Leave Session By Platform Session By Uuid",
-        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
+        "description": "Leave a platform session by platform ID and parent platform session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None",
         "operationId": "leave_session_by_platform_session_by_uuid",
         "parameters": [
           {
@@ -10844,7 +10774,7 @@
           "Sessions"
         ],
         "summary": "Invite Session To Session",
-        "description": "Invite an entire session to a target session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:*`\n\n to invite any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Invite an entire session to a target session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n to invite any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "invite_session_to_session",
         "parameters": [
           {
@@ -10943,7 +10873,7 @@
           "Sessions"
         ],
         "summary": "Kick Session From Session",
-        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:*`\n\n to kick any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
+        "description": "Remove players from a session, `{kicked_session_id}`, if they are also in the session `{session_id}`\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:*`\n\n to kick any session regardless of membership status\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`\n\n to invite a session you are part of\n\nRequired Session Permissions: None",
         "operationId": "kick_session_from_session",
         "parameters": [
           {
@@ -13191,6 +13121,185 @@
         ]
       }
     },
+    "/inventory/v1/catalog/entitlement-sku": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Get Catalog Entitlement Sku All",
+        "description": "Get all Entitlement SKUs.",
+        "operationId": "get_catalog_entitlement_sku_all",
+        "parameters": [
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSKUs"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/inventory/v1/catalog/entitlement-sku/{platform}/{sku}": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Get Catalog Entitlement Sku",
+        "description": "Get a specific Entitlement SKU.",
+        "operationId": "get_catalog_entitlement_sku",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Platform"
+            },
+            "name": "platform",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Sku"
+            },
+            "name": "sku",
+            "in": "path"
+          },
+          {
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+            },
+            "name": "if-none-match",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSKU"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/inventory/v2/player/me/inventory": {
       "get": {
         "tags": [
@@ -14883,7 +14992,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlement_for_me",
         "requestBody": {
           "content": {
@@ -14940,7 +15049,7 @@
           "Entitlements"
         ],
         "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "process_platform_entitlements_by_player_uuid",
         "parameters": [
           {
@@ -15008,9 +15117,9 @@
         "tags": [
           "Entitlements"
         ],
-        "summary": "Retrieve Entitlements For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
-        "operationId": "retrieve_entitlements_for_me",
+        "summary": "Retrieve Entitlement Request For Me",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "retrieve_entitlement_request_for_me",
         "parameters": [
           {
             "required": true,
@@ -15066,9 +15175,9 @@
         "tags": [
           "Entitlements"
         ],
-        "summary": "Retrieve Entitlements By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions: \n\tFor any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`\n\tFor the player themselves: `inv:platform_entitlements:self`",
-        "operationId": "retrieve_entitlements_by_player_uuid",
+        "summary": "Retrieve Entitlement Request By Player Uuid",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "retrieve_entitlement_request_by_player_uuid",
         "parameters": [
           {
             "required": true,
@@ -15103,6 +15212,166 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/inventory/v1/entitlement-event": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Entitlement Events",
+        "description": "Get entitlement events for a player.  If no player is provided, all events will be returned.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:read`",
+        "operationId": "get_entitlement_events",
+        "parameters": [
+          {
+            "description": "Player to get entitlement events for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to get entitlement events for"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided",
+            "required": false,
+            "deprecated": true,
+            "schema": {
+              "type": "integer",
+              "title": "Player Id",
+              "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided"
+            },
+            "name": "player_id",
+            "in": "query"
+          },
+          {
+            "description": "Cursor for pagination",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "title": "Cursor",
+              "description": "Cursor for pagination"
+            },
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitlementEventList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Generate Entitlement Event",
+        "description": "Create an entitlement event - this is used to bypass platform providers and grant entitlement events directly. \n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:write`",
+        "operationId": "generate_entitlement_event",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntitlementEventRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitlementEvent"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -19724,7 +19993,7 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:self:read`, `notification:playerid:self:*`, `notification:playerid:read`, `notification:playerid:*`",
         "operationId": "playerid_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -19804,7 +20073,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -19819,6 +20098,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -19837,7 +20126,7 @@
           "player-id-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:read`, `notification:playerid:*`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
         "operationId": "playerid_long_poll_for_notifications",
         "parameters": [
           {
@@ -19926,7 +20215,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -19941,6 +20240,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -19959,7 +20268,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:self:read`, `notification:playerid:self:*`, `notification:playerid:read`, `notification:playerid:*`",
         "operationId": "playerid_get_notifications_page_self",
         "parameters": [
           {
@@ -20033,7 +20342,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20051,6 +20370,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -20064,7 +20393,7 @@
           "player-id-notification"
         ],
         "summary": "Create Notification Self",
-        "description": "Create new notification for client.\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:write`, `notification:playerid:write`, `notification:playerid:self:*`",
+        "description": "Create new notification for client.\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:self:write`, `notification:playerid:write`, `notification:playerid:self:*`, `notification:playerid:*`",
         "operationId": "playerid_create_notification_self",
         "requestBody": {
           "content": {
@@ -20098,7 +20427,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20113,6 +20452,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20131,7 +20480,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:read`, `notification:playerid:*`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
         "operationId": "playerid_get_notifications_page",
         "parameters": [
           {
@@ -20214,7 +20563,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20232,6 +20591,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -20245,7 +20614,7 @@
           "player-id-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`\n\n- For the playerid themselves any of: `notification:playerid:self:write`, `notification:playerid:self:*`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:write`, `notification:playerid:*`\n\n- For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:write`",
         "operationId": "playerid_create_notification",
         "parameters": [
           {
@@ -20290,7 +20659,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20305,6 +20684,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20323,7 +20712,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`",
+        "description": "Retrieve a single notification by id\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:self:read`, `notification:playerid:self:*`, `notification:playerid:read`, `notification:playerid:*`",
         "operationId": "playerid_get_notification_by_id_self",
         "parameters": [
           {
@@ -20358,7 +20747,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20377,12 +20766,32 @@
               }
             }
           },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20401,7 +20810,7 @@
           "player-id-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any playerid (including themselves) any of: `notification:playerid:read`, `notification:playerid:*`\n\n- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`",
         "operationId": "playerid_get_notification_by_id",
         "parameters": [
           {
@@ -20445,7 +20854,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20464,12 +20873,32 @@
               }
             }
           },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20488,7 +20917,7 @@
           "player-notification"
         ],
         "summary": "Long Poll For Notifications Self",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:read`, `notification:player:self:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:self:read`, `notification:player:*`, `notification:player:read`",
         "operationId": "player_long_poll_for_notifications_self",
         "parameters": [
           {
@@ -20568,7 +20997,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20583,6 +21022,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20691,7 +21140,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20706,6 +21165,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20724,7 +21193,7 @@
           "player-notification"
         ],
         "summary": "Get Notifications Page Self",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:read`, `notification:player:self:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:self:read`, `notification:player:*`, `notification:player:read`",
         "operationId": "player_get_notifications_page_self",
         "parameters": [
           {
@@ -20798,7 +21267,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20816,6 +21295,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -20829,7 +21318,7 @@
           "player-notification"
         ],
         "summary": "Create Notification Self",
-        "description": "Create new notification for client.\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:self:write`, `notification:player:write`",
+        "description": "Create new notification for client.\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:write`, `notification:player:self:*`, `notification:player:write`, `notification:player:*`",
         "operationId": "player_create_notification_self",
         "requestBody": {
           "content": {
@@ -20863,7 +21352,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20878,6 +21377,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -20980,7 +21489,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20998,6 +21517,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -21011,7 +21540,7 @@
           "player-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:*`, `notification:player:write`\n\n- For the player themselves any of: `notification:player:self:*`, `notification:player:self:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:write`, `notification:player:*`\n\n- For the player themselves any of: `notification:player:self:*`, `notification:player:self:write`",
         "operationId": "player_create_notification",
         "parameters": [
           {
@@ -21057,7 +21586,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21072,6 +21611,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -21090,7 +21639,7 @@
           "player-notification"
         ],
         "summary": "Get Notification By Id Self",
-        "description": "Retrieve a single notification by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:*`, `notification:player:read`, `notification:player:self:read`",
+        "description": "Retrieve a single notification by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:self:read`, `notification:player:*`, `notification:player:read`",
         "operationId": "player_get_notification_by_id_self",
         "parameters": [
           {
@@ -21125,7 +21674,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21144,12 +21693,32 @@
               }
             }
           },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -21213,7 +21782,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21232,12 +21801,32 @@
               }
             }
           },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -21256,7 +21845,7 @@
           "instance-notification"
         ],
         "summary": "Long Poll For Notifications",
-        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`",
+        "description": "This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications\nfrom older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as\n`exclude_before` in subsequent polls to ensure you only receive new notifications.\n\nThis operation is a long-poll.  That means we will keep the connection open until we get any notification\nor until the passed in deadline (to the best of our ability).  Once one of these happens, we will return\nthe notifications found.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`",
         "operationId": "instance_long_poll_for_notifications",
         "parameters": [
           {
@@ -21345,7 +21934,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21360,6 +21959,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -21378,7 +21987,7 @@
           "instance-notification"
         ],
         "summary": "Get Notifications Page",
-        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`",
+        "description": "Get recent notifications ordered from the newest to the oldest.\n\nIt is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.\nThe first notification returned from this will be the newest one we can find, and older ones will be further down\nthe page (or on later pages).\n\nThis API is useful for displaying a list of the most recent notifications to the user, only requesting further\npages when the user requests a bigger list.\n\nClient are expected to poll this endpoint regularly.\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`",
         "operationId": "instance_get_notifications_page",
         "parameters": [
           {
@@ -21461,7 +22070,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21479,6 +22098,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -21492,7 +22121,7 @@
           "instance-notification"
         ],
         "summary": "Create Notification",
-        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:write`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:write`",
+        "description": "Create new notification for client.  Requires permission to create for a different client\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:write`, `notification:instance:*`\n\n- For the instance themselves any of: `notification:instance:self:write`, `notification:instance:self:*`",
         "operationId": "instance_create_notification",
         "parameters": [
           {
@@ -21537,7 +22166,17 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21552,6 +22191,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -21570,7 +22219,7 @@
           "instance-notification"
         ],
         "summary": "Get Notification By Id",
-        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`",
+        "description": "Retrieve a single notification by id\n\nThis version can be used for any client provided its id (with proper permissions)\n\nRequired Permissions:\n\n- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`\n\n- For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`",
         "operationId": "instance_get_notification_by_id",
         "parameters": [
           {
@@ -21614,7 +22263,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_version - Invalid Authorization - version\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_sig_invalid - Token Signature is invalid\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_expired - Token is expired\n",
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_format - Invalid Authorization - {}\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_malformed_access - Invalid Authorization - malformed access token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21633,12 +22282,32 @@
               }
             }
           },
+          "409": {
+            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -23422,6 +24091,16 @@
             },
             "description": "Forbidden"
           },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -23785,9 +24464,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Get Player Match",
+        "summary": "Get Match Player",
         "description": "Get a player match record for the provided player_uuid and match_id",
-        "operationId": "get_player_match",
+        "operationId": "get_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -23851,9 +24530,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Create Player Match",
+        "summary": "Create Match Player",
         "description": "Create player match record for the provided player_uuid and match_id",
-        "operationId": "create_player_match",
+        "operationId": "create_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -23927,9 +24606,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Update Player Match",
+        "summary": "Update Match Player",
         "description": "Update player match record for the provided player_uuid and match_id",
-        "operationId": "update_player_match",
+        "operationId": "update_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -24003,9 +24682,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Patch Player Match",
+        "summary": "Patch Match Player",
         "description": "Update player match record for the provided player_uuid and match_id only with provided fields",
-        "operationId": "patch_player_match",
+        "operationId": "patch_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -24079,9 +24758,9 @@
         "tags": [
           "match"
         ],
-        "summary": "Delete Player Match",
+        "summary": "Delete Match Player",
         "description": "Delete player by player_uuid and match_id",
-        "operationId": "delete_player_match",
+        "operationId": "delete_match_player",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -24111,359 +24790,6 @@
         "responses": {
           "200": {
             "description": "Successful Response"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/match/v1/match/{match_id}/segment/{segment_id}": {
-      "get": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Get Match Segment",
-        "description": "Get match segment by match_id and segment_id",
-        "operationId": "get_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Update Match Segment",
-        "description": "Update match segment by match_id and segment_id",
-        "operationId": "update_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Patch Match Segment",
-        "description": "Update match segment by match_id and segment_id only with provided fields",
-        "operationId": "patch_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Delete Match Segment",
-        "description": "Delete match segment by match_id and segment_id",
-        "operationId": "delete_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "segment_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Segment Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/match/v1/match/{match_id}/segment": {
-      "post": {
-        "tags": [
-          "match"
-        ],
-        "summary": "Create Match Segment",
-        "description": "Create match segment by match_id",
-        "operationId": "create_match_segment",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MatchSegmentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
-                }
-              }
-            }
           },
           "403": {
             "content": {
@@ -27224,12 +27550,6 @@
           "All rules must not be satisfied"
         ]
       },
-      "FubarResponse": {
-        "properties": {},
-        "type": "object",
-        "title": "FubarResponse",
-        "description": "Response to successfully marking an instance as FUBAR"
-      },
       "HostType": {
         "type": "string",
         "enum": [
@@ -27266,54 +27586,6 @@
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
         ]
-      },
-      "InstanceFubar": {
-        "properties": {
-          "instance_id": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Instance Id",
-            "description": "ID for which instance was marked as FUBAR"
-          },
-          "error": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Error",
-            "description": "Error string describing what caused the instance failure"
-          },
-          "region": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Region",
-            "description": "What region the failed instance was in"
-          },
-          "matchmaking_profile_id": {
-            "type": "string",
-            "maxLength": 128,
-            "minLength": 1,
-            "title": "Matchmaking Profile Id",
-            "description": "ID for which matchmaking profile was used to generate the failed instance"
-          },
-          "instance_source_provider": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstanceSourceProvider"
-              }
-            ],
-            "description": "Which instance provider allocated this failed instance"
-          }
-        },
-        "type": "object",
-        "required": [
-          "instance_id",
-          "error",
-          "region"
-        ],
-        "title": "InstanceFubar",
-        "description": "Information about an instance that has been determined to be FUBAR"
       },
       "InstanceHealthSettingsResponse": {
         "properties": {
@@ -27753,26 +28025,6 @@
         "title": "InstanceRequestTemplate",
         "description": "Configuration about how an instance should behave when it's allocated"
       },
-      "InstanceSourceProvider": {
-        "type": "string",
-        "enum": [
-          "player",
-          "sic",
-          "multiplay"
-        ],
-        "title": "InstanceSourceProvider",
-        "description": "What type of provider is hosting the instance",
-        "x-enum-varnames": [
-          "PLAYER",
-          "SIC",
-          "MULTIPLAY"
-        ],
-        "x-enum-descriptions": [
-          "Instance is being hosted by a player",
-          "Instance is hosted by the RallyHere SIC system",
-          "Instance is being hosted by Multiplay"
-        ]
-      },
       "InstanceStartupParams": {
         "properties": {
           "map": {
@@ -27918,9 +28170,9 @@
             "title": "Map Id",
             "description": "ID to uniquely identify this map game"
           },
-          "name": {
+          "map_name": {
             "type": "string",
-            "title": "Name",
+            "title": "Map Name",
             "description": "Name of the map the instance should load into"
           },
           "mode": {
@@ -27945,12 +28197,22 @@
             "title": "Custom Data",
             "description": "Custom data to pass through to the instance",
             "default": {}
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Human readable name for this map"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Description of the map"
           }
         },
         "type": "object",
         "required": [
           "map_id",
-          "name",
+          "map_name",
           "map_weight"
         ],
         "title": "MapConfigV2",
@@ -30054,6 +30316,15 @@
             "title": "Time Frames",
             "description": "The Time Frames."
           },
+          "skus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlatformSKUs"
+              }
+            ],
+            "title": "Skus",
+            "description": "The Platform SKUs."
+          },
           "cache_info": {
             "allOf": [
               {
@@ -30225,6 +30496,29 @@
           "Inventory that does not persist between Inventory Sessions."
         ]
       },
+      "EntitlementActionType": {
+        "type": "string",
+        "enum": [
+          "grant",
+          "refund",
+          "chargeback",
+          "chargeback_reversal"
+        ],
+        "title": "EntitlementActionType",
+        "description": "Action to take for the Entitlement on a user",
+        "x-enum-varnames": [
+          "grant",
+          "refund",
+          "chargeback",
+          "chargeback_reversal"
+        ],
+        "x-enum-descriptions": [
+          "Event for granting an Entitlement to the user",
+          "Event for refunding an Entitlement to the user",
+          "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
+          "Event for re-granting an Entitlement to the user after a chargeback was reversed"
+        ]
+      },
       "EntitlementErrorCode": {
         "type": "string",
         "enum": [
@@ -30278,6 +30572,246 @@
           "Entitlement was previously applied"
         ]
       },
+      "EntitlementEvent": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id",
+            "description": "The unique identifier for the event"
+          },
+          "action_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementActionType"
+              }
+            ],
+            "description": "The type of the event"
+          },
+          "entitlement_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementType"
+              }
+            ],
+            "description": "The type of entitlement when the event occurred"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementEventStatus"
+              }
+            ],
+            "description": "The status of the event"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "The player UUID for the event"
+          },
+          "player_id": {
+            "type": "integer",
+            "title": "Player Id",
+            "description": "The player ID for the event",
+            "deprecated": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform for the event"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "The platform user ID for the event"
+          },
+          "sku": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Sku",
+            "description": "The SKU for the event"
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "The quantity for the event"
+          },
+          "platform_transaction_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Platform Transaction Id",
+            "description": "The external transaction ID for the event"
+          },
+          "platform_data": {
+            "type": "object",
+            "title": "Platform Data",
+            "description": "The platform specific data for the event"
+          },
+          "order_id": {
+            "type": "string",
+            "title": "Order Id",
+            "description": "The order ID for the event"
+          },
+          "loot_id": {
+            "type": "integer",
+            "title": "Loot Id",
+            "description": "The loot ID for the event"
+          },
+          "key_claim_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Key Claim Uuid",
+            "description": "The portal user key claim id"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "last_modified": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_id",
+          "action_type",
+          "status",
+          "player_uuid",
+          "platform",
+          "platform_user_id",
+          "sku",
+          "quantity",
+          "created",
+          "last_modified"
+        ],
+        "title": "EntitlementEvent"
+      },
+      "EntitlementEventList": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EntitlementEvent"
+            },
+            "type": "array",
+            "title": "Events",
+            "description": "The list of events"
+          },
+          "cursor": {
+            "type": "string",
+            "title": "Cursor",
+            "description": "The cursor for the next page of events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "events"
+        ],
+        "title": "EntitlementEventList"
+      },
+      "EntitlementEventRequest": {
+        "properties": {
+          "action_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementActionType"
+              }
+            ],
+            "description": "The type of the event"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementEventStatus"
+              }
+            ],
+            "description": "The status of the event"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Override the player UUID for the event.  If not provided, the active player for the platform user will be used"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform for the event"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "The platform user ID for the event"
+          },
+          "sku": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Sku",
+            "description": "The SKU for the event"
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "The quantity for the event",
+            "default": 1
+          },
+          "platform_transaction_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Platform Transaction Id",
+            "description": "The external transaction ID for the event"
+          },
+          "platform_data": {
+            "type": "object",
+            "title": "Platform Data",
+            "description": "The platform specific data for the event"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action_type",
+          "platform",
+          "platform_user_id",
+          "sku",
+          "platform_transaction_id"
+        ],
+        "title": "EntitlementEventRequest"
+      },
+      "EntitlementEventStatus": {
+        "type": "string",
+        "enum": [
+          "success",
+          "sku_not_found",
+          "not_implemented",
+          "player_not_found"
+        ],
+        "title": "EntitlementEventStatus",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "success",
+          "sku_not_found",
+          "not_implemented",
+          "player_not_found"
+        ],
+        "x-enum-descriptions": [
+          "The event was successful",
+          "The SKU was not found",
+          "The requested operation is not implemented yet",
+          "The player was not found"
+        ]
+      },
       "EntitlementStatus": {
         "type": "string",
         "enum": [
@@ -30303,6 +30837,48 @@
           "Entitlement has failed, check error_code for more information",
           "Entitlement was previously applied"
         ]
+      },
+      "EntitlementType": {
+        "type": "string",
+        "enum": [
+          "consumable",
+          "durable",
+          "durable_single_use"
+        ],
+        "title": "EntitlementType",
+        "description": "The method of granting a Platform Entitlement SKU",
+        "x-enum-varnames": [
+          "consumable",
+          "durable",
+          "durable_single_use"
+        ],
+        "x-enum-descriptions": [
+          "Consumable entitlements are removed from the platform's record keeping system when used.",
+          "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
+          "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
+        ]
+      },
+      "ExternalKeyEntitlement": {
+        "properties": {
+          "external_key_campaign_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "External Key Campaign Id",
+            "description": "The External Key Campaign ID"
+          },
+          "quantity": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Quantity",
+            "description": "The quantity of the External Key Entitlement"
+          }
+        },
+        "type": "object",
+        "required": [
+          "external_key_campaign_id",
+          "quantity"
+        ],
+        "title": "ExternalKeyEntitlement"
       },
       "Inventory": {
         "properties": {
@@ -31165,6 +31741,45 @@
         "title": "Loot",
         "description": "Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both."
       },
+      "LootEntitlement": {
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementType"
+              }
+            ],
+            "description": "The action taken on the platform when granting this SKU"
+          },
+          "loot_id": {
+            "type": "integer",
+            "title": "Loot Id",
+            "description": "The Loot ID that will be granted to the player"
+          },
+          "refund_loot_id": {
+            "type": "integer",
+            "title": "Refund Loot Id",
+            "description": "The Loot ID that will be granted to the player when the SKU is refunded"
+          },
+          "chargeback_loot_id": {
+            "type": "integer",
+            "title": "Chargeback Loot Id",
+            "description": "The Loot ID that will be granted to the player when the SKU is charged back"
+          },
+          "chargeback_reversal_loot_id": {
+            "type": "integer",
+            "title": "Chargeback Reversal Loot Id",
+            "description": "The Loot ID that will be granted to the player when the SKU is charged back is reversed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "loot_id"
+        ],
+        "title": "LootEntitlement",
+        "description": "How a Platform SKU will be converted into Loot for a player"
+      },
       "Loots": {
         "properties": {
           "loot": {
@@ -31493,6 +32108,91 @@
           "North America region",
           "Europe Union region"
         ]
+      },
+      "PlatformSKU": {
+        "properties": {
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data associated with the resource",
+            "default": {}
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "The platform of the SKU"
+          },
+          "sku": {
+            "type": "string",
+            "title": "Sku",
+            "description": "The SKU of the platform"
+          },
+          "loot_entitlement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LootEntitlement"
+              }
+            ],
+            "title": "Loot Entitlement",
+            "description": "The Loot that will be granted to the player"
+          },
+          "external_key_entitlement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalKeyEntitlement"
+              }
+            ],
+            "title": "External Key Entitlement",
+            "description": "The External Key Entitlement"
+          },
+          "cache_info": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "title": "Cache Info",
+            "description": "Cache info for the Platform SKUs."
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "sku"
+        ],
+        "title": "PlatformSKU",
+        "description": "Platform SKU that can be converted to inventory or keys"
+      },
+      "PlatformSKUs": {
+        "properties": {
+          "skus": {
+            "items": {
+              "$ref": "#/components/schemas/PlatformSKU"
+            },
+            "type": "array",
+            "title": "Skus",
+            "description": "A collection of SKUs",
+            "default": []
+          },
+          "cache_info": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              }
+            ],
+            "title": "Cache Info",
+            "description": "Cache info for the Platform SKUs."
+          }
+        },
+        "type": "object",
+        "title": "PlatformSKUs",
+        "description": "A collection of SKUs."
       },
       "PlayerInventoryChange": {
         "properties": {
@@ -33205,17 +33905,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "online",
-          "away",
-          "invisible",
-          "offline"
-        ],
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
           "Player will appear offline to other players",
           "Player is offline"
+        ],
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
         ]
       },
       "PlatformIndividualCCUs": {
@@ -34930,7 +35630,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -35079,7 +35778,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -35161,6 +35859,15 @@
             "title": "Allocations",
             "description": "List of allocation IDs for the match",
             "default": []
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
           }
         },
         "type": "object",
@@ -35221,7 +35928,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -35417,7 +36123,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
@@ -35560,7 +36265,6 @@
                 "type": "null"
               }
             ],
-            "type": "datetime",
             "title": "Start Timestamp",
             "description": "Start time of the match"
           },
