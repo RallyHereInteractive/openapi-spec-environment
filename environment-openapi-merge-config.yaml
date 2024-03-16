@@ -120,6 +120,15 @@
         "prefix": "Match"
       },
     },
+    {
+      "inputFile": "./schemas/sanctions.json",
+      "pathModification": {
+        "prepend": "/sanctions"
+      },
+      "dispute": {
+        "prefix": "Sanctions"
+      },
+    },
   ],
   "output": "./environment.openapi.json"
 }

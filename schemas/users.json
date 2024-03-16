@@ -149,7 +149,7 @@
                     "type": "string"
                   },
                   "type": "object",
-                  "title": "Response Get Portal Token Details V1 Portaltoken Details Post"
+                  "title": "Response Get Portal Token Details"
                 }
               }
             }
@@ -320,7 +320,7 @@
                 "schema": {
                   "type": "string",
                   "format": "uuid",
-                  "title": "Response Get Player Uuid From Player Id For Self V1 Player Me Uuid Get"
+                  "title": "Response Get Player Uuid From Player Id For Self"
                 }
               }
             }
@@ -391,7 +391,7 @@
                 "schema": {
                   "type": "string",
                   "format": "uuid",
-                  "title": "Response Get Player Uuid From Player Id V1 Player  Player Id  Uuid Get"
+                  "title": "Response Get Player Uuid From Player Id"
                 }
               }
             }
@@ -957,7 +957,7 @@
           "users"
         ],
         "summary": "Find Platform User By Id",
-        "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:platform:read`, `user:*`",
+        "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:*`, `user:platform:read`",
         "operationId": "find_platform_user_by_id",
         "parameters": [
           {
@@ -1040,7 +1040,7 @@
           "users"
         ],
         "summary": "Create Platform User By Id",
-        "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:platform:create`, `user:*`",
+        "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions: \n\tFor any player (including themselves)any of: `user:*`, `user:platform:create`",
         "operationId": "create_platform_user_by_id",
         "requestBody": {
           "content": {
@@ -2742,7 +2742,7 @@
                     "$ref": "#/components/schemas/Role"
                   },
                   "type": "array",
-                  "title": "Response Get All Roles V1 Role Get"
+                  "title": "Response Get All Roles"
                 }
               }
             }
@@ -2872,22 +2872,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Anonymous authentication",
-          "Google authentication",
-          "Apple authentication",
-          "Refresh Token authentication",
-          "Epic Online Services authentication",
-          "Xbox Live authentication",
-          "Playstation Network v1 authentication using the configured PS4 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Account authentication",
-          "Nintendo Service Account (for Nintendo Switch) authentication",
-          "Steam authentication",
-          "Basic Username/Password authentication",
-          "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
-        ],
         "x-enum-varnames": [
           "ANON",
           "GOOGLE",
@@ -2903,6 +2887,22 @@
           "STEAM",
           "BASIC",
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous authentication",
+          "Google authentication",
+          "Apple authentication",
+          "Refresh Token authentication",
+          "Epic Online Services authentication",
+          "Xbox Live authentication",
+          "Playstation Network v1 authentication using the configured PS4 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Nintendo Account authentication",
+          "Nintendo Service Account (for Nintendo Switch) authentication",
+          "Steam authentication",
+          "Basic Username/Password authentication",
+          "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -3267,11 +3267,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-descriptions": [
-          "The OAuth2 client credentials grant type"
-        ],
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -3289,17 +3289,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google OAuth Portal",
-          "Apple OAuth Portal",
-          "Epic OAuth Portal",
-          "Xbox OAuth Portal",
-          "Playstation Network OAuth Portal",
-          "Nintendo OAuth Portal",
-          "Steam OAuth Portal",
-          "Amazon OAuth Portal",
-          "Twitch OAuth Portal"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -3310,6 +3299,17 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -3319,11 +3319,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-descriptions": [
-          "Authorization code grant type for OAuth token exchange."
-        ],
         "x-enum-varnames": [
           "authorization_code"
+        ],
+        "x-enum-descriptions": [
+          "Authorization code grant type for OAuth token exchange."
         ]
       },
       "OAuthTokenExchange": {
@@ -3491,22 +3491,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -3522,6 +3506,22 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -3758,15 +3758,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-descriptions": [
-          "Playstation Network v1 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS5 credentials"
-        ],
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "Playstation Network v1 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS5 credentials"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -4021,17 +4021,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-descriptions": [
-          "Account is banned",
-          "Account is locked out",
-          "Account is pending deletion and will be deleted in the future",
-          "Account has been banned from authentication"
-        ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
           "ACCOUNT_PENDING_DELETION",
           "ACCOUNT_DENY_AUTH"
+        ],
+        "x-enum-descriptions": [
+          "Account is banned",
+          "Account is locked out",
+          "Account is pending deletion and will be deleted in the future",
+          "Account has been banned from authentication"
         ]
       },
       "Role": {
@@ -4088,15 +4088,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-descriptions": [
-          "Does not bypass any auth states",
-          "Allow bypass of the limited auth state",
-          "Auth bypass for the limited and locked auth states"
-        ],
         "x-enum-varnames": [
           "NONE",
           "LIMITED",
           "LOCKED"
+        ],
+        "x-enum-descriptions": [
+          "Does not bypass any auth states",
+          "Allow bypass of the limited auth state",
+          "Auth bypass for the limited and locked auth states"
         ]
       },
       "SendInBlueContact": {
@@ -4262,21 +4262,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-descriptions": [
-          "Anonymous portal used for testing. This is not intended to be used by real players.",
-          "Amazon portal",
-          "Steam portal",
-          "Playstation Network portal",
-          "Xbox Live portal",
-          "Basic portal",
-          "Google portal",
-          "Twitch portal",
-          "Nintendo Switch portal",
-          "Apple portal",
-          "Nintendo portal",
-          "Epic portal",
-          "Nintendo PPID portal"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -4291,6 +4276,21 @@
           "NINTENDO",
           "EPIC",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -4335,44 +4335,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -4410,6 +4372,44 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       }
     },

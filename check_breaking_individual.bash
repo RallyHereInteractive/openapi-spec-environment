@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APIS="users ad settings friends session config inventory presence notification rank custom events match"
+APIS="users ad settings friends session config inventory presence notification rank custom events match sanctions"
 
 for api in ${APIS[@]}; do
     echo "Checking ${api} API Spec"
