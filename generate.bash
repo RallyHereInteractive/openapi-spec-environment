@@ -55,7 +55,7 @@ if [[ ! -z "$SPEC_BASE_URL" && "$SKIP_DOWNLOAD" = false ]]; then
     rm -rf schemas
     mkdir -p schemas
 
-    APIS="users ad settings friends session config inventory presence notification rank custom events match"
+    APIS="users ad settings friends session config inventory presence notification rank custom events match sanctions"
 
     echo "Using baseurl ${SPEC_BASE_URL}"
 

@@ -1,0 +1,865 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sanctions-api",
+    "description": "RallyHere sanctions-api",
+    "version": "0.2.0"
+  },
+  "servers": [
+    {
+      "url": "/sanctions"
+    }
+  ],
+  "paths": {
+    "/v2/player/{player_uuid}/reports": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Create Report For Target Player Uuid",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "operationId": "create_report_for_target_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerReportCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReport"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- source_player_required - Source Player must be provided in request or with a user token\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- player_not_found - Player {id} not found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Reports For Target Player Uuid",
+        "description": "Get reports for a target player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`\n\n- For the player themselves : `sanction:report:read:target-self`\n\nSource players will be empty without the Required Permissions:\n\n- For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`\n\n- For the player themselves : `sanction:report:read:source-self`",
+        "operationId": "get_reports_for_target_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page",
+              "title": "Cursor"
+            },
+            "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReportList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- player_not_found - Player {id} not found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/player/me/reports": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Reports For Target Player Uuid Self",
+        "description": "Get reports for a target player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`\n\n- For the player themselves : `sanction:report:read:target-self`\n\nSource players will be empty without the Required Permissions:\n\n- For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`\n\n- For the player themselves : `sanction:report:read:source-self`",
+        "operationId": "get_reports_for_target_player_uuid_self",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page",
+              "title": "Cursor"
+            },
+            "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReportList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- player_not_found - Player {id} not found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/player/me/sent-reports": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Reports From Source Player Uuid Self",
+        "description": "Get reports from a source player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`\n\n- For the player themselves : `sanction:report:read:source-self`",
+        "operationId": "get_reports_from_source_player_uuid_self",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page",
+              "title": "Cursor"
+            },
+            "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReportList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- player_not_found - Player {id} not found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/player/{player_uuid}/sent-reports": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Reports From Source Player Uuid",
+        "description": "Get reports from a source player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`\n\n- For the player themselves : `sanction:report:read:source-self`",
+        "operationId": "get_reports_from_source_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page",
+              "title": "Cursor"
+            },
+            "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReportList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- player_not_found - Player {id} not found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HzApiErrorModel": {
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "title": "HzApiErrorModel"
+      },
+      "PlayerReport": {
+        "properties": {
+          "report_id": {
+            "type": "string",
+            "title": "Report Id",
+            "description": "Unique ID for the player report"
+          },
+          "source_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Player Uuid",
+            "description": "The player UUID of the source player.  May be missing depending on permissions"
+          },
+          "source_player_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Player Id",
+            "description": "DEPRECATED: Use source_player_uuid instead. The player ID of the source player",
+            "deprecated": true
+          },
+          "target_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Player Uuid",
+            "description": "The player UUID of the target player.  May be missing depending on permissions"
+          },
+          "target_player_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Player Id",
+            "description": "DEPRECATED: Use target_player_uuid instead. The player ID of the target player",
+            "deprecated": true
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReportReason"
+              }
+            ],
+            "description": "The reason for the report"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "description": "The description of the report"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
+            "description": "The session ID of the report"
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance Id",
+            "description": "The instance ID of the report"
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "The match ID of the report"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data for the report",
+            "default": {}
+          },
+          "created": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created",
+            "description": "The date and time the report was created"
+          },
+          "modified": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modified",
+            "description": "The date and time the report was last modified"
+          }
+        },
+        "type": "object",
+        "required": [
+          "report_id",
+          "target_player_uuid",
+          "reason"
+        ],
+        "title": "PlayerReport"
+      },
+      "PlayerReportCreate": {
+        "properties": {
+          "source_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Player Uuid",
+            "description": "The player UUID of the source player.  May be missing depending on permissions"
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReportReason"
+              }
+            ],
+            "description": "The reason for the report"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "description": "The description of the report"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id",
+            "description": "The session ID of the report"
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance Id",
+            "description": "The instance ID of the report"
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "The match ID of the report"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data for the report",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "PlayerReportCreate"
+      },
+      "PlayerReportList": {
+        "properties": {
+          "reports": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerReport"
+            },
+            "type": "array",
+            "title": "Reports",
+            "description": "A list of player reports"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1024,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor",
+            "description": "Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the last page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reports"
+        ],
+        "title": "PlayerReportList"
+      },
+      "ReportReason": {
+        "type": "string",
+        "enum": [
+          "cheating",
+          "hate_speech",
+          "harassment",
+          "real_life_threat",
+          "teaming",
+          "intentional_feeding",
+          "stream_sniping",
+          "afk",
+          "didnt_play_assigned_role",
+          "other"
+        ],
+        "title": "ReportReason",
+        "description": "Reason a player is submitting the report."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearerHeadersOrCookie": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "reports",
+      "description": "Player Reports"
+    }
+  ]
+}
