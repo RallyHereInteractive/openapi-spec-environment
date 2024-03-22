@@ -3586,7 +3586,7 @@
           "Entitlements"
         ],
         "summary": "Get Entitlement Events",
-        "description": "Get entitlement events for a player.  If no player is provided, all events will be returned.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:entitlement_event:read`, `inv:*`",
+        "description": "Get entitlement events for a player.  If no player is provided, all events will be returned.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:read`",
         "operationId": "get_entitlement_events",
         "parameters": [
           {
@@ -7142,6 +7142,12 @@
             "description": "Custom data associated with the resource",
             "default": {}
           },
+          "item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Item Uuid",
+            "description": "The Item UUID"
+          },
           "type": {
             "allOf": [
               {
@@ -7175,11 +7181,23 @@
             "default": 0,
             "deprecated": true
           },
+          "entitled_loot_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Entitled Loot Uuid",
+            "description": "This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot that will be fulfilled."
+          },
           "entitled_loot_id": {
             "type": "integer",
             "title": "Entitled Loot Id",
             "description": "This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot ID that will be fulfilled.",
             "default": 0
+          },
+          "level_xp_table_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Level Xp Table Uuid",
+            "description": "The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item."
           },
           "level_xp_table_id": {
             "type": "integer",
@@ -7187,11 +7205,22 @@
             "description": "The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item.",
             "default": 0
           },
+          "level_vendor_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Level Vendor Uuid",
+            "description": "The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item."
+          },
           "level_vendor_id": {
             "type": "integer",
             "title": "Level Vendor Id",
             "description": "The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item.",
             "default": 0
+          },
+          "coupon_discount_currency_item_uuid": {
+            "type": "integer",
+            "title": "Coupon Discount Currency Item Uuid",
+            "description": "The item of the currency used by this coupon. This is only valid for an unit Item."
           },
           "coupon_discount_currency_item_id": {
             "type": "integer",
@@ -7231,6 +7260,16 @@
             "type": "array",
             "title": "Coupon Discount Loot",
             "description": "List of Loot IDs this item can discount",
+            "default": []
+          },
+          "coupon_discount_loot_uuid": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Coupon Discount Loot Uuid",
+            "description": "List of Loot this item can discount",
             "default": []
           },
           "cache_info": {
@@ -7428,6 +7467,12 @@
             "description": "Custom data associated with the resource",
             "default": {}
           },
+          "loot_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Loot Uuid",
+            "description": "The Loot UUID"
+          },
           "loot_id": {
             "type": "integer",
             "title": "Loot Id",
@@ -7438,10 +7483,22 @@
             "title": "Vendor Id",
             "description": "The Vendor ID"
           },
+          "vendor_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Vendor Uuid",
+            "description": "The Vendor UUID"
+          },
           "item_id": {
             "type": "integer",
             "title": "Item Id",
             "description": "The Item ID. Optional Item that will be granted to the player if Sub Vendor ID is not specified."
+          },
+          "item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Item Uuid",
+            "description": "The Item UUID. Optional Item that will be granted to the player if Sub Vendor ID is not specified."
           },
           "item": {
             "allOf": [
@@ -7456,6 +7513,12 @@
             "type": "integer",
             "title": "Sub Vendor Id",
             "description": "The Sub Vendor ID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item."
+          },
+          "sub_vendor_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sub Vendor Uuid",
+            "description": "The Sub Vendor UUID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item."
           },
           "quantity": {
             "type": "integer",
@@ -7516,6 +7579,12 @@
             "title": "Required Item Id",
             "description": "Item required to be owned/rented to drop this Loot in a randomly sampled vendor"
           },
+          "required_item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Required Item Uuid",
+            "description": "Item required to be owned/rented to drop this Loot in a randomly sampled vendor"
+          },
           "required_item_count": {
             "type": "integer",
             "title": "Required Item Count",
@@ -7552,6 +7621,12 @@
           "quantity_mult_inventory_item_id": {
             "type": "integer",
             "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory."
+          },
+          "quantity_mult_inventory_item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Quantity Mult Inventory Item Uuid",
             "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory."
           },
           "is_claimable_by_client": {
@@ -9676,6 +9751,12 @@
             "description": "Custom data associated with the resource",
             "default": {}
           },
+          "vendor_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Vendor Uuid",
+            "description": "The Vendor UUID"
+          },
           "type": {
             "allOf": [
               {
@@ -9788,6 +9869,12 @@
             "title": "Custom Data",
             "description": "Custom data associated with the resource",
             "default": {}
+          },
+          "xp_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Xp Uuid",
+            "description": "The XP Table UUID"
           },
           "xp_entries": {
             "additionalProperties": {
