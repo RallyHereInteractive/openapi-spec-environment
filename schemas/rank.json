@@ -443,6 +443,104 @@
         ]
       }
     },
+    "/v1/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Rank Config",
+        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`\n**DEPRECATED** Use the v2 endpoint",
+        "operationId": "get_all_rank_config",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Rank Config",
+        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`\n**DEPRECATED** Use V2 endpoint instead",
+        "operationId": "get_rank_config",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v2/rank:calculate": {
       "post": {
         "tags": [
@@ -468,6 +566,102 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PlayerRankUpdateResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/rank": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get All Rank Config V2",
+        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
+        "operationId": "get_all_rank_config_v2",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponseV2"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/rank/{rank_id}": {
+      "get": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Get Rank Config V2",
+        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
+        "operationId": "get_rank_config_v2",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Rank Id"
+            },
+            "name": "rank_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankConfigRequestResponseV2"
                 }
               }
             }
@@ -867,102 +1061,6 @@
           }
         ]
       }
-    },
-    "/v3/rank": {
-      "get": {
-        "tags": [
-          "rank"
-        ],
-        "summary": "Get All Rank Config V3",
-        "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
-        "operationId": "get_all_rank_config_v3",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RankConfigRequestResponseV3"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v3/rank/{rank_id}": {
-      "get": {
-        "tags": [
-          "rank"
-        ],
-        "summary": "Get Rank Config V3",
-        "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
-        "operationId": "get_rank_config_v3",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "title": "Rank Id"
-            },
-            "name": "rank_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RankConfigRequestResponseV3"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
     }
   },
   "components": {
@@ -1200,11 +1298,76 @@
         "title": "PlayerRankUpdateResponseV2",
         "description": "Response to successfully updating players' ranks"
       },
-      "RankConfigRequestResponseV3": {
+      "RankConfig": {
+        "properties": {
+          "rank_id": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Rank Id",
+            "description": "ID for this rank type"
+          },
+          "default_rank": {
+            "type": "number",
+            "title": "Default Rank",
+            "description": "The default rank value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_variance": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Default Variance",
+            "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
+          },
+          "max_rank_allowed": {
+            "type": "number",
+            "title": "Max Rank Allowed",
+            "description": "The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_rank_allowed": {
+            "type": "number",
+            "title": "Min Rank Allowed",
+            "description": "The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_variance_allowed": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Min Variance Allowed",
+            "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+          },
+          "trueskill_beta": {
+            "type": "number",
+            "title": "Trueskill Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+          },
+          "trueskill_tau": {
+            "type": "number",
+            "title": "Trueskill Tau",
+            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01)"
+          },
+          "trueskill_draw_probability": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Trueskill Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_id",
+          "default_rank",
+          "default_variance",
+          "max_rank_allowed",
+          "min_rank_allowed",
+          "min_variance_allowed"
+        ],
+        "title": "RankConfig",
+        "description": "DEPRECATED Configuration about a specific rank type"
+      },
+      "RankConfigRequestResponse": {
         "properties": {
           "rank_configs": {
             "items": {
-              "$ref": "#/components/schemas/RankConfigV3"
+              "$ref": "#/components/schemas/RankConfig"
             },
             "type": "array",
             "title": "Rank Configs",
@@ -1215,92 +1378,90 @@
         "required": [
           "rank_configs"
         ],
-        "title": "RankConfigRequestResponseV3",
+        "title": "RankConfigRequestResponse",
+        "description": "DEPRECATED Response to successfully requesting all rank config"
+      },
+      "RankConfigRequestResponseV2": {
+        "properties": {
+          "rank_configs": {
+            "items": {
+              "$ref": "#/components/schemas/RankConfigV2"
+            },
+            "type": "array",
+            "title": "Rank Configs",
+            "description": "List of rank configurations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_configs"
+        ],
+        "title": "RankConfigRequestResponseV2",
         "description": "Response to successfully requesting all rank config"
       },
-      "RankConfigV3": {
+      "RankConfigV2": {
         "properties": {
-          "name": {
-            "type": "string",
-            "title": "Name",
-            "description": "Human readable name for this rank"
-          },
-          "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "Description of this rank"
-          },
-          "custom_data": {
-            "additionalProperties": {
-              "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
-            },
-            "type": "object",
-            "title": "Custom Data",
-            "description": "Custom data about this rank"
-          },
-          "max_mu": {
-            "type": "number",
-            "title": "Max Mu",
-            "description": "The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
-          },
-          "min_mu": {
-            "type": "number",
-            "title": "Min Mu",
-            "description": "The minimum mu value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
-          },
-          "min_sigma": {
-            "type": "number",
-            "minimum": 2,
-            "title": "Min Sigma",
-            "description": "The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
-          },
-          "beta": {
-            "type": "number",
-            "title": "Beta",
-            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
-          },
-          "default_mu": {
-            "type": "number",
-            "title": "Default Mu",
-            "description": "The default mu value for this rank id. Will be used when players do not have any rank history"
-          },
-          "default_sigma": {
-            "type": "number",
-            "minimum": 2,
-            "title": "Default Sigma",
-            "description": "The default sigma for this rank id. Will be used when players do not have any rank history"
-          },
-          "draw_probability": {
-            "type": "number",
-            "maximum": 1,
-            "minimum": 0,
-            "title": "Draw Probability",
-            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
-          },
-          "tau": {
-            "type": "number",
-            "title": "Tau",
-            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
-          },
           "rank_id": {
             "type": "string",
             "minLength": 1,
             "title": "Rank Id",
             "description": "ID for this rank type"
+          },
+          "default_rank": {
+            "type": "number",
+            "title": "Default Rank",
+            "description": "The default rank value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_variance": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Default Variance",
+            "description": "The default skill variance for this rank id. Will be used when players do not have any rank history"
+          },
+          "max_rank_allowed": {
+            "type": "number",
+            "title": "Max Rank Allowed",
+            "description": "The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_rank_allowed": {
+            "type": "number",
+            "title": "Min Rank Allowed",
+            "description": "The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_variance_allowed": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Min Variance Allowed",
+            "description": "The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+          },
+          "trueskill_beta": {
+            "type": "number",
+            "title": "Trueskill Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+          },
+          "trueskill_tau": {
+            "type": "number",
+            "title": "Trueskill Tau",
+            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01)"
+          },
+          "trueskill_draw_probability": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Trueskill Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
           }
         },
         "type": "object",
         "required": [
-          "max_mu",
-          "min_mu",
-          "min_sigma",
-          "default_mu",
-          "default_sigma",
-          "rank_id"
+          "rank_id",
+          "default_rank",
+          "default_variance",
+          "max_rank_allowed",
+          "min_rank_allowed",
+          "min_variance_allowed"
         ],
-        "title": "RankConfigV3",
+        "title": "RankConfigV2",
         "description": "Configuration about a specific rank type"
       },
       "RankData": {
@@ -1308,13 +1469,13 @@
           "mu": {
             "type": "number",
             "title": "Mu",
-            "description": "A measure of perceived skill in a player"
+            "description": "Trueskill mu. This is a measure of perceived skill in a player"
           },
           "sigma": {
             "type": "number",
             "minimum": 2,
             "title": "Sigma",
-            "description": "A measure of how confident we are in the perceived skill (high sigma means low confidence)"
+            "description": "Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident)"
           },
           "custom_data": {
             "additionalProperties": {
@@ -1334,7 +1495,7 @@
           "sigma"
         ],
         "title": "RankData",
-        "description": "Ranked data about a player's skill and confidence levels"
+        "description": "Trueskill oriented ranked data about a player's skill and confidence levels"
       },
       "RankUpdateRequest": {
         "properties": {
@@ -1398,7 +1559,7 @@
           },
           "teams": {
             "items": {
-              "$ref": "#/components/schemas/RankedTeam"
+              "$ref": "#/components/schemas/TrueskillTeam"
             },
             "type": "array",
             "title": "Teams",
@@ -1437,7 +1598,65 @@
           "team_rank"
         ],
         "title": "RankedTeam",
-        "description": "One team of players from a match along with their placement in the match, and previous rank data about all of the players"
+        "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
+      },
+      "TrueskillRank": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          },
+          "seconds_in_match": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Seconds In Match",
+            "description": "How many seconds this player was in the match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank",
+          "seconds_in_match"
+        ],
+        "title": "TrueskillRank",
+        "description": "Additional data about a specific player's rank and previous match in order to make trueskill calculations"
+      },
+      "TrueskillTeam": {
+        "properties": {
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/TrueskillRank"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of PlayerRankUpdate objects that give stats about a specific player from the match"
+          },
+          "team_rank": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Team Rank",
+            "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
+          }
+        },
+        "type": "object",
+        "required": [
+          "players",
+          "team_rank"
+        ],
+        "title": "TrueskillTeam",
+        "description": "One team of players from a match along with their placement in the match, and previous trueskill data about all of the players"
       },
       "ValidationError": {
         "properties": {
