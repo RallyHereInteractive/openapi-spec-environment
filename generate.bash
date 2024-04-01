@@ -12,7 +12,6 @@ SKIP_DOWNLOAD=false
 SKIP_MERGE=false
 SKIP_CHANGELOG=false
 SKIP_CHECK_BREAKING=false
-SKIP_CLEAN_SCHEMAS=false
 
 ########################################
 POSITIONAL_ARGS=()
@@ -41,7 +40,6 @@ while [[ $# -gt 0 ]]; do
       ;;
       -a|--api-list)
       APIS="$2"
-      SKIP_CLEAN_SCHEMAS=true
       shift # past argument
 	  shift # past value
       ;;
@@ -60,11 +58,6 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 ########################################
 # Download the API Specs
 if [[ ! -z "$SPEC_BASE_URL" && "$SKIP_DOWNLOAD" = false ]]; then
-    if [[ "$SKIP_CLEAN_SCHEMAS" = false ]]; then
-        rm -rf schemas
-        mkdir -p schemas
-    fi
-
     echo "Using baseurl ${SPEC_BASE_URL}"
 
     for api in ${APIS[@]}; do
