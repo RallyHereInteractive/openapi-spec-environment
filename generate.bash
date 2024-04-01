@@ -6,6 +6,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 pushd $DIR
 
 SPEC_BASE_URL="https://554b0f7e-4f66-4969-8bd9-6f6aecd06e25.rally-here.io"
+APIS="users ad settings friends session config inventory presence notification rank custom events match sanctions"
 
 SKIP_DOWNLOAD=false
 SKIP_MERGE=false
@@ -37,6 +38,11 @@ while [[ $# -gt 0 ]]; do
       SKIP_CHECK_BREAKING=true
       shift # past argument
       ;;
+      -a|--api-list)
+      APIS="$2"
+      shift # past argument
+	  shift # past value
+      ;;
     -*|--*)
       echo "Unknown option $1"
       exit 1
@@ -52,17 +58,17 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 ########################################
 # Download the API Specs
 if [[ ! -z "$SPEC_BASE_URL" && "$SKIP_DOWNLOAD" = false ]]; then
-    rm -rf schemas
-    mkdir -p schemas
-
-    APIS="users ad settings friends session config inventory presence notification rank custom events match sanctions"
-
     echo "Using baseurl ${SPEC_BASE_URL}"
 
     for api in ${APIS[@]}; do
+        # download the schema
         echo "Downloading ${api} API Spec"
         curl "${SPEC_BASE_URL}/${api}/openapi.json" -o schemas/${api}.tmp
 
+        # make sure the schema we are about to generate is deleted before generating it
+        rm -f "schemas/${api}.json"
+
+        # convert schema into destination
         echo "Pretty Printing ${api} API Spec"
         echo "$(jq -r . schemas/${api}.tmp)" >"schemas/${api}.json"
         rm schemas/${api}.tmp
