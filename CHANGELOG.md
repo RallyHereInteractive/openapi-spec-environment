@@ -1,3 +1,22 @@
+## Changes for Thu Apr  4 11:30:49 EDT 2024
+### New Endpoints: 10
+---------------------
+DELETE /file/v1/match  
+GET /file/v1/match  
+GET /file/v1/match/{match_id}/developer-files  
+DELETE /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/developer-files/{file_name}  
+PUT /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/files  
+DELETE /file/v1/match/{match_id}/files/{file_name}  
+GET /file/v1/match/{match_id}/files/{file_name}  
+PUT /file/v1/match/{match_id}/files/{file_name}  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: None
+----------------------------
 ## Changes for Mon Apr  1 16:10:02 EDT 2024
 
 ## Changes for Mon Apr  1 14:41:50 EDT 2024

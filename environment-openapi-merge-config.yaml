@@ -129,6 +129,15 @@
         "prefix": "Sanctions"
       },
     },
+    {
+      "inputFile": "./schemas/file.json",
+      "pathModification": {
+        "prepend": "/file"
+      },
+      "dispute": {
+        "prefix": "File"
+      },
+    },
   ],
   "output": "./environment.openapi.json"
 }
