@@ -1,3 +1,103 @@
+## Changes for Wed Apr 10 16:08:24 EDT 2024
+### New Endpoints: 6
+--------------------
+DELETE /file/v1/{entity_type}  
+GET /file/v1/{entity_type}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}  
+DELETE /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+PUT /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+
+### Deleted Endpoints: 10
+-------------------------
+DELETE /file/v1/match  
+GET /file/v1/match  
+GET /file/v1/match/{match_id}/developer-files  
+DELETE /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/developer-files/{file_name}  
+PUT /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/files  
+DELETE /file/v1/match/{match_id}/files/{file_name}  
+GET /file/v1/match/{match_id}/files/{file_name}  
+PUT /file/v1/match/{match_id}/files/{file_name}  
+
+### Modified Endpoints: None
+----------------------------
+## Changes for Wed Apr 10 16:07:50 EDT 2024
+### New Endpoints: 6
+--------------------
+DELETE /file/v1/{entity_type}  
+GET /file/v1/{entity_type}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}  
+DELETE /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+PUT /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+
+### Deleted Endpoints: 10
+-------------------------
+DELETE /file/v1/match  
+GET /file/v1/match  
+GET /file/v1/match/{match_id}/developer-files  
+DELETE /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/developer-files/{file_name}  
+PUT /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/files  
+DELETE /file/v1/match/{match_id}/files/{file_name}  
+GET /file/v1/match/{match_id}/files/{file_name}  
+PUT /file/v1/match/{match_id}/files/{file_name}  
+
+### Modified Endpoints: None
+----------------------------
+## Changes for Wed Apr 10 15:24:33 EDT 2024
+### New Endpoints: 6
+--------------------
+DELETE /file/v1/{entity_type}  
+GET /file/v1/{entity_type}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}  
+DELETE /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+PUT /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+
+### Deleted Endpoints: 10
+-------------------------
+DELETE /file/v1/match  
+GET /file/v1/match  
+GET /file/v1/match/{match_id}/developer-files  
+DELETE /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/developer-files/{file_name}  
+PUT /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/files  
+DELETE /file/v1/match/{match_id}/files/{file_name}  
+GET /file/v1/match/{match_id}/files/{file_name}  
+PUT /file/v1/match/{match_id}/files/{file_name}  
+
+### Modified Endpoints: None
+----------------------------
+## Changes for Mon Apr  8 13:58:46 EDT 2024
+### New Endpoints: 6
+--------------------
+DELETE /file/v1/{entity_type}  
+GET /file/v1/{entity_type}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}  
+DELETE /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+GET /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+PUT /file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}  
+
+### Deleted Endpoints: 10
+-------------------------
+DELETE /file/v1/match  
+GET /file/v1/match  
+GET /file/v1/match/{match_id}/developer-files  
+DELETE /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/developer-files/{file_name}  
+PUT /file/v1/match/{match_id}/developer-files/{file_name}  
+GET /file/v1/match/{match_id}/files  
+DELETE /file/v1/match/{match_id}/files/{file_name}  
+GET /file/v1/match/{match_id}/files/{file_name}  
+PUT /file/v1/match/{match_id}/files/{file_name}  
+
+### Modified Endpoints: None
+----------------------------
 ## Changes for Thu Apr  4 11:30:49 EDT 2024
 ### New Endpoints: 10
 ---------------------

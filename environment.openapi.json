@@ -25046,14 +25046,30 @@
         }
       }
     },
-    "/file/v1/match": {
+    "/file/v1/{entity_type}": {
       "get": {
         "tags": [
           "file"
         ],
-        "summary": "Get Match Directory Information",
-        "description": "Get information about match storage",
-        "operationId": "get_match_directory_information",
+        "summary": "Get Entity Directory Information",
+        "description": "Get information about a entity types storage container. Very resource intensive, use sparingly.",
+        "operationId": "get_entity_directory_information",
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -25074,21 +25090,41 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
           "file"
         ],
-        "summary": "Delete Match Directory",
-        "operationId": "delete_match_directory",
+        "summary": "Delete Entity Directory",
+        "operationId": "delete_entity_directory",
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -25107,24 +25143,28 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
-    "/file/v1/match/{match_id}/files/{file_name}": {
+    "/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}": {
       "put": {
         "tags": [
           "file"
         ],
-        "summary": "Create Match Directory File",
-        "description": "Upload a file to match storage for provided match_id",
-        "operationId": "create_match_directory_file",
+        "summary": "Create Entity Directory File",
+        "description": "Upload a file to entity storage for provided entity_id",
+        "operationId": "create_entity_directory_file",
         "deprecated": true,
         "security": [
           {
@@ -25132,6 +25172,14 @@
           }
         ],
         "parameters": [
+          {
+            "name": "file_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FileType"
+            }
+          },
           {
             "name": "file_name",
             "in": "path",
@@ -25142,12 +25190,20 @@
             }
           },
           {
-            "name": "match_id",
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          {
+            "name": "entity_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Match Id"
+              "title": "Entity Id"
             }
           }
         ],
@@ -25156,7 +25212,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_create_match_directory_file"
+                "$ref": "#/components/schemas/Body_create_entity_directory_file"
               }
             }
           }
@@ -25191,8 +25247,8 @@
         "tags": [
           "file"
         ],
-        "summary": "Download Match Directory File",
-        "operationId": "download_match_directory_file",
+        "summary": "Download Entity Directory File",
+        "operationId": "download_entity_directory_file",
         "deprecated": true,
         "security": [
           {
@@ -25201,12 +25257,20 @@
         ],
         "parameters": [
           {
-            "name": "match_id",
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          {
+            "name": "entity_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Match Id"
+              "title": "Entity Id"
             }
           },
           {
@@ -25216,6 +25280,14 @@
             "schema": {
               "type": "string",
               "title": "File Name"
+            }
+          },
+          {
+            "name": "file_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FileType"
             }
           }
         ],
@@ -25266,8 +25338,8 @@
         "tags": [
           "file"
         ],
-        "summary": "Delete Match Directory File",
-        "operationId": "delete_match_directory_file",
+        "summary": "Delete Entity Directory File",
+        "operationId": "delete_entity_directory_file",
         "deprecated": true,
         "security": [
           {
@@ -25276,12 +25348,20 @@
         ],
         "parameters": [
           {
-            "name": "match_id",
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          {
+            "name": "entity_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Match Id"
+              "title": "Entity Id"
             }
           },
           {
@@ -25291,6 +25371,14 @@
             "schema": {
               "type": "string",
               "title": "File Name"
+            }
+          },
+          {
+            "name": "file_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FileType"
             }
           }
         ],
@@ -25321,13 +25409,13 @@
         }
       }
     },
-    "/file/v1/match/{match_id}/files": {
+    "/file/v1/{entity_type}/{entity_id}/{file_type}": {
       "get": {
         "tags": [
           "file"
         ],
-        "summary": "List Match Directory Files",
-        "operationId": "list_match_directory_files",
+        "summary": "List Entity Directory Files",
+        "operationId": "list_entity_directory_files",
         "deprecated": true,
         "security": [
           {
@@ -25336,274 +25424,28 @@
         ],
         "parameters": [
           {
-            "name": "match_id",
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          {
+            "name": "entity_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "title": "Match Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FileListResponse"
-                }
-              }
+              "title": "Entity Id"
             }
           },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/file/v1/match/{match_id}/developer-files/{file_name}": {
-      "put": {
-        "tags": [
-          "file"
-        ],
-        "summary": "Create Match Directory Developer File",
-        "description": "Upload a file to match storage for provided match_id",
-        "operationId": "create_match_directory_developer_file",
-        "deprecated": true,
-        "security": [
           {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "file_name",
+            "name": "file_type",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "title": "File Name"
-            }
-          },
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_create_match_directory_developer_file"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "file"
-        ],
-        "summary": "Download Match Directory Developer File",
-        "operationId": "download_match_directory_developer_file",
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "file_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "File Name"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "\nError Codes:\n- `file_not_found` - File not found.\n",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "file"
-        ],
-        "summary": "Delete Match Directory Developer File",
-        "operationId": "delete_match_directory_developer_file",
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "file_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "File Name"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/file/v1/match/{match_id}/developer-files": {
-      "get": {
-        "tags": [
-          "file"
-        ],
-        "summary": "List Match Directory Developer Files",
-        "operationId": "list_match_directory_developer_files",
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "match_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Match Id"
+              "$ref": "#/components/schemas/FileType"
             }
           }
         ],
@@ -37448,7 +37290,7 @@
         "title": "ReportReason",
         "description": "Reason a player is submitting the report."
       },
-      "Body_create_match_directory_developer_file": {
+      "Body_create_entity_directory_file": {
         "properties": {
           "file": {
             "type": "string",
@@ -37460,21 +37302,15 @@
         "required": [
           "file"
         ],
-        "title": "Body_create_match_directory_developer_file"
+        "title": "Body_create_entity_directory_file"
       },
-      "Body_create_match_directory_file": {
-        "properties": {
-          "file": {
-            "type": "string",
-            "format": "binary",
-            "title": "File"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file"
+      "EntityType": {
+        "type": "string",
+        "enum": [
+          "match",
+          "unknown"
         ],
-        "title": "Body_create_match_directory_file"
+        "title": "EntityType"
       },
       "FileListResponse": {
         "properties": {
@@ -37522,6 +37358,14 @@
           "created_timestamp"
         ],
         "title": "FileResponse"
+      },
+      "FileType": {
+        "type": "string",
+        "enum": [
+          "file",
+          "developer-file"
+        ],
+        "title": "FileType"
       },
       "StorageInformation": {
         "properties": {
