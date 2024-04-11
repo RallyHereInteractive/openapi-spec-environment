@@ -1,3 +1,63 @@
+## Changes for Thu Apr 11 05:54:18 PM EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Title changed from '' to 'CustomAudit'
+                - Required changed
+                  - New required property: event_datetime
+                  - New required property: event_name
+                  - New required property: session_id
+                - Properties changed
+                  - New property: additional_params
+                  - New property: allocation_id
+                  - New property: client_settings
+                  - New property: crossplay_preferences
+                  - New property: custom_data
+                  - New property: event_datetime
+                  - New property: event_name
+                  - New property: host_player_uuid
+                  - New property: host_type
+                  - New property: instance_health
+                  - New property: instance_id
+                  - New property: instance_request_template
+                  - New property: invited_session_id
+                  - New property: join_params
+                  - New property: join_status
+                  - New property: joinable
+                  - New property: map
+                  - New property: map_preferences
+                  - New property: mode
+                  - New property: platform
+                  - New property: platform_session_id
+                  - New property: player_status
+                  - New property: player_uuid
+                  - New property: players
+                  - New property: queue_id
+                  - New property: queued_session_id
+                  - New property: region_id
+                  - New property: removed_session_id
+                  - New property: requesting_user_uuid
+                  - New property: session_id
+                  - New property: session_type
+                  - New property: source
+                  - New property: team_id
+                  - New property: ticket_id
+                  - New property: updated_teams
+                  - New property: version
 ## Changes for Thu Apr 11 04:31:42 PM EDT 2024
 ### New Endpoints: None
 -----------------------

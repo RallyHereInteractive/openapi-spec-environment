@@ -4448,7 +4448,7 @@
         "properties": {
           "events": {
             "items": {
-              "type": "object"
+              "$ref": "#/components/schemas/CustomAudit"
             },
             "type": "array",
             "title": "Events",
@@ -4994,17 +4994,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -5016,15 +5016,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -5054,6 +5054,276 @@
         "title": "CrossplayPreferences",
         "description": "A session's or player's preferences around crossplay platforms and inputs. Permitted platforms and inputs will be checked when new players attempt to join a session"
       },
+      "CustomAudit": {
+        "properties": {
+          "event_name": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Event Name",
+            "description": "Name of the audit event you are creating. Customer created events will be prepended with 'customer.'"
+          },
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id",
+            "description": "ID of the session this event occurred in"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data for this audit request"
+          },
+          "session_type": {
+            "type": "string",
+            "title": "Session Type",
+            "description": "Type of the session this event occurred in"
+          },
+          "region_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Region Id",
+            "description": "Region ID for this event"
+          },
+          "joinable": {
+            "type": "boolean",
+            "title": "Joinable",
+            "description": "Whether or not the session is publicly joinable"
+          },
+          "updated_teams": {
+            "items": {
+              "$ref": "#/components/schemas/TeamUpdate"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Updated Teams",
+            "description": "Updated team numbers and sizes"
+          },
+          "source": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InviteSource"
+              }
+            ],
+            "description": "The source of an invite"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID of a specific player being effected in this event"
+          },
+          "team_id": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Team Id",
+            "description": "ID of the team being effected in this event"
+          },
+          "invited_session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Invited Session Id",
+            "description": "ID of the session being invited in this event"
+          },
+          "removed_session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Removed Session Id",
+            "description": "ID of the session being removed in this event"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "description": "Version updated in this event"
+          },
+          "client_settings": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ClientSettings"
+              }
+            ],
+            "title": "Client Settings",
+            "description": "Client settings updated as part of this event"
+          },
+          "crossplay_preferences": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayPreferences"
+              }
+            ],
+            "title": "Crossplay Preferences",
+            "description": "Crossplay preferences updated as part of this event"
+          },
+          "player_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionPlayerStatus"
+              }
+            ],
+            "description": "Player's status updated as part of this event"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform updated as part of this event"
+          },
+          "platform_session_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Platform Session Id",
+            "description": "ID of the platform session being effected in this event"
+          },
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID of the instance being effected in this event"
+          },
+          "host_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HostType"
+              }
+            ],
+            "description": "Type of the host being effected in this event"
+          },
+          "host_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Host Player Uuid",
+            "description": "UUID of the player hosting during this event"
+          },
+          "instance_request_template": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instance Request Template",
+            "description": "ID of the instance request template being used in this event"
+          },
+          "map": {
+            "type": "string",
+            "title": "Map",
+            "description": "Map being used in this event"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "description": "Mode being used in this event"
+          },
+          "allocation_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Allocation Id",
+            "description": "Allocation ID of instance in this event"
+          },
+          "join_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceJoinableStatus"
+              }
+            ],
+            "description": "Instance's joinability status"
+          },
+          "join_params": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JoinParams"
+              }
+            ],
+            "title": "Join Params",
+            "description": "Instance's join parameters for this event"
+          },
+          "instance_health": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceHealthStatus"
+              }
+            ],
+            "description": "Instance's health status for this event"
+          },
+          "queue_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Queue Id",
+            "description": "ID for the queue in this event"
+          },
+          "players": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players uuids that were effected in this event. Each player will get a unique event"
+          },
+          "ticket_id": {
+            "type": "string",
+            "title": "Ticket Id",
+            "description": "Matchmaking ticket id in this event"
+          },
+          "additional_params": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Additional Params",
+            "description": "Additional matchmaking parameters in this event"
+          },
+          "map_preferences": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Map Preferences",
+            "description": "Map preferences in this event"
+          },
+          "queued_session_id": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Queued Session Id",
+            "description": "ID of the session that was/is in a matchmaking queue for this event"
+          },
+          "requesting_user_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requesting User Uuid"
+          },
+          "event_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_name",
+          "session_id",
+          "event_datetime"
+        ],
+        "title": "CustomAudit"
+      },
       "DeleteTicketReason": {
         "type": "string",
         "enum": [
@@ -5063,15 +5333,15 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "left_queue",
-          "timeout"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "left_queue",
+          "timeout"
         ]
       },
       "Determiner": {
@@ -5084,17 +5354,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HTTPValidationError": {
@@ -5118,13 +5388,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player"
         ]
       },
       "HzApiErrorModel": {
@@ -5159,15 +5429,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -5212,17 +5482,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -5450,19 +5720,19 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
           "Host has arrived and is loading",
           "Host is ready to accept players",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -5654,15 +5924,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -5707,17 +5977,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -6305,14 +6575,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -6320,6 +6582,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "Platform": {
@@ -6344,24 +6614,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -6379,6 +6631,24 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformID": {
@@ -6399,20 +6669,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -6426,6 +6682,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -6652,15 +6922,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -6965,15 +7235,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE",
+          "JOINING_SESSION_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -7338,17 +7608,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -7678,19 +7948,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
