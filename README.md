@@ -48,6 +48,14 @@ This script does the following:
 | ---- | --- | --- |
 | `-u` | Yes | Override the environment base URL used when generating the spec |
 |  `--environment-base-url` | Yes | Override the environment base URL used when generating the spec |
+| `-a` | Yes | Override the list of APIs to regenerate (only downloads the specified list, but will still use local files for merging) |
+|  `--api-list` | Yes | Override the list of APIs to regenerate (only downloads the specified list, but will still use local files for merging) |
+| `--skip-download` | Yes | Skip the download phase, and just use local files |
+| `--skip-merge` | Yes | Skip merging the individual specs into a single environment file |
+| `--skip-changelog` | Yes | Skip the changelog generation |
+| `--skip-check-breaking` | Yes | Skip checking for breaking changes |
+| `--skip-check-breaking` | Yes | Skip checking for breaking changes |
+
 
 ### Breaking Changes
 
