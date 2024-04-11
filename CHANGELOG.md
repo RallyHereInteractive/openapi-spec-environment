@@ -1,3 +1,72 @@
+## Changes for Thu Apr 11 15:20:56 EDT 2024
+### New Endpoints: 2
+--------------------
+GET /session/v1/audit  
+POST /session/v1/audit  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 3
+-------------------------
+GET /sanctions/v2/player/me/reports
+- Description changed from 'Get reports for a target player
+Required Permissions:
+
+- For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
+
+- For the player themselves : `sanction:report:read:target-self`
+
+Source players will be empty without the Required Permissions:
+
+- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+
+- For the player themselves : `sanction:report:read:source-self`' to 'Get reports for a target player
+Required Permissions:
+
+- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
+
+- For the player themselves : `sanction:report:read:target-self`
+
+Source players will be empty without the Required Permissions:
+
+- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+
+- For the player themselves : `sanction:report:read:source-self`'
+
+GET /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Get reports for a target player
+Required Permissions:
+
+- For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
+
+- For the player themselves : `sanction:report:read:target-self`
+
+Source players will be empty without the Required Permissions:
+
+- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+
+- For the player themselves : `sanction:report:read:source-self`' to 'Get reports for a target player
+Required Permissions:
+
+- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
+
+- For the player themselves : `sanction:report:read:target-self`
+
+Source players will be empty without the Required Permissions:
+
+- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+
+- For the player themselves : `sanction:report:read:source-self`'
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`'
 ## Changes for Wed Apr 10 16:08:24 EDT 2024
 ### New Endpoints: 6
 --------------------

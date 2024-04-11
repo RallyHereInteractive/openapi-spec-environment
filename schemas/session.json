@@ -4163,6 +4163,183 @@
           }
         ]
       }
+    },
+    "/v1/audit": {
+      "get": {
+        "tags": [
+          "Session Audit"
+        ],
+        "summary": "Get Session Audit",
+        "description": "Get all audit events for a specific session or player. Empty list means there is no audit history.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session-audit:read:all`, `session:*`\n\n\n\nRequired Session Permissions: None",
+        "operationId": "get_session_audit",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "title": "Page Num",
+              "default": 0
+            },
+            "name": "page_num",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "title": "Page Size",
+              "default": 50
+            },
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "Start Date"
+            },
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "End Date",
+              "default": "2024-04-11T17:50:53.912423"
+            },
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Session Audit"
+        ],
+        "summary": "Create Session Audit",
+        "description": "Create an audit event in the log for this session.\nInternal session operations will create new events that are accessible from the get request.\n\nPlayer clients and instances are expected to create events here when something occurs on their clients that is\nrelevant. Customer created events will be prepended with 'customer.'\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session-audit:update:all`, `session:*`\n\n\n\nRequired Session Permissions: None",
+        "operationId": "create_session_audit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAuditRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -4265,6 +4442,21 @@
         "type": "object",
         "title": "AdditionalJoinParams",
         "description": "Additional parameters to apply to a matchmaking ticket"
+      },
+      "AuditResponse": {
+        "properties": {
+          "events": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Events",
+            "description": "List of audit events",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "AuditResponse"
       },
       "BackfillInfo": {
         "properties": {
@@ -4476,6 +4668,264 @@
         ],
         "title": "ConnectionInfo",
         "description": "Connection info about the requesting client"
+      },
+      "CreateAuditRequest": {
+        "properties": {
+          "event_name": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Event Name",
+            "description": "Name of the audit event you are creating. Customer created events will be prepended with 'customer.'"
+          },
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id",
+            "description": "ID of the session this event occurred in"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data for this audit request"
+          },
+          "session_type": {
+            "type": "string",
+            "title": "Session Type",
+            "description": "Type of the session this event occurred in"
+          },
+          "region_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Region Id",
+            "description": "Region ID for this event"
+          },
+          "joinable": {
+            "type": "boolean",
+            "title": "Joinable",
+            "description": "Whether or not the session is publicly joinable"
+          },
+          "updated_teams": {
+            "items": {
+              "$ref": "#/components/schemas/TeamUpdate"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Updated Teams",
+            "description": "Updated team numbers and sizes"
+          },
+          "source": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InviteSource"
+              }
+            ],
+            "description": "The source of an invite"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID of a specific player being effected in this event"
+          },
+          "team_id": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Team Id",
+            "description": "ID of the team being effected in this event"
+          },
+          "invited_session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Invited Session Id",
+            "description": "ID of the session being invited in this event"
+          },
+          "removed_session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Removed Session Id",
+            "description": "ID of the session being removed in this event"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "description": "Version updated in this event"
+          },
+          "client_settings": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ClientSettings"
+              }
+            ],
+            "title": "Client Settings",
+            "description": "Client settings updated as part of this event"
+          },
+          "crossplay_preferences": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CrossplayPreferences"
+              }
+            ],
+            "title": "Crossplay Preferences",
+            "description": "Crossplay preferences updated as part of this event"
+          },
+          "player_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionPlayerStatus"
+              }
+            ],
+            "description": "Player's status updated as part of this event"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform updated as part of this event"
+          },
+          "platform_session_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Platform Session Id",
+            "description": "ID of the platform session being effected in this event"
+          },
+          "instance_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Instance Id",
+            "description": "ID of the instance being effected in this event"
+          },
+          "host_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HostType"
+              }
+            ],
+            "description": "Type of the host being effected in this event"
+          },
+          "host_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Host Player Uuid",
+            "description": "UUID of the player hosting during this event"
+          },
+          "instance_request_template": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instance Request Template",
+            "description": "ID of the instance request template being used in this event"
+          },
+          "map": {
+            "type": "string",
+            "title": "Map",
+            "description": "Map being used in this event"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "description": "Mode being used in this event"
+          },
+          "allocation_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Allocation Id",
+            "description": "Allocation ID of instance in this event"
+          },
+          "join_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceJoinableStatus"
+              }
+            ],
+            "description": "Instance's joinability status"
+          },
+          "join_params": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JoinParams"
+              }
+            ],
+            "title": "Join Params",
+            "description": "Instance's join parameters for this event"
+          },
+          "instance_health": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceHealthStatus"
+              }
+            ],
+            "description": "Instance's health status for this event"
+          },
+          "queue_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Queue Id",
+            "description": "ID for the queue in this event"
+          },
+          "players": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players uuids that were effected in this event. Each player will get a unique event"
+          },
+          "ticket_id": {
+            "type": "string",
+            "title": "Ticket Id",
+            "description": "Matchmaking ticket id in this event"
+          },
+          "additional_params": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Additional Params",
+            "description": "Additional matchmaking parameters in this event"
+          },
+          "map_preferences": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Map Preferences",
+            "description": "Map preferences in this event"
+          },
+          "queued_session_id": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Queued Session Id",
+            "description": "ID of the session that was/is in a matchmaking queue for this event"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_name",
+          "session_id"
+        ],
+        "title": "CreateAuditRequest"
       },
       "CreateOrJoinRequest": {
         "properties": {
@@ -5193,6 +5643,26 @@
         ],
         "title": "InstanceStartupParams",
         "description": "Parameters given to an instance to change what map and mode it loads, and other gameplay behavior"
+      },
+      "InviteSource": {
+        "type": "string",
+        "enum": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
+        ],
+        "title": "InviteSource",
+        "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
+        ]
       },
       "JoinParams": {
         "properties": {
