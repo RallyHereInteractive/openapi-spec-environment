@@ -1,3 +1,22 @@
+## Changes for Thu Apr 11 04:31:42 PM EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+GET /session/v1/audit
+- Modified query param: end_date
+  - Schema changed
+    - Title changed from 'End Date' to 'Time Zone Aware Datetime'
+    - Description changed from '' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+    - Default changed from '2024-04-11T17:50:53.912423' to null
+- Modified query param: start_date
+  - Schema changed
+    - Title changed from 'Start Date' to 'Time Zone Aware Datetime'
+    - Description changed from '' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
 ## Changes for Thu Apr 11 15:20:56 EDT 2024
 ### New Endpoints: 2
 --------------------
