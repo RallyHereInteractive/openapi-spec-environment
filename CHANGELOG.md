@@ -1,3 +1,41 @@
+## Changes for Mon Apr 15 19:05:41 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 2
+-------------------------
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: additional_params
+                    - Property 'AllOf' changed
+                      - Schemas added: [AdditionalJoinParams]
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: additional_params
+            - Property 'AllOf' changed
+              - Schemas added: [AdditionalJoinParams]
+            - Type changed from 'object' to ''
+            - AdditionalProperties changed
+              - Schema deleted
 ## Changes for Mon Apr 15 16:32:15 EDT 2024
 ### New Endpoints: None
 -----------------------
