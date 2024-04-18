@@ -1,3 +1,31 @@
+## Changes for Thu Apr 18 18:12:35 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 2
+-------------------------
+GET /session/v1/session/{session_id}/player/me/voip/vivox:{vivox_action}
+- Modified path param: vivox_action
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas deleted: [VivoxGeneralAction VivoxSessionActionSelf VivoxSessionActionOther]
+    - Type changed from '' to 'string'
+    - Title changed from 'Vivox Action' to 'VivoxSessionActionSingle'
+    - Description changed from '' to 'An enumeration.'
+    - New enum values: [join join_muted kick mute trxn]
+
+GET /session/v1/session/{session_id}/player/{player_uuid}/voip/vivox:{vivox_action}
+- Modified path param: vivox_action
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas deleted: [VivoxGeneralAction VivoxSessionActionSelf VivoxSessionActionOther]
+    - Type changed from '' to 'string'
+    - Title changed from 'Vivox Action' to 'VivoxSessionActionSingle'
+    - Description changed from '' to 'An enumeration.'
+    - New enum values: [join join_muted kick mute trxn]
 ## Changes for Thu Apr 18 17:11:12 EDT 2024
 ### New Endpoints: 3
 --------------------

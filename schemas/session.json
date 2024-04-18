@@ -4401,18 +4401,7 @@
           {
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/VivoxGeneralAction"
-                },
-                {
-                  "$ref": "#/components/schemas/VivoxSessionActionSelf"
-                },
-                {
-                  "$ref": "#/components/schemas/VivoxSessionActionOther"
-                }
-              ],
-              "title": "Vivox Action"
+              "$ref": "#/components/schemas/VivoxSessionActionSingle"
             },
             "name": "vivox_action",
             "in": "path"
@@ -4508,18 +4497,7 @@
           {
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/VivoxGeneralAction"
-                },
-                {
-                  "$ref": "#/components/schemas/VivoxSessionActionSelf"
-                },
-                {
-                  "$ref": "#/components/schemas/VivoxSessionActionOther"
-                }
-              ],
-              "title": "Vivox Action"
+              "$ref": "#/components/schemas/VivoxSessionActionSingle"
             },
             "name": "vivox_action",
             "in": "path"
@@ -8284,38 +8262,7 @@
         ],
         "title": "ValidationError"
       },
-      "VivoxGeneralAction": {
-        "type": "string",
-        "enum": [
-          "login"
-        ],
-        "title": "VivoxGeneralAction",
-        "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration."
-        ],
-        "x-enum-varnames": [
-          "LOGIN"
-        ]
-      },
-      "VivoxSessionActionOther": {
-        "type": "string",
-        "enum": [
-          "kick_all",
-          "mute_all"
-        ],
-        "title": "VivoxSessionActionOther",
-        "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
-        "x-enum-varnames": [
-          "KICK_ALL",
-          "MUTE_ALL"
-        ]
-      },
-      "VivoxSessionActionSelf": {
+      "VivoxSessionActionSingle": {
         "type": "string",
         "enum": [
           "join",
@@ -8324,7 +8271,7 @@
           "mute",
           "trxn"
         ],
-        "title": "VivoxSessionActionSelf",
+        "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
         "x-enum-descriptions": [
           "An enumeration.",
