@@ -1,3 +1,15 @@
+## Changes for Thu Apr 18 17:11:12 EDT 2024
+### New Endpoints: 3
+--------------------
+GET /session/v1/session/{session_id}/player/me/voip/vivox:{vivox_action}  
+GET /session/v1/session/{session_id}/player/{player_uuid}/voip/vivox:{vivox_action}  
+GET /session/v1/voip/vivox:login  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: None
+----------------------------
 ## Changes for Mon Apr 15 19:05:41 EDT 2024
 ### New Endpoints: None
 -----------------------
