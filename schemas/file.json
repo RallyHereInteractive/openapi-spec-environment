@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/v1/{entity_type}": {
+    "/v1/{file_type}/{entity_type}": {
       "get": {
         "tags": [
           "file"
@@ -19,13 +19,20 @@
         "summary": "Get Entity Directory Information",
         "description": "Get information about a entity types storage container. Very resource intensive, use sparingly.",
         "operationId": "get_entity_directory_information",
-        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
           }
         ],
         "parameters": [
+          {
+            "name": "file_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FileType"
+            }
+          },
           {
             "name": "entity_type",
             "in": "path",
@@ -74,13 +81,20 @@
         ],
         "summary": "Delete Entity Directory",
         "operationId": "delete_entity_directory",
-        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
           }
         ],
         "parameters": [
+          {
+            "name": "file_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FileType"
+            }
+          },
           {
             "name": "entity_type",
             "in": "path",
@@ -122,7 +136,7 @@
         }
       }
     },
-    "/v1/{entity_type}/{entity_id}/{file_type}/{file_name}": {
+    "/v1/{file_type}/{entity_type}/{entity_id}/{file_name}": {
       "put": {
         "tags": [
           "file"
@@ -130,7 +144,6 @@
         "summary": "Create Entity Directory File",
         "description": "Upload a file to entity storage for provided entity_id",
         "operationId": "create_entity_directory_file",
-        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -214,7 +227,6 @@
         ],
         "summary": "Download Entity Directory File",
         "operationId": "download_entity_directory_file",
-        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -305,7 +317,6 @@
         ],
         "summary": "Delete Entity Directory File",
         "operationId": "delete_entity_directory_file",
-        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -374,14 +385,13 @@
         }
       }
     },
-    "/v1/{entity_type}/{entity_id}/{file_type}": {
+    "/v1/{file_type}/{entity_type}/{entity_id}": {
       "get": {
         "tags": [
           "file"
         ],
         "summary": "List Entity Directory Files",
         "operationId": "list_entity_directory_files",
-        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []

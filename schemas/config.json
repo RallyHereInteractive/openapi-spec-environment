@@ -17,24 +17,66 @@
           "config"
         ],
         "summary": "Get App Settings Server",
-        "description": "Returns app settings that are configured to be available to the server. Requires permission: config:app_settings:server:read",
+        "description": "***DEPRECATED*** Please use /v2/kv instead.  \n\nReturns app settings that are configured to be available to the server. \n\nRequired Permissions: : `config:app_settings:server:read`",
         "operationId": "get_app_settings_server",
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "name": "if-none-match",
+            "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+              "title": "If-None-Match"
             },
-            "name": "if-none-match",
-            "in": "header"
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed.",
+              "title": "If-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed."
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KV_V1"
+                  },
+                  "title": "Response Get App Settings Server"
+                }
+              }
+            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -42,24 +84,10 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/AppSetting"
-                  },
-                  "type": "array",
-                  "title": "Response Get App Settings Server V1 App Settings Server Get"
-                }
-              }
             }
           },
-          "304": {
-            "description": "Content still has the same etag and has not changed"
-          },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -67,6 +95,12 @@
                 }
               }
             }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "412": {
+            "description": "Content has changed since the ETag was provided"
           },
           "422": {
             "description": "Validation Error",
@@ -78,12 +112,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/v1/app_settings/client": {
@@ -92,24 +121,61 @@
           "config"
         ],
         "summary": "Get App Settings Client",
-        "description": "Returns app settings that are configured to be available to the client.",
+        "description": "***DEPRECATED*** Please use /v2/kv instead.  \n\nReturns app settings that are configured to be available to the client.",
         "operationId": "get_app_settings_client",
+        "deprecated": true,
         "parameters": [
           {
-            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "name": "if-none-match",
+            "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+              "title": "If-None-Match"
             },
-            "name": "if-none-match",
-            "in": "header"
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed.",
+              "title": "If-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed."
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KV_V1"
+                  },
+                  "title": "Response Get App Settings Client"
+                }
+              }
+            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -117,21 +183,13 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/AppSetting"
-                  },
-                  "type": "array",
-                  "title": "Response Get App Settings Client V1 App Settings Client Get"
-                }
-              }
             }
           },
           "304": {
             "description": "Content still has the same etag and has not changed"
+          },
+          "412": {
+            "description": "Content has changed since the ETag was provided"
           },
           "422": {
             "description": "Validation Error",
@@ -152,38 +210,83 @@
           "config"
         ],
         "summary": "Get App Settings All",
-        "description": "If authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.",
+        "description": "***DEPRECATED*** Please use /v2/kv instead.  \n\nIf authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.",
         "operationId": "get_app_settings_all",
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "If specified, will only return the KVs with the specified keys",
+            "name": "keys_to_include",
+            "in": "query",
             "required": false,
             "schema": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array",
-              "title": "Keys To Include",
-              "description": "If specified, will only return the KVs with the specified keys"
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If specified, will only return the KVs with the specified keys",
+              "title": "Keys To Include"
             },
-            "name": "keys_to_include",
-            "in": "query"
+            "description": "If specified, will only return the KVs with the specified keys"
           },
           {
-            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+            "name": "if-none-match",
+            "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+              "title": "If-None-Match"
             },
-            "name": "if-none-match",
-            "in": "header"
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed.",
+              "title": "If-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed."
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KVsResponseV1"
+                }
+              }
+            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -191,17 +294,13 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KVsResponse"
-                }
-              }
             }
           },
           "304": {
             "description": "Content still has the same etag and has not changed"
+          },
+          "412": {
+            "description": "Content has changed since the ETag was provided"
           },
           "422": {
             "description": "Validation Error",
@@ -213,12 +312,117 @@
               }
             }
           }
-        },
+        }
+      }
+    },
+    "/v2/kv": {
+      "get": {
+        "tags": [
+          "config"
+        ],
+        "summary": "Get Kvs V2",
+        "description": "Get All KVs and Secret KVs.  Regular KVs are always returned.\n\nRequired permissions for secret KVs: : `config:secret_kvs:read`",
+        "operationId": "get_kvs_v2",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
           }
-        ]
+        ],
+        "parameters": [
+          {
+            "name": "keys_to_include",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If specified, will only return the KVs with the specified keys",
+              "title": "Keys To Include"
+            },
+            "description": "If specified, will only return the KVs with the specified keys"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+              "title": "If-None-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed.",
+              "title": "If-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KVsResponseV2"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "412": {
+            "description": "Content has changed since the ETag was provided"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/time/utc": {
@@ -237,7 +441,7 @@
                 "schema": {
                   "type": "string",
                   "format": "date-time",
-                  "title": "Response Get Utc Time V1 Time Utc Get"
+                  "title": "Response Get Utc Time"
                 }
               }
             }
@@ -270,32 +474,6 @@
   },
   "components": {
     "schemas": {
-      "AppSetting": {
-        "properties": {
-          "key": {
-            "type": "string",
-            "title": "Key",
-            "description": "The key for the setting"
-          },
-          "value": {
-            "type": "string",
-            "title": "Value",
-            "description": "The value for the setting"
-          },
-          "notes": {
-            "type": "string",
-            "title": "Notes",
-            "description": "Notes to describe the key value pair"
-          }
-        },
-        "type": "object",
-        "required": [
-          "key",
-          "value"
-        ],
-        "title": "AppSetting",
-        "description": "A key/value pair that represents a setting to be used by the client."
-      },
       "EnvironmentConfig": {
         "properties": {
           "org_id": {
@@ -364,11 +542,44 @@
         ],
         "title": "HzApiErrorModel"
       },
-      "KVsResponse": {
+      "KV_V1": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key",
+            "description": "The key for the setting"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value",
+            "description": "The value for the setting"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes",
+            "description": "Notes to describe the key value pair"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "KV_V1",
+        "description": "A key/value pair that represents a setting to be used by the client."
+      },
+      "KVsResponseV1": {
         "properties": {
           "kvs": {
             "items": {
-              "$ref": "#/components/schemas/AppSetting"
+              "$ref": "#/components/schemas/KV_V1"
             },
             "type": "array",
             "title": "Kvs",
@@ -377,7 +588,7 @@
           },
           "secret_kvs": {
             "items": {
-              "$ref": "#/components/schemas/AppSetting"
+              "$ref": "#/components/schemas/KV_V1"
             },
             "type": "array",
             "title": "Secret Kvs",
@@ -386,7 +597,31 @@
           }
         },
         "type": "object",
-        "title": "KVsResponse"
+        "title": "KVsResponseV1"
+      },
+      "KVsResponseV2": {
+        "properties": {
+          "kvs": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Kvs",
+            "description": "The list of key/value pairs",
+            "default": {}
+          },
+          "secret_kvs": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Secret Kvs",
+            "description": "The list of secret key/value pairs",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "title": "KVsResponseV2"
       },
       "ValidationError": {
         "properties": {
