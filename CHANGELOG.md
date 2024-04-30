@@ -1,3 +1,1367 @@
+## Changes for Tue Apr 30 13:38:38 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 30
+--------------------------
+GET /notification/v1/instance/{instance_id}/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:read`, `notification:instance:*`
+
+- For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`
+
+- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+POST /notification/v1/instance/{instance_id}/notification
+- Description changed from 'Create new notification for client.  Requires permission to create for a different client
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:write`, `notification:instance:*`
+
+- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:write`' to 'Create new notification for client.  Requires permission to create for a different client
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:write`
+
+- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/instance/{instance_id}/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:read`, `notification:instance:*`
+
+- For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`' to 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`
+
+- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/instance/{instance_id}/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:read`, `notification:instance:*`
+
+- For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`
+
+- For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/player/me/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:self:read`, `notification:player:self:*`, `notification:player:*`, `notification:player:read`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`, `notification:player:self:*`, `notification:player:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+POST /notification/v1/player/me/notification
+- Description changed from 'Create new notification for client.
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:self:*`, `notification:player:write`, `notification:player:*`, `notification:player:self:write`' to 'Create new notification for client.
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:self:*`, `notification:player:self:write`, `notification:player:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:self:read`, `notification:player:self:*`, `notification:player:*`, `notification:player:read`' to 'Retrieve a single notification by id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`, `notification:player:self:*`, `notification:player:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:self:read`, `notification:player:self:*`, `notification:player:*`, `notification:player:read`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`, `notification:player:self:*`, `notification:player:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`
+
+- For the player themselves any of: `notification:player:self:read`, `notification:player:self:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`
+
+- For the player themselves any of: `notification:player:self:*`, `notification:player:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Description changed from 'Create new notification for client.  Requires permission to create for a different client
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:write`, `notification:player:*`
+
+- For the player themselves any of: `notification:player:self:*`, `notification:player:self:write`' to 'Create new notification for client.  Requires permission to create for a different client
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:write`
+
+- For the player themselves any of: `notification:player:self:*`, `notification:player:self:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`
+
+- For the player themselves any of: `notification:player:self:read`, `notification:player:self:*`' to 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`
+
+- For the player themselves any of: `notification:player:self:*`, `notification:player:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`
+
+- For the player themselves any of: `notification:player:self:read`, `notification:player:self:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any player (including themselves) any of: `notification:player:*`, `notification:player:read`
+
+- For the player themselves any of: `notification:player:self:*`, `notification:player:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/playerid/me/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:self:read`, `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:read`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+POST /notification/v1/playerid/me/notification
+- Description changed from 'Create new notification for client.
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:self:write`, `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:write`' to 'Create new notification for client.
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:self:write`, `notification:playerid:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/playerid/me/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:self:read`, `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:read`' to 'Retrieve a single notification by id
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/playerid/me/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:self:read`, `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:read`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/playerid/{player_id}/notification
+- Description changed from 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+
+- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`' to 'Get recent notifications ordered from the newest to the oldest.
+
+It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+The first notification returned from this will be the newest one we can find, and older ones will be further down
+the page (or on later pages).
+
+This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+pages when the user requests a bigger list.
+
+Client are expected to poll this endpoint regularly.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+
+- For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+POST /notification/v1/playerid/{player_id}/notification
+- Description changed from 'Create new notification for client.  Requires permission to create for a different client
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`
+
+- For the playerid themselves any of: `notification:playerid:self:write`, `notification:playerid:self:*`' to 'Create new notification for client.  Requires permission to create for a different client
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`
+
+- For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:write`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/playerid/{player_id}/notification/{notification_id}
+- Description changed from 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+
+- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`' to 'Retrieve a single notification by id
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+
+- For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /notification/v1/playerid/{player_id}/stream/notification/lp
+- Description changed from 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+
+- For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`' to 'This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+`exclude_before` in subsequent polls to ensure you only receive new notifications.
+
+This operation is a long-poll.  That means we will keep the connection open until we get any notification
+or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+the notifications found.
+
+This version can be used for any client provided its id (with proper permissions)
+
+Required Permissions:
+
+- For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+
+- For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`'
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_unknown - Failed to parse token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_sig_invalid - Token Signature is invalid
+' to '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+'
+
+GET /users/v1/player
+- Responses changed
+  - Deleted response: 400
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v1/player/me/uuid
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v1/player/{player_id}/linked_portals
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v1/player/{player_id}/uuid
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v2/player/me/id
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v2/player/me/links
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v2/player/me/uuid
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v2/player/{player_id}/uuid
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v2/player/{player_uuid}/id
+- Responses changed
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+  - Modified response: 404
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
+
+GET /users/v2/player/{player_uuid}/links
+- Responses changed
+  - New response: 404
+  - Deleted response: 400
+  - Deleted response: 500
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'MessageOnly' to 'HzApiErrorModel'
+          - Description changed from 'Message only response' to ''
+          - Required changed
+            - New required property: desc
+            - New required property: error_code
+            - Deleted required property: message
+          - Properties changed
+            - New property: auth_success
+            - New property: desc
+            - New property: error_code
+            - Deleted property: message
 ## Changes for Fri Apr 19 16:29:50 EDT 2024
 ### New Endpoints: 3
 --------------------
