@@ -6949,7 +6949,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBasic": []
+          }
+        ]
       }
     },
     "/users/v2/oauth/token": {
@@ -7045,8 +7050,18 @@
               }
             }
           },
+          "400": {
+            "description": "Users cannot be linked due to user state.  See response for further details"
+          },
           "403": {
-            "description": "Forbidden"
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -7082,8 +7097,18 @@
               }
             }
           },
+          "400": {
+            "description": "Users cannot be unlinked due to user state.  See response for further details"
+          },
           "403": {
-            "description": "Forbidden"
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -26771,23 +26796,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -26804,6 +26812,23 @@
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPAuthorizationCredentials": {
@@ -27025,6 +27050,11 @@
             "description": "Client UUID",
             "deprecated": true
           },
+          "client_id": {
+            "type": "string",
+            "title": "Client Id",
+            "description": "Client ID"
+          },
           "token_type": {
             "type": "string",
             "title": "Token Type",
@@ -27042,6 +27072,7 @@
           "tenant_uuid",
           "config_elector_uuid",
           "client_uuid",
+          "client_id",
           "token_type"
         ],
         "title": "LoginResult",
@@ -27132,11 +27163,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -27154,17 +27185,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -27175,6 +27195,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -27184,11 +27215,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -27629,15 +27660,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -27892,17 +27923,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
           "Account has been banned from authentication"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Role": {
@@ -27959,15 +27990,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "SendInBlueContact": {
@@ -28102,23 +28133,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -28135,6 +28149,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -28179,44 +28210,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -28254,6 +28247,44 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "AcknowledgeBackfillRequest": {

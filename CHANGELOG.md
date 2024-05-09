@@ -1,3 +1,66 @@
+## Changes for Thu May  9 12:12:06 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 4
+-------------------------
+POST /users/v1/link
+- Responses changed
+  - New response: 400
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - New media type: application/json
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: client_id
+          - Properties changed
+            - New property: client_id
+
+POST /users/v1/oauth/token
+- Security changed
+  - New security requirements: HTTPBasic
+
+POST /users/v1/unlink
+- Responses changed
+  - New response: 400
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+    - Content changed
+      - New media type: application/json
 ## Changes for Tue Apr 30 13:38:38 EDT 2024
 ### New Endpoints: None
 -----------------------
