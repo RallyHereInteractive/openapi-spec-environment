@@ -157,6 +157,26 @@
               ],
               "title": "Player Uuid"
             }
+          },
+          {
+            "name": "include_segments",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Include Segments"
+            }
+          },
+          {
+            "name": "include_players",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Include Players"
+            }
           }
         ],
         "responses": {
