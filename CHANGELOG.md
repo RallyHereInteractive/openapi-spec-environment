@@ -1,3 +1,3594 @@
+## Changes for Mon May 20 17:28:45 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 61
+--------------------------
+GET /inventory/v1/catalog
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: price_points
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/PricePoints modified
+                  - Properties changed
+                    - Modified property: price_points
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: current_breakpoints
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: price
+                                - Deleted required property: price_item_id
+                              - Properties changed
+                                - New property: currencies
+                                - Modified property: price
+                                  - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                                  - Deprecated changed from false to true
+                                - Modified property: price_item_id
+                                  - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                                  - Deprecated changed from false to true
+                          - Modified property: pre_sale_breakpoints
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: price
+                                - Deleted required property: price_item_id
+                              - Properties changed
+                                - New property: currencies
+                                - Modified property: price
+                                  - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                                  - Deprecated changed from false to true
+                                - Modified property: price_item_id
+                                  - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                                  - Deprecated changed from false to true
+
+GET /inventory/v1/catalog/price-point
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: price_points
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: current_breakpoints
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: price
+                        - Deleted required property: price_item_id
+                      - Properties changed
+                        - New property: currencies
+                        - Modified property: price
+                          - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                          - Deprecated changed from false to true
+                        - Modified property: price_item_id
+                          - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                          - Deprecated changed from false to true
+                  - Modified property: pre_sale_breakpoints
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: price
+                        - Deleted required property: price_item_id
+                      - Properties changed
+                        - New property: currencies
+                        - Modified property: price
+                          - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                          - Deprecated changed from false to true
+                        - Modified property: price_item_id
+                          - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                          - Deprecated changed from false to true
+
+GET /inventory/v1/catalog/price-point/{price_point_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: current_breakpoints
+              - Items changed
+                - Required changed
+                  - Deleted required property: price
+                  - Deleted required property: price_item_id
+                - Properties changed
+                  - New property: currencies
+                  - Modified property: price
+                    - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                    - Deprecated changed from false to true
+                  - Modified property: price_item_id
+                    - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                    - Deprecated changed from false to true
+            - Modified property: pre_sale_breakpoints
+              - Items changed
+                - Required changed
+                  - Deleted required property: price
+                  - Deleted required property: price_item_id
+                - Properties changed
+                  - New property: currencies
+                  - Modified property: price
+                    - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                    - Deprecated changed from false to true
+                  - Modified property: price_item_id
+                    - Description changed from '' to 'Deprecated. Use the currencies field instead.'
+                    - Deprecated changed from false to true
+
+POST /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v1/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v1/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: purchase_price
+                                              - Property 'AllOf' changed
+                                                - Schema #/components/schemas/PurchasePrice modified
+                                                  - Required changed
+                                                    - Deleted required property: price
+                                                    - Deleted required property: price_item_id
+                                                  - Properties changed
+                                                    - New property: currencies
+                                                    - Modified property: price
+                                                      - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                                    - Modified property: price_item_id
+                                                      - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                              - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                              - Deprecated changed from false to true
+                        - Modified property: purchase_price
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PurchasePrice modified
+                              - Required changed
+                                - Deleted required property: price
+                                - Deleted required property: price_item_id
+                              - Properties changed
+                                - New property: currencies
+                                - Modified property: price
+                                  - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                                - Modified property: price_item_id
+                                  - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                          - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                          - Deprecated changed from false to true
+
+POST /inventory/v1/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: purchase_price
+                  - Property 'AllOf' changed
+                    - Schema #/components/schemas/PurchasePrice modified
+                      - Required changed
+                        - Deleted required property: price
+                        - Deleted required property: price_item_id
+                      - Properties changed
+                        - New property: currencies
+                        - Modified property: price
+                          - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                        - Modified property: price_item_id
+                          - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                  - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                  - Deprecated changed from false to true
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v1/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+POST /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v1/player/{player_id}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v1/player/{player_id}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: purchase_price
+                                              - Property 'AllOf' changed
+                                                - Schema #/components/schemas/PurchasePrice modified
+                                                  - Required changed
+                                                    - Deleted required property: price
+                                                    - Deleted required property: price_item_id
+                                                  - Properties changed
+                                                    - New property: currencies
+                                                    - Modified property: price
+                                                      - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                                    - Modified property: price_item_id
+                                                      - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                              - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                              - Deprecated changed from false to true
+                        - Modified property: purchase_price
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PurchasePrice modified
+                              - Required changed
+                                - Deleted required property: price
+                                - Deleted required property: price_item_id
+                              - Properties changed
+                                - New property: currencies
+                                - Modified property: price
+                                  - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                                - Modified property: price_item_id
+                                  - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                          - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                          - Deprecated changed from false to true
+
+POST /inventory/v1/player/{player_id}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: purchase_price
+                  - Property 'AllOf' changed
+                    - Schema #/components/schemas/PurchasePrice modified
+                      - Required changed
+                        - Deleted required property: price
+                        - Deleted required property: price_item_id
+                      - Properties changed
+                        - New property: currencies
+                        - Modified property: price
+                          - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                        - Modified property: price_item_id
+                          - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                  - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                  - Deprecated changed from false to true
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v1/player/{player_id}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+POST /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v2/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v2/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: purchase_price
+                                              - Property 'AllOf' changed
+                                                - Schema #/components/schemas/PurchasePrice modified
+                                                  - Required changed
+                                                    - Deleted required property: price
+                                                    - Deleted required property: price_item_id
+                                                  - Properties changed
+                                                    - New property: currencies
+                                                    - Modified property: price
+                                                      - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                                    - Modified property: price_item_id
+                                                      - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                              - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                              - Deprecated changed from false to true
+                        - Modified property: purchase_price
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PurchasePrice modified
+                              - Required changed
+                                - Deleted required property: price
+                                - Deleted required property: price_item_id
+                              - Properties changed
+                                - New property: currencies
+                                - Modified property: price
+                                  - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                                - Modified property: price_item_id
+                                  - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                          - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                          - Deprecated changed from false to true
+
+POST /inventory/v2/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: purchase_price
+                  - Property 'AllOf' changed
+                    - Schema #/components/schemas/PurchasePrice modified
+                      - Required changed
+                        - Deleted required property: price
+                        - Deleted required property: price_item_id
+                      - Properties changed
+                        - New property: currencies
+                        - Modified property: price
+                          - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                        - Modified property: price_item_id
+                          - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                  - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                  - Deprecated changed from false to true
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v2/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+POST /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+PUT /inventory/v2/player/{player_uuid}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v2/player/{player_uuid}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Schema #/components/schemas/PlayerOrderCreate modified
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: purchase_price
+                                              - Property 'AllOf' changed
+                                                - Schema #/components/schemas/PurchasePrice modified
+                                                  - Required changed
+                                                    - Deleted required property: price
+                                                    - Deleted required property: price_item_id
+                                                  - Properties changed
+                                                    - New property: currencies
+                                                    - Modified property: price
+                                                      - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                                    - Modified property: price_item_id
+                                                      - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                      - Deprecated changed from false to true
+                                              - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                              - Deprecated changed from false to true
+                        - Modified property: purchase_price
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PurchasePrice modified
+                              - Required changed
+                                - Deleted required property: price
+                                - Deleted required property: price_item_id
+                              - Properties changed
+                                - New property: currencies
+                                - Modified property: price
+                                  - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                                - Modified property: price_item_id
+                                  - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                  - Deprecated changed from false to true
+                          - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                          - Deprecated changed from false to true
+
+POST /inventory/v2/player/{player_uuid}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: purchase_price
+                  - Property 'AllOf' changed
+                    - Schema #/components/schemas/PurchasePrice modified
+                      - Required changed
+                        - Deleted required property: price
+                        - Deleted required property: price_item_id
+                      - Properties changed
+                        - New property: currencies
+                        - Modified property: price
+                          - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                        - Modified property: price_item_id
+                          - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                          - Deprecated changed from false to true
+                  - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                  - Deprecated changed from false to true
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /inventory/v2/player/{player_uuid}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/PlayerOrderCreate modified
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: purchase_price
+                                        - Property 'AllOf' changed
+                                          - Schema #/components/schemas/PurchasePrice modified
+                                            - Required changed
+                                              - Deleted required property: price
+                                              - Deleted required property: price_item_id
+                                            - Properties changed
+                                              - New property: currencies
+                                              - Modified property: price
+                                                - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                              - Modified property: price_item_id
+                                                - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                                                - Deprecated changed from false to true
+                                        - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                                        - Deprecated changed from false to true
+                  - Modified property: purchase_price
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/PurchasePrice modified
+                        - Required changed
+                          - Deleted required property: price
+                          - Deleted required property: price_item_id
+                        - Properties changed
+                          - New property: currencies
+                          - Modified property: price
+                            - Description changed from 'The price of the Item.' to 'The price of the Item. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                          - Modified property: price_item_id
+                            - Description changed from 'The Item used as the currency for the purchase.' to 'The Item used as the currency for the purchase. Deprecated. Use currencies instead'
+                            - Deprecated changed from false to true
+                    - Description changed from 'The purchase price of the Loot.' to 'The purchase price of the Loot. Deprecated. Use the purchase_prices field instead'
+                    - Deprecated changed from false to true
+
+GET /match/v1/match
+- New query param: include_players
+- New query param: include_segments
+
+GET /notification/v1/instance/{instance_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+POST /notification/v1/instance/{instance_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/instance/{instance_id}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/instance/{instance_id}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+POST /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/playerid/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+POST /notification/v1/playerid/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/playerid/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/playerid/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/playerid/{player_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+POST /notification/v1/playerid/{player_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/playerid/{player_id}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /notification/v1/playerid/{player_id}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_expired - Token is expired
+- auth_token_format - Invalid Authorization - {}
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+' to '
+Error Codes:
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_format - Invalid Authorization - {}
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- insufficient_permissions - Insufficient Permissions
+'
+
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: join_status
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/InstanceJoinableStatus modified
+                        - New enum values: [unjoinable]
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: join_status
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/InstanceJoinableStatus modified
+                - New enum values: [unjoinable]
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: join_status
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceJoinableStatus modified
+                          - New enum values: [unjoinable]
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: join_status
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceJoinableStatus modified
+                          - New enum values: [unjoinable]
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: join_status
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceJoinableStatus modified
+                          - New enum values: [unjoinable]
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: join_status
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceJoinableStatus modified
+                          - New enum values: [unjoinable]
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: join_status
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceJoinableStatus modified
+                          - New enum values: [unjoinable]
+
+PATCH /session/v1/session/{session_id}/instance
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: join_status
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/InstanceJoinableStatus modified
+                - New enum values: [unjoinable]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: join_status
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceJoinableStatus modified
+                  - New enum values: [unjoinable]
+
+POST /session/v1/session/{session_id}/instance
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: join_status
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceJoinableStatus modified
+                  - New enum values: [unjoinable]
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 403
+    - Description changed from 'User authentication failed.  See error code and description for further details.
+
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `invalid_grant_type` - Grant Type {grant_type} is not supported
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `developer_api_disabled` - Developer API authentication is currently disabled
+- `developer_api_token_empty` - Developer API access token is empty
+- `developer_api_token_invalid` - Developer API access token is invalid or expired
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+' to 'User authentication failed.  See error code and description for further details.
+
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `invalid_grant_type` - Grant Type {grant_type} is not supported
+- `user_auth_disabled` - User authentication is not permitted for this policy
+- `client_auth_disabled` - Client authentication is not permitted for this policy
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `developer_api_disabled` - Developer API authentication is currently disabled
+- `developer_api_token_empty` - Developer API access token is empty
+- `developer_api_token_invalid` - Developer API access token is invalid or expired
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+'
+
+GET /users/v1/oauth/login/{platform}
+- Responses changed
+  - Modified response: 307
+    - Headers changed
+      - Modified header: location
+        - Description changed from '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `invalid_grant_type` - Grant Type {grant_type} is not supported
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `developer_api_disabled` - Developer API authentication is currently disabled
+    - `developer_api_token_empty` - Developer API access token is empty
+    - `developer_api_token_invalid` - Developer API access token is invalid or expired
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+' to '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `invalid_grant_type` - Grant Type {grant_type} is not supported
+    - `user_auth_disabled` - User authentication is not permitted for this policy
+    - `client_auth_disabled` - Client authentication is not permitted for this policy
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `developer_api_disabled` - Developer API authentication is currently disabled
+    - `developer_api_token_empty` - Developer API access token is empty
+    - `developer_api_token_invalid` - Developer API access token is invalid or expired
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+'
+
+GET /users/v1/oauth/response/{platform}
+- Responses changed
+  - Modified response: 307
+    - Headers changed
+      - Modified header: location
+        - Description changed from '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `code`: The authorization_code that can be exchanged for an access token for the user.
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `invalid_grant_type` - Grant Type {grant_type} is not supported
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `developer_api_disabled` - Developer API authentication is currently disabled
+    - `developer_api_token_empty` - Developer API access token is empty
+    - `developer_api_token_invalid` - Developer API access token is invalid or expired
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+' to '
+URL that the user should be redirected to complete the next step of the OAuth flow.
+
+Redirects to the `redirect_uri` and may include the following query parameters:
+- `code`: The authorization_code that can be exchanged for an access token for the user.
+- `state`: The state value that was provided in the original request.
+- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:
+    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+    - `no_redirects_configured` - No redirect urls setup for oauth.
+    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+    - `failed_to_verify_state` - Failed to verify the state associated with the request.
+    - `failed_to_save_state` - Error occurred saving the state.
+    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+    - `too_many_users` - Account has too many users associated with it.  Contact an administrator
+    - `user_auth_restricted` - Authentication for this user has been restricted
+    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+    - `error_retrieving_player_results` - Error retrieving player results
+    - `failed_to_retrieve_roles` - Failed to retrieve roles
+    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+    - `authentication_locked` - Authentication is currently locked.  Please try again later
+    - `invalid_grant_type` - Grant Type {grant_type} is not supported
+    - `user_auth_disabled` - User authentication is not permitted for this policy
+    - `client_auth_disabled` - Client authentication is not permitted for this policy
+    - `amazon_disabled` - Amazon authentication is currently disabled
+    - `amazon_token_empty` - Amazon access token is empty
+    - `amazon_invalid_access_token` - Amazon access token is invalid
+    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+    - `anon_disabled` - Anon authentication is currently disabled
+    - `anon_token_empty` - Anon access token is empty
+    - `apple_disabled` - Apple authentication is currently disabled
+    - `apple_token_empty` - Apple access token is empty
+    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+    - `apple_token_key_not_valid` - public key not found
+    - `apple_token_not_valid` - Apple access token is not valid
+    - `authorization_code_not_found` - Authorization code not found or expired
+    - `basic_disabled` - Basic authentication is currently disabled
+    - `basic_token_empty` - Basic access token is empty
+    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+    - `basic_auth_credentials_not_found` - Basic auth credentials not found
+    - `developer_api_disabled` - Developer API authentication is currently disabled
+    - `developer_api_token_empty` - Developer API access token is empty
+    - `developer_api_token_invalid` - Developer API access token is invalid or expired
+    - `epic_disabled` - Epic authentication is currently disabled
+    - `epic_token_empty` - Epic access token is empty
+    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+    - `epic_v1_token_invalid` - Epic v1 token is invalid
+    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+    - `epic_v2_token_invalid` - Epic v2 token is invalid
+    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+    - `google_disabled` - Google authentication is currently disabled
+    - `google_token_empty` - Google access token is empty
+    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+    - `google_token_not_valid` - Google access token is not valid
+    - `google_token_exchange_failed` - Problem exchanging code for token with Google
+    - `nintendo_disabled` - Nintendo authentication is currently disabled
+    - `nintendo_token_empty` - Nintendo access token is empty
+    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+    - `nintendo_access_token_not_valid` - Nintendo access token is not valid
+    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+    - `nintendo_ppid_conversion_failed` - error during PPID conversion
+    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+    - `nintendo_ppid_missing` - PPID is missing for user
+    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+    - `ps4_v1_token_empty` - PS4 v1 access token is empty
+    - `ps4_v1_token_expired` - PS4 v1 access token is expired
+    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+    - `ps4_v3_token_empty` - PS4 v3 access token is empty
+    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+    - `ps5_v3_token_empty` - PS5 v3 access token is empty
+    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+    - `refresh_disabled` - Refresh authentication is currently disabled
+    - `refresh_token_empty` - Refresh token is empty
+    - `refresh_token_not_found` - Refresh token was not found or has expired
+    - `refresh_token_invalid_user` - Refresh token refrences invalid user
+    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+    - `steam_disabled` - Steam authentication is currently disabled
+    - `steam_token_empty` - Steam code (Ticket) is empty
+    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+    - `steam_user_vacbanned` - User is VAC banned
+    - `steam_user_publisherbanned` - User is publisher banned
+    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+    - `twitch_disabled` - Twitch authentication is currently disabled
+    - `twitch_token_empty` - Twitch access token is empty
+    - `twitch_token_invalid` - Twitch access token is not valid
+    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+    - `xbox_disabled` - Xbox authentication is currently disabled
+    - `xbox_xsts_token_empty` - Xbox XSTS token is empty
+    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+    - `xbox_xtoken_invalid` - Xbox XToken is not valid
+    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+- `error_description`: The description for the error that occurred during the OAuth flow.
+- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:
+    - `NO_CODE_IN_REQUEST` - No code in request.
+    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.
+    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.
+    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.
+    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.
+    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.
+    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.
+    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.
+
+'
+
+POST /users/v1/portaltoken/details
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `invalid_grant_type` - Grant Type {grant_type} is not supported
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `developer_api_disabled` - Developer API authentication is currently disabled
+- `developer_api_token_empty` - Developer API access token is empty
+- `developer_api_token_invalid` - Developer API access token is invalid or expired
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+' to '
+Error Codes:
+- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.
+- `no_redirects_configured` - No redirect urls setup for oauth.
+- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.
+- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.
+- `failed_to_verify_state` - Failed to verify the state associated with the request.
+- `failed_to_save_state` - Error occurred saving the state.
+- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator
+- `too_many_users` - Account has too many users associated with it.  Contact an administrator
+- `user_auth_restricted` - Authentication for this user has been restricted
+- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required
+- `error_retrieving_player_results` - Error retrieving player results
+- `failed_to_retrieve_roles` - Failed to retrieve roles
+- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid
+- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later
+- `authentication_locked` - Authentication is currently locked.  Please try again later
+- `invalid_grant_type` - Grant Type {grant_type} is not supported
+- `user_auth_disabled` - User authentication is not permitted for this policy
+- `client_auth_disabled` - Client authentication is not permitted for this policy
+- `amazon_disabled` - Amazon authentication is currently disabled
+- `amazon_token_empty` - Amazon access token is empty
+- `amazon_invalid_access_token` - Amazon access token is invalid
+- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon
+- `anon_disabled` - Anon authentication is currently disabled
+- `anon_token_empty` - Anon access token is empty
+- `apple_disabled` - Apple authentication is currently disabled
+- `apple_token_empty` - Apple access token is empty
+- `apple_failed_key_lookup` - Failed to retrieve keys from Apple
+- `apple_token_exchange_failed` - Problem exchanging code for token with Apple
+- `apple_token_key_not_valid` - public key not found
+- `apple_token_not_valid` - Apple access token is not valid
+- `authorization_code_not_found` - Authorization code not found or expired
+- `basic_disabled` - Basic authentication is currently disabled
+- `basic_token_empty` - Basic access token is empty
+- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`
+- `basic_auth_credentials_not_found` - Basic auth credentials not found
+- `developer_api_disabled` - Developer API authentication is currently disabled
+- `developer_api_token_empty` - Developer API access token is empty
+- `developer_api_token_invalid` - Developer API access token is invalid or expired
+- `epic_disabled` - Epic authentication is currently disabled
+- `epic_token_empty` - Epic access token is empty
+- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id
+- `epic_v1_token_invalid` - Epic v1 token is invalid
+- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator
+- `epic_v2_token_invalid` - Epic v2 token is invalid
+- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic
+- `google_disabled` - Google authentication is currently disabled
+- `google_token_empty` - Google access token is empty
+- `google_keys_not_available` - Google keys are not available.  Please contact an administrator
+- `google_token_not_valid` - Google access token is not valid
+- `google_token_exchange_failed` - Problem exchanging code for token with Google
+- `nintendo_disabled` - Nintendo authentication is currently disabled
+- `nintendo_token_empty` - Nintendo access token is empty
+- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found
+- `nintendo_access_token_not_valid` - Nintendo access token is not valid
+- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID
+- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.
+- `nintendo_ppid_conversion_failed` - error during PPID conversion
+- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion
+- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion
+- `nintendo_ppid_missing` - PPID is missing for user
+- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid
+- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.
+- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid
+- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app
+- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.
+- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo
+- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled
+- `ps4_v1_token_empty` - PS4 v1 access token is empty
+- `ps4_v1_token_expired` - PS4 v1 access token is expired
+- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4
+- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid
+- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled
+- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4
+- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled
+- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled
+- `ps4_v3_token_empty` - PS4 v3 access token is empty
+- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4
+- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid
+- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled
+- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled
+- `ps5_v3_token_empty` - PS5 v3 access token is empty
+- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5
+- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid
+- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.
+- `refresh_disabled` - Refresh authentication is currently disabled
+- `refresh_token_empty` - Refresh token is empty
+- `refresh_token_not_found` - Refresh token was not found or has expired
+- `refresh_token_invalid_user` - Refresh token refrences invalid user
+- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token
+- `steam_disabled` - Steam authentication is currently disabled
+- `steam_token_empty` - Steam code (Ticket) is empty
+- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam
+- `steam_user_vacbanned` - User is VAC banned
+- `steam_user_publisherbanned` - User is publisher banned
+- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate
+- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam
+- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application
+- `twitch_disabled` - Twitch authentication is currently disabled
+- `twitch_token_empty` - Twitch access token is empty
+- `twitch_token_invalid` - Twitch access token is not valid
+- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator
+- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch
+- `xbox_disabled` - Xbox authentication is currently disabled
+- `xbox_xsts_token_empty` - Xbox XSTS token is empty
+- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid
+- `xbox_xtoken_invalid` - Xbox XToken is not valid
+- `xbox_access_token_request_failed` - Problem requesting access token from Xbox
+- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox
+- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox
+
+'
 ## Changes for Thu May  9 12:12:06 EDT 2024
 ### New Endpoints: None
 -----------------------

@@ -4685,7 +4685,7 @@
             }
           },
           "403": {
-            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -4763,7 +4763,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -6769,7 +6769,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -6860,7 +6860,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -20252,7 +20252,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20394,7 +20394,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20521,7 +20521,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20606,7 +20606,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20742,7 +20742,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20838,7 +20838,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20926,7 +20926,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21033,7 +21033,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21176,7 +21176,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21319,7 +21319,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21446,7 +21446,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21531,7 +21531,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21668,7 +21668,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21765,7 +21765,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21853,7 +21853,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21961,7 +21961,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22113,7 +22113,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22249,7 +22249,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22345,7 +22345,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22442,7 +22442,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n",
+            "description": "\nError Codes:\n- auth_not_jwt - Invalid Authorization\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_format - Invalid Authorization - {}\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- insufficient_permissions - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24239,6 +24239,26 @@
                 }
               ],
               "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "include_segments",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Include Segments"
+            }
+          },
+          {
+            "name": "include_players",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Include Players"
             }
           }
         ],
@@ -27389,24 +27409,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -27424,6 +27426,24 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -29189,17 +29209,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay input preferences. Can play with players using any input",
-          "Can only play with players using a keyboard and mouse",
-          "Can only player with players using a gamepad/controller",
-          "Can only player with players using a touch screen"
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay input preferences. Can play with players using any input",
+          "Can only play with players using a keyboard and mouse",
+          "Can only player with players using a gamepad/controller",
+          "Can only player with players using a touch screen"
         ]
       },
       "CrossplayPlatform": {
@@ -29211,15 +29231,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay platform preferences. Can play with players any platforms",
-          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
-          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay platform preferences. Can play with players any platforms",
+          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
+          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
         ]
       },
       "CrossplayPreferences": {
@@ -29259,17 +29279,17 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "assigned",
           "left_queue",
           "timeout",
           "party_changed"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "Determiner": {
@@ -29282,17 +29302,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-descriptions": [
-          "All rules must be satisfied",
-          "At least one rule must be satisfied",
-          "Exactly one rule must be satisfied",
-          "All rules must not be satisfied"
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "All rules must be satisfied",
+          "At least one rule must be satisfied",
+          "Exactly one rule must be satisfied",
+          "All rules must not be satisfied"
         ]
       },
       "HostType": {
@@ -29303,13 +29323,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-descriptions": [
-          "A dedicated, standalone instance",
-          "A player hosted instance"
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player"
+        ],
+        "x-enum-descriptions": [
+          "A dedicated, standalone instance",
+          "A player hosted instance"
         ]
       },
       "Input": {
@@ -29321,15 +29341,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-descriptions": [
-          "Input for players using a keyboard and mouse",
-          "Input for players using a gamepad/controller",
-          "Input for players using a touch screen"
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "Input for players using a keyboard and mouse",
+          "Input for players using a gamepad/controller",
+          "Input for players using a touch screen"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -29374,17 +29394,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Instance is in a healthy state",
-          "Instance is in an unhealthy state and cannot handle connections",
-          "Instance performance is degraded, and may be unable to handle new or existing connections",
-          "Instance health checks have stopped, and instance status is unknown"
-        ],
         "x-enum-varnames": [
           "HEALTHY",
           "UNHEALTHY",
           "DEGRADED",
           "UNKNOWN"
+        ],
+        "x-enum-descriptions": [
+          "Instance is in a healthy state",
+          "Instance is in an unhealthy state and cannot handle connections",
+          "Instance performance is degraded, and may be unable to handle new or existing connections",
+          "Instance health checks have stopped, and instance status is unknown"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -29608,23 +29628,26 @@
           "allocated",
           "pending",
           "joinable",
+          "unjoinable",
           "closed"
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found, and is loading its session information",
-          "Host has arrived and is loading",
-          "Host is ready to accept players",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
           "pending",
           "joinable",
+          "unjoinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found, and is loading its session information",
+          "Host has arrived and is loading",
+          "Host is ready to accept players",
+          "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -29816,15 +29839,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "BACKFILL",
           "MATCHMAKING",
           "PLAYER"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "JoinParams": {
@@ -29869,17 +29892,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-descriptions": [
-          "Use the lowest MMR of any player in the linking",
-          "Use the highest MMR of any player in the linking",
-          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
-          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "Use the lowest MMR of any player in the linking",
+          "Use the highest MMR of any player in the linking",
+          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
+          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
         ]
       },
       "MapConfig": {
@@ -30467,14 +30490,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-descriptions": [
-          "The two values must be equal",
-          "The two values must not be equal",
-          "Value A must be less than value B",
-          "Value A must be less than or equal to value B",
-          "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B"
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -30482,6 +30497,14 @@
           "LESS_THAN_EQUAL",
           "GREATER_THAN",
           "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "The two values must be equal",
+          "The two values must not be equal",
+          "Value A must be less than value B",
+          "Value A must be less than or equal to value B",
+          "Value A must be greater than value B",
+          "Value A must be greater than or equal to value B"
         ]
       },
       "PlatformID": {
@@ -30502,20 +30525,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-descriptions": [
-          "DEPRECATED. Use platform instead. ID for the platform Anon",
-          "DEPRECATED. Use platform instead. ID for the platform Amazon",
-          "DEPRECATED. Use platform instead. ID for the platform Steam",
-          "DEPRECATED. Use platform instead. ID for the platform PSN",
-          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
-          "DEPRECATED. Use platform instead. ID for the platform Basic",
-          "DEPRECATED. Use platform instead. ID for the platform Google",
-          "DEPRECATED. Use platform instead. ID for the platform Twitch",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
-          "DEPRECATED. Use platform instead. ID for the platform Apple",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -30529,6 +30538,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "DEPRECATED. Use platform instead. ID for the platform Anon",
+          "DEPRECATED. Use platform instead. ID for the platform Amazon",
+          "DEPRECATED. Use platform instead. ID for the platform Steam",
+          "DEPRECATED. Use platform instead. ID for the platform PSN",
+          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
+          "DEPRECATED. Use platform instead. ID for the platform Basic",
+          "DEPRECATED. Use platform instead. ID for the platform Google",
+          "DEPRECATED. Use platform instead. ID for the platform Twitch",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
+          "DEPRECATED. Use platform instead. ID for the platform Apple",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
+          "DEPRECATED. Use platform instead. ID for the platform Epic"
         ]
       },
       "PlatformSession": {
@@ -30755,15 +30778,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-descriptions": [
-          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
-          "Ticket will be used to fulfill backfill requests",
-          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
+          "Ticket will be used to fulfill backfill requests",
+          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
         ]
       },
       "QueueConfig": {
@@ -31068,15 +31091,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-descriptions": [
-          "Comparing the count of a specific item that a player owns",
-          "Comparing the size of the linking (the number of players) in the session to be queued",
-          "Comparing the size of the linking (the number of players) in the session to be queued"
-        ],
         "x-enum-varnames": [
           "INVENTORY",
           "LINKING_SIZE",
           "JOINING_SESSION_SIZE"
+        ],
+        "x-enum-descriptions": [
+          "Comparing the count of a specific item that a player owns",
+          "Comparing the size of the linking (the number of players) in the session to be queued",
+          "Comparing the size of the linking (the number of players) in the session to be queued"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -31441,17 +31464,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-descriptions": [
-          "Player is the leader of the session. Is allowed to perform admin actions on the session",
-          "Player is an active member of the session. Is allowed basic actions on the session",
-          "Player has been invited to the session, but has not accepted or declined",
-          "Player's spot has been reserved on the session, but the player has not yet been notified"
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "Player is the leader of the session. Is allowed to perform admin actions on the session",
+          "Player is an active member of the session. Is allowed basic actions on the session",
+          "Player has been invited to the session, but has not accepted or declined",
+          "Player's spot has been reserved on the session, but the player has not yet been notified"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -31781,19 +31804,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-descriptions": [
-          "Raise an error when too many players are invited to the same team",
-          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
-          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
-          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
-        ],
         "x-enum-varnames": [
           "fail",
           "allow_overflow",
           "partial_with_overflow",
           "partial_without_overflow",
           "overfill"
+        ],
+        "x-enum-descriptions": [
+          "Raise an error when too many players are invited to the same team",
+          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
+          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "TeamUpdate": {
@@ -31858,19 +31881,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "JOIN",
           "JOIN_MUTED",
           "KICK",
           "MUTE",
           "TRANSCRIBE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "VoipSessionType": {
@@ -31881,13 +31904,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "SESSION",
           "TEAM"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "VoipTokenResponse": {
@@ -32062,19 +32085,6 @@
         ],
         "title": "ClientType",
         "description": "Client type for Entitlements",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WIN",
-          "MAC",
-          "XBOXONE",
-          "PS4",
-          "SWITCH",
-          "ANDROID",
-          "IOS",
-          "PS5",
-          "LINUX",
-          "XSX"
-        ],
         "x-enum-descriptions": [
           "Unknown client type",
           "Windows client type",
@@ -32087,6 +32097,19 @@
           "Playstation 5 client type",
           "Linux client type",
           "XSX client type"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WIN",
+          "MAC",
+          "XBOXONE",
+          "PS4",
+          "SWITCH",
+          "ANDROID",
+          "IOS",
+          "PS5",
+          "LINUX",
+          "XSX"
         ]
       },
       "CreateInventoryRequest": {
@@ -32181,13 +32204,13 @@
         ],
         "title": "CreateInventoryType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "PERSISTENT",
-          "TRANSIENT"
-        ],
         "x-enum-descriptions": [
           "Inventory that persists between Inventory Sessions.",
           "Inventory that does not persist between Inventory Sessions."
+        ],
+        "x-enum-varnames": [
+          "PERSISTENT",
+          "TRANSIENT"
         ]
       },
       "EntitlementActionType": {
@@ -32200,17 +32223,17 @@
         ],
         "title": "EntitlementActionType",
         "description": "Action to take for the Entitlement on a user",
-        "x-enum-varnames": [
-          "grant",
-          "refund",
-          "chargeback",
-          "chargeback_reversal"
-        ],
         "x-enum-descriptions": [
           "Event for granting an Entitlement to the user",
           "Event for refunding an Entitlement to the user",
           "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
           "Event for re-granting an Entitlement to the user after a chargeback was reversed"
+        ],
+        "x-enum-varnames": [
+          "grant",
+          "refund",
+          "chargeback",
+          "chargeback_reversal"
         ]
       },
       "EntitlementErrorCode": {
@@ -32233,22 +32256,6 @@
         ],
         "title": "EntitlementErrorCode",
         "description": "Error codes for Entitlements",
-        "x-enum-varnames": [
-          "NONE",
-          "AUTH_TOKEN_FAILURE",
-          "MISSING_INFORMATION",
-          "FAILED_TO_CONSUME",
-          "NO_SKU_FOUND",
-          "WRONG_SKU_TYPE_PROVIDED",
-          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
-          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
-          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
-          "UNKNOWN_SKU_TYPE_PROVIDED",
-          "FAILED_TO_SUBMIT_ORDER",
-          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
-          "QUANTITY_ZERO",
-          "PREVIOUSLY_APPLIED"
-        ],
         "x-enum-descriptions": [
           "No error occured",
           "Failed to find or validate the auth token",
@@ -32264,6 +32271,22 @@
           "Durable single use entitlement has already been applied",
           "Quantity was zero, nothing to apply",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "AUTH_TOKEN_FAILURE",
+          "MISSING_INFORMATION",
+          "FAILED_TO_CONSUME",
+          "NO_SKU_FOUND",
+          "WRONG_SKU_TYPE_PROVIDED",
+          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
+          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
+          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
+          "UNKNOWN_SKU_TYPE_PROVIDED",
+          "FAILED_TO_SUBMIT_ORDER",
+          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
+          "QUANTITY_ZERO",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "EntitlementEvent": {
@@ -32493,17 +32516,17 @@
         ],
         "title": "EntitlementEventStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "success",
-          "sku_not_found",
-          "not_implemented",
-          "player_not_found"
-        ],
         "x-enum-descriptions": [
           "The event was successful",
           "The SKU was not found",
           "The requested operation is not implemented yet",
           "The player was not found"
+        ],
+        "x-enum-varnames": [
+          "success",
+          "sku_not_found",
+          "not_implemented",
+          "player_not_found"
         ]
       },
       "EntitlementStatus": {
@@ -32517,19 +32540,19 @@
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "SUBMITTED",
-          "FULFILLED",
-          "FAILED",
-          "PREVIOUSLY_APPLIED"
-        ],
         "x-enum-descriptions": [
           "Entitlement status is unknown",
           "Entitlement has been submitted to the backend",
           "Entitlement has been fulfilled",
           "Entitlement has failed, check error_code for more information",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "SUBMITTED",
+          "FULFILLED",
+          "FAILED",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "EntitlementType": {
@@ -32541,15 +32564,15 @@
         ],
         "title": "EntitlementType",
         "description": "The method of granting a Platform Entitlement SKU",
-        "x-enum-varnames": [
-          "consumable",
-          "durable",
-          "durable_single_use"
-        ],
         "x-enum-descriptions": [
           "Consumable entitlements are removed from the platform's record keeping system when used.",
           "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
           "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
+        ],
+        "x-enum-varnames": [
+          "consumable",
+          "durable",
+          "durable_single_use"
         ]
       },
       "ExternalKeyEntitlement": {
@@ -32622,24 +32645,6 @@
         ],
         "title": "InventoryBucket",
         "description": "Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "NONE",
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Inventory given away for free.",
           "Inventory earned by players through in game activities.",
@@ -32657,6 +32662,24 @@
           "Inventory assigned to the Epic platform.",
           "Inventory assigned to the Google Play platform.",
           "Inventory assigned to the Nintendo PPID platform."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "NONE",
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "InventoryBucketUseRuleSet": {
@@ -32739,15 +32762,6 @@
         ],
         "title": "InventoryOperation",
         "description": "Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.\n\nSort Order:\n1. check_greater_then_or_equal/check_less_than\n2. check_greater_than_or_equal_and_subtract/subtract\n3. add/set",
-        "x-enum-varnames": [
-          "invalid",
-          "add",
-          "subtract",
-          "set",
-          "check_greater_than_or_equal",
-          "check_less_than",
-          "check_greater_than_or_equal_and_subtract"
-        ],
         "x-enum-descriptions": [
           "Invalid Inventory Operation.",
           "Add the quantity or expiration of the Inventory.",
@@ -32756,6 +32770,15 @@
           "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
           "Check if the quantity or expiration of the Inventory is less than the value.",
           "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
+        ],
+        "x-enum-varnames": [
+          "invalid",
+          "add",
+          "subtract",
+          "set",
+          "check_greater_than_or_equal",
+          "check_less_than",
+          "check_greater_than_or_equal_and_subtract"
         ]
       },
       "InventoryRecord": {
@@ -32837,14 +32860,6 @@
         ],
         "title": "InventorySelector",
         "description": "Determines way Inventory Selected and to be modified.",
-        "x-enum-varnames": [
-          "invalid",
-          "own",
-          "rent",
-          "rent_timeframe_locked",
-          "own_transient",
-          "inherit_entitlement_inventory"
-        ],
         "x-enum-descriptions": [
           "Invalid Inventory Selector.",
           "The Inventory will be stored across Inventory Sessions.",
@@ -32852,6 +32867,14 @@
           "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
           "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
           "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
+        ],
+        "x-enum-varnames": [
+          "invalid",
+          "own",
+          "rent",
+          "rent_timeframe_locked",
+          "own_transient",
+          "inherit_entitlement_inventory"
         ]
       },
       "InventorySession": {
@@ -32938,15 +32961,15 @@
         ],
         "title": "InventoryType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "PERSISTENT",
-          "TRANSIENT",
-          "ALWAYS_OWNED"
-        ],
         "x-enum-descriptions": [
           "Inventory that persists between Inventory Sessions.",
           "Stays around for the length of the Inventory Sessions.",
           "Items that are given to all Players and cannot be modified."
+        ],
+        "x-enum-varnames": [
+          "PERSISTENT",
+          "TRANSIENT",
+          "ALWAYS_OWNED"
         ]
       },
       "Item": {
@@ -33140,19 +33163,19 @@
         ],
         "title": "ItemType",
         "description": "The type of item.",
-        "x-enum-varnames": [
-          "unit",
-          "recipe",
-          "recipe_with_price_reduction",
-          "entitlement",
-          "dynamic_bundle"
-        ],
         "x-enum-descriptions": [
           "An item that is stored in a player's inventory.",
           "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
           "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
           "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
           "Not support at this time."
+        ],
+        "x-enum-varnames": [
+          "unit",
+          "recipe",
+          "recipe_with_price_reduction",
+          "entitlement",
+          "dynamic_bundle"
         ]
       },
       "Items": {
@@ -33868,15 +33891,15 @@
         ],
         "title": "PlatformRegion",
         "description": "Region for Entitlements",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "NA",
-          "EU"
-        ],
         "x-enum-descriptions": [
           "Unknown region",
           "North America region",
           "Europe Union region"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "NA",
+          "EU"
         ]
       },
       "PlatformSKU": {
@@ -34203,14 +34226,6 @@
         ],
         "title": "PlayerOrderDetailType",
         "description": "Player Order Detail Type.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "INVENTORY_CHANGE",
-          "DYNAMIC_BUNDLE_LTI",
-          "CLAIM_PROMO_CODE",
-          "RETURN_PROMO_CODE",
-          "NEW_ORDER"
-        ],
         "x-enum-descriptions": [
           "Unknown.",
           "Inventory change.",
@@ -34218,6 +34233,14 @@
           "Claim Promo Code.",
           "Return Promo Code.",
           "New Order."
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "INVENTORY_CHANGE",
+          "DYNAMIC_BUNDLE_LTI",
+          "CLAIM_PROMO_CODE",
+          "RETURN_PROMO_CODE",
+          "NEW_ORDER"
         ]
       },
       "PlayerOrderEntry": {
@@ -34267,7 +34290,8 @@
               }
             ],
             "title": "Purchase Price",
-            "description": "The purchase price of the Loot."
+            "description": "The purchase price of the Loot. Deprecated. Use the purchase_prices field instead",
+            "deprecated": true
           },
           "external_tran_id": {
             "type": "string",
@@ -34403,7 +34427,8 @@
               }
             ],
             "title": "Purchase Price",
-            "description": "The purchase price of the Loot."
+            "description": "The purchase price of the Loot. Deprecated. Use the purchase_prices field instead",
+            "deprecated": true
           },
           "external_tran_id": {
             "type": "string",
@@ -34529,57 +34554,6 @@
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
-        "x-enum-varnames": [
-          "SUCCESS",
-          "INTERNAL_ERROR",
-          "INVALID_ENTRY_TYPE",
-          "NOT_ALLOWED_ON_CURRENT_PORTAL",
-          "LOOT_NOT_FOUND",
-          "LOOT_NOT_ACTIVE",
-          "PRICE_ITEM_NOT_FOUND",
-          "PRICE_NOT_ALLOWED",
-          "DYNAMIC_BUNDLE_INVALID",
-          "TOO_MANY_REQUESTS",
-          "PRICE_DOES_NOT_MATCH",
-          "VENDOR_VERSION_DOES_NOT_MATCH",
-          "DYNAMIC_BUNDLE_LTIS_DO_NOT_MATCH",
-          "CANNOT_AFFORD_PRICE",
-          "CANNOT_AFFORD_COUPON",
-          "FAILED_TO_SPEND_PRICE",
-          "FAILED_TO_SPEND_COUPON",
-          "LOOT_NOT_FOR_SALE_WITH_PRICE_ITEM",
-          "COUPONS_DISABLED",
-          "COUPON_ITEM_NOT_FOUND",
-          "COUPON_ITEM_NOT_ACTIVE",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_QUANTITY",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_PRICE_ITEM",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_LOOT",
-          "QUANTITY_NOT_ALLOWED",
-          "PROMOTION_EXPIRED",
-          "PROMOTION_NOT_FOUND",
-          "PROMOTION_NO_USES_LEFT",
-          "PROMOTION_NOT_AVAILABLE",
-          "PROMOTION_CLAIMED_ALREADY",
-          "DYNAMIC_BUNDLES_NOT_AVAILABLE",
-          "TRANSIENT_SINGLE_LOOT_ALREADY_APPLIED",
-          "LOOT_NOT_FILLABLE_FROM_CLIENT",
-          "PERMISSION_DENIED",
-          "FAILED_TO_FIND_ANY_SUB_LOOT",
-          "FAILED_TO_FILL_ANY_SUB_LOOT",
-          "CANNOT_MEET_LOOT_BLOCKER",
-          "CANNOT_MEET_LOOT_REQUIRED",
-          "FAILED_TO_CONSUME_LOOT_REQUIRED",
-          "FAILED_TO_SUBMIT_NEW_ORDER",
-          "FAILED_TO_MODIFY_INVENTORY",
-          "INVENTORY_NOT_FOUND",
-          "ITEM_NOT_FOUND",
-          "ITEM_NOT_ACTIVE",
-          "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
-          "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
-          "AVAILABLE_UNTIL_IS_IN_PAST",
-          "ROLLBACK",
-          "NOT_STARTED"
-        ],
         "x-enum-descriptions": [
           "The Order Entry was successful.",
           "An internal error occurred when processing Order Entry.",
@@ -34630,6 +34604,57 @@
           "Available until is in the past.",
           "Order Entry was successfully fulfilled, but was rolled back.",
           "Order Entry fulfillment has not started."
+        ],
+        "x-enum-varnames": [
+          "SUCCESS",
+          "INTERNAL_ERROR",
+          "INVALID_ENTRY_TYPE",
+          "NOT_ALLOWED_ON_CURRENT_PORTAL",
+          "LOOT_NOT_FOUND",
+          "LOOT_NOT_ACTIVE",
+          "PRICE_ITEM_NOT_FOUND",
+          "PRICE_NOT_ALLOWED",
+          "DYNAMIC_BUNDLE_INVALID",
+          "TOO_MANY_REQUESTS",
+          "PRICE_DOES_NOT_MATCH",
+          "VENDOR_VERSION_DOES_NOT_MATCH",
+          "DYNAMIC_BUNDLE_LTIS_DO_NOT_MATCH",
+          "CANNOT_AFFORD_PRICE",
+          "CANNOT_AFFORD_COUPON",
+          "FAILED_TO_SPEND_PRICE",
+          "FAILED_TO_SPEND_COUPON",
+          "LOOT_NOT_FOR_SALE_WITH_PRICE_ITEM",
+          "COUPONS_DISABLED",
+          "COUPON_ITEM_NOT_FOUND",
+          "COUPON_ITEM_NOT_ACTIVE",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_QUANTITY",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_PRICE_ITEM",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_LOOT",
+          "QUANTITY_NOT_ALLOWED",
+          "PROMOTION_EXPIRED",
+          "PROMOTION_NOT_FOUND",
+          "PROMOTION_NO_USES_LEFT",
+          "PROMOTION_NOT_AVAILABLE",
+          "PROMOTION_CLAIMED_ALREADY",
+          "DYNAMIC_BUNDLES_NOT_AVAILABLE",
+          "TRANSIENT_SINGLE_LOOT_ALREADY_APPLIED",
+          "LOOT_NOT_FILLABLE_FROM_CLIENT",
+          "PERMISSION_DENIED",
+          "FAILED_TO_FIND_ANY_SUB_LOOT",
+          "FAILED_TO_FILL_ANY_SUB_LOOT",
+          "CANNOT_MEET_LOOT_BLOCKER",
+          "CANNOT_MEET_LOOT_REQUIRED",
+          "FAILED_TO_CONSUME_LOOT_REQUIRED",
+          "FAILED_TO_SUBMIT_NEW_ORDER",
+          "FAILED_TO_MODIFY_INVENTORY",
+          "INVENTORY_NOT_FOUND",
+          "ITEM_NOT_FOUND",
+          "ITEM_NOT_ACTIVE",
+          "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
+          "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
+          "AVAILABLE_UNTIL_IS_IN_PAST",
+          "ROLLBACK",
+          "NOT_STARTED"
         ]
       },
       "PlayerOrderEntryType": {
@@ -34649,19 +34674,6 @@
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
-        "x-enum-varnames": [
-          "FILL_LOOT",
-          "PURCHASE_LOOT",
-          "PURCHASE_DYNAMIC_BUNDLE",
-          "PROMOTION_CODE",
-          "FILL_LOOT_SINGLE_TRANSIENT",
-          "FILL_ENTITLED_LOOT",
-          "CREATE_NEW_PERSISTENT_INVENTORY",
-          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
-          "CREATE_NEW_TRANSIENT_INVENTORY",
-          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
-          "UPDATE_INVENTORY"
-        ],
         "x-enum-descriptions": [
           "Fill a loot item.",
           "Purchase a loot item.",
@@ -34674,6 +34686,19 @@
           "Create transient Inventory.",
           "Deprecated. Use update_inventory instead.",
           "Update existing Inventory."
+        ],
+        "x-enum-varnames": [
+          "FILL_LOOT",
+          "PURCHASE_LOOT",
+          "PURCHASE_DYNAMIC_BUNDLE",
+          "PROMOTION_CODE",
+          "FILL_LOOT_SINGLE_TRANSIENT",
+          "FILL_ENTITLED_LOOT",
+          "CREATE_NEW_PERSISTENT_INVENTORY",
+          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
+          "CREATE_NEW_TRANSIENT_INVENTORY",
+          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
+          "UPDATE_INVENTORY"
         ]
       },
       "PlayerOrdersResponse": {
@@ -34746,44 +34771,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "UNUSED_14",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "UNUSED_27",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -34821,6 +34808,44 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "UNUSED_14",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "UNUSED_27",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "PortalUseRuleset": {
@@ -34880,11 +34905,34 @@
         "title": "PortalUseRulesets",
         "description": "A collection of Portal Use Rulesets. A ruleset determine how item can be used across portals."
       },
+      "PriceBreakPointCurrency": {
+        "properties": {
+          "price_item_id": {
+            "type": "integer",
+            "title": "Price Item Id",
+            "description": "The Item used as the currency for the purchase."
+          },
+          "price": {
+            "type": "integer",
+            "title": "Price",
+            "description": "The price of the Item."
+          }
+        },
+        "type": "object",
+        "required": [
+          "price_item_id",
+          "price"
+        ],
+        "title": "PriceBreakPointCurrency",
+        "description": "The currencies of a Price Breakpoint."
+      },
       "PriceBreakpoint": {
         "properties": {
           "price_item_id": {
             "type": "integer",
-            "title": "Price Item Id"
+            "title": "Price Item Id",
+            "description": "Deprecated. Use the currencies field instead.",
+            "deprecated": true
           },
           "quantity": {
             "type": "integer",
@@ -34892,14 +34940,22 @@
           },
           "price": {
             "type": "integer",
-            "title": "Price"
+            "title": "Price",
+            "description": "Deprecated. Use the currencies field instead.",
+            "deprecated": true
+          },
+          "currencies": {
+            "items": {
+              "$ref": "#/components/schemas/PriceBreakPointCurrency"
+            },
+            "type": "array",
+            "title": "Currencies",
+            "description": "List of currencies for this break point"
           }
         },
         "type": "object",
         "required": [
-          "price_item_id",
-          "quantity",
-          "price"
+          "quantity"
         ],
         "title": "PriceBreakpoint",
         "description": "Price based on quantity and the Item ID of the currency used."
@@ -34994,17 +35050,44 @@
           "price_item_id": {
             "type": "integer",
             "title": "Price Item Id",
+            "description": "The Item used as the currency for the purchase. Deprecated. Use currencies instead",
+            "deprecated": true
+          },
+          "price": {
+            "type": "integer",
+            "title": "Price",
+            "description": "The price of the Item. Deprecated. Use currencies instead",
+            "deprecated": true
+          },
+          "price_coupon_item_id": {
+            "type": "integer",
+            "title": "Price Coupon Item Id",
+            "description": "The Item used as the coupon for the purchase."
+          },
+          "currencies": {
+            "items": {
+              "$ref": "#/components/schemas/PurchasePriceCurrency"
+            },
+            "type": "array",
+            "title": "Currencies",
+            "description": "List of currencies for this purchase price"
+          }
+        },
+        "type": "object",
+        "title": "PurchasePrice",
+        "description": "The purchase price of an Item."
+      },
+      "PurchasePriceCurrency": {
+        "properties": {
+          "price_item_id": {
+            "type": "integer",
+            "title": "Price Item Id",
             "description": "The Item used as the currency for the purchase."
           },
           "price": {
             "type": "integer",
             "title": "Price",
             "description": "The price of the Item."
-          },
-          "price_coupon_item_id": {
-            "type": "integer",
-            "title": "Price Coupon Item Id",
-            "description": "The Item used as the coupon for the purchase."
           }
         },
         "type": "object",
@@ -35012,8 +35095,8 @@
           "price_item_id",
           "price"
         ],
-        "title": "PurchasePrice",
-        "description": "The purchase price of an Item."
+        "title": "PurchasePriceCurrency",
+        "description": "The purchase price currencies of an Item."
       },
       "QuantityType": {
         "type": "string",
@@ -35023,13 +35106,13 @@
         ],
         "title": "QuantityType",
         "description": "Determines how the quantity is to be modified.\n\nRelative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.\n\nAbsolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.",
-        "x-enum-varnames": [
-          "relative",
-          "absolute"
-        ],
         "x-enum-descriptions": [
           "The quantity will be modified relative to the context in which it is fulfilled.",
           "The quantity will be modified regardless of the context in which it is fulfilled."
+        ],
+        "x-enum-varnames": [
+          "relative",
+          "absolute"
         ]
       },
       "SortOrder": {
@@ -35040,13 +35123,13 @@
         ],
         "title": "SortOrder",
         "description": "Determine the direction of the sort",
-        "x-enum-varnames": [
-          "ASCENDING",
-          "DESCENDING"
-        ],
         "x-enum-descriptions": [
           "Sort in ascending order",
           "Sort in descending order"
+        ],
+        "x-enum-varnames": [
+          "ASCENDING",
+          "DESCENDING"
         ]
       },
       "Source": {
@@ -35117,70 +35200,6 @@
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WEB_ORDER_REPAIR",
-          "IN_GAME",
-          "WEB_SITE",
-          "NO_SALE",
-          "SUPPORT",
-          "ACTIVITY",
-          "REFUND",
-          "SYSTEM",
-          "REWARDS",
-          "ESPORTS",
-          "TREASURE",
-          "CONSOLE",
-          "ODYSSEY",
-          "STEAM",
-          "RETURN",
-          "JSON_GATE",
-          "SEND_GIFT",
-          "RECEIVE_GIFT",
-          "STEAM_DLC",
-          "TWITCH_MILESTONE",
-          "TWITCH_PRIME",
-          "PSN",
-          "XBOX",
-          "PTS_GRANT",
-          "INSTANCE",
-          "ACCOUNT_TRANSFER",
-          "PROMOCODE",
-          "TRIUMPH_SYSTEM",
-          "LOGIN_GRANT",
-          "EOM_UNCAPPED",
-          "EOM_CAPPED",
-          "FACEBOOK_DROP",
-          "DATABASE_SCRIPT",
-          "ACCOUNT_LINKING",
-          "CLAN",
-          "CONVERSION",
-          "APPLE",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "PORTAL_DURABLE",
-          "PARTNER_ACHIEVEMENT",
-          "MIXER_DROP",
-          "NINTENDO",
-          "STREAM_VIEWING_PROGRESS",
-          "DISCORD",
-          "FIRST_LOGIN_GRANT",
-          "TWITCH_FUEL",
-          "DISCORD_DLC",
-          "NETEASE",
-          "EPIC_GAMES",
-          "FORTE",
-          "FACEBOOK",
-          "HIREZ",
-          "DAILY_REWARD",
-          "ADD_ACCOUNT_EMAIL_REWARD",
-          "CLIENT_CLAIM",
-          "CLIENT",
-          "ENTITLEMENTS",
-          "AMAZON",
-          "SIMULMEDIA",
-          "LUNA"
-        ],
         "x-enum-descriptions": [
           "Unknown source.",
           "Repair Order send from the Web to fix up Inventory mistakes.",
@@ -35244,6 +35263,70 @@
           "Order granted by Amazon.",
           "Order granted by Simulmedia.",
           "Order granted by Luna."
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WEB_ORDER_REPAIR",
+          "IN_GAME",
+          "WEB_SITE",
+          "NO_SALE",
+          "SUPPORT",
+          "ACTIVITY",
+          "REFUND",
+          "SYSTEM",
+          "REWARDS",
+          "ESPORTS",
+          "TREASURE",
+          "CONSOLE",
+          "ODYSSEY",
+          "STEAM",
+          "RETURN",
+          "JSON_GATE",
+          "SEND_GIFT",
+          "RECEIVE_GIFT",
+          "STEAM_DLC",
+          "TWITCH_MILESTONE",
+          "TWITCH_PRIME",
+          "PSN",
+          "XBOX",
+          "PTS_GRANT",
+          "INSTANCE",
+          "ACCOUNT_TRANSFER",
+          "PROMOCODE",
+          "TRIUMPH_SYSTEM",
+          "LOGIN_GRANT",
+          "EOM_UNCAPPED",
+          "EOM_CAPPED",
+          "FACEBOOK_DROP",
+          "DATABASE_SCRIPT",
+          "ACCOUNT_LINKING",
+          "CLAN",
+          "CONVERSION",
+          "APPLE",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "PORTAL_DURABLE",
+          "PARTNER_ACHIEVEMENT",
+          "MIXER_DROP",
+          "NINTENDO",
+          "STREAM_VIEWING_PROGRESS",
+          "DISCORD",
+          "FIRST_LOGIN_GRANT",
+          "TWITCH_FUEL",
+          "DISCORD_DLC",
+          "NETEASE",
+          "EPIC_GAMES",
+          "FORTE",
+          "FACEBOOK",
+          "HIREZ",
+          "DAILY_REWARD",
+          "ADD_ACCOUNT_EMAIL_REWARD",
+          "CLIENT_CLAIM",
+          "CLIENT",
+          "ENTITLEMENTS",
+          "AMAZON",
+          "SIMULMEDIA",
+          "LUNA"
         ]
       },
       "TimeFrame": {
@@ -35541,13 +35624,13 @@
         ],
         "title": "VendorType",
         "description": "Determines how the Vendor fulfills the loot.",
-        "x-enum-varnames": [
-          "recipe",
-          "randomly_sampled"
-        ],
         "x-enum-descriptions": [
           "A Vendor that will always drop all of the Loot in the Loot table.",
           "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
+        ],
+        "x-enum-varnames": [
+          "recipe",
+          "randomly_sampled"
         ]
       },
       "Vendors": {
@@ -35578,17 +35661,17 @@
         ],
         "title": "XpQuantityTransform",
         "description": "Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.\n\nThe following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:\n1: 20\n2: 50\n3: 100\n4: 200\n5: 400\n\nfrom_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 200 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 400 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 400 total xp.\n\nfrom_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 250 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 450 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 450 total xp.\n\nfrom_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.\nExample 1: fulfill quantity 1\n    Player will be level 3 with 170 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 4 with 200 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 4 with 250 total xp.",
-        "x-enum-varnames": [
-          "none",
-          "from_current_xp_to_target_additional_level_min_xp",
-          "from_current_level_min_xp_to_target_additional_level_min_xp",
-          "from_zero_to_target_exact_level_min_xp"
-        ],
         "x-enum-descriptions": [
           "Quantity will be treated as XP and will not be transformed.",
           "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
           "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
           "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
+        ],
+        "x-enum-varnames": [
+          "none",
+          "from_current_xp_to_target_additional_level_min_xp",
+          "from_current_level_min_xp_to_target_additional_level_min_xp",
+          "from_zero_to_target_exact_level_min_xp"
         ]
       },
       "XpTable": {
