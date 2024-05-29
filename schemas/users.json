@@ -587,6 +587,16 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -695,6 +705,16 @@
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -2440,25 +2460,26 @@
           "users"
         ],
         "summary": "Link",
+        "description": "Link a follower platform user to a leader person.\n    \nThe Leader person is found using the following priority:\n\n1. If the `leader_person_id` is provided directly\n2. If the `leader_platform` and `leader_platform_user_id` are provided, the `person_id` of that platform user is used.\n3. If the `scheme` and `credentials` are provided, the person_id of the platform user of credentials is used.\n\nThe Follower platform user is found using the following priority:\n\n1. If the `follower_platform` and `follower_platform_user_id` are provided directly.\n2. If the Authorization header contains a user token, the platform and platform user id from the token are used.\n\nFor leader selection 1,2 or follower selection 1, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
         "operationId": "link",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/HTTPAuthorizationCredentials"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PlatformUserLinkRequest"
+                  }
+                ],
+                "title": "Link Request",
+                "default": {}
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
+            "description": "Successful Response"
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
@@ -2471,7 +2492,14 @@
             }
           },
           "400": {
-            "description": "Users cannot be linked due to user state.  See response for further details"
+            "description": "Request inputs are not valid\n\n\nError Codes:\n- `account_not_found` - User Account not found\n- `cannot_link_same_player` - Cannot link a player to themselves\n- `follower_already_linked` - Follower is already linked to another person.  They must be unlinked before they can be linked again.\n- `follower_has_cross_progression_enabled` - follower must disable cross progression before this operation\n- `follower_has_restrictions` - follower has restrictions that prevent this operation\n- `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint?\n- `leader_has_restrictions` - leader has restrictions that prevent this operation\n- `leader_not_found` - Desired user for the leader of the link was not found\n- `platform_already_linked` - Person is already linked to another user on this platform\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -2497,15 +2525,26 @@
           "users"
         ],
         "summary": "Unlink",
+        "description": "Unlink a platform user from their current person.  This will create a new person for the \nplatform user to be associated with.\n\nIf an identity is not provided, the identity in the token will be used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
         "operationId": "unlink",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PlatformUserOperationRequest"
+                  }
+                ],
+                "title": "Platform Identity",
+                "default": {}
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response"
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
@@ -2518,7 +2557,24 @@
             }
           },
           "400": {
-            "description": "Users cannot be unlinked due to user state.  See response for further details"
+            "description": "Request inputs are not valid\n\n\nError Codes:\n- `account_not_found` - User Account not found\n- `cannot_modify_person` - You have insufficient permissions to modify this person\n- `cannot_unlink_cross_progression_player` - Cannot unlink the cross progression player\n- `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint?\n- `player_not_linked` - Player is not linked\n- `user_has_restrictions` - user has restrictions that prevent this operation\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2534,18 +2590,56 @@
           "users"
         ],
         "summary": "Enable Cross Progression",
+        "description": "Enable Cross Progression for the player associated with the platform identity.  \nWhile cross progression is enabled, all linked users who login will receive a token for the player with cross \nprogression enabled (instead of a token for their platform user's player).\n\nIf an identity is not provided, the identity in the token will be used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
         "operationId": "enable_cross_progression",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PlatformUserOperationRequest"
+                  }
+                ],
+                "title": "Platform Identity",
+                "default": {}
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
               }
             }
           },
-          "403": {
-            "description": "Forbidden"
+          "400": {
+            "description": "Request inputs are not valid\n\n\nError Codes:\n- `account_not_found` - User Account not found\n- `already_cross_progression_player` - Player is already the cross progression player\n- `cannot_modify_person` - You have insufficient permissions to modify this person\n- `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint?\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2561,18 +2655,56 @@
           "users"
         ],
         "summary": "Disable Cross Progression",
+        "description": "Disable Cross Progression for the player associated with the platform identity.  \nWhile cross progression is disabled, all linked users who login will receive a token for the player associated \nwith their platform user.\n\nIf an identity is not provided, the identity in the token will be used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
         "operationId": "disable_cross_progression",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PlatformUserOperationRequest"
+                  }
+                ],
+                "title": "Platform Identity",
+                "default": {}
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
               }
             }
           },
-          "403": {
-            "description": "Forbidden"
+          "400": {
+            "description": "Request inputs are not valid\n\n\nError Codes:\n- `account_not_found` - User Account not found\n- `cannot_modify_person` - You have insufficient permissions to modify this person\n- `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint?\n- `not_cross_progression_player` - Player is not the cross progression player\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -2796,23 +2928,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Anonymous authentication",
-          "Google authentication",
-          "Apple authentication",
-          "Refresh Token authentication",
-          "Epic Online Services authentication",
-          "Xbox Live authentication",
-          "Playstation Network v1 authentication using the configured PS4 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Account authentication",
-          "Nintendo Service Account (for Nintendo Switch) authentication",
-          "Steam authentication",
-          "Basic Username/Password authentication",
-          "RallyHere Developer authentication",
-          "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
-        ],
         "x-enum-varnames": [
           "ANON",
           "GOOGLE",
@@ -2829,26 +2944,24 @@
           "BASIC",
           "RALLYHERE",
           "CLIENT_CREDENTIALS"
-        ]
-      },
-      "HTTPAuthorizationCredentials": {
-        "properties": {
-          "scheme": {
-            "type": "string",
-            "title": "Scheme"
-          },
-          "credentials": {
-            "type": "string",
-            "title": "Credentials"
-          }
-        },
-        "type": "object",
-        "required": [
-          "scheme",
-          "credentials"
         ],
-        "title": "HTTPAuthorizationCredentials",
-        "description": "The HTTP authorization credentials in the result of using `HTTPBearer` or\n`HTTPDigest` in a dependency.\n\nThe HTTP authorization header value is split by the first space.\n\nThe first part is the `scheme`, the second part is the `credentials`.\n\nFor example, in an HTTP Bearer token scheme, the client will send a header\nlike:\n\n```\nAuthorization: Bearer deadbeef12346\n```\n\nIn this case:\n\n* `scheme` will have the value `\"Bearer\"`\n* `credentials` will have the value `\"deadbeef12346\"`"
+        "x-enum-descriptions": [
+          "Anonymous authentication",
+          "Google authentication",
+          "Apple authentication",
+          "Refresh Token authentication",
+          "Epic Online Services authentication",
+          "Xbox Live authentication",
+          "Playstation Network v1 authentication using the configured PS4 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Nintendo Account authentication",
+          "Nintendo Service Account (for Nintendo Switch) authentication",
+          "Steam authentication",
+          "Basic Username/Password authentication",
+          "RallyHere Developer authentication",
+          "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ]
       },
       "HTTPValidationError": {
         "properties": {
@@ -3199,11 +3312,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-descriptions": [
-          "The OAuth2 client credentials grant type"
-        ],
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -3221,17 +3334,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google OAuth Portal",
-          "Apple OAuth Portal",
-          "Epic OAuth Portal",
-          "Xbox OAuth Portal",
-          "Playstation Network OAuth Portal",
-          "Nintendo OAuth Portal",
-          "Steam OAuth Portal",
-          "Amazon OAuth Portal",
-          "Twitch OAuth Portal"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -3242,6 +3344,17 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -3251,11 +3364,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-descriptions": [
-          "Authorization code grant type for OAuth token exchange."
-        ],
         "x-enum-varnames": [
           "authorization_code"
+        ],
+        "x-enum-descriptions": [
+          "Authorization code grant type for OAuth token exchange."
         ]
       },
       "OAuthTokenExchange": {
@@ -3425,24 +3538,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -3460,6 +3555,24 @@
           "TWITCH",
           "RALLYHERE",
           "LEGACYNAME"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -3477,6 +3590,78 @@
         "type": "object",
         "title": "PlatformIdentityLookupResults",
         "description": "Lookup results for a platform user id"
+      },
+      "PlatformUserLinkRequest": {
+        "properties": {
+          "leader_person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Leader Person Id",
+            "description": "Person ID of the leader to link to.  If not provided, the person will be found from the `leader_platform` and `leader_platform_user_id`"
+          },
+          "leader_platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform of the leader to link to.  If not provided, the leader will be found from the `scheme` and `credentials`"
+          },
+          "leader_platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Leader Platform User Id",
+            "description": "Platform user ID of the leader to link to.  If not provided, the leader will be found from the `scheme` and `credentials`"
+          },
+          "follower_platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform of the follower to link.  If not provided, the follower will be found from the Authorization header's token"
+          },
+          "follower_platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Follower Platform User Id",
+            "description": "Platform user ID of the follower to link.  If not provided, the follower will be found from the Authorization header's token"
+          },
+          "scheme": {
+            "type": "string",
+            "title": "Scheme",
+            "description": "Scheme to use for the leader.  For most tokens, this will be `Bearer`"
+          },
+          "credentials": {
+            "type": "string",
+            "title": "Credentials",
+            "description": "Credentials to use for the leader.  For most tokens, this will be the token itself."
+          }
+        },
+        "type": "object",
+        "title": "PlatformUserLinkRequest",
+        "description": "Model for linking a platform user to the person of another platform user.\n\nThis is used to determine the \"leader\" person_id that will be the assigned to a \"follower\" platform user.\n\nThe Leader person is found using the following priority:\n\n1. If the `leader_person_id` is provided directly\n2. If the `leader_platform` and `leader_platform_user_id` are provided, the `person_id` of that platform user is used.\n3. If the `scheme` and `credentials` are provided, the person_id of the platform user of credentials is used.\n\nThe Follower platform user is found using the following priority:\n\n1. If the `follower_platform` and `follower_platform_user_id` are provided directly.\n2. If the Authorization header contains a user token, the platform and platform user id from the token are used."
+      },
+      "PlatformUserOperationRequest": {
+        "properties": {
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform ID"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "Platform User ID"
+          }
+        },
+        "type": "object",
+        "title": "PlatformUserOperationRequest",
+        "description": "Model for doing operations on a specific platform user.  If platform/userid information is not provided, the information from the token claims will be used instead."
       },
       "PlatformUserResponse": {
         "properties": {
@@ -3696,15 +3881,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-descriptions": [
-          "Playstation Network v1 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS5 credentials"
-        ],
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "Playstation Network v1 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS5 credentials"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -3959,17 +4144,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-descriptions": [
-          "Account is banned",
-          "Account is locked out",
-          "Account is pending deletion and will be deleted in the future",
-          "Account has been banned from authentication"
-        ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
           "ACCOUNT_PENDING_DELETION",
           "ACCOUNT_DENY_AUTH"
+        ],
+        "x-enum-descriptions": [
+          "Account is banned",
+          "Account is locked out",
+          "Account is pending deletion and will be deleted in the future",
+          "Account has been banned from authentication"
         ]
       },
       "Role": {
@@ -4026,15 +4211,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-descriptions": [
-          "Does not bypass any auth states",
-          "Allow bypass of the limited auth state",
-          "Auth bypass for the limited and locked auth states"
-        ],
         "x-enum-varnames": [
           "NONE",
           "LIMITED",
           "LOCKED"
+        ],
+        "x-enum-descriptions": [
+          "Does not bypass any auth states",
+          "Allow bypass of the limited auth state",
+          "Auth bypass for the limited and locked auth states"
         ]
       },
       "SendInBlueContact": {
@@ -4202,23 +4387,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-descriptions": [
-          "Anonymous portal used for testing. This is not intended to be used by real players.",
-          "Amazon portal",
-          "Steam portal",
-          "Playstation Network portal",
-          "Xbox Live portal",
-          "Basic portal",
-          "Google portal",
-          "RallyHere Developer portal",
-          "Twitch portal",
-          "Nintendo Switch portal",
-          "Apple portal",
-          "Nintendo portal",
-          "Legacy name portal",
-          "Epic portal",
-          "Nintendo PPID portal"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -4235,6 +4403,23 @@
           "LEGACYNAME",
           "EPIC",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "RallyHere Developer portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Legacy name portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -4279,44 +4464,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -4354,6 +4501,44 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       }
     },
