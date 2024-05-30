@@ -2655,7 +2655,7 @@
           "users"
         ],
         "summary": "Disable Cross Progression",
-        "description": "Disable Cross Progression for the player associated with the platform identity.  \nWhile cross progression is disabled, all linked users who login will receive a token for the player associated \nwith their platform user.\n\nIf an identity is not provided, the identity in the token will be used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
+        "description": "Disable Cross Progression for a person.  While cross progression is disabled, \nall linked users who login will receive a token for the player associated with their platform user.\n    \nThe person is found using the following priority:\n\n1. If the `person_id` is provided directly\n2. If the `platform` and `platform_user_id` are provided, the `person_id` of that platform user is used.\n3. If the Authorization header contains a user token, the platform and platform user id from the token are used and the person associated with that user is used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
         "operationId": "disable_cross_progression",
         "requestBody": {
           "content": {
@@ -2663,10 +2663,10 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/PlatformUserOperationRequest"
+                    "$ref": "#/components/schemas/PersonOperationRequest"
                   }
                 ],
-                "title": "Platform Identity",
+                "title": "Person Info",
                 "default": {}
               }
             }
@@ -3515,6 +3515,33 @@
         "type": "object",
         "title": "PersonInfoResponse",
         "description": "Response for getting a person's info"
+      },
+      "PersonOperationRequest": {
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "Person ID"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform ID"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "Platform User ID"
+          }
+        },
+        "type": "object",
+        "title": "PersonOperationRequest",
+        "description": "Model for doing operations on a specific person.  If person information is not provided, the information from the token claims will be used instead.\n\nPriority for finding the person ID:\n\n1. If the `person_id` is provided directly\n2. If the `platform` and `platform_user_id` are provided, the `person_id` of that platform user is used.\n3. If the Authorization header contains a user token, the platform and platform user id from the token are used to find the `person_id`."
       },
       "Platform": {
         "type": "string",

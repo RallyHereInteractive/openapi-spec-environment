@@ -1,3 +1,55 @@
+## Changes for Thu May 30 04:08:57 PM EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+POST /users/v1/cross-progression/disable
+- Description changed from 'Disable Cross Progression for the player associated with the platform identity.  
+While cross progression is disabled, all linked users who login will receive a token for the player associated 
+with their platform user.
+
+If an identity is not provided, the identity in the token will be used.
+
+If you are modifying a user outside of your person, Required Permissions:
+
+- For any user (including themselves) any of: `user:*`, `user:modify:any`
+
+
+
+NOTE: Whenever you change the link or cross progression status of a user, it is recommended to 
+refresh their access token.  Each token does container user information, which may be incorrect after a link or 
+cross progression change.  There is no guarantee that calling other endpoints will operate on the correct user
+until the token has been refreshed.' to 'Disable Cross Progression for a person.  While cross progression is disabled, 
+all linked users who login will receive a token for the player associated with their platform user.
+    
+The person is found using the following priority:
+
+1. If the `person_id` is provided directly
+2. If the `platform` and `platform_user_id` are provided, the `person_id` of that platform user is used.
+3. If the Authorization header contains a user token, the platform and platform user id from the token are used and the person associated with that user is used.
+
+If you are modifying a user outside of your person, Required Permissions:
+
+- For any user (including themselves) any of: `user:*`, `user:modify:any`
+
+
+
+NOTE: Whenever you change the link or cross progression status of a user, it is recommended to 
+refresh their access token.  Each token does container user information, which may be incorrect after a link or 
+cross progression change.  There is no guarantee that calling other endpoints will operate on the correct user
+until the token has been refreshed.'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Property 'AllOf' changed
+          - Schemas added: [PersonOperationRequest]
+          - Schemas deleted: [PlatformUserOperationRequest]
+        - Title changed from 'Platform Identity' to 'Person Info'
 ## Changes for Wed May 29 06:47:27 PM EDT 2024
 ### New Endpoints: None
 -----------------------
