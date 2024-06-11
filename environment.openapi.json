@@ -6072,6 +6072,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -6251,6 +6252,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -6326,6 +6328,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -7362,6 +7365,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -7408,6 +7412,256 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/users/v1/history/login": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Login History",
+        "description": "Get the Login history for a given user",
+        "operationId": "get_login_history",
+        "parameters": [
+          {
+            "description": "The player UUID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player UUID to audit"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "The person ID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id",
+              "description": "The person ID to audit"
+            },
+            "name": "person_id",
+            "in": "query"
+          },
+          {
+            "description": "The platform to audit",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "The platform to audit"
+            },
+            "name": "platform",
+            "in": "query"
+          },
+          {
+            "description": "The platform user ID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 2048,
+              "title": "Platform User Id",
+              "description": "The platform user ID to audit"
+            },
+            "name": "platform_user_id",
+            "in": "query"
+          },
+          {
+            "description": "Token to retrieve the next page of results",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Continuation Token",
+              "description": "Token to retrieve the next page of results"
+            },
+            "name": "continuation_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginHistoryPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/users/v1/history/link": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Link History",
+        "description": "Get the Link history for a given user",
+        "operationId": "get_link_history",
+        "parameters": [
+          {
+            "description": "The player UUID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player UUID to audit"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "The person ID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id",
+              "description": "The person ID to audit"
+            },
+            "name": "person_id",
+            "in": "query"
+          },
+          {
+            "description": "The platform to audit",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "The platform to audit"
+            },
+            "name": "platform",
+            "in": "query"
+          },
+          {
+            "description": "The platform user ID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 2048,
+              "title": "Platform User Id",
+              "description": "The platform user ID to audit"
+            },
+            "name": "platform_user_id",
+            "in": "query"
+          },
+          {
+            "description": "Token to retrieve the next page of results",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Continuation Token",
+              "description": "Token to retrieve the next page of results"
+            },
+            "name": "continuation_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserLinkHistory"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -9541,7 +9795,7 @@
           "Sessions"
         ],
         "summary": "Instance Health Check",
-        "description": "Endpoint to post health status of an instance\n\nRequired Permissions:\n\n- For any player (including themselves) : `session:instance:health`\n\n\n\nsession:instance:health",
+        "description": "Endpoint to post health status of an instance\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:instance:health`\n\n\n\nsession:instance:health",
         "operationId": "instance_health_check",
         "parameters": [
           {
@@ -11961,6 +12215,319 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/deserter": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get All Deserter Configs",
+        "description": "Get all deserter configs",
+        "operationId": "get_all_deserter_configs",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeserterConfigResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/deserter/{deserter_id}": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get Specific Deserter Config",
+        "description": "Get specific deserter configs",
+        "operationId": "get_specific_deserter_config",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeserterConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/player/{player_uuid}/deserter/{deserter_id}": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get Player Deserter",
+        "description": "Get a specific player's deserter status",
+        "operationId": "get_player_deserter",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerDeserterStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Put Player Deserter",
+        "description": "Update a specific player's deserter status",
+        "operationId": "put_player_deserter",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeserterUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/deserter:clear": {
+      "post": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Clear All Deserter",
+        "description": "Clear deserter status for all deserter ids",
+        "operationId": "clear_all_deserter",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/deserter/{deserter_id}:clear": {
+      "post": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Clear Specific Deserter",
+        "description": "Clear deserter status for a specific deserter id",
+        "operationId": "clear_specific_deserter",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "403": {
             "description": "Forbidden",
@@ -20394,7 +20961,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20536,7 +21103,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20663,7 +21230,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20748,7 +21315,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20884,7 +21451,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -20980,7 +21547,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21068,7 +21635,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21175,7 +21742,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21318,7 +21885,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21461,7 +22028,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21588,7 +22155,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21673,7 +22240,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21810,7 +22377,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21907,7 +22474,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21995,7 +22562,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22103,7 +22670,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22255,7 +22822,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22391,7 +22958,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22487,7 +23054,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22584,7 +23151,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_unknown - Failed to parse token\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_format - Invalid Authorization - {}\n- auth_invalid_version - Invalid Authorization - version\n",
+            "description": "\nError Codes:\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_expired - Token is expired\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -23123,6 +23690,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -23562,6 +24130,63 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RankConfigRequestResponseV3"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/rank/v3/rank:calculate": {
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Calculate V3 Ranks",
+        "description": "Calculate a rank update on players and return the results without persisting them\nRequires at least two teams, the players' ranks before the last match was played, and parameters on how to calculate the rank changes\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `rank:*`, `rank:calculate`",
+        "operationId": "calculate_v3_ranks",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CalculateRankRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CalculateRankResponse"
                 }
               }
             }
@@ -26958,23 +27583,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -26991,7 +27599,126 @@
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
+      },
+      "LinkAction": {
+        "type": "string",
+        "enum": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
+        ],
+        "title": "LinkAction",
+        "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "Linked a player to an existing person",
+          "Unlinked a player from a person",
+          "Player was associated with a new person",
+          "Active player was set for person, enabling cross-progression for all of the person's players",
+          "Active player was cleared for person, disabling cross-progression for all of the person's players"
+        ],
+        "x-enum-varnames": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
+        ]
+      },
+      "LoginHistoryEntry": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "player UUID"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "platform"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "platform user ID"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "person ID"
+          },
+          "user_agent": {
+            "type": "string",
+            "title": "User Agent",
+            "description": "user agent string"
+          },
+          "ip": {
+            "type": "string",
+            "title": "Ip",
+            "description": "IP address"
+          },
+          "client_id": {
+            "type": "string",
+            "title": "Client Id",
+            "description": "client ID"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "title": "LoginHistoryEntry",
+        "description": "Entry in a users's login history.  Some fields may be missing if the data is not available."
+      },
+      "LoginHistoryPage": {
+        "properties": {
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LoginHistoryEntry"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "The login history entries"
+          },
+          "continuation_token": {
+            "type": "string",
+            "title": "Continuation Token",
+            "description": "Token to retrieve the next page of results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "LoginHistoryPage"
       },
       "LoginLootReward": {
         "properties": {
@@ -27306,11 +28033,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -27328,17 +28055,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -27349,6 +28065,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -27358,11 +28085,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -27902,15 +28629,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -28165,17 +28892,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
           "Account has been banned from authentication"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Role": {
@@ -28232,15 +28959,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "SendInBlueContact": {
@@ -28354,6 +29081,88 @@
         "title": "UpdatePersonInfoRequest",
         "description": "Request to update a person's info"
       },
+      "UserLinkHistory": {
+        "properties": {
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/UserLinkHistoryEntry"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "The link history entries"
+          },
+          "continuation_token": {
+            "type": "string",
+            "title": "Continuation Token",
+            "description": "Token to retrieve the next page of results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "UserLinkHistory"
+      },
+      "UserLinkHistoryEntry": {
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "title": "Entry Id",
+            "description": "entry ID"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "player UUID"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "platform"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "platform user ID"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "person ID"
+          },
+          "active_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Active Player Uuid",
+            "description": "active player UUID"
+          },
+          "action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LinkAction"
+              }
+            ],
+            "description": "action"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "UserLinkHistoryEntry"
+      },
       "dependencies__schemas__Portal": {
         "type": "integer",
         "enum": [
@@ -28375,23 +29184,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -28408,6 +29200,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -28452,44 +29261,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -28527,6 +29298,44 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "AcknowledgeBackfillRequest": {
@@ -29431,17 +30240,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay input preferences. Can play with players using any input",
-          "Can only play with players using a keyboard and mouse",
-          "Can only player with players using a gamepad/controller",
-          "Can only player with players using a touch screen"
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay input preferences. Can play with players using any input",
+          "Can only play with players using a keyboard and mouse",
+          "Can only player with players using a gamepad/controller",
+          "Can only player with players using a touch screen"
         ]
       },
       "CrossplayPlatform": {
@@ -29453,15 +30262,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay platform preferences. Can play with players any platforms",
-          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
-          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay platform preferences. Can play with players any platforms",
+          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
+          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
         ]
       },
       "CrossplayPreferences": {
@@ -29501,18 +30310,82 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "assigned",
           "left_queue",
           "timeout",
           "party_changed"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
+      },
+      "DeserterConfig": {
+        "properties": {
+          "deserter_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Deserter Id",
+            "description": "Unique id for this set of deserter config"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deserter_id"
+        ],
+        "title": "DeserterConfig"
+      },
+      "DeserterConfigResponse": {
+        "properties": {
+          "deserter_configs": {
+            "items": {
+              "$ref": "#/components/schemas/DeserterConfig"
+            },
+            "type": "array",
+            "title": "Deserter Configs",
+            "description": "List of desertion config objects"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deserter_configs"
+        ],
+        "title": "DeserterConfigResponse"
+      },
+      "DeserterUpdateRequest": {
+        "properties": {
+          "deserter_expiration": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "deserter_count": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Deserter Count",
+            "description": "The number of times a player has deserted before the expiration"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data about a players desertion status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deserter_expiration",
+          "deserter_count"
+        ],
+        "title": "DeserterUpdateRequest"
       },
       "Determiner": {
         "type": "string",
@@ -29524,17 +30397,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-descriptions": [
-          "All rules must be satisfied",
-          "At least one rule must be satisfied",
-          "Exactly one rule must be satisfied",
-          "All rules must not be satisfied"
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "All rules must be satisfied",
+          "At least one rule must be satisfied",
+          "Exactly one rule must be satisfied",
+          "All rules must not be satisfied"
         ]
       },
       "HostType": {
@@ -29545,13 +30418,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-descriptions": [
-          "A dedicated, standalone instance",
-          "A player hosted instance"
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player"
+        ],
+        "x-enum-descriptions": [
+          "A dedicated, standalone instance",
+          "A player hosted instance"
         ]
       },
       "Input": {
@@ -29563,15 +30436,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-descriptions": [
-          "Input for players using a keyboard and mouse",
-          "Input for players using a gamepad/controller",
-          "Input for players using a touch screen"
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "Input for players using a keyboard and mouse",
+          "Input for players using a gamepad/controller",
+          "Input for players using a touch screen"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -29616,17 +30489,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Instance is in a healthy state",
-          "Instance is in an unhealthy state and cannot handle connections",
-          "Instance performance is degraded, and may be unable to handle new or existing connections",
-          "Instance health checks have stopped, and instance status is unknown"
-        ],
         "x-enum-varnames": [
           "HEALTHY",
           "UNHEALTHY",
           "DEGRADED",
           "UNKNOWN"
+        ],
+        "x-enum-descriptions": [
+          "Instance is in a healthy state",
+          "Instance is in an unhealthy state and cannot handle connections",
+          "Instance performance is degraded, and may be unable to handle new or existing connections",
+          "Instance health checks have stopped, and instance status is unknown"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -29855,14 +30728,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found, and is loading its session information",
-          "Host has arrived and is loading",
-          "Host is ready to accept players",
-          "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
@@ -29870,6 +30735,14 @@
           "joinable",
           "unjoinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found, and is loading its session information",
+          "Host has arrived and is loading",
+          "Host is ready to accept players",
+          "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -30061,15 +30934,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "BACKFILL",
           "MATCHMAKING",
           "PLAYER"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "JoinParams": {
@@ -30114,17 +30987,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-descriptions": [
-          "Use the lowest MMR of any player in the linking",
-          "Use the highest MMR of any player in the linking",
-          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
-          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "Use the lowest MMR of any player in the linking",
+          "Use the highest MMR of any player in the linking",
+          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
+          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
         ]
       },
       "MapConfig": {
@@ -30361,6 +31234,11 @@
             "title": "Min Players Per Side",
             "description": "The minimum number of players that can be on each team"
           },
+          "deserter_id": {
+            "type": "string",
+            "title": "Deserter Id",
+            "description": "Unused in the legacy profile. Must use V2 for deserter functionality. Which deserter this profile should check before allowing players to join matchmaking"
+          },
           "legacy_config": {
             "additionalProperties": {
               "type": "string",
@@ -30429,6 +31307,11 @@
             "type": "object",
             "title": "Legacy Config",
             "description": "Legacy config to help migrate clients"
+          },
+          "deserter_id": {
+            "type": "string",
+            "title": "Deserter Id",
+            "description": "Which deserter this profile should check before allowing players to join matchmaking"
           }
         },
         "type": "object",
@@ -30712,14 +31595,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-descriptions": [
-          "The two values must be equal",
-          "The two values must not be equal",
-          "Value A must be less than value B",
-          "Value A must be less than or equal to value B",
-          "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B"
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -30727,6 +31602,14 @@
           "LESS_THAN_EQUAL",
           "GREATER_THAN",
           "GREATER_THAN_EQUAL"
+        ],
+        "x-enum-descriptions": [
+          "The two values must be equal",
+          "The two values must not be equal",
+          "Value A must be less than value B",
+          "Value A must be less than or equal to value B",
+          "Value A must be greater than value B",
+          "Value A must be greater than or equal to value B"
         ]
       },
       "PlatformID": {
@@ -30747,20 +31630,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-descriptions": [
-          "DEPRECATED. Use platform instead. ID for the platform Anon",
-          "DEPRECATED. Use platform instead. ID for the platform Amazon",
-          "DEPRECATED. Use platform instead. ID for the platform Steam",
-          "DEPRECATED. Use platform instead. ID for the platform PSN",
-          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
-          "DEPRECATED. Use platform instead. ID for the platform Basic",
-          "DEPRECATED. Use platform instead. ID for the platform Google",
-          "DEPRECATED. Use platform instead. ID for the platform Twitch",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
-          "DEPRECATED. Use platform instead. ID for the platform Apple",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -30774,6 +31643,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "DEPRECATED. Use platform instead. ID for the platform Anon",
+          "DEPRECATED. Use platform instead. ID for the platform Amazon",
+          "DEPRECATED. Use platform instead. ID for the platform Steam",
+          "DEPRECATED. Use platform instead. ID for the platform PSN",
+          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
+          "DEPRECATED. Use platform instead. ID for the platform Basic",
+          "DEPRECATED. Use platform instead. ID for the platform Google",
+          "DEPRECATED. Use platform instead. ID for the platform Twitch",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
+          "DEPRECATED. Use platform instead. ID for the platform Apple",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
+          "DEPRECATED. Use platform instead. ID for the platform Epic"
         ]
       },
       "PlatformSession": {
@@ -30910,6 +31793,49 @@
         "title": "PlatformSessionTemplate",
         "description": "Template used to create new platform sessions for a specific type of platform. Configurable in the developer portal"
       },
+      "PlayerDeserterStatus": {
+        "properties": {
+          "deserter_status": {
+            "type": "boolean",
+            "title": "Deserter Status",
+            "description": "Flag of whether or not the player is a deserter"
+          },
+          "deserter_expiration": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "deserter_count": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Deserter Count",
+            "description": "The number of times a player has deserted before the expiration",
+            "default": 0
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data about a players desertion status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deserter_status"
+        ],
+        "title": "PlayerDeserterStatus"
+      },
       "PlayerSession": {
         "properties": {
           "type": {
@@ -31000,15 +31926,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-descriptions": [
-          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
-          "Ticket will be used to fulfill backfill requests",
-          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
+          "Ticket will be used to fulfill backfill requests",
+          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
         ]
       },
       "QueueConfig": {
@@ -31313,15 +32239,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-descriptions": [
-          "Comparing the count of a specific item that a player owns",
-          "Comparing the size of the linking (the number of players) in the session to be queued",
-          "Comparing the size of the linking (the number of players) in the session to be queued"
-        ],
         "x-enum-varnames": [
           "INVENTORY",
           "LINKING_SIZE",
           "JOINING_SESSION_SIZE"
+        ],
+        "x-enum-descriptions": [
+          "Comparing the count of a specific item that a player owns",
+          "Comparing the size of the linking (the number of players) in the session to be queued",
+          "Comparing the size of the linking (the number of players) in the session to be queued"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -31686,17 +32612,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-descriptions": [
-          "Player is the leader of the session. Is allowed to perform admin actions on the session",
-          "Player is an active member of the session. Is allowed basic actions on the session",
-          "Player has been invited to the session, but has not accepted or declined",
-          "Player's spot has been reserved on the session, but the player has not yet been notified"
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "Player is the leader of the session. Is allowed to perform admin actions on the session",
+          "Player is an active member of the session. Is allowed basic actions on the session",
+          "Player has been invited to the session, but has not accepted or declined",
+          "Player's spot has been reserved on the session, but the player has not yet been notified"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -32026,19 +32952,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-descriptions": [
-          "Raise an error when too many players are invited to the same team",
-          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
-          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
-          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
-        ],
         "x-enum-varnames": [
           "fail",
           "allow_overflow",
           "partial_with_overflow",
           "partial_without_overflow",
           "overfill"
+        ],
+        "x-enum-descriptions": [
+          "Raise an error when too many players are invited to the same team",
+          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
+          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "TeamUpdate": {
@@ -32103,19 +33029,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "JOIN",
           "JOIN_MUTED",
           "KICK",
           "MUTE",
           "TRANSCRIBE"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "VoipSessionType": {
@@ -32126,13 +33052,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "SESSION",
           "TEAM"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "VoipTokenResponse": {
@@ -32151,6 +33077,11 @@
             "type": "string",
             "title": "Server",
             "description": "Server for voip login"
+          },
+          "channel_name": {
+            "type": "string",
+            "title": "Channel Name",
+            "description": "Channel name for the generated token if relevant"
           }
         },
         "type": "object",
@@ -36374,6 +37305,117 @@
           "earliest"
         ]
       },
+      "CalculateRankConfig": {
+        "properties": {
+          "max_mu": {
+            "type": "number",
+            "title": "Max Mu",
+            "description": "The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_mu": {
+            "type": "number",
+            "title": "Min Mu",
+            "description": "The minimum mu value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_sigma": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Min Sigma",
+            "description": "The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum"
+          },
+          "beta": {
+            "type": "number",
+            "title": "Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma"
+          },
+          "default_mu": {
+            "type": "number",
+            "title": "Default Mu",
+            "description": "The default mu value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_sigma": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Default Sigma",
+            "description": "The default sigma for this rank id. Will be used when players do not have any rank history"
+          },
+          "draw_probability": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+          },
+          "tau": {
+            "type": "number",
+            "title": "Tau",
+            "description": "Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "max_mu",
+          "min_mu",
+          "min_sigma",
+          "default_mu",
+          "default_sigma"
+        ],
+        "title": "CalculateRankConfig",
+        "description": "Config about how to recalculate ranks"
+      },
+      "CalculateRankRequest": {
+        "properties": {
+          "match_length_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/RankedTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
+          },
+          "rank_config": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CalculateRankConfig"
+              }
+            ],
+            "title": "Rank Config",
+            "description": "Configs about how to recalculate and clamp newly calculated ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_length_seconds",
+          "teams",
+          "rank_config"
+        ],
+        "title": "CalculateRankRequest",
+        "description": "A request body to calculate players' rankings, and return the results. Player ranks will not be updated"
+      },
+      "CalculateRankResponse": {
+        "properties": {
+          "updated_players": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerRank"
+            },
+            "type": "array",
+            "title": "Updated Players",
+            "description": "List of players and their updated ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "updated_players"
+        ],
+        "title": "CalculateRankResponse",
+        "description": "A response to recalculating players' ranks"
+      },
       "CalculatedRank": {
         "properties": {
           "player_uuid": {
@@ -36406,6 +37448,32 @@
         ],
         "title": "CalculatedRank",
         "description": "Additional data about a specific player's rank and previous match in order to make rank calculations"
+      },
+      "PlayerRank": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank"
+        ],
+        "title": "PlayerRank",
+        "description": "Rank data about a specific player"
       },
       "PlayerRankRequestResponse": {
         "properties": {
@@ -36625,12 +37693,12 @@
             "type": "number",
             "minimum": 2,
             "title": "Min Sigma",
-            "description": "The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+            "description": "The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum"
           },
           "beta": {
             "type": "number",
             "title": "Beta",
-            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma"
           },
           "default_mu": {
             "type": "number",
@@ -36653,7 +37721,7 @@
           "tau": {
             "type": "number",
             "title": "Tau",
-            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
+            "description": "Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
           },
           "rank_id": {
             "type": "string",

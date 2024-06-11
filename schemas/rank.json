@@ -493,6 +493,7 @@
             }
           }
         },
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -963,10 +964,178 @@
           }
         ]
       }
+    },
+    "/v3/rank:calculate": {
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "summary": "Calculate V3 Ranks",
+        "description": "Calculate a rank update on players and return the results without persisting them\nRequires at least two teams, the players' ranks before the last match was played, and parameters on how to calculate the rank changes\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `rank:*`, `rank:calculate`",
+        "operationId": "calculate_v3_ranks",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CalculateRankRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CalculateRankResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
+      "CalculateRankConfig": {
+        "properties": {
+          "max_mu": {
+            "type": "number",
+            "title": "Max Mu",
+            "description": "The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum"
+          },
+          "min_mu": {
+            "type": "number",
+            "title": "Min Mu",
+            "description": "The minimum mu value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum"
+          },
+          "min_sigma": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Min Sigma",
+            "description": "The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum"
+          },
+          "beta": {
+            "type": "number",
+            "title": "Beta",
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma"
+          },
+          "default_mu": {
+            "type": "number",
+            "title": "Default Mu",
+            "description": "The default mu value for this rank id. Will be used when players do not have any rank history"
+          },
+          "default_sigma": {
+            "type": "number",
+            "minimum": 2,
+            "title": "Default Sigma",
+            "description": "The default sigma for this rank id. Will be used when players do not have any rank history"
+          },
+          "draw_probability": {
+            "type": "number",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Draw Probability",
+            "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
+          },
+          "tau": {
+            "type": "number",
+            "title": "Tau",
+            "description": "Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "max_mu",
+          "min_mu",
+          "min_sigma",
+          "default_mu",
+          "default_sigma"
+        ],
+        "title": "CalculateRankConfig",
+        "description": "Config about how to recalculate ranks"
+      },
+      "CalculateRankRequest": {
+        "properties": {
+          "match_length_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Match Length Seconds",
+            "description": "How many seconds the match lasted"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/RankedTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that participated in this match"
+          },
+          "rank_config": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CalculateRankConfig"
+              }
+            ],
+            "title": "Rank Config",
+            "description": "Configs about how to recalculate and clamp newly calculated ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_length_seconds",
+          "teams",
+          "rank_config"
+        ],
+        "title": "CalculateRankRequest",
+        "description": "A request body to calculate players' rankings, and return the results. Player ranks will not be updated"
+      },
+      "CalculateRankResponse": {
+        "properties": {
+          "updated_players": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerRank"
+            },
+            "type": "array",
+            "title": "Updated Players",
+            "description": "List of players and their updated ranks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "updated_players"
+        ],
+        "title": "CalculateRankResponse",
+        "description": "A response to recalculating players' ranks"
+      },
       "CalculatedRank": {
         "properties": {
           "player_uuid": {
@@ -1035,6 +1204,32 @@
           "desc"
         ],
         "title": "HzApiErrorModel"
+      },
+      "PlayerRank": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID for this specific player"
+          },
+          "rank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RankData"
+              }
+            ],
+            "title": "Rank",
+            "description": "Current rank info about player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rank"
+        ],
+        "title": "PlayerRank",
+        "description": "Rank data about a specific player"
       },
       "PlayerRankRequestResponse": {
         "properties": {
@@ -1254,12 +1449,12 @@
             "type": "number",
             "minimum": 2,
             "title": "Min Sigma",
-            "description": "The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum"
+            "description": "The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum"
           },
           "beta": {
             "type": "number",
             "title": "Beta",
-            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance"
+            "description": "The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma"
           },
           "default_mu": {
             "type": "number",
@@ -1282,7 +1477,7 @@
           "tau": {
             "type": "number",
             "title": "Tau",
-            "description": "Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
+            "description": "Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)"
           },
           "rank_id": {
             "type": "string",
