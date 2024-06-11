@@ -5,7 +5,17 @@
     "description": "Rally Here Environment APIs",
     "version": "1.0.0"
   },
-  "servers": [],
+  "servers": [
+    {
+      "url": "https://{environment_id}.rally-here.io",
+      "variables": {
+        "environment_id": {
+          "default": "demo",
+          "description": "Environment ID assigned by RallyHere.  This is available from your Environment in the RallyHere Developer Portal at https://developer.rallyhere.gg"
+        }
+      }
+    }
+  ],
   "components": {
     "securitySchemes": {
       "HTTPBearerHeadersOrCookie": {
@@ -17,5 +27,9 @@
         "scheme": "basic"
       }
     }
+  },
+  "externalDocs": {
+    "description": "RallyHere Documentation",
+    "url": "https://www.rallyhere.gg/docs"
   }
 }
