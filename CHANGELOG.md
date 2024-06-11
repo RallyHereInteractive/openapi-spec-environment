@@ -1,3 +1,747 @@
+## Changes for Mon Jun 10 16:38:54 EDT 2024
+### New Endpoints: 9
+--------------------
+POST /rank/v3/rank:calculate  
+GET /session/v1/deserter  
+GET /session/v1/deserter/{deserter_id}  
+POST /session/v1/deserter/{deserter_id}:clear  
+POST /session/v1/deserter:clear  
+GET /session/v1/player/{player_uuid}/deserter/{deserter_id}  
+PUT /session/v1/player/{player_uuid}/deserter/{deserter_id}  
+GET /users/v1/history/link  
+GET /users/v1/history/login  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 35
+--------------------------
+GET /notification/v1/instance/{instance_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/instance/{instance_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/instance/{instance_id}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/instance/{instance_id}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/playerid/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/{player_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /notification/v1/playerid/{player_id}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/{player_id}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+GET /notification/v1/playerid/{player_id}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_format - Invalid Authorization - {}
+- auth_invalid_version - Invalid Authorization - version
+' to '
+Error Codes:
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_expired - Token is expired
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+'
+
+POST /rank/v2/rank:calculate
+- Deprecated changed from false to true
+
+GET /rank/v3/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rank_configs
+              - Items changed
+                - Properties changed
+                  - Modified property: beta
+                    - Description changed from 'The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance' to 'The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma'
+                  - Modified property: min_sigma
+                    - Description changed from 'The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum' to 'The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum'
+                  - Modified property: tau
+                    - Description changed from 'Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)' to 'Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)'
+
+GET /rank/v3/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rank_configs
+              - Items changed
+                - Properties changed
+                  - Modified property: beta
+                    - Description changed from 'The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance' to 'The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma'
+                  - Modified property: min_sigma
+                    - Description changed from 'The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum' to 'The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum'
+                  - Modified property: tau
+                    - Description changed from 'Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)' to 'Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)'
+
+GET /session/v1/match-making-profile/{match_making_profile_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: deserter_id
+
+GET /session/v1/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: profiles
+                    - Items changed
+                      - Properties changed
+                        - New property: deserter_id
+
+POST /session/v1/session/{session_id}/instance/health
+- Description changed from 'Endpoint to post health status of an instance
+
+Required Permissions:
+
+- For any player (including themselves) : `session:instance:health`
+
+
+
+session:instance:health' to 'Endpoint to post health status of an instance
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:instance:health`
+
+
+
+session:instance:health'
+
+GET /session/v1/session/{session_id}/player/me/voip/vivox:{vivox_action}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: channel_name
+
+GET /session/v1/session/{session_id}/player/{player_uuid}/voip/vivox:{vivox_action}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: channel_name
+
+GET /session/v1/voip/vivox:login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: channel_name
+
+GET /session/v2/match-making-profile/{match_making_profile_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: deserter_id
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: profiles
+                    - Items changed
+                      - Properties changed
+                        - New property: deserter_id
+
+GET /users/v1/person/{person_id}/email/list
+- Deprecated changed from false to true
+
+POST /users/v1/person/{person_id}/email/list
+- Deprecated changed from false to true
+
+POST /users/v1/person/{person_id}/info
+- Deprecated changed from false to true
+
+POST /users/v1/sendinblue/contact
+- Deprecated changed from false to true
+## Changes for Mon Jun 10 15:53:59 EDT 2024
+
+## Changes for Mon Jun 10 15:50:57 EDT 2024
+
 ## Changes for Thu May 30 04:08:57 PM EDT 2024
 ### New Endpoints: None
 -----------------------
