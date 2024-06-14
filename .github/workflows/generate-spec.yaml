@@ -1,0 +1,11 @@
+name: Generate Merged OpenAPI Spec
+
+on:
+  workflow_dispatch:
+
+jobs:
+  empty-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
