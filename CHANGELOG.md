@@ -1,3 +1,153 @@
+## Changes for Fri Jun 14 18:37:19 EDT 2024
+### New Endpoints: 4
+--------------------
+DELETE /session/v1/player/{player_uuid}/deserter  
+GET /session/v1/player/{player_uuid}/deserter  
+DELETE /session/v1/player/{player_uuid}/deserter/{deserter_id}  
+PATCH /session/v1/session/{session_id}/team/{team_id}  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 9
+-------------------------
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: updated_teams
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: max_size
+                      - Properties changed
+                        - New property: custom_data
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: updated_teams
+            - Items changed
+              - Required changed
+                - Deleted required property: max_size
+              - Properties changed
+                - New property: custom_data
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - New property: custom_data
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - New property: custom_data
+
+GET /session/v1/player/{player_uuid}/deserter/{deserter_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - New required property: deserter_id
+          - Properties changed
+            - New property: deserter_id
+
+PUT /session/v1/player/{player_uuid}/deserter/{deserter_id}
+- Responses changed
+  - New response: 200
+  - Deleted response: 204
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - New property: custom_data
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - New property: custom_data
+
+PATCH /session/v1/session/{session_id}
+- Description changed from 'Update session info by session id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`
+
+
+
+Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission' to 'Update session info by session id
+
+For all sessions:
+
+* Required auth permissions are any of: `session:*`, `session:update:any`
+
+* Required session permissions are None
+
+For sessions you are actively in:
+
+* Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
+
+* Required session permissions are `SessionPermissions.session_admin`'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Required changed
+                - Deleted required property: max_size
+              - Properties changed
+                - New property: custom_data
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - New property: custom_data
 ## Changes for Tue Jun 11 17:17:00 EDT 2024
 ### New Endpoints: None
 -----------------------
