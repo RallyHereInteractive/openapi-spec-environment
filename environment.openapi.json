@@ -8093,7 +8093,7 @@
           "Sessions"
         ],
         "summary": "Update Session By Id",
-        "description": "Update session info by session id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission",
+        "description": "Update session info by session id\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:update:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`\n\n* Required session permissions are `SessionPermissions.session_admin`",
         "operationId": "update_session_by_id",
         "parameters": [
           {
@@ -8133,6 +8133,104 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/session/{session_id}/team/{team_id}": {
+      "patch": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Update Team By Id",
+        "description": "Update specific team info by session and team id\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:update:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`\n\n* Required session permissions are `SessionPermissions.session_admin`",
+        "operationId": "update_team_by_id",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "title": "Team Id"
+            },
+            "name": "team_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionTeam"
                 }
               }
             }
@@ -12458,6 +12556,181 @@
           },
           "required": true
         },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerDeserterStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Delete Player Deserter",
+        "description": "Delete a single deserter status for a specific player",
+        "operationId": "delete_player_deserter",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/player/{player_uuid}/deserter": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get All Player Deserters",
+        "description": "Get a specific player's deserter status",
+        "operationId": "get_all_player_deserters",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllPlayerDeserterStatuses"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Delete All Player Deserter",
+        "description": "Delete all of a player's deserter statuses",
+        "operationId": "delete_all_player_deserter",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
         "responses": {
           "204": {
             "description": "Successful Response"
@@ -29451,6 +29724,23 @@
         "title": "AdditionalJoinParams",
         "description": "Additional parameters to apply to a matchmaking ticket"
       },
+      "AllPlayerDeserterStatuses": {
+        "properties": {
+          "deserter_statuses": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerDeserterStatus"
+            },
+            "type": "array",
+            "title": "Deserter Statuses",
+            "description": "List of all of a player's deserter statuses."
+          }
+        },
+        "type": "object",
+        "required": [
+          "deserter_statuses"
+        ],
+        "title": "AllPlayerDeserterStatuses"
+      },
       "AuditEvent": {
         "properties": {
           "event_name": {
@@ -30254,17 +30544,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -30276,15 +30566,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -30324,17 +30614,17 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -30411,17 +30701,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HostType": {
@@ -30432,13 +30722,13 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player"
         ]
       },
       "Input": {
@@ -30450,15 +30740,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -30503,17 +30793,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -30742,14 +31032,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -30757,6 +31039,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -30948,15 +31238,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -31001,17 +31291,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -31609,14 +31899,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -31624,6 +31906,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "PlatformID": {
@@ -31644,20 +31934,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -31671,6 +31947,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -31809,6 +32099,11 @@
       },
       "PlayerDeserterStatus": {
         "properties": {
+          "deserter_id": {
+            "type": "string",
+            "title": "Deserter Id",
+            "description": "ID for which type of deserter this is"
+          },
           "deserter_status": {
             "type": "boolean",
             "title": "Deserter Status",
@@ -31846,6 +32141,7 @@
         },
         "type": "object",
         "required": [
+          "deserter_id",
           "deserter_status"
         ],
         "title": "PlayerDeserterStatus"
@@ -31940,15 +32236,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -32253,15 +32549,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE",
+          "JOINING_SESSION_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -32626,17 +32922,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -32756,6 +33052,16 @@
             "type": "array",
             "title": "Ticket Ids",
             "description": "Matchmaking tickets that were assigned to this team"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data about this team"
           }
         },
         "type": "object",
@@ -32966,19 +33272,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -32989,12 +33295,19 @@
             "minimum": 1,
             "title": "Max Size",
             "description": "Maximum number of players for this team"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data about this team"
           }
         },
         "type": "object",
-        "required": [
-          "max_size"
-        ],
         "title": "TeamUpdate",
         "description": "An update to a specific team's number of max players"
       },
@@ -33043,19 +33356,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -33066,13 +33379,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
