@@ -1,3 +1,31 @@
+## Changes for Mon Jun 17 13:14:19 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 2
+-------------------------
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - New property: match_id
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: match_id
 ## Changes for Fri Jun 14 18:37:19 EDT 2024
 ### New Endpoints: 4
 --------------------
