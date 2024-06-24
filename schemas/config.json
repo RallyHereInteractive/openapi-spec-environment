@@ -616,8 +616,25 @@
             },
             "type": "object",
             "title": "Secret Kvs",
-            "description": "The list of secret key/value pairs",
-            "default": {}
+            "description": "*DEPRECATED* The list of permissioned key/value pairs",
+            "default": {},
+            "deprecated": true
+          },
+          "kick_before_hint": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kick Before Hint",
+            "description": "Hint to game clients currently logged into the environment, that they should log themselves out if their login was created before this time.  \n\nThis is NOT enforced by the environment's API, but relies on well-behaved clients handling it correctly.  This is intentionally left as a hint to game clients, so game teams can decide how to interact with it.  For example, some games will want to allow clients that are currently playing a match to continue until it is completed, while others will want to kick them immediately.  \n\nIt is recommended to only set this value to a past/current timestamp, as future timestamps will cause odd login/logout behavior"
           }
         },
         "type": "object",
