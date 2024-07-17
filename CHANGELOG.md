@@ -1,3 +1,299 @@
+## Changes for Wed Jul 17 13:12:38 EDT 2024
+### New Endpoints: 1
+--------------------
+POST /session/v1/match-made-session  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 19
+--------------------------
+POST /match/v1/match
+
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: host_type
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/HostType modified
+                        - New enum values: [preallocated]
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: host_type
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/HostType modified
+                - New enum values: [preallocated]
+
+GET /session/v1/instance-launch-templates/{instance_launch_template_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: default_host_type
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/HostType modified
+                  - New enum values: [preallocated]
+
+GET /session/v1/instance-request-template/{instance_request_template_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: default_host_type
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/HostType modified
+                  - New enum values: [preallocated]
+            - Modified property: map_selection_list
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MapSelectionListV2 modified
+                  - Properties changed
+                    - Modified property: maps
+                      - Items changed
+                        - Properties changed
+                          - New property: misc_params
+
+GET /session/v1/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/MatchMakingRuleset modified
+                        - Properties changed
+                          - New property: players_to_validate
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: host_type
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/HostType modified
+                          - New enum values: [preallocated]
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: host_type
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/HostType modified
+                          - New enum values: [preallocated]
+
+GET /session/v1/player/id/{player_id}/session
+- Description changed from 'Get Sessions associated with a player by id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read-player:any`
+
+- For the player themselves : `session:read-player:self`
+
+Required Session Permissions: None
+
+**DEPRECATED** - Use player endpoint instead' to 'Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read-player:any`
+
+- For the player themselves : `session:read-player:self`
+
+Required Session Permissions: None
+
+**DEPRECATED** - Use player endpoint instead'
+
+GET /session/v1/player/me/session
+- Description changed from 'Get Sessions associated the current player
+
+Required Auth Permissions: `session:read-player:self`
+            
+Required Session Permissions: None' to 'Get all session IDs associated with the token's player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
+
+Required Auth Permissions: `session:read-player:self`
+            
+Required Session Permissions: None'
+
+GET /session/v1/player/uuid/{player_uuid}/session
+- Description changed from 'Get Sessions associated with a player by uuid
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read-player:any`
+
+- For the player themselves : `session:read-player:self`
+
+Required Session Permissions: None
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read-player:any`
+
+- For the player themselves : `session:read-player:self`
+
+Required Session Permissions: None
+**DEPRECATED** - Use /v1/player/{player_uuid}/session endpoint instead'
+
+GET /session/v1/player/{player_uuid}/session
+- Description changed from 'Get Sessions associated with a player by uuid
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read-player:any`
+
+- For the player themselves : `session:read-player:self`
+
+Required Session Permissions: None' to 'Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:read-player:any`
+
+- For the player themselves : `session:read-player:self`
+
+Required Session Permissions: None'
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: host_type
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/HostType modified
+                          - New enum values: [preallocated]
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: host_type
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/HostType modified
+                          - New enum values: [preallocated]
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - Modified property: host_type
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/HostType modified
+                          - New enum values: [preallocated]
+
+PATCH /session/v1/session/{session_id}/instance
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: host_type
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/HostType modified
+                  - New enum values: [preallocated]
+
+POST /session/v1/session/{session_id}/instance
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: host_type
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/HostType modified
+                - New enum values: [preallocated]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: host_type
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/HostType modified
+                  - New enum values: [preallocated]
+
+DELETE /session/v1/session/{session_id}/queue
+- Modified query param: reason
+  - Schema changed
+    - Property 'AllOf' changed
+      - Schema #/components/schemas/DeleteTicketReason modified
+        - New enum values: [backfilled]
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: requires_all_players_items
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/MatchMakingRuleset modified
+                        - Properties changed
+                          - New property: players_to_validate
 ## Changes for Mon Jun 24 14:37:39 EDT 2024
 ### New Endpoints: None
 -----------------------
