@@ -9709,9 +9709,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Create Match",
-        "description": "Create a match session based on matchmaking results. Only used by the matchmaking system, and not players\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:create:matchmade`\n\n\n\nRequired Session Permissions: None",
-        "operationId": "create_match",
+        "summary": "Create Matchmade Session",
+        "description": "Create a match session based on matchmaking results.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:create:matchmade`\n\n\n\nRequired Session Permissions: None",
+        "operationId": "create_matchmade_session",
         "requestBody": {
           "content": {
             "application/json": {
@@ -25420,7 +25420,7 @@
         ],
         "summary": "Create Match",
         "description": "Create match by match_id",
-        "operationId": "Matchcreate_match",
+        "operationId": "create_match",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
