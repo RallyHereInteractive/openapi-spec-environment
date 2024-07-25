@@ -1,3 +1,504 @@
+## Changes for Thu Jul 25 13:17:58 EDT 2024
+### New Endpoints: 11
+---------------------
+POST /match/v1/match/{match_id}/segment  
+DELETE /match/v1/match/{match_id}/segment/{segment_id}  
+GET /match/v1/match/{match_id}/segment/{segment_id}  
+PATCH /match/v1/match/{match_id}/segment/{segment_id}  
+PUT /match/v1/match/{match_id}/segment/{segment_id}  
+POST /match/v1/pex/client  
+GET /match/v1/pex/client/raw  
+GET /match/v1/pex/client/score  
+POST /match/v1/pex/host  
+GET /match/v1/pex/host/raw  
+GET /match/v1/pex/host/score  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 19
+--------------------------
+POST /match/v1/match
+- Description changed from 'Create match by match_id' to 'Create match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+DELETE /match/v1/match/{match_id}
+- Description changed from 'Delete match by match_id' to 'Delete match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/match/{match_id}
+- Description changed from 'Get match by match_id' to 'Get match by match_id
+    
+    Must be part of the match or have the following permissions: 
+    any of: `match:*`, `match:match:any:read` match:match:player:read'
+
+PATCH /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id only with provided fields' to 'Update match by match_id only with provided fields
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id' to 'Update match by match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+GET /match/v1/player/me/match
+- Description changed from 'Get all matches for self' to 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match
+- Description changed from 'Get All matches for a provided player_uuid' to 'Get All matches for a provided player_uuid.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Delete player by player_uuid and match_id' to 'Delete player by player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Get a player match record for the provided player_uuid and match_id' to 'Get a player match record for the provided player_uuid and match_id
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id only with provided fields' to 'Update player match record for the provided player_uuid " "and match_id only with provided fields.
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Create player match record for the provided player_uuid and match_id' to 'Create player match record for the provided player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id' to 'Update player match record for the provided player_uuid and match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - New property: match_id
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - New property: match_id
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - New property: match_id
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - New property: match_id
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Properties changed
+                    - New property: match_id
+
+PATCH /session/v1/session/{session_id}/instance
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: match_id
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: match_id
+
+POST /session/v1/session/{session_id}/instance
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: match_id
+## Changes for Fri Jul 19 17:12:32 EDT 2024
+### New Endpoints: 11
+---------------------
+POST /match/v1/match/{match_id}/segment  
+DELETE /match/v1/match/{match_id}/segment/{segment_id}  
+GET /match/v1/match/{match_id}/segment/{segment_id}  
+PATCH /match/v1/match/{match_id}/segment/{segment_id}  
+PUT /match/v1/match/{match_id}/segment/{segment_id}  
+POST /match/v1/pex/client  
+GET /match/v1/pex/client/raw  
+GET /match/v1/pex/client/score  
+POST /match/v1/pex/host  
+GET /match/v1/pex/host/raw  
+GET /match/v1/pex/host/score  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 12
+--------------------------
+POST /match/v1/match
+- Description changed from 'Create match by match_id' to 'Create match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+DELETE /match/v1/match/{match_id}
+- Description changed from 'Delete match by match_id' to 'Delete match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/match/{match_id}
+- Description changed from 'Get match by match_id' to 'Get match by match_id
+    
+    Must be part of the match or have the following permissions: 
+    any of: `match:*`, `match:match:any:read` match:match:player:read'
+
+PATCH /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id only with provided fields' to 'Update match by match_id only with provided fields
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id' to 'Update match by match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+GET /match/v1/player/me/match
+- Description changed from 'Get all matches for self' to 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match
+- Description changed from 'Get All matches for a provided player_uuid' to 'Get All matches for a provided player_uuid.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Delete player by player_uuid and match_id' to 'Delete player by player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Get a player match record for the provided player_uuid and match_id' to 'Get a player match record for the provided player_uuid and match_id
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id only with provided fields' to 'Update player match record for the provided player_uuid " "and match_id only with provided fields.
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Create player match record for the provided player_uuid and match_id' to 'Create player match record for the provided player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id' to 'Update player match record for the provided player_uuid and match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+## Changes for Fri Jul 19 15:15:29 EDT 2024
+### New Endpoints: 11
+---------------------
+POST /match/v1/match/{match_id}/segment  
+DELETE /match/v1/match/{match_id}/segment/{segment_id}  
+GET /match/v1/match/{match_id}/segment/{segment_id}  
+PATCH /match/v1/match/{match_id}/segment/{segment_id}  
+PUT /match/v1/match/{match_id}/segment/{segment_id}  
+POST /match/v1/pex/client  
+GET /match/v1/pex/client/raw  
+GET /match/v1/pex/client/score  
+POST /match/v1/pex/host  
+GET /match/v1/pex/host/raw  
+GET /match/v1/pex/host/score  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 12
+--------------------------
+POST /match/v1/match
+- Description changed from 'Create match by match_id' to 'Create match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+DELETE /match/v1/match/{match_id}
+- Description changed from 'Delete match by match_id' to 'Delete match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/match/{match_id}
+- Description changed from 'Get match by match_id' to 'Get match by match_id
+    
+    Must be part of the match or have the following permissions: 
+    any of: `match:*`, `match:match:any:read` match:match:player:read'
+
+PATCH /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id only with provided fields' to 'Update match by match_id only with provided fields
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id' to 'Update match by match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+GET /match/v1/player/me/match
+- Description changed from 'Get all matches for self' to 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match
+- Description changed from 'Get All matches for a provided player_uuid' to 'Get All matches for a provided player_uuid.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Delete player by player_uuid and match_id' to 'Delete player by player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Get a player match record for the provided player_uuid and match_id' to 'Get a player match record for the provided player_uuid and match_id
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id only with provided fields' to 'Update player match record for the provided player_uuid " "and match_id only with provided fields.
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Create player match record for the provided player_uuid and match_id' to 'Create player match record for the provided player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id' to 'Update player match record for the provided player_uuid and match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+## Changes for Fri Jul 19 11:51:47 EDT 2024
+### New Endpoints: 11
+---------------------
+POST /match/v1/match/{match_id}/segment  
+DELETE /match/v1/match/{match_id}/segment/{segment_id}  
+GET /match/v1/match/{match_id}/segment/{segment_id}  
+PATCH /match/v1/match/{match_id}/segment/{segment_id}  
+PUT /match/v1/match/{match_id}/segment/{segment_id}  
+POST /match/v1/pex/client  
+GET /match/v1/pex/client/raw  
+GET /match/v1/pex/client/score  
+POST /match/v1/pex/host  
+GET /match/v1/pex/host/raw  
+GET /match/v1/pex/host/score  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 12
+--------------------------
+POST /match/v1/match
+- Description changed from 'Create match by match_id' to 'Create match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+DELETE /match/v1/match/{match_id}
+- Description changed from 'Delete match by match_id' to 'Delete match by match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/match/{match_id}
+- Description changed from 'Get match by match_id' to 'Get match by match_id
+    
+    Must be part of the match or have the following permissions: 
+    any of: `match:*`, `match:match:any:read` match:match:player:read'
+
+PATCH /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id only with provided fields' to 'Update match by match_id only with provided fields
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/match/{match_id}
+- Description changed from 'Update match by match_id' to 'Update match by match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+GET /match/v1/player/me/match
+- Description changed from 'Get all matches for self' to 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match
+- Description changed from 'Get All matches for a provided player_uuid' to 'Get All matches for a provided player_uuid.
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Delete player by player_uuid and match_id' to 'Delete player by player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Get a player match record for the provided player_uuid and match_id' to 'Get a player match record for the provided player_uuid and match_id
+    
+    Must be on your own behalf or have the following permissions: 
+    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`'
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id only with provided fields' to 'Update player match record for the provided player_uuid " "and match_id only with provided fields.
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Create player match record for the provided player_uuid and match_id' to 'Create player match record for the provided player_uuid and match_id
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Update player match record for the provided player_uuid and match_id' to 'Update player match record for the provided player_uuid and match_id
+    
+    Match must still be in a pending state.
+    
+    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+    
+    Or you have match:match:edit:authority and are the host of the match.'
 ## Changes for Thu Jul 18 11:26:44 EDT 2024
 ### New Endpoints: 1
 --------------------
