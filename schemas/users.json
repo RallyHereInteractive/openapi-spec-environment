@@ -17,6 +17,7 @@
           "auth"
         ],
         "summary": "Verify",
+        "description": "Verify if an access token is still valid",
         "operationId": "verify",
         "responses": {
           "200": {
@@ -28,7 +29,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -146,6 +147,7 @@
           "auth"
         ],
         "summary": "Get Portal Token Details",
+        "description": "Platform-specific token details.  Return data that the platform allows for their tokens.",
         "operationId": "get_portal_token_details",
         "requestBody": {
           "content": {
@@ -201,6 +203,7 @@
           "auth"
         ],
         "summary": "Logout",
+        "description": "Log out a refresh token",
         "operationId": "logout",
         "requestBody": {
           "content": {
@@ -240,7 +243,7 @@
           "auth"
         ],
         "summary": "Get All Public Keys",
-        "description": "Get all the current public keys.\n\nIt is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)",
+        "description": "Get all current public keys for this auth provider",
         "operationId": "get_all_public_keys",
         "responses": {
           "200": {
@@ -262,6 +265,7 @@
           "auth"
         ],
         "summary": "Get Public Key By Id",
+        "description": "Get a current public key by `key_id` for this auth provider.",
         "operationId": "get_public_key_by_id",
         "parameters": [
           {
@@ -299,27 +303,6 @@
             }
           }
         }
-      }
-    },
-    "/v1/generateKey": {
-      "post": {
-        "tags": [
-          "auth"
-        ],
-        "summary": "Generate Key",
-        "description": "Generate and return a new key that matches the configuration required for private keys.\n\nThis does NOT add the key to any internal list, and is purely for convenience for maintainers",
-        "operationId": "generate_key",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "deprecated": true
       }
     },
     "/v1/player/me/uuid": {
@@ -1145,7 +1128,7 @@
           "users"
         ],
         "summary": "Get Players Paged",
-        "description": "Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.\nThere is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.",
+        "description": "Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.\nThere is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:player:iterate`",
         "operationId": "get_players_paged",
         "parameters": [
           {
@@ -1187,32 +1170,22 @@
               }
             }
           },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "400": {
             "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1255,21 +1228,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1308,21 +1271,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1377,21 +1330,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1452,21 +1395,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1510,21 +1443,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1563,21 +1486,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1632,21 +1545,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1708,21 +1611,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1766,11 +1659,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1781,16 +1674,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
                 }
               }
             }
@@ -1831,11 +1714,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1846,16 +1729,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
                 }
               }
             }
@@ -1889,21 +1762,11 @@
             "description": "Successful Response"
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1922,7 +1785,7 @@
           "users"
         ],
         "summary": "Get Queue Purge Status For Person",
-        "description": "Get the purge status for a person. Requires permission: purge:person:admin",
+        "description": "Get the purge status for a person. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
         "operationId": "get_queue_purge_status_for_person",
         "parameters": [
           {
@@ -1948,11 +1811,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -1963,16 +1826,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
                 }
               }
             }
@@ -1999,7 +1852,7 @@
           "users"
         ],
         "summary": "Queue Person For Purge",
-        "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`. Requires permission: purge:person:admin",
+        "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
         "operationId": "queue_person_for_purge",
         "parameters": [
           {
@@ -2035,21 +1888,11 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -2076,7 +1919,7 @@
           "users"
         ],
         "summary": "Dequeue Person For Purge",
-        "description": "Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. Requires permission: purge:person:admin",
+        "description": "Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
         "operationId": "dequeue_person_for_purge",
         "parameters": [
           {
@@ -2095,21 +1938,11 @@
             "description": "Successful Response"
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -2717,79 +2550,13 @@
         ]
       }
     },
-    "/v1/sendinblue/contact": {
-      "post": {
-        "tags": [
-          "users"
-        ],
-        "summary": "Upsert Contact",
-        "description": "Create or update a contact with SendInBlue, Requires permission: user:sendinblue:write",
-        "operationId": "upsert_contact",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendInBlueContact"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageOnly"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
     "/v1/role": {
       "get": {
         "tags": [
           "users"
         ],
         "summary": "Get All Roles",
-        "description": "Get all current roles. Including their custom_data and login_loot_rewards.",
+        "description": "Get all current roles. Including their custom_data and login_loot_rewards.\n    \nRequired Permissions:\n\n- For any player (including themselves) : `role:read`",
         "operationId": "get_all_roles",
         "responses": {
           "200": {
@@ -2806,18 +2573,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -2840,7 +2597,7 @@
           "users"
         ],
         "summary": "Get Login History",
-        "description": "Get the Login history for a given user",
+        "description": "Get the Login history for a given user\n    \nRequired Permissions:\n\n- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person or platform identity themselves : `user:audit:self`",
         "operationId": "get_login_history",
         "parameters": [
           {
@@ -2960,7 +2717,7 @@
           "users"
         ],
         "summary": "Get Link History",
-        "description": "Get the Link history for a given user",
+        "description": "Get the Link history for a given user\n    \nRequired Permissions:\n\n- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person or platform identity themselves : `user:audit:self`",
         "operationId": "get_link_history",
         "parameters": [
           {
@@ -3646,21 +3403,6 @@
         "title": "LookupResults",
         "description": "Lookup results for a player query"
       },
-      "MessageOnly": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message",
-            "description": "Message"
-          }
-        },
-        "type": "object",
-        "required": [
-          "message"
-        ],
-        "title": "MessageOnly",
-        "description": "Message only response"
-      },
       "OAuthGrantType": {
         "type": "string",
         "enum": [
@@ -4205,6 +3947,11 @@
             "format": "uuid",
             "title": "Person Id",
             "description": "Person ID"
+          },
+          "role_id": {
+            "type": "string",
+            "title": "Role Id",
+            "description": "Role ID of the person, if available"
           }
         },
         "type": "object",
@@ -4604,52 +4351,6 @@
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
         ]
-      },
-      "SendInBlueContact": {
-        "properties": {
-          "email": {
-            "type": "string",
-            "title": "Email",
-            "description": "Email address"
-          },
-          "attributes": {
-            "type": "object",
-            "title": "Attributes",
-            "description": "Attributes"
-          },
-          "emailBlacklisted": {
-            "type": "boolean",
-            "title": "Emailblacklisted",
-            "description": "Email blacklisted"
-          },
-          "listIds": {
-            "items": {
-              "type": "integer"
-            },
-            "type": "array",
-            "title": "Listids",
-            "description": "List IDs"
-          },
-          "unlinkListIds": {
-            "items": {
-              "type": "integer"
-            },
-            "type": "array",
-            "title": "Unlinklistids",
-            "description": "Unlink list IDs"
-          },
-          "updateEnabled": {
-            "type": "boolean",
-            "title": "Updateenabled",
-            "description": "Update enabled"
-          }
-        },
-        "type": "object",
-        "required": [
-          "email"
-        ],
-        "title": "SendInBlueContact",
-        "description": "SendInBlue contact"
       },
       "TokenRequest": {
         "properties": {
