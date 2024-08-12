@@ -183,6 +183,15 @@
               "type": "string",
               "title": "Entity Id"
             }
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Content-Type"
+            }
           }
         ],
         "requestBody": {
@@ -196,8 +205,15 @@
                 ],
                 "title": "Body"
               }
+            },
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "204": {
