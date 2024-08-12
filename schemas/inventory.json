@@ -7684,6 +7684,15 @@
             "title": "Hard Quantity Maximum",
             "description": "Hard cap on quantity of an item this Loot can give. Disabled with 0",
             "default": 0
+          },
+          "price": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LootPrice"
+              }
+            ],
+            "title": "Price",
+            "description": "Current price that this loot can be purchased with"
           }
         },
         "type": "object",
@@ -7732,6 +7741,104 @@
         ],
         "title": "LootEntitlement",
         "description": "How a Platform SKU will be converted into Loot for a player"
+      },
+      "LootPrice": {
+        "properties": {
+          "breakpoints": {
+            "items": {
+              "$ref": "#/components/schemas/LootPriceBreakpoint"
+            },
+            "type": "array",
+            "title": "Breakpoints",
+            "description": "Breakpoints that the loot is available for purchase with",
+            "default": []
+          },
+          "strict_flag": {
+            "type": "boolean",
+            "title": "Strict Flag",
+            "description": "Does the number of units being purchased need to be an exact match to the quantity on a Price Breakpoint?",
+            "default": false
+          },
+          "cap_flag": {
+            "type": "boolean",
+            "title": "Cap Flag",
+            "description": "Can the number of units being purchased be higher than the highest quantity on the Price Breakpoints?",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "LootPrice",
+        "description": "Price with current and original (pre-sale) price breakpoints"
+      },
+      "LootPriceBreakpoint": {
+        "properties": {
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "Amount of units that must be purchased to use this price",
+            "default": 1
+          },
+          "prices": {
+            "items": {
+              "$ref": "#/components/schemas/LootPriceCurrencies"
+            },
+            "type": "array",
+            "title": "Prices",
+            "description": "List of all possible prices that this breakpoint can be purchased with.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "LootPriceBreakpoint",
+        "description": "Price Breakpoint for a specific quantity of units to purchase."
+      },
+      "LootPriceCurrencies": {
+        "properties": {
+          "currencies": {
+            "items": {
+              "$ref": "#/components/schemas/LootPriceCurrency"
+            },
+            "type": "array",
+            "title": "Currencies",
+            "description": "All required currencies to use this price for purchase.  All currencies in this list are spent together.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "LootPriceCurrencies",
+        "description": "Single price that the loot can be purchased with.  Note that all currencies of this list will be spent together."
+      },
+      "LootPriceCurrency": {
+        "properties": {
+          "price_item_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Price Item Id",
+            "description": "The Item used as the currency for the purchase."
+          },
+          "price_legacy_item_id": {
+            "type": "integer",
+            "title": "Price Legacy Item Id",
+            "description": "The Item used as the currency for the purchase."
+          },
+          "current_price": {
+            "type": "integer",
+            "title": "Current Price",
+            "description": "The current amount of the item needed to use this price currency"
+          },
+          "original_price": {
+            "type": "integer",
+            "title": "Original Price",
+            "description": "The amount of the item needed before the sale began"
+          }
+        },
+        "type": "object",
+        "required": [
+          "price_item_id",
+          "current_price"
+        ],
+        "title": "LootPriceCurrency",
+        "description": "One currency (of potentially multiple) that can be used for a purchase, and how much of that currency is required for the purchase."
       },
       "Loots": {
         "properties": {
@@ -9131,6 +9238,12 @@
       },
       "PriceBreakPointCurrency": {
         "properties": {
+          "price_item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Price Item Uuid",
+            "description": "The Item used as the currency for the purchase."
+          },
           "price_item_id": {
             "type": "integer",
             "title": "Price Item Id",
@@ -9144,6 +9257,7 @@
         },
         "type": "object",
         "required": [
+          "price_item_uuid",
           "price_item_id",
           "price"
         ],
@@ -9152,6 +9266,12 @@
       },
       "PriceBreakpoint": {
         "properties": {
+          "price_item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Price Item Uuid",
+            "description": "The Item used as the currency for the purchase."
+          },
           "price_item_id": {
             "type": "integer",
             "title": "Price Item Id",

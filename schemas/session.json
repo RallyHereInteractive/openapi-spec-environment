@@ -4839,6 +4839,64 @@
         ]
       }
     },
+    "/v1/player/me/deserter/{deserter_id}": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get Player Deserter Self",
+        "description": "Get currently authed player's deserter status",
+        "operationId": "get_player_deserter_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerDeserterStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v1/player/{player_uuid}/deserter/{deserter_id}": {
       "get": {
         "tags": [
@@ -6295,6 +6353,12 @@
       "DeserterUpdateRequest": {
         "properties": {
           "deserter_expiration": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "deserter_reset": {
             "type": "string",
             "format": "date-time",
             "title": "Time Zone Aware Datetime",
@@ -7989,6 +8053,12 @@
             "description": "Flag of whether or not the player is a deserter"
           },
           "deserter_expiration": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "deserter_reset": {
             "type": "string",
             "format": "date-time",
             "title": "Time Zone Aware Datetime",

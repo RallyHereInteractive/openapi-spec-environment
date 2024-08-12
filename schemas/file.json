@@ -142,7 +142,7 @@
           "file"
         ],
         "summary": "Create Entity Directory File",
-        "description": "Upload a file to entity storage for provided entity_id",
+        "description": "Upload a file to entity storage for the provided entity_id. \nThis endpoint will accept a multipart/form-data by default when the request's content-type is not provided. \nWhen a content-type is provided, the request body will be as raw bytes.",
         "operationId": "create_entity_directory_file",
         "security": [
           {
@@ -186,11 +186,15 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_create_entity_directory_file"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Body_create_entity_directory_file"
+                  }
+                ],
+                "title": "Body"
               }
             }
           }
@@ -470,9 +474,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "file"
-        ],
         "title": "Body_create_entity_directory_file"
       },
       "EntityType": {
