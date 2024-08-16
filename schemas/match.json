@@ -17,7 +17,7 @@
           "match"
         ],
         "summary": "Get Matches",
-        "description": "Get pages of matches",
+        "description": "Get pages of matches based on provided filters.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:any:read`",
         "operationId": "get_matches",
         "security": [
           {
@@ -191,14 +191,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -217,7 +217,7 @@
           "match"
         ],
         "summary": "Create Match",
-        "description": "Create match by match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Create match by match_id.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "create_match",
         "security": [
           {
@@ -246,14 +246,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -274,7 +274,7 @@
           "match"
         ],
         "summary": "Get Match",
-        "description": "Get match by match_id\n    \n    Must be part of the match or have the following permissions: \n    any of: `match:*`, `match:match:any:read` match:match:player:read",
+        "description": "Get match segment by match_id.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:any:read`\n\n- For match if the player was in match any of: `match:*`, `match:match:player:read`",
         "operationId": "get_match",
         "security": [
           {
@@ -304,14 +304,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
             "content": {
@@ -340,7 +340,7 @@
           "match"
         ],
         "summary": "Update Match",
-        "description": "Update match by match_id\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update match by match_id.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "update_match",
         "security": [
           {
@@ -380,6 +380,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
             "content": {
               "application/json": {
                 "schema": {
@@ -387,7 +397,17 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -406,7 +426,7 @@
           "match"
         ],
         "summary": "Patch Match",
-        "description": "Update match by match_id only with provided fields\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update match by match_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match",
         "security": [
           {
@@ -446,6 +466,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
             "content": {
               "application/json": {
                 "schema": {
@@ -453,7 +483,17 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -472,7 +512,7 @@
           "match"
         ],
         "summary": "Delete Match",
-        "description": "Delete match by match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`",
+        "description": "Delete match by match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match",
         "security": [
           {
@@ -491,10 +531,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful Response"
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -502,7 +552,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -523,7 +573,7 @@
           "match"
         ],
         "summary": "Get Player Matches Self",
-        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
+        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
         "operationId": "get_player_matches_self",
         "security": [
           {
@@ -572,14 +622,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -600,7 +650,7 @@
           "match"
         ],
         "summary": "Get Players Matches",
-        "description": "Get All matches for a provided player_uuid.\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
+        "description": "Get All matches for a provided player_uuid.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
         "operationId": "get_players_matches",
         "security": [
           {
@@ -659,14 +709,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -687,7 +737,7 @@
           "match"
         ],
         "summary": "Get Match Player",
-        "description": "Get a player match record for the provided player_uuid and match_id\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
+        "description": "Get a player match record for the provided player_uuid and match_id\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
         "operationId": "get_match_player",
         "security": [
           {
@@ -727,6 +777,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -734,7 +794,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -753,7 +813,7 @@
           "match"
         ],
         "summary": "Create Match Player",
-        "description": "Create player match record for the provided player_uuid and match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have match:match:edit:authority and are the host of the match.",
         "operationId": "create_match_player",
         "security": [
           {
@@ -803,6 +863,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -810,7 +880,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -829,7 +899,7 @@
           "match"
         ],
         "summary": "Update Match Player",
-        "description": "Update player match record for the provided player_uuid and match_id\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update player match record for the provided player_uuid and match_id\n    \nMatch must be in pending state to be updated.\n    \nany of: `match:*`, `match:match:edit:any` - update any match.\n\nany of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` - update match if the player is the host of the match.",
         "operationId": "update_match_player",
         "security": [
           {
@@ -879,6 +949,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -886,7 +966,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -905,7 +985,7 @@
           "match"
         ],
         "summary": "Patch Match Player",
-        "description": "Update player match record for the provided player_uuid \" \"and match_id only with provided fields.\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update player match record for the provided player_uuid \" \"and match_id only with provided fields.\n\nMatch must still be in a pending state.\n\nRequired Permissions:   \n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match_player",
         "security": [
           {
@@ -955,6 +1035,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -962,7 +1052,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -981,7 +1071,7 @@
           "match"
         ],
         "summary": "Delete Match Player",
-        "description": "Delete player by player_uuid and match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`",
+        "description": "Delete player by player_uuid and match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match_player",
         "security": [
           {
@@ -1010,10 +1100,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful Response"
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -1021,7 +1121,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -1042,7 +1142,7 @@
           "match"
         ],
         "summary": "Get Match Segment",
-        "description": "Get match segment by match_id and segment_id",
+        "description": "Get match segment by match_id and segment_id.\n\n- For any match any of: `match:*`, `match:match:any:read`\n\n- For match if the player was in match any of: `match:*`, `match:match:player:read`",
         "operationId": "get_match_segment",
         "security": [
           {
@@ -1081,14 +1181,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
             "content": {
@@ -1117,7 +1217,7 @@
           "match"
         ],
         "summary": "Update Match Segment",
-        "description": "Update match segment by match_id and segment_id",
+        "description": "Update match segment by match_id and segment_id.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "update_match_segment",
         "security": [
           {
@@ -1166,6 +1266,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -1173,7 +1283,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -1192,7 +1302,7 @@
           "match"
         ],
         "summary": "Patch Match Segment",
-        "description": "Update match segment by match_id and segment_id only with provided fields",
+        "description": "Update match segment by match_id and segment_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match_segment",
         "security": [
           {
@@ -1241,6 +1351,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -1248,7 +1368,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -1267,7 +1387,7 @@
           "match"
         ],
         "summary": "Delete Match Segment",
-        "description": "Delete match segment by match_id and segment_id",
+        "description": "Delete match segment by match_id and segment_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match_segment",
         "security": [
           {
@@ -1295,10 +1415,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful Response"
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -1306,7 +1436,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -1327,7 +1457,7 @@
           "match"
         ],
         "summary": "Create Match Segment",
-        "description": "Create match segment by match_id",
+        "description": "Create match segment by match_id.\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "create_match_segment",
         "security": [
           {
@@ -1367,14 +1497,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1395,7 +1525,7 @@
           "pex"
         ],
         "summary": "Get All Pex Host Raw By Filter",
-        "description": "Get pages of PEX host raw data based on provided filters\n            \n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX host raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_host_raw_by_filter",
         "security": [
           {
@@ -1787,7 +1917,7 @@
           "pex"
         ],
         "summary": "Get All Pex Host Scores By Filter",
-        "description": "Get pages of PEX host scores based on provided filters\n            \n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX host scores based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_host_scores_by_filter",
         "security": [
           {
@@ -2169,7 +2299,7 @@
           "pex"
         ],
         "summary": "Get All Pex Client Raw By Filter",
-        "description": "Get pages of PEX client raw data based on provided filters\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX client raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_client_raw_by_filter",
         "security": [
           {
@@ -2593,7 +2723,7 @@
           "pex"
         ],
         "summary": "Get All Pex Client Scores By Filter",
-        "description": "Get pages of PEX client score data based on provided filters\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX client score data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_client_scores_by_filter",
         "security": [
           {
@@ -3007,7 +3137,7 @@
           "pex"
         ],
         "summary": "Create Pex Host",
-        "description": "Create PEX Host\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:host:write`",
+        "description": "Create PEX Host\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:host:write`",
         "operationId": "create_pex_host",
         "requestBody": {
           "content": {
@@ -3057,7 +3187,7 @@
           "pex"
         ],
         "summary": "Create Pex Player",
-        "description": "Create PEX Client\n\n           Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:client:write`",
+        "description": "Create PEX Client\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:client:write`",
         "operationId": "create_pex_player",
         "requestBody": {
           "content": {
