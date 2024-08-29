@@ -14,7 +14,7 @@
     "/v1/rank:calculate": {
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Update Rankings V1",
         "description": "Calculate and update on players and persist their new ranks\nRequires at least two teams, and the player's ranks before the last match was played\n\nRequired Permissions: `rank:update:any`\n**DEPRECATED** Use the v2 endpoint instead",
@@ -72,7 +72,7 @@
     "/v1/player/me/rank/{rank_id}": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get Player Uuid Rank Self",
         "description": "Get current player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self`\n**DEPRECATED** Use the V2 endpoint",
@@ -130,7 +130,7 @@
       },
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Update Player Uuid Rank Self",
         "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`\n**DEPRECATED** Use the V2 endpoint",
@@ -200,7 +200,7 @@
     "/v1/player/{player_uuid}/rank/{rank_id}": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get Player Uuid Rank",
         "description": "Get a specific player's rank for a specific rank id\n            \nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`\n**DEPRECATED** Use the V2 endpoint",
@@ -268,7 +268,7 @@
       },
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Update Player Uuid Rank",
         "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`\n**DEPRECATED** Use V2 endpoints",
@@ -348,7 +348,7 @@
     "/v1/player/me/rank": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get All Player Uuid Ranks Self",
         "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`\n**DEPRECATED** Use the V2 endpoints",
@@ -386,7 +386,7 @@
     "/v1/player/{player_uuid}/rank": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get All Player Uuid Ranks",
         "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`\n**DEPRECATED** Use the V2 endpoint",
@@ -446,7 +446,7 @@
     "/v2/rank:calculate": {
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Calculate V2 Ranks",
         "description": "Calculate a rank update on players and persist their new ranks\nRequires at least two teams, and the players' ranks before the last match was played\n\nRequired Permissions: `rank:update:any`",
@@ -504,7 +504,7 @@
     "/v2/player/me/rank/{rank_id}": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get Player Uuid Rank Self V2",
         "description": "Get current player's rank for a specific rank id\n\nRequired Permissions: `rank:read:self`",
@@ -561,7 +561,7 @@
       },
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Update Player Uuid Rank Self V2",
         "description": "Update current player's ranks to those that are provided. Ranks are taken as is \n\nRequired Permissions: `rank:update:self`",
@@ -630,7 +630,7 @@
     "/v2/player/{player_uuid}/rank/{rank_id}": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get Player Uuid Rank V2",
         "description": "Get a specific player's rank for a specific rank id\n\nRequired Permissions: `rank:read:self` for players acting on themselves, \notherwise `rank:read:any`",
@@ -697,7 +697,7 @@
       },
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Update Player Uuid Rank V2",
         "description": "Update a specific player's ranks to those that are provided. Ranks are taken as is\n\nRequired Permissions: `rank:update:self` for players acting on themselves, \notherwise `rank:update:any`",
@@ -776,7 +776,7 @@
     "/v2/player/me/rank": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get All Player Uuid Ranks Self V2",
         "description": "Get all of current player's ranks\n\nRequired Permissions: `rank:read:self`",
@@ -813,7 +813,7 @@
     "/v2/player/{player_uuid}/rank": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get All Player Uuid Ranks V2",
         "description": "Get all of a specific player's ranks\n\nRequired Permissions: `rank:read:self` for players acting on themselves,\notherwise `rank:read:any`",
@@ -872,7 +872,7 @@
     "/v3/rank": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get All Rank Config V3",
         "description": "Get all rank configuration\n\nRequired Permissions: `rank:read:config`",
@@ -909,7 +909,7 @@
     "/v3/rank/{rank_id}": {
       "get": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Get Rank Config V3",
         "description": "Get rank configuration for specific rank id\n\nRequired Permissions: `rank:read:config`",
@@ -968,7 +968,7 @@
     "/v3/rank:calculate": {
       "post": {
         "tags": [
-          "rank"
+          "Rank"
         ],
         "summary": "Calculate V3 Ranks",
         "description": "Calculate a rank update on players and return the results without persisting them\nRequires at least two teams, the players' ranks before the last match was played, and parameters on how to calculate the rank changes\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `rank:*`, `rank:calculate`",
@@ -1682,7 +1682,7 @@
   },
   "tags": [
     {
-      "name": "rank",
+      "name": "Rank",
       "description": "\n\nThis API is used to update players ranks after matches\n\n"
     }
   ]

@@ -3328,418 +3328,6 @@
         ]
       }
     },
-    "/v2/player/me/entitlement": {
-      "post": {
-        "tags": [
-          "Entitlements"
-        ],
-        "summary": "Process Platform Entitlement For Me",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
-        "operationId": "process_platform_entitlement_for_me",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PlatformEntitlementProcessRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v2/player/{player_uuid}/entitlement": {
-      "post": {
-        "tags": [
-          "Entitlements"
-        ],
-        "summary": "Process Platform Entitlements By Player Uuid",
-        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
-        "operationId": "process_platform_entitlements_by_player_uuid",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
-            },
-            "name": "player_uuid",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PlatformEntitlementProcessRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v2/player/me/entitlement/request/{request_id}": {
-      "get": {
-        "tags": [
-          "Entitlements"
-        ],
-        "summary": "Retrieve Entitlement Request For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
-        "operationId": "retrieve_entitlement_request_for_me",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Request Id"
-            },
-            "name": "request_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v2/player/{player_uuid}/entitlement/request/{request_id}": {
-      "get": {
-        "tags": [
-          "Entitlements"
-        ],
-        "summary": "Retrieve Entitlement Request By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
-        "operationId": "retrieve_entitlement_request_by_player_uuid",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
-            },
-            "name": "player_uuid",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Request Id"
-            },
-            "name": "request_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/entitlement-event": {
-      "get": {
-        "tags": [
-          "Entitlements"
-        ],
-        "summary": "Get Entitlement Events",
-        "description": "Get entitlement events for a player.  If no player is provided, all events will be returned.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:read`",
-        "operationId": "get_entitlement_events",
-        "parameters": [
-          {
-            "description": "Player to get entitlement events for",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid",
-              "description": "Player to get entitlement events for"
-            },
-            "name": "player_uuid",
-            "in": "query"
-          },
-          {
-            "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided",
-            "required": false,
-            "deprecated": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id",
-              "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided"
-            },
-            "name": "player_id",
-            "in": "query"
-          },
-          {
-            "description": "Cursor for pagination",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "maxLength": 255,
-              "title": "Cursor",
-              "description": "Cursor for pagination"
-            },
-            "name": "cursor",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntitlementEventList"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Entitlements"
-        ],
-        "summary": "Generate Entitlement Event",
-        "description": "Create an entitlement event - this is used to bypass platform providers and grant entitlement events directly. \n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:write`",
-        "operationId": "generate_entitlement_event",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntitlementEventRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntitlementEvent"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "\nError Codes:\n\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "\nError Codes:\n\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
     "/v2/player/me/order": {
       "get": {
         "tags": [
@@ -4743,14 +4331,426 @@
         ]
       }
     },
+    "/v2/player/me/entitlement": {
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Process Platform Entitlement For Me",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "process_platform_entitlement_for_me",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlatformEntitlementProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/entitlement": {
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Process Platform Entitlements By Player Uuid",
+        "description": "Process platform entitlements, consuming from the platform inventory where possible and generating orders.  \n\nNote that some orders may not be fulfilled at the completion of this request and need to be polled separately for results\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "process_platform_entitlements_by_player_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlatformEntitlementProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/me/entitlement/request/{request_id}": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Retrieve Entitlement Request For Me",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "retrieve_entitlement_request_for_me",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Request Id"
+            },
+            "name": "request_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/entitlement/request/{request_id}": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Retrieve Entitlement Request By Player Uuid",
+        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "retrieve_entitlement_request_by_player_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Request Id"
+            },
+            "name": "request_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementProcessResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/entitlement-event": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Entitlement Events",
+        "description": "Get entitlement events for a player.  If no player is provided, all events will be returned.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:read`",
+        "operationId": "get_entitlement_events",
+        "parameters": [
+          {
+            "description": "Player to get entitlement events for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "Player to get entitlement events for"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided",
+            "required": false,
+            "deprecated": true,
+            "schema": {
+              "type": "integer",
+              "title": "Player Id",
+              "description": "Player to get entitlement events for.  Will be ignored if player_uuid is provided"
+            },
+            "name": "player_id",
+            "in": "query"
+          },
+          {
+            "description": "Cursor for pagination",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "title": "Cursor",
+              "description": "Cursor for pagination"
+            },
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitlementEventList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Generate Entitlement Event",
+        "description": "Create an entitlement event - this is used to bypass platform providers and grant entitlement events directly. \n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:write`",
+        "operationId": "generate_entitlement_event",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntitlementEventRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitlementEvent"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\nError Codes:\n\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v2/player/me/portal/{portal_id}/processKeyEntitlements": {
       "post": {
         "tags": [
-          "Key Entitlements"
+          "Entitlements"
         ],
-        "summary": "Process Player Uuid Entitlements Self",
+        "summary": "Process Key Entitlements Player Uuid Self",
         "description": "Process entitlements for the current player with the given Platform. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
-        "operationId": "process_player_uuid_entitlements_self",
+        "operationId": "process_key_entitlements_player_uuid_self",
         "parameters": [
           {
             "required": true,
@@ -4811,7 +4811,7 @@
     "/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements": {
       "post": {
         "tags": [
-          "Key Entitlements"
+          "Entitlements"
         ],
         "summary": "Process Key Entitlements Player Uuid",
         "description": "Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
@@ -4886,7 +4886,7 @@
     "/v1/player/me/portal/{portal_id}/processKeyEntitlements": {
       "post": {
         "tags": [
-          "Key Entitlements"
+          "Entitlements"
         ],
         "summary": "Process Key Entitlements Self",
         "description": "Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
@@ -4952,7 +4952,7 @@
     "/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements": {
       "post": {
         "tags": [
-          "Key Entitlements"
+          "Entitlements"
         ],
         "summary": "Process Key Entitlements",
         "description": "Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.",
@@ -6006,7 +6006,7 @@
     "/v1/marketing/campaign": {
       "get": {
         "tags": [
-          "Marketing"
+          "Key Claims"
         ],
         "summary": "Get Marketing Campaigns",
         "description": "Get all marketing campaigns. There is currently no way to add Market Campaigns via API. Reach out to your Rally Here representative to add a new campaign.",
@@ -10127,10 +10127,6 @@
     {
       "name": "Key Claims",
       "description": "Operations to Fetch and Claim Key Claims. Key Claims are used to give Players keys as a reward to fulfilling the requirements of an external Marketing Campaign. Examples: Beta Keys, Extra Game keys for Friends, etc."
-    },
-    {
-      "name": "Marketing",
-      "description": "Operations on Market Campaigns. There is currently no way to add Market Campaigns via API. Reach out to your Rally Here representative to add a new campaign."
     }
   ]
 }

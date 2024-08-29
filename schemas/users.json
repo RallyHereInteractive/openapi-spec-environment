@@ -14,7 +14,7 @@
     "/v1/verify": {
       "post": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Verify",
         "description": "Verify if an access token is still valid",
@@ -49,7 +49,7 @@
     "/v1/login": {
       "post": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Login",
         "description": "This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.\n    \nThis endpoint supports user-based authentication for a variety of platforms.",
@@ -144,7 +144,7 @@
     "/v1/portaltoken/details": {
       "post": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Get Portal Token Details",
         "description": "Platform-specific token details.  Return data that the platform allows for their tokens.",
@@ -200,7 +200,7 @@
     "/v1/logout": {
       "post": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Logout",
         "description": "Log out a refresh token",
@@ -240,7 +240,7 @@
     "/v1/publickeys": {
       "get": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Get All Public Keys",
         "description": "Get all current public keys for this auth provider",
@@ -262,7 +262,7 @@
     "/v1/publickeys/{key_id}": {
       "get": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Get Public Key By Id",
         "description": "Get a current public key by `key_id` for this auth provider.",
@@ -308,7 +308,7 @@
     "/v1/player/me/uuid": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Uuid From Player Id For Self",
         "description": "Get a player's uuid from their id for the active player on the access token.",
@@ -328,6 +328,16 @@
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -358,7 +368,7 @@
     "/v1/player/{player_id}/uuid": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Uuid From Player Id",
         "description": "Get a player's uuid from their id.",
@@ -429,7 +439,7 @@
     "/v2/player/me/uuid": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Uuid From Player Id For Self V2",
         "description": "Get a player's uuid from their id for the active player on the access token.",
@@ -447,6 +457,16 @@
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -476,7 +496,7 @@
     "/v2/player/{player_id}/uuid": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Uuid From Player Id V2",
         "description": "Get a player's uuid from their id.",
@@ -544,7 +564,7 @@
     "/v2/player/me/id": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Id From Player Uuid For Self",
         "description": "Get a player's id from their uuid for the active player on the access token.",
@@ -601,7 +621,7 @@
     "/v2/player/{player_uuid}/id": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Id From Player Uuid",
         "description": "Get a player's id from their uuid.",
@@ -670,7 +690,7 @@
     "/v2/player/me/links": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Links For Self",
         "description": "Get a player's linked portals for the active player on the access token.",
@@ -727,7 +747,7 @@
     "/v2/player/{player_uuid}/links": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Links",
         "description": "Get a player's linked portals.",
@@ -796,10 +816,10 @@
     "/v1/player/{player_id}/linked_portals": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Player Linked Portals",
-        "description": "Get a player's linked portals.",
+        "description": "**DEPRECATED** Please use `/v2/player/{player_uuid}/links` instead. Get a player's linked portals.",
         "operationId": "get_player_linked_portals",
         "parameters": [
           {
@@ -865,7 +885,7 @@
     "/v1/platform-user": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Find Platform User By Id",
         "description": "Find an existing platform user with their platform identity.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:platform:read`",
@@ -948,7 +968,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Create Platform User By Id",
         "description": "Create a new platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:platform:create`",
@@ -1015,7 +1035,7 @@
     "/v1/player": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Lookup Player By Portal",
         "description": "Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.",
@@ -1125,7 +1145,7 @@
     "/v2/player:iterate": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Players Paged",
         "description": "Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.\nThere is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:player:iterate`",
@@ -1211,7 +1231,7 @@
     "/v1/person/me/info": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Person For Self",
         "description": "Get information for the person on the access token.",
@@ -1246,7 +1266,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Update Person For Self",
         "description": "Update information for the person on the access token.",
@@ -1301,7 +1321,7 @@
     "/v1/person/{person_id}/info": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Person",
         "description": "Get information for a person.",
@@ -1358,7 +1378,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Update Person",
         "description": "Update the information for a person.",
@@ -1426,7 +1446,7 @@
     "/v1/person/me/email/list": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Person Email List For Self",
         "description": "Get the email list ids for a person on the access token",
@@ -1461,7 +1481,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Update Person Email List For Self",
         "description": "Update the email list for person on the access token.  This is used to control which emails a person receives.",
@@ -1516,7 +1536,7 @@
     "/v1/person/{person_id}/email/list": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Person Email List",
         "description": "Get the email list ids for a person",
@@ -1574,7 +1594,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Update Person Email List",
         "description": "Update the email list for a person.  This is used to control which emails a person receives.",
@@ -1642,7 +1662,7 @@
     "/v1/person/me/purge": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Queue Purge Status For Me",
         "description": "Get the purge status for a person of the access token.",
@@ -1687,7 +1707,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Queue Me For Purge",
         "description": "Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.",
@@ -1752,7 +1772,7 @@
       },
       "delete": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Dequeue Me For Purge",
         "description": "Dequeue the active person of the access token if they are queued to be purged. This will only work if the purge has not already begun.",
@@ -1782,7 +1802,7 @@
     "/v1/person/{person_id}/purge": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Queue Purge Status For Person",
         "description": "Get the purge status for a person. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
@@ -1849,7 +1869,7 @@
       },
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Queue Person For Purge",
         "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
@@ -1916,7 +1936,7 @@
       },
       "delete": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Dequeue Person For Purge",
         "description": "Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
@@ -1968,7 +1988,7 @@
     "/v1/oauth/login/{platform}": {
       "get": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Oauth Login",
         "description": "This endpoint is used to initiate the OAuth authentication flow for a user.\n\nIf the platform has been configured correctly, this endpoint will redirect to the platform's login page.  \nOnce the user has logged in, the platform should redirect them to the `/users/v1/oauth/response/{platform}` endpoint for the associated platform.  \n\nErrors will be immediately redirected to the requested `redirect_uri` (or the first configured redirect URI, if the requested URI is not configured).",
@@ -2058,7 +2078,7 @@
     "/v1/oauth/response/{platform}": {
       "get": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Oauth Response",
         "description": "Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the `/users/v1/oauth/token` endpoint to get an access token for the user.",
@@ -2149,7 +2169,7 @@
     "/v1/oauth/token": {
       "post": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Oauth Token Exchange",
         "description": "Exchange an authorization_code from the `/users/v1/oauth/response/{platform}` endpoint for an access token and refresh token.",
@@ -2226,7 +2246,7 @@
     "/v2/oauth/token": {
       "post": {
         "tags": [
-          "auth"
+          "Auth"
         ],
         "summary": "Token",
         "description": "OAuth2 Token Endpoint. For more information see: <a href=\"https://datatracker.ietf.org/doc/html/rfc6749#section-3.2\" target=\"_blank\">Token Endpoint Spec</a>.",
@@ -2293,7 +2313,7 @@
     "/v1/link": {
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Link",
         "description": "Link a follower platform user to a leader person.\n    \nThe Leader person is found using the following priority:\n\n1. If the `leader_person_id` is provided directly\n2. If the `leader_platform` and `leader_platform_user_id` are provided, the `person_id` of that platform user is used.\n3. If the `scheme` and `credentials` are provided, the person_id of the platform user of credentials is used.\n\nThe Follower platform user is found using the following priority:\n\n1. If the `follower_platform` and `follower_platform_user_id` are provided directly.\n2. If the Authorization header contains a user token, the platform and platform user id from the token are used.\n\nFor leader selection 1,2 or follower selection 1, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
@@ -2358,7 +2378,7 @@
     "/v1/unlink": {
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Unlink",
         "description": "Unlink a platform user from their current person.  This will create a new person for the \nplatform user to be associated with.\n\nIf an identity is not provided, the identity in the token will be used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
@@ -2423,7 +2443,7 @@
     "/v1/cross-progression/enable": {
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Enable Cross Progression",
         "description": "Enable Cross Progression for the player associated with the platform identity.  \nWhile cross progression is enabled, all linked users who login will receive a token for the player with cross \nprogression enabled (instead of a token for their platform user's player).\n\nIf an identity is not provided, the identity in the token will be used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
@@ -2488,7 +2508,7 @@
     "/v1/cross-progression/disable": {
       "post": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Disable Cross Progression",
         "description": "Disable Cross Progression for a person.  While cross progression is disabled, \nall linked users who login will receive a token for the player associated with their platform user.\n    \nThe person is found using the following priority:\n\n1. If the `person_id` is provided directly\n2. If the `platform` and `platform_user_id` are provided, the `person_id` of that platform user is used.\n3. If the Authorization header contains a user token, the platform and platform user id from the token are used and the person associated with that user is used.\n\nIf you are modifying a user outside of your person, Required Permissions:\n\n- For any user (including themselves) any of: `user:*`, `user:modify:any`\n\n\n\nNOTE: Whenever you change the link or cross progression status of a user, it is recommended to \nrefresh their access token.  Each token does container user information, which may be incorrect after a link or \ncross progression change.  There is no guarantee that calling other endpoints will operate on the correct user\nuntil the token has been refreshed.",
@@ -2553,7 +2573,7 @@
     "/v1/role": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get All Roles",
         "description": "Get all current roles. Including their custom_data and login_loot_rewards.\n    \nRequired Permissions:\n\n- For any player (including themselves) : `role:read`",
@@ -2594,7 +2614,7 @@
     "/v1/history/login": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Login History",
         "description": "Get the Login history for a given user\n    \nRequired Permissions:\n\n- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person or platform identity themselves : `user:audit:self`",
@@ -2714,7 +2734,7 @@
     "/v1/history/link": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get Link History",
         "description": "Get the Link history for a given user\n    \nRequired Permissions:\n\n- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person or platform identity themselves : `user:audit:self`",
@@ -4721,8 +4741,12 @@
   },
   "tags": [
     {
-      "name": "auth",
+      "name": "Auth",
       "description": "RallyHere Authentication API\n\nThis API is used by clients to retrieve an access token to be used when accessing other RallyHere APIs.\n\n## User-based Client Logins\n\nThe /v1/login endpoint supports user-based authentication for a variety of platforms by \"wrapping\" a user's platform\naccess token using a multi-step process:\n\n1. The client must authenticate the user and retrieve an access token for their respective platform.\n2. The client must subsequently authenticate the user using the /v1/login endpoint by setting the `grant_type` to the\nappropriate platform, and setting the `portal_access_token` to the access token retrieved above, which will return a\nnew access token to be used for RallyHere APIs.\n\n## OAuth\n\n### Version 1\n\nThe /v1/oauth endpoints support user-based client authentication for a variety of different platforms, utilizing secure\nredirects to third-party authentication URLs. The OAuth flow allows authentication to the RallyHere APIs without the use\nof a game client.\n\n### Version 2\n\nCurrently, the /v2/oauth endpoints only support a `grant_type` value of `client_credentials`, for the purposes of\nuser-less client authentication, utilizing Basic authentication containing a RallyHere client ID and client secret. This\ntype of authentication enables trusted clients (such as backend game instances) to access the RallyHere APIs without\nuser-specific authentication.\n\nThe /v2/oauth endpoint will be updated in the future to include user-based authentication modes.\n\n"
+    },
+    {
+      "name": "Users",
+      "description": "User Endpoints to query user information, search for users, purge users (for GDPR or other delete reasons), and update linking/cross-progresion status for users."
     }
   ]
 }

@@ -14,7 +14,7 @@
     "/v1/session": {
       "post": {
         "tags": [
-          "ad"
+          "Ad"
         ],
         "summary": "Begin New Session",
         "description": "Start a new session for the user. This will generate a new ad api token that is returned in the response header.",
@@ -101,7 +101,7 @@
     "/v1/opportunity": {
       "post": {
         "tags": [
-          "ad"
+          "Ad"
         ],
         "summary": "Find Opportunities",
         "description": "Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.",
@@ -190,7 +190,7 @@
     "/v1/opportunity/{opportunity_id}": {
       "post": {
         "tags": [
-          "ad"
+          "Ad"
         ],
         "summary": "Update Opportunity By Id",
         "description": "Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.",
@@ -287,7 +287,7 @@
     "/v1/unity/ad/watched": {
       "get": {
         "tags": [
-          "ad"
+          "Ad"
         ],
         "summary": "Unity Ad Watched",
         "description": "Callback URL for the Unity Ad API. Docs here https://docs.unity.com/ads/ImplementingS2SRedeemCallbacks.html",
@@ -368,7 +368,7 @@
     "/v1/unity/mediation/watched": {
       "get": {
         "tags": [
-          "ad"
+          "Ad"
         ],
         "summary": "Unity Mediation Ad Watched",
         "description": "Callback URL for the Unity Ad API. Docs here https://docs.unity.com/mediation/S2SRedeemCallbacks.html",
@@ -715,8 +715,8 @@
   },
   "tags": [
     {
-      "name": "ad",
-      "description": "Operations on ad"
+      "name": "Ad",
+      "description": "Ad endpoints are used to present ads to users, and grant rewards to them for doing so.\n\nThe system uses an external ad provider to present opportunities to the user.  Currently, the only supported provider is Unity Ads.  Please contact your RallyHere representative for more information.\n\nNote that each endpoint can return a `x-hz-ad-api-token` header, which should be reused whenever possible for future requests.  This is an optimization that should improve future request times, as they won't require a secondary authentication with the external ad provider.\n"
     }
   ]
 }

@@ -14,7 +14,7 @@
     "/v1/{file_type}/{entity_type}": {
       "get": {
         "tags": [
-          "file"
+          "File"
         ],
         "summary": "Get Entity Directory Information",
         "description": "Get information about a entity types storage container. Very resource intensive, use sparingly.",
@@ -77,7 +77,7 @@
       },
       "delete": {
         "tags": [
-          "file"
+          "File"
         ],
         "summary": "Delete Entity Directory",
         "operationId": "delete_entity_directory",
@@ -139,7 +139,7 @@
     "/v1/{file_type}/{entity_type}/{entity_id}/{file_name}": {
       "put": {
         "tags": [
-          "file"
+          "File"
         ],
         "summary": "Create Entity Directory File",
         "description": "Upload a file to entity storage for the provided entity_id. \nThis endpoint will accept a multipart/form-data by default when the request's content-type is not provided. \nWhen a content-type is provided, the request body will be as raw bytes.",
@@ -243,7 +243,7 @@
       },
       "get": {
         "tags": [
-          "file"
+          "File"
         ],
         "summary": "Download Entity Directory File",
         "operationId": "download_entity_directory_file",
@@ -333,7 +333,7 @@
       },
       "delete": {
         "tags": [
-          "file"
+          "File"
         ],
         "summary": "Delete Entity Directory File",
         "operationId": "delete_entity_directory_file",
@@ -408,7 +408,7 @@
     "/v1/{file_type}/{entity_type}/{entity_id}": {
       "get": {
         "tags": [
-          "file"
+          "File"
         ],
         "summary": "List Entity Directory Files",
         "operationId": "list_entity_directory_files",
@@ -655,7 +655,7 @@
   },
   "tags": [
     {
-      "name": "file",
+      "name": "File",
       "description": "Operations on file-api"
     }
   ]
