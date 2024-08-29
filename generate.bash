@@ -78,14 +78,14 @@ fi
 ########################################
 # Run the merge process of the separate API specs
 if [[ "$SKIP_MERGE" = false ]]; then
-    npx openapi-merge-cli --config environment-openapi-merge-config.yaml
+    npx openapi-merge-cli --config environment-openapi-merge-config.json
     echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
 fi
 
 ########################################
-# Update the openapi version based on environment-openapi-base-schema.json
+# Update the openapi version based on environment-openapi-base-schema.yaml
 if [[ "$SKIP_MERGE" = false ]]; then
-    VERSION=$(jq -r '.openapi' environment-openapi-base-schema.json)
+    VERSION=$(yq -r '.openapi' environment-openapi-base-schema.yaml)
     jq --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > tmp.json && mv tmp.json environment.openapi.json
     jq -c --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > environment.openapi.min.json
 fi

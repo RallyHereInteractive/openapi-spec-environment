@@ -1,0 +1,21 @@
+{
+  "inputs": [
+    { "inputFile": "./environment-openapi-base-schema.yaml" },
+    { "inputFile": "./schemas/users.json", "pathModification": { "prepend": "/users" }, "dispute": { "prefix": "Users" } },
+    { "inputFile": "./schemas/settings.json", "pathModification": { "prepend": "/settings" }, "dispute": { "prefix": "Settings" } },
+    { "inputFile": "./schemas/friends.json", "pathModification": { "prepend": "/friends" }, "dispute": { "prefix": "Friends" } },
+    { "inputFile": "./schemas/inventory.json", "pathModification": { "prepend": "/inventory" }, "dispute": { "prefix": "Inventory" } },
+    { "inputFile": "./schemas/session.json", "pathModification": { "prepend": "/session" }, "dispute": { "prefix": "Session" } },
+    { "inputFile": "./schemas/rank.json", "pathModification": { "prepend": "/rank" }, "dispute": { "prefix": "Rank" } },
+    { "inputFile": "./schemas/match.json", "pathModification": { "prepend": "/match" }, "dispute": { "prefix": "Match" } },
+    { "inputFile": "./schemas/file.json", "pathModification": { "prepend": "/file" }, "dispute": { "prefix": "File" } },
+    { "inputFile": "./schemas/presence.json", "pathModification": { "prepend": "/presence" }, "dispute": { "prefix": "Presence" } },
+    { "inputFile": "./schemas/sanctions.json", "pathModification": { "prepend": "/sanctions" }, "dispute": { "prefix": "Sanctions" } },
+    { "inputFile": "./schemas/notification.json", "pathModification": { "prepend": "/notification" }, "dispute": { "prefix": "Notification" } },
+    { "inputFile": "./schemas/config.json", "pathModification": { "prepend": "/config" }, "dispute": { "prefix": "Config" } },
+    { "inputFile": "./schemas/events.json", "pathModification": { "prepend": "/events" }, "dispute": { "prefix": "Events" } },
+    { "inputFile": "./schemas/custom.json", "pathModification": { "prepend": "/custom" }, "dispute": { "prefix": "Custom" } },
+    { "inputFile": "./schemas/ad.json", "pathModification": { "prepend": "/ad" }, "dispute": { "prefix": "Ad" } }
+  ],
+  "output": "./environment.openapi.json"
+}

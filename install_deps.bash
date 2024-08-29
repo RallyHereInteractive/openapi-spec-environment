@@ -2,6 +2,7 @@
 
 # General prereqs
 sudo apt install jq npm curl
+sudo snap install yq
 
 # Install the latest version of oasdiff
 curl -s "https://api.github.com/repos/Tufin/oasdiff/releases/latest" | \

@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: RallyHere Environment APIs
+  description: |
+    Each RallyHere environment has a unique API for accessing all of the systems and services for that environment.
+  version: 1.0.0
+servers:
+  - url: "https://{environment_id}.rally-here.io"
+    variables:
+      environment_id:
+        default: demo
+        description: |
+          Environment ID assigned by RallyHere.  This is available from your Environment in the RallyHere Developer Portal at https://developer.rallyhere.gg
+components:
+  securitySchemes:
+    HTTPBearerHeadersOrCookie:
+      type: http
+      scheme: bearer
+      description: |
+        RallyHere Environment API Access Token Authorization
+
+        Access tokens can be generated from the environment's Users-API login/oauth endpoints.
+
+        Accepts authorization from the following request locations:
+        - `Authorization` header with a scheme of `bearer`.  E.g. `Authorization: bearer MYACCESSTOKENHERE`
+        - `Authorization` cookie with a scheme of `bearer`.  E.g. `bearer MYACCESSTOKENHERE`
+    HTTPBasic:
+      type: http
+      scheme: basic
+      description: |
+        RallyHere Environment API Client Credential Authorization
+        
+        Client credentials are available from the Product's configuration in the RallyHere Developer Portal.
+externalDocs:
+  description: RallyHere Documentation
+  url: "https://www.rallyhere.gg/docs"
