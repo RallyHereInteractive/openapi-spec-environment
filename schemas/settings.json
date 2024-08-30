@@ -14,7 +14,7 @@
     "/v1/player/{player_id}/setting_type/{setting_type_id}/key": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get All Player Id Settings For Setting Type",
         "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
@@ -124,7 +124,7 @@
       },
       "delete": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Delete All Player Id Settings For Setting Type",
         "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
@@ -210,7 +210,7 @@
     "/v2/player/me/setting_type/{setting_type_id}/key": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get All Player Uuid Settings For Setting Type Self",
         "description": "Get a list of all player setting documents for a specific Setting Type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
@@ -308,7 +308,7 @@
       },
       "delete": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Delete All Player Uuid Settings For Setting Type Self",
         "description": "Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
@@ -386,7 +386,7 @@
     "/v2/player/{player_uuid}/setting_type/{setting_type_id}/key": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get All Player Uuid Settings For Setting Type",
         "description": "Get a list of all player setting documents for a specific Setting Type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
@@ -496,7 +496,7 @@
       },
       "delete": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Delete All Player Uuid Settings For Setting Type",
         "description": "Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
@@ -586,7 +586,7 @@
     "/v2/player/me/setting_type/{setting_type_id}/key/{key}": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get Single Player Uuid Setting Self",
         "description": "Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
@@ -675,7 +675,7 @@
       },
       "put": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Set Single Player Uuid Setting Self",
         "description": "Update the value of a single player setting document.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
@@ -788,7 +788,7 @@
       },
       "delete": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Delete Single Player Uuid Setting Self",
         "description": "Delete a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
@@ -877,7 +877,7 @@
     "/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get Single Player Uuid Setting",
         "description": "Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
@@ -978,7 +978,7 @@
       },
       "put": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Set Single Player Uuid Setting",
         "description": "Update the value of a single player setting document.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
@@ -1103,7 +1103,7 @@
       },
       "delete": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Delete Single Player Uuid Setting",
         "description": "Delete a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
@@ -1204,7 +1204,7 @@
     "/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get Single Player Id Setting",
         "description": "**DEPRECATED** - Use v2 instead.  Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
@@ -1305,7 +1305,7 @@
       },
       "put": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Set Single Player Id Setting",
         "description": "**DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
@@ -1430,7 +1430,7 @@
       },
       "delete": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Delete Single Player Id Setting",
         "description": "**DEPRECATED** - Use v2 instead. Delete a single player setting document\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
@@ -1531,7 +1531,7 @@
     "/v1/setting_type": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get Config For All Setting Types",
         "description": "Get all setting types and their configuration.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
@@ -1572,7 +1572,7 @@
     "/v1/setting_type/{setting_type_id}/v": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get Config For Single Setting Type All Versions",
         "description": "Get a configuration and all versions for a given setting type ID.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
@@ -1644,7 +1644,7 @@
     "/v1/setting_type/{setting_type_id}/v/{setting_version_id}": {
       "get": {
         "tags": [
-          "settings"
+          "Settings"
         ],
         "summary": "Get Config For Single Setting Type And Version",
         "description": "Get a specific version of a specific setting type.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
@@ -1892,7 +1892,7 @@
   },
   "tags": [
     {
-      "name": "settings",
+      "name": "Settings",
       "description": "\nEndpoints to get setting configuration and player settings\n\nPlayer Settings are meant to be used as a document storage for players settings.\n\nSettings are organized around Setting Types.  Each Setting Type can contain one or more Setting Versions.  Each Type+Version pair includes a jsonschema that is used to validate any update that apply to the setting.  This does NOT validate data for the get endpoints.  If the data is invalid, the get endpoint will return the data as it was stored.\n"
     }
   ]

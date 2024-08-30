@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "friends-api",
-    "description": "RallyHere Friends API. These set of APIS will are used to manage a Players list of Friends and Blocked Players. <br /> <br />\n<b>Note:</b> When the other Player declines the Player's Friend request, the FriendShip status is set to FRIENDSHIP_DECLINED_BY_OTHER_PLAYER and counts towards the Player's Friend limit. Clients are expected to delete the relationship and optionally inform the Player about the declined request.\n",
+    "description": "RallyHere Friends API. These set of APIS will are used to manage a Players list of Friends and Blocked Players.\n*Note*: When the other Player declines the Player's Friend request, the FriendShip status is set to \"FRIENDSHIP_DECLINED_BY_OTHER_PLAYER\" and counts towards the Player's Friend limit. Clients are expected to delete the relationship and optionally inform the Player about the declined request.\n",
     "version": "0.1.0"
   },
   "servers": [
@@ -14,10 +14,10 @@
     "/v2/player/{player_uuid}/friend": {
       "get": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Get Friends List For Player V2",
-        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.",
+        "description": "Fetch the friend's list for the Player and their relationship status with those friends.\n    \n*Note*: This API supports etags and will return the etag header when with the response. \n\nClients can utilize the `if-none-match` header to avoid having to reload the response if it has not changed.",
         "operationId": "get_friends_list_for_player_v2",
         "parameters": [
           {
@@ -136,7 +136,7 @@
       },
       "delete": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Delete Friends V2",
         "description": "Remove the friend's relationship status with the other players",
@@ -218,10 +218,10 @@
     "/v2/player/{player_uuid}/friend/{other_player_uuid}": {
       "get": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Get Friend Relationship V2",
-        "description": "Get the relationship status with the other Player. <br /> <br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                    Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                    it has not changed or to use it to modify the relationship without loosing updates. \n                    <br/><br />Permissions Required: friend:friend_list:read",
+        "description": "Get the relationship status with the other Player.\n                    \n*Note*: This API supports etags and will return the etag header when with the response.\n\nClients can then utilize the `if-none-match` header to avoid having to reload the response if it has not changed or to use it to modify the relationship without loosing updates.\n\nPermissions Required: friend:friend_list:read",
         "operationId": "get_friend_relationship_v2",
         "parameters": [
           {
@@ -327,10 +327,10 @@
       },
       "put": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Add Friend V2",
-        "description": "Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                    the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                    include a body.<br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                    <br/><br />Permissions Required: friend:friend_list:write",
+        "description": "Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                    \nThe limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not include a body.\n\n*Note*: This API supports etags and will return the etag header when with the response and will match the etag value provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). It is highly recommended to provide the etag value with the `if-match` header to avoid lost updates.\n\nPermissions Required: friend:friend_list:write",
         "operationId": "add_friend_v2",
         "parameters": [
           {
@@ -445,10 +445,10 @@
       },
       "delete": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Delete Friend V2",
-        "description": "Remove the friend's relationship status with the other Player. \n                    This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                    provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                    <br/><br />Permissions Required: friend:friend_list:write",
+        "description": "Remove the friend's relationship status with the other Player. \n                    \nThis should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends\n\n*Note*: This API supports etags and will return the etag header when with the response and will match the etag value provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). It is highly recommended to provide the etag value with the `if-match` header to avoid lost updates.\n \nPermissions Required: friend:friend_list:write",
         "operationId": "delete_friend_v2",
         "parameters": [
           {
@@ -549,10 +549,10 @@
     "/v2/player/{player_uuid}/friend/{other_player_uuid}/notes": {
       "put": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Add Notes V2",
-        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n                    The notes will be removed when the relationship is ended.\n                    <br/><br />Permissions Required: friend:friend_list:write",
+        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. The notes will be removed when the relationship is ended.\n\nPermissions Required: friend:friend_list:write",
         "operationId": "add_notes_v2",
         "parameters": [
           {
@@ -665,10 +665,10 @@
       },
       "delete": {
         "tags": [
-          "Friends V2"
+          "Friends"
         ],
         "summary": "Delete Notes V2",
-        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n                    The notes will be removed when the relationship is ended.\n                    <br/><br />Permissions Required: {FriendPermissions.FRIEND_LIST_WRITE}",
+        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. The notes will be removed when the relationship is ended.\n    \nPermissions Required: friend:friend_list:write",
         "operationId": "delete_notes_v2",
         "parameters": [
           {
@@ -755,752 +755,13 @@
         ]
       }
     },
-    "/v1/player/{player_id}/friend": {
-      "get": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Get Friends List For Player",
-        "description": "Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. \n                <br/><br />Permissions Required: friend:friend_list:read",
-        "operationId": "get_friends_list_for_player",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "title": "Page",
-              "default": 0
-            },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "maximum": 10000,
-              "minimum": 1,
-              "title": "Limit",
-              "default": 50
-            },
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
-            },
-            "name": "if-none-match",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FriendsListV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "304": {
-            "description": "Content still has the same etag and has not changed"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Delete Friends",
-        "description": "Remove the friend's relationship status with the other players <br/><br />Permissions Required: friend:friend_list:write",
-        "operationId": "delete_friends",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FriendsV1"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/player/{player_id}/friend/{other_player_id}": {
-      "get": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Get Friend Relationship",
-        "description": "Get the relationship status with the other Player. <br /> <br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if \n                it has not changed or to use it to modify the relationship without loosing updates. \n                <br/><br />Permissions Required: friend:friend_list:read",
-        "operationId": "get_friend_relationship",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          },
-          {
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
-            },
-            "name": "if-none-match",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FriendRelationshipV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "304": {
-            "description": "Content still has the same etag and has not changed"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Add Friend",
-        "description": "Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.\n                The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update \n                the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not \n                include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                <br/><br />Permissions Required: friend:friend_list:write",
-        "operationId": "add_friend",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          },
-          {
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-Match",
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
-            },
-            "name": "if-match",
-            "in": "header"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notes"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FriendRelationshipV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "412": {
-            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Delete Friend",
-        "description": "Remove the friend's relationship status with the other Player. \n                This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />\n                <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value \n                provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly \n                recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. \n                <br/><br />Permissions Required: friend:friend_list:write",
-        "operationId": "delete_friend",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          },
-          {
-            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-Match",
-              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
-            },
-            "name": "if-match",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "412": {
-            "description": "The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/player/{player_id}/friend/{other_player_id}/notes": {
-      "put": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Add Notes",
-        "description": "Update Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.\n    <br/><br />Permissions Required: friend:friend_list:write",
-        "operationId": "add_notes",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          },
-          {
-            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-Match",
-              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
-            },
-            "name": "if-match",
-            "in": "header"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Notes"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FriendRelationshipV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Friends V1"
-        ],
-        "summary": "Delete Notes",
-        "description": "Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. \n    The notes will be removed when the relationship is ended.\n    <br/><br />Permissions Required: friend:friend_list:write",
-        "operationId": "delete_notes",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          },
-          {
-            "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-Match",
-              "description": "If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed."
-            },
-            "name": "if-match",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
     "/v2/player/{player_uuid}/block": {
       "get": {
         "tags": [
-          "Blocked V2"
+          "Friends"
         ],
         "summary": "Get Blocked List For Player V2",
-        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.\n                        <br/><br />Permissions Required: friend:block_list:read",
+        "description": "Fetch the blocked list for the Player.\n    \n*Note*: This API supports etags and will return the etag header when with the response. \n                        \nClients can utilize the `if-none-match` header to avoid having to reload the response if it has not changed.\n\nPermissions Required: friend:block_list:read",
         "operationId": "get_blocked_list_for_player_v2",
         "parameters": [
           {
@@ -1621,10 +882,10 @@
     "/v2/player/{player_uuid}/block/{other_player_uuid}": {
       "get": {
         "tags": [
-          "Blocked V2"
+          "Friends"
         ],
         "summary": "Get Blocked V2",
-        "description": "Get the Blocked Player <br/><br />Permissions Required: friend:block_list:read",
+        "description": "Get the Blocked Player\n    \nPermissions Required: friend:block_list:read",
         "operationId": "get_blocked_v2",
         "parameters": [
           {
@@ -1708,10 +969,10 @@
       },
       "put": {
         "tags": [
-          "Blocked V2"
+          "Friends"
         ],
         "summary": "Block V2",
-        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).\n                    <br/><br />Permissions Required: friend:block_list:write",
+        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n\nThe limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).\n\nPermissions Required: friend:block_list:write",
         "operationId": "block_v2",
         "parameters": [
           {
@@ -1795,10 +1056,10 @@
       },
       "delete": {
         "tags": [
-          "Blocked V2"
+          "Friends"
         ],
         "summary": "Unblock V2",
-        "description": "Unblock the other Player <br/><br />Permissions Required: friend:block_list:write",
+        "description": "Unblock the other Player\n    \nPermissions Required: friend:block_list:write",
         "operationId": "unblock_v2",
         "parameters": [
           {
@@ -1873,420 +1134,6 @@
           }
         ]
       }
-    },
-    "/v1/player/{player_id}/block": {
-      "get": {
-        "tags": [
-          "Blocked V1"
-        ],
-        "summary": "Get Blocked List For Player",
-        "description": "Fetch the blocked list for the Player. <br /><br />\n                        <b>Note:</b> This API supports etags and will return the etag header when with the response. \n                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. \n                        <br/><br />Permissions Required: friend:block_list:read",
-        "operationId": "get_blocked_list_for_player",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "title": "Page",
-              "default": 0
-            },
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "maximum": 10000,
-              "minimum": 1,
-              "title": "Limit",
-              "default": 50
-            },
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
-            },
-            "name": "if-none-match",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "ETag": {
-                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BlockedListV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "304": {
-            "description": "Content still has the same etag and has not changed"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/player/{player_id}/block/{other_player_id}": {
-      "get": {
-        "tags": [
-          "Blocked V1"
-        ],
-        "summary": "Get Blocked",
-        "description": "Get the Blocked Player<br/><br />Permissions Required: friend:block_list:read",
-        "operationId": "get_blocked",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BlockedPlayerV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Blocked V1"
-        ],
-        "summary": "Block",
-        "description": "Block the other Player. There is a max number of Players that can be blocked per Player.\n                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).\n                    <br/><br />Permissions Required: friend:block_list:write",
-        "operationId": "block",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BlockedPlayerV1"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Blocked V1"
-        ],
-        "summary": "Unblock",
-        "description": "Unblock the other Player<br/><br />Permissions Required: friend:block_list:write",
-        "operationId": "unblock",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            },
-            "name": "player_id",
-            "in": "path"
-          },
-          {
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Other Player Id"
-            },
-            "name": "other_player_id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/v1/configuration": {
-      "get": {
-        "tags": [
-          "Configuration V1"
-        ],
-        "summary": "Get Friends And Block Limits",
-        "description": "Fetch the configuration used by Friends API, e.g. friend_limit, block_limit, etc.",
-        "operationId": "get_friends_and_block_limits",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FriendsApiConfig"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
     }
   },
   "components": {
@@ -2318,38 +1165,6 @@
         "title": "BlockedList",
         "description": "The list of players that is blocked."
       },
-      "BlockedListV1": {
-        "properties": {
-          "player_id": {
-            "type": "integer",
-            "title": "Player's ID"
-          },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player's UUID"
-          },
-          "blocked": {
-            "items": {
-              "$ref": "#/components/schemas/BlockedPlayerV1"
-            },
-            "type": "array",
-            "title": "Player's Block list"
-          },
-          "page": {
-            "$ref": "#/components/schemas/PageMeta"
-          }
-        },
-        "type": "object",
-        "required": [
-          "player_id",
-          "player_uuid",
-          "blocked",
-          "page"
-        ],
-        "title": "BlockedListV1",
-        "description": "The list of players that is blocked. V1 includes player_id and player_uuid."
-      },
       "BlockedPlayer": {
         "properties": {
           "blocked_player_uuid": {
@@ -2370,32 +1185,6 @@
         ],
         "title": "BlockedPlayer",
         "description": "The player that is being blocked."
-      },
-      "BlockedPlayerV1": {
-        "properties": {
-          "blocked_player_id": {
-            "type": "integer",
-            "title": "Blocked Player's ID",
-            "default": 0
-          },
-          "blocked_player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Friend's Player ID"
-          },
-          "last_modified_on": {
-            "type": "string",
-            "format": "date-time",
-            "title": "The time when the friends relationship was last modified"
-          }
-        },
-        "type": "object",
-        "required": [
-          "blocked_player_uuid",
-          "last_modified_on"
-        ],
-        "title": "BlockedPlayerV1",
-        "description": "The player that is being blocked. V1 includes player_id and player_uuid."
       },
       "FriendRelationship": {
         "properties": {
@@ -2431,45 +1220,6 @@
         "title": "FriendRelationship",
         "description": "Represents the relationship with a potential friend."
       },
-      "FriendRelationshipV1": {
-        "properties": {
-          "friends_player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player UUID of Friend"
-          },
-          "friends_player_id": {
-            "type": "integer",
-            "title": "Player ID of Friend",
-            "default": 0
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/FriendshipStatus"
-              }
-            ],
-            "title": "The status of the friendship"
-          },
-          "notes": {
-            "type": "string",
-            "title": "Player's notes about the other player"
-          },
-          "last_modified_on": {
-            "type": "string",
-            "format": "date-time",
-            "title": "The time when the friends relationship was last modified"
-          }
-        },
-        "type": "object",
-        "required": [
-          "friends_player_uuid",
-          "status",
-          "last_modified_on"
-        ],
-        "title": "FriendRelationshipV1",
-        "description": "Represents the relationship with a potential friend. V1 includes player_id and player_uuid."
-      },
       "Friends": {
         "properties": {
           "friends": {
@@ -2489,24 +1239,6 @@
         ],
         "title": "Friends",
         "description": "List of player_uuids to operate on."
-      },
-      "FriendsApiConfig": {
-        "properties": {
-          "friend_limit": {
-            "type": "integer",
-            "title": "Friend Limit",
-            "description": "Maximum number of friends a user can have",
-            "default": 10000
-          },
-          "block_limit": {
-            "type": "integer",
-            "title": "Block Limit",
-            "description": "Maximum number of blocked users a user can have",
-            "default": 10000
-          }
-        },
-        "type": "object",
-        "title": "FriendsApiConfig"
       },
       "FriendsList": {
         "properties": {
@@ -2534,57 +1266,6 @@
         ],
         "title": "FriendsList",
         "description": "List of the player's friends. Includes sent friend requests and received friends requests."
-      },
-      "FriendsListV1": {
-        "properties": {
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player's UUID"
-          },
-          "player_id": {
-            "type": "integer",
-            "title": "Player's ID"
-          },
-          "friends": {
-            "items": {
-              "$ref": "#/components/schemas/FriendRelationshipV1"
-            },
-            "type": "array",
-            "title": "Players Friend list"
-          },
-          "page": {
-            "$ref": "#/components/schemas/PageMeta"
-          }
-        },
-        "type": "object",
-        "required": [
-          "player_uuid",
-          "player_id",
-          "friends",
-          "page"
-        ],
-        "title": "FriendsListV1",
-        "description": "List of the player's friends. Includes sent friend requests and received friends requests."
-      },
-      "FriendsV1": {
-        "properties": {
-          "friends": {
-            "items": {
-              "type": "integer"
-            },
-            "type": "array",
-            "maxItems": 50,
-            "minItems": 1,
-            "title": "List of Player IDs to operate on"
-          }
-        },
-        "type": "object",
-        "required": [
-          "friends"
-        ],
-        "title": "FriendsV1",
-        "description": "List of player_ids to operate on."
       },
       "FriendshipStatus": {
         "type": "string",
@@ -2713,24 +1394,8 @@
   },
   "tags": [
     {
-      "name": "Friends V1",
-      "description": "Operations to fetch and modify a player's friends. Note: V1 and V2 are not be be used together. Once you begin using V2, you must not use V1 anymore."
-    },
-    {
-      "name": "Friends V2",
-      "description": "Operations to fetch and modify a player's friends using player uuids"
-    },
-    {
-      "name": "Blocked V1",
-      "description": "Operations to fetch and modify a player's blocked list. Note: V1 and V2 are not be be used together. Once you begin using V2, you must not use V1 anymore."
-    },
-    {
-      "name": "Blocked V2",
-      "description": "Operations to fetch and modify a player's blocked list using player uuids"
-    },
-    {
-      "name": "Configuration V1",
-      "description": "Operations to view configuration for friends and blocked lists"
+      "name": "Friends",
+      "description": "Operations to fetch and modify a player's friends, blocked list, and configuration"
     }
   ]
 }

@@ -1,3 +1,687 @@
+## Changes for Thu Aug 29 19:47:57 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: 25
+-------------------------
+GET /friends/v1/configuration  
+GET /friends/v1/player/{player_id}/block  
+DELETE /friends/v1/player/{player_id}/block/{other_player_id}  
+GET /friends/v1/player/{player_id}/block/{other_player_id}  
+PUT /friends/v1/player/{player_id}/block/{other_player_id}  
+DELETE /friends/v1/player/{player_id}/friend  
+GET /friends/v1/player/{player_id}/friend  
+DELETE /friends/v1/player/{player_id}/friend/{other_player_id}  
+GET /friends/v1/player/{player_id}/friend/{other_player_id}  
+PUT /friends/v1/player/{player_id}/friend/{other_player_id}  
+DELETE /friends/v1/player/{player_id}/friend/{other_player_id}/notes  
+PUT /friends/v1/player/{player_id}/friend/{other_player_id}/notes  
+GET /notification/v1/instance/{instance_id}/notification  
+POST /notification/v1/instance/{instance_id}/notification  
+GET /notification/v1/instance/{instance_id}/notification/{notification_id}  
+GET /notification/v1/instance/{instance_id}/stream/notification/lp  
+GET /notification/v1/playerid/me/notification  
+POST /notification/v1/playerid/me/notification  
+GET /notification/v1/playerid/me/notification/{notification_id}  
+GET /notification/v1/playerid/me/stream/notification/lp  
+GET /notification/v1/playerid/{player_id}/notification  
+POST /notification/v1/playerid/{player_id}/notification  
+GET /notification/v1/playerid/{player_id}/notification/{notification_id}  
+GET /notification/v1/playerid/{player_id}/stream/notification/lp  
+GET /session/v1/player/me/deserter/{deserter_id}  
+
+### Modified Endpoints: 164
+---------------------------
+POST /ad/v1/opportunity
+
+POST /ad/v1/opportunity/{opportunity_id}
+
+POST /ad/v1/session
+
+GET /ad/v1/unity/ad/watched
+
+GET /ad/v1/unity/mediation/watched
+
+GET /config/v1/app_settings/client
+
+GET /config/v1/app_settings/server
+
+GET /config/v1/environment
+
+GET /config/v1/kv
+
+GET /config/v1/time/utc
+
+GET /config/v2/kv
+
+POST /custom/v1/custom/{endpoint_id}
+
+DELETE /file/v1/{file_type}/{entity_type}
+
+GET /file/v1/{file_type}/{entity_type}
+
+GET /file/v1/{file_type}/{entity_type}/{entity_id}
+
+DELETE /file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}
+
+GET /file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}
+
+PUT /file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}
+
+GET /friends/v2/player/{player_uuid}/block
+- Description changed from 'Fetch the blocked list for the Player. <br /><br />
+                        <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+                        Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.
+                        <br/><br />Permissions Required: friend:block_list:read' to 'Fetch the blocked list for the Player.
+    
+*Note*: This API supports etags and will return the etag header when with the response. 
+                        
+Clients can utilize the `if-none-match` header to avoid having to reload the response if it has not changed.
+
+Permissions Required: friend:block_list:read'
+
+DELETE /friends/v2/player/{player_uuid}/block/{other_player_uuid}
+- Description changed from 'Unblock the other Player <br/><br />Permissions Required: friend:block_list:write' to 'Unblock the other Player
+    
+Permissions Required: friend:block_list:write'
+
+GET /friends/v2/player/{player_uuid}/block/{other_player_uuid}
+- Description changed from 'Get the Blocked Player <br/><br />Permissions Required: friend:block_list:read' to 'Get the Blocked Player
+    
+Permissions Required: friend:block_list:read'
+
+PUT /friends/v2/player/{player_uuid}/block/{other_player_uuid}
+- Description changed from 'Block the other Player. There is a max number of Players that can be blocked per Player.
+                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).
+                    <br/><br />Permissions Required: friend:block_list:write' to 'Block the other Player. There is a max number of Players that can be blocked per Player.
+
+The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).
+
+Permissions Required: friend:block_list:write'
+
+DELETE /friends/v2/player/{player_uuid}/friend
+
+GET /friends/v2/player/{player_uuid}/friend
+- Description changed from 'Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />
+                    <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+                    Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.' to 'Fetch the friend's list for the Player and their relationship status with those friends.
+    
+*Note*: This API supports etags and will return the etag header when with the response. 
+
+Clients can utilize the `if-none-match` header to avoid having to reload the response if it has not changed.'
+
+DELETE /friends/v2/player/{player_uuid}/friend/{other_player_uuid}
+- Description changed from 'Remove the friend's relationship status with the other Player. 
+                    This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />
+                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
+                    provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly 
+                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. 
+                    <br/><br />Permissions Required: friend:friend_list:write' to 'Remove the friend's relationship status with the other Player. 
+                    
+This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends
+
+*Note*: This API supports etags and will return the etag header when with the response and will match the etag value provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). It is highly recommended to provide the etag value with the `if-match` header to avoid lost updates.
+ 
+Permissions Required: friend:friend_list:write'
+
+GET /friends/v2/player/{player_uuid}/friend/{other_player_uuid}
+- Description changed from 'Get the relationship status with the other Player. <br /> <br />
+                    <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+                    Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if 
+                    it has not changed or to use it to modify the relationship without loosing updates. 
+                    <br/><br />Permissions Required: friend:friend_list:read' to 'Get the relationship status with the other Player.
+                    
+*Note*: This API supports etags and will return the etag header when with the response.
+
+Clients can then utilize the `if-none-match` header to avoid having to reload the response if it has not changed or to use it to modify the relationship without loosing updates.
+
+Permissions Required: friend:friend_list:read'
+
+PUT /friends/v2/player/{player_uuid}/friend/{other_player_uuid}
+- Description changed from 'Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.
+                    The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update 
+                    the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not 
+                    include a body.<br /><br />
+                    <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
+                    provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly 
+                    recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. 
+                    <br/><br />Permissions Required: friend:friend_list:write' to 'Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.
+                    
+The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not include a body.
+
+*Note*: This API supports etags and will return the etag header when with the response and will match the etag value provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). It is highly recommended to provide the etag value with the `if-match` header to avoid lost updates.
+
+Permissions Required: friend:friend_list:write'
+
+DELETE /friends/v2/player/{player_uuid}/friend/{other_player_uuid}/notes
+- Description changed from 'Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. 
+                    The notes will be removed when the relationship is ended.
+                    <br/><br />Permissions Required: {FriendPermissions.FRIEND_LIST_WRITE}' to 'Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. The notes will be removed when the relationship is ended.
+    
+Permissions Required: friend:friend_list:write'
+
+PUT /friends/v2/player/{player_uuid}/friend/{other_player_uuid}/notes
+- Description changed from 'Update Player's notes on the other player. Players can only add notes for players they have relationship's with. 
+                    The notes will be removed when the relationship is ended.
+                    <br/><br />Permissions Required: friend:friend_list:write' to 'Update Player's notes on the other player. Players can only add notes for players they have relationship's with. The notes will be removed when the relationship is ended.
+
+Permissions Required: friend:friend_list:write'
+
+GET /inventory/v1/marketing/campaign
+
+POST /inventory/v1/player/me/portal/{portal_id}/processKeyEntitlements
+
+POST /inventory/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements
+
+POST /inventory/v2/player/me/portal/{portal_id}/processKeyEntitlements
+
+POST /inventory/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements
+
+GET /match/v1/match
+- New query param: state
+- New query param: type
+
+POST /match/v1/match
+
+DELETE /match/v1/match/{match_id}
+
+GET /match/v1/match/{match_id}
+
+PATCH /match/v1/match/{match_id}
+
+PUT /match/v1/match/{match_id}
+
+POST /match/v1/match/{match_id}/segment
+
+DELETE /match/v1/match/{match_id}/segment/{segment_id}
+
+GET /match/v1/match/{match_id}/segment/{segment_id}
+
+PATCH /match/v1/match/{match_id}/segment/{segment_id}
+
+PUT /match/v1/match/{match_id}/segment/{segment_id}
+
+POST /match/v1/pex/client
+
+GET /match/v1/pex/client/raw
+
+GET /match/v1/pex/client/score
+
+POST /match/v1/pex/host
+
+GET /match/v1/pex/host/raw
+
+GET /match/v1/pex/host/score
+
+GET /match/v1/player/me/match
+
+GET /match/v1/player/{player_uuid}/match
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+
+GET /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+POST /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_not_jwt - Invalid Authorization
+- auth_token_expired - Token is expired
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_expired - Token is expired
+- auth_invalid_version - Invalid Authorization - version
+- insufficient_permissions - Insufficient Permissions
+- auth_not_jwt - Invalid Authorization
+- auth_token_format - Invalid Authorization - {}
+- auth_token_unknown - Failed to parse token
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+'
+
+GET /rank/v1/player/me/rank
+
+GET /rank/v1/player/me/rank/{rank_id}
+
+POST /rank/v1/player/me/rank/{rank_id}
+
+GET /rank/v1/player/{player_uuid}/rank
+
+GET /rank/v1/player/{player_uuid}/rank/{rank_id}
+
+POST /rank/v1/player/{player_uuid}/rank/{rank_id}
+
+POST /rank/v1/rank:calculate
+
+GET /rank/v2/player/me/rank
+
+GET /rank/v2/player/me/rank/{rank_id}
+
+POST /rank/v2/player/me/rank/{rank_id}
+
+GET /rank/v2/player/{player_uuid}/rank
+
+GET /rank/v2/player/{player_uuid}/rank/{rank_id}
+
+POST /rank/v2/player/{player_uuid}/rank/{rank_id}
+
+POST /rank/v2/rank:calculate
+
+GET /rank/v3/rank
+
+GET /rank/v3/rank/{rank_id}
+
+POST /rank/v3/rank:calculate
+
+GET /sanctions/v2/player/me/reports
+
+GET /sanctions/v2/player/me/sent-reports
+
+GET /sanctions/v2/player/{player_uuid}/reports
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`'
+
+GET /sanctions/v2/player/{player_uuid}/sent-reports
+
+GET /session/v1/audit
+
+POST /session/v1/audit
+
+GET /session/v1/instance-launch-templates/{instance_launch_template_id}
+
+GET /session/v1/instance-request-template/{instance_request_template_id}
+
+GET /session/v1/match-making-profile/{match_making_profile_id}
+
+GET /session/v1/match-making-templates/{template_group_id}
+
+GET /session/v1/queues
+
+GET /session/v1/regions
+
+GET /session/v1/session/{session_id}/player/me/voip/vivox:{vivox_action}
+
+GET /session/v1/session/{session_id}/player/{player_uuid}/voip/vivox:{vivox_action}
+
+GET /session/v1/voip/vivox:login
+
+GET /session/v2/match-making-profile/{match_making_profile_id}
+
+GET /session/v2/match-making-templates/{template_group_id}
+
+GET /session/v2/queues
+
+DELETE /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+
+DELETE /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+
+PUT /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+
+GET /settings/v1/setting_type
+
+GET /settings/v1/setting_type/{setting_type_id}/v
+
+GET /settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}
+
+DELETE /settings/v2/player/me/setting_type/{setting_type_id}/key
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key
+
+DELETE /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+
+PUT /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+
+DELETE /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+
+DELETE /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+
+PUT /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+
+POST /users/v1/cross-progression/disable
+
+POST /users/v1/cross-progression/enable
+
+GET /users/v1/history/link
+
+GET /users/v1/history/login
+
+POST /users/v1/link
+
+POST /users/v1/login
+
+POST /users/v1/logout
+
+GET /users/v1/oauth/login/{platform}
+
+GET /users/v1/oauth/response/{platform}
+
+POST /users/v1/oauth/token
+
+GET /users/v1/person/me/email/list
+
+POST /users/v1/person/me/email/list
+
+GET /users/v1/person/me/info
+
+POST /users/v1/person/me/info
+
+DELETE /users/v1/person/me/purge
+
+GET /users/v1/person/me/purge
+
+POST /users/v1/person/me/purge
+
+GET /users/v1/person/{person_id}/email/list
+
+POST /users/v1/person/{person_id}/email/list
+
+GET /users/v1/person/{person_id}/info
+
+POST /users/v1/person/{person_id}/info
+
+DELETE /users/v1/person/{person_id}/purge
+
+GET /users/v1/person/{person_id}/purge
+
+POST /users/v1/person/{person_id}/purge
+
+GET /users/v1/platform-user
+
+POST /users/v1/platform-user
+
+GET /users/v1/player
+
+GET /users/v1/player/me/uuid
+- Responses changed
+  - New response: 400
+
+GET /users/v1/player/{player_id}/linked_portals
+- Description changed from 'Get a player's linked portals.' to '**DEPRECATED** Please use `/v2/player/{player_uuid}/links` instead. Get a player's linked portals.'
+
+GET /users/v1/player/{player_id}/uuid
+
+POST /users/v1/portaltoken/details
+
+GET /users/v1/publickeys
+
+GET /users/v1/publickeys/{key_id}
+
+GET /users/v1/role
+
+POST /users/v1/unlink
+
+POST /users/v1/verify
+
+POST /users/v2/oauth/token
+
+GET /users/v2/player/me/id
+
+GET /users/v2/player/me/links
+
+GET /users/v2/player/me/uuid
+- Responses changed
+  - New response: 400
+
+GET /users/v2/player/{player_id}/uuid
+
+GET /users/v2/player/{player_uuid}/id
+
+GET /users/v2/player/{player_uuid}/links
+
+GET /users/v2/player:iterate
 ## Changes for Mon Aug 12 12:57:49 EDT 2024
 ### New Endpoints: 1
 --------------------

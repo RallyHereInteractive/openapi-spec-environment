@@ -14,10 +14,10 @@
     "/v2/player/{player_uuid}/reports": {
       "post": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -101,7 +101,7 @@
       },
       "get": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Get Reports For Target Player Uuid",
         "description": "Get reports for a target player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`\n\n- For the player themselves : `sanction:report:read:target-self`\n\nSource players will be empty without the Required Permissions:\n\n- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`\n\n- For the player themselves : `sanction:report:read:source-self`",
@@ -200,7 +200,7 @@
     "/v2/player/me/reports": {
       "get": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Get Reports For Target Player Uuid Self",
         "description": "Get reports for a target player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`\n\n- For the player themselves : `sanction:report:read:target-self`\n\nSource players will be empty without the Required Permissions:\n\n- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`\n\n- For the player themselves : `sanction:report:read:source-self`",
@@ -289,7 +289,7 @@
     "/v2/player/me/sent-reports": {
       "get": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Get Reports From Source Player Uuid Self",
         "description": "Get reports from a source player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`\n\n- For the player themselves : `sanction:report:read:source-self`",
@@ -378,7 +378,7 @@
     "/v2/player/{player_uuid}/sent-reports": {
       "get": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Get Reports From Source Player Uuid",
         "description": "Get reports from a source player\nRequired Permissions:\n\n- For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`\n\n- For the player themselves : `sanction:report:read:source-self`",
@@ -882,7 +882,7 @@
   },
   "tags": [
     {
-      "name": "reports",
+      "name": "Reports",
       "description": "Player Reports"
     }
   ]

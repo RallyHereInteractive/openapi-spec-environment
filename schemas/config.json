@@ -14,7 +14,7 @@
     "/v1/app_settings/server": {
       "get": {
         "tags": [
-          "config"
+          "Config"
         ],
         "summary": "Get App Settings Server",
         "description": "***DEPRECATED*** Please use /v2/kv instead.  \n\nReturns app settings that are configured to be available to the server. \n\nRequired Permissions: : `config:app_settings:server:read`",
@@ -118,7 +118,7 @@
     "/v1/app_settings/client": {
       "get": {
         "tags": [
-          "config"
+          "Config"
         ],
         "summary": "Get App Settings Client",
         "description": "***DEPRECATED*** Please use /v2/kv instead.  \n\nReturns app settings that are configured to be available to the client.",
@@ -207,7 +207,7 @@
     "/v1/kv": {
       "get": {
         "tags": [
-          "config"
+          "Config"
         ],
         "summary": "Get App Settings All",
         "description": "***DEPRECATED*** Please use /v2/kv instead.  \n\nIf authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.",
@@ -318,7 +318,7 @@
     "/v2/kv": {
       "get": {
         "tags": [
-          "config"
+          "Config"
         ],
         "summary": "Get Kvs V2",
         "description": "Get All KVs and Secret KVs.  Regular KVs are always returned.\n\nRequired permissions for secret KVs: : `config:secret_kvs:read`",
@@ -428,7 +428,7 @@
     "/v1/time/utc": {
       "get": {
         "tags": [
-          "time"
+          "Config"
         ],
         "summary": "Get Utc Time",
         "description": "Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API's time and create a offset to act upon.",
@@ -452,7 +452,7 @@
     "/v1/environment": {
       "get": {
         "tags": [
-          "environment"
+          "Config"
         ],
         "summary": "Get Environment Id",
         "description": "Returns the Environment configuration.",
@@ -683,15 +683,15 @@
   },
   "tags": [
     {
-      "name": "config",
+      "name": "Config",
       "description": "Getting client and server app settings"
     },
     {
-      "name": "time",
+      "name": "Config",
       "description": "Endpoint for UTC now time"
     },
     {
-      "name": "environment",
+      "name": "Config",
       "description": "Getting Sandbox configuration"
     }
   ]

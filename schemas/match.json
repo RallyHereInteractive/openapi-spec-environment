@@ -14,7 +14,7 @@
     "/v1/match": {
       "get": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Get Matches",
         "description": "Get pages of matches based on provided filters.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:any:read`",
@@ -159,6 +159,38 @@
             }
           },
           {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MatchState"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "State"
+            }
+          },
+          {
             "name": "include_segments",
             "in": "query",
             "required": false,
@@ -214,7 +246,7 @@
       },
       "post": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Create Match",
         "description": "Create match by match_id.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -271,7 +303,7 @@
     "/v1/match/{match_id}": {
       "get": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Get Match",
         "description": "Get match segment by match_id.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:any:read`\n\n- For match if the player was in match any of: `match:*`, `match:match:player:read`",
@@ -337,7 +369,7 @@
       },
       "put": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Update Match",
         "description": "Update match by match_id.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -423,7 +455,7 @@
       },
       "patch": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Patch Match",
         "description": "Update match by match_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -509,7 +541,7 @@
       },
       "delete": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Delete Match",
         "description": "Delete match by match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
@@ -570,7 +602,7 @@
     "/v1/player/me/match": {
       "get": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Get Player Matches Self",
         "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
@@ -647,7 +679,7 @@
     "/v1/player/{player_uuid}/match": {
       "get": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Get Players Matches",
         "description": "Get All matches for a provided player_uuid.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
@@ -734,7 +766,7 @@
     "/v1/player/{player_uuid}/match/{match_id}": {
       "get": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Get Match Player",
         "description": "Get a player match record for the provided player_uuid and match_id\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
@@ -810,7 +842,7 @@
       },
       "post": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Create Match Player",
         "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have match:match:edit:authority and are the host of the match.",
@@ -896,7 +928,7 @@
       },
       "put": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Update Match Player",
         "description": "Update player match record for the provided player_uuid and match_id\n    \nMatch must be in pending state to be updated.\n    \nany of: `match:*`, `match:match:edit:any` - update any match.\n\nany of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` - update match if the player is the host of the match.",
@@ -982,7 +1014,7 @@
       },
       "patch": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Patch Match Player",
         "description": "Update player match record for the provided player_uuid \" \"and match_id only with provided fields.\n\nMatch must still be in a pending state.\n\nRequired Permissions:   \n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -1068,7 +1100,7 @@
       },
       "delete": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Delete Match Player",
         "description": "Delete player by player_uuid and match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
@@ -1139,7 +1171,7 @@
     "/v1/match/{match_id}/segment/{segment_id}": {
       "get": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Get Match Segment",
         "description": "Get match segment by match_id and segment_id.\n\n- For any match any of: `match:*`, `match:match:any:read`\n\n- For match if the player was in match any of: `match:*`, `match:match:player:read`",
@@ -1214,7 +1246,7 @@
       },
       "put": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Update Match Segment",
         "description": "Update match segment by match_id and segment_id.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -1299,7 +1331,7 @@
       },
       "patch": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Patch Match Segment",
         "description": "Update match segment by match_id and segment_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -1384,7 +1416,7 @@
       },
       "delete": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Delete Match Segment",
         "description": "Delete match segment by match_id and segment_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
@@ -1454,7 +1486,7 @@
     "/v1/match/{match_id}/segment": {
       "post": {
         "tags": [
-          "match"
+          "Match"
         ],
         "summary": "Create Match Segment",
         "description": "Create match segment by match_id.\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
@@ -1522,7 +1554,7 @@
     "/v1/pex/host/raw": {
       "get": {
         "tags": [
-          "pex"
+          "PEX"
         ],
         "summary": "Get All Pex Host Raw By Filter",
         "description": "Get pages of PEX host raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:read`",
@@ -1914,7 +1946,7 @@
     "/v1/pex/host/score": {
       "get": {
         "tags": [
-          "pex"
+          "PEX"
         ],
         "summary": "Get All Pex Host Scores By Filter",
         "description": "Get pages of PEX host scores based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -2296,7 +2328,7 @@
     "/v1/pex/client/raw": {
       "get": {
         "tags": [
-          "pex"
+          "PEX"
         ],
         "summary": "Get All Pex Client Raw By Filter",
         "description": "Get pages of PEX client raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -2720,7 +2752,7 @@
     "/v1/pex/client/score": {
       "get": {
         "tags": [
-          "pex"
+          "PEX"
         ],
         "summary": "Get All Pex Client Scores By Filter",
         "description": "Get pages of PEX client score data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -3134,7 +3166,7 @@
     "/v1/pex/host": {
       "post": {
         "tags": [
-          "pex"
+          "PEX"
         ],
         "summary": "Create Pex Host",
         "description": "Create PEX Host\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:host:write`",
@@ -3184,7 +3216,7 @@
     "/v1/pex/client": {
       "post": {
         "tags": [
-          "pex"
+          "PEX"
         ],
         "summary": "Create Pex Player",
         "description": "Create PEX Client\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:client:write`",
@@ -7667,8 +7699,12 @@
   },
   "tags": [
     {
-      "name": "match",
-      "description": "Operations on match-api"
+      "name": "Match",
+      "description": "Match data is meant to store historical match information - including players, and related metadata.\n\nMatches are searchable on the Support Portal, and there are endpoints to query a player's matches or all matches in the system.\n\nEach match can also contain many Match Segments - which are sub-components of the overall match.  They contain the same fields as the match.  Common usage of Match Segments would be laps of a race to record player positions, minute intervals to record the state of the game partway through, rounds of play, or minigames within a larger match.\n"
+    },
+    {
+      "name": "PEX",
+      "description": "Player Experience (PEX) is a system for Clients/Hosts to post metrics to for top-level analysis."
     }
   ]
 }
