@@ -78,6 +78,7 @@ fi
 ########################################
 # Run the merge process of the separate API specs
 if [[ "$SKIP_MERGE" = false ]]; then
+    echo "Merging API Specs"
     npx openapi-merge-cli --config environment-openapi-merge-config.yaml
     echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
 fi
@@ -85,6 +86,7 @@ fi
 ########################################
 # Update the openapi version based on environment-openapi-base-schema.json
 if [[ "$SKIP_MERGE" = false ]]; then
+    echo "Updating OpenAPI Version"
     VERSION=$(jq -r '.openapi' environment-openapi-base-schema.json)
     jq --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > tmp.json && mv tmp.json environment.openapi.json
     jq -c --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > environment.openapi.min.json
@@ -93,12 +95,14 @@ fi
 ########################################
 # Generate changelog of newly generated changes
 if [[ "$SKIP_CHANGELOG" = false ]]; then
+    echo "Updating Changelog"
     ./update_changelog.bash
 fi
 
 ########################################
 # Print any breaking changes to the console
 if [[ "$SKIP_CHECK_BREAKING" = false ]]; then
+    echo "Checking breaking changes"
     ./check_breaking.bash
 fi
 
