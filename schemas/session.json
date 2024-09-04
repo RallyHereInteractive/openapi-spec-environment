@@ -178,7 +178,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -189,8 +189,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -501,7 +501,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Team Id"
             },
             "name": "team_id",
@@ -3632,7 +3632,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -3643,8 +3643,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -3724,7 +3724,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -3735,8 +3735,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -4288,7 +4288,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -4299,8 +4299,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -4381,7 +4381,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Page Num",
               "default": 0
             },
@@ -4392,8 +4392,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -5419,7 +5419,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "ID of the team being effected in this event"
           },
@@ -5675,13 +5675,13 @@
         "properties": {
           "players_required": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Players Required",
             "description": "The number of players we want to backfill"
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Id for the team that requires backfilled players"
           }
@@ -5731,7 +5731,7 @@
         "properties": {
           "cursor": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Cursor",
             "description": "Cursor to continue iterating through browser sessions. 0 means we have returned the last entry"
           },
@@ -5763,14 +5763,14 @@
           },
           "player_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Player Count",
             "description": "Number of players actively in this session"
           },
           "max_player_count": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Player Count",
             "description": "Maximum number of players that can be in this session"
           },
@@ -5909,7 +5909,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "ID of the team being effected in this event"
           },
@@ -6168,17 +6168,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -6190,15 +6190,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -6239,19 +6239,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -6308,7 +6308,7 @@
           },
           "deserter_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Deserter Count",
             "description": "The number of times a player has deserted before the expiration"
           },
@@ -6340,17 +6340,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HTTPValidationError": {
@@ -6375,15 +6375,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "HzApiErrorModel": {
@@ -6418,15 +6418,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -6436,21 +6436,21 @@
             "exclusiveMinimum": true,
             "title": "Cadence Seconds",
             "description": "How often we expect instance health checks to occur",
-            "minimum": 0
+            "minimum": 0.0
           },
           "unhealthy_health_check_percentage": {
             "type": "number",
             "exclusiveMinimum": true,
             "title": "Unhealthy Health Check Percentage",
             "description": "What percentage of health checks must be missing before an instance's status becomes unhealthy",
-            "minimum": 0
+            "minimum": 0.0
           },
           "missed_checks_before_unknown": {
             "type": "integer",
             "exclusiveMinimum": true,
             "title": "Missed Checks Before Unknown",
             "description": "How many health checks we must miss in a row before an instance's status becomes unknown",
-            "minimum": 0
+            "minimum": 0.0
           }
         },
         "type": "object",
@@ -6471,17 +6471,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -6720,14 +6720,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -6735,6 +6727,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -6930,15 +6930,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -6983,24 +6983,24 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
         "properties": {
           "map_game_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Map Game Id",
             "description": "ID to uniquely identify this map game",
             "default": 0
@@ -7017,8 +7017,8 @@
           },
           "selection_chance": {
             "type": "number",
-            "maximum": 100,
-            "minimum": 0,
+            "maximum": 100.0,
+            "minimum": 0.0,
             "title": "Selection Chance",
             "description": "Chance that this map will get selected in a rotation list",
             "default": 0
@@ -7061,8 +7061,8 @@
           },
           "map_weight": {
             "type": "number",
-            "maximum": 100,
-            "minimum": 0,
+            "maximum": 100.0,
+            "minimum": 0.0,
             "title": "Map Weight",
             "description": "Chance that this map will get selected in a rotation list"
           },
@@ -7725,14 +7725,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -7740,6 +7732,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "Platform": {
@@ -7764,24 +7764,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -7799,6 +7781,24 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformID": {
@@ -7819,20 +7819,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -7846,6 +7832,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -7956,8 +7956,8 @@
           },
           "max_players": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Players",
             "description": "The maximum number of players that can be a part of this platform session"
           },
@@ -8008,7 +8008,7 @@
           },
           "deserter_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Deserter Count",
             "description": "The number of times a player has deserted before the expiration",
             "default": 0
@@ -8139,15 +8139,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -8159,15 +8159,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -8306,7 +8306,7 @@
           },
           "passed_queue_time_seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Passed Queue Time Seconds",
             "description": "Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure",
             "default": 0
@@ -8381,7 +8381,7 @@
           },
           "sort_order": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Sort Order",
             "description": "The sorting priority order for this region"
           },
@@ -8419,7 +8419,7 @@
           },
           "cursor": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Cursor",
             "description": "Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end"
           }
@@ -8479,15 +8479,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE",
+          "JOINING_SESSION_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -8517,7 +8517,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player is one"
           },
@@ -8688,7 +8688,7 @@
         "properties": {
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the players in the source session should be on"
           },
@@ -8852,17 +8852,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -8878,7 +8878,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player should be on"
           },
@@ -8928,7 +8928,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player joined"
           },
@@ -8964,14 +8964,14 @@
           },
           "max_size": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Size",
             "description": "Maximum number of players allowed on this team"
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team this is"
           },
@@ -9115,16 +9115,16 @@
           },
           "num_teams": {
             "type": "integer",
-            "maximum": 50,
-            "minimum": 1,
+            "maximum": 50.0,
+            "minimum": 1.0,
             "title": "Num Teams",
             "description": "The number of teams this session type can have",
             "default": 1
           },
           "players_per_team": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Players Per Team",
             "description": "The number of players that can be on each team",
             "default": 4
@@ -9214,27 +9214,27 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
         "properties": {
           "max_size": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Size",
             "description": "Maximum number of players for this team"
           },
@@ -9331,19 +9331,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -9354,13 +9354,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {

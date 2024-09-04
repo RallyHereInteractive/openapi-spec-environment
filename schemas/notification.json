@@ -25,8 +25,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100,
-              "minimum": 1,
+              "maximum": 100.0,
+              "minimum": 1.0,
               "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
@@ -65,8 +65,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 900,
-              "minimum": 0,
+              "maximum": 900.0,
+              "minimum": 0.0,
               "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
@@ -87,7 +87,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -168,8 +168,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100,
-              "minimum": 1,
+              "maximum": 100.0,
+              "minimum": 1.0,
               "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
@@ -208,8 +208,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 900,
-              "minimum": 0,
+              "maximum": 900.0,
+              "minimum": 0.0,
               "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
@@ -230,7 +230,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -300,8 +300,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100,
-              "minimum": 1,
+              "maximum": 100.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 10
             },
@@ -354,7 +354,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -442,7 +442,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -522,8 +522,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100,
-              "minimum": 1,
+              "maximum": 100.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 10
             },
@@ -576,7 +576,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -676,7 +676,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -764,7 +764,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -872,7 +872,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {

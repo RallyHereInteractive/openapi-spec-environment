@@ -78,11 +78,11 @@
       "description": "Operations on file-api"
     },
     {
-      "name": "presence",
+      "name": "Presence",
       "description": "RallyHere Presence API\n\nThis API is intended to generally store presence information and be used in order to track the concurrent users for the game as a whole.\n\n## Basic Usage\n\nOn login, a client should go through the following steps.\n\n1. Get any existing current presence data and store that locally using GET `/v1/player/me/presence`.\n2. Mark online by patching their own presence with an empty update using PATCH `/v1/player/presence`.\n3. Request the client visible settings using GET `/v1/settings` and store them.\n4. Every `self_ping_interval_seconds` the client should mark online again by patching their own presence with an empty update using PATCH `/v1/player/presence`\n\n## Setting Presence\n\nWhen updating your presence the `display_name` and `platform` are not set directly. They are instead derived from the JWT provided by the users-api.\n\nThe presence you set is considered public, so do not set any values that should be considered private data in either the `status_message` or the\n`custom_data`.\n\n## Fetching Presence\n\nYou may fetch the presence of another user by either their `player_id` or `player_uuid`. You should prefer the `player_uuid` whenever it is available\nas the `player_id` is deprecated.\n\n\n## Private Presence Data\n\n`last_seen` is only available when requesting presence for yourself or as an admin.\n\n## Concurrent Users Updates\nIt's expected that users of this API will regularly patch their own presence with an empty update. This will signal that they are still online without\nchanging any of their presence information. This should be done on a cycle based on the `self_ping_interval_setting` settings provided by the API on\nthe `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n\nIf a client takes longer than the `last_seen_age_considered_offline_seconds` setting to perform this update they will be considered offline by other\nclients. This setting is provided by the API on the `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n"
     },
     {
-      "name": "presence-admin",
+      "name": "Presence Admin",
       "description": "RallyHere Presence Admin API\n\nThis API is only available to administrators. It provides access to CCU data and to set specific values for presence that aren't available to\nunprivileged clients.\n\nEach time a user interacts with this API their uuid is added to a time-keyed HyperLogLog. This enables us to track the number of users stochastically\nrather than having to create a complete entry for every interaction. Their uuid is also added to a HyperLogLog keyed by both time and the platform the\nuser authenticated on.\n\nThe three actions CCU tracks are total, updating, and requesting. Comparing the numbers between the three will help identify if there are users who are\nscanning the API rather than using it for normal presence operations.\n\nWhen requesting the CCU you generally have two major options: Combined and Individual.\n\nThe Combined methods count up the number of users internally and therefor handle duplicates correctly.\n\nThe Individual methods return the individual counts for each timestamp. This data can be useful, but can't be summed up directly unless you're okay\nwith counting players multiple times.\n\nFor example, if you want to know the 24-hour CCU you should *not* get the Individual CCUs and add them up yourself. You should request the Combined\nCCU over that time period.\n"
     },
     {
@@ -21795,7 +21795,7 @@
     "/presence/v1/player/me/presence": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Player Presence Self",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
@@ -21860,7 +21860,7 @@
       },
       "patch": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Update Player Presence Self",
         "description": "Update the player's online status and other presence data.\nIf the player reports their online status as online or away, their \"last_seen\" presence info is updated.\nPlayer clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds.\nOtherwise they will be considered offline.",
@@ -21940,7 +21940,7 @@
     "/presence/v1/player/uuid/{player_uuid}/presence": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Player Presence Public By Uuid",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
@@ -22040,7 +22040,7 @@
     "/presence/v1/player/id/{player_id}/presence": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Player Presence Public By Id",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
@@ -22139,7 +22139,7 @@
     "/presence/v1/settings": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Presence Settings",
         "description": "Settings which help tell the client how it should interact with this service.",
@@ -22161,7 +22161,7 @@
     "/presence/v1/admin/player/uuid/{player_uuid}/last_seen": {
       "patch": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Update Player Last Seen",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
@@ -22253,7 +22253,7 @@
     "/presence/v1/admin/player/id/{player_id}/last_seen": {
       "patch": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Update Player Last Seen Id",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
@@ -22344,7 +22344,7 @@
     "/presence/v1/admin/player/uuid/{player_uuid}/presence": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Player Presence",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
@@ -22425,7 +22425,7 @@
     "/presence/v1/admin/player/id/{player_id}/presence": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Player Presence Id",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
@@ -22505,7 +22505,7 @@
     "/presence/v1/admin/ccu/total/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu",
         "description": "Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time\nperiod. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
@@ -22586,7 +22586,7 @@
     "/presence/v1/admin/ccu/total/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu Individual",
         "description": "Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These\nvalues should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine\nthe values within a time range without counting the same player multiple times.",
@@ -22667,7 +22667,7 @@
     "/presence/v1/admin/ccu/requesting/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu",
         "description": "Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
@@ -22748,7 +22748,7 @@
     "/presence/v1/admin/ccu/requesting/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu Individual",
         "description": "Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
@@ -22829,7 +22829,7 @@
     "/presence/v1/admin/ccu/updating/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu",
         "description": "Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
@@ -22910,7 +22910,7 @@
     "/presence/v1/admin/ccu/updating/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu Individual",
         "description": "Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
@@ -22991,7 +22991,7 @@
     "/presence/v1/admin/ccu/platforms": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Known Platforms",
         "description": "Get all of the platforms that presence has been told about by players updating their presence",
@@ -23050,7 +23050,7 @@
     "/presence/v1/admin/ccu/total/allplatforms/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu All Platform Individual",
         "operationId": "admin_get_total_ccu_all_platform_individual",
@@ -23130,7 +23130,7 @@
     "/presence/v1/admin/ccu/total/allplatforms/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu All Platform Combined",
         "operationId": "admin_get_total_ccu_all_platform_combined",
@@ -23210,7 +23210,7 @@
     "/presence/v1/admin/ccu/requesting/allplatforms/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu All Platform Individual",
         "operationId": "admin_get_requesting_ccu_all_platform_individual",
@@ -23290,7 +23290,7 @@
     "/presence/v1/admin/ccu/requesting/allplatforms/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu All Platform Combined",
         "operationId": "admin_get_requesting_ccu_all_platform_combined",
@@ -23370,7 +23370,7 @@
     "/presence/v1/admin/ccu/updating/allplatforms/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu All Platform Individual",
         "operationId": "admin_get_updating_ccu_all_platform_individual",
@@ -23450,7 +23450,7 @@
     "/presence/v1/admin/ccu/updating/allplatforms/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu All Platform Combined",
         "operationId": "admin_get_updating_ccu_all_platform_combined",
@@ -23530,7 +23530,7 @@
     "/presence/v1/admin/ccu/total/platform/{platform}/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu Platform Individual",
         "operationId": "admin_get_total_ccu_platform_individual",
@@ -23619,7 +23619,7 @@
     "/presence/v1/admin/ccu/total/platform/{platform}/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu Platform Combined",
         "operationId": "admin_get_total_ccu_platform_combined",
@@ -23708,7 +23708,7 @@
     "/presence/v1/admin/ccu/requesting/platform/{platform}/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu Platform Individual",
         "operationId": "admin_get_requesting_ccu_platform_individual",
@@ -23797,7 +23797,7 @@
     "/presence/v1/admin/ccu/requesting/platform/{platform}/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu Platform Combined",
         "operationId": "admin_get_requesting_ccu_platform_combined",
@@ -23886,7 +23886,7 @@
     "/presence/v1/admin/ccu/updating/platform/{platform}/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu Platform Individual",
         "operationId": "admin_get_updating_ccu_platform_individual",
@@ -23975,7 +23975,7 @@
     "/presence/v1/admin/ccu/updating/platform/{platform}/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu Platform Combined",
         "operationId": "admin_get_updating_ccu_platform_combined",
@@ -24067,7 +24067,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:report:create:self`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -24610,7 +24610,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24753,7 +24753,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24880,7 +24880,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24965,7 +24965,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25102,7 +25102,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25199,7 +25199,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25287,7 +25287,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25395,7 +25395,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -27374,24 +27374,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -27409,6 +27391,24 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -33532,17 +33532,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -33554,15 +33554,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -33603,19 +33603,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -33704,17 +33704,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HostType": {
@@ -33726,15 +33726,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -33746,15 +33746,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -33799,17 +33799,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -34048,14 +34048,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -34063,6 +34055,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -34258,15 +34258,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -34311,17 +34311,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -35053,14 +35053,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -35068,6 +35060,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "PlatformID": {
@@ -35088,20 +35088,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -35115,6 +35101,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -35408,15 +35408,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -35428,15 +35428,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -35748,15 +35748,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE",
+          "JOINING_SESSION_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -36121,17 +36121,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -36483,19 +36483,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -36567,19 +36567,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -36590,13 +36590,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
@@ -41701,17 +41701,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Player is current online",
-          "Player is current online, but away.  Functionally identical to online",
-          "Player will appear offline to other players",
-          "Player is offline"
-        ],
         "x-enum-varnames": [
           "online",
           "away",
           "invisible",
           "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
         ]
       },
       "PlatformIndividualCCUs": {
