@@ -6239,6 +6239,13 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
+        ],
         "x-enum-varnames": [
           "assigned",
           "backfilled",
@@ -6375,15 +6382,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "HzApiErrorModel": {
@@ -8139,15 +8146,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
