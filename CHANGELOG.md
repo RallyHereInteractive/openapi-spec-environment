@@ -1,3 +1,503 @@
+## Changes for Wed Sep 25 18:42:35 UTC 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 28
+--------------------------
+GET /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+POST /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_format - Invalid Authorization - {}
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_expired - Token is expired
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_unknown - Failed to parse token
+- auth_not_jwt - Invalid Authorization
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_sig_invalid - Token Signature is invalid
+'
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:self`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`'
+
+GET /session/v1/browser
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: browser_sessions
+              - Items changed
+                - Properties changed
+                  - New property: instance_health
+
+DELETE /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+PUT /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 500
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+GET /settings/v1/setting_type
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - New response: 422
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+GET /settings/v1/setting_type/{setting_type_id}/v
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+        ' to '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+'
+
+GET /settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+- `setting_version_id_not_found` - The setting Version was not found for that type
+        ' to '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+- `setting_version_id_not_found` - The setting Version was not found for that type
+'
+
+DELETE /settings/v2/player/me/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+PUT /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 500
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+PUT /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 500
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
 ## Changes for Mon Sep 23 14:52:59 UTC 2024
 ### New Endpoints: 1
 --------------------

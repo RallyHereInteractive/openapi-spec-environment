@@ -5843,6 +5843,14 @@
             "title": "Session Id",
             "description": "ID for the session"
           },
+          "instance_health": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceHealthStatus"
+              }
+            ],
+            "description": "The health status of the instance if it exists"
+          },
           "player_count": {
             "type": "integer",
             "minimum": 0,
