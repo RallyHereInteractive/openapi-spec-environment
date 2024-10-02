@@ -1,3 +1,1631 @@
+## Changes for Wed Oct  2 12:53:22 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 54
+--------------------------
+GET /inventory/v1/catalog
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: items
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/Items modified
+                  - Properties changed
+                    - Modified property: items
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: coupon_discount_currency_item_uuid
+                            - Type changed from 'integer' to 'string'
+                            - Format changed from '' to 'uuid'
+            - Modified property: loot
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/Loots modified
+                  - Properties changed
+                    - Modified property: loot
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: item
+                            - Property 'AllOf' changed
+                              - Schema #/components/schemas/Item modified
+                                - Properties changed
+                                  - Modified property: coupon_discount_currency_item_uuid
+                                    - Type changed from 'integer' to 'string'
+                                    - Format changed from '' to 'uuid'
+            - Modified property: vendors
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/Vendors modified
+                  - Properties changed
+                    - Modified property: vendors
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: loot
+                            - AdditionalProperties changed
+                              - Properties changed
+                                - Modified property: item
+                                  - Property 'AllOf' changed
+                                    - Schema #/components/schemas/Item modified
+                                      - Properties changed
+                                        - Modified property: coupon_discount_currency_item_uuid
+                                          - Type changed from 'integer' to 'string'
+                                          - Format changed from '' to 'uuid'
+
+GET /inventory/v1/catalog/item
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: items
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: coupon_discount_currency_item_uuid
+                    - Type changed from 'integer' to 'string'
+                    - Format changed from '' to 'uuid'
+
+GET /inventory/v1/catalog/item/{item_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: coupon_discount_currency_item_uuid
+              - Type changed from 'integer' to 'string'
+              - Format changed from '' to 'uuid'
+
+GET /inventory/v1/catalog/loot
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: item
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/Item modified
+                        - Properties changed
+                          - Modified property: coupon_discount_currency_item_uuid
+                            - Type changed from 'integer' to 'string'
+                            - Format changed from '' to 'uuid'
+
+GET /inventory/v1/catalog/loot/{loot_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: item
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/Item modified
+                  - Properties changed
+                    - Modified property: coupon_discount_currency_item_uuid
+                      - Type changed from 'integer' to 'string'
+                      - Format changed from '' to 'uuid'
+
+GET /inventory/v1/catalog/vendor
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: vendors
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: loot
+                    - AdditionalProperties changed
+                      - Properties changed
+                        - Modified property: item
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/Item modified
+                              - Properties changed
+                                - Modified property: coupon_discount_currency_item_uuid
+                                  - Type changed from 'integer' to 'string'
+                                  - Format changed from '' to 'uuid'
+
+GET /inventory/v1/catalog/vendor/{vendor_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: item
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/Item modified
+                        - Properties changed
+                          - Modified property: coupon_discount_currency_item_uuid
+                            - Type changed from 'integer' to 'string'
+                            - Format changed from '' to 'uuid'
+
+GET /match/v1/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matches
+              - Items changed
+                - Properties changed
+                  - Modified property: allocations
+                    - Items changed
+                      - Properties changed
+                        - Modified property: allocation_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: instances
+                    - Items changed
+                      - Required changed
+                        - New required property: instance_id
+                      - Properties changed
+                        - Modified property: instance_id
+                          - Property 'AnyOf' changed
+                            - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                          - Type changed from '' to 'string'
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: match_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+                  - Modified property: segments
+                    - Items changed
+                      - Properties changed
+                        - Modified property: allocations
+                          - Items changed
+                            - Properties changed
+                              - Modified property: allocation_id
+                                - MinLength changed from 0 to 1
+                                - MaxLength changed from null to 128
+                        - Modified property: instances
+                          - Items changed
+                            - Required changed
+                              - New required property: instance_id
+                            - Properties changed
+                              - Modified property: instance_id
+                                - Property 'AnyOf' changed
+                                  - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                                - Type changed from '' to 'string'
+                                - MinLength changed from 0 to 1
+                                - MaxLength changed from null to 128
+                        - Modified property: match_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                        - Modified property: sessions
+                          - Items changed
+                            - Properties changed
+                              - Modified property: session_id
+                                - MinLength changed from 0 to 1
+                                - MaxLength changed from null to 128
+                  - Modified property: sessions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: session_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+
+POST /match/v1/match
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: allocations
+            - Items changed
+              - Properties changed
+                - Modified property: allocation_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: instances
+            - Items changed
+              - Required changed
+                - New required property: instance_id
+              - Properties changed
+                - Modified property: instance_id
+                  - Property 'AnyOf' changed
+                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                  - Type changed from '' to 'string'
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: segments
+            - Items changed
+              - Properties changed
+                - Modified property: allocations
+                  - Items changed
+                    - Properties changed
+                      - Modified property: allocation_id
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+                - Modified property: instances
+                  - Items changed
+                    - Required changed
+                      - New required property: instance_id
+                    - Properties changed
+                      - Modified property: instance_id
+                        - Property 'AnyOf' changed
+                          - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                        - Type changed from '' to 'string'
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+                - Modified property: sessions
+                  - Items changed
+                    - Properties changed
+                      - Modified property: session_id
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - Modified property: session_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: segments
+              - Items changed
+                - Properties changed
+                  - Modified property: allocations
+                    - Items changed
+                      - Properties changed
+                        - Modified property: allocation_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: instances
+                    - Items changed
+                      - Required changed
+                        - New required property: instance_id
+                      - Properties changed
+                        - Modified property: instance_id
+                          - Property 'AnyOf' changed
+                            - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                          - Type changed from '' to 'string'
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: match_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+                  - Modified property: sessions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: session_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+GET /match/v1/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: segments
+              - Items changed
+                - Properties changed
+                  - Modified property: allocations
+                    - Items changed
+                      - Properties changed
+                        - Modified property: allocation_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: instances
+                    - Items changed
+                      - Required changed
+                        - New required property: instance_id
+                      - Properties changed
+                        - Modified property: instance_id
+                          - Property 'AnyOf' changed
+                            - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                          - Type changed from '' to 'string'
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: match_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+                  - Modified property: sessions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: session_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+PATCH /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: allocations
+            - Items changed
+              - Properties changed
+                - Modified property: allocation_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: instances
+            - Items changed
+              - Required changed
+                - New required property: instance_id
+              - Properties changed
+                - Modified property: instance_id
+                  - Property 'AnyOf' changed
+                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                  - Type changed from '' to 'string'
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: segments
+            - Items changed
+              - Properties changed
+                - Modified property: allocations
+                  - Items changed
+                    - Properties changed
+                      - Modified property: allocation_id
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+                - Modified property: instances
+                  - Items changed
+                    - Required changed
+                      - New required property: instance_id
+                    - Properties changed
+                      - Modified property: instance_id
+                        - Property 'AnyOf' changed
+                          - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                        - Type changed from '' to 'string'
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+                - Modified property: sessions
+                  - Items changed
+                    - Properties changed
+                      - Modified property: session_id
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - Modified property: session_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: segments
+              - Items changed
+                - Properties changed
+                  - Modified property: allocations
+                    - Items changed
+                      - Properties changed
+                        - Modified property: allocation_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: instances
+                    - Items changed
+                      - Required changed
+                        - New required property: instance_id
+                      - Properties changed
+                        - Modified property: instance_id
+                          - Property 'AnyOf' changed
+                            - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                          - Type changed from '' to 'string'
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: match_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+                  - Modified property: sessions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: session_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+PUT /match/v1/match/{match_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: allocations
+            - Items changed
+              - Properties changed
+                - Modified property: allocation_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: instances
+            - Items changed
+              - Required changed
+                - New required property: instance_id
+              - Properties changed
+                - Modified property: instance_id
+                  - Property 'AnyOf' changed
+                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                  - Type changed from '' to 'string'
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: segments
+            - Items changed
+              - Properties changed
+                - Modified property: allocations
+                  - Items changed
+                    - Properties changed
+                      - Modified property: allocation_id
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+                - Modified property: instances
+                  - Items changed
+                    - Required changed
+                      - New required property: instance_id
+                    - Properties changed
+                      - Modified property: instance_id
+                        - Property 'AnyOf' changed
+                          - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                        - Type changed from '' to 'string'
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+                - Modified property: sessions
+                  - Items changed
+                    - Properties changed
+                      - Modified property: session_id
+                        - MinLength changed from 0 to 1
+                        - MaxLength changed from null to 128
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - Modified property: session_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: segments
+              - Items changed
+                - Properties changed
+                  - Modified property: allocations
+                    - Items changed
+                      - Properties changed
+                        - Modified property: allocation_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: instances
+                    - Items changed
+                      - Required changed
+                        - New required property: instance_id
+                      - Properties changed
+                        - Modified property: instance_id
+                          - Property 'AnyOf' changed
+                            - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                          - Type changed from '' to 'string'
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+                  - Modified property: match_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+                  - Modified property: sessions
+                    - Items changed
+                      - Properties changed
+                        - Modified property: session_id
+                          - MinLength changed from 0 to 1
+                          - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+POST /match/v1/match/{match_id}/segment
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: allocations
+            - Items changed
+              - Properties changed
+                - Modified property: allocation_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: instances
+            - Items changed
+              - Required changed
+                - New required property: instance_id
+              - Properties changed
+                - Modified property: instance_id
+                  - Property 'AnyOf' changed
+                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                  - Type changed from '' to 'string'
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - Modified property: session_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+GET /match/v1/match/{match_id}/segment/{segment_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+PATCH /match/v1/match/{match_id}/segment/{segment_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: allocations
+            - Items changed
+              - Properties changed
+                - Modified property: allocation_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: instances
+            - Items changed
+              - Required changed
+                - New required property: instance_id
+              - Properties changed
+                - Modified property: instance_id
+                  - Property 'AnyOf' changed
+                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                  - Type changed from '' to 'string'
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - Modified property: session_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+PUT /match/v1/match/{match_id}/segment/{segment_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: allocations
+            - Items changed
+              - Properties changed
+                - Modified property: allocation_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: instances
+            - Items changed
+              - Required changed
+                - New required property: instance_id
+              - Properties changed
+                - Modified property: instance_id
+                  - Property 'AnyOf' changed
+                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                  - Type changed from '' to 'string'
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+          - Modified property: sessions
+            - Items changed
+              - Properties changed
+                - Modified property: session_id
+                  - MinLength changed from 0 to 1
+                  - MaxLength changed from null to 128
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: allocations
+              - Items changed
+                - Properties changed
+                  - Modified property: allocation_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: instances
+              - Items changed
+                - Required changed
+                  - New required property: instance_id
+                - Properties changed
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                    - Type changed from '' to 'string'
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+            - Modified property: match_id
+              - MinLength changed from 0 to 1
+              - MaxLength changed from null to 128
+            - Modified property: sessions
+              - Items changed
+                - Properties changed
+                  - Modified property: session_id
+                    - MinLength changed from 0 to 1
+                    - MaxLength changed from null to 128
+
+GET /match/v1/pex/client/raw
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - Deleted property: last_modified_timestamp
+
+GET /match/v1/pex/client/score
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - Deleted property: last_modified_timestamp
+
+GET /match/v1/pex/host/raw
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - Deleted property: last_modified_timestamp
+
+GET /match/v1/pex/host/score
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - Deleted property: last_modified_timestamp
+
+GET /match/v1/player/me/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/MatchValuesOnly modified
+                        - Properties changed
+                          - Modified property: allocations
+                            - Items changed
+                              - Properties changed
+                                - Modified property: allocation_id
+                                  - MinLength changed from 0 to 1
+                                  - MaxLength changed from null to 128
+                          - Modified property: instances
+                            - Items changed
+                              - Required changed
+                                - New required property: instance_id
+                              - Properties changed
+                                - Modified property: instance_id
+                                  - Property 'AnyOf' changed
+                                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                                  - Type changed from '' to 'string'
+                                  - MinLength changed from 0 to 1
+                                  - MaxLength changed from null to 128
+                          - Modified property: match_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                          - Modified property: sessions
+                            - Items changed
+                              - Properties changed
+                                - Modified property: session_id
+                                  - MinLength changed from 0 to 1
+                                  - MaxLength changed from null to 128
+
+GET /match/v1/player/{player_uuid}/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/MatchValuesOnly modified
+                        - Properties changed
+                          - Modified property: allocations
+                            - Items changed
+                              - Properties changed
+                                - Modified property: allocation_id
+                                  - MinLength changed from 0 to 1
+                                  - MaxLength changed from null to 128
+                          - Modified property: instances
+                            - Items changed
+                              - Required changed
+                                - New required property: instance_id
+                              - Properties changed
+                                - Modified property: instance_id
+                                  - Property 'AnyOf' changed
+                                    - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                                  - Type changed from '' to 'string'
+                                  - MinLength changed from 0 to 1
+                                  - MaxLength changed from null to 128
+                          - Modified property: match_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                          - Modified property: sessions
+                            - Items changed
+                              - Properties changed
+                                - Modified property: session_id
+                                  - MinLength changed from 0 to 1
+                                  - MaxLength changed from null to 128
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchValuesOnly modified
+                  - Properties changed
+                    - Modified property: allocations
+                      - Items changed
+                        - Properties changed
+                          - Modified property: allocation_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: instances
+                      - Items changed
+                        - Required changed
+                          - New required property: instance_id
+                        - Properties changed
+                          - Modified property: instance_id
+                            - Property 'AnyOf' changed
+                              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                            - Type changed from '' to 'string'
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: match_id
+                      - MinLength changed from 0 to 1
+                      - MaxLength changed from null to 128
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - Modified property: session_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchValuesOnly modified
+                  - Properties changed
+                    - Modified property: allocations
+                      - Items changed
+                        - Properties changed
+                          - Modified property: allocation_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: instances
+                      - Items changed
+                        - Required changed
+                          - New required property: instance_id
+                        - Properties changed
+                          - Modified property: instance_id
+                            - Property 'AnyOf' changed
+                              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                            - Type changed from '' to 'string'
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: match_id
+                      - MinLength changed from 0 to 1
+                      - MaxLength changed from null to 128
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - Modified property: session_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchValuesOnly modified
+                  - Properties changed
+                    - Modified property: allocations
+                      - Items changed
+                        - Properties changed
+                          - Modified property: allocation_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: instances
+                      - Items changed
+                        - Required changed
+                          - New required property: instance_id
+                        - Properties changed
+                          - Modified property: instance_id
+                            - Property 'AnyOf' changed
+                              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                            - Type changed from '' to 'string'
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: match_id
+                      - MinLength changed from 0 to 1
+                      - MaxLength changed from null to 128
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - Modified property: session_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchValuesOnly modified
+                  - Properties changed
+                    - Modified property: allocations
+                      - Items changed
+                        - Properties changed
+                          - Modified property: allocation_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: instances
+                      - Items changed
+                        - Required changed
+                          - New required property: instance_id
+                        - Properties changed
+                          - Modified property: instance_id
+                            - Property 'AnyOf' changed
+                              - Schemas deleted: [BaseSchema[0] BaseSchema[1]]
+                            - Type changed from '' to 'string'
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+                    - Modified property: match_id
+                      - MinLength changed from 0 to 1
+                      - MaxLength changed from null to 128
+                    - Modified property: sessions
+                      - Items changed
+                        - Properties changed
+                          - Modified property: session_id
+                            - MinLength changed from 0 to 1
+                            - MaxLength changed from null to 128
+
+GET /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+POST /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Responses changed
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_unknown - Failed to parse token
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- auth_token_expired - Token is expired
+- insufficient_permissions - Insufficient Permissions
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_not_jwt - Invalid Authorization
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_token_format - Invalid Authorization - {}
+' to '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+'
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:self`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:report:create:self`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
+
+GET /session/v1/browser
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: browser_sessions
+              - Items changed
+                - Properties changed
+                  - New property: instance_health
+
+DELETE /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+PUT /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 500
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+GET /settings/v1/setting_type
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - New response: 422
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+GET /settings/v1/setting_type/{setting_type_id}/v
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+        ' to '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+'
+
+GET /settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+- `setting_version_id_not_found` - The setting Version was not found for that type
+        ' to '
+Error Codes:
+- `setting_type_id_not_found` - The setting type ID was not found
+- `setting_version_id_not_found` - The setting Version was not found for that type
+'
+
+DELETE /settings/v2/player/me/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+PUT /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 500
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+DELETE /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 412
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-modified-since
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
+
+PUT /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- New header param: if-match
+- New header param: if-none-match
+- New header param: if-unmodified-since
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Deleted response: 400
+  - Deleted response: 404
+  - Deleted response: 500
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
+      - New header: Last-Modified
 ## Changes for Mon Sep 23 14:52:59 UTC 2024
 ### New Endpoints: 1
 --------------------

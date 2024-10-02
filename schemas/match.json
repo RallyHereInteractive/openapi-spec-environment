@@ -3315,6 +3315,8 @@
         "properties": {
           "allocation_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Allocation Id",
             "description": "Allocation ID"
           }
@@ -3328,14 +3330,9 @@
       "MatchInstance": {
         "properties": {
           "instance_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Instance Id",
             "description": "Instance ID"
           },
@@ -3413,6 +3410,9 @@
           }
         },
         "type": "object",
+        "required": [
+          "instance_id"
+        ],
         "title": "MatchInstance"
       },
       "MatchPlayerRequest": {
@@ -4417,6 +4417,8 @@
           },
           "match_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Match Id"
           },
           "players": {
@@ -4439,6 +4441,8 @@
         "properties": {
           "session_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Session Id",
             "description": "Session ID"
           },
@@ -4609,6 +4613,8 @@
           },
           "match_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Match Id"
           }
         },
@@ -4754,6 +4760,8 @@
           },
           "match_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Match Id"
           },
           "segments": {
@@ -5565,13 +5573,6 @@
       },
       "PexClientResponse": {
         "properties": {
-          "last_modified_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was last modified",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
           "created_timestamp": {
             "type": "string",
             "format": "date-time",
@@ -6942,13 +6943,6 @@
       },
       "PexHostResponse": {
         "properties": {
-          "last_modified_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was last modified",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
           "created_timestamp": {
             "type": "string",
             "format": "date-time",
