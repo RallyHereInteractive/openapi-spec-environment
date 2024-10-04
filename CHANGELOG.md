@@ -1,3 +1,1361 @@
+## Changes for Fri Oct  4 14:02:02 UTC 2024
+### New Endpoints: 4
+--------------------
+GET /inventory/v1/player/me/inventory-level  
+GET /inventory/v1/player/{player_id}/inventory-level  
+GET /inventory/v2/player/me/inventory-level  
+GET /inventory/v2/player/{player_uuid}/inventory-level  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 65
+--------------------------
+GET /inventory/v1/catalog
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_use_rulesets
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: PortalUseRulesets
+                  - Properties changed
+                    - Modified property: rulesets
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: rules
+                            - AdditionalProperties changed
+                              - Items changed
+            - Modified property: skus
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: PlatformSKUs
+                  - Properties changed
+                    - Modified property: skus
+                      - Items changed
+                        - Properties changed
+                          - Modified property: platform
+                            - Property 'AllOf' changed
+                              - Schemas added: #/components/schemas/InventoryPlatform
+                              - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v1/catalog/entitlement-sku
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: skus
+              - Items changed
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/InventoryPlatform
+                      - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v1/catalog/entitlement-sku/{platform}/{sku}
+- Modified path param: platform
+  - Schema changed
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v1/catalog/portal-use-ruleset
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rulesets
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: rules
+                    - AdditionalProperties changed
+                      - Items changed
+
+GET /inventory/v1/catalog/portal-use-ruleset/{portal_use_ruleset_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: rules
+              - AdditionalProperties changed
+                - Items changed
+
+GET /inventory/v1/entitlement-event
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/InventoryPlatform
+                      - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v1/entitlement-event
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: platform
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v1/marketing/campaign
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: campaigns
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v1/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Modified schema: subschema #1: Portal
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: Portal
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/me/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+
+GET /inventory/v1/player/me/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v1/player/me/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v1/player/{player_id}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/{player_id}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/{player_id}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Modified schema: subschema #1: Portal
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/{player_id}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: Portal
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v1/player/{player_id}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+
+GET /inventory/v1/player/{player_id}/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v1/player/{player_id}/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/me/entitlement
+- Description changed from 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`' to 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `InventoryPermissions.platform_entitlements_self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v2/player/me/entitlement/request/{request_id}
+- Description changed from 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`' to 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `InventoryPermissions.platform_entitlements_self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v2/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Modified schema: subschema #1: Portal
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+POST /inventory/v2/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: Portal
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v2/player/me/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+
+GET /inventory/v2/player/me/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/me/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/{player_uuid}/entitlement
+- Description changed from 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`' to 'Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+
+Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+
+Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `InventoryPermissions.platform_entitlements_self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v2/player/{player_uuid}/entitlement/request/{request_id}
+- Description changed from 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`' to 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `InventoryPermissions.platform_entitlements_self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+PUT /inventory/v2/player/{player_uuid}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/{player_uuid}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/{player_uuid}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AllOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: portal_id
+                                        - Property 'AllOf' changed
+                                          - Modified schema: subschema #1: Portal
+                  - Modified property: portal_id
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: Portal
+
+POST /inventory/v2/player/{player_uuid}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: portal_id
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: Portal
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+GET /inventory/v2/player/{player_uuid}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: portal_id
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Portal
+            - Modified property: portal_id
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: Portal
+
+POST /inventory/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+
+GET /inventory/v2/player/{player_uuid}/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/{player_uuid}/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Required changed
+                    - Deleted required property: profile
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Required changed
+                    - Deleted required property: profile
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Required changed
+                    - Deleted required property: profile
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Required changed
+                    - Deleted required property: profile
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Required changed
+                    - Deleted required property: profile
 ## Changes for Wed Oct  2 12:53:22 EDT 2024
 ### New Endpoints: None
 -----------------------
