@@ -3830,11 +3830,7 @@
             "description": "Custom data for the player"
           },
           "match": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MatchValuesOnly"
-              }
-            ],
+            "$ref": "#/components/schemas/MatchValuesOnly",
             "description": "Match the player was in"
           }
         },
@@ -4864,11 +4860,7 @@
             "description": "Base64 encoded json that contains the filters and cursor position"
           },
           "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PexClientQueryParams"
-              }
-            ]
+            "$ref": "#/components/schemas/PexClientQueryParams"
           }
         },
         "type": "object",
@@ -6274,11 +6266,7 @@
             "description": "Base64 encoded json that contains the filters and cursor position"
           },
           "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PexHostQueryParams"
-              }
-            ]
+            "$ref": "#/components/schemas/PexHostQueryParams"
           }
         },
         "type": "object",
