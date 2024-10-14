@@ -87,7 +87,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -97,7 +97,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -107,7 +107,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -117,7 +117,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -230,7 +230,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -240,7 +240,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -250,7 +250,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -260,7 +260,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -354,7 +354,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -364,7 +364,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -374,7 +374,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -384,7 +384,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -442,7 +442,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -452,7 +452,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -462,7 +462,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -472,7 +472,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -576,7 +576,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -586,7 +586,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -596,7 +596,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -606,7 +606,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -676,7 +676,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -686,7 +686,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -696,7 +696,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -706,7 +706,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -764,7 +764,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -774,7 +774,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -784,7 +784,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -794,7 +794,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -804,7 +804,7 @@
             }
           },
           "404": {
-            "description": "\nError Codes:\n- resource_not_found - Notification could not be found\n",
+            "description": "\nError Codes:\n- `resource_not_found` - Notification could not be found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -872,7 +872,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -882,7 +882,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -892,7 +892,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -902,7 +902,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -912,7 +912,7 @@
             }
           },
           "404": {
-            "description": "\nError Codes:\n- resource_not_found - Notification could not be found\n",
+            "description": "\nError Codes:\n- `resource_not_found` - Notification could not be found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1138,8 +1138,8 @@
           "earliest"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
+          "",
+          ""
         ]
       },
       "ValidationError": {

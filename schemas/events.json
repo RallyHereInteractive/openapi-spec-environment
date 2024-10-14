@@ -19,15 +19,36 @@
         "summary": "Receive Events V1",
         "description": "Post game events, return number of events being posted to Event Hub",
         "operationId": "receive_events_v1",
+        "parameters": [
+          {
+            "name": "x-rh-client-addr",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "IP Address hint",
+              "title": "X-Rh-Client-Addr"
+            },
+            "description": "IP Address hint"
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EventList"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -98,6 +119,69 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EventParamsSchemaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/validate": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Validate Event V1",
+        "description": "Validate a single event, return validation result and the event json will be posted to Kafka",
+        "operationId": "validate_event_v1",
+        "parameters": [
+          {
+            "name": "x-rh-client-addr",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "IP Address hint",
+              "title": "X-Rh-Client-Addr"
+            },
+            "description": "IP Address hint"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RallyHereEvent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateEventResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -270,6 +354,20 @@
             ],
             "title": "Correlation Id",
             "description": "Correlation ID to associate the event with"
+          },
+          "client_ip": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Ip",
+            "description": "Client IP associated with the event"
           }
         },
         "additionalProperties": false,
@@ -281,6 +379,56 @@
           "event_params"
         ],
         "title": "RallyHereEvent"
+      },
+      "ValidateEventResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "description": "Is event data valid against JsonSchema?"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code",
+            "description": "Validation error code"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context",
+            "description": "Detailed validation error context"
+          },
+          "output_event": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Event",
+            "description": "Event json string that will be sent to Kafka topic"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "ValidateEventResponse"
       },
       "ValidationError": {
         "properties": {

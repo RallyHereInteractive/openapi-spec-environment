@@ -1,3 +1,2088 @@
+## Changes for Mon Oct 14 14:04:12 EDT 2024
+### New Endpoints: 6
+--------------------
+POST /events/v1/validate  
+GET /inventory/v1/player/me/inventory-level  
+GET /inventory/v1/player/{player_id}/inventory-level  
+GET /inventory/v2/player/me/inventory-level  
+GET /inventory/v2/player/{player_uuid}/inventory-level  
+GET /match/v1/player/{player_uuid}/stats  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 60
+--------------------------
+POST /events/v1/events
+- New header param: x-rh-client-addr
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: event_list
+            - Items changed
+              - Properties changed
+                - New property: client_ip
+
+GET /inventory/v1/catalog
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: skus
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/PlatformSKUs modified
+                  - Properties changed
+                    - Modified property: skus
+                      - Items changed
+                        - Properties changed
+                          - Modified property: platform
+                            - Property 'AllOf' changed
+                              - Schemas added: [InventoryPlatform]
+                              - Schemas deleted: [Platform]
+
+GET /inventory/v1/catalog/entitlement-sku
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: skus
+              - Items changed
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [InventoryPlatform]
+                      - Schemas deleted: [Platform]
+
+GET /inventory/v1/catalog/entitlement-sku/{platform}/{sku}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v1/entitlement-event
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [InventoryPlatform]
+                      - Schemas deleted: [Platform]
+
+POST /inventory/v1/entitlement-event
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: platform
+            - Property 'AllOf' changed
+              - Schemas added: [InventoryPlatform]
+              - Schemas deleted: [Platform]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v1/player/me/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /inventory/v1/player/me/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: [InventoryPlatform]
+              - Schemas deleted: [Platform]
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v1/player/{player_id}/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /inventory/v1/player/{player_id}/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: [InventoryPlatform]
+              - Schemas deleted: [Platform]
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /inventory/v2/player/me/entitlement
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v2/player/me/entitlement/request/{request_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v2/player/me/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /inventory/v2/player/me/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: [InventoryPlatform]
+              - Schemas deleted: [Platform]
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /inventory/v2/player/{player_uuid}/entitlement
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v2/player/{player_uuid}/entitlement/request/{request_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+GET /inventory/v2/player/{player_uuid}/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /inventory/v2/player/{player_uuid}/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AllOf' changed
+              - Schemas added: [InventoryPlatform]
+              - Schemas deleted: [Platform]
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AllOf' changed
+                - Schemas added: [InventoryPlatform]
+                - Schemas deleted: [Platform]
+
+POST /match/v1/pex/client
+
+GET /match/v1/pex/client/raw
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Property 'AllOf' changed
+                - Schemas deleted: [PexClientQueryParams]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'PexClientQueryParams'
+              - Properties changed
+                - New property: address_ip
+                - New property: allocation_id
+                - New property: datacenter_location
+                - New property: datacenter_provider
+                - New property: device_info
+                - New property: expected_player_count
+                - New property: expected_team_size
+                - New property: from_datetime
+                - New property: game_mode
+                - New property: host_player_uuid
+                - New property: machine_class
+                - New property: map_name
+                - New property: match_id
+                - New property: matchmaking_profile_id
+                - New property: owning_player_uuid
+                - New property: player_uuid
+                - New property: region_id
+                - New property: server_id
+                - New property: to_datetime
+                - New property: version
+
+GET /match/v1/pex/client/score
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Property 'AllOf' changed
+                - Schemas deleted: [PexClientQueryParams]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'PexClientQueryParams'
+              - Properties changed
+                - New property: address_ip
+                - New property: allocation_id
+                - New property: datacenter_location
+                - New property: datacenter_provider
+                - New property: device_info
+                - New property: expected_player_count
+                - New property: expected_team_size
+                - New property: from_datetime
+                - New property: game_mode
+                - New property: host_player_uuid
+                - New property: machine_class
+                - New property: map_name
+                - New property: match_id
+                - New property: matchmaking_profile_id
+                - New property: owning_player_uuid
+                - New property: player_uuid
+                - New property: region_id
+                - New property: server_id
+                - New property: to_datetime
+                - New property: version
+
+POST /match/v1/pex/host
+
+GET /match/v1/pex/host/raw
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Property 'AllOf' changed
+                - Schemas deleted: [PexHostQueryParams]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'PexHostQueryParams'
+              - Properties changed
+                - New property: address_ip
+                - New property: allocation_id
+                - New property: datacenter_location
+                - New property: datacenter_provider
+                - New property: expected_player_count
+                - New property: expected_team_size
+                - New property: from_datetime
+                - New property: game_mode
+                - New property: host_player_uuid
+                - New property: machine_class
+                - New property: map_name
+                - New property: match_id
+                - New property: matchmaking_profile_id
+                - New property: owning_player_uuid
+                - New property: region_id
+                - New property: server_id
+                - New property: to_datetime
+                - New property: version
+
+GET /match/v1/pex/host/score
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Property 'AllOf' changed
+                - Schemas deleted: [PexHostQueryParams]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'PexHostQueryParams'
+              - Properties changed
+                - New property: address_ip
+                - New property: allocation_id
+                - New property: datacenter_location
+                - New property: datacenter_provider
+                - New property: expected_player_count
+                - New property: expected_team_size
+                - New property: from_datetime
+                - New property: game_mode
+                - New property: host_player_uuid
+                - New property: machine_class
+                - New property: map_name
+                - New property: match_id
+                - New property: matchmaking_profile_id
+                - New property: owning_player_uuid
+                - New property: region_id
+                - New property: server_id
+                - New property: to_datetime
+                - New property: version
+
+GET /match/v1/player/me/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schemas deleted: [MatchValuesOnly]
+                    - Type changed from '' to 'object'
+                    - Title changed from '' to 'MatchValuesOnly'
+                    - Description changed from 'Match the player was in' to ''
+                    - Properties changed
+                      - New property: allocations
+                      - New property: correlation_id
+                      - New property: created_timestamp
+                      - New property: custom_data
+                      - New property: duration_seconds
+                      - New property: end_timestamp
+                      - New property: instances
+                      - New property: last_modified_timestamp
+                      - New property: match_id
+                      - New property: sessions
+                      - New property: start_timestamp
+                      - New property: state
+                      - New property: type
+
+GET /match/v1/player/{player_uuid}/match
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_matches
+              - Items changed
+                - Properties changed
+                  - Modified property: match
+                    - Property 'AllOf' changed
+                      - Schemas deleted: [MatchValuesOnly]
+                    - Type changed from '' to 'object'
+                    - Title changed from '' to 'MatchValuesOnly'
+                    - Description changed from 'Match the player was in' to ''
+                    - Properties changed
+                      - New property: allocations
+                      - New property: correlation_id
+                      - New property: created_timestamp
+                      - New property: custom_data
+                      - New property: duration_seconds
+                      - New property: end_timestamp
+                      - New property: instances
+                      - New property: last_modified_timestamp
+                      - New property: match_id
+                      - New property: sessions
+                      - New property: start_timestamp
+                      - New property: state
+                      - New property: type
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas deleted: [MatchValuesOnly]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'MatchValuesOnly'
+              - Description changed from 'Match the player was in' to ''
+              - Properties changed
+                - New property: allocations
+                - New property: correlation_id
+                - New property: created_timestamp
+                - New property: custom_data
+                - New property: duration_seconds
+                - New property: end_timestamp
+                - New property: instances
+                - New property: last_modified_timestamp
+                - New property: match_id
+                - New property: sessions
+                - New property: start_timestamp
+                - New property: state
+                - New property: type
+
+PATCH /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas deleted: [MatchValuesOnly]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'MatchValuesOnly'
+              - Description changed from 'Match the player was in' to ''
+              - Properties changed
+                - New property: allocations
+                - New property: correlation_id
+                - New property: created_timestamp
+                - New property: custom_data
+                - New property: duration_seconds
+                - New property: end_timestamp
+                - New property: instances
+                - New property: last_modified_timestamp
+                - New property: match_id
+                - New property: sessions
+                - New property: start_timestamp
+                - New property: state
+                - New property: type
+
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas deleted: [MatchValuesOnly]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'MatchValuesOnly'
+              - Description changed from 'Match the player was in' to ''
+              - Properties changed
+                - New property: allocations
+                - New property: correlation_id
+                - New property: created_timestamp
+                - New property: custom_data
+                - New property: duration_seconds
+                - New property: end_timestamp
+                - New property: instances
+                - New property: last_modified_timestamp
+                - New property: match_id
+                - New property: sessions
+                - New property: start_timestamp
+                - New property: state
+                - New property: type
+
+PUT /match/v1/player/{player_uuid}/match/{match_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schemas deleted: [MatchValuesOnly]
+              - Type changed from '' to 'object'
+              - Title changed from '' to 'MatchValuesOnly'
+              - Description changed from 'Match the player was in' to ''
+              - Properties changed
+                - New property: allocations
+                - New property: correlation_id
+                - New property: created_timestamp
+                - New property: custom_data
+                - New property: duration_seconds
+                - New property: end_timestamp
+                - New property: instances
+                - New property: last_modified_timestamp
+                - New property: match_id
+                - New property: sessions
+                - New property: start_timestamp
+                - New property: state
+                - New property: type
+
+GET /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+POST /notification/v1/player/me/notification
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+GET /notification/v1/player/me/notification/{notification_id}
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- resource_not_found - Notification could not be found
+' to '
+Error Codes:
+- `resource_not_found` - Notification could not be found
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+GET /notification/v1/player/me/stream/notification/lp
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+GET /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+POST /notification/v1/player/{player_uuid}/notification
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+GET /notification/v1/player/{player_uuid}/notification/{notification_id}
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- resource_not_found - Notification could not be found
+' to '
+Error Codes:
+- `resource_not_found` - Notification could not be found
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+GET /notification/v1/player/{player_uuid}/stream/notification/lp
+- Responses changed
+  - Modified response: 400
+    - Description changed from '
+Error Codes:
+- bad_id - Passed client id is not a valid id
+' to '
+Error Codes:
+- `bad_id` - Passed client id is not a valid id
+'
+  - Modified response: 403
+    - Description changed from '
+Error Codes:
+- auth_invalid_version - Invalid Authorization - version
+- auth_token_invalid_type - Invalid Authorization - Invalid Token Type
+- insufficient_permissions - Insufficient Permissions
+- auth_token_sig_invalid - Token Signature is invalid
+- auth_token_invalid_claim - Token contained invalid claim value: {}
+- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token
+- auth_token_expired - Token is expired
+- auth_malformed_access - Invalid Authorization - malformed access token
+- auth_token_unknown - Failed to parse token
+- auth_token_format - Invalid Authorization - {}
+- auth_not_jwt - Invalid Authorization
+' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+  - Modified response: 409
+    - Description changed from '
+Error Codes:
+- too_many_listening_to_single_client - An enumeration.
+' to '
+Error Codes:
+- `too_many_listening_to_single_client` - An enumeration.
+'
+  - Modified response: 503
+    - Description changed from '
+Error Codes:
+- connection_limit_reached - An enumeration.
+' to '
+Error Codes:
+- `connection_limit_reached` - An enumeration.
+'
+
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/ClientSettings modified
+                        - Required changed
+                          - Deleted required property: input
+                        - Properties changed
+                          - Modified property: platform
+                            - Property 'AllOf' changed
+                              - Schemas added: [SessionPlatform]
+                              - Schemas deleted: [Platform]
+                  - Modified property: crossplay_preferences
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/CrossplayPreferences modified
+                        - Required changed
+                          - Deleted required property: permitted_input
+                          - Deleted required property: permitted_platform
+                  - Modified property: join_params
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/JoinParams modified
+                        - Required changed
+                          - Deleted required property: private_conn_str
+                          - Deleted required property: public_conn_str
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/ClientSettings modified
+                - Required changed
+                  - Deleted required property: input
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+          - Modified property: crossplay_preferences
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/CrossplayPreferences modified
+                - Required changed
+                  - Deleted required property: permitted_input
+                  - Deleted required property: permitted_platform
+          - Modified property: join_params
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/JoinParams modified
+                - Required changed
+                  - Deleted required property: private_conn_str
+                  - Deleted required property: public_conn_str
+          - Modified property: platform
+            - Property 'AllOf' changed
+              - Schemas added: [SessionPlatform]
+              - Schemas deleted: [Platform]
+
+POST /session/v1/backfill/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfilled_players
+              - Items changed
+                - Required changed
+                  - Deleted required property: player_uuid
+                  - Deleted required property: status
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/ClientSettings modified
+                        - Required changed
+                          - Deleted required property: input
+                        - Properties changed
+                          - Modified property: platform
+                            - Property 'AllOf' changed
+                              - Schemas added: [SessionPlatform]
+                              - Schemas deleted: [Platform]
+                  - Modified property: crossplay_preferences
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/CrossplayPreferences modified
+                        - Required changed
+                          - Deleted required property: permitted_input
+                          - Deleted required property: permitted_platform
+
+POST /session/v1/match-made-session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Required changed
+                - Deleted required property: max_size
+                - Deleted required property: players
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Required changed
+                      - Deleted required property: player_uuid
+                      - Deleted required property: status
+                    - Properties changed
+                      - Modified property: client_settings
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/ClientSettings modified
+                            - Required changed
+                              - Deleted required property: input
+                            - Properties changed
+                              - Modified property: platform
+                                - Property 'AllOf' changed
+                                  - Schemas added: [SessionPlatform]
+                                  - Schemas deleted: [Platform]
+                      - Modified property: crossplay_preferences
+                        - Property 'AllOf' changed
+                          - Schema #/components/schemas/CrossplayPreferences modified
+                            - Required changed
+                              - Deleted required property: permitted_input
+                              - Deleted required property: permitted_platform
+
+GET /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: platform
+            - Deleted required property: platform_session_id_base64
+            - Deleted required property: platform_session_type
+            - Deleted required property: players
+          - Properties changed
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas added: [SessionPlatform]
+                - Schemas deleted: [Platform]
+            - Modified property: players
+              - Items changed
+                - Required changed
+                  - Deleted required property: player_uuid
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/ClientSettings modified
+                - Required changed
+                  - Deleted required property: input
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+          - Modified property: crossplay_preferences
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/CrossplayPreferences modified
+                - Required changed
+                  - Deleted required property: permitted_input
+                  - Deleted required property: permitted_platform
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfill
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BackfillInfo modified
+                  - Required changed
+                    - Deleted required property: backfill_id
+            - Modified property: browser
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BrowserInfo modified
+                  - Properties changed
+                    - New property: created_timestamp
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: host_type
+                    - Deleted required property: instance_id
+                    - Deleted required property: join_status
+                  - Properties changed
+                    - Modified property: instance_startup_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceStartupParams modified
+                          - Required changed
+                            - Deleted required property: map
+                            - Deleted required property: misc_params
+                    - Modified property: join_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/JoinParams modified
+                          - Required changed
+                            - Deleted required property: private_conn_str
+                            - Deleted required property: public_conn_str
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_id
+            - Modified property: matchmaking
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingInfo modified
+                  - Required changed
+                    - Deleted required property: ticket_id
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingResults modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_making_id
+                    - Deleted required property: profile
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/MatchMakingProfileV2 modified
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+                            - Deleted required property: match_making_profile_id
+            - Modified property: platform_session
+              - Items changed
+                - Required changed
+                  - Deleted required property: platform
+                  - Deleted required property: platform_session_id_base64
+                  - Deleted required property: platform_session_type
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+            - Modified property: teams
+              - Items changed
+                - Required changed
+                  - Deleted required property: max_size
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+                        - Deleted required property: status
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/ClientSettings modified
+                              - Required changed
+                                - Deleted required property: input
+                              - Properties changed
+                                - Modified property: platform
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [SessionPlatform]
+                                    - Schemas deleted: [Platform]
+                        - Modified property: crossplay_preferences
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/CrossplayPreferences modified
+                              - Required changed
+                                - Deleted required property: permitted_input
+                                - Deleted required property: permitted_platform
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/ClientSettings modified
+                - Required changed
+                  - Deleted required property: input
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+          - Modified property: crossplay_preferences
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/CrossplayPreferences modified
+                - Required changed
+                  - Deleted required property: permitted_input
+                  - Deleted required property: permitted_platform
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfill
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BackfillInfo modified
+                  - Required changed
+                    - Deleted required property: backfill_id
+            - Modified property: browser
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BrowserInfo modified
+                  - Properties changed
+                    - New property: created_timestamp
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: host_type
+                    - Deleted required property: instance_id
+                    - Deleted required property: join_status
+                  - Properties changed
+                    - Modified property: instance_startup_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceStartupParams modified
+                          - Required changed
+                            - Deleted required property: map
+                            - Deleted required property: misc_params
+                    - Modified property: join_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/JoinParams modified
+                          - Required changed
+                            - Deleted required property: private_conn_str
+                            - Deleted required property: public_conn_str
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_id
+            - Modified property: matchmaking
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingInfo modified
+                  - Required changed
+                    - Deleted required property: ticket_id
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingResults modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_making_id
+                    - Deleted required property: profile
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/MatchMakingProfileV2 modified
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+                            - Deleted required property: match_making_profile_id
+            - Modified property: platform_session
+              - Items changed
+                - Required changed
+                  - Deleted required property: platform
+                  - Deleted required property: platform_session_id_base64
+                  - Deleted required property: platform_session_type
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+            - Modified property: teams
+              - Items changed
+                - Required changed
+                  - Deleted required property: max_size
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+                        - Deleted required property: status
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/ClientSettings modified
+                              - Required changed
+                                - Deleted required property: input
+                              - Properties changed
+                                - Modified property: platform
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [SessionPlatform]
+                                    - Schemas deleted: [Platform]
+                        - Modified property: crossplay_preferences
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/CrossplayPreferences modified
+                              - Required changed
+                                - Deleted required property: permitted_input
+                                - Deleted required property: permitted_platform
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: platform
+            - Deleted required property: platform_session_id_base64
+            - Deleted required property: platform_session_type
+            - Deleted required property: players
+          - Properties changed
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas added: [SessionPlatform]
+                - Schemas deleted: [Platform]
+            - Modified property: players
+              - Items changed
+                - Required changed
+                  - Deleted required property: player_uuid
+
+POST /session/v1/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/ClientSettings modified
+                - Required changed
+                  - Deleted required property: input
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+          - Modified property: crossplay_preferences
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/CrossplayPreferences modified
+                - Required changed
+                  - Deleted required property: permitted_input
+                  - Deleted required property: permitted_platform
+          - Modified property: player
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/SelfSessionPlayerUpdateRequest modified
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/ClientSettings modified
+                        - Required changed
+                          - Deleted required property: input
+                        - Properties changed
+                          - Modified property: platform
+                            - Property 'AllOf' changed
+                              - Schemas added: [SessionPlatform]
+                              - Schemas deleted: [Platform]
+                  - Modified property: crossplay_preferences
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/CrossplayPreferences modified
+                        - Required changed
+                          - Deleted required property: permitted_input
+                          - Deleted required property: permitted_platform
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfill
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BackfillInfo modified
+                  - Required changed
+                    - Deleted required property: backfill_id
+            - Modified property: browser
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BrowserInfo modified
+                  - Properties changed
+                    - New property: created_timestamp
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: host_type
+                    - Deleted required property: instance_id
+                    - Deleted required property: join_status
+                  - Properties changed
+                    - Modified property: instance_startup_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceStartupParams modified
+                          - Required changed
+                            - Deleted required property: map
+                            - Deleted required property: misc_params
+                    - Modified property: join_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/JoinParams modified
+                          - Required changed
+                            - Deleted required property: private_conn_str
+                            - Deleted required property: public_conn_str
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_id
+            - Modified property: matchmaking
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingInfo modified
+                  - Required changed
+                    - Deleted required property: ticket_id
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingResults modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_making_id
+                    - Deleted required property: profile
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/MatchMakingProfileV2 modified
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+                            - Deleted required property: match_making_profile_id
+            - Modified property: platform_session
+              - Items changed
+                - Required changed
+                  - Deleted required property: platform
+                  - Deleted required property: platform_session_id_base64
+                  - Deleted required property: platform_session_type
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+            - Modified property: teams
+              - Items changed
+                - Required changed
+                  - Deleted required property: max_size
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+                        - Deleted required property: status
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/ClientSettings modified
+                              - Required changed
+                                - Deleted required property: input
+                              - Properties changed
+                                - Modified property: platform
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [SessionPlatform]
+                                    - Schemas deleted: [Platform]
+                        - Modified property: crossplay_preferences
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/CrossplayPreferences modified
+                              - Required changed
+                                - Deleted required property: permitted_input
+                                - Deleted required property: permitted_platform
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfill
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BackfillInfo modified
+                  - Required changed
+                    - Deleted required property: backfill_id
+            - Modified property: browser
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BrowserInfo modified
+                  - Properties changed
+                    - New property: created_timestamp
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: host_type
+                    - Deleted required property: instance_id
+                    - Deleted required property: join_status
+                  - Properties changed
+                    - Modified property: instance_startup_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceStartupParams modified
+                          - Required changed
+                            - Deleted required property: map
+                            - Deleted required property: misc_params
+                    - Modified property: join_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/JoinParams modified
+                          - Required changed
+                            - Deleted required property: private_conn_str
+                            - Deleted required property: public_conn_str
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_id
+            - Modified property: matchmaking
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingInfo modified
+                  - Required changed
+                    - Deleted required property: ticket_id
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingResults modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_making_id
+                    - Deleted required property: profile
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/MatchMakingProfileV2 modified
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+                            - Deleted required property: match_making_profile_id
+            - Modified property: platform_session
+              - Items changed
+                - Required changed
+                  - Deleted required property: platform
+                  - Deleted required property: platform_session_id_base64
+                  - Deleted required property: platform_session_type
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+            - Modified property: teams
+              - Items changed
+                - Required changed
+                  - Deleted required property: max_size
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+                        - Deleted required property: status
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/ClientSettings modified
+                              - Required changed
+                                - Deleted required property: input
+                              - Properties changed
+                                - Modified property: platform
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [SessionPlatform]
+                                    - Schemas deleted: [Platform]
+                        - Modified property: crossplay_preferences
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/CrossplayPreferences modified
+                              - Required changed
+                                - Deleted required property: permitted_input
+                                - Deleted required property: permitted_platform
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfill
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BackfillInfo modified
+                  - Required changed
+                    - Deleted required property: backfill_id
+            - Modified property: browser
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/BrowserInfo modified
+                  - Properties changed
+                    - New property: created_timestamp
+            - Modified property: instance
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: host_type
+                    - Deleted required property: instance_id
+                    - Deleted required property: join_status
+                  - Properties changed
+                    - Modified property: instance_startup_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/InstanceStartupParams modified
+                          - Required changed
+                            - Deleted required property: map
+                            - Deleted required property: misc_params
+                    - Modified property: join_params
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/JoinParams modified
+                          - Required changed
+                            - Deleted required property: private_conn_str
+                            - Deleted required property: public_conn_str
+            - Modified property: match
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchInfo modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_id
+            - Modified property: matchmaking
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingInfo modified
+                  - Required changed
+                    - Deleted required property: ticket_id
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/MatchmakingResults modified
+                  - Required changed
+                    - Deleted required property: created
+                    - Deleted required property: match_making_id
+                    - Deleted required property: profile
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Schema #/components/schemas/MatchMakingProfileV2 modified
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+                            - Deleted required property: match_making_profile_id
+            - Modified property: platform_session
+              - Items changed
+                - Required changed
+                  - Deleted required property: platform
+                  - Deleted required property: platform_session_id_base64
+                  - Deleted required property: platform_session_type
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+            - Modified property: teams
+              - Items changed
+                - Required changed
+                  - Deleted required property: max_size
+                  - Deleted required property: players
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: player_uuid
+                        - Deleted required property: status
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/ClientSettings modified
+                              - Required changed
+                                - Deleted required property: input
+                              - Properties changed
+                                - Modified property: platform
+                                  - Property 'AllOf' changed
+                                    - Schemas added: [SessionPlatform]
+                                    - Schemas deleted: [Platform]
+                        - Modified property: crossplay_preferences
+                          - Property 'AllOf' changed
+                            - Schema #/components/schemas/CrossplayPreferences modified
+                              - Required changed
+                                - Deleted required property: permitted_input
+                                - Deleted required property: permitted_platform
+
+PATCH /session/v1/session/{session_id}/browser
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: created_timestamp
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: created_timestamp
+
+POST /session/v1/session/{session_id}/browser
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: created_timestamp
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: created_timestamp
+
+PATCH /session/v1/session/{session_id}/instance
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: join_params
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/JoinParams modified
+                - Required changed
+                  - Deleted required property: private_conn_str
+                  - Deleted required property: public_conn_str
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: created
+            - Deleted required property: host_type
+            - Deleted required property: instance_id
+            - Deleted required property: join_status
+          - Properties changed
+            - Modified property: instance_startup_params
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceStartupParams modified
+                  - Required changed
+                    - Deleted required property: map
+                    - Deleted required property: misc_params
+            - Modified property: join_params
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/JoinParams modified
+                  - Required changed
+                    - Deleted required property: private_conn_str
+                    - Deleted required property: public_conn_str
+
+POST /session/v1/session/{session_id}/instance
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: instance_startup_params
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/InstanceStartupParams modified
+                - Required changed
+                  - Deleted required property: map
+                  - Deleted required property: misc_params
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: created
+            - Deleted required property: host_type
+            - Deleted required property: instance_id
+            - Deleted required property: join_status
+          - Properties changed
+            - Modified property: instance_startup_params
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceStartupParams modified
+                  - Required changed
+                    - Deleted required property: map
+                    - Deleted required property: misc_params
+            - Modified property: join_params
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/JoinParams modified
+                  - Required changed
+                    - Deleted required property: private_conn_str
+                    - Deleted required property: public_conn_str
+
+POST /session/v1/session/{session_id}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/ClientSettings modified
+                - Required changed
+                  - Deleted required property: input
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+          - Modified property: crossplay_preferences
+            - Property 'AllOf' changed
+              - Schema #/components/schemas/CrossplayPreferences modified
+                - Required changed
+                  - Deleted required property: permitted_input
+                  - Deleted required property: permitted_platform
+
+PATCH /session/v1/session/{session_id}/team/{team_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: max_size
+            - Deleted required property: players
+          - Properties changed
+            - Modified property: players
+              - Items changed
+                - Required changed
+                  - Deleted required property: player_uuid
+                  - Deleted required property: status
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/ClientSettings modified
+                        - Required changed
+                          - Deleted required property: input
+                        - Properties changed
+                          - Modified property: platform
+                            - Property 'AllOf' changed
+                              - Schemas added: [SessionPlatform]
+                              - Schemas deleted: [Platform]
+                  - Modified property: crossplay_preferences
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/CrossplayPreferences modified
+                        - Required changed
+                          - Deleted required property: permitted_input
+                          - Deleted required property: permitted_platform
+
+GET /session/v1/template
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: templates
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: auto_startup_params
+                    - Property 'AllOf' changed
+                      - Schema #/components/schemas/InstanceStartupParams modified
+                        - Required changed
+                          - Deleted required property: map
+                          - Deleted required property: misc_params
+                  - Modified property: platform_templates
+                    - AdditionalProperties changed
+                      - Properties changed
+                        - Modified property: platform
+                          - Property 'AllOf' changed
+                            - Schemas added: [SessionPlatform]
+                            - Schemas deleted: [Platform]
+
+GET /session/v1/template/{session_type}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: auto_startup_params
+              - Property 'AllOf' changed
+                - Schema #/components/schemas/InstanceStartupParams modified
+                  - Required changed
+                    - Deleted required property: map
+                    - Deleted required property: misc_params
+            - Modified property: platform_templates
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas added: [SessionPlatform]
+                      - Schemas deleted: [Platform]
+
+GET /session/v2/match-making-profile/{match_making_profile_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: instance_request_template_id
+            - Deleted required property: match_making_profile_id
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: profiles
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: instance_request_template_id
+                        - Deleted required property: match_making_profile_id
 ## Changes for Wed Oct  2 12:53:22 EDT 2024
 ### New Endpoints: None
 -----------------------

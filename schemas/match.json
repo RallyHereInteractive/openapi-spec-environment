@@ -676,6 +676,75 @@
         }
       }
     },
+    "/v1/player/{player_uuid}/stats": {
+      "get": {
+        "tags": [
+          "Match"
+        ],
+        "summary": "Get Player Stats",
+        "description": "Get player stats for the provided player_uuid,.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
+        "operationId": "get_player_stats",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerStatsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/player/{player_uuid}/match": {
       "get": {
         "tags": [
@@ -1554,7 +1623,7 @@
     "/v1/pex/host/raw": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Host Raw By Filter",
         "description": "Get pages of PEX host raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:read`",
@@ -1946,7 +2015,7 @@
     "/v1/pex/host/score": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Host Scores By Filter",
         "description": "Get pages of PEX host scores based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -2328,7 +2397,7 @@
     "/v1/pex/client/raw": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Client Raw By Filter",
         "description": "Get pages of PEX client raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -2752,7 +2821,7 @@
     "/v1/pex/client/score": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Client Scores By Filter",
         "description": "Get pages of PEX client score data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -3166,7 +3235,7 @@
     "/v1/pex/host": {
       "post": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Create Pex Host",
         "description": "Create PEX Host\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:host:write`",
@@ -3216,7 +3285,7 @@
     "/v1/pex/client": {
       "post": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Create Pex Player",
         "description": "Create PEX Client\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:client:write`",
@@ -3286,7 +3355,15 @@
           "player"
         ],
         "title": "HostType",
-        "description": "Whether the host is another player, or a dedicated instance"
+        "description": "Whether the host is another player, or a dedicated instance",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player"
+        ]
       },
       "HzApiErrorModel": {
         "properties": {
@@ -3830,11 +3907,7 @@
             "description": "Custom data for the player"
           },
           "match": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MatchValuesOnly"
-              }
-            ],
+            "$ref": "#/components/schemas/MatchValuesOnly",
             "description": "Match the player was in"
           }
         },
@@ -4472,7 +4545,15 @@
           "closed"
         ],
         "title": "MatchState",
-        "description": "Match States."
+        "description": "Match States.",
+        "x-enum-descriptions": [
+          "The match is in a pending state.",
+          "The match has been closed."
+        ],
+        "x-enum-varnames": [
+          "pending",
+          "closed"
+        ]
       },
       "MatchValuesOnly": {
         "properties": {
@@ -4864,11 +4945,7 @@
             "description": "Base64 encoded json that contains the filters and cursor position"
           },
           "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PexClientQueryParams"
-              }
-            ]
+            "$ref": "#/components/schemas/PexClientQueryParams"
           }
         },
         "type": "object",
@@ -6274,11 +6351,7 @@
             "description": "Base64 encoded json that contains the filters and cursor position"
           },
           "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PexHostQueryParams"
-              }
-            ]
+            "$ref": "#/components/schemas/PexHostQueryParams"
           }
         },
         "type": "object",
@@ -7650,6 +7723,17 @@
         "type": "object",
         "title": "PexStat"
       },
+      "PlayerStatsResponse": {
+        "properties": {
+          "total_matches_played": {
+            "type": "integer",
+            "title": "Total Matches Played",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "PlayerStatsResponse"
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -7697,7 +7781,7 @@
       "description": "Match data is meant to store historical match information - including players, and related metadata.\n\nMatches are searchable on the Support Portal, and there are endpoints to query a player's matches or all matches in the system.\n\nEach match can also contain many Match Segments - which are sub-components of the overall match.  They contain the same fields as the match.  Common usage of Match Segments would be laps of a race to record player positions, minute intervals to record the state of the game partway through, rounds of play, or minigames within a larger match.\n"
     },
     {
-      "name": "PEX",
+      "name": "Player Experience",
       "description": "Player Experience (PEX) is a system for Clients/Hosts to post metrics to for top-level analysis."
     }
   ]
