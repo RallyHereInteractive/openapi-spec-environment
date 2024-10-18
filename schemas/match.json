@@ -914,7 +914,7 @@
           "Match"
         ],
         "summary": "Create Match Player",
-        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have match:match:edit:authority and are the host of the match.",
+        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have AuthPermissions.MATCH_MATCH_EDIT_AUTHORITY and are the host of the match.",
         "operationId": "create_match_player",
         "security": [
           {
@@ -1966,6 +1966,22 @@
               ],
               "title": "Version"
             }
+          },
+          {
+            "name": "device_info",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Device Info"
+            }
           }
         ],
         "responses": {
@@ -2358,6 +2374,22 @@
               ],
               "title": "Version"
             }
+          },
+          {
+            "name": "device_info",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Device Info"
+            }
           }
         ],
         "responses": {
@@ -2742,22 +2774,6 @@
             }
           },
           {
-            "name": "player_uuid",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Player Uuid"
-            }
-          },
-          {
             "name": "device_info",
             "in": "query",
             "required": false,
@@ -2771,6 +2787,22 @@
                 }
               ],
               "title": "Device Info"
+            }
+          },
+          {
+            "name": "player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Player Uuid"
             }
           }
         ],
@@ -3166,22 +3198,6 @@
             }
           },
           {
-            "name": "player_uuid",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Player Uuid"
-            }
-          },
-          {
             "name": "device_info",
             "in": "query",
             "required": false,
@@ -3195,6 +3211,22 @@
                 }
               ],
               "title": "Device Info"
+            }
+          },
+          {
+            "name": "player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Player Uuid"
             }
           }
         ],
@@ -5177,6 +5209,18 @@
             "title": "Version",
             "description": "Version"
           },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info",
+            "description": "Device info"
+          },
           "player_uuid": {
             "anyOf": [
               {
@@ -5187,17 +5231,6 @@
               }
             ],
             "title": "Player Uuid"
-          },
-          "device_info": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Device Info"
           }
         },
         "type": "object",
@@ -5622,12 +5655,6 @@
             "title": "Version",
             "description": "Version"
           },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid",
-            "description": "Player UUID"
-          },
           "device_info": {
             "anyOf": [
               {
@@ -5638,7 +5665,28 @@
               }
             ],
             "title": "Device Info",
-            "description": "Device information"
+            "description": "Device info"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
@@ -6085,12 +6133,6 @@
             "title": "Version",
             "description": "Version"
           },
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid",
-            "description": "Player UUID"
-          },
           "device_info": {
             "anyOf": [
               {
@@ -6101,7 +6143,28 @@
               }
             ],
             "title": "Device Info",
-            "description": "Device information"
+            "description": "Device info"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID"
           }
         },
         "type": "object",
@@ -6582,6 +6645,18 @@
             ],
             "title": "Version",
             "description": "Version"
+          },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info",
+            "description": "Device info"
           }
         },
         "type": "object",
@@ -6994,6 +7069,33 @@
             ],
             "title": "Version",
             "description": "Version"
+          },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info",
+            "description": "Device info"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data"
           },
           "machine_class": {
             "anyOf": [
@@ -7439,6 +7541,33 @@
             ],
             "title": "Version",
             "description": "Version"
+          },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info",
+            "description": "Device info"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data"
           },
           "machine_class": {
             "anyOf": [
