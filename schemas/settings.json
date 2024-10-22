@@ -3272,7 +3272,7 @@
           },
           "value": {
             "title": "Value",
-            "description": "New value for the setting.  Must conform to the jsonschema defined for the setting type+version"
+            "description": "New value document for the setting.  Must conform to the jsonschema defined for the setting type+version"
           }
         },
         "type": "object",
@@ -3281,18 +3281,46 @@
           "value"
         ],
         "title": "SetSinglePlayerSettingRequest",
-        "description": "Updatable contents of a setting for a player"
+        "description": "Updatable contents of a setting document for a player"
       },
       "SettingData": {
         "properties": {
           "v": {
             "type": "integer",
             "title": "V",
-            "description": "Setting Version"
+            "description": "Version of the Setting Type schema that was used to validate the value document."
           },
           "value": {
             "title": "Value",
             "description": "Setting Value document"
+          },
+          "etag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Etag",
+            "description": "ETag identifying the current version+value of the document"
+          },
+          "last_modified": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Modified",
+            "description": "Timestamp when this setting was last modified"
           }
         },
         "type": "object",
@@ -3301,7 +3329,7 @@
           "value"
         ],
         "title": "SettingData",
-        "description": "Setting version/value data from a specific setting type/key for a player"
+        "description": "Setting version/value document from a specific setting type/key for a player"
       },
       "SettingType": {
         "properties": {
