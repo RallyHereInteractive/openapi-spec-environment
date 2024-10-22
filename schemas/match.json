@@ -1968,19 +1968,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Platform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           }
         ],
@@ -2376,19 +2376,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Platform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           }
         ],
@@ -2774,19 +2774,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Platform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           },
           {
@@ -3198,19 +3198,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Platform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           },
           {
@@ -5209,17 +5209,16 @@
             "title": "Version",
             "description": "Version"
           },
-          "device_info": {
+          "platform_id": {
             "anyOf": [
               {
-                "type": "string"
+                "$ref": "#/components/schemas/Platform"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Device Info",
-            "description": "Device info"
+            "description": "Platform ID"
           },
           "player_uuid": {
             "anyOf": [
@@ -5666,6 +5665,17 @@
             ],
             "title": "Device Info",
             "description": "Device info"
+          },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
           },
           "custom_data": {
             "anyOf": [
@@ -6144,6 +6154,17 @@
             ],
             "title": "Device Info",
             "description": "Device info"
+          },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
           },
           "custom_data": {
             "anyOf": [
@@ -6646,17 +6667,16 @@
             "title": "Version",
             "description": "Version"
           },
-          "device_info": {
+          "platform_id": {
             "anyOf": [
               {
-                "type": "string"
+                "$ref": "#/components/schemas/Platform"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Device Info",
-            "description": "Device info"
+            "description": "Platform ID"
           }
         },
         "type": "object",
@@ -7081,6 +7101,17 @@
             ],
             "title": "Device Info",
             "description": "Device info"
+          },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
           },
           "custom_data": {
             "anyOf": [
@@ -7554,6 +7585,17 @@
             "title": "Device Info",
             "description": "Device info"
           },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -7851,6 +7893,64 @@
         },
         "type": "object",
         "title": "PexStat"
+      },
+      "Platform": {
+        "type": "string",
+        "enum": [
+          "Anon",
+          "Basic",
+          "XboxLive",
+          "PSN",
+          "NintendoNAID",
+          "NintendoSwitch",
+          "NintendoPPID",
+          "Google",
+          "GooglePlay",
+          "Apple",
+          "Epic",
+          "Steam",
+          "Amazon",
+          "Twitch",
+          "RallyHere",
+          "LegacyName"
+        ],
+        "title": "Platform",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
+        ]
       },
       "PlayerStatsResponse": {
         "properties": {
