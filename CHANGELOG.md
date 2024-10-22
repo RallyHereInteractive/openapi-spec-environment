@@ -1,3 +1,99 @@
+## Changes for Tue Oct 22 18:58:45 UTC 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 6
+-------------------------
+POST /match/v1/pex/client
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: platform_id
+
+GET /match/v1/pex/client/raw
+- New query param: platform_id
+- Deleted query param: device_info
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Properties changed
+                - New property: platform_id
+                - Deleted property: device_info
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - New property: platform_id
+
+GET /match/v1/pex/client/score
+- New query param: platform_id
+- Deleted query param: device_info
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Properties changed
+                - New property: platform_id
+                - Deleted property: device_info
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - New property: platform_id
+
+POST /match/v1/pex/host
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: platform_id
+
+GET /match/v1/pex/host/raw
+- New query param: platform_id
+- Deleted query param: device_info
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Properties changed
+                - New property: platform_id
+                - Deleted property: device_info
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - New property: platform_id
+
+GET /match/v1/pex/host/score
+- New query param: platform_id
+- Deleted query param: device_info
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: filters
+              - Properties changed
+                - New property: platform_id
+                - Deleted property: device_info
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - New property: platform_id
 ## Changes for Fri Oct 18 15:05:56 EDT 2024
 ### New Endpoints: None
 -----------------------
