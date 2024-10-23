@@ -1,3 +1,44 @@
+## Changes for Wed Oct 23 14:23:42 EDT 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 3
+-------------------------
+POST /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Create player match record for the provided player_uuid and match_id
+
+Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+
+Or you have AuthPermissions.MATCH_MATCH_EDIT_AUTHORITY and are the host of the match.' to 'Create player match record for the provided player_uuid and match_id
+
+Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+
+Or you have any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` and are the host of the match.'
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: portal_parent_auth_result
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: PortalUserInfo
+                  - Properties changed
+                    - New property: device_type
 ## Changes for Tue Oct 22 18:58:45 UTC 2024
 ### New Endpoints: None
 -----------------------

@@ -914,7 +914,7 @@
           "Match"
         ],
         "summary": "Create Match Player",
-        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have AuthPermissions.MATCH_MATCH_EDIT_AUTHORITY and are the host of the match.",
+        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` and are the host of the match.",
         "operationId": "create_match_player",
         "security": [
           {
