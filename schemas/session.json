@@ -5904,7 +5904,7 @@
                 "$ref": "#/components/schemas/Platform"
               }
             ],
-            "description": "Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required"
+            "description": "Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available"
           },
           "input": {
             "allOf": [
@@ -6212,7 +6212,7 @@
               }
             ],
             "title": "Client Settings",
-            "description": "Which input type and platform the client is using"
+            "description": "Which input type the client is using. Platform is now gotten from authorization claims, and will overwrite the platform passed here"
           },
           "crossplay_preferences": {
             "allOf": [
@@ -7795,6 +7795,15 @@
             "description": "List of tickets that were assigned to this match if created by matchmaking",
             "default": []
           },
+          "ticket_data": {
+            "items": {
+              "$ref": "#/components/schemas/TicketData"
+            },
+            "type": "array",
+            "title": "Ticket Data",
+            "description": "List of all the ticket data that was used when generating this match",
+            "default": []
+          },
           "tickets_assigned": {
             "type": "boolean",
             "title": "Tickets Assigned",
@@ -8235,6 +8244,29 @@
         "title": "PlayerSessions",
         "description": "Information about all sessions that a player is currently a member of, or invited to"
       },
+      "PlayerVisibility": {
+        "type": "string",
+        "enum": [
+          "ALL",
+          "TEAM",
+          "SELF",
+          "NONE"
+        ],
+        "title": "PlayerVisibility",
+        "description": "What subset of players any given player will have information about",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "TEAM",
+          "SELF",
+          "NONE"
+        ]
+      },
       "PlayersToValidate": {
         "type": "string",
         "enum": [
@@ -8474,6 +8506,25 @@
         ],
         "title": "QueuesResponseV2",
         "description": "A list of configuration about queues"
+      },
+      "RankData": {
+        "properties": {
+          "rank_uuid": {
+            "type": "string",
+            "title": "Rank Uuid",
+            "description": "UUID for this rank"
+          },
+          "mu": {
+            "type": "number",
+            "title": "Mu",
+            "description": "Ticket's group mu for this rank"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank_uuid"
+        ],
+        "title": "RankData"
       },
       "Region": {
         "properties": {
@@ -8737,6 +8788,12 @@
             "type": "array",
             "title": "Teams",
             "description": "List of teams of players currently in the session"
+          },
+          "teams_suppressed": {
+            "type": "boolean",
+            "title": "Teams Suppressed",
+            "description": "Flag showing if the list of players has been automatically suppressed due to its size.",
+            "default": false
           },
           "platform_session": {
             "items": {
@@ -9245,6 +9302,42 @@
             "title": "Notify On Reservation",
             "description": "If players should be notified when they are reserved in this type of session instead of waiting until they're invited",
             "default": true
+          },
+          "player_visibility": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerVisibility"
+              }
+            ],
+            "description": "What subset of players a regular client will receive info about. With sufficiently large sessions, visibility will automatically be lowered",
+            "default": "ALL"
+          },
+          "admin_player_visibility": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerVisibility"
+              }
+            ],
+            "description": "What subset of players an admin client with elevated privileges will receive info about",
+            "default": "ALL"
+          },
+          "player_notification_frequency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerVisibility"
+              }
+            ],
+            "description": "What subset of notifications a client should receive about players in a session. With sufficiently large sessions, frequency will be automatically lowered",
+            "default": "ALL"
+          },
+          "admin_player_notification_frequency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayerVisibility"
+              }
+            ],
+            "description": "What subset of notifications an admin client with elevated privileges will receive about players in a session",
+            "default": "ALL"
           }
         },
         "type": "object",
@@ -9357,6 +9450,82 @@
         "type": "object",
         "title": "TeamUpdate",
         "description": "An update to a specific team's number of max players"
+      },
+      "TicketData": {
+        "properties": {
+          "ticket_id": {
+            "type": "string",
+            "title": "Ticket Id",
+            "description": "Unique ID for this ticket"
+          },
+          "player_uuids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Player Uuids",
+            "description": "List of Player UUIDS that are associated with this ticket",
+            "default": []
+          },
+          "queue_join_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "region_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Region Id",
+            "description": "Which region this ticket was created for"
+          },
+          "queue_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Queue Id",
+            "description": "Which queue was used to create this ticket"
+          },
+          "profile_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Profile Ids",
+            "description": "List of profiles that were being considered for this ticket"
+          },
+          "additional_join_params": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdditionalJoinParams"
+              }
+            ],
+            "title": "Additional Join Params",
+            "description": "Additional join params specified on queue join"
+          },
+          "rank_data": {
+            "items": {
+              "$ref": "#/components/schemas/RankData"
+            },
+            "type": "array",
+            "title": "Rank Data",
+            "description": "List of rank data on the ticket",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "ticket_id",
+          "queue_join_datetime",
+          "region_id",
+          "queue_id",
+          "profile_ids"
+        ],
+        "title": "TicketData"
       },
       "UpdateBackfillRequest": {
         "properties": {

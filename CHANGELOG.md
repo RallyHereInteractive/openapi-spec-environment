@@ -1,3 +1,616 @@
+## Changes for Thu Nov  7 18:03:03 UTC 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 29
+--------------------------
+GET /rank/v1/player/me/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v1/player/me/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v1/player/me/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/RankRankData
+              - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v1/player/{player_uuid}/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v1/player/{player_uuid}/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v1/player/{player_uuid}/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/RankRankData
+              - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v1/rank:calculate
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Properties changed
+                      - Modified property: rank
+                        - Property 'AllOf' changed
+                          - Schemas added: #/components/schemas/RankRankData
+                          - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v2/player/me/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v2/player/me/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v2/player/me/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/RankRankData
+              - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v2/player/{player_uuid}/rank
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /rank/v2/player/{player_uuid}/rank/{rank_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: player_ranks
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v2/player/{player_uuid}/rank/{rank_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: rank
+            - Property 'AllOf' changed
+              - Schemas added: #/components/schemas/RankRankData
+              - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v2/rank:calculate
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Properties changed
+                      - Modified property: rank
+                        - Property 'AllOf' changed
+                          - Schemas added: #/components/schemas/RankRankData
+                          - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+POST /rank/v3/rank:calculate
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Properties changed
+                      - Modified property: rank
+                        - Property 'AllOf' changed
+                          - Schemas added: #/components/schemas/RankRankData
+                          - Schemas deleted: #/components/schemas/RankData
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: updated_players
+              - Items changed
+                - Properties changed
+                  - Modified property: rank
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RankRankData
+                      - Schemas deleted: #/components/schemas/RankData
+
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - Modified property: platform
+                            - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - Modified property: platform
+                    - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/backfill/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfilled_players
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - Modified property: platform
+                            - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/match-made-session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Properties changed
+                      - Modified property: client_settings
+                        - Property 'AllOf' changed
+                          - Modified schema: subschema #1: ClientSettings
+                            - Properties changed
+                              - Modified property: platform
+                                - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - Modified property: platform
+                    - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: teams_suppressed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - New property: ticket_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - Modified property: platform
+                                  - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - Modified property: platform
+                    - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: teams_suppressed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - New property: ticket_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - Modified property: platform
+                                  - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - Modified property: platform
+                    - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+            - Description changed from 'Which input type and platform the client is using' to 'Which input type the client is using. Platform is now gotten from authorization claims, and will overwrite the platform passed here'
+          - Modified property: player
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: SelfSessionPlayerUpdateRequest
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - Modified property: platform
+                            - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: teams_suppressed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - New property: ticket_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - Modified property: platform
+                                  - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: teams_suppressed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - New property: ticket_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - Modified property: platform
+                                  - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: teams_suppressed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - New property: ticket_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - Modified property: platform
+                                  - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+POST /session/v1/session/{session_id}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - Modified property: platform
+                    - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+PATCH /session/v1/session/{session_id}/team/{team_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: players
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - Modified property: platform
+                            - Description changed from 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required' to 'Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available'
+
+GET /session/v1/template
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: templates
+              - AdditionalProperties changed
+                - Properties changed
+                  - New property: admin_player_notification_frequency
+                  - New property: admin_player_visibility
+                  - New property: player_notification_frequency
+                  - New property: player_visibility
+
+GET /session/v1/template/{session_type}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: admin_player_notification_frequency
+            - New property: admin_player_visibility
+            - New property: player_notification_frequency
+            - New property: player_visibility
 ## Changes for Wed Oct 23 14:23:42 EDT 2024
 ### New Endpoints: None
 -----------------------
