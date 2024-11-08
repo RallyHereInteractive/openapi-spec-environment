@@ -1,3 +1,308 @@
+## Changes for Fri Nov  8 16:59:50 UTC 2024
+### New Endpoints: 2
+--------------------
+GET /session/v1/session/{session_id}/player  
+GET /session/v1/session/{session_id}/player/{player_uuid}  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 14
+--------------------------
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - New property: device_type
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - New property: device_type
+
+POST /session/v1/backfill/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfilled_players
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - New property: device_type
+
+POST /session/v1/match-made-session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Properties changed
+                      - Modified property: client_settings
+                        - Property 'AllOf' changed
+                          - Modified schema: subschema #1: ClientSettings
+                            - Properties changed
+                              - New property: device_type
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - New property: device_type
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Properties changed
+                            - New property: custom_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - New property: device_type
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - New property: device_type
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Properties changed
+                            - New property: custom_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - New property: device_type
+
+POST /session/v1/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - New property: device_type
+          - Modified property: player
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: SelfSessionPlayerUpdateRequest
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - New property: device_type
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Properties changed
+                            - New property: custom_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - New property: device_type
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Properties changed
+                            - New property: custom_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - New property: device_type
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Properties changed
+                            - New property: custom_data
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - Modified property: client_settings
+                          - Property 'AllOf' changed
+                            - Modified schema: subschema #1: ClientSettings
+                              - Properties changed
+                                - New property: device_type
+
+POST /session/v1/session/{session_id}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_settings
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: ClientSettings
+                - Properties changed
+                  - New property: device_type
+
+PATCH /session/v1/session/{session_id}/team/{team_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: players
+              - Items changed
+                - Properties changed
+                  - Modified property: client_settings
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: ClientSettings
+                        - Properties changed
+                          - New property: device_type
+
+GET /session/v2/match-making-profile/{match_making_profile_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: custom_data
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: profiles
+                    - Items changed
+                      - Properties changed
+                        - New property: custom_data
 ## Changes for Thu Nov  7 18:03:03 UTC 2024
 ### New Endpoints: None
 -----------------------
