@@ -969,6 +969,101 @@
           }
         ]
       },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Platform User By Id",
+        "description": "Update or create a platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:platform:create`",
+        "operationId": "update_platform_user_by_id",
+        "parameters": [
+          {
+            "description": "Platform to search",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "Platform to search"
+            },
+            "name": "platform",
+            "in": "query"
+          },
+          {
+            "description": "Platform user ID to search for or create",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 2048,
+              "title": "Platform User Id",
+              "description": "Platform user ID to search for or create"
+            },
+            "name": "platform_user_id",
+            "in": "query"
+          },
+          {
+            "description": "Display name for the platform user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 256,
+              "title": "Display Name",
+              "description": "Display name for the platform user"
+            },
+            "name": "display_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing platform user was updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUserResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "New platform user was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUserResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Users"

@@ -1069,6 +1069,101 @@
           }
         ]
       },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Platform User By Id",
+        "description": "Update or create a platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:platform:create`",
+        "operationId": "update_platform_user_by_id",
+        "parameters": [
+          {
+            "description": "Platform to search",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "Platform to search"
+            },
+            "name": "platform",
+            "in": "query"
+          },
+          {
+            "description": "Platform user ID to search for or create",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 2048,
+              "title": "Platform User Id",
+              "description": "Platform user ID to search for or create"
+            },
+            "name": "platform_user_id",
+            "in": "query"
+          },
+          {
+            "description": "Display name for the platform user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 256,
+              "title": "Display Name",
+              "description": "Display name for the platform user"
+            },
+            "name": "display_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing platform user was updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUserResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "New platform user was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUserResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Users"
@@ -15109,6 +15204,94 @@
         ]
       }
     },
+    "/session/v1/session/{session_id}/player:swap": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Swap Players In Session",
+        "description": "Swap two players on different teams. Leaders cannot be swapped\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:update:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`\n\n* Required session permissions are `SessionPermissions.session_admin`",
+        "operationId": "swap_players_in_session",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerSwapRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPlayersUpdateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/session/{session_id}/player/uuid/{player_uuid}": {
       "post": {
         "tags": [
@@ -26315,7 +26498,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -28971,17 +29154,17 @@
         ],
         "title": "DeviceType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "pc",
-          "xbox_series",
-          "xbox_one",
-          "web"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "pc",
+          "xbox_series",
+          "xbox_one",
+          "web"
         ]
       },
       "GrantType": {
@@ -29729,24 +29912,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -29764,6 +29929,24 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -35496,13 +35679,13 @@
         ],
         "title": "BackfillStyle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "TEAM_REQUEST",
-          "COMPOSITION"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "TEAM_REQUEST",
+          "COMPOSITION"
         ]
       },
       "BackfillTeam": {
@@ -36024,17 +36207,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -36046,15 +36229,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -36095,19 +36278,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -36196,17 +36379,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HostType": {
@@ -36218,15 +36401,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -36238,15 +36421,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -36291,17 +36474,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -36540,14 +36723,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -36555,6 +36730,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -36750,15 +36933,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -36803,17 +36986,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -37412,6 +37595,12 @@
             "title": "Requires All Players Items",
             "description": "Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's",
             "default": false
+          },
+          "includes_session_rule": {
+            "type": "boolean",
+            "title": "Includes Session Rule",
+            "description": "Whether or not the rulesets under this group will require us to validate session data",
+            "default": false
           }
         },
         "type": "object",
@@ -37570,25 +37759,31 @@
           "lt",
           "le",
           "gt",
-          "ge"
+          "ge",
+          "in_set",
+          "not_in_set"
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
           "Value A must be less than value B",
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B"
+          "Value A must be greater than or equal to value B",
+          "Value A must be in the set of values B",
+          "Value A must not be in the set of values B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL",
+          "INCLUDED_IN_SET",
+          "EXCLUDED_FROM_SET"
         ]
       },
       "PagedPlayersResponse": {
@@ -37633,20 +37828,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -37660,6 +37841,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -37944,6 +38139,27 @@
         "title": "PlayerSessions",
         "description": "Information about all sessions that a player is currently a member of, or invited to"
       },
+      "PlayerSwapRequest": {
+        "properties": {
+          "players": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 2,
+            "title": "Players",
+            "description": "Two player UUIDs for players who will swap teams"
+          }
+        },
+        "type": "object",
+        "required": [
+          "players"
+        ],
+        "title": "PlayerSwapRequest",
+        "description": "Request to swap two players on different teams"
+      },
       "PlayerVisibility": {
         "type": "string",
         "enum": [
@@ -37954,17 +38170,17 @@
         ],
         "title": "PlayerVisibility",
         "description": "What subset of players any given player will have information about",
-        "x-enum-varnames": [
-          "ALL",
-          "TEAM",
-          "SELF",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "TEAM",
+          "SELF",
+          "NONE"
         ]
       },
       "PlayersToValidate": {
@@ -37976,15 +38192,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -37996,15 +38212,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -38298,11 +38514,6 @@
             ],
             "description": "What type of rule this is"
           },
-          "item_id": {
-            "type": "integer",
-            "title": "Item Id",
-            "description": "Id of the item we are comparing if this is an inventory rule"
-          },
           "comparison_operation": {
             "allOf": [
               {
@@ -38311,17 +38522,28 @@
             ],
             "description": "Comparison operation to be performed"
           },
-          "comparison_value": {
-            "type": "integer",
-            "title": "Comparison Value",
-            "description": "Value to compare to"
+          "value": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            ],
+            "title": "Value",
+            "description": "Resolved union type 'value'"
           }
         },
         "type": "object",
         "required": [
           "rule_type",
           "comparison_operation",
-          "comparison_value"
+          "value"
         ],
         "title": "Rule",
         "description": "A rule to determine which MatchMakingTemplate should be used on a session entering matchmaking"
@@ -38330,20 +38552,20 @@
         "type": "string",
         "enum": [
           "Inventory",
-          "LinkingSize",
-          "JoiningSessionSize"
+          "JoiningSessionSize",
+          "RegionList"
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
-          "Comparing the size of the linking (the number of players) in the session to be queued",
-          "Comparing the size of the linking (the number of players) in the session to be queued"
+          "Comparing the number of session members to be queued",
+          "Comparing the region of the session to a list of regions"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "JOINING_SESSION_SIZE",
+          "REGION_LIST"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -38714,17 +38936,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -38813,6 +39035,23 @@
         ],
         "title": "SessionPlayerUpdateResponse",
         "description": "Response to a request to update a player in a session"
+      },
+      "SessionPlayersUpdateResponse": {
+        "properties": {
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/SessionPlayerUpdateResponse"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of updated players"
+          }
+        },
+        "type": "object",
+        "required": [
+          "players"
+        ],
+        "title": "SessionPlayersUpdateResponse"
       },
       "SessionTeam": {
         "properties": {
@@ -39112,19 +39351,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -39272,19 +39511,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -39295,13 +39534,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
@@ -44612,17 +44851,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Player is current online",
-          "Player is current online, but away.  Functionally identical to online",
-          "Player will appear offline to other players",
-          "Player is offline"
-        ],
         "x-enum-varnames": [
           "online",
           "away",
           "invisible",
           "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
         ]
       },
       "PlatformIndividualCCUs": {
@@ -45306,13 +45545,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "latest",
           "earliest"
+        ],
+        "x-enum-descriptions": [
+          "",
+          ""
         ]
       },
       "EnvironmentConfig": {
@@ -45794,13 +46033,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Ad was closed by the user",
-          "Ad was closed from a misc cause"
-        ],
         "x-enum-varnames": [
           "CANCEL",
           "OTHER"
+        ],
+        "x-enum-descriptions": [
+          "Ad was closed by the user",
+          "Ad was closed from a misc cause"
         ]
       },
       "OpportunityState": {
@@ -45812,15 +46051,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "User started watching the ad",
-          "User finished watching the ad",
-          "User stopped watching the ad partway through"
-        ],
         "x-enum-varnames": [
           "START",
           "COMPLETE",
           "ABORT"
+        ],
+        "x-enum-descriptions": [
+          "User started watching the ad",
+          "User finished watching the ad",
+          "User stopped watching the ad partway through"
         ]
       }
     }
