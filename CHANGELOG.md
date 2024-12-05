@@ -1,3 +1,89 @@
+## Changes for Thu Dec  5 17:49:37 UTC 2024
+### New Endpoints: 2
+--------------------
+POST /session/v1/session/{session_id}/player:swap  
+PUT /users/v1/platform-user  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 3
+-------------------------
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
+
+GET /session/v1/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: MatchMakingRuleset
+                        - Properties changed
+                          - Modified property: rules
+                            - Items changed
+                              - Required changed
+                                - New required property: value
+                                - Deleted required property: comparison_value
+                              - Properties changed
+                                - New property: value
+                                - Deleted property: comparison_value
+                                - Deleted property: item_id
+                                - Modified property: comparison_operation
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Operation
+                                      - New enum values: [in_set not_in_set]
+                                - Modified property: rule_type
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: RuleType
+                                      - New enum values: [RegionList]
+                                      - Deleted enum values: [LinkingSize]
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: includes_session_rule
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: MatchMakingRuleset
+                        - Properties changed
+                          - Modified property: rules
+                            - Items changed
+                              - Required changed
+                                - New required property: value
+                                - Deleted required property: comparison_value
+                              - Properties changed
+                                - New property: value
+                                - Deleted property: comparison_value
+                                - Deleted property: item_id
+                                - Modified property: comparison_operation
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Operation
+                                      - New enum values: [in_set not_in_set]
+                                - Modified property: rule_type
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: RuleType
+                                      - New enum values: [RegionList]
+                                      - Deleted enum values: [LinkingSize]
 ## Changes for Fri Nov  8 16:59:50 UTC 2024
 ### New Endpoints: 2
 --------------------
