@@ -969,6 +969,101 @@
           }
         ]
       },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Platform User By Id",
+        "description": "Update or create a platform user from a platform identity.\n\nWARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:platform:create`",
+        "operationId": "update_platform_user_by_id",
+        "parameters": [
+          {
+            "description": "Platform to search",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "Platform to search"
+            },
+            "name": "platform",
+            "in": "query"
+          },
+          {
+            "description": "Platform user ID to search for or create",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 2048,
+              "title": "Platform User Id",
+              "description": "Platform user ID to search for or create"
+            },
+            "name": "platform_user_id",
+            "in": "query"
+          },
+          {
+            "description": "Display name for the platform user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 256,
+              "title": "Display Name",
+              "description": "Display name for the platform user"
+            },
+            "name": "display_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Existing platform user was updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUserResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "New platform user was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformUserResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Users"
@@ -1954,6 +2049,478 @@
             },
             "name": "person_id",
             "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/me/restrictions": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Person Restrictions For Self",
+        "description": "Get Restrictions for your person.  These same restrictions apply to all players associated with the person",
+        "operationId": "get_person_restrictions_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restrictions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- `user_not_found` - User not found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/person/{person_id}/restrictions": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Person Restrictions",
+        "description": "Get Restrictions for a person.  These same restrictions apply to all players associated with the person",
+        "operationId": "get_person_restrictions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restrictions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add Person Restrictions",
+        "description": "Add a new restriction to an existing person",
+        "operationId": "add_person_restrictions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id"
+            },
+            "name": "person_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestrictionCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Remove Person Restrictions",
+        "description": "Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion",
+        "operationId": "remove_person_restrictions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id"
+            },
+            "name": "person_id",
+            "in": "path"
+          },
+          {
+            "description": "Issuer of the action",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/RestrictionIssuerType"
+                }
+              ],
+              "description": "Issuer of the action"
+            },
+            "name": "issuer_type",
+            "in": "query"
+          },
+          {
+            "description": "Issuer of the action",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Issuer",
+              "description": "Issuer of the action"
+            },
+            "name": "issuer",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/me/restrictions": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Player Restrictions For Self",
+        "description": "Get Restrictions for a player",
+        "operationId": "get_player_restrictions_for_self",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restrictions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/restrictions": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Player Restrictions",
+        "description": "Get Restrictions for a player",
+        "operationId": "get_player_restrictions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restrictions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add Player Restrictions",
+        "description": "Add a new restriction to an existing player's person",
+        "operationId": "add_player_restrictions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestrictionCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Remove Player Restrictions",
+        "description": "Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion",
+        "operationId": "remove_player_restrictions",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "description": "Issuer of the action",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/RestrictionIssuerType"
+                }
+              ],
+              "description": "Issuer of the action"
+            },
+            "name": "issuer_type",
+            "in": "query"
+          },
+          {
+            "description": "Issuer of the action",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Issuer",
+              "description": "Issuer of the action"
+            },
+            "name": "issuer",
+            "in": "query"
           }
         ],
         "responses": {
@@ -4312,8 +4879,11 @@
             "description": "Type of restriction"
           },
           "reason": {
-            "type": "string",
-            "title": "Reason",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionReasonCode"
+              }
+            ],
             "description": "Reason the restriction was applied"
           },
           "expiration": {
@@ -4329,6 +4899,144 @@
         ],
         "title": "Restriction",
         "description": "Restriction applied to a player"
+      },
+      "RestrictionCreate": {
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionType"
+              }
+            ],
+            "description": "Type of restriction"
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionReasonCode"
+              }
+            ],
+            "description": "Reason the restriction was applied"
+          },
+          "expiration": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expiration",
+            "description": "Date the restriction expires.  Null means the restriction is permanent"
+          },
+          "issuer_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionIssuerType"
+              }
+            ],
+            "description": "Type of the Issuer"
+          },
+          "issuer": {
+            "type": "string",
+            "title": "Issuer",
+            "description": "The creator of the restriction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "issuer_type",
+          "issuer"
+        ],
+        "title": "RestrictionCreate",
+        "description": "Restriction applied to a player"
+      },
+      "RestrictionIssuerType": {
+        "type": "string",
+        "enum": [
+          "support",
+          "gm",
+          "admin",
+          "anticheat",
+          "punish_system",
+          "guardian"
+        ],
+        "title": "RestrictionIssuerType",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "SUPPORT",
+          "GM",
+          "ADMIN",
+          "ANTICHEAT",
+          "PUNISH_SYSTEM",
+          "GUARDIAN"
+        ],
+        "x-enum-descriptions": [
+          "Support staff",
+          "In-Game GM",
+          "System Administrator",
+          "Anti-cheat provider (see issuer for more specific information)",
+          "Automated Punishment system, based on user activity",
+          "User's parent/guardian"
+        ]
+      },
+      "RestrictionReasonCode": {
+        "type": "string",
+        "enum": [
+          "cheating_autodetected",
+          "speedhack_autodetect",
+          "other",
+          "cheating_observed",
+          "cheating_reported_by_player",
+          "threats",
+          "language",
+          "griefing",
+          "fraud",
+          "revoke_failed",
+          "unknown",
+          "guardian",
+          "issuer_process",
+          "account_migration",
+          "user_request",
+          "maintenance",
+          "pending_deletion"
+        ],
+        "title": "RestrictionReasonCode",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "CHEATING_AUTODETECTED",
+          "SPEEDHACK_AUTODETECT",
+          "OTHER",
+          "CHEATING_OBSERVED",
+          "CHEATING_REPORTED_BY_PLAYER",
+          "THREATS",
+          "LANGUAGE",
+          "GRIEFING",
+          "FRAUD",
+          "REVOKE_FAILED",
+          "UNKNOWN",
+          "GUARDIAN",
+          "ISSUER_PROCESS",
+          "ACCOUNT_MIGRATION",
+          "USER_REQUEST",
+          "MAINTENANCE",
+          "PENDING_DELETION"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
       },
       "RestrictionType": {
         "type": "string",
@@ -4347,11 +5055,27 @@
           "ACCOUNT_DENY_AUTH"
         ],
         "x-enum-descriptions": [
-          "Account is banned",
-          "Account is locked out",
-          "Account is pending deletion and will be deleted in the future",
-          "Account has been banned from authentication"
+          "Account is banned.  User is not allowed to login",
+          "Account is locked out.  User is not allowed to login",
+          "Account is pending deletion and will be deleted in the future.  User is not allowed to login",
+          "Account has been banned from authentication.  User is not allowed to login"
         ]
+      },
+      "Restrictions": {
+        "properties": {
+          "restrictions": {
+            "items": {
+              "$ref": "#/components/schemas/Restriction"
+            },
+            "type": "array",
+            "title": "Restrictions",
+            "description": "List of restrictions applied to a user",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Restrictions",
+        "description": "List of restrictions applied to a user"
       },
       "Role": {
         "properties": {
