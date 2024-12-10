@@ -1,3 +1,159 @@
+## Changes for Tue Dec 10 15:47:03 UTC 2024
+### New Endpoints: 10
+---------------------
+POST /session/v1/session/{session_id}/player:swap  
+GET /users/v1/person/me/restrictions  
+DELETE /users/v1/person/{person_id}/restrictions  
+GET /users/v1/person/{person_id}/restrictions  
+POST /users/v1/person/{person_id}/restrictions  
+PUT /users/v1/platform-user  
+GET /users/v2/player/me/restrictions  
+DELETE /users/v2/player/{player_uuid}/restrictions  
+GET /users/v2/player/{player_uuid}/restrictions  
+POST /users/v2/player/{player_uuid}/restrictions  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 9
+-------------------------
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
+
+GET /session/v1/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: MatchMakingRuleset
+                        - Properties changed
+                          - Modified property: rules
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: comparison_value
+                              - Properties changed
+                                - New property: comparison_value_set
+                                - Modified property: comparison_operation
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Operation
+                                      - New enum values: [in_set not_in_set]
+                                - Modified property: comparison_value
+                                  - Description changed from 'Value to compare to' to 'Integer Value to compare to'
+                                - Modified property: rule_type
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: RuleType
+                                      - New enum values: [RegionList]
+                                      - Deleted enum values: [LinkingSize]
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: password
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: password
+
+POST /session/v1/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: password
+          - Modified property: player
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: SelfSessionPlayerUpdateRequest
+                - Properties changed
+                  - New property: password
+
+PATCH /session/v1/session/{session_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: password
+
+POST /session/v1/session/{session_id}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: password
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: includes_session_rule
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: MatchMakingRuleset
+                        - Properties changed
+                          - Modified property: rules
+                            - Items changed
+                              - Required changed
+                                - Deleted required property: comparison_value
+                              - Properties changed
+                                - New property: comparison_value_set
+                                - Modified property: comparison_operation
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: Operation
+                                      - New enum values: [in_set not_in_set]
+                                - Modified property: comparison_value
+                                  - Description changed from 'Value to compare to' to 'Integer Value to compare to'
+                                - Modified property: rule_type
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: RuleType
+                                      - New enum values: [RegionList]
+                                      - Deleted enum values: [LinkingSize]
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Schemas added: #/components/schemas/RestrictionReasonCode
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Reason' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionType
 ## Changes for Fri Nov  8 16:59:50 UTC 2024
 ### New Endpoints: 2
 --------------------
