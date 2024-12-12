@@ -2089,7 +2089,7 @@
           "Users"
         ],
         "summary": "Get Person Restrictions For Self",
-        "description": "Get Restrictions for your person.  These same restrictions apply to all players associated with the person",
+        "description": "Get Restrictions for your person.  These same restrictions apply to all players associated with the person\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `user:*`, `user:restriction:read:any`\n\n- For the person themselves : `user:restriction:read:self`",
         "operationId": "get_person_restrictions_for_self",
         "responses": {
           "200": {
@@ -2136,7 +2136,7 @@
           "Users"
         ],
         "summary": "Get Person Restrictions",
-        "description": "Get Restrictions for a person.  These same restrictions apply to all players associated with the person",
+        "description": "Get Restrictions for a person.  These same restrictions apply to all players associated with the person\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `user:*`, `user:restriction:read:any`\n\n- For the person themselves : `user:restriction:read:self`",
         "operationId": "get_person_restrictions",
         "parameters": [
           {
@@ -2193,7 +2193,7 @@
           "Users"
         ],
         "summary": "Add Person Restrictions",
-        "description": "Add a new restriction to an existing person",
+        "description": "Add a new restriction to an existing person\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `user:*`, `user:restriction:modify:any`",
         "operationId": "add_person_restrictions",
         "parameters": [
           {
@@ -2253,7 +2253,7 @@
           "Users"
         ],
         "summary": "Remove Person Restrictions",
-        "description": "Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion",
+        "description": "Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `user:*`, `user:restriction:modify:any`",
         "operationId": "remove_person_restrictions",
         "parameters": [
           {
@@ -2330,7 +2330,7 @@
           "Users"
         ],
         "summary": "Get Player Restrictions For Self",
-        "description": "Get Restrictions for a player",
+        "description": "Get Restrictions for a player\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:restriction:read:any`\n\n- For the player themselves : `user:restriction:read:self`",
         "operationId": "get_player_restrictions_for_self",
         "responses": {
           "200": {
@@ -2367,7 +2367,7 @@
           "Users"
         ],
         "summary": "Get Player Restrictions",
-        "description": "Get Restrictions for a player",
+        "description": "Get Restrictions for a player\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:restriction:read:any`\n\n- For the player themselves : `user:restriction:read:self`",
         "operationId": "get_player_restrictions",
         "parameters": [
           {
@@ -2424,7 +2424,7 @@
           "Users"
         ],
         "summary": "Add Player Restrictions",
-        "description": "Add a new restriction to an existing player's person",
+        "description": "Add a new restriction to an existing player's person\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:restriction:modify:any`",
         "operationId": "add_player_restrictions",
         "parameters": [
           {
@@ -2484,7 +2484,7 @@
           "Users"
         ],
         "summary": "Remove Player Restrictions",
-        "description": "Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion",
+        "description": "Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `user:*`, `user:restriction:modify:any`",
         "operationId": "remove_player_restrictions",
         "parameters": [
           {
@@ -5057,7 +5057,7 @@
         "x-enum-descriptions": [
           "Account is banned.  User is not allowed to login",
           "Account is locked out.  User is not allowed to login",
-          "Account is pending deletion and will be deleted in the future.  User is not allowed to login",
+          "Account is pending deletion and will be deleted in the future.",
           "Account has been banned from authentication.  User is not allowed to login"
         ]
       },

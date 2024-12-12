@@ -7993,19 +7993,19 @@
             "type": "array",
             "uniqueItems": true,
             "title": "Required Item Ids",
-            "description": "Set of all the item ids that are required to validate every rule contained in this template group",
+            "description": "DEPRECATED. Set of all the item ids that are required to validate every rule contained in this template group",
             "default": []
           },
           "requires_all_players_items": {
             "type": "boolean",
             "title": "Requires All Players Items",
-            "description": "Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's",
+            "description": "DEPRECATED. Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's",
             "default": false
           },
           "includes_session_rule": {
             "type": "boolean",
             "title": "Includes Session Rule",
-            "description": "Whether or not the rulesets under this group will require us to validate session data",
+            "description": "DEPRECATED. Whether or not the rulesets under this group will require us to validate session data",
             "default": false
           }
         },
@@ -8321,6 +8321,30 @@
           "NINTENDO",
           "EPIC"
         ]
+      },
+      "PlatformScout": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "UUID of player who is the designated scout for the platform session"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Which platform this specified player is a scout for"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "platform"
+        ],
+        "title": "PlatformScout"
       },
       "PlatformSession": {
         "properties": {
@@ -9019,6 +9043,7 @@
         "type": "string",
         "enum": [
           "Inventory",
+          "InventoryLevel",
           "JoiningSessionSize",
           "RegionList"
         ],
@@ -9026,11 +9051,13 @@
         "description": "What type of rule is being evaluated",
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
+          "Comparing the level of a specific item that a player owns",
           "Comparing the number of session members to be queued",
           "Comparing the region of the session to a list of regions"
         ],
         "x-enum-varnames": [
           "INVENTORY",
+          "INVENTORY_LEVEL",
           "JOINING_SESSION_SIZE",
           "REGION_LIST"
         ]
@@ -9199,6 +9226,14 @@
             "title": "Platform Session",
             "description": "Child Platform Sessions for this session.  A player joining one of the child platform sessions implicitly joins the parent session",
             "default": []
+          },
+          "platform_scouts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PlatformScout"
+            },
+            "type": "object",
+            "title": "Platform Scouts",
+            "description": "List of platform scouts for this session"
           },
           "custom_data": {
             "additionalProperties": {

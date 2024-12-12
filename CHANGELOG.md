@@ -1,3 +1,248 @@
+## Changes for Thu Dec 12 21:26:23 UTC 2024
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 16
+--------------------------
+GET /session/v1/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: MatchMakingRuleset
+                        - Properties changed
+                          - Modified property: rules
+                            - Items changed
+                              - Properties changed
+                                - Modified property: rule_type
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: RuleType
+                                      - New enum values: [InventoryLevel]
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: platform_scouts
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: platform_scouts
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: platform_scouts
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: platform_scouts
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: platform_scouts
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: includes_session_rule
+              - Description changed from 'Whether or not the rulesets under this group will require us to validate session data' to 'DEPRECATED. Whether or not the rulesets under this group will require us to validate session data'
+            - Modified property: required_item_ids
+              - Description changed from 'Set of all the item ids that are required to validate every rule contained in this template group' to 'DEPRECATED. Set of all the item ids that are required to validate every rule contained in this template group'
+            - Modified property: requires_all_players_items
+              - Description changed from 'Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's' to 'DEPRECATED. Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's'
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: ruleset
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: MatchMakingRuleset
+                        - Properties changed
+                          - Modified property: rules
+                            - Items changed
+                              - Properties changed
+                                - Modified property: rule_type
+                                  - Property 'AllOf' changed
+                                    - Modified schema: subschema #1: RuleType
+                                      - New enum values: [InventoryLevel]
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionType
+
+GET /users/v1/person/me/restrictions
+- Description changed from 'Get Restrictions for your person.  These same restrictions apply to all players associated with the person' to 'Get Restrictions for your person.  These same restrictions apply to all players associated with the person
+
+Required Permissions:
+
+- For any person (including themselves) any of: `user:*`, `user:restriction:read:any`
+
+- For the person themselves : `user:restriction:read:self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionType
+
+DELETE /users/v1/person/{person_id}/restrictions
+- Description changed from 'Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion' to 'Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion
+
+Required Permissions:
+
+- For any person (including themselves) any of: `user:*`, `user:restriction:modify:any`'
+
+GET /users/v1/person/{person_id}/restrictions
+- Description changed from 'Get Restrictions for a person.  These same restrictions apply to all players associated with the person' to 'Get Restrictions for a person.  These same restrictions apply to all players associated with the person
+
+Required Permissions:
+
+- For any person (including themselves) any of: `user:*`, `user:restriction:read:any`
+
+- For the person themselves : `user:restriction:read:self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionType
+
+POST /users/v1/person/{person_id}/restrictions
+- Description changed from 'Add a new restriction to an existing person' to 'Add a new restriction to an existing person
+
+Required Permissions:
+
+- For any person (including themselves) any of: `user:*`, `user:restriction:modify:any`'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: type
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: RestrictionType
+
+GET /users/v2/player/me/restrictions
+- Description changed from 'Get Restrictions for a player' to 'Get Restrictions for a player
+
+Required Permissions:
+
+- For any player (including themselves) any of: `user:*`, `user:restriction:read:any`
+
+- For the player themselves : `user:restriction:read:self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionType
+
+DELETE /users/v2/player/{player_uuid}/restrictions
+- Description changed from 'Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion' to 'Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion
+
+Required Permissions:
+
+- For any player (including themselves) any of: `user:*`, `user:restriction:modify:any`'
+
+GET /users/v2/player/{player_uuid}/restrictions
+- Description changed from 'Get Restrictions for a player' to 'Get Restrictions for a player
+
+Required Permissions:
+
+- For any player (including themselves) any of: `user:*`, `user:restriction:read:any`
+
+- For the player themselves : `user:restriction:read:self`'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionType
+
+POST /users/v2/player/{player_uuid}/restrictions
+- Description changed from 'Add a new restriction to an existing player's person' to 'Add a new restriction to an existing player's person
+
+Required Permissions:
+
+- For any player (including themselves) any of: `user:*`, `user:restriction:modify:any`'
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: type
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: RestrictionType
 ## Changes for Tue Dec 10 15:47:03 UTC 2024
 ### New Endpoints: 10
 ---------------------
