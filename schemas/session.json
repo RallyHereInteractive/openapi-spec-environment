@@ -2760,7 +2760,7 @@
               }
             }
           },
-          "409": {
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -2868,7 +2868,7 @@
               }
             }
           },
-          "409": {
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -3079,7 +3079,7 @@
               }
             }
           },
-          "409": {
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -3166,7 +3166,7 @@
               }
             }
           },
-          "409": {
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -3299,7 +3299,7 @@
               }
             }
           },
-          "409": {
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -3396,7 +3396,7 @@
               }
             }
           },
-          "409": {
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -9497,9 +9497,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "team_id"
-        ],
         "title": "SessionPlayerUpdateRequest",
         "description": "A request body to update information about a player in a session"
       },

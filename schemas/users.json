@@ -3530,17 +3530,17 @@
         ],
         "title": "DeviceType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "pc",
-          "xbox_series",
-          "xbox_one",
-          "web"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "pc",
+          "xbox_series",
+          "xbox_one",
+          "web"
         ]
       },
       "GrantType": {
@@ -3564,23 +3564,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -3597,6 +3580,23 @@
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPValidationError": {
@@ -3646,19 +3646,19 @@
         ],
         "title": "LinkAction",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "link",
-          "unlink",
-          "new_person",
-          "xprog_enable",
-          "xprog_disable"
-        ],
         "x-enum-descriptions": [
           "Linked a player to an existing person",
           "Unlinked a player from a person",
           "Player was associated with a new person",
           "Active player was set for person, enabling cross-progression for all of the person's players",
           "Active player was cleared for person, disabling cross-progression for all of the person's players"
+        ],
+        "x-enum-varnames": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
         ]
       },
       "LoginHistoryEntry": {
@@ -4035,11 +4035,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -4057,17 +4057,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -4078,6 +4067,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -4087,11 +4087,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -4288,24 +4288,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -4323,6 +4305,24 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -4636,15 +4636,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -4959,14 +4959,6 @@
         ],
         "title": "RestrictionIssuerType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SUPPORT",
-          "GM",
-          "ADMIN",
-          "ANTICHEAT",
-          "PUNISH_SYSTEM",
-          "GUARDIAN"
-        ],
         "x-enum-descriptions": [
           "Support staff",
           "In-Game GM",
@@ -4974,6 +4966,14 @@
           "Anti-cheat provider (see issuer for more specific information)",
           "Automated Punishment system, based on user activity",
           "User's parent/guardian"
+        ],
+        "x-enum-varnames": [
+          "SUPPORT",
+          "GM",
+          "ADMIN",
+          "ANTICHEAT",
+          "PUNISH_SYSTEM",
+          "GUARDIAN"
         ]
       },
       "RestrictionReasonCode": {
@@ -4999,25 +4999,6 @@
         ],
         "title": "RestrictionReasonCode",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CHEATING_AUTODETECTED",
-          "SPEEDHACK_AUTODETECT",
-          "OTHER",
-          "CHEATING_OBSERVED",
-          "CHEATING_REPORTED_BY_PLAYER",
-          "THREATS",
-          "LANGUAGE",
-          "GRIEFING",
-          "FRAUD",
-          "REVOKE_FAILED",
-          "UNKNOWN",
-          "GUARDIAN",
-          "ISSUER_PROCESS",
-          "ACCOUNT_MIGRATION",
-          "USER_REQUEST",
-          "MAINTENANCE",
-          "PENDING_DELETION"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -5036,6 +5017,25 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "CHEATING_AUTODETECTED",
+          "SPEEDHACK_AUTODETECT",
+          "OTHER",
+          "CHEATING_OBSERVED",
+          "CHEATING_REPORTED_BY_PLAYER",
+          "THREATS",
+          "LANGUAGE",
+          "GRIEFING",
+          "FRAUD",
+          "REVOKE_FAILED",
+          "UNKNOWN",
+          "GUARDIAN",
+          "ISSUER_PROCESS",
+          "ACCOUNT_MIGRATION",
+          "USER_REQUEST",
+          "MAINTENANCE",
+          "PENDING_DELETION"
         ]
       },
       "RestrictionType": {
@@ -5048,17 +5048,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned.  User is not allowed to login",
           "Account is locked out.  User is not allowed to login",
           "Account is pending deletion and will be deleted in the future.",
           "Account has been banned from authentication.  User is not allowed to login"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Restrictions": {
@@ -5131,15 +5131,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "TokenRequest": {
@@ -5343,23 +5343,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -5376,6 +5359,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -5420,44 +5420,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -5495,6 +5457,44 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       }
     },
