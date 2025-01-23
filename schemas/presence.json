@@ -19,18 +19,6 @@
         "summary": "Get Player Presence Self",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
         "operationId": "get_player_presence_self",
-        "parameters": [
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -59,16 +47,6 @@
                 }
               }
             }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -84,18 +62,6 @@
         "summary": "Update Player Presence Self",
         "description": "Update the player's online status and other presence data.\nIf the player reports their online status as online or away, their \"last_seen\" presence info is updated.\nPlayer clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds.\nOtherwise they will be considered offline.",
         "operationId": "update_player_presence_self",
-        "parameters": [
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -176,16 +142,6 @@
             },
             "name": "player_uuid",
             "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           },
           {
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
@@ -275,16 +231,6 @@
             },
             "name": "player_id",
             "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           },
           {
             "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
@@ -397,16 +343,6 @@
             },
             "name": "player_uuid",
             "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "requestBody": {
@@ -488,16 +424,6 @@
             },
             "name": "player_id",
             "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "requestBody": {
@@ -580,16 +506,6 @@
             },
             "name": "player_uuid",
             "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -660,16 +576,6 @@
             },
             "name": "player_id",
             "in": "path"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -751,16 +657,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -831,16 +727,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -913,16 +799,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -993,16 +869,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -1075,16 +941,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1156,16 +1012,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1215,18 +1061,6 @@
         "summary": "Admin Get Known Platforms",
         "description": "Get all of the platforms that presence has been told about by players updating their presence",
         "operationId": "admin_get_known_platforms",
-        "parameters": [
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1244,16 +1078,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -1294,16 +1118,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -1375,16 +1189,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1454,16 +1258,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -1535,16 +1329,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1615,16 +1399,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1694,16 +1468,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -1784,16 +1548,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1872,16 +1626,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -1962,16 +1706,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -2050,16 +1784,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],
@@ -2140,16 +1864,6 @@
             },
             "name": "end",
             "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
-            "in": "query"
           }
         ],
         "responses": {
@@ -2228,16 +1942,6 @@
               "description": "A date-time with timezone data."
             },
             "name": "end",
-            "in": "query"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "title": "Use Cache",
-              "default": true
-            },
-            "name": "use_cache",
             "in": "query"
           }
         ],

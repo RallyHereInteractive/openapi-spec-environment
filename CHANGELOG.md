@@ -1,3 +1,9670 @@
+## Changes for Thu Jan 23 22:14:51 UTC 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 114
+---------------------------
+GET /inventory/v1/catalog
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: inventory_bucket_use_rule_sets
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryBucketUseRuleSets, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryBucketUseRuleSets
+              - Title changed from 'Inventory Bucket Use Rule Sets' to ''
+            - Modified property: items
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Items, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Items
+              - Title changed from 'Items' to ''
+            - Modified property: loot
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Loots, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Loots
+              - Title changed from 'Loot' to ''
+            - Modified property: portal_use_rulesets
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/PortalUseRulesets, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PortalUseRulesets
+              - Title changed from 'Portal Use Rulesets' to ''
+            - Modified property: price_points
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/PricePoints, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PricePoints
+              - Title changed from 'Price Points' to ''
+            - Modified property: skus
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/PlatformSKUs, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PlatformSKUs
+              - Title changed from 'Skus' to ''
+            - Modified property: time_frames
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/TimeFrames, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/TimeFrames
+              - Title changed from 'Time Frames' to ''
+            - Modified property: vendors
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Vendors, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Vendors
+              - Title changed from 'Vendors' to ''
+            - Modified property: xp_tables
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/XpTables, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/XpTables
+              - Title changed from 'Xp Tables' to ''
+
+GET /inventory/v1/catalog/entitlement-sku
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: skus
+              - Items changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: external_key_entitlement
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/ExternalKeyEntitlement, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/ExternalKeyEntitlement
+                    - Title changed from 'External Key Entitlement' to ''
+                  - Modified property: loot_entitlement
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/LootEntitlement, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/LootEntitlement
+                    - Title changed from 'Loot Entitlement' to ''
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Platform
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'Platform'
+                    - Description changed from 'The platform of the SKU' to ''
+                    - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+
+GET /inventory/v1/catalog/entitlement-sku/{platform}/{sku}
+- Modified path param: platform
+  - Schema changed
+    - Description changed from 'An enumeration.' to ''
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: external_key_entitlement
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/ExternalKeyEntitlement, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/ExternalKeyEntitlement
+              - Title changed from 'External Key Entitlement' to ''
+            - Modified property: loot_entitlement
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/LootEntitlement, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/LootEntitlement
+              - Title changed from 'Loot Entitlement' to ''
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Platform'
+              - Description changed from 'The platform of the SKU' to ''
+              - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+
+GET /inventory/v1/catalog/inventory-bucket-use-rule-set
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: rule_sets
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Type changed from 'object' to ''
+                    - Title changed from 'CacheInfo' to ''
+                    - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+                    - Required changed
+                      - Deleted required property: etag
+                    - Properties changed
+                      - Deleted property: etag
+                      - Deleted property: str_rep
+                  - Modified property: rules
+
+GET /inventory/v1/catalog/inventory-bucket-use-rule-set/{inventory_bucket_use_ruleset_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: rules
+
+GET /inventory/v1/catalog/item
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: items
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: coupon_discount_currency_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: entitled_loot_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: inventory_bucket_use_rule_set_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: level_vendor_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: level_xp_table_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/ItemType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'ItemType'
+                    - New enum values: [unit recipe recipe_with_price_reduction entitlement dynamic_bundle]
+                    - Default changed from 'unit' to null
+
+GET /inventory/v1/catalog/item/{item_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: coupon_discount_currency_item_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entitled_loot_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: inventory_bucket_use_rule_set_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: item_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: level_vendor_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: level_xp_table_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/ItemType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'ItemType'
+              - New enum values: [unit recipe recipe_with_price_reduction entitlement dynamic_bundle]
+              - Default changed from 'unit' to null
+
+GET /inventory/v1/catalog/loot
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: current_price_point_guid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - MinLength changed from 1 to 0
+                  - Modified property: effective_from
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'date-time' to ''
+                  - Modified property: inventory_operation
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryOperation
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'InventoryOperation'
+                    - Description changed from 'The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same.' to 'Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.
+
+Sort Order:
+1. check_greater_then_or_equal/check_less_than
+2. check_greater_than_or_equal_and_subtract/subtract
+3. add/set'
+                    - New enum values: [invalid add subtract set check_greater_than_or_equal check_less_than check_greater_than_or_equal_and_subtract]
+                    - Default changed from 'invalid' to null
+                  - Modified property: inventory_selector_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventorySelector
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'InventorySelector'
+                    - Description changed from 'The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified.' to 'Determines way Inventory Selected and to be modified.'
+                    - New enum values: [invalid own rent rent_timeframe_locked own_transient inherit_entitlement_inventory]
+                    - Default changed from 'invalid' to null
+                  - Modified property: item
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Item, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Item
+                    - Title changed from 'Item' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: loot_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: pre_sale_price_point_guid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - MinLength changed from 1 to 0
+                  - Modified property: price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/LootPrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/LootPrice
+                    - Title changed from 'Price' to ''
+                  - Modified property: quantity_mult_inventory_item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: quantity_mult_inventory_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: quantity_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/QuantityType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'QuantityType'
+                    - Description changed from 'Determines how the quantity is modified in the context it is fulfilled in.' to 'Determines how the quantity is to be modified.
+
+Relative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.
+
+Absolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.'
+                    - New enum values: [relative absolute]
+                    - Default changed from 'relative' to null
+                  - Modified property: required_item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: required_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: sub_vendor_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: sub_vendor_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: time_frame_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: xp_quantity_transform_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/XpQuantityTransform
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'XpQuantityTransform'
+                    - Description changed from 'Allows treating quantity as additional levels to grant to the Player.' to 'Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.
+
+The following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:
+1: 20
+2: 50
+3: 100
+4: 200
+5: 400
+
+from_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 200 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 400 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 400 total xp.
+
+from_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 250 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 450 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 450 total xp.
+
+from_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.
+Example 1: fulfill quantity 1
+    Player will be level 3 with 170 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 4 with 200 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 4 with 250 total xp.'
+                    - New enum values: [none from_current_xp_to_target_additional_level_min_xp from_current_level_min_xp_to_target_additional_level_min_xp from_zero_to_target_exact_level_min_xp]
+                    - Default changed from 'none' to null
+
+GET /inventory/v1/catalog/loot/{loot_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: current_price_point_guid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - MinLength changed from 1 to 0
+            - Modified property: effective_from
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'date-time' to ''
+            - Modified property: inventory_operation
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryOperation
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'InventoryOperation'
+              - Description changed from 'The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same.' to 'Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.
+
+Sort Order:
+1. check_greater_then_or_equal/check_less_than
+2. check_greater_than_or_equal_and_subtract/subtract
+3. add/set'
+              - New enum values: [invalid add subtract set check_greater_than_or_equal check_less_than check_greater_than_or_equal_and_subtract]
+              - Default changed from 'invalid' to null
+            - Modified property: inventory_selector_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventorySelector
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'InventorySelector'
+              - Description changed from 'The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified.' to 'Determines way Inventory Selected and to be modified.'
+              - New enum values: [invalid own rent rent_timeframe_locked own_transient inherit_entitlement_inventory]
+              - Default changed from 'invalid' to null
+            - Modified property: item
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Item, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Item
+              - Title changed from 'Item' to ''
+            - Modified property: item_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: item_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: loot_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: pre_sale_price_point_guid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - MinLength changed from 1 to 0
+            - Modified property: price
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/LootPrice, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/LootPrice
+              - Title changed from 'Price' to ''
+            - Modified property: quantity_mult_inventory_item_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: quantity_mult_inventory_item_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: quantity_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/QuantityType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'QuantityType'
+              - Description changed from 'Determines how the quantity is modified in the context it is fulfilled in.' to 'Determines how the quantity is to be modified.
+
+Relative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.
+
+Absolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.'
+              - New enum values: [relative absolute]
+              - Default changed from 'relative' to null
+            - Modified property: required_item_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: required_item_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: sub_vendor_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: sub_vendor_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: time_frame_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: use_inventory_bucket
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryBucket
+            - Modified property: vendor_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: xp_quantity_transform_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/XpQuantityTransform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'XpQuantityTransform'
+              - Description changed from 'Allows treating quantity as additional levels to grant to the Player.' to 'Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.
+
+The following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:
+1: 20
+2: 50
+3: 100
+4: 200
+5: 400
+
+from_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 200 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 400 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 400 total xp.
+
+from_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 250 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 450 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 450 total xp.
+
+from_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.
+Example 1: fulfill quantity 1
+    Player will be level 3 with 170 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 4 with 200 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 4 with 250 total xp.'
+              - New enum values: [none from_current_xp_to_target_additional_level_min_xp from_current_level_min_xp_to_target_additional_level_min_xp from_zero_to_target_exact_level_min_xp]
+              - Default changed from 'none' to null
+
+GET /inventory/v1/catalog/portal-use-ruleset
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: rulesets
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Type changed from 'object' to ''
+                    - Title changed from 'CacheInfo' to ''
+                    - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+                    - Required changed
+                      - Deleted required property: etag
+                    - Properties changed
+                      - Deleted property: etag
+                      - Deleted property: str_rep
+                  - Modified property: rules
+                    - AdditionalProperties changed
+                      - Items changed
+                        - Description changed from 'An enumeration.' to ''
+
+GET /inventory/v1/catalog/portal-use-ruleset/{portal_use_ruleset_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: rules
+              - AdditionalProperties changed
+                - Items changed
+                  - Description changed from 'An enumeration.' to ''
+
+GET /inventory/v1/catalog/price-point
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: price_points
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: current_breakpoints
+                    - Items changed
+                      - Properties changed
+                        - Modified property: currencies
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'array' to ''
+                          - Items changed
+                            - Schema deleted
+                        - Modified property: price
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: price_item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: price_item_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                  - Modified property: name
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: pre_sale_breakpoints
+                    - Items changed
+                      - Properties changed
+                        - Modified property: currencies
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'array' to ''
+                          - Items changed
+                            - Schema deleted
+                        - Modified property: price
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: price_item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: price_item_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+
+GET /inventory/v1/catalog/price-point/{price_point_id}
+- Modified path param: price_point_id
+  - Schema changed
+    - MinLength changed from 1 to 0
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: current_breakpoints
+              - Items changed
+                - Properties changed
+                  - Modified property: currencies
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: price
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: price_item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: price_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+            - Modified property: name
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: pre_sale_breakpoints
+              - Items changed
+                - Properties changed
+                  - Modified property: currencies
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: price
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: price_item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: price_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+
+GET /inventory/v1/catalog/time-frame
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: time_frames
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: end
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The current end of the Time Frame.'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: name
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: start
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The current start of the Time Frame.'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+
+GET /inventory/v1/catalog/time-frame/{time_frame_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: end
+              - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The current end of the Time Frame.'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: name
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: start
+              - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The current start of the Time Frame.'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+
+GET /inventory/v1/catalog/vendor
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: vendors
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: loot
+                    - AdditionalProperties changed
+                      - Properties changed
+                        - Modified property: cache_info
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/CacheInfo
+                          - Title changed from 'Cache Info' to ''
+                        - Modified property: current_price_point_guid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - MinLength changed from 1 to 0
+                        - Modified property: effective_from
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'date-time' to ''
+                        - Modified property: inventory_operation
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventoryOperation
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'InventoryOperation'
+                          - Description changed from 'The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same.' to 'Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.
+
+Sort Order:
+1. check_greater_then_or_equal/check_less_than
+2. check_greater_than_or_equal_and_subtract/subtract
+3. add/set'
+                          - New enum values: [invalid add subtract set check_greater_than_or_equal check_less_than check_greater_than_or_equal_and_subtract]
+                          - Default changed from 'invalid' to null
+                        - Modified property: inventory_selector_type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventorySelector
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'InventorySelector'
+                          - Description changed from 'The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified.' to 'Determines way Inventory Selected and to be modified.'
+                          - New enum values: [invalid own rent rent_timeframe_locked own_transient inherit_entitlement_inventory]
+                          - Default changed from 'invalid' to null
+                        - Modified property: item
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/Item, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/Item
+                          - Title changed from 'Item' to ''
+                        - Modified property: item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: item_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: loot_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: pre_sale_price_point_guid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - MinLength changed from 1 to 0
+                        - Modified property: price
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/LootPrice, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/LootPrice
+                          - Title changed from 'Price' to ''
+                        - Modified property: quantity_mult_inventory_item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: quantity_mult_inventory_item_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: quantity_type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/QuantityType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'QuantityType'
+                          - Description changed from 'Determines how the quantity is modified in the context it is fulfilled in.' to 'Determines how the quantity is to be modified.
+
+Relative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.
+
+Absolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.'
+                          - New enum values: [relative absolute]
+                          - Default changed from 'relative' to null
+                        - Modified property: required_item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: required_item_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: sub_vendor_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: sub_vendor_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: time_frame_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: use_inventory_bucket
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventoryBucket
+                        - Modified property: vendor_uuid
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: xp_quantity_transform_type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/XpQuantityTransform
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'XpQuantityTransform'
+                          - Description changed from 'Allows treating quantity as additional levels to grant to the Player.' to 'Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.
+
+The following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:
+1: 20
+2: 50
+3: 100
+4: 200
+5: 400
+
+from_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 200 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 400 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 400 total xp.
+
+from_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 250 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 450 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 450 total xp.
+
+from_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.
+Example 1: fulfill quantity 1
+    Player will be level 3 with 170 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 4 with 200 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 4 with 250 total xp.'
+                          - New enum values: [none from_current_xp_to_target_additional_level_min_xp from_current_level_min_xp_to_target_additional_level_min_xp from_zero_to_target_exact_level_min_xp]
+                          - Default changed from 'none' to null
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/VendorType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'VendorType'
+                    - Description changed from 'Determines how the Vendor fulfills the loot' to 'Determines how the Vendor fulfills the loot.'
+                    - New enum values: [recipe randomly_sampled]
+                    - Default changed from 'recipe' to null
+                  - Modified property: vendor_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+
+GET /inventory/v1/catalog/vendor/{vendor_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/CacheInfo
+              - Title changed from 'Cache Info' to ''
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/CacheInfo
+                    - Title changed from 'Cache Info' to ''
+                  - Modified property: current_price_point_guid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - MinLength changed from 1 to 0
+                  - Modified property: effective_from
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'date-time' to ''
+                  - Modified property: inventory_operation
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryOperation
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'InventoryOperation'
+                    - Description changed from 'The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same.' to 'Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.
+
+Sort Order:
+1. check_greater_then_or_equal/check_less_than
+2. check_greater_than_or_equal_and_subtract/subtract
+3. add/set'
+                    - New enum values: [invalid add subtract set check_greater_than_or_equal check_less_than check_greater_than_or_equal_and_subtract]
+                    - Default changed from 'invalid' to null
+                  - Modified property: inventory_selector_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventorySelector
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'InventorySelector'
+                    - Description changed from 'The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified.' to 'Determines way Inventory Selected and to be modified.'
+                    - New enum values: [invalid own rent rent_timeframe_locked own_transient inherit_entitlement_inventory]
+                    - Default changed from 'invalid' to null
+                  - Modified property: item
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Item, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Item
+                    - Title changed from 'Item' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: loot_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: pre_sale_price_point_guid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - MinLength changed from 1 to 0
+                  - Modified property: price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/LootPrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/LootPrice
+                    - Title changed from 'Price' to ''
+                  - Modified property: quantity_mult_inventory_item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: quantity_mult_inventory_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: quantity_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/QuantityType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'QuantityType'
+                    - Description changed from 'Determines how the quantity is modified in the context it is fulfilled in.' to 'Determines how the quantity is to be modified.
+
+Relative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.
+
+Absolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.'
+                    - New enum values: [relative absolute]
+                    - Default changed from 'relative' to null
+                  - Modified property: required_item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: required_item_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: sub_vendor_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: sub_vendor_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: time_frame_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: xp_quantity_transform_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/XpQuantityTransform
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'XpQuantityTransform'
+                    - Description changed from 'Allows treating quantity as additional levels to grant to the Player.' to 'Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.
+
+The following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:
+1: 20
+2: 50
+3: 100
+4: 200
+5: 400
+
+from_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 200 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 400 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 400 total xp.
+
+from_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.
+Example 1: fulfill quantity 1
+    Player will be level 4 with 250 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 5 with 450 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 5 with 450 total xp.
+
+from_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.
+Example 1: fulfill quantity 1
+    Player will be level 3 with 170 total xp.
+Example 2: fulfill quantity 2
+    Player will be level 4 with 200 total xp.
+Example 3: fulfill quantity 3
+    Player will be level 4 with 250 total xp.'
+                    - New enum values: [none from_current_xp_to_target_additional_level_min_xp from_current_level_min_xp_to_target_additional_level_min_xp from_zero_to_target_exact_level_min_xp]
+                    - Default changed from 'none' to null
+            - Modified property: type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/VendorType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'VendorType'
+              - Description changed from 'Determines how the Vendor fulfills the loot' to 'Determines how the Vendor fulfills the loot.'
+              - New enum values: [recipe randomly_sampled]
+              - Default changed from 'recipe' to null
+            - Modified property: vendor_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+
+GET /inventory/v1/catalog/xp
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: xp_tables
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: cache_info
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/CacheInfo, subschema #2
+                    - Type changed from 'object' to ''
+                    - Title changed from 'CacheInfo' to ''
+                    - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+                    - Required changed
+                      - Deleted required property: etag
+                    - Properties changed
+                      - Deleted property: etag
+                      - Deleted property: str_rep
+                  - Modified property: xp_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+
+GET /inventory/v1/catalog/xp/{xp_table_id}
+- Modified header param: if-none-match
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cache_info
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/CacheInfo, subschema #2
+              - Type changed from 'object' to ''
+              - Title changed from 'CacheInfo' to ''
+              - Description changed from 'Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers' to ''
+              - Required changed
+                - Deleted required property: etag
+              - Properties changed
+                - Deleted property: etag
+                - Deleted property: str_rep
+            - Modified property: xp_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+
+GET /inventory/v1/entitlement-event
+- Modified query param: cursor
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+    - MaxLength changed from 255 to null
+- Modified query param: player_id
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'integer' to ''
+    - Deprecated changed from false to true
+- Modified query param: player_uuid
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+    - Format changed from 'uuid' to ''
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: cursor
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: action_type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementActionType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementActionType'
+                    - Description changed from 'The type of the event' to 'Action to take for the Entitlement on a user'
+                    - New enum values: [grant refund chargeback chargeback_reversal]
+                  - Modified property: created
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The timestamp for the event'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: entitlement_type
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/EntitlementType, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementType
+                  - Modified property: key_claim_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: last_modified
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The timestamp for the event'
+                    - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: order_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: platform
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Platform
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'Platform'
+                    - Description changed from 'The platform for the event' to ''
+                    - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+                  - Modified property: platform_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                  - Modified property: platform_transaction_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - MaxLength changed from 4096 to null
+                  - Modified property: player_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementEventStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementEventStatus'
+                    - Description changed from 'The status of the event' to ''
+                    - New enum values: [success sku_not_found not_implemented player_not_found]
+
+POST /inventory/v1/entitlement-event
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: action_type
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/EntitlementActionType
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'EntitlementActionType'
+            - Description changed from 'The type of the event' to 'Action to take for the Entitlement on a user'
+            - New enum values: [grant refund chargeback chargeback_reversal]
+          - Modified property: platform
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Platform
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Platform'
+            - Description changed from 'The platform for the event' to ''
+            - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+          - Modified property: platform_data
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'object' to ''
+          - Modified property: player_uuid
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: status
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/EntitlementEventStatus, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/EntitlementEventStatus
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: action_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/EntitlementActionType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'EntitlementActionType'
+              - Description changed from 'The type of the event' to 'Action to take for the Entitlement on a user'
+              - New enum values: [grant refund chargeback chargeback_reversal]
+            - Modified property: created
+              - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The timestamp for the event'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: entitlement_type
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/EntitlementType, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/EntitlementType
+            - Modified property: key_claim_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: last_modified
+              - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'The timestamp for the event'
+              - Example changed from null to '2023-01-23T21:07:02.000000+00:00'
+            - Modified property: loot_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: platform
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Platform'
+              - Description changed from 'The platform for the event' to ''
+              - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+            - Modified property: platform_data
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'object' to ''
+            - Modified property: platform_transaction_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - MaxLength changed from 4096 to null
+            - Modified property: player_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'integer' to ''
+            - Modified property: player_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: status
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/EntitlementEventStatus
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'EntitlementEventStatus'
+              - Description changed from 'The status of the event' to ''
+              - New enum values: [success sku_not_found not_implemented player_not_found]
+
+GET /inventory/v1/marketing/campaign
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: campaigns
+              - Items changed
+                - Properties changed
+                  - Modified property: created_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: last_modified_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+
+GET /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: inventory
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Inventory
+              - Type changed from '' to 'object'
+              - Description changed from 'Inventory Context for a Player.' to 'Inventory for a Player organized by Item ID.'
+              - Default changed from map[items:map[]] to null
+              - Properties changed
+                - New property: cache_info
+                - New property: items
+
+POST /inventory/v1/player/me/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/CreateInventoryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'CreateInventoryType'
+                  - New enum values: [persistent transient]
+                  - Default changed from 'persistent' to null
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+PUT /inventory/v1/player/me/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v1/player/me/inventory-level
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: levels
+              - Items changed
+                - Properties changed
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+
+PUT /inventory/v1/player/me/inventory/{inventory_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: bucket
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/InventoryBucket
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'InventoryBucket'
+            - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+            - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+            - Default changed from 'none' to null
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: custom_data
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'object' to ''
+            - AdditionalProperties changed
+              - Schema deleted
+          - Modified property: expires
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+            - Type changed from 'string' to ''
+            - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+            - Format changed from 'date-time' to ''
+            - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+          - Modified property: item_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v1/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: claimed
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'boolean' to ''
+                  - Modified property: created_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key_campaign_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: external_key_type
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: last_modified_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+
+GET /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+POST /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+GET /inventory/v1/player/me/order
+- Modified query param: cursor
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Modified query param: limit
+  - Schema changed
+    - Min changed from 1 to null
+    - Max changed from 50 to null
+- Modified query param: sort
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: #/components/schemas/SortOrder, subschema #2
+    - Property 'AllOf' changed
+      - Schemas deleted: #/components/schemas/SortOrder
+    - Title changed from '' to 'Sort'
+- Modified query param: starting_position
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+    - Type changed from 'string' to ''
+    - Title changed from 'Time Zone Aware Datetime' to 'Starting Position'
+    - Format changed from 'date-time' to ''
+    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Inclusive starting time for the first order'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: client_order_ref_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: custom_data
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'object' to ''
+                          - AdditionalProperties changed
+                            - Schema deleted
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: inv_change
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                                - Title changed from 'Inv Change' to ''
+                              - Modified property: loot_id
+                                - Property 'AnyOf' changed
+                                  - Schemas added: subschema #1, subschema #2
+                                - Type changed from 'integer' to ''
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                                - Title changed from 'Order' to ''
+                              - Modified property: type
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                                - Type changed from '' to 'string'
+                                - Title changed from '' to 'PlayerOrderDetailType'
+                                - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                                - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                        - Modified property: dynamic_bundle_loot_ids
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'array' to ''
+                          - Items changed
+                            - Schema deleted
+                        - Modified property: expires
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                          - Type changed from 'string' to ''
+                          - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                          - Format changed from 'date-time' to ''
+                          - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                        - Modified property: external_item_sku
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: external_tran_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: legacy_inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: player_portal_event_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: purchase_price
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PurchasePrice
+                          - Title changed from 'Purchase Price' to ''
+                        - Modified property: result
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryResult'
+                          - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                          - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryType'
+                          - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                          - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                        - Modified property: use_inventory_bucket
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventoryBucket
+                        - Modified property: vendor_etag
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: vendor_version
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: match_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: source
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Source
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'Source'
+                    - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+                    - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+                    - Default changed from 'CLIENT' to null
+            - Modified property: page
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryPageMeta
+              - Type changed from '' to 'object'
+              - Title changed from 'Page' to 'PageMeta'
+              - Description changed from 'Page metadata for the Player Orders.' to 'Metadata about the page of results'
+              - Properties changed
+                - New property: cursor
+                - New property: limit
+                - New property: sort
+                - New property: starting_position
+
+POST /inventory/v1/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: dynamic_bundle_loot_ids
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'array' to ''
+                  - Items changed
+                    - Schema deleted
+                - Modified property: entry_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                - Modified property: external_item_sku
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: external_tran_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                  - Format changed from 'uuid' to ''
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: legacy_inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: loot_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: player_portal_event_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: purchase_price
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PurchasePrice
+                  - Title changed from 'Purchase Price' to ''
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'PlayerOrderEntryType'
+                  - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                  - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                - Modified property: use_inventory_bucket
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                - Modified property: vendor_etag
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: vendor_version
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: instance_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: match_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: order_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: portal_id
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/Portal, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Portal
+          - Modified property: portal_user_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v1/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+POST /inventory/v1/player/me/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+    - Description changed from 'An enumeration.' to ''
+
+GET /inventory/v1/player/me/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v1/player/me/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+GET /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: inventory
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Inventory
+              - Type changed from '' to 'object'
+              - Description changed from 'Inventory Context for a Player.' to 'Inventory for a Player organized by Item ID.'
+              - Default changed from map[items:map[]] to null
+              - Properties changed
+                - New property: cache_info
+                - New property: items
+
+POST /inventory/v1/player/{player_id}/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/CreateInventoryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'CreateInventoryType'
+                  - New enum values: [persistent transient]
+                  - Default changed from 'persistent' to null
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+PUT /inventory/v1/player/{player_id}/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v1/player/{player_id}/inventory-level
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: levels
+              - Items changed
+                - Properties changed
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+
+PUT /inventory/v1/player/{player_id}/inventory/{inventory_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: bucket
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/InventoryBucket
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'InventoryBucket'
+            - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+            - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+            - Default changed from 'none' to null
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: custom_data
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'object' to ''
+            - AdditionalProperties changed
+              - Schema deleted
+          - Modified property: expires
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+            - Type changed from 'string' to ''
+            - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+            - Format changed from 'date-time' to ''
+            - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+          - Modified property: item_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v1/player/{player_id}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: claimed
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'boolean' to ''
+                  - Modified property: created_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key_campaign_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: external_key_type
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: last_modified_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+
+GET /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+POST /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+GET /inventory/v1/player/{player_id}/order
+- Modified query param: cursor
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Modified query param: limit
+  - Schema changed
+    - Min changed from 1 to null
+    - Max changed from 50 to null
+- Modified query param: sort
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: #/components/schemas/SortOrder, subschema #2
+    - Property 'AllOf' changed
+      - Schemas deleted: #/components/schemas/SortOrder
+    - Title changed from '' to 'Sort'
+- Modified query param: starting_position
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+    - Type changed from 'string' to ''
+    - Title changed from 'Time Zone Aware Datetime' to 'Starting Position'
+    - Format changed from 'date-time' to ''
+    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Inclusive starting time for the first order'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: client_order_ref_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: custom_data
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'object' to ''
+                          - AdditionalProperties changed
+                            - Schema deleted
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: inv_change
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                                - Title changed from 'Inv Change' to ''
+                              - Modified property: loot_id
+                                - Property 'AnyOf' changed
+                                  - Schemas added: subschema #1, subschema #2
+                                - Type changed from 'integer' to ''
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                                - Title changed from 'Order' to ''
+                              - Modified property: type
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                                - Type changed from '' to 'string'
+                                - Title changed from '' to 'PlayerOrderDetailType'
+                                - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                                - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                        - Modified property: dynamic_bundle_loot_ids
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'array' to ''
+                          - Items changed
+                            - Schema deleted
+                        - Modified property: expires
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                          - Type changed from 'string' to ''
+                          - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                          - Format changed from 'date-time' to ''
+                          - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                        - Modified property: external_item_sku
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: external_tran_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: legacy_inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: player_portal_event_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: purchase_price
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PurchasePrice
+                          - Title changed from 'Purchase Price' to ''
+                        - Modified property: result
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryResult'
+                          - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                          - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryType'
+                          - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                          - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                        - Modified property: use_inventory_bucket
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventoryBucket
+                        - Modified property: vendor_etag
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: vendor_version
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: match_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: source
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Source
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'Source'
+                    - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+                    - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+                    - Default changed from 'CLIENT' to null
+            - Modified property: page
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryPageMeta
+              - Type changed from '' to 'object'
+              - Title changed from 'Page' to 'PageMeta'
+              - Description changed from 'Page metadata for the Player Orders.' to 'Metadata about the page of results'
+              - Properties changed
+                - New property: cursor
+                - New property: limit
+                - New property: sort
+                - New property: starting_position
+
+POST /inventory/v1/player/{player_id}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: dynamic_bundle_loot_ids
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'array' to ''
+                  - Items changed
+                    - Schema deleted
+                - Modified property: entry_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                - Modified property: external_item_sku
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: external_tran_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                  - Format changed from 'uuid' to ''
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: legacy_inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: loot_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: player_portal_event_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: purchase_price
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PurchasePrice
+                  - Title changed from 'Purchase Price' to ''
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'PlayerOrderEntryType'
+                  - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                  - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                - Modified property: use_inventory_bucket
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                - Modified property: vendor_etag
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: vendor_version
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: instance_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: match_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: order_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: portal_id
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/Portal, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Portal
+          - Modified property: portal_user_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v1/player/{player_id}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+POST /inventory/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+    - Description changed from 'An enumeration.' to ''
+
+GET /inventory/v1/player/{player_id}/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v1/player/{player_id}/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/me/entitlement
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_type
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/ClientType
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'ClientType'
+            - Description changed from 'client type this purchase was made on' to 'Client type for Entitlements'
+            - New enum values: [UNKNOWN WIN MAC XBOXONE PS4 SWITCH ANDROID IOS PS5 LINUX XSX]
+          - Modified property: entitlements
+            - Items changed
+              - Properties changed
+                - Modified property: error_code
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'EntitlementErrorCode'
+                  - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                  - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                  - Default changed from 'none' to null
+                - Modified property: status
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/EntitlementStatus
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'EntitlementStatus'
+                  - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                  - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                  - Default changed from 'UNKNOWN' to null
+          - Modified property: platform_region
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/PlatformRegion
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'PlatformRegion'
+            - Description changed from 'region this purchase was made in' to 'Region for Entitlements'
+            - New enum values: [Unknown NA EU]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+            - Modified property: client_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/ClientType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'ClientType'
+              - Description changed from 'client type this purchase was made on' to 'Client type for Entitlements'
+              - New enum values: [UNKNOWN WIN MAC XBOXONE PS4 SWITCH ANDROID IOS PS5 LINUX XSX]
+            - Modified property: error_code
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Platform'
+              - Description changed from 'Platform these transactions were processed on' to ''
+              - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+            - Modified property: platform_region
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PlatformRegion
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'PlatformRegion'
+              - Description changed from 'region this purchase was made in' to 'Region for Entitlements'
+              - New enum values: [Unknown NA EU]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+
+GET /inventory/v2/player/me/entitlement/request/{request_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+            - Modified property: client_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/ClientType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'ClientType'
+              - Description changed from 'client type this purchase was made on' to 'Client type for Entitlements'
+              - New enum values: [UNKNOWN WIN MAC XBOXONE PS4 SWITCH ANDROID IOS PS5 LINUX XSX]
+            - Modified property: error_code
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Platform'
+              - Description changed from 'Platform these transactions were processed on' to ''
+              - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+            - Modified property: platform_region
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PlatformRegion
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'PlatformRegion'
+              - Description changed from 'region this purchase was made in' to 'Region for Entitlements'
+              - New enum values: [Unknown NA EU]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+
+GET /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: inventory
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Inventory
+              - Type changed from '' to 'object'
+              - Description changed from 'Inventory Context for a Player.' to 'Inventory for a Player organized by Item ID.'
+              - Default changed from map[items:map[]] to null
+              - Properties changed
+                - New property: cache_info
+                - New property: items
+
+POST /inventory/v2/player/me/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/CreateInventoryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'CreateInventoryType'
+                  - New enum values: [persistent transient]
+                  - Default changed from 'persistent' to null
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+PUT /inventory/v2/player/me/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v2/player/me/inventory-level
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: levels
+              - Items changed
+                - Properties changed
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+
+PUT /inventory/v2/player/me/inventory/{inventory_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: bucket
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/InventoryBucket
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'InventoryBucket'
+            - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+            - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+            - Default changed from 'none' to null
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: custom_data
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'object' to ''
+            - AdditionalProperties changed
+              - Schema deleted
+          - Modified property: expires
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+            - Type changed from 'string' to ''
+            - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+            - Format changed from 'date-time' to ''
+            - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+          - Modified property: item_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v2/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: claimed
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'boolean' to ''
+                  - Modified property: created_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key_campaign_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: external_key_type
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: last_modified_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+
+GET /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+POST /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+GET /inventory/v2/player/me/order
+- Modified query param: cursor
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Modified query param: limit
+  - Schema changed
+    - Min changed from 1 to null
+    - Max changed from 50 to null
+- Modified query param: sort
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: #/components/schemas/SortOrder, subschema #2
+    - Property 'AllOf' changed
+      - Schemas deleted: #/components/schemas/SortOrder
+    - Title changed from '' to 'Sort'
+- Modified query param: starting_position
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+    - Type changed from 'string' to ''
+    - Title changed from 'Time Zone Aware Datetime' to 'Starting Position'
+    - Format changed from 'date-time' to ''
+    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Inclusive starting time for the first order'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: client_order_ref_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: custom_data
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'object' to ''
+                          - AdditionalProperties changed
+                            - Schema deleted
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: inv_change
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                                - Title changed from 'Inv Change' to ''
+                              - Modified property: loot_id
+                                - Property 'AnyOf' changed
+                                  - Schemas added: subschema #1, subschema #2
+                                - Type changed from 'integer' to ''
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                                - Title changed from 'Order' to ''
+                              - Modified property: type
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                                - Type changed from '' to 'string'
+                                - Title changed from '' to 'PlayerOrderDetailType'
+                                - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                                - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                        - Modified property: dynamic_bundle_loot_ids
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'array' to ''
+                          - Items changed
+                            - Schema deleted
+                        - Modified property: expires
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                          - Type changed from 'string' to ''
+                          - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                          - Format changed from 'date-time' to ''
+                          - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                        - Modified property: external_item_sku
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: external_tran_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: legacy_inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: player_portal_event_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: purchase_price
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PurchasePrice
+                          - Title changed from 'Purchase Price' to ''
+                        - Modified property: result
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryResult'
+                          - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                          - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryType'
+                          - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                          - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                        - Modified property: use_inventory_bucket
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventoryBucket
+                        - Modified property: vendor_etag
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: vendor_version
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: match_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: source
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Source
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'Source'
+                    - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+                    - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+                    - Default changed from 'CLIENT' to null
+            - Modified property: page
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryPageMeta
+              - Type changed from '' to 'object'
+              - Title changed from 'Page' to 'PageMeta'
+              - Description changed from 'Page metadata for the Player Orders.' to 'Metadata about the page of results'
+              - Properties changed
+                - New property: cursor
+                - New property: limit
+                - New property: sort
+                - New property: starting_position
+
+POST /inventory/v2/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: dynamic_bundle_loot_ids
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'array' to ''
+                  - Items changed
+                    - Schema deleted
+                - Modified property: entry_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                - Modified property: external_item_sku
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: external_tran_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                  - Format changed from 'uuid' to ''
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: legacy_inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: loot_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: player_portal_event_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: purchase_price
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PurchasePrice
+                  - Title changed from 'Purchase Price' to ''
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'PlayerOrderEntryType'
+                  - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                  - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                - Modified property: use_inventory_bucket
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                - Modified property: vendor_etag
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: vendor_version
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: instance_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: match_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: order_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: portal_id
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/Portal, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Portal
+          - Modified property: portal_user_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v2/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+POST /inventory/v2/player/me/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+    - Description changed from 'An enumeration.' to ''
+
+GET /inventory/v2/player/me/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/me/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/{player_uuid}/entitlement
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_type
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/ClientType
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'ClientType'
+            - Description changed from 'client type this purchase was made on' to 'Client type for Entitlements'
+            - New enum values: [UNKNOWN WIN MAC XBOXONE PS4 SWITCH ANDROID IOS PS5 LINUX XSX]
+          - Modified property: entitlements
+            - Items changed
+              - Properties changed
+                - Modified property: error_code
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'EntitlementErrorCode'
+                  - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                  - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                  - Default changed from 'none' to null
+                - Modified property: status
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/EntitlementStatus
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'EntitlementStatus'
+                  - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                  - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                  - Default changed from 'UNKNOWN' to null
+          - Modified property: platform_region
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/PlatformRegion
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'PlatformRegion'
+            - Description changed from 'region this purchase was made in' to 'Region for Entitlements'
+            - New enum values: [Unknown NA EU]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+            - Modified property: client_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/ClientType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'ClientType'
+              - Description changed from 'client type this purchase was made on' to 'Client type for Entitlements'
+              - New enum values: [UNKNOWN WIN MAC XBOXONE PS4 SWITCH ANDROID IOS PS5 LINUX XSX]
+            - Modified property: error_code
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Platform'
+              - Description changed from 'Platform these transactions were processed on' to ''
+              - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+            - Modified property: platform_region
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PlatformRegion
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'PlatformRegion'
+              - Description changed from 'region this purchase was made in' to 'Region for Entitlements'
+              - New enum values: [Unknown NA EU]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+
+GET /inventory/v2/player/{player_uuid}/entitlement/request/{request_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+            - Modified property: client_type
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/ClientType
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'ClientType'
+              - Description changed from 'client type this purchase was made on' to 'Client type for Entitlements'
+              - New enum values: [UNKNOWN WIN MAC XBOXONE PS4 SWITCH ANDROID IOS PS5 LINUX XSX]
+            - Modified property: error_code
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: platform_id
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Platform'
+              - Description changed from 'Platform these transactions were processed on' to ''
+              - New enum values: [Anon Basic XboxLive PSN NintendoNAID NintendoSwitch NintendoPPID Google GooglePlay Apple Epic Steam Amazon Twitch RallyHere LegacyName]
+            - Modified property: platform_region
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/PlatformRegion
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'PlatformRegion'
+              - Description changed from 'region this purchase was made in' to 'Region for Entitlements'
+              - New enum values: [Unknown NA EU]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementErrorCode
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementErrorCode'
+                    - Description changed from 'Error code for this entitlement' to 'Error codes for Entitlements'
+                    - New enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from 'none' to null
+                  - Modified property: status
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/EntitlementStatus
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'EntitlementStatus'
+                    - Description changed from 'status of this entitlement' to 'Status of an Entitlement'
+                    - New enum values: [UNKNOWN SUBMITTED FULFILLED FAILED PREVIOUSLY_APPLIED]
+                    - Default changed from 'UNKNOWN' to null
+
+GET /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: inventory
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Inventory
+              - Type changed from '' to 'object'
+              - Description changed from 'Inventory Context for a Player.' to 'Inventory for a Player organized by Item ID.'
+              - Default changed from map[items:map[]] to null
+              - Properties changed
+                - New property: cache_info
+                - New property: items
+
+POST /inventory/v2/player/{player_uuid}/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/CreateInventoryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'CreateInventoryType'
+                  - New enum values: [persistent transient]
+                  - Default changed from 'persistent' to null
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+PUT /inventory/v2/player/{player_uuid}/inventory
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: inventory
+            - Items changed
+              - Properties changed
+                - Modified property: bucket
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'InventoryBucket'
+                  - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+                  - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+                  - Default changed from 'none' to null
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v2/player/{player_uuid}/inventory-level
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: levels
+              - Items changed
+                - Properties changed
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+
+PUT /inventory/v2/player/{player_uuid}/inventory/{inventory_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: bucket
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/InventoryBucket
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'InventoryBucket'
+            - Description changed from 'Inventory Bucket for this Inventory Operation.' to 'Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.'
+            - New enum values: [free sweat none anon amazon steam psn xbox_live google twitch nintendo_switch apple nintendo epic google_play nintendo_ppid]
+            - Default changed from 'none' to null
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: custom_data
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'object' to ''
+            - AdditionalProperties changed
+              - Schema deleted
+          - Modified property: expires
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+            - Type changed from 'string' to ''
+            - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+            - Format changed from 'date-time' to ''
+            - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration for this Inventory Operation.'
+          - Modified property: item_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'integer' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'Source of this Inventory Operation.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v2/player/{player_uuid}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: claimed
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'boolean' to ''
+                  - Modified property: created_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_key_campaign_uuid
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: external_key_type
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: last_modified_on
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+
+GET /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+POST /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claimed
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'boolean' to ''
+            - Modified property: created_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: external_key_campaign_uuid
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: external_key_type
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: last_modified_on
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+
+GET /inventory/v2/player/{player_uuid}/order
+- Modified query param: cursor
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1, subschema #2
+    - Type changed from 'string' to ''
+- Modified query param: limit
+  - Schema changed
+    - Min changed from 1 to null
+    - Max changed from 50 to null
+- Modified query param: sort
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: #/components/schemas/SortOrder, subschema #2
+    - Property 'AllOf' changed
+      - Schemas deleted: #/components/schemas/SortOrder
+    - Title changed from '' to 'Sort'
+- Modified query param: starting_position
+  - Schema changed
+    - Property 'AnyOf' changed
+      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+    - Type changed from 'string' to ''
+    - Title changed from 'Time Zone Aware Datetime' to 'Starting Position'
+    - Format changed from 'date-time' to ''
+    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Inclusive starting time for the first order'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: client_order_ref_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: custom_data
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'object' to ''
+                          - AdditionalProperties changed
+                            - Schema deleted
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: inv_change
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                                - Title changed from 'Inv Change' to ''
+                              - Modified property: loot_id
+                                - Property 'AnyOf' changed
+                                  - Schemas added: subschema #1, subschema #2
+                                - Type changed from 'integer' to ''
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                                - Title changed from 'Order' to ''
+                              - Modified property: type
+                                - Property 'AllOf' changed
+                                  - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                                - Type changed from '' to 'string'
+                                - Title changed from '' to 'PlayerOrderDetailType'
+                                - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                                - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                        - Modified property: dynamic_bundle_loot_ids
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'array' to ''
+                          - Items changed
+                            - Schema deleted
+                        - Modified property: expires
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                          - Type changed from 'string' to ''
+                          - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                          - Format changed from 'date-time' to ''
+                          - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                        - Modified property: external_item_sku
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: external_tran_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                          - Format changed from 'uuid' to ''
+                        - Modified property: item_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: legacy_inventory_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: player_portal_event_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: purchase_price
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PurchasePrice
+                          - Title changed from 'Purchase Price' to ''
+                        - Modified property: result
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryResult'
+                          - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                          - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderEntryType'
+                          - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                          - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                        - Modified property: use_inventory_bucket
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/InventoryBucket
+                        - Modified property: vendor_etag
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'string' to ''
+                        - Modified property: vendor_version
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                  - Modified property: instance_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: match_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: portal_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/Portal, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Portal
+                  - Modified property: portal_user_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: source
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/Source
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'Source'
+                    - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+                    - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+                    - Default changed from 'CLIENT' to null
+            - Modified property: page
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/InventoryPageMeta
+              - Type changed from '' to 'object'
+              - Title changed from 'Page' to 'PageMeta'
+              - Description changed from 'Page metadata for the Player Orders.' to 'Metadata about the page of results'
+              - Properties changed
+                - New property: cursor
+                - New property: limit
+                - New property: sort
+                - New property: starting_position
+
+POST /inventory/v2/player/{player_uuid}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: client_order_ref_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+            - Format changed from 'uuid' to ''
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Modified property: custom_data
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'object' to ''
+                  - AdditionalProperties changed
+                    - Schema deleted
+                - Modified property: dynamic_bundle_loot_ids
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'array' to ''
+                  - Items changed
+                    - Schema deleted
+                - Modified property: entry_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: expires
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                  - Type changed from 'string' to ''
+                  - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                  - Format changed from 'date-time' to ''
+                  - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                - Modified property: external_item_sku
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: external_tran_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                  - Format changed from 'uuid' to ''
+                - Modified property: item_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: legacy_inventory_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: loot_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: player_portal_event_id
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+                - Modified property: purchase_price
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PurchasePrice
+                  - Title changed from 'Purchase Price' to ''
+                - Modified property: type
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                  - Type changed from '' to 'string'
+                  - Title changed from '' to 'PlayerOrderEntryType'
+                  - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                  - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                - Modified property: use_inventory_bucket
+                  - Property 'AnyOf' changed
+                    - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                  - Property 'AllOf' changed
+                    - Schemas deleted: #/components/schemas/InventoryBucket
+                - Modified property: vendor_etag
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'string' to ''
+                - Modified property: vendor_version
+                  - Property 'AnyOf' changed
+                    - Schemas added: subschema #1, subschema #2
+                  - Type changed from 'integer' to ''
+          - Modified property: instance_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: match_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: order_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: portal_id
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/Portal, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Portal
+          - Modified property: portal_user_id
+            - Property 'AnyOf' changed
+              - Schemas added: subschema #1, subschema #2
+            - Type changed from 'string' to ''
+          - Modified property: source
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Source
+            - Type changed from '' to 'string'
+            - Title changed from '' to 'Source'
+            - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+            - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+            - Default changed from 'CLIENT' to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: entry_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+GET /inventory/v2/player/{player_uuid}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_order_ref_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+              - Format changed from 'uuid' to ''
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: custom_data
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'object' to ''
+                    - AdditionalProperties changed
+                      - Schema deleted
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: inv_change
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerInventoryChange, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerInventoryChange
+                          - Title changed from 'Inv Change' to ''
+                        - Modified property: loot_id
+                          - Property 'AnyOf' changed
+                            - Schemas added: subschema #1, subschema #2
+                          - Type changed from 'integer' to ''
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Schemas added: #/components/schemas/PlayerOrderCreate-Output, subschema #2
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderCreate
+                          - Title changed from 'Order' to ''
+                        - Modified property: type
+                          - Property 'AllOf' changed
+                            - Schemas deleted: #/components/schemas/PlayerOrderDetailType
+                          - Type changed from '' to 'string'
+                          - Title changed from '' to 'PlayerOrderDetailType'
+                          - Description changed from 'The type of detail.' to 'Player Order Detail Type.'
+                          - New enum values: [unknown inventory_change dynamic_bundle_lti claim_promo_code return_promo_code new_order]
+                  - Modified property: dynamic_bundle_loot_ids
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'array' to ''
+                    - Items changed
+                      - Schema deleted
+                  - Modified property: expires
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1: Time Zone Aware Datetime, subschema #2
+                    - Type changed from 'string' to ''
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expires'
+                    - Format changed from 'date-time' to ''
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]'
+                  - Modified property: external_item_sku
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: external_tran_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                    - Format changed from 'uuid' to ''
+                  - Modified property: item_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: legacy_inventory_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: loot_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: player_portal_event_id
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+                  - Modified property: purchase_price
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/PurchasePrice, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PurchasePrice
+                    - Title changed from 'Purchase Price' to ''
+                  - Modified property: result
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryResult
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryResult'
+                    - Description changed from 'Entry result type.' to 'Result of a Player Order Entry.'
+                    - New enum values: [success internal_error invalid_entry_type not_allowed_on_current_portal loot_not_found loot_not_active price_item_not_found price_not_allowed dynamic_bundle_invalid too_many_requests price_does_not_match vendor_version_does_not_match dynamic_bundle_ltis_do_not_match cannot_afford_price cannot_afford_coupon failed_to_spend_price failed_to_spend_coupon loot_not_for_sale_with_price_item coupons_disabled coupon_item_not_found coupon_item_not_active coupon_item_not_applicable_for_quantity coupon_item_not_applicable_for_price_item coupon_item_not_applicable_for_loot quantity_not_allowed promotion_expired promotion_not_found promotion_no_uses_left promotion_not_available promotion_claimed_already dynamic_bundles_not_available transient_single_loot_already_applied loot_not_fillable_from_client permission_denied failed_to_find_any_sub_loot failed_to_fill_any_sub_loot cannot_meet_loot_blocker cannot_meet_loot_required failed_to_consume_loot_required failed_to_submit_new_order failed_to_modify_inventory inventory_not_found item_not_found item_not_active too_many_inv_custom_attributes always_owned_inventory_cannot_be_modified available_until_is_in_past rollback not_started]
+                  - Modified property: type
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/PlayerOrderEntryType
+                    - Type changed from '' to 'string'
+                    - Title changed from '' to 'PlayerOrderEntryType'
+                    - Description changed from 'The type of entry.' to 'Player Order Entry Type.'
+                    - New enum values: [fill_loot purchase_loot purchase_dynamic_bundle promotion_code fill_loot_single_transient fill_entitled_loot create_new_persistent_inventory update_existing_persistent_inventory create_new_transient_inventory update_existing_transient_inventory update_inventory]
+                  - Modified property: use_inventory_bucket
+                    - Property 'AnyOf' changed
+                      - Schemas added: #/components/schemas/InventoryBucket, subschema #2
+                    - Property 'AllOf' changed
+                      - Schemas deleted: #/components/schemas/InventoryBucket
+                  - Modified property: vendor_etag
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'string' to ''
+                  - Modified property: vendor_version
+                    - Property 'AnyOf' changed
+                      - Schemas added: subschema #1, subschema #2
+                    - Type changed from 'integer' to ''
+            - Modified property: instance_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: match_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: portal_id
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/Portal, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Portal
+            - Modified property: portal_user_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: source
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Source
+              - Type changed from '' to 'string'
+              - Title changed from '' to 'Source'
+              - Description changed from 'The source of the Player Order.' to 'The source of Player Orders.'
+              - New enum values: [UNKNOWN WEB_ORDER_REPAIR IN_GAME WEB_SITE NO_SALE SUPPORT ACTIVITY REFUND SYSTEM REWARDS ESPORTS TREASURE CONSOLE ODYSSEY STEAM RETURN JSON_GATE SEND_GIFT RECEIVE_GIFT STEAM_DLC TWITCH_MILESTONE TWITCH_PRIME PSN XBOX PTS_GRANT INSTANCE ACCOUNT_TRANSFER PROMOCODE TRIUMPH_SYSTEM LOGIN_GRANT EOM_UNCAPPED EOM_CAPPED FACEBOOK_DROP DATABASE_SCRIPT ACCOUNT_LINKING CLAN CONVERSION APPLE GOOGLE GOOGLE_PLAY PORTAL_DURABLE PARTNER_ACHIEVEMENT MIXER_DROP NINTENDO STREAM_VIEWING_PROGRESS DISCORD FIRST_LOGIN_GRANT TWITCH_FUEL DISCORD_DLC NETEASE EPIC_GAMES FORTE FACEBOOK HIREZ DAILY_REWARD ADD_ACCOUNT_EMAIL_REWARD CLIENT_CLAIM CLIENT ENTITLEMENTS AMAZON SIMULMEDIA LUNA]
+              - Default changed from 'CLIENT' to null
+
+POST /inventory/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements
+- Modified path param: portal_id
+  - Schema changed
+    - Description changed from 'An enumeration.' to ''
+
+GET /inventory/v2/player/{player_uuid}/session
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+POST /inventory/v2/player/{player_uuid}/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: session_platform
+            - Property 'AnyOf' changed
+              - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+            - Property 'AllOf' changed
+              - Schemas deleted: #/components/schemas/Platform
+- Responses changed
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: order_id
+              - Property 'AnyOf' changed
+                - Schemas added: subschema #1, subschema #2
+              - Type changed from 'string' to ''
+            - Modified property: session_platform
+              - Property 'AnyOf' changed
+                - Schemas added: #/components/schemas/InventoryPlatform, subschema #2
+              - Property 'AllOf' changed
+                - Schemas deleted: #/components/schemas/Platform
+
+GET /presence/v1/admin/ccu/platforms
+- Deleted query param: use_cache
+- Responses changed
+  - Deleted response: 422
+
+GET /presence/v1/admin/ccu/requesting/allplatforms/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/requesting/allplatforms/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/requesting/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/requesting/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/requesting/platform/{platform}/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/requesting/platform/{platform}/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/total/allplatforms/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/total/allplatforms/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/total/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/total/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/total/platform/{platform}/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/total/platform/{platform}/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/updating/allplatforms/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/updating/allplatforms/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/updating/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/updating/individual
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/updating/platform/{platform}/combined
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/ccu/updating/platform/{platform}/individual
+- Deleted query param: use_cache
+
+PATCH /presence/v1/admin/player/id/{player_id}/last_seen
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/player/id/{player_id}/presence
+- Deleted query param: use_cache
+
+PATCH /presence/v1/admin/player/uuid/{player_uuid}/last_seen
+- Deleted query param: use_cache
+
+GET /presence/v1/admin/player/uuid/{player_uuid}/presence
+- Deleted query param: use_cache
+
+GET /presence/v1/player/id/{player_id}/presence
+- Deleted query param: use_cache
+
+GET /presence/v1/player/me/presence
+- Deleted query param: use_cache
+- Responses changed
+  - Deleted response: 422
+
+PATCH /presence/v1/player/me/presence
+- Deleted query param: use_cache
+
+GET /presence/v1/player/uuid/{player_uuid}/presence
+- Deleted query param: use_cache
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`'
+
+DELETE /users/v1/person/{person_id}/restrictions
+- Modified query param: issuer_type
+  - Schema changed
+    - Property 'AllOf' changed
+      - Modified schema: subschema #1: RestrictionIssuerType
+        - New enum values: [shop]
+
+POST /users/v1/person/{person_id}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: reason_detail
+          - Modified property: issuer_type
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: RestrictionIssuerType
+                - New enum values: [shop]
+
+DELETE /users/v2/player/{player_uuid}/restrictions
+- Modified query param: issuer_type
+  - Schema changed
+    - Property 'AllOf' changed
+      - Modified schema: subschema #1: RestrictionIssuerType
+        - New enum values: [shop]
+
+POST /users/v2/player/{player_uuid}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: reason_detail
+          - Modified property: issuer_type
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: RestrictionIssuerType
+                - New enum values: [shop]
 ## Changes for Thu Jan 23 03:13:15 PM EST 2025
 ### New Endpoints: None
 -----------------------
