@@ -17059,7 +17059,17 @@
               }
             }
           },
-          "409": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -17073,16 +17083,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -17167,7 +17167,17 @@
               }
             }
           },
-          "409": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -17181,16 +17191,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -17378,7 +17378,17 @@
               }
             }
           },
-          "409": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -17392,16 +17402,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -17465,7 +17465,17 @@
               }
             }
           },
-          "409": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -17479,16 +17489,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -17598,7 +17598,17 @@
               }
             }
           },
-          "409": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -17612,16 +17622,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -17695,7 +17695,17 @@
               }
             }
           },
-          "409": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
             "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
             "headers": {
               "Retry-After": {
@@ -17709,16 +17719,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -35996,6 +35996,11 @@
             "title": "Session Id",
             "description": "ID of the session this event occurred in"
           },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "Reason for this event to occur"
+          },
           "custom_data": {
             "additionalProperties": {
               "type": "string",
@@ -36524,6 +36529,11 @@
             "minLength": 1,
             "title": "Session Id",
             "description": "ID of the session this event occurred in"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "Reason for this event to occur"
           },
           "custom_data": {
             "additionalProperties": {
@@ -37973,8 +37983,7 @@
         },
         "type": "object",
         "required": [
-          "match_making_profile_id",
-          "instance_request_template_id"
+          "match_making_profile_id"
         ],
         "title": "MatchMakingProfileV2",
         "description": "A profile that describes what pools of players a session will be a part of when matchmaking"
@@ -39668,9 +39677,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "team_id"
-        ],
         "title": "SessionPlayerUpdateRequest",
         "description": "A request body to update information about a player in a session"
       },

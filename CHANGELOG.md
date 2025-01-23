@@ -1,3 +1,188 @@
+## Changes for Thu Jan 23 03:13:15 PM EST 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 16
+--------------------------
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - New property: reason
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: reason
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - New response: 503
+  - Deleted response: 409
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - New response: 503
+  - Deleted response: 409
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - New response: 503
+  - Deleted response: 409
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - New response: 503
+  - Deleted response: 409
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+
+DELETE /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Responses changed
+  - New response: 503
+  - Deleted response: 409
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}
+- Responses changed
+  - New response: 503
+  - Deleted response: 409
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: matchmaking_results
+              - Property 'AllOf' changed
+                - Modified schema: subschema #1: MatchmakingResults
+                  - Properties changed
+                    - Modified property: profile
+                      - Property 'AllOf' changed
+                        - Modified schema: subschema #1: MatchMakingProfileV2
+                          - Required changed
+                            - Deleted required property: instance_request_template_id
+
+POST /session/v1/session/{session_id}/player/id/{player_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Required changed
+          - Deleted required property: team_id
+
+POST /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Required changed
+          - Deleted required property: team_id
+
+POST /session/v1/session/{session_id}/player/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Required changed
+          - Deleted required property: team_id
+
+GET /session/v2/match-making-profile/{match_making_profile_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Required changed
+            - Deleted required property: instance_request_template_id
+
+GET /session/v2/match-making-templates/{template_group_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: template_options
+              - Items changed
+                - Properties changed
+                  - Modified property: profiles
+                    - Items changed
+                      - Required changed
+                        - Deleted required property: instance_request_template_id
 ## Changes for Thu Dec 12 21:26:23 UTC 2024
 ### New Endpoints: None
 -----------------------
