@@ -1,3 +1,43 @@
+## Changes for Sat Jan 25 00:01:51 UTC 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 2
+-------------------------
+GET /inventory/v1/entitlement-event
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: status
+                    - New enum values: [ban_failed]
+
+POST /inventory/v1/entitlement-event
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: status
+            - Property 'AnyOf' changed
+              - Modified schema: subschema #1: EntitlementEventStatus
+                - New enum values: [ban_failed]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: status
+              - New enum values: [ban_failed]
 ## Changes for Thu Jan 23 22:14:51 UTC 2025
 ### New Endpoints: None
 -----------------------
