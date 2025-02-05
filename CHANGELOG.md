@@ -1,3 +1,30 @@
+## Changes for Wed Feb  5 14:52:17 EST 2025
+### New Endpoints: 10
+---------------------
+GET /guide/v1/guide  
+POST /guide/v1/guide  
+DELETE /guide/v1/guide/{guide_id}  
+GET /guide/v1/guide/{guide_id}  
+PUT /guide/v1/guide/{guide_id}  
+GET /guide/v1/{entity_type}/{entity_id}/favorite-guide  
+POST /guide/v1/{entity_type}/{entity_id}/favorite-guide  
+DELETE /guide/v1/{entity_type}/{entity_id}/favorite-guide/{guide_id}  
+POST /guide/v1/{entity_type}/{entity_id}/guide-engagement  
+POST /guide/v1/{entity_type}/{entity_id}/rate-guide  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:self`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`'
 ## Changes for Sat Jan 25 00:01:51 UTC 2025
 ### New Endpoints: None
 -----------------------
