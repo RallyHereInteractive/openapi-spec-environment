@@ -1403,7 +1403,7 @@
           "Match"
         ],
         "summary": "Patch Match Segment",
-        "description": "Update match segment by match_id and segment_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
+        "description": "Update match segment by match_id and segment_id only with provided fields.\nIf the segment doesn't exist, it will be created.\nThe top-level match must exist.\nThe top-level match must be in a pending state or authenticating user has overriding permissions.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match_segment",
         "security": [
           {

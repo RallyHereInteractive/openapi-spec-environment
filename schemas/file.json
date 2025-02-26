@@ -198,12 +198,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/Body_create_entity_directory_file"
-                  }
-                ],
-                "title": "Body"
+                "$ref": "#/components/schemas/Body_create_entity_directory_file"
               }
             },
             "application/octet-stream": {
@@ -498,7 +493,15 @@
           "match",
           "unknown"
         ],
-        "title": "EntityType"
+        "title": "EntityType",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "match",
+          "unknown"
+        ]
       },
       "FileListResponse": {
         "properties": {
@@ -553,7 +556,15 @@
           "file",
           "developer-file"
         ],
-        "title": "FileType"
+        "title": "FileType",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "file",
+          "developer_file"
+        ]
       },
       "HTTPValidationError": {
         "properties": {

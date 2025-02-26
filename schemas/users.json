@@ -1136,7 +1136,7 @@
           "Users"
         ],
         "summary": "Lookup Player By Portal",
-        "description": "Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.",
+        "description": "Lookup players by various parameters. \n \nResults will include the active player, if possible, otherwise will return the associated player directly.",
         "operationId": "lookup_player_by_portal",
         "parameters": [
           {
@@ -1267,8 +1267,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 1000,
-              "minimum": 1,
+              "maximum": 1000.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "description": "number of players to return",
               "default": 100

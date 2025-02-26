@@ -82,7 +82,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 1,
+              "minimum": 1.0,
               "title": "Rank Id"
             },
             "name": "rank_id",
@@ -140,7 +140,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 1,
+              "minimum": 1.0,
               "title": "Rank Id"
             },
             "name": "rank_id",
@@ -220,7 +220,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 1,
+              "minimum": 1.0,
               "title": "Rank Id"
             },
             "name": "rank_id",
@@ -288,7 +288,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 1,
+              "minimum": 1.0,
               "title": "Rank Id"
             },
             "name": "rank_id",
@@ -1042,7 +1042,7 @@
             "exclusiveMinimum": true,
             "title": "Min Sigma",
             "description": "The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum",
-            "minimum": 0
+            "minimum": 0.0
           },
           "beta": {
             "type": "number",
@@ -1059,12 +1059,12 @@
             "exclusiveMinimum": true,
             "title": "Default Sigma",
             "description": "The default sigma for this rank id. Will be used when players do not have any rank history",
-            "minimum": 0
+            "minimum": 0.0
           },
           "draw_probability": {
             "type": "number",
-            "maximum": 1,
-            "minimum": 0,
+            "maximum": 1.0,
+            "minimum": 0.0,
             "title": "Draw Probability",
             "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
           },
@@ -1089,7 +1089,7 @@
         "properties": {
           "match_length_seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Match Length Seconds",
             "description": "How many seconds the match lasted"
           },
@@ -1157,7 +1157,7 @@
           },
           "seconds_in_match": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Seconds In Match",
             "description": "How many seconds this player was in the match"
           }
@@ -1288,7 +1288,7 @@
           },
           "rank_id": {
             "type": "integer",
-            "minimum": 1,
+            "minimum": 1.0,
             "title": "Rank Id",
             "description": "ID for this rank"
           }
@@ -1452,7 +1452,7 @@
             "exclusiveMinimum": true,
             "title": "Min Sigma",
             "description": "The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum",
-            "minimum": 0
+            "minimum": 0.0
           },
           "beta": {
             "type": "number",
@@ -1469,12 +1469,12 @@
             "exclusiveMinimum": true,
             "title": "Default Sigma",
             "description": "The default sigma for this rank id. Will be used when players do not have any rank history",
-            "minimum": 0
+            "minimum": 0.0
           },
           "draw_probability": {
             "type": "number",
-            "maximum": 1,
-            "minimum": 0,
+            "maximum": 1.0,
+            "minimum": 0.0,
             "title": "Draw Probability",
             "description": "The percent probability of a draw occuring in the game. Must be in [0, 1)"
           },
@@ -1514,7 +1514,7 @@
             "exclusiveMinimum": true,
             "title": "Sigma",
             "description": "A measure of how confident we are in the perceived skill (high sigma means low confidence)",
-            "minimum": 0
+            "minimum": 0.0
           },
           "custom_data": {
             "additionalProperties": {
@@ -1547,13 +1547,13 @@
           },
           "rank_id": {
             "type": "integer",
-            "minimum": 1,
+            "minimum": 1.0,
             "title": "Rank Id",
             "description": "ID for the rank type used in this match"
           },
           "match_length_seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Match Length Seconds",
             "description": "How many seconds the match lasted"
           },
@@ -1592,7 +1592,7 @@
           },
           "match_length_seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Match Length Seconds",
             "description": "How many seconds the match lasted"
           },
@@ -1626,7 +1626,7 @@
           },
           "team_rank": {
             "type": "integer",
-            "minimum": 1,
+            "minimum": 1.0,
             "title": "Team Rank",
             "description": "What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws"
           }

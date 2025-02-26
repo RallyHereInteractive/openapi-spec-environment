@@ -34,7 +34,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Page",
               "default": 0
             },
@@ -45,8 +45,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 10000,
-              "minimum": 1,
+              "maximum": 10000.0,
+              "minimum": 1.0,
               "title": "Limit",
               "default": 50
             },
@@ -778,7 +778,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Page",
               "default": 0
             },
@@ -789,8 +789,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 10000,
-              "minimum": 1,
+              "maximum": 10000.0,
+              "minimum": 1.0,
               "title": "Limit",
               "default": 50
             },
@@ -1134,6 +1134,357 @@
           }
         ]
       }
+    },
+    "/v2/player/{player_uuid}/referrer": {
+      "get": {
+        "tags": [
+          "Referrals"
+        ],
+        "summary": "Get Player Referrer",
+        "description": "Get the player_uuid of the player who referred this player.\n\nRequired Permissions:\n\n- For any player (including themselves) : `refer:read:any`\n\n- For the player themselves : `refer:read:self`",
+        "operationId": "get_player_referrer",
+        "parameters": [
+          {
+            "description": "The referred player_uuid to get the referrer for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The referred player_uuid to get the referrer for"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReferral"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Referrals"
+        ],
+        "summary": "Set Player Referrer",
+        "description": "Set a player's referrer using either a player_uuid or referral code.\n\nRequired Permissions:\n\n- For any player (including themselves) : `refer:set:any`\n\n- For the player themselves : `refer:set:self`",
+        "operationId": "set_player_referrer",
+        "parameters": [
+          {
+            "description": "The player_uuid to set the referrer for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player_uuid to set the referrer for"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PlayerReferralSetPayload"
+                  }
+                ],
+                "title": "Referrer",
+                "description": "The referrer to set for the player"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReferral"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/referrals": {
+      "get": {
+        "tags": [
+          "Referrals"
+        ],
+        "summary": "Get Player Referrals",
+        "description": "Get all referrals where this player is the referrer.\n\nRequired Permissions:\n\n- For any player (including themselves) : `refer:read:any`\n\n- For the player themselves : `refer:read:self`",
+        "operationId": "get_player_referrals",
+        "parameters": [
+          {
+            "description": "The player_uuid to get the referrals for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player_uuid to get the referrals for"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerReferral"
+                  },
+                  "type": "array",
+                  "title": "Response Get Player Referrals V2 Player  Player Uuid  Referrals Get"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v2/player/{player_uuid}/referral-code": {
+      "get": {
+        "tags": [
+          "Referrals"
+        ],
+        "summary": "Get Referral Code",
+        "description": "Get a player's referral code if they have one. Otherwise, return an 404 error.\n\nRequired Permissions:\n\n- For any player (including themselves) : `refer:read:any`\n\n- For the player themselves : `refer:read:self`",
+        "operationId": "get_referral_code",
+        "parameters": [
+          {
+            "description": "The player_uuid to get the referral code for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player_uuid to get the referral code for"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReferralCode"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Referrals"
+        ],
+        "summary": "Generate Referral Code",
+        "description": "Generate and return a player's referral code if they don't already have one.\n\nRequired Permissions:\n\n- For any player (including themselves) : `refer:set:any`\n\n- For the player themselves : `refer:set:self`",
+        "operationId": "generate_referral_code",
+        "parameters": [
+          {
+            "description": "The player_uuid to generate a referral code for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player_uuid to generate a referral code for"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerReferralCode"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1351,6 +1702,89 @@
         ],
         "title": "PageMeta"
       },
+      "PlayerReferral": {
+        "properties": {
+          "referree_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Referree Player Uuid"
+          },
+          "referrer_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Referrer Player Uuid"
+          },
+          "created_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created Datetime"
+          },
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Modified Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "referree_player_uuid",
+          "referrer_player_uuid",
+          "created_datetime",
+          "last_modified_timestamp"
+        ],
+        "title": "PlayerReferral",
+        "description": "Represents a player referral relationship where one player was referred by another."
+      },
+      "PlayerReferralCode": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid"
+          },
+          "referral_code": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 4,
+            "title": "Referral Code"
+          },
+          "created_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created Datetime"
+          },
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Modified Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "referral_code",
+          "created_datetime",
+          "last_modified_timestamp"
+        ],
+        "title": "PlayerReferralCode",
+        "description": "Represents a referral code belonging to a player."
+      },
+      "PlayerReferralSetPayload": {
+        "properties": {
+          "referrer_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Referrer Player Uuid"
+          },
+          "referral_code": {
+            "type": "string",
+            "title": "Referral Code"
+          }
+        },
+        "type": "object",
+        "title": "PlayerReferralSetPayload",
+        "description": "Represents a payload for setting a player's referrer."
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -1396,6 +1830,10 @@
     {
       "name": "Friends",
       "description": "Operations to fetch and modify a player's friends, blocked list, and configuration"
+    },
+    {
+      "name": "Referrals",
+      "description": "Operations to fetch and modify a player's referrals"
     }
   ]
 }
