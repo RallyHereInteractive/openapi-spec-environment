@@ -1,3 +1,325 @@
+## Changes for Wed Feb 26 15:22:54 UTC 2025
+### New Endpoints: 9
+--------------------
+GET /friends/v2/player/{player_uuid}/referral-code  
+POST /friends/v2/player/{player_uuid}/referral-code  
+GET /friends/v2/player/{player_uuid}/referrals  
+GET /friends/v2/player/{player_uuid}/referrer  
+POST /friends/v2/player/{player_uuid}/referrer  
+POST /session/v2/session/{session_id}/player/{player_uuid}  
+POST /session/v2/session/{session_id}/player/{player_uuid}:invite  
+POST /session/v2/session/{session_id}/player/{player_uuid}:move  
+POST /session/v2/session/{session_id}/player/{player_uuid}:promote  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 27
+--------------------------
+DELETE /file/v1/{file_type}/{entity_type}
+- Modified path param: entity_type
+  - Schema changed
+- Modified path param: file_type
+  - Schema changed
+
+GET /file/v1/{file_type}/{entity_type}
+- Modified path param: entity_type
+  - Schema changed
+- Modified path param: file_type
+  - Schema changed
+
+GET /file/v1/{file_type}/{entity_type}/{entity_id}
+- Modified path param: entity_type
+  - Schema changed
+- Modified path param: file_type
+  - Schema changed
+
+DELETE /file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}
+- Modified path param: entity_type
+  - Schema changed
+- Modified path param: file_type
+  - Schema changed
+
+GET /file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}
+- Modified path param: entity_type
+  - Schema changed
+- Modified path param: file_type
+  - Schema changed
+
+PUT /file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}
+- Modified path param: entity_type
+  - Schema changed
+- Modified path param: file_type
+  - Schema changed
+- Request body changed
+  - Content changed
+    - Modified media type: multipart/form-data
+      - Schema changed
+        - Property 'AllOf' changed
+          - Schemas deleted: #/components/schemas/Body_create_entity_directory_file
+        - Type changed from '' to 'object'
+        - Title changed from 'Body' to 'Body_create_entity_directory_file'
+        - Properties changed
+          - New property: file
+
+GET /inventory/v1/catalog
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: items
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: Items
+                  - Properties changed
+                    - Modified property: items
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - New property: total_ownership_max
+            - Modified property: loot
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: Loots
+                  - Properties changed
+                    - Modified property: loot
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: item
+                            - Property 'AnyOf' changed
+                              - Modified schema: subschema #1: Item
+                                - Properties changed
+                                  - New property: total_ownership_max
+            - Modified property: vendors
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: Vendors
+                  - Properties changed
+                    - Modified property: vendors
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: loot
+                            - AdditionalProperties changed
+                              - Properties changed
+                                - Modified property: item
+                                  - Property 'AnyOf' changed
+                                    - Modified schema: subschema #1: Item
+                                      - Properties changed
+                                        - New property: total_ownership_max
+
+GET /inventory/v1/catalog/item
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: items
+              - AdditionalProperties changed
+                - Properties changed
+                  - New property: total_ownership_max
+
+GET /inventory/v1/catalog/item/{item_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: total_ownership_max
+
+GET /inventory/v1/catalog/loot
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: item
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1: Item
+                        - Properties changed
+                          - New property: total_ownership_max
+
+GET /inventory/v1/catalog/loot/{loot_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: item
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: Item
+                  - Properties changed
+                    - New property: total_ownership_max
+
+GET /inventory/v1/catalog/vendor
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: vendors
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: loot
+                    - AdditionalProperties changed
+                      - Properties changed
+                        - Modified property: item
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: Item
+                              - Properties changed
+                                - New property: total_ownership_max
+
+GET /inventory/v1/catalog/vendor/{vendor_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: item
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1: Item
+                        - Properties changed
+                          - New property: total_ownership_max
+
+PATCH /match/v1/match/{match_id}/segment/{segment_id}
+- Description changed from 'Update match segment by match_id and segment_id only with provided fields.
+
+Match must be in pending state to be updated.
+
+Required Permissions:
+
+- For any match segment any of: `match:*`, `match:match:edit:any`
+
+- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`' to 'Update match segment by match_id and segment_id only with provided fields.
+If the segment doesn't exist, it will be created.
+The top-level match must exist.
+The top-level match must be in a pending state or authenticating user has overriding permissions.
+
+Required Permissions:
+
+- For any match segment any of: `match:*`, `match:match:edit:any`
+
+- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`'
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:self`, `sanction:report:create:any`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Deleted query param: player_id
+
+GET /session/v1/player/me/session
+- Description changed from 'Get all session IDs associated with the token's player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
+
+Required Auth Permissions: `session:read-player:self`
+            
+Required Session Permissions: None' to 'Get all session IDs associated with the token's player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
+
+Required Auth Permissions: `session:read-player:self`
+
+Required Session Permissions: None'
+
+POST /session/v1/session/{session_id}/invited-session/{invited_session_id}:invite
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Title changed from 'SessionInviteRequest' to 'PlayerInviteRequest'
+        - Properties changed
+          - Modified property: team_id
+            - Description changed from 'Which team the players in the source session should be on' to 'Which team the invited players should prioritize being put on'
+
+POST /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+
+**DEPRECATED** - Use the appropriate move, invite, promote, or update V2 endpoint instead'
+- Deprecated changed from false to true
+
+GET /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+PUT /settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+GET /settings/v1/setting_type
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+GET /settings/v2/player/me/setting_type/{setting_type_id}/key
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+PUT /settings/v2/player/me/setting_type/{setting_type_id}/key/{key}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+GET /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+PUT /settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+
+GET /users/v1/player
+- Description changed from 'Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.' to 'Lookup players by various parameters. 
+ 
+Results will include the active player, if possible, otherwise will return the associated player directly.'
 ## Changes for Wed Feb  5 14:52:17 EST 2025
 ### New Endpoints: 10
 ---------------------

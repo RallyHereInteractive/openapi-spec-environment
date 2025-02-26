@@ -108,6 +108,10 @@
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingType"
                   },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 128
+                  },
                   "title": "Response Get Config For All Setting Types"
                 }
               }
@@ -661,6 +665,10 @@
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
                   },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
                   "title": "Response Get All Player Uuid Settings For Setting Type Self"
                 }
               }
@@ -1013,6 +1021,10 @@
                   "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
+                  },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 256
                   },
                   "title": "Response Get All Player Uuid Settings For Setting Type"
                 }
@@ -1550,6 +1562,10 @@
                   "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
+                  },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 256
                   },
                   "title": "Response Set Single Player Uuid Setting Self"
                 }
@@ -2090,6 +2106,10 @@
                   "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
+                  },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 256
                   },
                   "title": "Response Set Single Player Uuid Setting"
                 }
@@ -2643,6 +2663,10 @@
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
                   },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
                   "title": "Response Set Single Player Id Setting"
                 }
               }
@@ -2998,6 +3022,10 @@
                   "type": "object",
                   "additionalProperties": {
                     "$ref": "#/components/schemas/SettingData"
+                  },
+                  "propertyNames": {
+                    "minLength": 1,
+                    "maxLength": 256
                   },
                   "title": "Response Get All Player Id Settings For Setting Type"
                 }
