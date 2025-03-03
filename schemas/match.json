@@ -605,7 +605,7 @@
           "Match"
         ],
         "summary": "Get Player Matches Self",
-        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
+        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
         "operationId": "get_player_matches_self",
         "security": [
           {
@@ -682,7 +682,7 @@
           "Match"
         ],
         "summary": "Get Player Stats",
-        "description": "Get player stats for the provided player_uuid,.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
+        "description": "Get player stats for the provided player_uuid,.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
         "operationId": "get_player_stats",
         "security": [
           {
@@ -751,7 +751,7 @@
           "Match"
         ],
         "summary": "Get Players Matches",
-        "description": "Get All matches for a provided player_uuid.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
+        "description": "Get All matches for a provided player_uuid.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
         "operationId": "get_players_matches",
         "security": [
           {
@@ -838,7 +838,7 @@
           "Match"
         ],
         "summary": "Get Match Player",
-        "description": "Get a player match record for the provided player_uuid and match_id\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
+        "description": "Get a player match record for the provided player_uuid and match_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
         "operationId": "get_match_player",
         "security": [
           {
@@ -1172,7 +1172,7 @@
           "Match"
         ],
         "summary": "Delete Match Player",
-        "description": "Delete player by player_uuid and match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
+        "description": "Delete player by player_uuid and match_id\n\nRequired Permissions:\n\n- For any match (including themselves) any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match_player",
         "security": [
           {
@@ -1223,6 +1223,77 @@
               }
             },
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/player/{player_uuid}/recently-played": {
+      "get": {
+        "tags": [
+          "Match"
+        ],
+        "summary": "Get Player Recently Player With",
+        "description": "Get the list of players this player recently played with\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "operationId": "get_player_recently_player_with",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "Number of players to return",
+              "default": 20,
+              "title": "Page Size"
+            },
+            "description": "Number of players to return"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecentlyPlayedWithResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -7962,6 +8033,38 @@
         },
         "type": "object",
         "title": "PlayerStatsResponse"
+      },
+      "RecentlyPlayedPlayer": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid"
+        ],
+        "title": "RecentlyPlayedPlayer",
+        "description": "Player that was recently played with"
+      },
+      "RecentlyPlayedWithResponse": {
+        "properties": {
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/RecentlyPlayedPlayer"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "RecentlyPlayedWithResponse",
+        "description": "List of players that this user recently played with"
       },
       "ValidationError": {
         "properties": {

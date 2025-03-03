@@ -1,3 +1,84 @@
+## Changes for Mon Mar  3 19:53:09 UTC 2025
+### New Endpoints: 1
+--------------------
+GET /match/v1/player/{player_uuid}/recently-played  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 6
+-------------------------
+GET /match/v1/player/me/match
+- Description changed from 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+
+any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
+    
+: `match:player:self:read`' to 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match
+- Description changed from 'Get All matches for a provided player_uuid.
+
+any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
+    
+: `match:player:self:read`' to 'Get All matches for a provided player_uuid.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`'
+
+DELETE /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Delete player by player_uuid and match_id
+
+Required Permissions:
+
+- For any match any of: `match:*`, `match:match:edit:any`' to 'Delete player by player_uuid and match_id
+
+Required Permissions:
+
+- For any match (including themselves) any of: `match:*`, `match:match:edit:any`'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Get a player match record for the provided player_uuid and match_id
+
+any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
+    
+: `match:player:self:read`' to 'Get a player match record for the provided player_uuid and match_id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/stats
+- Description changed from 'Get player stats for the provided player_uuid,.
+
+any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
+    
+: `match:player:self:read`' to 'Get player stats for the provided player_uuid,.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`'
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
 ## Changes for Wed Feb 26 15:22:54 UTC 2025
 ### New Endpoints: 9
 --------------------
