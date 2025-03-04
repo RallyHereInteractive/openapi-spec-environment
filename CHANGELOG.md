@@ -1,3 +1,28 @@
+## Changes for Tue Mar  4 01:55:49 PM EST 2025
+### New Endpoints: 6
+--------------------
+GET /leaderboard/v1/config/leaderboard  
+GET /leaderboard/v1/config/leaderboard/{leaderboard_id}  
+GET /leaderboard/v1/leaderboard/{leaderboard_id}  
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/metadata  
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/player/{player_uuid}  
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/position/{leaderboard_position}  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: None
+----------------------------
+## Changes for Tue Mar  4 01:28:23 PM EST 2025
+
+## Changes for Tue Mar  4 12:42:21 PM EST 2025
+
+## Changes for Tue Mar  4 11:05:17 AM EST 2025
+
+## Changes for Tue Mar  4 11:03:50 AM EST 2025
+
+## Changes for Tue Mar  4 11:02:31 AM EST 2025
+
 ## Changes for Tue Mar  4 15:11:32 UTC 2025
 ### New Endpoints: None
 -----------------------
