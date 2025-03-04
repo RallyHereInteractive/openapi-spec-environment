@@ -1,3 +1,21 @@
+## Changes for Tue Mar  4 15:11:32 UTC 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+GET /match/v1/player/{player_uuid}/recently-played
+- New header param: if-match
+- New header param: if-none-match
+- Responses changed
+  - New response: 304
+  - New response: 412
+  - Modified response: 200
+    - Headers changed
+      - New header: ETag
 ## Changes for Mon Mar  3 19:53:09 UTC 2025
 ### New Endpoints: 1
 --------------------
