@@ -1,3 +1,32 @@
+## Changes for Mon Mar 10 05:16:12 PM EDT 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/position/{leaderboard_position}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'LeaderboardPage' to 'LeaderboardEntry'
+          - Required changed
+            - New required property: player_uuid
+            - New required property: position
+            - Deleted required property: cursor
+            - Deleted required property: entries
+            - Deleted required property: leaderboard_id
+          - Properties changed
+            - New property: player_uuid
+            - New property: position
+            - New property: stat_value
+            - Deleted property: cursor
+            - Deleted property: entries
+            - Deleted property: leaderboard_id
 ## Changes for Mon Mar 10 02:18:34 PM EDT 2025
 ### New Endpoints: None
 -----------------------
