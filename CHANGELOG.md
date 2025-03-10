@@ -1,3 +1,53 @@
+## Changes for Mon Mar 10 02:18:34 PM EDT 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 3
+-------------------------
+GET /leaderboard/v1/leaderboard/{leaderboard_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Required changed
+                  - New required property: position
+                - Properties changed
+                  - New property: position
+
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Required changed
+                  - New required property: position
+                - Properties changed
+                  - New property: position
+
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/position/{leaderboard_position}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Required changed
+                  - New required property: position
+                - Properties changed
+                  - New property: position
 ## Changes for Tue Mar  4 01:55:49 PM EST 2025
 ### New Endpoints: 6
 --------------------
