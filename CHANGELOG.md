@@ -1,3 +1,15 @@
+## Changes for Thu Mar 20 01:16:55 PM EDT 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: 1
+------------------------
+GET /leaderboard/v1/leaderboard/{leaderboard_id}/player/{player_uuid}  
+
+### Modified Endpoints: 1
+-------------------------
+GET /leaderboard/v1/leaderboard/{leaderboard_id}
+- New query param: player_uuid
 ## Changes for Mon Mar 10 05:16:12 PM EDT 2025
 ### New Endpoints: None
 -----------------------
