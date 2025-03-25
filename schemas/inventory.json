@@ -1669,6 +1669,102 @@
         }
       }
     },
+    "/v1/catalog/entitlement-sku/{platform}": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Get Catalog Entitlement Sku By Platform",
+        "description": "Get all Entitlement SKUs for a specific platform",
+        "operationId": "get_catalog_entitlement_sku_by_platform",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Platform"
+            }
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+              "title": "If-None-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSKU"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/catalog/entitlement-sku/{platform}/{sku}": {
       "get": {
         "tags": [
@@ -4950,7 +5046,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -5024,14 +5120,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -5052,7 +5148,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlement Request For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlement_request_for_me",
         "security": [
           {
@@ -5082,14 +5178,24 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -5110,7 +5216,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlement Request By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlement_request_by_player_uuid",
         "security": [
           {
@@ -5150,14 +5256,401 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/player/{player_uuid}/entitlement/raw": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Platform Entitlements Raw By Player Uuid",
+        "description": "Get list of entitlements directly from the platform, as they return it (sanitized).  \n\nWARNING: There is no guaranteed format for the response from this endpoint.  Do not depend on the layout or contents of it for anything other than debugging.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "get_platform_entitlements_raw_by_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "platform_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform Id"
             },
-            "description": "Forbidden"
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform token that can be used to verify the identity of the user",
+              "title": "Platform Token"
+            },
+            "description": "Platform token that can be used to verify the identity of the user"
+          },
+          {
+            "name": "platform_environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform Environment to check for ownership",
+              "title": "Platform Environment"
+            },
+            "description": "Platform Environment to check for ownership"
+          },
+          {
+            "name": "platform_region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformRegion",
+              "description": "region this purchase was made in"
+            },
+            "description": "region this purchase was made in"
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientType",
+              "description": "client type this purchase was made on"
+            },
+            "description": "client type this purchase was made on"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/player/{player_uuid}/entitlement/prepared": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Platform Entitlements Prepared By Player Uuid",
+        "description": "Get list of entitlements from the platform, as we will grant them to the user\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "get_platform_entitlements_prepared_by_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "platform_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform Id"
+            },
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform token that can be used to verify the identity of the user",
+              "title": "Platform Token"
+            },
+            "description": "Platform token that can be used to verify the identity of the user"
+          },
+          {
+            "name": "platform_environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform Environment to check for ownership",
+              "title": "Platform Environment"
+            },
+            "description": "Platform Environment to check for ownership"
+          },
+          {
+            "name": "platform_region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformRegion",
+              "description": "region this purchase was made in"
+            },
+            "description": "region this purchase was made in"
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientType",
+              "description": "client type this purchase was made on"
+            },
+            "description": "client type this purchase was made on"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementsPrepared"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/user-entitlement:refresh-connection": {
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Refresh Connection Status For Platform Entitlements",
+        "description": "Check the status of the user with the platform, and if they are able to request entitlements\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "refresh_connection_status_for_platform_entitlements",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "platform_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform Id"
+            },
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform User Id"
+            },
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform token that can be used to verify the identity of the user",
+              "title": "Platform Token"
+            },
+            "description": "Platform token that can be used to verify the identity of the user"
+          },
+          {
+            "name": "platform_environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform Environment to check for ownership",
+              "title": "Platform Environment"
+            },
+            "description": "Platform Environment to check for ownership"
+          },
+          {
+            "name": "platform_region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformRegion",
+              "description": "region this purchase was made in"
+            },
+            "description": "region this purchase was made in"
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientType",
+              "description": "client type this purchase was made on"
+            },
+            "description": "client type this purchase was made on"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementConnectionStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -6998,59 +7491,6 @@
           "chargeback_reversal"
         ]
       },
-      "EntitlementErrorCode": {
-        "type": "string",
-        "enum": [
-          "none",
-          "auth_token_failure",
-          "missing_information",
-          "failed_to_consume",
-          "no_sku_found",
-          "wrong_sku_type_provided",
-          "durable_authority_type_not_valid",
-          "durable_single_use_authority_type_not_valid",
-          "consumable_authority_type_not_valid",
-          "unknown_sku_type_provided",
-          "failed_to_submit_order",
-          "already_applied_durable_single_use",
-          "quantity_zero",
-          "previously_applied"
-        ],
-        "title": "EntitlementErrorCode",
-        "description": "Error codes for Entitlements",
-        "x-enum-descriptions": [
-          "No error occured",
-          "Failed to find or validate the auth token",
-          "Missing information in the request",
-          "Failed to consume the entitlement",
-          "No SKU found for this entitlement on the backend",
-          "Entitlement is defined with a different SKU type than the one provided",
-          "Durable entitlements are not allowed by this platform",
-          "Durable single use entitlements are not allowed by this platform",
-          "Consumable entitlements are not allowed by this platform",
-          "Unknown SKU type provided",
-          "Failed to submit the order to the backend",
-          "Durable single use entitlement has already been applied",
-          "Quantity was zero, nothing to apply",
-          "Entitlement was previously applied"
-        ],
-        "x-enum-varnames": [
-          "NONE",
-          "AUTH_TOKEN_FAILURE",
-          "MISSING_INFORMATION",
-          "FAILED_TO_CONSUME",
-          "NO_SKU_FOUND",
-          "WRONG_SKU_TYPE_PROVIDED",
-          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
-          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
-          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
-          "UNKNOWN_SKU_TYPE_PROVIDED",
-          "FAILED_TO_SUBMIT_ORDER",
-          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
-          "QUANTITY_ZERO",
-          "PREVIOUSLY_APPLIED"
-        ]
-      },
       "EntitlementEvent": {
         "properties": {
           "event_id": {
@@ -7358,7 +7798,8 @@
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
-          "PREVIOUSLY_APPLIED"
+          "PREVIOUSLY_APPLIED",
+          "SKIPPED"
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
@@ -7367,14 +7808,16 @@
           "Entitlement has been submitted to the backend",
           "Entitlement has been fulfilled",
           "Entitlement has failed, check error_code for more information",
-          "Entitlement was previously applied"
+          "Entitlement was previously applied",
+          "Entitlement was skipped and not processed"
         ],
         "x-enum-varnames": [
           "UNKNOWN",
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
-          "PREVIOUSLY_APPLIED"
+          "PREVIOUSLY_APPLIED",
+          "SKIPPED"
         ]
       },
       "EntitlementType": {
@@ -9119,7 +9562,8 @@
             "default": "UNKNOWN"
           },
           "error_code": {
-            "$ref": "#/components/schemas/EntitlementErrorCode",
+            "type": "string",
+            "title": "Error Code",
             "description": "Error code for this entitlement",
             "default": "none"
           },
@@ -9136,6 +9580,84 @@
         ],
         "title": "PlatformEntitlement",
         "description": "Entitlement for a platform. This takes in a sku and platform entitlement id and checks to see if the user has the entitlement on the platform"
+      },
+      "PlatformEntitlementConnectionStatus": {
+        "properties": {
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "title": "PlatformEntitlementConnectionStatus"
+      },
+      "PlatformEntitlementPrepared": {
+        "properties": {
+          "platform_entitlement_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Entitlement Id",
+            "description": "Unique identifier for this instance of an entitlement on the platform"
+          },
+          "sku": {
+            "type": "string",
+            "title": "Sku",
+            "description": "Unique SKU from the platform"
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "Quantity available to be used from the platform",
+            "default": 1
+          },
+          "received_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Type of entitlement the platform sent us.  If they provide this metadata, then RallyHere Entitlement SKUs must be configured with matching types, or the entitlement will not process"
+          },
+          "platform_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Label"
+          },
+          "platform_metadata": {
+            "type": "object",
+            "title": "Platform Metadata",
+            "description": "Platform-specific metadata about this entitlement",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "sku"
+        ],
+        "title": "PlatformEntitlementPrepared",
+        "description": "Platform Entitlement that is prepared to be processed by RallyHere, and includes platform-specific metadata necessary for processing"
       },
       "PlatformEntitlementProcessRequest": {
         "properties": {
@@ -9154,6 +9676,18 @@
             "title": "Platform Id",
             "description": "Platform this entitlement was purchased was made on"
           },
+          "platform_environment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Environment",
+            "description": "Specific platform environment to target with entitlement processing.  Not supported by all platforms"
+          },
           "platform_region": {
             "$ref": "#/components/schemas/PlatformRegion",
             "description": "region this purchase was made in"
@@ -9170,6 +9704,18 @@
             "title": "Entitlements",
             "description": "Platform entitlements to process",
             "default": []
+          },
+          "check_durables": {
+            "type": "boolean",
+            "title": "Check Durables",
+            "description": "Should the system process durables during this request?",
+            "default": true
+          },
+          "check_consumables": {
+            "type": "boolean",
+            "title": "Check Consumables",
+            "description": "Should the system process consumables during this request?",
+            "default": true
           }
         },
         "type": "object",
@@ -9266,6 +9812,31 @@
         ],
         "title": "PlatformEntitlementProcessResult",
         "description": "Result of processing a platform entitlement"
+      },
+      "PlatformEntitlementsPrepared": {
+        "properties": {
+          "entitlements": {
+            "items": {
+              "$ref": "#/components/schemas/PlatformEntitlementPrepared"
+            },
+            "type": "array",
+            "title": "Entitlements",
+            "default": []
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "title": "PlatformEntitlementsPrepared"
       },
       "PlatformRegion": {
         "type": "string",

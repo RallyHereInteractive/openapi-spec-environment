@@ -1,3 +1,406 @@
+## Changes for Tue Mar 25 18:48:40 UTC 2025
+### New Endpoints: 4
+--------------------
+GET /inventory/v1/catalog/entitlement-sku/{platform}  
+GET /inventory/v2/player/{player_uuid}/entitlement/prepared  
+GET /inventory/v2/player/{player_uuid}/entitlement/raw  
+POST /inventory/v2/user-entitlement:refresh-connection  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 9
+-------------------------
+POST /inventory/v2/player/me/entitlement
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: check_consumables
+          - New property: check_durables
+          - New property: platform_environment
+          - Modified property: entitlements
+            - Items changed
+              - Properties changed
+                - Modified property: error_code
+                  - Extensions changed
+                    - Deleted extension: x-enum-descriptions
+                    - Deleted extension: x-enum-varnames
+                  - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                  - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                  - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                  - Default changed from null to 'none'
+                - Modified property: status
+                  - Extensions changed
+                    - Modified extension: x-enum-descriptions
+                      - Added /- with value: 'Entitlement was skipped and not processed'
+                    - Modified extension: x-enum-varnames
+                      - Added /- with value: 'SKIPPED'
+                  - New enum values: [SKIPPED]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                    - New enum values: [SKIPPED]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                    - New enum values: [SKIPPED]
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+
+GET /inventory/v2/player/me/entitlement/request/{request_id}
+- Description changed from 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`' to 'Get the status of a platform entitlement request by request id.
+    
+Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`'
+- Responses changed
+  - New response: 404
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                    - New enum values: [SKIPPED]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                    - New enum values: [SKIPPED]
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+
+POST /inventory/v2/player/{player_uuid}/entitlement
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: check_consumables
+          - New property: check_durables
+          - New property: platform_environment
+          - Modified property: entitlements
+            - Items changed
+              - Properties changed
+                - Modified property: error_code
+                  - Extensions changed
+                    - Deleted extension: x-enum-descriptions
+                    - Deleted extension: x-enum-varnames
+                  - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                  - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                  - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                  - Default changed from null to 'none'
+                - Modified property: status
+                  - Extensions changed
+                    - Modified extension: x-enum-descriptions
+                      - Added /- with value: 'Entitlement was skipped and not processed'
+                    - Modified extension: x-enum-varnames
+                      - Added /- with value: 'SKIPPED'
+                  - New enum values: [SKIPPED]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                    - New enum values: [SKIPPED]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                    - New enum values: [SKIPPED]
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+
+GET /inventory/v2/player/{player_uuid}/entitlement/request/{request_id}
+- Description changed from 'Get the status of a platform entitlement request by request id.
+    
+    Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`' to 'Get the status of a platform entitlement request by request id.
+    
+Required Permissions:
+
+- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+
+- For the player themselves : `inv:platform_entitlements:self`'
+- Responses changed
+  - New response: 404
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: client_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                    - New enum values: [SKIPPED]
+            - Modified property: server_entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: error_code
+                    - Extensions changed
+                      - Deleted extension: x-enum-descriptions
+                      - Deleted extension: x-enum-varnames
+                    - Title changed from 'EntitlementErrorCode' to 'Error Code'
+                    - Description changed from 'Error codes for Entitlements' to 'Error code for this entitlement'
+                    - Deleted enum values: [none auth_token_failure missing_information failed_to_consume no_sku_found wrong_sku_type_provided durable_authority_type_not_valid durable_single_use_authority_type_not_valid consumable_authority_type_not_valid unknown_sku_type_provided failed_to_submit_order already_applied_durable_single_use quantity_zero previously_applied]
+                    - Default changed from null to 'none'
+                  - Modified property: status
+                    - Extensions changed
+                      - Modified extension: x-enum-varnames
+                        - Added /- with value: 'SKIPPED'
+                      - Modified extension: x-enum-descriptions
+                        - Added /- with value: 'Entitlement was skipped and not processed'
+                    - New enum values: [SKIPPED]
+  - Modified response: 403
+    - Description changed from 'Forbidden' to '
+Error Codes:
+- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token
+- `auth_invalid_version` - Invalid Authorization - version
+- `auth_malformed_access` - Invalid Authorization - malformed access token
+- `auth_not_jwt` - Invalid Authorization
+- `auth_token_expired` - Token is expired
+- `auth_token_format` - Invalid Authorization - {}
+- `auth_token_invalid_claim` - Token contained invalid claim value: {}
+- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type
+- `auth_token_sig_invalid` - Token Signature is invalid
+- `auth_token_unknown` - Failed to parse token
+- `insufficient_permissions` - Insufficient Permissions
+'
+
+GET /match/v1/player/me/match
+- Description changed from 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`' to 'Get all matches for self. Only provides matches for the player_uuid in the provided token.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:player:any:read`
+
+- For the player themselves any of: `match:match:player:read`, `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match
+- Description changed from 'Get All matches for a provided player_uuid.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`' to 'Get All matches for a provided player_uuid.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:player:any:read`
+
+- For the player themselves any of: `match:match:player:read`, `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/match/{match_id}
+- Description changed from 'Get a player match record for the provided player_uuid and match_id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`' to 'Get a player match record for the provided player_uuid and match_id
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:player:any:read`
+
+- For the player themselves any of: `match:match:player:read`, `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/recently-played
+- Description changed from 'Get the list of players this player recently played with
+    
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`' to 'Get the list of players this player recently played with
+    
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:player:any:read`
+
+- For the player themselves any of: `match:match:player:read`, `match:player:self:read`'
+
+GET /match/v1/player/{player_uuid}/stats
+- Description changed from 'Get player stats for the provided player_uuid,.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+
+- For the player themselves : `match:player:self:read`' to 'Get player stats for the provided player_uuid,.
+
+Required Permissions:
+
+- For any player (including themselves) any of: `match:*`, `match:player:any:read`
+
+- For the player themselves any of: `match:match:player:read`, `match:player:self:read`'
 ## Changes for Thu Mar 20 01:16:55 PM EDT 2025
 ### New Endpoints: None
 -----------------------
