@@ -605,7 +605,7 @@
           "Match"
         ],
         "summary": "Get Player Matches Self",
-        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_player_matches_self",
         "security": [
           {
@@ -682,7 +682,7 @@
           "Match"
         ],
         "summary": "Get Player Stats",
-        "description": "Get player stats for the provided player_uuid,.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get player stats for the provided player_uuid,.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_player_stats",
         "security": [
           {
@@ -751,7 +751,7 @@
           "Match"
         ],
         "summary": "Get Players Matches",
-        "description": "Get All matches for a provided player_uuid.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get All matches for a provided player_uuid.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_players_matches",
         "security": [
           {
@@ -838,7 +838,7 @@
           "Match"
         ],
         "summary": "Get Match Player",
-        "description": "Get a player match record for the provided player_uuid and match_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get a player match record for the provided player_uuid and match_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_match_player",
         "security": [
           {
@@ -1243,7 +1243,7 @@
           "Match"
         ],
         "summary": "Get Player Recently Played With",
-        "description": "Get the list of players this player recently played with\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get the list of players this player recently played with\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_player_recently_played_with",
         "security": [
           {
