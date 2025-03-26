@@ -1,3 +1,309 @@
+## Changes for Wed Mar 26 04:55:24 PM EDT 2025
+### New Endpoints: 3
+--------------------
+GET /session/v1/session/{session_id}/player/{player_uuid}/permission  
+DELETE /session/v1/session/{session_id}/player/{player_uuid}/permission/{permission}  
+PATCH /session/v1/session/{session_id}/player/{player_uuid}/permission/{permission}  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 17
+--------------------------
+POST /session/v1/backfill/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: backfilled_players
+              - Items changed
+                - Properties changed
+                  - New property: session_permissions
+
+POST /session/v1/match-made-session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: teams
+            - Items changed
+              - Properties changed
+                - Modified property: players
+                  - Items changed
+                    - Properties changed
+                      - New property: session_permissions
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - New property: session_permissions
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - New property: session_permissions
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - New property: session_permissions
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - New property: session_permissions
+
+PATCH /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - New property: session_permissions
+
+GET /session/v1/session/{session_id}/player
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: teams
+              - Items changed
+                - Properties changed
+                  - Modified property: players
+                    - Items changed
+                      - Properties changed
+                        - New property: session_permissions
+
+DELETE /session/v1/session/{session_id}/player/id/{player_id}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: None for players operating on themselves.
+`SessionPermissions.session_admin` for operating on other players in your session
+
+**DEPRECATED** - Use the player endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: None for players operating on themselves.
+Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
+**DEPRECATED** - Use the player endpoint instead'
+- New query param: refresh_ttl
+
+DELETE /session/v1/session/{session_id}/player/me
+- New query param: refresh_ttl
+
+DELETE /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- Description changed from 'Add or invite a player to the session, or change the status of a player already in the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+
+
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead' to 'Add or invite a player to the session, or change the status of a player already in the session
+
+To promote players
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+
+
+
+To invite players
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+Required Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin
+
+To move players
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+Required Session Permissions: `move` for users that do not have the above permissions, and are not a session admin
+
+For all else
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: None if session is publicly joinable or the player has been invited. 
+`SessionPermissions.session_admin` for other operations
+**DEPRECATED** - Use player/{player_uuid} endpoint instead'
+
+DELETE /session/v1/session/{session_id}/player/{player_uuid}
+- Description changed from 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: None for users operating on themselves. 
+`SessionPermissions.session_admin` for operating on other players in your session' to 'Kick or Remove a player from a session, or cancel an invite for a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: None for users operating on themselves. 
+Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin'
+- New query param: refresh_ttl
+
+GET /session/v1/session/{session_id}/player/{player_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: session_permissions
+
+PATCH /session/v1/session/{session_id}/team/{team_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: players
+              - Items changed
+                - Properties changed
+                  - New property: session_permissions
+
+POST /session/v2/session/{session_id}/player/{player_uuid}:invite
+- Description changed from 'Invite a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`
+
+
+
+Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission' to 'Invite a player to the session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`
+
+
+
+Required Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin'
+
+POST /session/v2/session/{session_id}/player/{player_uuid}:move
+- Description changed from 'Move a specific player to a different team in a specific session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:update:any` auth permission' to 'Move a specific player to a different team in a specific session
+
+Required Permissions:
+
+- For any player (including themselves) any of: `session:*`, `session:update-player:any`
+
+- For the player themselves : `session:update-player:self`
+
+Required Session Permissions: `move` for users that do not have the above permissions, and are not a session admin'
 ## Changes for Tue Mar 25 18:48:40 UTC 2025
 ### New Endpoints: 4
 --------------------
