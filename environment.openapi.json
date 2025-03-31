@@ -180,7 +180,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgreementMessage"
+                  "$ref": "#/components/schemas/LoginCompleteMessage"
                 }
               }
             }
@@ -847,6 +847,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -33640,48 +33650,6 @@
       }
     },
     "schemas": {
-      "AgreementMessage": {
-        "properties": {
-          "auth_success": {
-            "type": "boolean",
-            "title": "Auth Success",
-            "default": true
-          },
-          "error_code": {
-            "type": "string",
-            "title": "Error Code"
-          },
-          "desc": {
-            "type": "string",
-            "title": "Desc"
-          },
-          "needs_eula": {
-            "type": "boolean",
-            "title": "Needs Eula",
-            "description": "Whether the user needs to accept the End User License Agreement",
-            "default": false
-          },
-          "needs_tos": {
-            "type": "boolean",
-            "title": "Needs Tos",
-            "description": "Whether the user needs to accept the Terms of Service",
-            "default": false
-          },
-          "needs_privacy_policy": {
-            "type": "boolean",
-            "title": "Needs Privacy Policy",
-            "description": "Whether the user needs to accept the Privacy Policy",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "error_code",
-          "desc"
-        ],
-        "title": "AgreementMessage",
-        "description": "Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy"
-      },
       "CreatePlatformUserRequest": {
         "properties": {
           "platform": {
@@ -33854,6 +33822,57 @@
           "Active player was set for person, enabling cross-progression for all of the person's players",
           "Active player was cleared for person, disabling cross-progression for all of the person's players"
         ]
+      },
+      "LoginCompleteMessage": {
+        "properties": {
+          "auth_success": {
+            "type": "boolean",
+            "title": "Auth Success",
+            "default": true
+          },
+          "error_code": {
+            "type": "string",
+            "title": "Error Code"
+          },
+          "desc": {
+            "type": "string",
+            "title": "Desc"
+          },
+          "needs_eula": {
+            "type": "boolean",
+            "title": "Needs Eula",
+            "description": "Whether the user needs to accept the End User License Agreement",
+            "default": false
+          },
+          "needs_tos": {
+            "type": "boolean",
+            "title": "Needs Tos",
+            "description": "Whether the user needs to accept the Terms of Service",
+            "default": false
+          },
+          "needs_privacy_policy": {
+            "type": "boolean",
+            "title": "Needs Privacy Policy",
+            "description": "Whether the user needs to accept the Privacy Policy",
+            "default": false
+          },
+          "restrictions": {
+            "items": {
+              "$ref": "#/components/schemas/Restriction"
+            },
+            "type": "array",
+            "title": "Restrictions",
+            "description": "Restrictions which prevented login.  Does NOT include unrelated restrictions that didn't prevent login",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "desc"
+        ],
+        "title": "LoginCompleteMessage",
+        "description": "Error message for when a user has not agreed to the required agreements (EULA, TOS, or Privacy Policy), or was denied login for restrictions"
       },
       "LoginHistoryEntry": {
         "properties": {
@@ -34370,6 +34389,15 @@
             "type": "string",
             "title": "Error Message",
             "description": "Error message if an error occurred."
+          },
+          "restrictions": {
+            "items": {
+              "$ref": "#/components/schemas/Restriction"
+            },
+            "type": "array",
+            "title": "Restrictions",
+            "description": "List of restrictions that prevented authentication",
+            "default": []
           }
         },
         "type": "object",

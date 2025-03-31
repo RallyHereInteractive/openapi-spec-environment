@@ -178,7 +178,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -189,8 +189,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -501,7 +501,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Team Id"
             },
             "name": "team_id",
@@ -2496,7 +2496,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -2507,8 +2507,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -4665,7 +4665,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -4676,8 +4676,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -4757,7 +4757,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -4768,8 +4768,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -5321,7 +5321,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Cursor",
               "default": 0
             },
@@ -5332,8 +5332,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -5414,7 +5414,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 0.0,
               "title": "Page Num",
               "default": 0
             },
@@ -5425,8 +5425,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
+              "maximum": 50.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "default": 50
             },
@@ -6522,7 +6522,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "ID of the team being effected in this event"
           },
@@ -6795,13 +6795,13 @@
         "properties": {
           "players_required": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Players Required",
             "description": "The number of players we want to backfill"
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Id for the team that requires backfilled players"
           }
@@ -6857,7 +6857,7 @@
         "properties": {
           "cursor": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Cursor",
             "description": "Cursor to continue iterating through browser sessions. 0 means we have returned the last entry"
           },
@@ -6897,14 +6897,14 @@
           },
           "player_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Player Count",
             "description": "Number of players actively in this session"
           },
           "max_player_count": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Player Count",
             "description": "Maximum number of players that can be in this session"
           },
@@ -7056,7 +7056,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "ID of the team being effected in this event"
           },
@@ -7462,7 +7462,7 @@
           },
           "deserter_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Deserter Count",
             "description": "The number of times a player has deserted before the expiration"
           },
@@ -7613,21 +7613,21 @@
             "exclusiveMinimum": true,
             "title": "Cadence Seconds",
             "description": "How often we expect instance health checks to occur",
-            "minimum": 0
+            "minimum": 0.0
           },
           "unhealthy_health_check_percentage": {
             "type": "number",
             "exclusiveMinimum": true,
             "title": "Unhealthy Health Check Percentage",
             "description": "What percentage of health checks must be missing before an instance's status becomes unhealthy",
-            "minimum": 0
+            "minimum": 0.0
           },
           "missed_checks_before_unknown": {
             "type": "integer",
             "exclusiveMinimum": true,
             "title": "Missed Checks Before Unknown",
             "description": "How many health checks we must miss in a row before an instance's status becomes unknown",
-            "minimum": 0
+            "minimum": 0.0
           }
         },
         "type": "object",
@@ -8197,7 +8197,7 @@
         "properties": {
           "map_game_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Map Game Id",
             "description": "ID to uniquely identify this map game",
             "default": 0
@@ -8214,8 +8214,8 @@
           },
           "selection_chance": {
             "type": "number",
-            "maximum": 100,
-            "minimum": 0,
+            "maximum": 100.0,
+            "minimum": 0.0,
             "title": "Selection Chance",
             "description": "Chance that this map will get selected in a rotation list",
             "default": 0
@@ -8258,8 +8258,8 @@
           },
           "map_weight": {
             "type": "number",
-            "maximum": 100,
-            "minimum": 0,
+            "maximum": 100.0,
+            "minimum": 0.0,
             "title": "Map Weight",
             "description": "Chance that this map will get selected in a rotation list"
           },
@@ -8992,7 +8992,7 @@
           },
           "cursor": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Cursor",
             "description": "Cursor to continue iterating through players in a session. 0 means we have returned the last entry"
           }
@@ -9241,8 +9241,8 @@
           },
           "max_players": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Players",
             "description": "The maximum number of players that can be a part of this platform session"
           },
@@ -9293,7 +9293,7 @@
           },
           "deserter_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Deserter Count",
             "description": "The number of times a player has deserted before the expiration",
             "default": 0
@@ -9326,7 +9326,7 @@
         "properties": {
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the invited players should prioritize being put on"
           },
@@ -9358,7 +9358,7 @@
         "properties": {
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player should be moved to"
           }
@@ -9696,7 +9696,7 @@
           },
           "passed_queue_time_seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Passed Queue Time Seconds",
             "description": "Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure",
             "default": 0
@@ -9790,7 +9790,7 @@
           },
           "sort_order": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Sort Order",
             "description": "The sorting priority order for this region"
           },
@@ -9828,7 +9828,7 @@
           },
           "cursor": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Cursor",
             "description": "Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end"
           }
@@ -9937,7 +9937,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player is one"
           },
@@ -10320,7 +10320,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player should be on"
           },
@@ -10367,7 +10367,7 @@
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team the player joined"
           },
@@ -10420,14 +10420,14 @@
           },
           "max_size": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Size",
             "description": "Maximum number of players allowed on this team"
           },
           "team_id": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Team Id",
             "description": "Which team this is"
           },
@@ -10571,16 +10571,16 @@
           },
           "num_teams": {
             "type": "integer",
-            "maximum": 50,
-            "minimum": 1,
+            "maximum": 50.0,
+            "minimum": 1.0,
             "title": "Num Teams",
             "description": "The number of teams this session type can have",
             "default": 1
           },
           "players_per_team": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Players Per Team",
             "description": "The number of players that can be on each team",
             "default": 4
@@ -10732,8 +10732,8 @@
         "properties": {
           "max_size": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Size",
             "description": "Maximum number of players for this team"
           },
