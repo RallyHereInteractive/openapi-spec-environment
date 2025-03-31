@@ -1,3 +1,35 @@
+## Changes for Mon Mar 31 20:38:54 UTC 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 3
+-------------------------
+POST /users/v1/login
+- Responses changed
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'AgreementMessage' to 'LoginCompleteMessage'
+          - Description changed from 'Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy' to 'Error message for when a user has not agreed to the required agreements (EULA, TOS, or Privacy Policy), or was denied login for restrictions'
+          - Properties changed
+            - New property: restrictions
+
+POST /users/v1/oauth/token
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: restrictions
+
+GET /users/v2/player/me/links
+- Responses changed
+  - New response: 422
 ## Changes for Wed Mar 26 04:55:24 PM EDT 2025
 ### New Endpoints: 3
 --------------------
