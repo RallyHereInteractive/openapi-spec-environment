@@ -3209,7 +3209,7 @@
           "Users"
         ],
         "summary": "Get Login History",
-        "description": "Get the Login history for a given user\n    \nRequired Permissions:\n\n- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person or platform identity themselves : `user:audit:self`",
+        "description": "Get the Login history for a given user\n    \nRequired Permissions:\n\n- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person, or platform identity themselves : `user:audit:self`",
         "operationId": "get_login_history",
         "parameters": [
           {
@@ -3329,7 +3329,7 @@
           "Users"
         ],
         "summary": "Get Link History",
-        "description": "Get the Link history for a given user\n    \nRequired Permissions:\n\n- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person or platform identity themselves : `user:audit:self`",
+        "description": "Get the Link history for a given user\n    \nRequired Permissions:\n\n- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person, or platform identity themselves : `user:audit:self`",
         "operationId": "get_link_history",
         "parameters": [
           {
@@ -3401,6 +3401,136 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserLinkHistory"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/v1/history/restriction": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Restriction History",
+        "description": "Get the restriction history for a given user\n\nRequired Permissions:\n\n- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`\n\n- For the player, person, or platform identity themselves : `user:audit:self`\n\nViewing issuer and internal reason info Required Permissions:\n\n- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:restriction:modify:any`",
+        "operationId": "get_restriction_history",
+        "parameters": [
+          {
+            "description": "The player UUID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player UUID to audit"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "The person ID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id",
+              "description": "The person ID to audit"
+            },
+            "name": "person_id",
+            "in": "query"
+          },
+          {
+            "description": "The platform to audit",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Platform"
+                }
+              ],
+              "description": "The platform to audit"
+            },
+            "name": "platform",
+            "in": "query"
+          },
+          {
+            "description": "The platform user ID to audit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 2048,
+              "title": "Platform User Id",
+              "description": "The platform user ID to audit"
+            },
+            "name": "platform_user_id",
+            "in": "query"
+          },
+          {
+            "description": "Token to retrieve the next page of results",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Continuation Token",
+              "description": "Token to retrieve the next page of results"
+            },
+            "name": "continuation_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestrictionHistory"
                 }
               }
             }
@@ -4917,8 +5047,8 @@
           "expiration": {
             "type": "string",
             "format": "date-time",
-            "title": "Expiration",
-            "description": "Date the restriction expires.  Null means the restriction is permanent"
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           }
         },
         "type": "object",
@@ -4949,8 +5079,8 @@
           "expiration": {
             "type": "string",
             "format": "date-time",
-            "title": "Expiration",
-            "description": "Date the restriction expires.  Null means the restriction is permanent"
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           },
           "issuer_type": {
             "allOf": [
@@ -4968,7 +5098,7 @@
           "reason_detail": {
             "type": "string",
             "title": "Reason Detail",
-            "description": "Additional reason describing the restriction"
+            "description": "Internal-only reason describing the restriction"
           }
         },
         "type": "object",
@@ -4979,6 +5109,101 @@
         ],
         "title": "RestrictionCreate",
         "description": "Restriction applied to a player"
+      },
+      "RestrictionEvent": {
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionType"
+              }
+            ],
+            "description": "Type of restriction"
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionReasonCode"
+              }
+            ],
+            "description": "Reason the restriction was applied"
+          },
+          "expiration": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "issuer_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RestrictionIssuerType"
+              }
+            ],
+            "description": "Type of the Issuer"
+          },
+          "issuer": {
+            "type": "string",
+            "title": "Issuer",
+            "description": "The creator of the restriction"
+          },
+          "reason_detail": {
+            "type": "string",
+            "title": "Reason Detail",
+            "description": "Internal-only reason describing the restriction"
+          },
+          "restriction_event_id": {
+            "type": "string",
+            "title": "Restriction Event Id",
+            "description": "Unique ID identifying the restriction"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "Person the restriction was applied to"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "issuer_type",
+          "issuer",
+          "restriction_event_id",
+          "person_id",
+          "created"
+        ],
+        "title": "RestrictionEvent",
+        "description": "Restriction applied to a player"
+      },
+      "RestrictionHistory": {
+        "properties": {
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/RestrictionEvent"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "The restriction history entries"
+          },
+          "continuation_token": {
+            "type": "string",
+            "title": "Continuation Token",
+            "description": "Token to retrieve the next page of results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "RestrictionHistory",
+        "description": "List of restriction events that have been applied to a user"
       },
       "RestrictionIssuerType": {
         "type": "string",

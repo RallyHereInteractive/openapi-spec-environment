@@ -429,6 +429,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -762,6 +772,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -813,6 +833,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -942,6 +972,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -1161,6 +1201,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -1229,6 +1279,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1288,6 +1348,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -1358,6 +1428,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -2297,6 +2377,16 @@
             "required": true,
             "schema": {
               "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
               "title": "Session Id"
@@ -2305,14 +2395,14 @@
             "in": "path"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
             },
-            "name": "player_uuid",
-            "in": "path"
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -2592,6 +2682,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -3471,6 +3571,16 @@
             "required": true,
             "schema": {
               "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
               "title": "Session Id"
@@ -3479,14 +3589,14 @@
             "in": "path"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
             },
-            "name": "player_uuid",
-            "in": "path"
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -3659,6 +3769,15 @@
           {
             "required": true,
             "schema": {
+              "type": "integer",
+              "title": "Player Id"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
               "type": "string",
               "maxLength": 128,
               "minLength": 1,
@@ -3668,13 +3787,14 @@
             "in": "path"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "integer",
-              "title": "Player Id"
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
             },
-            "name": "player_id",
-            "in": "path"
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -10632,6 +10752,12 @@
             ],
             "description": "What subset of notifications an admin client with elevated privileges will receive about players in a session",
             "default": "ALL"
+          },
+          "player_culling_timeout": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Player Culling Timeout",
+            "description": "How many seconds must pass with a player not querying a session before they get culled. If unset or 0, then players will not be culled"
           }
         },
         "type": "object",
