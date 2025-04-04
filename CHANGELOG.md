@@ -1,3 +1,23 @@
+## Changes for Fri Apr  4 21:52:50 UTC 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 1
+-------------------------
+GET /users/v1/history/restriction
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Required changed
+                  - Deleted required property: type
 ## Changes for Fri Apr  4 21:34:02 UTC 2025
 ### New Endpoints: None
 -----------------------
