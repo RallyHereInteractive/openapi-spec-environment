@@ -1,3 +1,1286 @@
+## Changes for Fri Apr  4 20:07:56 UTC 2025
+### New Endpoints: 1
+--------------------
+GET /users/v1/history/restriction  
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 48
+--------------------------
+POST /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v1/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v1/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: result
+                          - Extensions changed
+                            - Modified extension: x-enum-descriptions
+                              - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                              - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                              - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                              - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                              - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                              - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                              - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                              - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                              - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                              - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                              - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                              - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                              - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                              - Added /- with value: 'Order Entry fulfillment has not started.'
+                            - Modified extension: x-enum-varnames
+                              - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                              - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                              - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                              - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                              - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                              - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                              - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                              - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                              - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                              - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                              - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                              - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                              - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                              - Added /- with value: 'NOT_STARTED'
+                          - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v1/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v1/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v1/player/{player_id}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v1/player/{player_id}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: result
+                          - Extensions changed
+                            - Modified extension: x-enum-descriptions
+                              - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                              - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                              - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                              - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                              - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                              - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                              - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                              - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                              - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                              - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                              - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                              - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                              - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                              - Added /- with value: 'Order Entry fulfillment has not started.'
+                            - Modified extension: x-enum-varnames
+                              - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                              - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                              - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                              - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                              - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                              - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                              - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                              - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                              - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                              - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                              - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                              - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                              - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                              - Added /- with value: 'NOT_STARTED'
+                          - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v1/player/{player_id}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v1/player/{player_id}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v2/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v2/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: result
+                          - Extensions changed
+                            - Modified extension: x-enum-descriptions
+                              - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                              - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                              - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                              - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                              - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                              - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                              - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                              - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                              - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                              - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                              - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                              - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                              - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                              - Added /- with value: 'Order Entry fulfillment has not started.'
+                            - Modified extension: x-enum-varnames
+                              - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                              - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                              - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                              - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                              - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                              - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                              - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                              - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                              - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                              - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                              - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                              - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                              - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                              - Added /- with value: 'NOT_STARTED'
+                          - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v2/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v2/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PUT /inventory/v2/player/{player_uuid}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v2/player/{player_uuid}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Modified property: result
+                          - Extensions changed
+                            - Modified extension: x-enum-varnames
+                              - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                              - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                              - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                              - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                              - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                              - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                              - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                              - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                              - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                              - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                              - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                              - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                              - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                              - Added /- with value: 'NOT_STARTED'
+                            - Modified extension: x-enum-descriptions
+                              - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                              - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                              - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                              - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                              - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                              - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                              - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                              - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                              - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                              - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                              - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                              - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                              - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                              - Added /- with value: 'Order Entry fulfillment has not started.'
+                          - New enum values: [failed_to_fill_all_random]
+
+POST /inventory/v2/player/{player_uuid}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+GET /inventory/v2/player/{player_uuid}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: result
+                    - Extensions changed
+                      - Modified extension: x-enum-descriptions
+                        - Modified /36 from 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.' to 'Not all requested randomly sampled loot could be fulfilled.'
+                        - Modified /37 from 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.' to 'Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.'
+                        - Modified /38 from 'Failed to consume the given Loot required.' to 'Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.'
+                        - Modified /39 from 'Failed to submit a new order.' to 'Failed to consume the given Loot required.'
+                        - Modified /40 from 'Failed to modify inventory.' to 'Failed to submit a new order.'
+                        - Modified /41 from 'Inventory was not found.' to 'Failed to modify inventory.'
+                        - Modified /42 from 'Item was not found.' to 'Inventory was not found.'
+                        - Modified /43 from 'Item is not active.' to 'Item was not found.'
+                        - Modified /44 from 'Too many inventory custom attributes provided.' to 'Item is not active.'
+                        - Modified /45 from 'Always owned inventory cannot be modified.' to 'Too many inventory custom attributes provided.'
+                        - Modified /46 from 'Available until is in the past.' to 'Always owned inventory cannot be modified.'
+                        - Modified /47 from 'Order Entry was successfully fulfilled, but was rolled back.' to 'Available until is in the past.'
+                        - Modified /48 from 'Order Entry fulfillment has not started.' to 'Order Entry was successfully fulfilled, but was rolled back.'
+                        - Added /- with value: 'Order Entry fulfillment has not started.'
+                      - Modified extension: x-enum-varnames
+                        - Modified /36 from 'CANNOT_MEET_LOOT_BLOCKER' to 'FAILED_TO_FILL_ALL_RANDOM'
+                        - Modified /37 from 'CANNOT_MEET_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_BLOCKER'
+                        - Modified /38 from 'FAILED_TO_CONSUME_LOOT_REQUIRED' to 'CANNOT_MEET_LOOT_REQUIRED'
+                        - Modified /39 from 'FAILED_TO_SUBMIT_NEW_ORDER' to 'FAILED_TO_CONSUME_LOOT_REQUIRED'
+                        - Modified /40 from 'FAILED_TO_MODIFY_INVENTORY' to 'FAILED_TO_SUBMIT_NEW_ORDER'
+                        - Modified /41 from 'INVENTORY_NOT_FOUND' to 'FAILED_TO_MODIFY_INVENTORY'
+                        - Modified /42 from 'ITEM_NOT_FOUND' to 'INVENTORY_NOT_FOUND'
+                        - Modified /43 from 'ITEM_NOT_ACTIVE' to 'ITEM_NOT_FOUND'
+                        - Modified /44 from 'TOO_MANY_INV_CUSTOM_ATTRIBUTES' to 'ITEM_NOT_ACTIVE'
+                        - Modified /45 from 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED' to 'TOO_MANY_INV_CUSTOM_ATTRIBUTES'
+                        - Modified /46 from 'AVAILABLE_UNTIL_IS_IN_PAST' to 'ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED'
+                        - Modified /47 from 'ROLLBACK' to 'AVAILABLE_UNTIL_IS_IN_PAST'
+                        - Modified /48 from 'NOT_STARTED' to 'ROLLBACK'
+                        - Added /- with value: 'NOT_STARTED'
+                    - New enum values: [failed_to_fill_all_random]
+
+PATCH /session/v1/session/{session_id}
+- New query param: refresh_ttl
+
+DELETE /session/v1/session/{session_id}/browser
+- New query param: refresh_ttl
+
+PATCH /session/v1/session/{session_id}/browser
+- New query param: refresh_ttl
+
+DELETE /session/v1/session/{session_id}/instance
+- New query param: refresh_ttl
+
+PATCH /session/v1/session/{session_id}/instance
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/instance
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/instance/health
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/player/id/{player_id}
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/player/me
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/player/uuid/{player_uuid}
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/player/{player_uuid}
+- New query param: refresh_ttl
+
+POST /session/v1/session/{session_id}/queue
+- New query param: refresh_ttl
+
+GET /session/v1/template
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: templates
+              - AdditionalProperties changed
+                - Properties changed
+                  - New property: player_culling_timeout
+
+GET /session/v1/template/{session_type}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: player_culling_timeout
+
+GET /users/v1/history/link
+- Description changed from 'Get the Link history for a given user
+    
+Required Permissions:
+
+- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person or platform identity themselves : `user:audit:self`' to 'Get the Link history for a given user
+    
+Required Permissions:
+
+- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person, or platform identity themselves : `user:audit:self`'
+
+GET /users/v1/history/login
+- Description changed from 'Get the Login history for a given user
+    
+Required Permissions:
+
+- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person or platform identity themselves : `user:audit:self`' to 'Get the Login history for a given user
+    
+Required Permissions:
+
+- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person, or platform identity themselves : `user:audit:self`'
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+
+POST /users/v1/oauth/token
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+
+GET /users/v1/person/me/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+
+GET /users/v1/person/{person_id}/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+
+POST /users/v1/person/{person_id}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: expiration
+            - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+            - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+          - Modified property: reason_detail
+            - Description changed from 'Additional reason describing the restriction' to 'Internal-only reason describing the restriction'
+
+GET /users/v2/player/me/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+
+GET /users/v2/player/{player_uuid}/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+                    - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+
+POST /users/v2/player/{player_uuid}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: expiration
+            - Title changed from 'Expiration' to 'Time Zone Aware Datetime'
+            - Description changed from 'Date the restriction expires.  Null means the restriction is permanent' to 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone'
+          - Modified property: reason_detail
+            - Description changed from 'Additional reason describing the restriction' to 'Internal-only reason describing the restriction'
 ## Changes for Mon Mar 31 20:38:54 UTC 2025
 ### New Endpoints: None
 -----------------------
