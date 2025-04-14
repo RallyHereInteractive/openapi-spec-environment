@@ -3391,6 +3391,7 @@
             "default": "^.+$"
           },
           "value_jsonschema": {
+            "additionalProperties": true,
             "type": "object",
             "title": "Value Jsonschema",
             "description": "[jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time"

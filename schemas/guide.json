@@ -30,17 +30,14 @@
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SearchGuideSort",
-              "default": "created"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/SortDirection",
-              "default": "desc"
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SearchGuideSort"
+              },
+              "default": [
+                "created"
+              ],
+              "title": "Sort By"
             }
           },
           {
@@ -711,6 +708,21 @@
                 }
               ],
               "title": "Ref 32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SortDirection"
+              },
+              "default": [
+                "desc"
+              ],
+              "title": "Sort"
             }
           }
         ],
@@ -850,7 +862,7 @@
             }
           },
           "404": {
-            "description": "Error Codes:\n- `ErrorCodes.not_found` - Object was not found\n",
+            "description": "\nError Codes:\n- `not_found` - Object was not found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -977,7 +989,7 @@
             }
           },
           "404": {
-            "description": "Error Codes:\n- `ErrorCodes.not_found` - Object was not found\n",
+            "description": "\nError Codes:\n- `not_found` - Object was not found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -1111,17 +1123,14 @@
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SearchFavoriteGuideSort",
-              "default": "favorited_at"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/SortDirection",
-              "default": "desc"
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SearchFavoriteGuideSort"
+              },
+              "default": [
+                "favorited_at"
+              ],
+              "title": "Sort By"
             }
           },
           {
@@ -1792,6 +1801,21 @@
                 }
               ],
               "title": "Ref 32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SortDirection"
+              },
+              "default": [
+                "desc"
+              ],
+              "title": "Sort"
             }
           }
         ],
@@ -2179,6 +2203,12 @@
             ],
             "title": "Short Desc"
           },
+          "promotion_priority": {
+            "type": "integer",
+            "title": "Promotion Priority",
+            "description": "Promotion priority of this guide in searches",
+            "default": 0
+          },
           "ref_1": {
             "anyOf": [
               {
@@ -2563,6 +2593,30 @@
             ],
             "title": "Ref 32"
           },
+          "owner_entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Owner of this guide.  If empty, will default to the requesting entity"
+          },
+          "owner_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Entity Id",
+            "description": "Owner of this guide.  If empty, will default to the requesting entity"
+          },
           "content": {
             "anyOf": [
               {
@@ -2630,6 +2684,12 @@
               }
             ],
             "title": "Short Desc"
+          },
+          "promotion_priority": {
+            "type": "integer",
+            "title": "Promotion Priority",
+            "description": "Promotion priority of this guide in searches",
+            "default": 0
           },
           "ref_1": {
             "anyOf": [
@@ -3159,6 +3219,12 @@
               }
             ],
             "title": "Short Desc"
+          },
+          "promotion_priority": {
+            "type": "integer",
+            "title": "Promotion Priority",
+            "description": "Promotion priority of this guide in searches",
+            "default": 0
           },
           "ref_1": {
             "anyOf": [
@@ -4555,10 +4621,12 @@
           "created",
           "modified",
           "upvotes",
+          "promoted",
           "favorited_at"
         ],
         "title": "SearchFavoriteGuideSort",
         "x-enum-descriptions": [
+          "",
           "",
           "",
           "",
@@ -4568,6 +4636,7 @@
           "created",
           "modified",
           "upvotes",
+          "promoted",
           "favorited_at"
         ]
       },
@@ -4601,10 +4670,12 @@
         "enum": [
           "created",
           "modified",
-          "upvotes"
+          "upvotes",
+          "promoted"
         ],
         "title": "SearchGuideSort",
         "x-enum-descriptions": [
+          "",
           "",
           "",
           ""
@@ -4612,7 +4683,8 @@
         "x-enum-varnames": [
           "created",
           "modified",
-          "upvotes"
+          "upvotes",
+          "promoted"
         ]
       },
       "SortDirection": {
