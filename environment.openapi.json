@@ -15964,6 +15964,67 @@
           }
         ]
       },
+      "delete": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Delete Session",
+        "description": "Delete this session. It will be removed from the public browser, matchmaking, and backfills before being deleted\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:delete:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:delete:active`\n\n* Required session permissions are `SessionPermissions.session_admin`\n\nFor sessions you are an admin in:\n\n* None",
+        "operationId": "delete_session",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
       "patch": {
         "tags": [
           "Sessions"
