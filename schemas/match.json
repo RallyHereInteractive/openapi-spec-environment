@@ -16517,7 +16517,7 @@
           "created_into": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "number"
               },
               {
                 "type": "null"
@@ -16785,6 +16785,11 @@
             "title": "Target Id 4",
             "description": "Target ID"
           },
+          "properties": {
+            "$ref": "#/components/schemas/MatchTimelineProperties",
+            "description": "Common properties",
+            "default": {}
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -16799,7 +16804,41 @@
             ],
             "title": "Custom Data",
             "description": "Custom data for the timeline event"
+          }
+        },
+        "type": "object",
+        "title": "MatchTimelineEvent",
+        "description": "Event on a match timeline"
+      },
+      "MatchTimelinePage": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/MatchTimelineEvent"
+            },
+            "type": "array",
+            "title": "Events",
+            "description": "Page of events",
+            "default": []
           },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor",
+            "description": "Cursor to use to get the next page of events"
+          }
+        },
+        "type": "object",
+        "title": "MatchTimelinePage"
+      },
+      "MatchTimelineProperties": {
+        "properties": {
           "int_1": {
             "anyOf": [
               {
@@ -17858,35 +17897,7 @@
           }
         },
         "type": "object",
-        "title": "MatchTimelineEvent",
-        "description": "Event on a match timeline"
-      },
-      "MatchTimelinePage": {
-        "properties": {
-          "events": {
-            "items": {
-              "$ref": "#/components/schemas/MatchTimelineEvent"
-            },
-            "type": "array",
-            "title": "Events",
-            "description": "Page of events",
-            "default": []
-          },
-          "cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Cursor",
-            "description": "Cursor to use to get the next page of events"
-          }
-        },
-        "type": "object",
-        "title": "MatchTimelinePage"
+        "title": "MatchTimelineProperties"
       },
       "MatchValuesOnly": {
         "properties": {
