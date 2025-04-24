@@ -1277,8 +1277,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 1000.0,
-              "minimum": 1.0,
+              "maximum": 1000,
+              "minimum": 1,
               "title": "Page Size",
               "description": "number of players to return",
               "default": 100
@@ -1818,7 +1818,7 @@
           "Users"
         ],
         "summary": "Queue Me For Purge",
-        "description": "Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.",
+        "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`\n\n- For the person themselves : `purge:person:self`",
         "operationId": "queue_me_for_purge",
         "requestBody": {
           "content": {
@@ -1913,7 +1913,7 @@
           "Users"
         ],
         "summary": "Get Queue Purge Status For Person",
-        "description": "Get the purge status for a person. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
+        "description": "Get the purge status for a person. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`\n\n- For the person themselves : `purge:person:self`",
         "operationId": "get_queue_purge_status_for_person",
         "parameters": [
           {
@@ -1980,7 +1980,7 @@
           "Users"
         ],
         "summary": "Queue Person For Purge",
-        "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
+        "description": "Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.\n\nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`\n\n- For the person themselves : `purge:person:self`",
         "operationId": "queue_person_for_purge",
         "parameters": [
           {
@@ -2047,7 +2047,7 @@
           "Users"
         ],
         "summary": "Dequeue Person For Purge",
-        "description": "Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`",
+        "description": "Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. \n    \nRequired Permissions:\n\n- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`\n\n- For the person themselves : `purge:person:self`",
         "operationId": "dequeue_person_for_purge",
         "parameters": [
           {
