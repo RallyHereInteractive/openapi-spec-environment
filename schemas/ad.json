@@ -485,7 +485,7 @@
           },
           "seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Seconds",
             "description": "The number of seconds the ad is"
           },
@@ -588,7 +588,7 @@
           },
           "abort_seconds": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Abort Seconds",
             "description": "Number of seconds into the video when the abort happened"
           }
@@ -643,13 +643,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Ad was closed by the user",
-          "Ad was closed from a misc cause"
-        ],
         "x-enum-varnames": [
           "CANCEL",
           "OTHER"
+        ],
+        "x-enum-descriptions": [
+          "Ad was closed by the user",
+          "Ad was closed from a misc cause"
         ]
       },
       "OpportunityState": {
@@ -661,15 +661,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "User started watching the ad",
-          "User finished watching the ad",
-          "User stopped watching the ad partway through"
-        ],
         "x-enum-varnames": [
           "START",
           "COMPLETE",
           "ABORT"
+        ],
+        "x-enum-descriptions": [
+          "User started watching the ad",
+          "User finished watching the ad",
+          "User stopped watching the ad partway through"
         ]
       },
       "ValidationError": {

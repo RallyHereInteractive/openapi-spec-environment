@@ -1277,8 +1277,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 1000,
-              "minimum": 1,
+              "maximum": 1000.0,
+              "minimum": 1.0,
               "title": "Page Size",
               "description": "number of players to return",
               "default": 100
@@ -3582,6 +3582,201 @@
           }
         ]
       }
+    },
+    "/v1/support/log": {
+      "get": {
+        "tags": [
+          "Support"
+        ],
+        "summary": "Get Support Logs",
+        "description": "Get a page of support logs for a player by UUID or person ID.\n    \nRequired Permissions:\n\n- For any user (including themselves) any of: `support:log:read`, `user:*`",
+        "operationId": "get_support_logs",
+        "parameters": [
+          {
+            "description": "The player UUID to get support logs for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player UUID to get support logs for"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "The person ID to get support logs for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id",
+              "description": "The person ID to get support logs for"
+            },
+            "name": "person_id",
+            "in": "query"
+          },
+          {
+            "description": "The page number to retrieve",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1.0,
+              "title": "Page",
+              "description": "The page number to retrieve",
+              "default": 1
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "description": "The number of logs per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100.0,
+              "exclusiveMinimum": 0.0,
+              "title": "Page Size",
+              "description": "The number of logs per page",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportLogPageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Support"
+        ],
+        "summary": "Create Support Log",
+        "description": "Create a new support log entry for a player.\n    \nRequired Permissions:\n\n- For any user (including themselves) any of: `support:log:write`, `user:*`",
+        "operationId": "create_support_log",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSupportLogRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportLogEntry"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3617,6 +3812,63 @@
         ],
         "title": "CreatePlatformUserRequest",
         "description": "Request parameters to create a user exists"
+      },
+      "CreateSupportLogRequest": {
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "Person ID to associate with the log entry"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID to associate with the log entry"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform to associate with the log entry"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "Platform user ID to associate with the log entry"
+          },
+          "event_name": {
+            "type": "string",
+            "title": "Event Name",
+            "description": "Name of the support event"
+          },
+          "event_description": {
+            "type": "string",
+            "title": "Event Description",
+            "description": "Detailed description of the support action"
+          },
+          "support_username": {
+            "type": "string",
+            "title": "Support Username",
+            "description": "Username of the support agent"
+          },
+          "ip": {
+            "type": "string",
+            "title": "Ip",
+            "description": "IP address where the action was performed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_name",
+          "event_description"
+        ],
+        "title": "CreateSupportLogRequest",
+        "description": "Request to create a new support log entry"
       },
       "DeviceType": {
         "type": "string",
@@ -5402,6 +5654,113 @@
           "LOCKED"
         ]
       },
+      "SupportLogEntry": {
+        "properties": {
+          "support_action_log_id": {
+            "type": "string",
+            "title": "Support Action Log Id",
+            "description": "Unique ID of the support action log entry"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "Person ID the log entry is for"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player ID the log entry is for (legacy)"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Portal ID (legacy)"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "Portal user ID (legacy)"
+          },
+          "event_name": {
+            "type": "string",
+            "title": "Event Name",
+            "description": "Name of the support event"
+          },
+          "event_description": {
+            "type": "string",
+            "title": "Event Description",
+            "description": "Detailed description of the support action"
+          },
+          "ip": {
+            "type": "string",
+            "title": "Ip",
+            "description": "IP address where the action was performed"
+          },
+          "support_username": {
+            "type": "string",
+            "title": "Support Username",
+            "description": "Username of the support agent"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "support_action_log_id",
+          "person_id",
+          "event_name",
+          "event_description",
+          "created"
+        ],
+        "title": "SupportLogEntry",
+        "description": "Support log entry details"
+      },
+      "SupportLogPageResponse": {
+        "properties": {
+          "logs": {
+            "items": {
+              "$ref": "#/components/schemas/SupportLogEntry"
+            },
+            "type": "array",
+            "title": "Logs",
+            "description": "List of support log entries"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page",
+            "description": "Current page number"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total number of pages available"
+          },
+          "total_entries": {
+            "type": "integer",
+            "title": "Total Entries",
+            "description": "Total number of log entries available"
+          }
+        },
+        "type": "object",
+        "required": [
+          "logs",
+          "page",
+          "total_pages",
+          "total_entries"
+        ],
+        "title": "SupportLogPageResponse",
+        "description": "Response containing a page of support log entries"
+      },
       "TokenRequest": {
         "properties": {
           "grant_type": {
@@ -5777,6 +6136,10 @@
     {
       "name": "Users",
       "description": "User Endpoints to query user information, search for users, purge users (for GDPR or other delete reasons), and update linking/cross-progresion status for users."
+    },
+    {
+      "name": "Support",
+      "description": "Support endpoints to manage and retrieve support logs for users."
     }
   ]
 }
