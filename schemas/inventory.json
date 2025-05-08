@@ -9305,6 +9305,18 @@
             ],
             "title": "Original Price",
             "description": "The amount of the item needed before the sale began"
+          },
+          "min_reduced_price": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Reduced Price",
+            "description": "The lowest amount the current price can be reduced to with other discounts"
           }
         },
         "type": "object",
@@ -11477,6 +11489,18 @@
             "type": "integer",
             "title": "Price",
             "description": "The price of the Item."
+          },
+          "min_reduced_price": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Reduced Price",
+            "description": "The minimum price this currency can be reduced to for purchase."
           }
         },
         "type": "object",
