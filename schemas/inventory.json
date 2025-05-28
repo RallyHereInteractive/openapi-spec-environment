@@ -5016,6 +5016,51 @@
         }
       }
     },
+    "/v1/order": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Create Many Player Order",
+        "description": "Create many number of orders across multiple players",
+        "operationId": "create_many_player_order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManyPlayerOrderCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/v2/player/me/entitlement": {
       "post": {
         "tags": [
@@ -7580,6 +7625,7 @@
           "platform_data": {
             "anyOf": [
               {
+                "additionalProperties": true,
                 "type": "object"
               },
               {
@@ -7746,6 +7792,7 @@
           "platform_data": {
             "anyOf": [
               {
+                "additionalProperties": true,
                 "type": "object"
               },
               {
@@ -8743,7 +8790,7 @@
               }
             ],
             "title": "External Key Type",
-            "description": "This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign."
+            "description": "This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign."
           },
           "created_on": {
             "anyOf": [
@@ -9352,6 +9399,23 @@
         "title": "Loots",
         "description": "A collection of Loot by Loot ID."
       },
+      "ManyPlayerOrderCreate": {
+        "properties": {
+          "orders": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerOrderCreateSingle"
+            },
+            "type": "array",
+            "title": "Orders",
+            "description": "List of Player Order Entries for the Player Order."
+          }
+        },
+        "type": "object",
+        "required": [
+          "orders"
+        ],
+        "title": "ManyPlayerOrderCreate"
+      },
       "MarketingCampaign": {
         "properties": {
           "uuid": {
@@ -9658,6 +9722,7 @@
             "title": "Platform Label"
           },
           "platform_metadata": {
+            "additionalProperties": true,
             "type": "object",
             "title": "Platform Metadata",
             "description": "Platform-specific metadata about this entitlement",
@@ -10326,6 +10391,132 @@
         "title": "PlayerOrderCreate",
         "description": "Create a new Player Order.\n\n<b>Note: `use_inventory_bucket` will be ignored on the PlayerOrderEntryCreate if the `source` equals `CLIENT`.</b>"
       },
+      "PlayerOrderCreateSingle": {
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/Source",
+            "description": "The source of the Player Order.",
+            "default": "CLIENT"
+          },
+          "client_order_ref_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Order Ref Id",
+            "description": "Arbitrary UUID clients can use to track Orders between request to response."
+          },
+          "portal_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Portal"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Portal of the Portal User the Player Order belongs to.",
+            "deprecated": true
+          },
+          "portal_user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Portal User Id",
+            "description": "Portal User Id for the Player this Player Order belongs to."
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance Id",
+            "description": "Instance Id for the Instance who submits the Player Order."
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "Match Id for the Match that generated the Player Order."
+          },
+          "is_transaction": {
+            "type": "boolean",
+            "title": "Is Transaction",
+            "description": "If an order is a transaction, any failed entries will roll back changes from all other entries.",
+            "default": false
+          },
+          "player_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Id",
+            "description": "Player Id of the Player this Player Order belongs to."
+          },
+          "player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Uuid",
+            "description": "Player UUID of the Player this Player Order belongs to."
+          },
+          "order_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order Id",
+            "description": "Unique Identifier for the Order."
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerOrderEntryCreate-Input"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "List of Player Order Entries for the Player Order."
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "PlayerOrderCreateSingle"
+      },
       "PlayerOrderDetail": {
         "properties": {
           "type": {
@@ -10581,6 +10772,57 @@
             "title": "Expires",
             "description": "Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]"
           },
+          "xp_quantity_transform_type": {
+            "$ref": "#/components/schemas/XpQuantityTransform",
+            "description": "Allows treating quantity as additional levels to grant to the Player. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "none"
+          },
+          "hard_quantity_maximum": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Quantity Maximum",
+            "description": "Maximum final quantity of this loot that can be fulfilled after all other calculations. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "inventory_operation": {
+            "$ref": "#/components/schemas/InventoryOperation",
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "inventory_selector_type": {
+            "$ref": "#/components/schemas/InventorySelector",
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "quantity_mult_inventory_item_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "time_frame_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Frame Id",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. This is only used when type equals [CUSTOM_LOOT]"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -10802,6 +11044,57 @@
             "title": "Expires",
             "description": "Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]"
           },
+          "xp_quantity_transform_type": {
+            "$ref": "#/components/schemas/XpQuantityTransform",
+            "description": "Allows treating quantity as additional levels to grant to the Player. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "none"
+          },
+          "hard_quantity_maximum": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Quantity Maximum",
+            "description": "Maximum final quantity of this loot that can be fulfilled after all other calculations. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "inventory_operation": {
+            "$ref": "#/components/schemas/InventoryOperation",
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "inventory_selector_type": {
+            "$ref": "#/components/schemas/InventorySelector",
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "quantity_mult_inventory_item_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "time_frame_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Frame Id",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. This is only used when type equals [CUSTOM_LOOT]"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -11016,6 +11309,57 @@
             "title": "Expires",
             "description": "Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]"
           },
+          "xp_quantity_transform_type": {
+            "$ref": "#/components/schemas/XpQuantityTransform",
+            "description": "Allows treating quantity as additional levels to grant to the Player. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "none"
+          },
+          "hard_quantity_maximum": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Quantity Maximum",
+            "description": "Maximum final quantity of this loot that can be fulfilled after all other calculations. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "inventory_operation": {
+            "$ref": "#/components/schemas/InventoryOperation",
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "inventory_selector_type": {
+            "$ref": "#/components/schemas/InventorySelector",
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "quantity_mult_inventory_item_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "time_frame_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Frame Id",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. This is only used when type equals [CUSTOM_LOOT]"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -11226,7 +11570,8 @@
           "update_existing_persistent_inventory",
           "create_new_transient_inventory",
           "update_existing_transient_inventory",
-          "update_inventory"
+          "update_inventory",
+          "custom_loot"
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
@@ -11241,7 +11586,8 @@
           "Deprecated. Use update_inventory instead.",
           "Create transient Inventory.",
           "Deprecated. Use update_inventory instead.",
-          "Update existing Inventory."
+          "Update existing Inventory.",
+          "Provide parameters of a custom loot object and grant to the player"
         ],
         "x-enum-varnames": [
           "FILL_LOOT",
@@ -11254,7 +11600,8 @@
           "UPDATE_EXISTING_PERSISTENT_INVENTORY",
           "CREATE_NEW_TRANSIENT_INVENTORY",
           "UPDATE_EXISTING_TRANSIENT_INVENTORY",
-          "UPDATE_INVENTORY"
+          "UPDATE_INVENTORY",
+          "CUSTOM_LOOT"
         ]
       },
       "PlayerOrdersResponse": {
