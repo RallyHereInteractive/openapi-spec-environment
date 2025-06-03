@@ -5039,7 +5039,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ManyPlayerOrderResponse"
+                }
               }
             }
           },
@@ -9415,6 +9417,22 @@
           "orders"
         ],
         "title": "ManyPlayerOrderCreate"
+      },
+      "ManyPlayerOrderResponse": {
+        "properties": {
+          "order_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Order Ids",
+            "description": "Order IDs submitted in the request.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "ManyPlayerOrderResponse",
+        "description": "Response listing order IDs for a bulk order request."
       },
       "MarketingCampaign": {
         "properties": {
