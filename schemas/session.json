@@ -8892,6 +8892,15 @@
             "minLength": 1,
             "title": "Match Making Profile Id",
             "description": "The MatchMakingProfileID that was ultimately used to create this match"
+          },
+          "ticket_wait_seconds": {
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            "type": "object",
+            "title": "Ticket Wait Seconds",
+            "description": "Map of he total wait time in seconds that each ticket waited before being assigned to a match"
           }
         },
         "type": "object",
@@ -9160,6 +9169,15 @@
             ],
             "title": "Profile",
             "description": "The profile used to create this match"
+          },
+          "ticket_wait_seconds": {
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0.0
+            },
+            "type": "object",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that each ticket waited before being assigned to a match"
           }
         },
         "type": "object",
