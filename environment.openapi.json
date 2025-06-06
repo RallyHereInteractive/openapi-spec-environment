@@ -43125,6 +43125,13 @@
             "title": "Ticket Wait Seconds",
             "description": "The total time in seconds that the ticket waited before being assigned to a match"
           },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "ID of the MatchMakingProfile used to create this session"
+          },
           "requesting_user_uuid": {
             "type": "string",
             "format": "uuid",
@@ -43663,6 +43670,13 @@
             "type": "integer",
             "title": "Ticket Wait Seconds",
             "description": "The total time in seconds that the ticket waited before being assigned to a match"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "ID of the MatchMakingProfile used to create this session"
           },
           "players": {
             "items": {
@@ -45041,14 +45055,14 @@
             "title": "Match Making Profile Id",
             "description": "The MatchMakingProfileID that was ultimately used to create this match"
           },
-          "ticket_wait_seconds": {
+          "ticket_added_unix_time": {
             "additionalProperties": {
-              "type": "integer",
+              "type": "number",
               "minimum": 0
             },
             "type": "object",
-            "title": "Ticket Wait Seconds",
-            "description": "Map of he total wait time in seconds that each ticket waited before being assigned to a match"
+            "title": "Ticket Added Unix Time",
+            "description": "Map of ticket_id to unix time that each ticket was added to the match"
           }
         },
         "type": "object",
