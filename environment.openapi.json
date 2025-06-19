@@ -21587,9 +21587,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Login Token",
+        "summary": "Get Vivox Login Token",
         "description": "Generate a token to login with vivox\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:login`",
-        "operationId": "get_voip_login_token",
+        "operationId": "get_vivox_login_token",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -21624,9 +21624,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Action Token Me",
+        "summary": "Get Vivox Action Token Me",
         "description": "Generate a token for one of the specific vivox actions except logging in\n\n`JOIN` Required Permissions:\n\n- For the player themselves : `session:vivox:join`\n\n`JOIN_MUTED` Required Permissions:\n\n- For the player themselves : `session:vivox:join_muted`\n\n`KICK` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:kick:all`\n\n- For the player themselves : `session:vivox:kick:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`MUTE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:mute:all`\n\n- For the player themselves : `session:vivox:mute:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`TRANSCRIBE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:transcribe:any`\n\n- For the player themselves : `session:vivox:transcribe:as-member`",
-        "operationId": "get_voip_action_token_me",
+        "operationId": "get_vivox_action_token_me",
         "parameters": [
           {
             "required": true,
@@ -21710,9 +21710,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Action Token",
+        "summary": "Get Vivox Action Token",
         "description": "Generate a token for one of the specific vivox actions except logging in\n\n`JOIN` Required Permissions:\n\n- For the player themselves : `session:vivox:join`\n\n`JOIN_MUTED` Required Permissions:\n\n- For the player themselves : `session:vivox:join_muted`\n\n`KICK` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:kick:all`\n\n- For the player themselves : `session:vivox:kick:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`MUTE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:mute:all`\n\n- For the player themselves : `session:vivox:mute:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:mute:as-leader`\n\n\n\n`TRANSCRIBE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:transcribe:any`\n\n- For the player themselves : `session:vivox:transcribe:as-member`",
-        "operationId": "get_voip_action_token",
+        "operationId": "get_vivox_action_token",
         "parameters": [
           {
             "required": true,
@@ -21769,6 +21769,108 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VoipTokenResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/session/{session_id}/player/me/voip/epic:join": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get Epic Voice Join Token Me",
+        "description": "Generate Epic voice room credentials for the current player\n\nRequired Permissions:\n\n- For the player themselves : `session:voip:epic:join`",
+        "operationId": "get_epic_voice_join_token_me",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/VoipSessionType"
+            },
+            "name": "voip_session_type",
+            "in": "query"
+          },
+          {
+            "description": "If true, join the muted room",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Join Muted",
+              "description": "If true, join the muted room",
+              "default": false
+            },
+            "name": "join_muted",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          },
+          {
+            "description": "IP Address hint",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 32,
+              "title": "X-Rh-Client-Addr",
+              "description": "IP Address hint"
+            },
+            "name": "x-rh-client-addr",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EpicVoipCredentialsResponse"
                 }
               }
             }
@@ -34571,23 +34673,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -34604,6 +34689,23 @@
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPValidationError": {
@@ -34653,19 +34755,19 @@
         ],
         "title": "LinkAction",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "link",
-          "unlink",
-          "new_person",
-          "xprog_enable",
-          "xprog_disable"
-        ],
         "x-enum-descriptions": [
           "Linked a player to an existing person",
           "Unlinked a player from a person",
           "Player was associated with a new person",
           "Active player was set for person, enabling cross-progression for all of the person's players",
           "Active player was cleared for person, disabling cross-progression for all of the person's players"
+        ],
+        "x-enum-varnames": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
         ]
       },
       "LoginCompleteMessage": {
@@ -35093,11 +35195,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -35115,17 +35217,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -35136,6 +35227,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -35145,11 +35247,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -35703,15 +35805,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -36126,15 +36228,6 @@
         ],
         "title": "RestrictionIssuerType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SUPPORT",
-          "GM",
-          "ADMIN",
-          "ANTICHEAT",
-          "PUNISH_SYSTEM",
-          "GUARDIAN",
-          "SHOP"
-        ],
         "x-enum-descriptions": [
           "Support staff",
           "In-Game GM",
@@ -36143,6 +36236,15 @@
           "Automated Punishment system, based on user activity",
           "User's parent/guardian",
           "Automated Shop System, based on user activity"
+        ],
+        "x-enum-varnames": [
+          "SUPPORT",
+          "GM",
+          "ADMIN",
+          "ANTICHEAT",
+          "PUNISH_SYSTEM",
+          "GUARDIAN",
+          "SHOP"
         ]
       },
       "RestrictionReasonCode": {
@@ -36168,25 +36270,6 @@
         ],
         "title": "RestrictionReasonCode",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CHEATING_AUTODETECTED",
-          "SPEEDHACK_AUTODETECT",
-          "OTHER",
-          "CHEATING_OBSERVED",
-          "CHEATING_REPORTED_BY_PLAYER",
-          "THREATS",
-          "LANGUAGE",
-          "GRIEFING",
-          "FRAUD",
-          "REVOKE_FAILED",
-          "UNKNOWN",
-          "GUARDIAN",
-          "ISSUER_PROCESS",
-          "ACCOUNT_MIGRATION",
-          "USER_REQUEST",
-          "MAINTENANCE",
-          "PENDING_DELETION"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -36205,6 +36288,25 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "CHEATING_AUTODETECTED",
+          "SPEEDHACK_AUTODETECT",
+          "OTHER",
+          "CHEATING_OBSERVED",
+          "CHEATING_REPORTED_BY_PLAYER",
+          "THREATS",
+          "LANGUAGE",
+          "GRIEFING",
+          "FRAUD",
+          "REVOKE_FAILED",
+          "UNKNOWN",
+          "GUARDIAN",
+          "ISSUER_PROCESS",
+          "ACCOUNT_MIGRATION",
+          "USER_REQUEST",
+          "MAINTENANCE",
+          "PENDING_DELETION"
         ]
       },
       "RestrictionType": {
@@ -36217,17 +36319,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned.  User is not allowed to login",
           "Account is locked out.  User is not allowed to login",
           "Account is pending deletion and will be deleted in the future.",
           "Account has been banned from authentication.  User is not allowed to login"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Restrictions": {
@@ -36300,15 +36402,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "SupportLogEntry": {
@@ -36618,23 +36720,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -36651,6 +36736,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -36695,44 +36797,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -36770,6 +36834,44 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "SetSinglePlayerSettingRequest": {
@@ -43952,6 +44054,38 @@
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
         ]
+      },
+      "EpicVoipCredentialsResponse": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "title": "Room Id",
+            "description": "Epic voice room identifier"
+          },
+          "participant_token": {
+            "type": "string",
+            "title": "Participant Token",
+            "description": "Token for the participant to join the Epic voice room"
+          },
+          "client_base_url": {
+            "type": "string",
+            "title": "Client Base Url",
+            "description": "Base URL for Epic voice client connections"
+          },
+          "product_user_id": {
+            "type": "string",
+            "title": "Product User Id",
+            "description": "Epic ProductUserId for the authenticated user"
+          }
+        },
+        "type": "object",
+        "required": [
+          "room_id",
+          "participant_token",
+          "client_base_url",
+          "product_user_id"
+        ],
+        "title": "EpicVoipCredentialsResponse"
       },
       "HostType": {
         "type": "string",
@@ -54025,17 +54159,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "online",
-          "away",
-          "invisible",
-          "offline"
-        ],
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
           "Player will appear offline to other players",
           "Player is offline"
+        ],
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
         ]
       },
       "PlatformIndividualCCUs": {
