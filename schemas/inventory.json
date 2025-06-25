@@ -9759,8 +9759,7 @@
           "transaction_id": {
             "type": "string",
             "title": "Transaction Id",
-            "description": "unique id for this transaction on the platform",
-            "default": ""
+            "description": "unique id for this transaction on the platform"
           },
           "platform_token": {
             "type": "string",
@@ -9786,13 +9785,11 @@
           },
           "platform_region": {
             "$ref": "#/components/schemas/PlatformRegion",
-            "description": "region this purchase was made in",
-            "default": "Unknown"
+            "description": "region this purchase was made in"
           },
           "client_type": {
             "$ref": "#/components/schemas/ClientType",
-            "description": "client type this purchase was made on",
-            "default": "UNKNOWN"
+            "description": "client type this purchase was made on"
           },
           "entitlements": {
             "items": {
@@ -9818,8 +9815,11 @@
         },
         "type": "object",
         "required": [
+          "transaction_id",
           "platform_token",
-          "platform_id"
+          "platform_id",
+          "platform_region",
+          "client_type"
         ],
         "title": "PlatformEntitlementProcessRequest",
         "description": "Request to process a platform entitlement"
