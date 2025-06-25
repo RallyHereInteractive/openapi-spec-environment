@@ -130,53 +130,34 @@
         "summary": "Get Player Presence Public By Uuid",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
         "operationId": "get_player_presence_public_by_uuid",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "player_uuid",
-            "in": "path",
+            "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "title": "Player Uuid"
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
-            "description": "A valid UUID identifying a player. Rejects integer player identification."
+            "name": "player_uuid",
+            "in": "path"
           },
           {
-            "name": "if-none-match",
-            "in": "header",
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
-              "title": "If-None-Match"
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerPresence"
-                }
-              }
-            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -184,27 +165,34 @@
                   "type": "string"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -216,7 +204,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/player/id/{player_id}/presence": {
@@ -227,52 +220,33 @@
         "summary": "Get Player Presence Public By Id",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
         "operationId": "get_player_presence_public_by_id",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "player_id",
-            "in": "path",
+            "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
               "type": "integer",
-              "description": "A valid integer identifying a player. Rejects UUID player identification.",
-              "title": "Player Id"
+              "title": "Player Id",
+              "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
-            "description": "A valid integer identifying a player. Rejects UUID player identification."
+            "name": "player_id",
+            "in": "path"
           },
           {
-            "name": "if-none-match",
-            "in": "header",
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
             "required": false,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
-              "title": "If-None-Match"
+              "type": "string",
+              "title": "If-None-Match",
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
             },
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+            "name": "if-none-match",
+            "in": "header"
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerPresence"
-                }
-              }
-            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -280,27 +254,34 @@
                   "type": "string"
                 }
               }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -312,7 +293,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/settings": {
@@ -345,34 +331,29 @@
         "summary": "Admin Update Player Last Seen",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
         "operationId": "admin_update_player_last_seen",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "player_uuid",
-            "in": "path",
+            "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "title": "Player Uuid"
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
-            "description": "A valid UUID identifying a player. Rejects integer player identification."
+            "name": "player_uuid",
+            "in": "path"
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PlayerLastSeenUpdate"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -387,24 +368,24 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -416,7 +397,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/player/id/{player_id}/last_seen": {
@@ -427,33 +413,28 @@
         "summary": "Admin Update Player Last Seen Id",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
         "operationId": "admin_update_player_last_seen_id",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "player_id",
-            "in": "path",
+            "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
               "type": "integer",
-              "description": "A valid integer identifying a player. Rejects UUID player identification.",
-              "title": "Player Id"
+              "title": "Player Id",
+              "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
-            "description": "A valid integer identifying a player. Rejects UUID player identification."
+            "name": "player_id",
+            "in": "path"
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PlayerLastSeenUpdate"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -468,24 +449,24 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -497,7 +478,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/player/uuid/{player_uuid}/presence": {
@@ -508,23 +494,18 @@
         "summary": "Admin Get Player Presence",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
         "operationId": "admin_get_player_presence",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "player_uuid",
-            "in": "path",
+            "description": "A valid UUID identifying a player. Rejects integer player identification.",
             "required": true,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "A valid UUID identifying a player. Rejects integer player identification.",
-              "title": "Player Uuid"
+              "title": "Player Uuid",
+              "description": "A valid UUID identifying a player. Rejects integer player identification."
             },
-            "description": "A valid UUID identifying a player. Rejects integer player identification."
+            "name": "player_uuid",
+            "in": "path"
           }
         ],
         "responses": {
@@ -539,24 +520,24 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -568,7 +549,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/player/id/{player_id}/presence": {
@@ -579,22 +565,17 @@
         "summary": "Admin Get Player Presence Id",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
         "operationId": "admin_get_player_presence_id",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "player_id",
-            "in": "path",
+            "description": "A valid integer identifying a player. Rejects UUID player identification.",
             "required": true,
             "schema": {
               "type": "integer",
-              "description": "A valid integer identifying a player. Rejects UUID player identification.",
-              "title": "Player Id"
+              "title": "Player Id",
+              "description": "A valid integer identifying a player. Rejects UUID player identification."
             },
-            "description": "A valid integer identifying a player. Rejects UUID player identification."
+            "name": "player_id",
+            "in": "path"
           }
         ],
         "responses": {
@@ -609,24 +590,24 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -638,7 +619,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/total/combined": {
@@ -649,35 +635,28 @@
         "summary": "Admin Get Total Ccu",
         "description": "Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time\nperiod. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
         "operationId": "admin_get_total_ccu",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -692,14 +671,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -711,7 +690,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/total/individual": {
@@ -722,35 +706,28 @@
         "summary": "Admin Get Total Ccu Individual",
         "description": "Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These\nvalues should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine\nthe values within a time range without counting the same player multiple times.",
         "operationId": "admin_get_total_ccu_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -765,14 +742,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -784,7 +761,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/requesting/combined": {
@@ -795,35 +777,28 @@
         "summary": "Admin Get Requesting Ccu",
         "description": "Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
         "operationId": "admin_get_requesting_ccu",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -838,14 +813,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -857,7 +832,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/requesting/individual": {
@@ -868,35 +848,28 @@
         "summary": "Admin Get Requesting Ccu Individual",
         "description": "Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
         "operationId": "admin_get_requesting_ccu_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -911,14 +884,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -930,7 +903,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/updating/combined": {
@@ -941,35 +919,28 @@
         "summary": "Admin Get Updating Ccu",
         "description": "Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
         "operationId": "admin_get_updating_ccu",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -984,14 +955,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1003,7 +974,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/updating/individual": {
@@ -1014,35 +990,28 @@
         "summary": "Admin Get Updating Ccu Individual",
         "description": "Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
         "operationId": "admin_get_updating_ccu_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1057,14 +1026,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1076,7 +1045,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/platforms": {
@@ -1123,35 +1097,28 @@
         ],
         "summary": "Admin Get Total Ccu All Platform Individual",
         "operationId": "admin_get_total_ccu_all_platform_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1166,14 +1133,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1185,7 +1152,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/total/allplatforms/combined": {
@@ -1195,35 +1167,28 @@
         ],
         "summary": "Admin Get Total Ccu All Platform Combined",
         "operationId": "admin_get_total_ccu_all_platform_combined",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1238,14 +1203,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1257,7 +1222,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/requesting/allplatforms/individual": {
@@ -1267,35 +1237,28 @@
         ],
         "summary": "Admin Get Requesting Ccu All Platform Individual",
         "operationId": "admin_get_requesting_ccu_all_platform_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1310,14 +1273,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1329,7 +1292,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/requesting/allplatforms/combined": {
@@ -1339,35 +1307,28 @@
         ],
         "summary": "Admin Get Requesting Ccu All Platform Combined",
         "operationId": "admin_get_requesting_ccu_all_platform_combined",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1382,14 +1343,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1401,7 +1362,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/updating/allplatforms/individual": {
@@ -1411,35 +1377,28 @@
         ],
         "summary": "Admin Get Updating Ccu All Platform Individual",
         "operationId": "admin_get_updating_ccu_all_platform_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1454,14 +1413,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1473,7 +1432,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/updating/allplatforms/combined": {
@@ -1483,35 +1447,28 @@
         ],
         "summary": "Admin Get Updating Ccu All Platform Combined",
         "operationId": "admin_get_updating_ccu_all_platform_combined",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "begin",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "begin",
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1526,14 +1483,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1545,7 +1502,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/total/platform/{platform}/individual": {
@@ -1555,44 +1517,37 @@
         ],
         "summary": "Admin Get Total Ccu Platform Individual",
         "operationId": "admin_get_total_ccu_platform_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "platform",
-            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            }
+            },
+            "name": "platform",
+            "in": "path"
           },
           {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
             "name": "begin",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-              "type": "string",
-              "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1607,14 +1562,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1626,7 +1581,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/total/platform/{platform}/combined": {
@@ -1636,44 +1596,37 @@
         ],
         "summary": "Admin Get Total Ccu Platform Combined",
         "operationId": "admin_get_total_ccu_platform_combined",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "platform",
-            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            }
+            },
+            "name": "platform",
+            "in": "path"
           },
           {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
             "name": "begin",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-              "type": "string",
-              "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1688,14 +1641,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1707,7 +1660,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/requesting/platform/{platform}/individual": {
@@ -1717,44 +1675,37 @@
         ],
         "summary": "Admin Get Requesting Ccu Platform Individual",
         "operationId": "admin_get_requesting_ccu_platform_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "platform",
-            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            }
+            },
+            "name": "platform",
+            "in": "path"
           },
           {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
             "name": "begin",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-              "type": "string",
-              "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1769,14 +1720,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1788,7 +1739,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/requesting/platform/{platform}/combined": {
@@ -1798,44 +1754,37 @@
         ],
         "summary": "Admin Get Requesting Ccu Platform Combined",
         "operationId": "admin_get_requesting_ccu_platform_combined",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "platform",
-            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            }
+            },
+            "name": "platform",
+            "in": "path"
           },
           {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
             "name": "begin",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-              "type": "string",
-              "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1850,14 +1799,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1869,7 +1818,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/updating/platform/{platform}/individual": {
@@ -1879,44 +1833,37 @@
         ],
         "summary": "Admin Get Updating Ccu Platform Individual",
         "operationId": "admin_get_updating_ccu_platform_individual",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "platform",
-            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            }
+            },
+            "name": "platform",
+            "in": "path"
           },
           {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
             "name": "begin",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-              "type": "string",
-              "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1931,14 +1878,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -1950,7 +1897,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/v1/admin/ccu/updating/platform/{platform}/combined": {
@@ -1960,44 +1912,37 @@
         ],
         "summary": "Admin Get Updating Ccu Platform Combined",
         "operationId": "admin_get_updating_ccu_platform_combined",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
         "parameters": [
           {
-            "name": "platform",
-            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            }
+            },
+            "name": "platform",
+            "in": "path"
           },
           {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
             "name": "begin",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "title": "Begin",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
-              "type": "string",
-              "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+            "in": "query"
           },
           {
-            "name": "end",
-            "in": "query",
             "required": true,
             "schema": {
-              "title": "End",
-              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "example": "2023-01-23T21:07:02.000000+00:00"
-            }
+              "title": "TZAware",
+              "description": "A date-time with timezone data."
+            },
+            "name": "end",
+            "in": "query"
           }
         ],
         "responses": {
@@ -2012,14 +1957,14 @@
             }
           },
           "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -2031,7 +1976,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     }
   },
@@ -2097,9 +2047,6 @@
             "additionalProperties": {
               "type": "integer"
             },
-            "propertyNames": {
-              "format": "date-time"
-            },
             "type": "object",
             "title": "Ccus"
           }
@@ -2119,6 +2066,7 @@
           "offline"
         ],
         "title": "OnlineStatus",
+        "description": "An enumeration.",
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
@@ -2132,72 +2080,11 @@
           "offline"
         ]
       },
-      "Platform": {
-        "type": "string",
-        "enum": [
-          "Anon",
-          "Basic",
-          "XboxLive",
-          "PSN",
-          "NintendoNAID",
-          "NintendoSwitch",
-          "NintendoPPID",
-          "Google",
-          "GooglePlay",
-          "Apple",
-          "Epic",
-          "Steam",
-          "Amazon",
-          "Twitch",
-          "RallyHere",
-          "LegacyName"
-        ],
-        "title": "Platform",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ]
-      },
       "PlatformIndividualCCUs": {
         "properties": {
           "platform_ccus": {
             "additionalProperties": {
               "$ref": "#/components/schemas/IndividualCCUs"
-            },
-            "propertyNames": {
-              "$ref": "#/components/schemas/Platform"
             },
             "type": "object",
             "title": "Platform Ccus"
@@ -2214,9 +2101,6 @@
           "platform_counts": {
             "additionalProperties": {
               "$ref": "#/components/schemas/UnionCCU"
-            },
-            "propertyNames": {
-              "$ref": "#/components/schemas/Platform"
             },
             "type": "object",
             "title": "Platform Counts"
@@ -2253,26 +2137,12 @@
             "description": "Last time this player reported their online status"
           },
           "platform": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Platform",
             "description": "Platform the user was online in"
           },
           "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Display Name",
             "description": "Player Display Name"
           }
@@ -2286,7 +2156,11 @@
       "PlayerPresence": {
         "properties": {
           "status": {
-            "$ref": "#/components/schemas/OnlineStatus",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnlineStatus"
+              }
+            ],
             "description": "Is the player currently online?",
             "default": "offline"
           },
@@ -2313,24 +2187,13 @@
               "maxLength": 4096,
               "minLength": 1
             },
-            "propertyNames": {
-              "maxLength": 256,
-              "minLength": 1
-            },
             "type": "object",
             "title": "Custom Data",
             "description": "custom fields for the player to update about their presence",
             "default": {}
           },
           "player_id": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
             "title": "Player Id",
             "description": "Player ID for the player if it was provided as part of the request"
           },
@@ -2341,27 +2204,13 @@
             "description": "UUID of the player whose presence this represents"
           },
           "do_not_disturb": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "boolean",
             "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Only set for self or admin."
           },
           "last_seen": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "format": "date-time",
             "title": "Last Seen",
             "description": "Info about the player the last time they reported their status. Only set for self or admin"
           }
@@ -2377,66 +2226,31 @@
       "PlayerPresenceUpdateSelf": {
         "properties": {
           "status": {
-            "anyOf": [
+            "allOf": [
               {
                 "$ref": "#/components/schemas/OnlineStatus"
-              },
-              {
-                "type": "null"
               }
             ],
             "description": "Is the player currently online?"
           },
           "message": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 256,
             "title": "Message",
             "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
           },
           "do_not_disturb": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "boolean",
             "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Leaving this unset will not change the value."
           },
           "custom_data": {
-            "anyOf": [
-              {
-                "additionalProperties": {
-                  "anyOf": [
-                    {
-                      "type": "string",
-                      "maxLength": 4096,
-                      "minLength": 1
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                },
-                "propertyNames": {
-                  "maxLength": 256,
-                  "minLength": 1
-                },
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
             "title": "Custom Data",
             "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
           }
