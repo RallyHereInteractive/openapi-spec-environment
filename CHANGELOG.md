@@ -1,3 +1,2172 @@
+## Changes for Tue Jul  1 11:42:41 AM EDT 2025
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: 6
+------------------------
+POST /inventory/v1/order  
+GET /match/v1/match/{match_id}/timeline  
+POST /match/v1/match/{match_id}/timeline  
+GET /users/v1/history/restriction  
+GET /users/v1/support/log  
+POST /users/v1/support/log  
+
+### Modified Endpoints: 80
+--------------------------
+GET /guide/v1/guide
+- Modified query param: sort
+  - Schema changed
+    - Type changed from 'array' to 'string'
+    - Title changed from 'Sort' to 'SortDirection'
+    - New enum values: [asc desc]
+    - Default changed from [desc] to null
+    - Items changed
+      - Schema deleted
+- Modified query param: sort_by
+  - Schema changed
+    - Type changed from 'array' to 'string'
+    - Title changed from 'Sort By' to 'SearchGuideSort'
+    - New enum values: [created modified upvotes]
+    - Default changed from [created] to null
+    - Items changed
+      - Schema deleted
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - Deleted property: promotion_priority
+
+POST /guide/v1/guide
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Deleted property: owner_entity_id
+          - Deleted property: owner_entity_type
+          - Deleted property: promotion_priority
+- Responses changed
+  - Modified response: 201
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: promotion_priority
+
+DELETE /guide/v1/guide/{guide_id}
+- Responses changed
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- `not_found` - Object was not found
+' to 'Error Codes:
+- `ErrorCodes.not_found` - Object was not found
+'
+
+GET /guide/v1/guide/{guide_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: promotion_priority
+  - Modified response: 404
+    - Description changed from '
+Error Codes:
+- `not_found` - Object was not found
+' to 'Error Codes:
+- `ErrorCodes.not_found` - Object was not found
+'
+
+PUT /guide/v1/guide/{guide_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Deleted property: owner_entity_id
+          - Deleted property: owner_entity_type
+          - Deleted property: promotion_priority
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: promotion_priority
+
+GET /guide/v1/{entity_type}/{entity_id}/favorite-guide
+- Modified query param: sort
+  - Schema changed
+    - Type changed from 'array' to 'string'
+    - Title changed from 'Sort' to 'SortDirection'
+    - New enum values: [asc desc]
+    - Default changed from [desc] to null
+    - Items changed
+      - Schema deleted
+- Modified query param: sort_by
+  - Schema changed
+    - Type changed from 'array' to 'string'
+    - Title changed from 'Sort By' to 'SearchFavoriteGuideSort'
+    - New enum values: [created modified upvotes favorited_at]
+    - Default changed from [favorited_at] to null
+    - Items changed
+      - Schema deleted
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: results
+              - Items changed
+                - Properties changed
+                  - Deleted property: promotion_priority
+
+GET /inventory/v1/catalog
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: Loots
+                  - Properties changed
+                    - Modified property: loot
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: price
+                            - Property 'AnyOf' changed
+                              - Modified schema: subschema #1: LootPrice
+                                - Properties changed
+                                  - Modified property: breakpoints
+                                    - Items changed
+                                      - Properties changed
+                                        - Modified property: prices
+                                          - Items changed
+                                            - Properties changed
+                                              - Modified property: currencies
+                                                - Items changed
+                                                  - Properties changed
+                                                    - Deleted property: min_reduced_price
+            - Modified property: price_points
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: PricePoints
+                  - Properties changed
+                    - Modified property: price_points
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: current_breakpoints
+                            - Items changed
+                              - Properties changed
+                                - Modified property: currencies
+                                  - Property 'AnyOf' changed
+                                    - Modified schema: subschema #1
+                                      - Items changed
+                                        - Properties changed
+                                          - Deleted property: min_reduced_price
+                          - Modified property: pre_sale_breakpoints
+                            - Items changed
+                              - Properties changed
+                                - Modified property: currencies
+                                  - Property 'AnyOf' changed
+                                    - Modified schema: subschema #1
+                                      - Items changed
+                                        - Properties changed
+                                          - Deleted property: min_reduced_price
+            - Modified property: vendors
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: Vendors
+                  - Properties changed
+                    - Modified property: vendors
+                      - AdditionalProperties changed
+                        - Properties changed
+                          - Modified property: loot
+                            - AdditionalProperties changed
+                              - Properties changed
+                                - Modified property: price
+                                  - Property 'AnyOf' changed
+                                    - Modified schema: subschema #1: LootPrice
+                                      - Properties changed
+                                        - Modified property: breakpoints
+                                          - Items changed
+                                            - Properties changed
+                                              - Modified property: prices
+                                                - Items changed
+                                                  - Properties changed
+                                                    - Modified property: currencies
+                                                      - Items changed
+                                                        - Properties changed
+                                                          - Deleted property: min_reduced_price
+
+GET /inventory/v1/catalog/loot
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: price
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1: LootPrice
+                        - Properties changed
+                          - Modified property: breakpoints
+                            - Items changed
+                              - Properties changed
+                                - Modified property: prices
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: currencies
+                                        - Items changed
+                                          - Properties changed
+                                            - Deleted property: min_reduced_price
+
+GET /inventory/v1/catalog/loot/{loot_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: price
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1: LootPrice
+                  - Properties changed
+                    - Modified property: breakpoints
+                      - Items changed
+                        - Properties changed
+                          - Modified property: prices
+                            - Items changed
+                              - Properties changed
+                                - Modified property: currencies
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: min_reduced_price
+
+GET /inventory/v1/catalog/price-point
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: price_points
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: current_breakpoints
+                    - Items changed
+                      - Properties changed
+                        - Modified property: currencies
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1
+                              - Items changed
+                                - Properties changed
+                                  - Deleted property: min_reduced_price
+                  - Modified property: pre_sale_breakpoints
+                    - Items changed
+                      - Properties changed
+                        - Modified property: currencies
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1
+                              - Items changed
+                                - Properties changed
+                                  - Deleted property: min_reduced_price
+
+GET /inventory/v1/catalog/price-point/{price_point_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: current_breakpoints
+              - Items changed
+                - Properties changed
+                  - Modified property: currencies
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1
+                        - Items changed
+                          - Properties changed
+                            - Deleted property: min_reduced_price
+            - Modified property: pre_sale_breakpoints
+              - Items changed
+                - Properties changed
+                  - Modified property: currencies
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1
+                        - Items changed
+                          - Properties changed
+                            - Deleted property: min_reduced_price
+
+GET /inventory/v1/catalog/vendor
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: vendors
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: loot
+                    - AdditionalProperties changed
+                      - Properties changed
+                        - Modified property: price
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: LootPrice
+                              - Properties changed
+                                - Modified property: breakpoints
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: prices
+                                        - Items changed
+                                          - Properties changed
+                                            - Modified property: currencies
+                                              - Items changed
+                                                - Properties changed
+                                                  - Deleted property: min_reduced_price
+
+GET /inventory/v1/catalog/vendor/{vendor_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: loot
+              - AdditionalProperties changed
+                - Properties changed
+                  - Modified property: price
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1: LootPrice
+                        - Properties changed
+                          - Modified property: breakpoints
+                            - Items changed
+                              - Properties changed
+                                - Modified property: prices
+                                  - Items changed
+                                    - Properties changed
+                                      - Modified property: currencies
+                                        - Items changed
+                                          - Properties changed
+                                            - Deleted property: min_reduced_price
+
+GET /inventory/v1/entitlement-event
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - Modified property: platform_data
+                    - Property 'AnyOf' changed
+                      - Modified schema: subschema #1
+                        - AdditionalProperties changed from true to null
+
+POST /inventory/v1/entitlement-event
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: platform_data
+            - Property 'AnyOf' changed
+              - Modified schema: subschema #1
+                - AdditionalProperties changed from true to null
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: platform_data
+              - Property 'AnyOf' changed
+                - Modified schema: subschema #1
+                  - AdditionalProperties changed from true to null
+
+POST /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v1/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v1/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v1/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: external_key_type
+                    - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+POST /inventory/v1/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v1/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Deleted property: hard_quantity_maximum
+                        - Deleted property: inventory_operation
+                        - Deleted property: inventory_selector_type
+                        - Deleted property: quantity_mult_inventory_item_id
+                        - Deleted property: time_frame_id
+                        - Deleted property: xp_quantity_transform_type
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Deleted property: hard_quantity_maximum
+                                            - Deleted property: inventory_operation
+                                            - Deleted property: inventory_selector_type
+                                            - Deleted property: quantity_mult_inventory_item_id
+                                            - Deleted property: time_frame_id
+                                            - Deleted property: xp_quantity_transform_type
+                                            - Modified property: type
+                                              - Deleted enum values: [custom_loot]
+                        - Modified property: result
+                          - Deleted enum values: [failed_to_fill_all_random]
+                        - Modified property: type
+                          - Deleted enum values: [custom_loot]
+
+POST /inventory/v1/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Deleted property: hard_quantity_maximum
+                - Deleted property: inventory_operation
+                - Deleted property: inventory_selector_type
+                - Deleted property: quantity_mult_inventory_item_id
+                - Deleted property: time_frame_id
+                - Deleted property: xp_quantity_transform_type
+                - Modified property: type
+                  - Deleted enum values: [custom_loot]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v1/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+POST /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v1/player/{player_id}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v1/player/{player_id}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v1/player/{player_id}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: external_key_type
+                    - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+POST /inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v1/player/{player_id}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Deleted property: hard_quantity_maximum
+                        - Deleted property: inventory_operation
+                        - Deleted property: inventory_selector_type
+                        - Deleted property: quantity_mult_inventory_item_id
+                        - Deleted property: time_frame_id
+                        - Deleted property: xp_quantity_transform_type
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Deleted property: hard_quantity_maximum
+                                            - Deleted property: inventory_operation
+                                            - Deleted property: inventory_selector_type
+                                            - Deleted property: quantity_mult_inventory_item_id
+                                            - Deleted property: time_frame_id
+                                            - Deleted property: xp_quantity_transform_type
+                                            - Modified property: type
+                                              - Deleted enum values: [custom_loot]
+                        - Modified property: result
+                          - Deleted enum values: [failed_to_fill_all_random]
+                        - Modified property: type
+                          - Deleted enum values: [custom_loot]
+
+POST /inventory/v1/player/{player_id}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Deleted property: hard_quantity_maximum
+                - Deleted property: inventory_operation
+                - Deleted property: inventory_selector_type
+                - Deleted property: quantity_mult_inventory_item_id
+                - Deleted property: time_frame_id
+                - Deleted property: xp_quantity_transform_type
+                - Modified property: type
+                  - Deleted enum values: [custom_loot]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v1/player/{player_id}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+POST /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v2/player/me/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v2/player/me/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v2/player/me/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: external_key_type
+                    - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+POST /inventory/v2/player/me/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v2/player/me/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Deleted property: hard_quantity_maximum
+                        - Deleted property: inventory_operation
+                        - Deleted property: inventory_selector_type
+                        - Deleted property: quantity_mult_inventory_item_id
+                        - Deleted property: time_frame_id
+                        - Deleted property: xp_quantity_transform_type
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Deleted property: hard_quantity_maximum
+                                            - Deleted property: inventory_operation
+                                            - Deleted property: inventory_selector_type
+                                            - Deleted property: quantity_mult_inventory_item_id
+                                            - Deleted property: time_frame_id
+                                            - Deleted property: xp_quantity_transform_type
+                                            - Modified property: type
+                                              - Deleted enum values: [custom_loot]
+                        - Modified property: result
+                          - Deleted enum values: [failed_to_fill_all_random]
+                        - Modified property: type
+                          - Deleted enum values: [custom_loot]
+
+POST /inventory/v2/player/me/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Deleted property: hard_quantity_maximum
+                - Deleted property: inventory_operation
+                - Deleted property: inventory_selector_type
+                - Deleted property: quantity_mult_inventory_item_id
+                - Deleted property: time_frame_id
+                - Deleted property: xp_quantity_transform_type
+                - Modified property: type
+                  - Deleted enum values: [custom_loot]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v2/player/me/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v2/player/{player_uuid}/entitlement/prepared
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entitlements
+              - Items changed
+                - Properties changed
+                  - Modified property: platform_metadata
+                    - AdditionalProperties changed from true to null
+
+POST /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v2/player/{player_uuid}/inventory
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+PUT /inventory/v2/player/{player_uuid}/inventory/{inventory_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v2/player/{player_uuid}/keyClaim
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: claims
+              - Items changed
+                - Properties changed
+                  - Modified property: external_key_type
+                    - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+POST /inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: external_key_type
+              - Description changed from 'This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.' to 'This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign.'
+
+GET /inventory/v2/player/{player_uuid}/order
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: data
+              - Items changed
+                - Properties changed
+                  - Modified property: entries
+                    - Items changed
+                      - Properties changed
+                        - Deleted property: hard_quantity_maximum
+                        - Deleted property: inventory_operation
+                        - Deleted property: inventory_selector_type
+                        - Deleted property: quantity_mult_inventory_item_id
+                        - Deleted property: time_frame_id
+                        - Deleted property: xp_quantity_transform_type
+                        - Modified property: details
+                          - Items changed
+                            - Properties changed
+                              - Modified property: order
+                                - Property 'AnyOf' changed
+                                  - Modified schema: subschema #1: PlayerOrderCreate
+                                    - Properties changed
+                                      - Modified property: entries
+                                        - Items changed
+                                          - Properties changed
+                                            - Deleted property: hard_quantity_maximum
+                                            - Deleted property: inventory_operation
+                                            - Deleted property: inventory_selector_type
+                                            - Deleted property: quantity_mult_inventory_item_id
+                                            - Deleted property: time_frame_id
+                                            - Deleted property: xp_quantity_transform_type
+                                            - Modified property: type
+                                              - Deleted enum values: [custom_loot]
+                        - Modified property: result
+                          - Deleted enum values: [failed_to_fill_all_random]
+                        - Modified property: type
+                          - Deleted enum values: [custom_loot]
+
+POST /inventory/v2/player/{player_uuid}/order
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: entries
+            - Items changed
+              - Properties changed
+                - Deleted property: hard_quantity_maximum
+                - Deleted property: inventory_operation
+                - Deleted property: inventory_selector_type
+                - Deleted property: quantity_mult_inventory_item_id
+                - Deleted property: time_frame_id
+                - Deleted property: xp_quantity_transform_type
+                - Modified property: type
+                  - Deleted enum values: [custom_loot]
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+  - Modified response: 202
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+GET /inventory/v2/player/{player_uuid}/order/{order_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Deleted property: hard_quantity_maximum
+                  - Deleted property: inventory_operation
+                  - Deleted property: inventory_selector_type
+                  - Deleted property: quantity_mult_inventory_item_id
+                  - Deleted property: time_frame_id
+                  - Deleted property: xp_quantity_transform_type
+                  - Modified property: details
+                    - Items changed
+                      - Properties changed
+                        - Modified property: order
+                          - Property 'AnyOf' changed
+                            - Modified schema: subschema #1: PlayerOrderCreate
+                              - Properties changed
+                                - Modified property: entries
+                                  - Items changed
+                                    - Properties changed
+                                      - Deleted property: hard_quantity_maximum
+                                      - Deleted property: inventory_operation
+                                      - Deleted property: inventory_selector_type
+                                      - Deleted property: quantity_mult_inventory_item_id
+                                      - Deleted property: time_frame_id
+                                      - Deleted property: xp_quantity_transform_type
+                                      - Modified property: type
+                                        - Deleted enum values: [custom_loot]
+                  - Modified property: result
+                    - Deleted enum values: [failed_to_fill_all_random]
+                  - Modified property: type
+                    - Deleted enum values: [custom_loot]
+
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`'
+
+GET /session/v1/audit
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: events
+              - Items changed
+                - Properties changed
+                  - New property: joinability
+
+POST /session/v1/audit
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: joinability
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: friend_uuid
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: joinability
+            - Modified property: joinable
+              - Description changed from 'Is this session freely joinable by players without an invite?' to 'DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?'
+              - Deprecated changed from false to true
+
+POST /session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: friend_uuid
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: joinability
+            - Modified property: joinable
+              - Description changed from 'Is this session freely joinable by players without an invite?' to 'DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?'
+              - Deprecated changed from false to true
+
+POST /session/v1/session
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: player
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: SelfSessionPlayerUpdateRequest
+                - Properties changed
+                  - New property: friend_uuid
+
+GET /session/v1/session/allocation/{allocation_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: joinability
+            - Modified property: joinable
+              - Description changed from 'Is this session freely joinable by players without an invite?' to 'DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?'
+              - Deprecated changed from false to true
+
+GET /session/v1/session/{session_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: joinability
+            - Modified property: joinable
+              - Description changed from 'Is this session freely joinable by players without an invite?' to 'DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?'
+              - Deprecated changed from false to true
+
+PATCH /session/v1/session/{session_id}
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: joinability
+          - Modified property: joinable
+            - Description changed from 'Flag for if players can freely join this session without an invite' to 'DEPRECATED. Use joinability object instead. Flag for if players can freely join this session without an invite'
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - New property: joinability
+            - Modified property: joinable
+              - Description changed from 'Is this session freely joinable by players without an invite?' to 'DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?'
+              - Deprecated changed from false to true
+
+POST /session/v1/session/{session_id}/player/me
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - New property: friend_uuid
+
+GET /settings/v1/setting_type
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed
+            - Properties changed
+              - Modified property: versions
+                - AdditionalProperties changed
+                  - Properties changed
+                    - Modified property: value_jsonschema
+                      - AdditionalProperties changed from true to null
+
+GET /settings/v1/setting_type/{setting_type_id}/v
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - AdditionalProperties changed
+            - Properties changed
+              - Modified property: value_jsonschema
+                - AdditionalProperties changed from true to null
+
+GET /settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: value_jsonschema
+              - AdditionalProperties changed from true to null
+
+GET /users/v1/history/link
+- Description changed from 'Get the Link history for a given user
+    
+Required Permissions:
+
+- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person, or platform identity themselves : `user:audit:self`' to 'Get the Link history for a given user
+    
+Required Permissions:
+
+- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person or platform identity themselves : `user:audit:self`'
+
+GET /users/v1/history/login
+- Description changed from 'Get the Login history for a given user
+    
+Required Permissions:
+
+- For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person, or platform identity themselves : `user:audit:self`' to 'Get the Login history for a given user
+    
+Required Permissions:
+
+- For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+
+- For the player, person or platform identity themselves : `user:audit:self`'
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Title changed from 'LoginCompleteMessage' to 'AgreementMessage'
+          - Description changed from 'Error message for when a user has not agreed to the required agreements (EULA, TOS, or Privacy Policy), or was denied login for restrictions' to 'Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy'
+          - Properties changed
+            - Deleted property: restrictions
+
+POST /users/v1/oauth/token
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Deleted property: restrictions
+
+POST /users/v1/person/me/purge
+- Description changed from 'Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
+
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+
+- For the person themselves : `purge:person:self`' to 'Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.'
+
+GET /users/v1/person/me/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+
+DELETE /users/v1/person/{person_id}/purge
+- Description changed from 'Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. 
+    
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+
+- For the person themselves : `purge:person:self`' to 'Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. 
+    
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`'
+
+GET /users/v1/person/{person_id}/purge
+- Description changed from 'Get the purge status for a person. 
+    
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+
+- For the person themselves : `purge:person:self`' to 'Get the purge status for a person. 
+    
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`'
+
+POST /users/v1/person/{person_id}/purge
+- Description changed from 'Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
+
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+
+- For the person themselves : `purge:person:self`' to 'Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
+
+Required Permissions:
+
+- For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`'
+
+GET /users/v1/person/{person_id}/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+
+POST /users/v1/person/{person_id}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: expiration
+            - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+            - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+          - Modified property: reason_detail
+            - Description changed from 'Internal-only reason describing the restriction' to 'Additional reason describing the restriction'
+
+GET /users/v2/player/me/links
+- Responses changed
+  - Deleted response: 422
+
+GET /users/v2/player/me/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+
+GET /users/v2/player/{player_uuid}/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: expiration
+                    - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+                    - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+
+POST /users/v2/player/{player_uuid}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: expiration
+            - Title changed from 'Time Zone Aware Datetime' to 'Expiration'
+            - Description changed from 'Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone' to 'Date the restriction expires.  Null means the restriction is permanent'
+          - Modified property: reason_detail
+            - Description changed from 'Internal-only reason describing the restriction' to 'Additional reason describing the restriction'
 ## Changes for Wed Mar 26 04:55:24 PM EDT 2025
 ### New Endpoints: 3
 --------------------

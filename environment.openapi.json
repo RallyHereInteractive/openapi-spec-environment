@@ -15824,6 +15824,67 @@
           }
         ]
       },
+      "delete": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Delete Session",
+        "description": "Delete this session. It will be removed from the public browser, matchmaking, and backfills before being deleted\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:delete:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:delete:active`\n\n* Required session permissions are `SessionPermissions.session_admin`\n\nFor sessions you are an admin in:\n\n* None",
+        "operationId": "delete_session",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
       "patch": {
         "tags": [
           "Sessions"
@@ -15842,6 +15903,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -16175,6 +16246,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -16226,6 +16307,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -16355,6 +16446,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -16574,6 +16675,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -16642,6 +16753,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -16701,6 +16822,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -16771,6 +16902,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -17710,6 +17851,16 @@
             "required": true,
             "schema": {
               "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
               "title": "Session Id"
@@ -17718,14 +17869,14 @@
             "in": "path"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
             },
-            "name": "player_uuid",
-            "in": "path"
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -17823,6 +17974,17 @@
             },
             "name": "player_uuid",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Reason"
+            },
+            "name": "reason",
+            "in": "query"
           },
           {
             "required": false,
@@ -18005,6 +18167,16 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -18091,6 +18263,17 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Reason"
+            },
+            "name": "reason",
+            "in": "query"
           },
           {
             "required": false,
@@ -18884,6 +19067,16 @@
             "required": true,
             "schema": {
               "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
               "maxLength": 128,
               "minLength": 1,
               "title": "Session Id"
@@ -18892,14 +19085,14 @@
             "in": "path"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Player Uuid"
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
             },
-            "name": "player_uuid",
-            "in": "path"
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -19001,6 +19194,17 @@
           {
             "required": false,
             "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Reason"
+            },
+            "name": "reason",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
               "type": "boolean",
               "title": "Refresh Ttl",
               "default": true
@@ -19072,6 +19276,15 @@
           {
             "required": true,
             "schema": {
+              "type": "integer",
+              "title": "Player Id"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
               "type": "string",
               "maxLength": 128,
               "minLength": 1,
@@ -19081,13 +19294,14 @@
             "in": "path"
           },
           {
-            "required": true,
+            "required": false,
             "schema": {
-              "type": "integer",
-              "title": "Player Id"
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
             },
-            "name": "player_id",
-            "in": "path"
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -19176,6 +19390,17 @@
             },
             "name": "player_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Reason"
+            },
+            "name": "reason",
+            "in": "query"
           },
           {
             "required": false,
@@ -20976,9 +21201,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Login Token",
+        "summary": "Get Vivox Login Token",
         "description": "Generate a token to login with vivox\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:login`",
-        "operationId": "get_voip_login_token",
+        "operationId": "get_vivox_login_token",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -21013,9 +21238,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Action Token Me",
+        "summary": "Get Vivox Action Token Me",
         "description": "Generate a token for one of the specific vivox actions except logging in\n\n`JOIN` Required Permissions:\n\n- For the player themselves : `session:vivox:join`\n\n`JOIN_MUTED` Required Permissions:\n\n- For the player themselves : `session:vivox:join_muted`\n\n`KICK` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:kick:all`\n\n- For the player themselves : `session:vivox:kick:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`MUTE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:mute:all`\n\n- For the player themselves : `session:vivox:mute:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`TRANSCRIBE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:transcribe:any`\n\n- For the player themselves : `session:vivox:transcribe:as-member`",
-        "operationId": "get_voip_action_token_me",
+        "operationId": "get_vivox_action_token_me",
         "parameters": [
           {
             "required": true,
@@ -21099,9 +21324,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Action Token",
+        "summary": "Get Vivox Action Token",
         "description": "Generate a token for one of the specific vivox actions except logging in\n\n`JOIN` Required Permissions:\n\n- For the player themselves : `session:vivox:join`\n\n`JOIN_MUTED` Required Permissions:\n\n- For the player themselves : `session:vivox:join_muted`\n\n`KICK` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:kick:all`\n\n- For the player themselves : `session:vivox:kick:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`MUTE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:mute:all`\n\n- For the player themselves : `session:vivox:mute:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:mute:as-leader`\n\n\n\n`TRANSCRIBE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:transcribe:any`\n\n- For the player themselves : `session:vivox:transcribe:as-member`",
-        "operationId": "get_voip_action_token",
+        "operationId": "get_vivox_action_token",
         "parameters": [
           {
             "required": true,
@@ -21158,6 +21383,108 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VoipTokenResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/session/{session_id}/player/me/voip/epic:join": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get Epic Voice Join Token Me",
+        "description": "Generate Epic voice room credentials for the current player\n\nRequired Permissions:\n\n- For the player themselves : `session:voip:epic:join`",
+        "operationId": "get_epic_voice_join_token_me",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/VoipSessionType"
+            },
+            "name": "voip_session_type",
+            "in": "query"
+          },
+          {
+            "description": "If true, join the muted room",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Join Muted",
+              "description": "If true, join the muted room",
+              "default": false
+            },
+            "name": "join_muted",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          },
+          {
+            "description": "IP Address hint",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 32,
+              "title": "X-Rh-Client-Addr",
+              "description": "IP Address hint"
+            },
+            "name": "x-rh-client-addr",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EpicVoipCredentialsResponse"
                 }
               }
             }
@@ -41500,6 +41827,15 @@
             "title": "Joinable",
             "description": "Whether or not the session is publicly joinable"
           },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Joinability flags about the session"
+          },
           "updated_teams": {
             "items": {
               "$ref": "#/components/schemas/TeamUpdate"
@@ -41700,6 +42036,18 @@
             "minLength": 1,
             "title": "Match Id",
             "description": "ID of a match that was associated with this session"
+          },
+          "ticket_wait_seconds": {
+            "type": "integer",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that the ticket waited before being assigned to a match"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "ID of the MatchMakingProfile used to create this session"
           },
           "requesting_user_uuid": {
             "type": "string",
@@ -42034,6 +42382,15 @@
             "title": "Joinable",
             "description": "Whether or not the session is publicly joinable"
           },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Joinability flags about the session"
+          },
           "updated_teams": {
             "items": {
               "$ref": "#/components/schemas/TeamUpdate"
@@ -42234,6 +42591,18 @@
             "minLength": 1,
             "title": "Match Id",
             "description": "ID of a match that was associated with this session"
+          },
+          "ticket_wait_seconds": {
+            "type": "integer",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that the ticket waited before being assigned to a match"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "ID of the MatchMakingProfile used to create this session"
           },
           "players": {
             "items": {
@@ -42509,6 +42878,38 @@
           "ONE",
           "NONE"
         ]
+      },
+      "EpicVoipCredentialsResponse": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "title": "Room Id",
+            "description": "Epic voice room identifier"
+          },
+          "participant_token": {
+            "type": "string",
+            "title": "Participant Token",
+            "description": "Token for the participant to join the Epic voice room"
+          },
+          "client_base_url": {
+            "type": "string",
+            "title": "Client Base Url",
+            "description": "Base URL for Epic voice client connections"
+          },
+          "product_user_id": {
+            "type": "string",
+            "title": "Product User Id",
+            "description": "Epic ProductUserId for the authenticated user"
+          }
+        },
+        "type": "object",
+        "required": [
+          "room_id",
+          "participant_token",
+          "client_base_url",
+          "product_user_id"
+        ],
+        "title": "EpicVoipCredentialsResponse"
       },
       "HostType": {
         "type": "string",
@@ -43611,6 +44012,15 @@
             "minLength": 1,
             "title": "Match Making Profile Id",
             "description": "The MatchMakingProfileID that was ultimately used to create this match"
+          },
+          "ticket_added_unix_time": {
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0
+            },
+            "type": "object",
+            "title": "Ticket Added Unix Time",
+            "description": "Map of ticket_id to unix time that each ticket was added to the match"
           }
         },
         "type": "object",
@@ -43879,6 +44289,15 @@
             ],
             "title": "Profile",
             "description": "The profile used to create this match"
+          },
+          "ticket_wait_seconds": {
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "type": "object",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that each ticket waited before being assigned to a match"
           }
         },
         "type": "object",
@@ -44852,6 +45271,12 @@
             "minLength": 1,
             "title": "Password",
             "description": "Password to join a password protected session that you are not invited to"
+          },
+          "friend_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Friend Uuid",
+            "description": "UUID of the friend whose session you are joining"
           }
         },
         "type": "object",
@@ -44935,7 +45360,17 @@
           "joinable": {
             "type": "boolean",
             "title": "Joinable",
-            "description": "Is this session freely joinable by players without an invite?"
+            "description": "DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?",
+            "deprecated": true
+          },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Flags regarding the joinability of this session"
           },
           "teams": {
             "items": {
@@ -45044,6 +45479,30 @@
         ],
         "title": "SessionJoinResponse",
         "description": "Response when a player successfully joins a session"
+      },
+      "SessionJoinability": {
+        "properties": {
+          "open": {
+            "type": "boolean",
+            "title": "Open",
+            "description": "All players can join without an invite. If enabled, it overwrites other permissions",
+            "default": false
+          },
+          "friends": {
+            "type": "boolean",
+            "title": "Friends",
+            "description": "Friends can join this session without an invite",
+            "default": false
+          },
+          "platform": {
+            "type": "boolean",
+            "title": "Platform",
+            "description": "Players can join through platform sessions",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "SessionJoinability"
       },
       "SessionPermissions": {
         "properties": {
@@ -45517,6 +45976,12 @@
             ],
             "description": "What subset of notifications an admin client with elevated privileges will receive about players in a session",
             "default": "ALL"
+          },
+          "player_culling_timeout": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Player Culling Timeout",
+            "description": "How many seconds must pass with a player not querying a session before they get culled. If unset or 0, then players will not be culled"
           }
         },
         "type": "object",
@@ -45564,7 +46029,16 @@
           "joinable": {
             "type": "boolean",
             "title": "Joinable",
-            "description": "Flag for if players can freely join this session without an invite"
+            "description": "DEPRECATED. Use joinability object instead. Flag for if players can freely join this session without an invite"
+          },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Flags regarding the joinability of this session"
           },
           "teams": {
             "items": {
@@ -45701,6 +46175,14 @@
             "title": "Rank Data",
             "description": "List of rank data on the ticket",
             "default": []
+          },
+          "queued_session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Queued Session Id",
+            "description": "The session this ticket belonged to",
+            "default": "unknown"
           }
         },
         "type": "object",
