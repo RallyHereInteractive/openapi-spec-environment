@@ -7902,7 +7902,7 @@
             "exclusiveMinimum": true,
             "title": "Quantity",
             "description": "The quantity of the External Key Entitlement",
-            "minimum": 0.0
+            "minimum": 0
           }
         },
         "type": "object",
@@ -8559,8 +8559,8 @@
           },
           "coupon_discount_percentage": {
             "type": "number",
-            "maximum": 1.0,
-            "minimum": 0.0,
+            "maximum": 1,
+            "minimum": 0,
             "title": "Coupon Discount Percentage",
             "description": "The percentage of the discount. This is only valid for an unit Item.",
             "default": 0
@@ -9562,8 +9562,8 @@
           },
           "limit": {
             "type": "integer",
-            "maximum": 50.0,
-            "minimum": 1.0,
+            "maximum": 50,
+            "minimum": 1,
             "title": "Limit",
             "description": "The number of Orders to return",
             "default": 10
@@ -9645,7 +9645,7 @@
           },
           "quantity": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
             "title": "Quantity",
             "description": "number purchased",
             "default": 1
@@ -9759,7 +9759,8 @@
           "transaction_id": {
             "type": "string",
             "title": "Transaction Id",
-            "description": "unique id for this transaction on the platform"
+            "description": "unique id for this transaction on the platform",
+            "default": ""
           },
           "platform_token": {
             "type": "string",
@@ -9785,11 +9786,13 @@
           },
           "platform_region": {
             "$ref": "#/components/schemas/PlatformRegion",
-            "description": "region this purchase was made in"
+            "description": "region this purchase was made in",
+            "default": "Unknown"
           },
           "client_type": {
             "$ref": "#/components/schemas/ClientType",
-            "description": "client type this purchase was made on"
+            "description": "client type this purchase was made on",
+            "default": "UNKNOWN"
           },
           "entitlements": {
             "items": {
@@ -9815,11 +9818,8 @@
         },
         "type": "object",
         "required": [
-          "transaction_id",
           "platform_token",
-          "platform_id",
-          "platform_region",
-          "client_type"
+          "platform_id"
         ],
         "title": "PlatformEntitlementProcessRequest",
         "description": "Request to process a platform entitlement"
@@ -12223,7 +12223,8 @@
           "ENTITLEMENTS",
           "AMAZON",
           "SIMULMEDIA",
-          "LUNA"
+          "LUNA",
+          "MATCH_API"
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
@@ -12289,7 +12290,8 @@
           "Order granted by entitlements.",
           "Order granted by Amazon.",
           "Order granted by Simulmedia.",
-          "Order granted by Luna."
+          "Order granted by Luna.",
+          ""
         ],
         "x-enum-varnames": [
           "UNKNOWN",
@@ -12353,7 +12355,8 @@
           "ENTITLEMENTS",
           "AMAZON",
           "SIMULMEDIA",
-          "LUNA"
+          "LUNA",
+          "MATCH_API"
         ]
       },
       "TimeFrame": {
@@ -12832,7 +12835,7 @@
           "xp_entries": {
             "additionalProperties": {
               "type": "integer",
-              "minimum": 0.0
+              "minimum": 0
             },
             "type": "object",
             "title": "Xp Entries",
