@@ -4430,7 +4430,7 @@
           "Settings"
         ],
         "summary": "Get All Player Uuid Settings For Setting Type Self",
-        "description": "Get a list of all player setting documents for a specific Setting Type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a list of all player setting documents for a specific Setting Type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_all_player_uuid_settings_for_setting_type_self",
         "security": [
           {
@@ -4444,10 +4444,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -4640,7 +4640,7 @@
           "Settings"
         ],
         "summary": "Delete All Player Uuid Settings For Setting Type Self",
-        "description": "Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete all player setting documents for a specific type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_all_player_uuid_settings_for_setting_type_self",
         "security": [
           {
@@ -4654,10 +4654,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "if-match",
@@ -4775,7 +4775,7 @@
           "Settings"
         ],
         "summary": "Get All Player Uuid Settings For Setting Type",
-        "description": "Get a list of all player setting documents for a specific Setting Type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a list of all player setting documents for a specific Setting Type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_all_player_uuid_settings_for_setting_type",
         "security": [
           {
@@ -4801,10 +4801,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -4997,7 +4997,7 @@
           "Settings"
         ],
         "summary": "Delete All Player Uuid Settings For Setting Type",
-        "description": "Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete all player setting documents for a specific type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_all_player_uuid_settings_for_setting_type",
         "security": [
           {
@@ -5023,10 +5023,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "if-match",
@@ -5144,7 +5144,7 @@
           "Settings"
         ],
         "summary": "Get Single Player Uuid Setting Self",
-        "description": "Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_single_player_uuid_setting_self",
         "security": [
           {
@@ -5158,10 +5158,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -5341,7 +5341,7 @@
           "Settings"
         ],
         "summary": "Set Single Player Uuid Setting Self",
-        "description": "Update the value of a single player setting document.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "description": "Update the value of a single player setting document.\n\nFor a standard setting    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
         "operationId": "set_single_player_uuid_setting_self",
         "security": [
           {
@@ -5518,7 +5518,7 @@
           "Settings"
         ],
         "summary": "Delete Single Player Uuid Setting Self",
-        "description": "Delete a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_single_player_uuid_setting_self",
         "security": [
           {
@@ -5532,10 +5532,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -5664,7 +5664,7 @@
           "Settings"
         ],
         "summary": "Get Single Player Uuid Setting",
-        "description": "Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_single_player_uuid_setting",
         "security": [
           {
@@ -5690,10 +5690,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -5873,7 +5873,7 @@
           "Settings"
         ],
         "summary": "Set Single Player Uuid Setting",
-        "description": "Update the value of a single player setting document.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "description": "Update the value of a single player setting document.\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
         "operationId": "set_single_player_uuid_setting",
         "security": [
           {
@@ -6062,7 +6062,7 @@
           "Settings"
         ],
         "summary": "Delete Single Player Uuid Setting",
-        "description": "Delete a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_single_player_uuid_setting",
         "security": [
           {
@@ -6088,10 +6088,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6220,7 +6220,7 @@
           "Settings"
         ],
         "summary": "Get Single Player Id Setting",
-        "description": "**DEPRECATED** - Use v2 instead.  Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "**DEPRECATED** - Use v2 instead.  Get a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_single_player_id_setting",
         "deprecated": true,
         "security": [
@@ -6246,10 +6246,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6429,7 +6429,7 @@
           "Settings"
         ],
         "summary": "Set Single Player Id Setting",
-        "description": "**DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "description": "**DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
         "operationId": "set_single_player_id_setting",
         "deprecated": true,
         "security": [
@@ -6618,7 +6618,7 @@
           "Settings"
         ],
         "summary": "Delete Single Player Id Setting",
-        "description": "**DEPRECATED** - Use v2 instead. Delete a single player setting document\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "**DEPRECATED** - Use v2 instead. Delete a single player setting document\n    \nFor a standard setting    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_single_player_id_setting",
         "deprecated": true,
         "security": [
@@ -6644,10 +6644,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6776,7 +6776,7 @@
           "Settings"
         ],
         "summary": "Get All Player Id Settings For Setting Type",
-        "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_all_player_id_settings_for_setting_type",
         "deprecated": true,
         "security": [
@@ -6802,10 +6802,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6998,7 +6998,7 @@
           "Settings"
         ],
         "summary": "Delete All Player Id Settings For Setting Type",
-        "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_all_player_id_settings_for_setting_type",
         "deprecated": true,
         "security": [
@@ -7022,8 +7022,10 @@
             "required": true,
             "schema": {
               "type": "string",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
-            }
+            },
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "if-match",
@@ -23650,6 +23652,22 @@
             }
           },
           {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
             "name": "host_player_uuid",
             "in": "query",
             "required": false,
@@ -23695,6 +23713,22 @@
                 }
               ],
               "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "min_duration_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Duration Seconds"
             }
           },
           {
@@ -29686,7 +29720,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:report:create:self`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -37107,6 +37141,19 @@
             "description": "Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings.",
             "default": true
           },
+          "is_internal": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Internal",
+            "description": "Whether this setting type is internal, requiring special permissions to view or edit.",
+            "default": false
+          },
           "key_regex": {
             "type": "string",
             "title": "Key Regex",
@@ -41611,7 +41658,8 @@
           "always_owned_inventory_cannot_be_modified",
           "available_until_is_in_past",
           "rollback",
-          "not_started"
+          "not_started",
+          "entitled_loot_not_found"
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
@@ -41665,7 +41713,8 @@
           "Always owned inventory cannot be modified.",
           "Available until is in the past.",
           "Order Entry was successfully fulfilled, but was rolled back.",
-          "Order Entry fulfillment has not started."
+          "Order Entry fulfillment has not started.",
+          "Entitled Loot was not found"
         ],
         "x-enum-varnames": [
           "SUCCESS",
@@ -41717,7 +41766,8 @@
           "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
           "AVAILABLE_UNTIL_IS_IN_PAST",
           "ROLLBACK",
-          "NOT_STARTED"
+          "NOT_STARTED",
+          "ENTITLED_LOOT_NOT_FOUND"
         ]
       },
       "PlayerOrderEntryType": {
@@ -48128,6 +48178,12 @@
             "title": "Custom Data",
             "description": "Custom key-value player rank data",
             "default": {}
+          },
+          "last_updated_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           }
         },
         "type": "object",
@@ -55359,6 +55415,13 @@
             ],
             "title": "Short Desc"
           },
+          "v": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "V",
+            "description": "Game-specific guide version.  Meant to allow the layout/format of the guides to change over time.",
+            "default": 1
+          },
           "promotion_priority": {
             "type": "integer",
             "title": "Promotion Priority",
@@ -55840,6 +55903,13 @@
               }
             ],
             "title": "Short Desc"
+          },
+          "v": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "V",
+            "description": "Game-specific guide version.  Meant to allow the layout/format of the guides to change over time.",
+            "default": 1
           },
           "promotion_priority": {
             "type": "integer",
@@ -56375,6 +56445,13 @@
               }
             ],
             "title": "Short Desc"
+          },
+          "v": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "V",
+            "description": "Game-specific guide version.  Meant to allow the layout/format of the guides to change over time.",
+            "default": 1
           },
           "promotion_priority": {
             "type": "integer",
