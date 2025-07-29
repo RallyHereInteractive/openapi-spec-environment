@@ -111,6 +111,22 @@
             }
           },
           {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
             "name": "host_player_uuid",
             "in": "query",
             "required": false,
@@ -156,6 +172,22 @@
                 }
               ],
               "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "min_duration_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Duration Seconds"
             }
           },
           {

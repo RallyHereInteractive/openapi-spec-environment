@@ -7902,7 +7902,7 @@
             "exclusiveMinimum": true,
             "title": "Quantity",
             "description": "The quantity of the External Key Entitlement",
-            "minimum": 0
+            "minimum": 0.0
           }
         },
         "type": "object",
@@ -8559,8 +8559,8 @@
           },
           "coupon_discount_percentage": {
             "type": "number",
-            "maximum": 1,
-            "minimum": 0,
+            "maximum": 1.0,
+            "minimum": 0.0,
             "title": "Coupon Discount Percentage",
             "description": "The percentage of the discount. This is only valid for an unit Item.",
             "default": 0
@@ -9562,8 +9562,8 @@
           },
           "limit": {
             "type": "integer",
-            "maximum": 50,
-            "minimum": 1,
+            "maximum": 50.0,
+            "minimum": 1.0,
             "title": "Limit",
             "description": "The number of Orders to return",
             "default": 10
@@ -9645,7 +9645,7 @@
           },
           "quantity": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Quantity",
             "description": "number purchased",
             "default": 1
@@ -11466,7 +11466,8 @@
           "always_owned_inventory_cannot_be_modified",
           "available_until_is_in_past",
           "rollback",
-          "not_started"
+          "not_started",
+          "entitled_loot_not_found"
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
@@ -11520,7 +11521,8 @@
           "Always owned inventory cannot be modified.",
           "Available until is in the past.",
           "Order Entry was successfully fulfilled, but was rolled back.",
-          "Order Entry fulfillment has not started."
+          "Order Entry fulfillment has not started.",
+          "Entitled Loot was not found"
         ],
         "x-enum-varnames": [
           "SUCCESS",
@@ -11572,7 +11574,8 @@
           "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
           "AVAILABLE_UNTIL_IS_IN_PAST",
           "ROLLBACK",
-          "NOT_STARTED"
+          "NOT_STARTED",
+          "ENTITLED_LOOT_NOT_FOUND"
         ]
       },
       "PlayerOrderEntryType": {
@@ -12835,7 +12838,7 @@
           "xp_entries": {
             "additionalProperties": {
               "type": "integer",
-              "minimum": 0
+              "minimum": 0.0
             },
             "type": "object",
             "title": "Xp Entries",
