@@ -180,7 +180,7 @@
             }
           },
           "403": {
-            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n- `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -259,7 +259,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n- `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -2754,7 +2754,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n    - `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -2848,7 +2848,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n    - `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -21934,6 +21934,17 @@
             "in": "query"
           },
           {
+            "description": "Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Connect Id Token",
+              "description": "Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere."
+            },
+            "name": "connect_id_token",
+            "in": "query"
+          },
+          {
             "required": false,
             "schema": {
               "type": "boolean",
@@ -24291,6 +24302,94 @@
         "responses": {
           "201": {
             "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/match/{match_id}/reward": {
+      "post": {
+        "tags": [
+          "Match"
+        ],
+        "summary": "Create Match Rewards",
+        "description": "Give loot rewards to players in a match. Returns a 4XX error if any rewards fail to be given, but will grant as many as possible.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:reward:any`\n\n- For match if the player is the host any of: `match:*`, `match:reward:any`, `match:reward:authority`",
+        "operationId": "create_match_rewards",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRewardsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchRewardsResponse"
+                }
+              }
+            }
           },
           "400": {
             "content": {
@@ -29720,7 +29819,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -34838,7 +34937,6 @@
           "ps4_v1",
           "ps4_v3",
           "ps5_v3",
-          "nintendo",
           "nintendo_switch",
           "steam",
           "basic",
@@ -34847,23 +34945,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -34874,12 +34955,27 @@
           "Playstation Network v1 authentication using the configured PS4 credentials",
           "Playstation Network v3 authentication using the configured PS5 credentials",
           "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Account authentication",
           "Nintendo Service Account (for Nintendo Switch) authentication",
           "Steam authentication",
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPValidationError": {
@@ -34929,19 +35025,19 @@
         ],
         "title": "LinkAction",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "link",
-          "unlink",
-          "new_person",
-          "xprog_enable",
-          "xprog_disable"
-        ],
         "x-enum-descriptions": [
           "Linked a player to an existing person",
           "Unlinked a player from a person",
           "Player was associated with a new person",
           "Active player was set for person, enabling cross-progression for all of the person's players",
           "Active player was cleared for person, disabling cross-progression for all of the person's players"
+        ],
+        "x-enum-varnames": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
         ]
       },
       "LoginCompleteMessage": {
@@ -35216,6 +35312,11 @@
             "title": "Portal User Id",
             "description": "Portal user ID"
           },
+          "platform_environment": {
+            "type": "string",
+            "title": "Platform Environment",
+            "description": "Which of the platform's environments was this user info from?  For Xbox, this is sandbox.  For PSN, this is sp-int/prod-qa/np.  For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1."
+          },
           "display_name": {
             "type": "string",
             "title": "Display Name",
@@ -35369,11 +35470,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -35391,17 +35492,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -35412,6 +35502,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -35421,11 +35522,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -35979,15 +36080,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -36026,6 +36127,11 @@
             ],
             "description": "Portal ID. *DEPRECATED* use `platform` instead",
             "deprecated": true
+          },
+          "platform_environment": {
+            "type": "string",
+            "title": "Platform Environment",
+            "description": "Which of the platform's environments was this user info from?  For Xbox, this is sandbox.  For PSN, this is sp-int/prod-qa/np.  For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1."
           },
           "portal_user_id": {
             "type": "string",
@@ -36402,15 +36508,6 @@
         ],
         "title": "RestrictionIssuerType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SUPPORT",
-          "GM",
-          "ADMIN",
-          "ANTICHEAT",
-          "PUNISH_SYSTEM",
-          "GUARDIAN",
-          "SHOP"
-        ],
         "x-enum-descriptions": [
           "Support staff",
           "In-Game GM",
@@ -36419,6 +36516,15 @@
           "Automated Punishment system, based on user activity",
           "User's parent/guardian",
           "Automated Shop System, based on user activity"
+        ],
+        "x-enum-varnames": [
+          "SUPPORT",
+          "GM",
+          "ADMIN",
+          "ANTICHEAT",
+          "PUNISH_SYSTEM",
+          "GUARDIAN",
+          "SHOP"
         ]
       },
       "RestrictionReasonCode": {
@@ -36444,25 +36550,6 @@
         ],
         "title": "RestrictionReasonCode",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CHEATING_AUTODETECTED",
-          "SPEEDHACK_AUTODETECT",
-          "OTHER",
-          "CHEATING_OBSERVED",
-          "CHEATING_REPORTED_BY_PLAYER",
-          "THREATS",
-          "LANGUAGE",
-          "GRIEFING",
-          "FRAUD",
-          "REVOKE_FAILED",
-          "UNKNOWN",
-          "GUARDIAN",
-          "ISSUER_PROCESS",
-          "ACCOUNT_MIGRATION",
-          "USER_REQUEST",
-          "MAINTENANCE",
-          "PENDING_DELETION"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -36481,6 +36568,25 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "CHEATING_AUTODETECTED",
+          "SPEEDHACK_AUTODETECT",
+          "OTHER",
+          "CHEATING_OBSERVED",
+          "CHEATING_REPORTED_BY_PLAYER",
+          "THREATS",
+          "LANGUAGE",
+          "GRIEFING",
+          "FRAUD",
+          "REVOKE_FAILED",
+          "UNKNOWN",
+          "GUARDIAN",
+          "ISSUER_PROCESS",
+          "ACCOUNT_MIGRATION",
+          "USER_REQUEST",
+          "MAINTENANCE",
+          "PENDING_DELETION"
         ]
       },
       "RestrictionType": {
@@ -36493,17 +36599,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned.  User is not allowed to login",
           "Account is locked out.  User is not allowed to login",
           "Account is pending deletion and will be deleted in the future.",
           "Account has been banned from authentication.  User is not allowed to login"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Restrictions": {
@@ -36576,15 +36682,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "SupportLogEntry": {
@@ -36894,23 +37000,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -36927,6 +37016,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -36971,44 +37077,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -37046,6 +37114,44 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "SetSinglePlayerSettingRequest": {
@@ -48988,6 +49094,48 @@
         "type": "object",
         "title": "MatchRequest"
       },
+      "MatchReward": {
+        "properties": {
+          "loot_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Loot Id",
+            "description": "Which loot to grant to the player"
+          },
+          "quantity": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Quantity",
+            "description": "How many times to grant the loot to the player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loot_id",
+          "quantity"
+        ],
+        "title": "MatchReward"
+      },
+      "MatchRewardsBody": {
+        "properties": {
+          "player_rewards": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerMatchReward"
+            },
+            "type": "array",
+            "title": "Player Rewards",
+            "description": "List of rewards for specific players for the match",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "MatchRewardsBody"
+      },
+      "MatchRewardsResponse": {
+        "properties": {},
+        "type": "object",
+        "title": "MatchRewardsResponse"
+      },
       "MatchSegmentPatchRequest": {
         "properties": {
           "type": {
@@ -54250,6 +54398,30 @@
           "LEGACYNAME"
         ]
       },
+      "PlayerMatchReward": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Unique idenfitifer for player who is receiving rewards"
+          },
+          "rewards": {
+            "items": {
+              "$ref": "#/components/schemas/MatchReward"
+            },
+            "type": "array",
+            "title": "Rewards",
+            "description": "List of specific rewards for this player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rewards"
+        ],
+        "title": "PlayerMatchReward"
+      },
       "PlayerStatsResponse": {
         "properties": {
           "total_matches_played": {
@@ -58379,13 +58551,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CANCEL",
-          "OTHER"
-        ],
         "x-enum-descriptions": [
           "Ad was closed by the user",
           "Ad was closed from a misc cause"
+        ],
+        "x-enum-varnames": [
+          "CANCEL",
+          "OTHER"
         ]
       },
       "OpportunityState": {
@@ -58397,15 +58569,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "START",
-          "COMPLETE",
-          "ABORT"
-        ],
         "x-enum-descriptions": [
           "User started watching the ad",
           "User finished watching the ad",
           "User stopped watching the ad partway through"
+        ],
+        "x-enum-varnames": [
+          "START",
+          "COMPLETE",
+          "ABORT"
         ]
       },
       "LeaderboardConfig": {

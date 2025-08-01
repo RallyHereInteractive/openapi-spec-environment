@@ -794,6 +794,94 @@
         }
       }
     },
+    "/v1/match/{match_id}/reward": {
+      "post": {
+        "tags": [
+          "Match"
+        ],
+        "summary": "Create Match Rewards",
+        "description": "Give loot rewards to players in a match. Returns a 4XX error if any rewards fail to be given, but will grant as many as possible.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:reward:any`\n\n- For match if the player is the host any of: `match:*`, `match:reward:any`, `match:reward:authority`",
+        "operationId": "create_match_rewards",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRewardsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchRewardsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/player/me/match": {
       "get": {
         "tags": [
@@ -4417,6 +4505,48 @@
         },
         "type": "object",
         "title": "MatchRequest"
+      },
+      "MatchReward": {
+        "properties": {
+          "loot_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Loot Id",
+            "description": "Which loot to grant to the player"
+          },
+          "quantity": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Quantity",
+            "description": "How many times to grant the loot to the player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loot_id",
+          "quantity"
+        ],
+        "title": "MatchReward"
+      },
+      "MatchRewardsBody": {
+        "properties": {
+          "player_rewards": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerMatchReward"
+            },
+            "type": "array",
+            "title": "Player Rewards",
+            "description": "List of rewards for specific players for the match",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "MatchRewardsBody"
+      },
+      "MatchRewardsResponse": {
+        "properties": {},
+        "type": "object",
+        "title": "MatchRewardsResponse"
       },
       "MatchSegmentPatchRequest": {
         "properties": {
@@ -9679,6 +9809,30 @@
           "RALLYHERE",
           "LEGACYNAME"
         ]
+      },
+      "PlayerMatchReward": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Unique idenfitifer for player who is receiving rewards"
+          },
+          "rewards": {
+            "items": {
+              "$ref": "#/components/schemas/MatchReward"
+            },
+            "type": "array",
+            "title": "Rewards",
+            "description": "List of specific rewards for this player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rewards"
+        ],
+        "title": "PlayerMatchReward"
       },
       "PlayerStatsResponse": {
         "properties": {
