@@ -6133,6 +6133,17 @@
             "in": "query"
           },
           {
+            "description": "Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Connect Id Token",
+              "description": "Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere."
+            },
+            "name": "connect_id_token",
+            "in": "query"
+          },
+          {
             "required": false,
             "schema": {
               "type": "boolean",
