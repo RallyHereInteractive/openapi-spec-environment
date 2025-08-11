@@ -3796,17 +3796,20 @@
         "type": "string",
         "enum": [
           "dedicated",
-          "player"
+          "player",
+          "standalone"
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
         "x-enum-descriptions": [
           "",
+          "",
           ""
         ],
         "x-enum-varnames": [
           "dedicated",
-          "player"
+          "player",
+          "standalone"
         ]
       },
       "HzApiErrorModel": {
@@ -4516,7 +4519,7 @@
           },
           "quantity": {
             "type": "integer",
-            "exclusiveMinimum": 0.0,
+            "exclusiveMinimum": 0,
             "title": "Quantity",
             "description": "How many times to grant the loot to the player"
           }
