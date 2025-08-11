@@ -4516,7 +4516,7 @@
           },
           "quantity": {
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "exclusiveMinimum": 0.0,
             "title": "Quantity",
             "description": "How many times to grant the loot to the player"
           }
@@ -7337,6 +7337,28 @@
             ],
             "description": "GPU time"
           },
+          "vram_used": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used"
+          },
+          "vram_used_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used Percentage"
+          },
           "match_id": {
             "type": "string",
             "title": "Match Id",
@@ -7814,6 +7836,28 @@
               }
             ],
             "description": "GPU time"
+          },
+          "vram_used": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used"
+          },
+          "vram_used_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used Percentage"
           },
           "scores": {
             "anyOf": [
