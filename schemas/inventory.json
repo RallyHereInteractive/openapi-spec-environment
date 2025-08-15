@@ -7902,7 +7902,7 @@
             "exclusiveMinimum": true,
             "title": "Quantity",
             "description": "The quantity of the External Key Entitlement",
-            "minimum": 0.0
+            "minimum": 0
           }
         },
         "type": "object",
@@ -7911,6 +7911,137 @@
           "quantity"
         ],
         "title": "ExternalKeyEntitlement"
+      },
+      "FailedPlayerOrderCreateSingle": {
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/Source",
+            "description": "The source of the Player Order.",
+            "default": "CLIENT"
+          },
+          "client_order_ref_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Order Ref Id",
+            "description": "Arbitrary UUID clients can use to track Orders between request to response."
+          },
+          "portal_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Portal"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Portal of the Portal User the Player Order belongs to.",
+            "deprecated": true
+          },
+          "portal_user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Portal User Id",
+            "description": "Portal User Id for the Player this Player Order belongs to."
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance Id",
+            "description": "Instance Id for the Instance who submits the Player Order."
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "Match Id for the Match that generated the Player Order."
+          },
+          "is_transaction": {
+            "type": "boolean",
+            "title": "Is Transaction",
+            "description": "If an order is a transaction, any failed entries will roll back changes from all other entries.",
+            "default": false
+          },
+          "player_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Id",
+            "description": "Player Id of the Player this Player Order belongs to."
+          },
+          "player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Uuid",
+            "description": "Player UUID of the Player this Player Order belongs to."
+          },
+          "order_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order Id",
+            "description": "Unique Identifier for the Order."
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerOrderEntryCreate-Output"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "List of Player Order Entries for the Player Order."
+          },
+          "error_info": {
+            "type": "string",
+            "title": "Error Info",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "FailedPlayerOrderCreateSingle"
       },
       "HTTPValidationError": {
         "properties": {
@@ -8559,8 +8690,8 @@
           },
           "coupon_discount_percentage": {
             "type": "number",
-            "maximum": 1.0,
-            "minimum": 0.0,
+            "maximum": 1,
+            "minimum": 0,
             "title": "Coupon Discount Percentage",
             "description": "The percentage of the discount. This is only valid for an unit Item.",
             "default": 0
@@ -9428,6 +9559,15 @@
             "title": "Order Ids",
             "description": "Order IDs submitted in the request.",
             "default": []
+          },
+          "failed_orders": {
+            "items": {
+              "$ref": "#/components/schemas/FailedPlayerOrderCreateSingle"
+            },
+            "type": "array",
+            "title": "Failed Orders",
+            "description": "List of orders that failed to be submitted.  They may succeed on a retry",
+            "default": []
           }
         },
         "type": "object",
@@ -9562,8 +9702,8 @@
           },
           "limit": {
             "type": "integer",
-            "maximum": 50.0,
-            "minimum": 1.0,
+            "maximum": 50,
+            "minimum": 1,
             "title": "Limit",
             "description": "The number of Orders to return",
             "default": 10
@@ -9645,7 +9785,7 @@
           },
           "quantity": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
             "title": "Quantity",
             "description": "number purchased",
             "default": 1
@@ -12838,7 +12978,7 @@
           "xp_entries": {
             "additionalProperties": {
               "type": "integer",
-              "minimum": 0.0
+              "minimum": 0
             },
             "type": "object",
             "title": "Xp Entries",
