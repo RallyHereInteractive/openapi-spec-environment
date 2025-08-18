@@ -5,6 +5,11 @@
     "description": "RallyHere stage-api.",
     "version": "0.2.0"
   },
+  "servers": [
+    {
+      "url": "/stage"
+    }
+  ],
   "paths": {
     "/v1/stage": {
       "get": {
@@ -44,7 +49,7 @@
       }
     },
     "/v1/stage-matchmake": {
-      "get": {
+      "post": {
         "tags": [
           "Stage"
         ],
