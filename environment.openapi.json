@@ -34810,6 +34810,302 @@
         "summary": "Search Stages",
         "description": "Search all stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:search`",
         "operationId": "search_stages",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Page Size"
+            }
+          },
+          {
+            "name": "owner_entity_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/StageEntityType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owner Entity Type"
+            }
+          },
+          {
+            "name": "owner_entity_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owner Entity Id"
+            }
+          },
+          {
+            "name": "game_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Game Version"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "V"
+            }
+          },
+          {
+            "name": "type_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 1"
+            }
+          },
+          {
+            "name": "type_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 2"
+            }
+          },
+          {
+            "name": "type_3",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 3"
+            }
+          },
+          {
+            "name": "type_4",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 4"
+            }
+          },
+          {
+            "name": "index",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Index"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "stat_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 1"
+            }
+          },
+          {
+            "name": "stat_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 2"
+            }
+          },
+          {
+            "name": "stat_3",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 3"
+            }
+          },
+          {
+            "name": "stat_4",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 4"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/StageSearchSort"
+              },
+              "default": [
+                "created"
+              ],
+              "title": "Sort By"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SortDirection"
+              },
+              "default": [
+                "desc"
+              ],
+              "title": "Sort"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -34830,30 +35126,48 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/stage/v1/stage-matchmake": {
+        }
+      },
       "post": {
         "tags": [
           "Stage"
         ],
-        "summary": "Matchmake Stage",
-        "description": "Matchmake against the requested parameters to find a stage to play against\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:matchmake`",
-        "operationId": "matchmake_stage",
+        "summary": "Create Stages",
+        "description": "Create many stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:search`",
+        "operationId": "create_stages",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageCreateRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Stage"
+                  "$ref": "#/components/schemas/StageCreateResult"
                 }
               }
             }
@@ -34867,13 +35181,18 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/stage/v1/stage/{stage_id}": {
@@ -34938,9 +35257,9 @@
         "tags": [
           "Stage"
         ],
-        "summary": "Upsert Stage",
+        "summary": "Update Stage",
         "description": "Create or Update a stage by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write_self`",
-        "operationId": "upsert_stage",
+        "operationId": "update_stage",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -35000,16 +35319,14 @@
             }
           }
         }
-      }
-    },
-    "/stage/v1/stage/{stage_id}/play": {
-      "post": {
+      },
+      "delete": {
         "tags": [
           "Stage"
         ],
-        "summary": "Report Stage Played",
-        "description": "Report the results of playing against a stage.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:play`",
-        "operationId": "report_stage_played",
+        "summary": "Delete Stage",
+        "description": "Create or Update a stage by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write_self`",
+        "operationId": "delete_stage",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -35028,12 +35345,57 @@
           }
         ],
         "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stage/v1/stage-matchmake": {
+      "post": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Matchmake Stage",
+        "description": "Matchmake against the requested parameters to find a stage to play against\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:matchmake`",
+        "operationId": "matchmake_stage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageMatchmakeParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StagePlayResult"
+                  "$ref": "#/components/schemas/Stage"
                 }
               }
             }
@@ -35058,7 +35420,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     }
   },
@@ -59263,13 +59630,21 @@
           "DESC"
         ]
       },
+      "StageEntityType": {
+        "type": "string",
+        "enum": [
+          "player"
+        ],
+        "title": "EntityType",
+        "x-enum-descriptions": [
+          ""
+        ],
+        "x-enum-varnames": [
+          "player"
+        ]
+      },
       "Stage": {
         "properties": {
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid"
-          },
           "blob": {
             "additionalProperties": true,
             "type": "object",
@@ -59427,22 +59802,34 @@
             "format": "uuid",
             "title": "Stage Id"
           },
-          "play_count": {
-            "type": "integer",
-            "title": "Play Count",
-            "description": "How many times has this stage been played against?",
-            "default": 0
+          "owner_entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageEntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Owner of this stage"
           },
-          "win_count": {
-            "type": "integer",
-            "title": "Win Count",
-            "description": "How many times has this stage won against another player?",
-            "default": 0
+          "owner_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Entity Id",
+            "description": "Owner of this stage"
           },
-          "loss_count": {
+          "mm_count": {
             "type": "integer",
-            "title": "Loss Count",
-            "description": "How many times has this stage loss against another player?",
+            "title": "Mm Count",
+            "description": "How many times has this stage been matchmade?",
             "default": 0
           },
           "created": {
@@ -59462,7 +59849,6 @@
         },
         "type": "object",
         "required": [
-          "player_uuid",
           "blob",
           "stage_id",
           "created",
@@ -59470,10 +59856,296 @@
         ],
         "title": "Stage"
       },
-      "StagePlayResult": {
+      "StageCreate": {
+        "properties": {
+          "blob": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Blob",
+            "description": ""
+          },
+          "game_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Version",
+            "description": "Game Version for compatibility checks"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version of this stage"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Stage Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Stage Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Stage Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Stage Type 4"
+          },
+          "index": {
+            "type": "integer",
+            "title": "Index",
+            "description": "Index of the stage relative to other stages in the match",
+            "default": 0
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "The match that this stage was a part of"
+          },
+          "stat_1": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 1",
+            "description": "Custom stat 1 about this stage"
+          },
+          "stat_2": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 2",
+            "description": "Custom stat 2 about this stage"
+          },
+          "stat_3": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 3",
+            "description": "Custom stat 3 about this stage"
+          },
+          "stat_4": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 4",
+            "description": "Custom stat 4 about this stage"
+          },
+          "owner_entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageEntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Owner of this stage"
+          },
+          "owner_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Entity Id",
+            "description": "Owner of this stage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "blob"
+        ],
+        "title": "StageCreate"
+      },
+      "StageCreateRequest": {
+        "properties": {
+          "stages": {
+            "items": {
+              "$ref": "#/components/schemas/StageCreate"
+            },
+            "type": "array",
+            "title": "Stages",
+            "description": "Stages to create"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stages"
+        ],
+        "title": "StageCreateRequest"
+      },
+      "StageCreateResult": {
         "properties": {},
         "type": "object",
-        "title": "StagePlayResult"
+        "title": "StageCreateResult"
+      },
+      "StageMatchmakeParams": {
+        "properties": {
+          "game_version": {
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "type": "array",
+            "title": "Game Version",
+            "default": []
+          },
+          "v": {
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "type": "array",
+            "title": "V",
+            "default": []
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4"
+          },
+          "index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Index",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "StageMatchmakeParams"
       },
       "StageSearchResults": {
         "properties": {
@@ -59483,6 +60155,17 @@
             },
             "type": "array",
             "title": "Stages"
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor"
           }
         },
         "type": "object",
@@ -59491,13 +60174,27 @@
         ],
         "title": "StageSearchResults"
       },
+      "StageSearchSort": {
+        "type": "string",
+        "enum": [
+          "created",
+          "modified",
+          "mm_count"
+        ],
+        "title": "StageSearchSort",
+        "x-enum-descriptions": [
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "created",
+          "modified",
+          "mm_count"
+        ]
+      },
       "StageUpdate": {
         "properties": {
-          "player_uuid": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Player Uuid"
-          },
           "blob": {
             "additionalProperties": true,
             "type": "object",
@@ -59653,7 +60350,6 @@
         },
         "type": "object",
         "required": [
-          "player_uuid",
           "blob"
         ],
         "title": "StageUpdate"
