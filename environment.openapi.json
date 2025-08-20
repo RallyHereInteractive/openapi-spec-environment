@@ -29823,7 +29823,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -34917,7 +34917,7 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "maxLength": 16
+                  "maxLength": 256
                 },
                 {
                   "type": "null"
@@ -34934,7 +34934,7 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "maxLength": 16
+                  "maxLength": 256
                 },
                 {
                   "type": "null"
@@ -34951,7 +34951,7 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "maxLength": 16
+                  "maxLength": 256
                 },
                 {
                   "type": "null"
@@ -34968,7 +34968,7 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "maxLength": 16
+                  "maxLength": 256
                 },
                 {
                   "type": "null"
@@ -35117,6 +35117,16 @@
               }
             }
           },
+          "400": {
+            "description": "\nError Codes:\n- `invalid_cursor` - Cursor is invalid or malformed\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
@@ -35144,7 +35154,7 @@
           "Stage"
         ],
         "summary": "Create Stages",
-        "description": "Create many stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:search`",
+        "description": "Create many stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write_self`",
         "operationId": "create_stages",
         "security": [
           {
@@ -35168,6 +35178,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StageCreateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- `invalid_owner` - Owner of the requested stage is invalid.  Ensure the type is correct and the id is non-empty\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -35215,7 +35235,6 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
               "title": "Stage Id"
             }
           }
@@ -35233,6 +35252,16 @@
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- `not_found` - No data found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -35272,7 +35301,6 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
               "title": "Stage Id"
             }
           }
@@ -35339,7 +35367,6 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "uuid",
               "title": "Stage Id"
             }
           }
@@ -35402,6 +35429,16 @@
           },
           "403": {
             "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- `not_found` - No data found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -59362,13 +59399,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Ad was closed by the user",
-          "Ad was closed from a misc cause"
-        ],
         "x-enum-varnames": [
           "CANCEL",
           "OTHER"
+        ],
+        "x-enum-descriptions": [
+          "Ad was closed by the user",
+          "Ad was closed from a misc cause"
         ]
       },
       "OpportunityState": {
@@ -59380,15 +59417,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "User started watching the ad",
-          "User finished watching the ad",
-          "User stopped watching the ad partway through"
-        ],
         "x-enum-varnames": [
           "START",
           "COMPLETE",
           "ABORT"
+        ],
+        "x-enum-descriptions": [
+          "User started watching the ad",
+          "User finished watching the ad",
+          "User stopped watching the ad partway through"
         ]
       },
       "LeaderboardConfig": {
@@ -59649,7 +59686,8 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Blob",
-            "description": ""
+            "description": "",
+            "default": {}
           },
           "game_version": {
             "anyOf": [
@@ -59681,7 +59719,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59694,7 +59732,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59707,7 +59745,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59720,7 +59758,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59799,8 +59837,8 @@
           },
           "stage_id": {
             "type": "string",
-            "format": "uuid",
-            "title": "Stage Id"
+            "title": "Stage Id",
+            "description": "Unique ID for this stage."
           },
           "owner_entity_type": {
             "anyOf": [
@@ -59849,7 +59887,6 @@
         },
         "type": "object",
         "required": [
-          "blob",
           "stage_id",
           "created",
           "modified"
@@ -59862,7 +59899,8 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Blob",
-            "description": ""
+            "description": "",
+            "default": {}
           },
           "game_version": {
             "anyOf": [
@@ -59894,7 +59932,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59907,7 +59945,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59920,7 +59958,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -59933,7 +59971,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -60036,9 +60074,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "blob"
-        ],
         "title": "StageCreate"
       },
       "StageCreateRequest": {
@@ -60066,70 +60101,82 @@
       "StageMatchmakeParams": {
         "properties": {
           "game_version": {
-            "items": {
-              "type": "string",
-              "maxLength": 64
-            },
-            "type": "array",
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Game Version",
-            "default": []
+            "description": "Game version required to matchmake against"
           },
           "v": {
-            "items": {
-              "type": "string",
-              "maxLength": 64
-            },
-            "type": "array",
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "V",
-            "default": []
+            "description": "Version required to matchmake against"
           },
           "type_1": {
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Type 1"
+            "title": "Type 1",
+            "description": "Type 1 to matchmake against"
           },
           "type_2": {
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Type 2"
+            "title": "Type 2",
+            "description": "Type 2 to matchmake against"
           },
           "type_3": {
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Type 3"
+            "title": "Type 3",
+            "description": "Type 3 to matchmake against"
           },
           "type_4": {
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Type 4"
+            "title": "Type 4",
+            "description": "Type 4 to matchmake against"
           },
           "index": {
             "anyOf": [
@@ -60141,7 +60188,13 @@
               }
             ],
             "title": "Index",
-            "default": 0
+            "description": "Stage index to matchmake against"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "title": "Dry Run",
+            "description": "Is this an actual matchmaking request, or just a test of the system?  Actual requests may consume the returned stage.",
+            "default": false
           }
         },
         "type": "object",
@@ -60199,7 +60252,8 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Blob",
-            "description": ""
+            "description": "",
+            "default": {}
           },
           "game_version": {
             "anyOf": [
@@ -60231,7 +60285,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -60244,7 +60298,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -60257,7 +60311,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -60270,7 +60324,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 16
+                "maxLength": 256
               },
               {
                 "type": "null"
@@ -60349,9 +60403,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "blob"
-        ],
         "title": "StageUpdate"
       }
     }
