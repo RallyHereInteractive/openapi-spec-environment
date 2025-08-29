@@ -762,7 +762,7 @@
               }
             ],
             "title": "Game Version",
-            "description": "Game Version for compatibility checks"
+            "description": "Game Version"
           },
           "v": {
             "anyOf": [
@@ -975,7 +975,7 @@
               }
             ],
             "title": "Game Version",
-            "description": "Game Version for compatibility checks"
+            "description": "Game Version"
           },
           "v": {
             "anyOf": [
@@ -1136,7 +1136,8 @@
           }
         },
         "type": "object",
-        "title": "StageCreate"
+        "title": "StageCreate",
+        "description": "Fields to create a stage with.\n\nNOTE: the fields shared between this and the StageMatchmakeParams are used to determine which\n    matchmaking pool this stage will be placed into"
       },
       "StageCreateRequest": {
         "properties": {
@@ -1162,19 +1163,6 @@
       },
       "StageMatchmakeParams": {
         "properties": {
-          "game_version": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Game Version",
-            "description": "Game version required to matchmake against"
-          },
           "v": {
             "anyOf": [
               {
@@ -1251,16 +1239,11 @@
             ],
             "title": "Index",
             "description": "Stage index to matchmake against"
-          },
-          "dry_run": {
-            "type": "boolean",
-            "title": "Dry Run",
-            "description": "Is this an actual matchmaking request, or just a test of the system?  Actual requests may consume the returned stage.",
-            "default": false
           }
         },
         "type": "object",
-        "title": "StageMatchmakeParams"
+        "title": "StageMatchmakeParams",
+        "description": "Parameters used to select a stage to play against."
       },
       "StageSearchResults": {
         "properties": {
@@ -1328,7 +1311,7 @@
               }
             ],
             "title": "Game Version",
-            "description": "Game Version for compatibility checks"
+            "description": "Game Version"
           },
           "v": {
             "anyOf": [
@@ -1465,7 +1448,8 @@
           }
         },
         "type": "object",
-        "title": "StageUpdate"
+        "title": "StageUpdate",
+        "description": "Fields to update a stage with.\n\nNOTE: the fields shared between this and the StageMatchmakeParams are used to determine which\n    matchmaking pool this stage will be placed into"
       },
       "ValidationError": {
         "properties": {
