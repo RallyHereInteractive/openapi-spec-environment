@@ -10501,6 +10501,19 @@
               "default": [],
               "title": "Item Ids"
             }
+          },
+          {
+            "name": "tags_to_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [],
+              "title": "Tags To Count"
+            }
           }
         ],
         "responses": {
@@ -10720,6 +10733,19 @@
               },
               "default": [],
               "title": "Item Ids"
+            }
+          },
+          {
+            "name": "tags_to_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [],
+              "title": "Tags To Count"
             }
           }
         ],
@@ -10956,6 +10982,19 @@
               "default": [],
               "title": "Item Ids"
             }
+          },
+          {
+            "name": "tags_to_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [],
+              "title": "Tags To Count"
+            }
           }
         ],
         "responses": {
@@ -11175,9 +11214,26 @@
               "items": {
                 "type": "integer"
               },
+              "description": "Filter the inventory records returned to a list of known item ids.  If not provided, all inventory will be returned",
               "default": [],
               "title": "Item Ids"
-            }
+            },
+            "description": "Filter the inventory records returned to a list of known item ids.  If not provided, all inventory will be returned"
+          },
+          {
+            "name": "tags_to_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Count the total ownership for all items with a specific tag.  If not provided, no counts will be included in the response",
+              "default": [],
+              "title": "Tags To Count"
+            },
+            "description": "Count the total ownership for all items with a specific tag.  If not provided, no counts will be included in the response"
           }
         ],
         "responses": {
@@ -29823,7 +29879,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -35636,23 +35692,6 @@
             }
           },
           {
-            "name": "v",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 64
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "V"
-            }
-          },
-          {
             "name": "type_1",
             "in": "query",
             "required": false,
@@ -38622,6 +38661,17 @@
             ],
             "description": "The Platform SKUs."
           },
+          "item_tags": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItemTags"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": ""
+          },
           "cache_info": {
             "anyOf": [
               {
@@ -39493,6 +39543,15 @@
             "default": {
               "items": {}
             }
+          },
+          "tag_own_count": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Tag Own Count",
+            "description": "Number of owned (or rented) count for each requested tag of inventory",
+            "default": {}
           }
         },
         "type": "object",
@@ -40000,6 +40059,15 @@
             "description": "List of Loot this item can discount",
             "default": []
           },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tags",
+            "description": "Tags associated with this item",
+            "default": []
+          },
           "cache_info": {
             "anyOf": [
               {
@@ -40045,6 +40113,77 @@
         "type": "object",
         "title": "ItemInventory",
         "description": "Inventory of a particular Item for a Player organized by Inventory ID."
+      },
+      "ItemTag": {
+        "properties": {
+          "tag_name": {
+            "type": "string",
+            "title": "Tag Name"
+          },
+          "item_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Item Ids",
+            "description": "Legacy Item IDs that have this tag",
+            "default": []
+          },
+          "item_uuids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Item Uuids",
+            "description": "Item UUIDs that have this tag",
+            "default": []
+          },
+          "cache_info": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Cache info for the item tag."
+          }
+        },
+        "type": "object",
+        "required": [
+          "tag_name"
+        ],
+        "title": "ItemTag",
+        "description": "Item Tag and associated ids"
+      },
+      "ItemTags": {
+        "properties": {
+          "tags": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ItemTag"
+            },
+            "type": "object",
+            "title": "Tags",
+            "description": "Item tags and their associated item ids",
+            "default": {}
+          },
+          "cache_info": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CacheInfo"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Cache info"
+          }
+        },
+        "type": "object",
+        "title": "ItemTags",
+        "description": "Full set of all item tags, and the items represented by them"
       },
       "ItemType": {
         "type": "string",
@@ -56589,13 +56728,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "latest",
-          "earliest"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
         ]
       },
       "EntityGuideEngagement": {
@@ -59960,19 +60099,6 @@
       },
       "EntityMMBucketRunStats": {
         "properties": {
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -60130,19 +60256,6 @@
       },
       "EntityRunCompleteRequest": {
         "properties": {
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -60805,19 +60918,6 @@
       },
       "StageMatchmakeParams": {
         "properties": {
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -60869,6 +60969,19 @@
             ],
             "title": "Type 4",
             "description": "Type 4 to matchmake against"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version required to matchmake against"
           },
           "index": {
             "anyOf": [

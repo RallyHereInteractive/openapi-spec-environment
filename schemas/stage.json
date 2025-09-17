@@ -845,23 +845,6 @@
             }
           },
           {
-            "name": "v",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 64
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "V"
-            }
-          },
-          {
             "name": "type_1",
             "in": "query",
             "required": false,
@@ -969,19 +952,6 @@
     "schemas": {
       "EntityMMBucketRunStats": {
         "properties": {
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -1139,19 +1109,6 @@
       },
       "EntityRunCompleteRequest": {
         "properties": {
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -1866,19 +1823,6 @@
       },
       "StageMatchmakeParams": {
         "properties": {
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -1930,6 +1874,19 @@
             ],
             "title": "Type 4",
             "description": "Type 4 to matchmake against"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version required to matchmake against"
           },
           "index": {
             "anyOf": [
