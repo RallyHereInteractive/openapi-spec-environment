@@ -1909,6 +1909,21 @@
               "default": [],
               "title": "Tags To Count"
             }
+          },
+          {
+            "name": "level_item_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response",
+              "default": [],
+              "title": "Level Item Ids"
+            },
+            "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response"
           }
         ],
         "responses": {
@@ -2142,6 +2157,21 @@
               "default": [],
               "title": "Tags To Count"
             }
+          },
+          {
+            "name": "level_item_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response",
+              "default": [],
+              "title": "Level Item Ids"
+            },
+            "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response"
           }
         ],
         "responses": {
@@ -2390,6 +2420,21 @@
               "default": [],
               "title": "Tags To Count"
             }
+          },
+          {
+            "name": "level_item_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response",
+              "default": [],
+              "title": "Level Item Ids"
+            },
+            "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response"
           }
         ],
         "responses": {
@@ -2629,6 +2674,21 @@
               "title": "Tags To Count"
             },
             "description": "Count the total ownership for all items with a specific tag.  If not provided, no counts will be included in the response"
+          },
+          {
+            "name": "level_item_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response",
+              "default": [],
+              "title": "Level Item Ids"
+            },
+            "description": "Item IDs to return with current level information.  If not provided, no level data will be included in the response"
           }
         ],
         "responses": {
@@ -8314,6 +8374,15 @@
             "title": "Tag Own Count",
             "description": "Number of owned (or rented) count for each requested tag of inventory",
             "default": {}
+          },
+          "levels": {
+            "items": {
+              "$ref": "#/components/schemas/InventoryLevel"
+            },
+            "type": "array",
+            "title": "Levels",
+            "description": "Inventory Levels for a Player.",
+            "default": []
           }
         },
         "type": "object",
