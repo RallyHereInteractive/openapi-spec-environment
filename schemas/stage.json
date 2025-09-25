@@ -357,6 +357,18 @@
             "description": "max (exclusive) mmr visual value"
           },
           {
+            "name": "include_blob",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "include blob in the response data.  Results are much quicker without returning the blob",
+              "default": true,
+              "title": "Include Blob"
+            },
+            "description": "include blob in the response data.  Results are much quicker without returning the blob"
+          },
+          {
             "name": "sort_by",
             "in": "query",
             "required": false,
@@ -819,7 +831,7 @@
           "Stage"
         ],
         "summary": "Get Entity Run Stats",
-        "description": "Get the aggregated stats about an entity for specific matchmaking bucket(s)\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:read:any`\n\n- For the entity themselves : `stage:stats:read:self`\n\nFor forcibly setting the run as a win, placement, or",
+        "description": "Get the aggregated stats about an entity for specific matchmaking bucket(s)\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:read:any`\n\n- For the entity themselves : `stage:stats:read:self`",
         "operationId": "get_entity_run_stats",
         "security": [
           {
@@ -920,6 +932,61 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EntityMMBucketRunStatsMulti"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Update Entity Run Stats",
+        "description": "Update the aggregated stats about an entity for specific matchmaking bucket\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:write:any`\n\n- For the entity themselves : `stage:stats:write:self`\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:fullwrite`",
+        "operationId": "update_entity_run_stats",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityMMBucketRunStatsUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityMMBucketRunStats"
                 }
               }
             }
@@ -1106,6 +1173,132 @@
         },
         "type": "object",
         "title": "EntityMMBucketRunStatsMulti"
+      },
+      "EntityMMBucketRunStatsUpdate": {
+        "properties": {
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Type 1 to matchmake against"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Type 2 to matchmake against"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Type 3 to matchmake against"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Type 4 to matchmake against"
+          },
+          "entity_type": {
+            "$ref": "#/components/schemas/EntityType",
+            "description": "Entity type"
+          },
+          "entity_id": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Entity Id",
+            "description": "Entity ID"
+          },
+          "stage_wins": {
+            "type": "integer",
+            "title": "Stage Wins",
+            "description": "Total number of stages won",
+            "default": 0
+          },
+          "stage_losses": {
+            "type": "integer",
+            "title": "Stage Losses",
+            "description": "Total number of stages lost",
+            "default": 0
+          },
+          "stage_incompletes": {
+            "type": "integer",
+            "title": "Stage Incompletes",
+            "description": "Total number of stages incomplete",
+            "default": 0
+          },
+          "run_wins": {
+            "type": "integer",
+            "title": "Run Wins",
+            "description": "Total number of successful runs",
+            "default": 0
+          },
+          "run_losses": {
+            "type": "integer",
+            "title": "Run Losses",
+            "description": "Total number of failed runs",
+            "default": 0
+          },
+          "run_count": {
+            "type": "integer",
+            "title": "Run Count",
+            "description": "Total number of runs",
+            "default": 0
+          },
+          "placements_complete": {
+            "type": "integer",
+            "title": "Placements Complete",
+            "description": "Total number of placement matches this player has played for this MM bucket",
+            "default": 0
+          },
+          "mmr_internal": {
+            "type": "number",
+            "title": "Mmr Internal",
+            "description": "Internal MMR used for comparison against other players during matchmaking",
+            "default": 0
+          },
+          "mmr_vis": {
+            "type": "number",
+            "title": "Mmr Vis",
+            "description": "Visual MMR used for progression tracking in the matchmaking system",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id"
+        ],
+        "title": "EntityMMBucketRunStatsUpdate"
       },
       "EntityRunCompleteRequest": {
         "properties": {
