@@ -61072,6 +61072,30 @@
             "description": "How many times has this stage been matchmade?",
             "default": 0
           },
+          "mmr_range_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Range Min",
+            "description": "Minimum of the MMR Range this stage is part of"
+          },
+          "mmr_range_max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Range Max",
+            "description": "Maximum of the MMR Range this stage is part of"
+          },
           "created": {
             "type": "string",
             "format": "date-time",
