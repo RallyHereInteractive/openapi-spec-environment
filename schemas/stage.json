@@ -1013,6 +1013,68 @@
           }
         }
       }
+    },
+    "/v1/mmr-stats": {
+      "get": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Get Mmr Stats",
+        "description": "Calculate stats about MMR bucket density\n\nRequired Permissions:\n\n- For any entity (including themselves) : `stage:*`",
+        "operationId": "get_mmr_stats",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "buckets",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "default": [],
+              "title": "Buckets"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MMRStats"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1530,6 +1592,91 @@
           "desc"
         ],
         "title": "HzApiErrorModel"
+      },
+      "MMRStatInfo": {
+        "properties": {
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4"
+          },
+          "mmr_min": {
+            "type": "integer",
+            "title": "Mmr Min"
+          },
+          "mmr_max": {
+            "type": "integer",
+            "title": "Mmr Max"
+          },
+          "num_entities": {
+            "type": "integer",
+            "title": "Num Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mmr_min",
+          "mmr_max",
+          "num_entities"
+        ],
+        "title": "MMRStatInfo"
+      },
+      "MMRStats": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/MMRStatInfo"
+            },
+            "type": "array",
+            "title": "Data",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "MMRStats"
       },
       "SortDirection": {
         "type": "string",
