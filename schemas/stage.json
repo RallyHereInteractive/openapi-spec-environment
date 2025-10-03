@@ -2157,6 +2157,18 @@
             ],
             "title": "Owner Entity Id",
             "description": "Owner of this stage.  If not set, the entity from the providing token will be used."
+          },
+          "is_placement": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Placement",
+            "description": "Is this stage from a placement run?  If not provided, the value for the given owner entity will be used.  If provided, will follow rules for stage create/updates of placement stages."
           }
         },
         "type": "object",
