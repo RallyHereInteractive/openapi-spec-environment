@@ -6,7 +6,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 pushd $DIR
 
 SPEC_BASE_URL="https://554b0f7e-4f66-4969-8bd9-6f6aecd06e25.rally-here.io"
-APIS="users ad settings friends session config inventory presence notification rank custom events match sanctions file guide stage leaderboard"
+APIS="users ad settings friends session config inventory presence notification rank custom events match sanctions file guide stage"
 
 SKIP_DOWNLOAD=false
 SKIP_MERGE=false

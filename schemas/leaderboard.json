@@ -441,16 +441,9 @@
             "description": "The data source for this leaderboard"
           },
           "source_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Source Id",
-            "description": "Unique Item or Rank ID for the data source of this leaderboard if it is not a item leaderboard"
+            "description": "Unique Item or Rank ID for the data source of this leaderboard"
           },
           "remove_restricted": {
             "type": "boolean",
@@ -489,33 +482,6 @@
             "title": "Expose Players",
             "description": "Whether or not individual player stats should be saved in the leaderboard, or if only the metadata can be returned",
             "default": true
-          },
-          "leaderboard_type": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/LeaderboardType"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "What type of leaderboard this is (player leaderboard, item leaderboard etc.)",
-            "default": "PLAYER"
-          },
-          "valid_item_ids": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "integer"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Valid Item Ids",
-            "description": "List of item IDS that are valid entries if this is an item leaderboard"
           }
         },
         "type": "object",
@@ -525,6 +491,7 @@
           "max_size",
           "sort_order",
           "source",
+          "source_id",
           "update_frequency_seconds"
         ],
         "title": "LeaderboardConfig"
@@ -549,29 +516,10 @@
       "LeaderboardEntry": {
         "properties": {
           "player_uuid": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "format": "uuid",
             "title": "Player Uuid",
-            "description": "Unique ID for the player in this leaderboard entry if it is a player leaderboard"
-          },
-          "legacy_item_id": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Legacy Item Id",
-            "description": "The legacy item id for this leaderboard entry if it is an item leaderboard"
+            "description": "Unique ID for the player in this leaderboard entry"
           },
           "stat_value": {
             "anyOf": [
@@ -594,6 +542,7 @@
         },
         "type": "object",
         "required": [
+          "player_uuid",
           "position"
         ],
         "title": "LeaderboardEntry"
@@ -667,22 +616,6 @@
         "x-enum-varnames": [
           "INVENTORY",
           "RANK"
-        ]
-      },
-      "LeaderboardType": {
-        "type": "string",
-        "enum": [
-          "PLAYER",
-          "ITEM"
-        ],
-        "title": "LeaderboardType",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
-        "x-enum-varnames": [
-          "PLAYER",
-          "ITEM"
         ]
       },
       "PlayerListType": {
