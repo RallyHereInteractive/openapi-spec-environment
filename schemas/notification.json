@@ -25,8 +25,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100.0,
-              "minimum": 1.0,
+              "maximum": 100,
+              "minimum": 1,
               "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
@@ -65,8 +65,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 900.0,
-              "minimum": 0.0,
+              "maximum": 900,
+              "minimum": 0,
               "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
@@ -168,8 +168,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100.0,
-              "minimum": 1.0,
+              "maximum": 100,
+              "minimum": 1,
               "title": "Max Page Size",
               "description": "Max number of entries to return at one time",
               "default": 10
@@ -208,8 +208,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 900.0,
-              "minimum": 0.0,
+              "maximum": 900,
+              "minimum": 0,
               "title": "Deadline",
               "description": "We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds",
               "default": 30
@@ -300,8 +300,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100.0,
-              "minimum": 1.0,
+              "maximum": 100,
+              "minimum": 1,
               "title": "Page Size",
               "default": 10
             },
@@ -522,8 +522,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "maximum": 100.0,
-              "minimum": 1.0,
+              "maximum": 100,
+              "minimum": 1,
               "title": "Page Size",
               "default": 10
             },
@@ -1133,13 +1133,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "latest",
           "earliest"
+        ],
+        "x-enum-descriptions": [
+          "",
+          ""
         ]
       },
       "ValidationError": {
