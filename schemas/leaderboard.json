@@ -426,11 +426,11 @@
           },
           "max_size": {
             "type": "integer",
-            "maximum": 10000,
+            "maximum": 10000.0,
             "exclusiveMinimum": true,
             "title": "Max Size",
             "description": "The maximum size this leaderboard can reach",
-            "minimum": 0
+            "minimum": 0.0
           },
           "sort_order": {
             "$ref": "#/components/schemas/SortOrder",
@@ -452,6 +452,17 @@
             "title": "Source Id",
             "description": "Unique Item or Rank ID for the data source of this leaderboard if it is not a item leaderboard"
           },
+          "stage_source_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageSourceFields"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Tuple of values to describe which stage run this leaderboard is for"
+          },
           "remove_restricted": {
             "type": "boolean",
             "title": "Remove Restricted",
@@ -463,7 +474,7 @@
               {
                 "type": "integer",
                 "exclusiveMinimum": true,
-                "minimum": 0
+                "minimum": 0.0
               },
               {
                 "type": "null"
@@ -474,7 +485,7 @@
           },
           "update_frequency_seconds": {
             "type": "integer",
-            "minimum": 60,
+            "minimum": 60.0,
             "title": "Update Frequency Seconds",
             "description": "How frequently the data for this leaderboard should be requested"
           },
@@ -561,6 +572,18 @@
             "title": "Legacy Item Id",
             "description": "The legacy item id for this leaderboard entry if it is an item leaderboard"
           },
+          "stage_run_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stage Run Id",
+            "description": "The stage run id for this leaderboard"
+          },
           "stat_value": {
             "anyOf": [
               {
@@ -575,7 +598,7 @@
           },
           "position": {
             "type": "integer",
-            "minimum": 1,
+            "minimum": 1.0,
             "title": "Position",
             "description": "What position this entry is on the leaderboard"
           }
@@ -590,7 +613,7 @@
         "properties": {
           "entry_count": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Entry Count",
             "description": "The number of entries in this leaderboard"
           },
@@ -646,10 +669,12 @@
         "enum": [
           "INVENTORY",
           "RANK",
-          "ITEM_COUNT"
+          "ITEM_COUNT",
+          "STAGE"
         ],
         "title": "LeaderboardSource",
         "x-enum-descriptions": [
+          "",
           "",
           "",
           ""
@@ -657,7 +682,8 @@
         "x-enum-varnames": [
           "INVENTORY",
           "RANK",
-          "ITEM_COUNT"
+          "ITEM_COUNT",
+          "STAGE"
         ]
       },
       "PlayerListType": {
@@ -691,6 +717,68 @@
           "ASC",
           "DESC"
         ]
+      },
+      "StageSourceFields": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id"
+        ],
+        "title": "StageSourceFields"
       },
       "ValidationError": {
         "properties": {
