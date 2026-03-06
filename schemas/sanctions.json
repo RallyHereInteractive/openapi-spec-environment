@@ -17,7 +17,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {

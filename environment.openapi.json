@@ -29939,7 +29939,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -50482,7 +50482,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50669,7 +50670,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50812,7 +50814,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50965,7 +50968,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -52580,7 +52584,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -52727,7 +52732,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -57013,13 +57019,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "latest",
           "earliest"
+        ],
+        "x-enum-descriptions": [
+          "",
+          ""
         ]
       },
       "EntityGuideEngagement": {
@@ -60452,14 +60458,6 @@
       },
       "StageSourceFields": {
         "properties": {
-          "entity_type": {
-            "type": "string",
-            "title": "Entity Type"
-          },
-          "entity_id": {
-            "type": "string",
-            "title": "Entity Id"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -60506,10 +60504,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "entity_type",
-          "entity_id"
-        ],
         "title": "StageSourceFields"
       },
       "EntityMMBucketRunStats": {
