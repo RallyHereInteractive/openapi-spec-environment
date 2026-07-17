@@ -426,11 +426,11 @@
           },
           "max_size": {
             "type": "integer",
-            "maximum": 10000.0,
+            "maximum": 10000,
             "exclusiveMinimum": true,
             "title": "Max Size",
             "description": "The maximum size this leaderboard can reach",
-            "minimum": 0.0
+            "minimum": 0
           },
           "sort_order": {
             "$ref": "#/components/schemas/SortOrder",
@@ -474,7 +474,7 @@
               {
                 "type": "integer",
                 "exclusiveMinimum": true,
-                "minimum": 0.0
+                "minimum": 0
               },
               {
                 "type": "null"
@@ -485,7 +485,7 @@
           },
           "update_frequency_seconds": {
             "type": "integer",
-            "minimum": 60.0,
+            "minimum": 60,
             "title": "Update Frequency Seconds",
             "description": "How frequently the data for this leaderboard should be requested"
           },
@@ -598,7 +598,7 @@
           },
           "position": {
             "type": "integer",
-            "minimum": 1.0,
+            "minimum": 1,
             "title": "Position",
             "description": "What position this entry is on the leaderboard"
           }
@@ -613,7 +613,7 @@
         "properties": {
           "entry_count": {
             "type": "integer",
-            "minimum": 0.0,
+            "minimum": 0,
             "title": "Entry Count",
             "description": "The number of entries in this leaderboard"
           },
@@ -670,10 +670,12 @@
           "INVENTORY",
           "RANK",
           "ITEM_COUNT",
-          "STAGE"
+          "STAGE",
+          "RACE_TO_ITEM"
         ],
         "title": "LeaderboardSource",
         "x-enum-descriptions": [
+          "",
           "",
           "",
           "",
@@ -683,7 +685,8 @@
           "INVENTORY",
           "RANK",
           "ITEM_COUNT",
-          "STAGE"
+          "STAGE",
+          "RACE_TO_ITEM"
         ]
       },
       "PlayerListType": {
@@ -720,14 +723,6 @@
       },
       "StageSourceFields": {
         "properties": {
-          "entity_type": {
-            "type": "string",
-            "title": "Entity Type"
-          },
-          "entity_id": {
-            "type": "string",
-            "title": "Entity Id"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -774,10 +769,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "entity_type",
-          "entity_id"
-        ],
         "title": "StageSourceFields"
       },
       "ValidationError": {
