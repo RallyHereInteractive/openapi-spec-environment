@@ -3777,6 +3777,63 @@
           }
         ]
       }
+    },
+    "/v1/discord/provisional-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Request Discord Provisional Token",
+        "description": "Request a Discord provisional-account token for the authenticated player. Calls Discord's `POST /api/v10/partner-sdk/token/bot` endpoint with the environment's configured bot token, using the caller's `active_player_uuid` as `external_user_id` and (when present) `display_name` as `preferred_global_name`. The returned token is **not** persisted — every call requests a fresh one from Discord.",
+        "operationId": "request_discord_provisional_token",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscordProvisionalTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3892,6 +3949,43 @@
           "xbox_one",
           "web"
         ]
+      },
+      "DiscordProvisionalTokenResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token",
+            "description": "Discord provisional access token"
+          },
+          "id_token": {
+            "type": "string",
+            "title": "Id Token",
+            "description": "Discord ID token, if Discord returns one"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type",
+            "description": "Always \"Bearer\" as of Discord API v10"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In",
+            "description": "Seconds until the access_token expires (Discord currently returns 604800 = 7 days)"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "description": "Discord OAuth scopes granted on the token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ],
+        "title": "DiscordProvisionalTokenResponse",
+        "description": "Verbatim response from Discord's bot-token endpoint."
       },
       "GrantType": {
         "type": "string",

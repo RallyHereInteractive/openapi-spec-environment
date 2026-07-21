@@ -118,16 +118,8 @@
       "description": "Endpoints for hitting custom urls"
     },
     {
-      "name": "Ad",
-      "description": "Ad endpoints are used to present ads to users, and grant rewards to them for doing so.\n\nThe system uses an external ad provider to present opportunities to the user.  Currently, the only supported provider is Unity Ads.  Please contact your RallyHere representative for more information.\n\nNote that each endpoint can return a `x-hz-ad-api-token` header, which should be reused whenever possible for future requests.  This is an optimization that should improve future request times, as they won't require a secondary authentication with the external ad provider.\n"
-    },
-    {
       "name": "Leaderboard",
       "description": "\nThis API is for requesting leaderboard data and the configuration around it\n"
-    },
-    {
-      "name": "Stage",
-      "description": ""
     }
   ],
   "paths": {
@@ -3886,6 +3878,63 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/users/v1/discord/provisional-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Request Discord Provisional Token",
+        "description": "Request a Discord provisional-account token for the authenticated player. Calls Discord's `POST /api/v10/partner-sdk/token/bot` endpoint with the environment's configured bot token, using the caller's `active_player_uuid` as `external_user_id` and (when present) `display_name` as `preferred_global_name`. The returned token is **not** persisted — every call requests a fresh one from Discord.",
+        "operationId": "request_discord_provisional_token",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscordProvisionalTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -18549,7 +18598,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -19236,7 +19285,7 @@
           "Sessions"
         ],
         "summary": "Invite Player By Uuid V2",
-        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin",
+        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin",
         "operationId": "invite_player_by_uuid_v2",
         "parameters": [
           {
@@ -19442,7 +19491,7 @@
           "Sessions"
         ],
         "summary": "Move Player By Uuid V2",
-        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin",
+        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin",
         "operationId": "move_player_by_uuid_v2",
         "parameters": [
           {
@@ -19658,7 +19707,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -19765,7 +19814,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -19966,7 +20015,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -23895,6 +23944,135 @@
             }
           },
           {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/MatchSort",
+              "default": "created:desc"
+            }
+          },
+          {
+            "name": "min_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Start"
+            }
+          },
+          {
+            "name": "max_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Start"
+            }
+          },
+          {
+            "name": "min_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min End"
+            }
+          },
+          {
+            "name": "max_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max End"
+            }
+          },
+          {
+            "name": "min_created",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Created"
+            }
+          },
+          {
+            "name": "max_created",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Created"
+            }
+          },
+          {
             "name": "include_segments",
             "in": "query",
             "required": false,
@@ -23941,7 +24119,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -23996,7 +24174,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24064,7 +24242,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24150,7 +24328,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24236,7 +24414,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24295,7 +24473,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24379,7 +24557,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24458,7 +24636,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24546,7 +24724,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24623,7 +24801,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24692,7 +24870,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24779,7 +24957,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24857,7 +25035,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24943,7 +25121,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25029,7 +25207,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25115,7 +25293,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25184,7 +25362,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25313,7 +25491,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25390,7 +25568,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25475,7 +25653,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25560,7 +25738,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25628,7 +25806,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25696,7 +25874,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -26104,7 +26282,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -26502,7 +26680,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -26926,7 +27104,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -27340,7 +27518,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -27385,7 +27563,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -27435,7 +27613,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -34111,452 +34289,6 @@
         ]
       }
     },
-    "/ad/v1/session": {
-      "post": {
-        "tags": [
-          "Ad"
-        ],
-        "summary": "Begin New Session",
-        "description": "Start a new session for the user. This will generate a new ad api token that is returned in the response header.",
-        "operationId": "begin_new_session",
-        "parameters": [
-          {
-            "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Hz-Ad-Api-Token",
-              "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated."
-            },
-            "name": "x-hz-ad-api-token",
-            "in": "header"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_begin_new_session"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "x-hz-ad-api-token": {
-                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {
-              "x-hz-ad-api-token": {
-                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/ad/v1/opportunity": {
-      "post": {
-        "tags": [
-          "Ad"
-        ],
-        "summary": "Find Opportunities",
-        "description": "Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.",
-        "operationId": "find_opportunities",
-        "parameters": [
-          {
-            "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Hz-Ad-Api-Token",
-              "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated."
-            },
-            "name": "x-hz-ad-api-token",
-            "in": "header"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_find_opportunities"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "x-hz-ad-api-token": {
-                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AdOpportunities"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {
-              "x-hz-ad-api-token": {
-                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/ad/v1/opportunity/{opportunity_id}": {
-      "post": {
-        "tags": [
-          "Ad"
-        ],
-        "summary": "Update Opportunity By Id",
-        "description": "Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.",
-        "operationId": "update_opportunity_by_id",
-        "parameters": [
-          {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "title": "Opportunity Id"
-            },
-            "name": "opportunity_id",
-            "in": "path"
-          },
-          {
-            "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Hz-Ad-Api-Token",
-              "description": "Optional header to make calling the endpoint faster by not requiring a new token to be generated."
-            },
-            "name": "x-hz-ad-api-token",
-            "in": "header"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_update_opportunity_by_id"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "headers": {
-              "x-hz-ad-api-token": {
-                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {
-              "x-hz-ad-api-token": {
-                "description": "Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated)",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/ad/v1/unity/ad/watched": {
-      "get": {
-        "tags": [
-          "Ad"
-        ],
-        "summary": "Unity Ad Watched",
-        "description": "Callback URL for the Unity Ad API. Docs here https://docs.unity.com/ads/ImplementingS2SRedeemCallbacks.html",
-        "operationId": "unity_ad_watched",
-        "parameters": [
-          {
-            "description": "Product ID in the Unity console",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Productid",
-              "description": "Product ID in the Unity console"
-            },
-            "name": "productid",
-            "in": "query"
-          },
-          {
-            "description": "Server ID that contains custom data. Expected to be a comma separated list of platform and player ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
-              "title": "Sid",
-              "description": "Server ID that contains custom data. Expected to be a comma separated list of platform and player ID"
-            },
-            "example": "ios,12345",
-            "name": "sid",
-            "in": "query"
-          },
-          {
-            "description": "Unique ID for the ad view generated by Unity",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Oid",
-              "description": "Unique ID for the ad view generated by Unity"
-            },
-            "name": "oid",
-            "in": "query"
-          },
-          {
-            "description": "The HMAC-MD5 hash of the parameter string used to validate the request",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Hmac",
-              "description": "The HMAC-MD5 hash of the parameter string used to validate the request"
-            },
-            "name": "hmac",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ad/v1/unity/mediation/watched": {
-      "get": {
-        "tags": [
-          "Ad"
-        ],
-        "summary": "Unity Mediation Ad Watched",
-        "description": "Callback URL for the Unity Ad API. Docs here https://docs.unity.com/mediation/S2SRedeemCallbacks.html",
-        "operationId": "unity_mediation_ad_watched",
-        "parameters": [
-          {
-            "description": "Custom data provide by client. Expected to be client type",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Customized Data",
-              "description": "Custom data provide by client. Expected to be client type"
-            },
-            "example": "android",
-            "name": "customized_data",
-            "in": "query"
-          },
-          {
-            "description": "User ID provided by the client",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
-              "title": "Userid",
-              "description": "User ID provided by the client"
-            },
-            "name": "userId",
-            "in": "query"
-          },
-          {
-            "description": "Unique ID for the ad view generated by Unity",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Eventid",
-              "description": "Unique ID for the ad view generated by Unity"
-            },
-            "name": "eventId",
-            "in": "query"
-          },
-          {
-            "description": "Timestamp of an ad event in Unix format",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Timestamp",
-              "description": "Timestamp of an ad event in Unix format"
-            },
-            "name": "timestamp",
-            "in": "query"
-          },
-          {
-            "description": "The HMAC-MD5 hash of the parameter string used to validate the request",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Signature",
-              "description": "The HMAC-MD5 hash of the parameter string used to validate the request"
-            },
-            "name": "signature",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/leaderboard/v1/leaderboard/{leaderboard_id}": {
       "get": {
         "tags": [
@@ -34917,1071 +34649,6 @@
           }
         }
       }
-    },
-    "/stage/v1/stage": {
-      "get": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Search Stages",
-        "description": "Search all stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:search`",
-        "operationId": "search_stages",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Cursor"
-            }
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "title": "Page Size"
-            }
-          },
-          {
-            "name": "owner_entity_type",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/StageEntityType"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Owner Entity Type"
-            }
-          },
-          {
-            "name": "owner_entity_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 128
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Owner Entity Id"
-            }
-          },
-          {
-            "name": "game_version",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 64
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Game Version"
-            }
-          },
-          {
-            "name": "v",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 64
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "V"
-            }
-          },
-          {
-            "name": "type_1",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 1"
-            }
-          },
-          {
-            "name": "type_2",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 2"
-            }
-          },
-          {
-            "name": "type_3",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 3"
-            }
-          },
-          {
-            "name": "type_4",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 4"
-            }
-          },
-          {
-            "name": "index",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Index"
-            }
-          },
-          {
-            "name": "match_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Match Id"
-            }
-          },
-          {
-            "name": "stat_1",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Stat 1"
-            }
-          },
-          {
-            "name": "stat_2",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Stat 2"
-            }
-          },
-          {
-            "name": "stat_3",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Stat 3"
-            }
-          },
-          {
-            "name": "stat_4",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Stat 4"
-            }
-          },
-          {
-            "name": "mmr_internal_min",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "min (inclusive) mmr internal value",
-              "title": "Mmr Internal Min"
-            },
-            "description": "min (inclusive) mmr internal value"
-          },
-          {
-            "name": "mmr_internal_max",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "max (exclusive) mmr internal value",
-              "title": "Mmr Internal Max"
-            },
-            "description": "max (exclusive) mmr internal value"
-          },
-          {
-            "name": "mmr_vis_min",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "min (inclusive) mmr visual value",
-              "title": "Mmr Vis Min"
-            },
-            "description": "min (inclusive) mmr visual value"
-          },
-          {
-            "name": "mmr_vis_max",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "number"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "max (exclusive) mmr visual value",
-              "title": "Mmr Vis Max"
-            },
-            "description": "max (exclusive) mmr visual value"
-          },
-          {
-            "name": "include_blob",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "description": "include blob in the response data.  Results are much quicker without returning the blob",
-              "default": true,
-              "title": "Include Blob"
-            },
-            "description": "include blob in the response data.  Results are much quicker without returning the blob"
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/StageSearchSort"
-              },
-              "default": [
-                "created"
-              ],
-              "title": "Sort By"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortDirection"
-              },
-              "default": [
-                "desc"
-              ],
-              "title": "Sort"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StageSearchResults"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "\nError Codes:\n- `invalid_cursor` - Cursor is invalid or malformed\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Create Stages",
-        "description": "Create many stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write:self`",
-        "operationId": "create_stages",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StageCreateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StageCreateResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "\nError Codes:\n- `invalid_owner` - Owner of the requested stage is invalid.  Ensure the type is correct and the id is non-empty\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/stage/v1/stage/{stage_id}": {
-      "get": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Get Stage",
-        "description": "Get a stage by stage_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:read:any`\n\n- For the player themselves : `stage:read:self`",
-        "operationId": "get_stage",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "stage_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Stage Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Stage"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "\nError Codes:\n- `not_found` - No data found\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Update Stage",
-        "description": "Create or Update a stage by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write:self`",
-        "operationId": "update_stage",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "stage_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Stage Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StageUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Stage"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Delete Stage",
-        "description": "Create or Update a stage by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write:self`",
-        "operationId": "delete_stage",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "stage_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Stage Id"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful Response"
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/stage/v1/stage-matchmake": {
-      "post": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Matchmake Stage",
-        "description": "Matchmake against the requested parameters to find a stage to play against\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:matchmake`",
-        "operationId": "matchmake_stage",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StageMatchmakeParams"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Stage"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "\nError Codes:\n- `not_found` - No data found\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/stage/v1/run-complete": {
-      "post": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Submit Completed Run",
-        "description": "Add the stats about this run to the entity's aggregated stats from all runs.\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:write:any`\n\n- For the entity themselves : `stage:stats:write:self`\n\nIf explicitly setting the run as a placement or manually changing mmr values, Required Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:fullwrite`",
-        "operationId": "submit_completed_run",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityRunCompleteRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityRunCompleteResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "\nError Codes:\n- `invalid_owner` - Owner of the requested stage is invalid.  Ensure the type is correct and the id is non-empty\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/stage/v1/run-stats": {
-      "get": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Get Entity Run Stats",
-        "description": "Get the aggregated stats about an entity for specific matchmaking bucket(s)\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:read:any`\n\n- For the entity themselves : `stage:stats:read:self`",
-        "operationId": "get_entity_run_stats",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "entity_type",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/StageEntityType"
-            }
-          },
-          {
-            "name": "entity_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Entity Id"
-            }
-          },
-          {
-            "name": "type_1",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 1"
-            }
-          },
-          {
-            "name": "type_2",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 2"
-            }
-          },
-          {
-            "name": "type_3",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 3"
-            }
-          },
-          {
-            "name": "type_4",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "maxLength": 256
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Type 4"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityMMBucketRunStatsMulti"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Update Entity Run Stats",
-        "description": "Update the aggregated stats about an entity for specific matchmaking bucket\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:write:any`\n\n- For the entity themselves : `stage:stats:write:self`\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:fullwrite`",
-        "operationId": "update_entity_run_stats",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityMMBucketRunStatsUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityMMBucketRunStats"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/stage/v1/mmr-stats": {
-      "get": {
-        "tags": [
-          "Stage"
-        ],
-        "summary": "Get Mmr Stats",
-        "description": "Calculate stats about MMR bucket density\n\nRequired Permissions:\n\n- For any entity (including themselves) : `stage:*`",
-        "operationId": "get_mmr_stats",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "buckets",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "number"
-              },
-              "default": [],
-              "title": "Buckets"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MMRStats"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -36109,6 +34776,43 @@
           "xbox_one",
           "web"
         ]
+      },
+      "DiscordProvisionalTokenResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token",
+            "description": "Discord provisional access token"
+          },
+          "id_token": {
+            "type": "string",
+            "title": "Id Token",
+            "description": "Discord ID token, if Discord returns one"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type",
+            "description": "Always \"Bearer\" as of Discord API v10"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In",
+            "description": "Seconds until the access_token expires (Discord currently returns 604800 = 7 days)"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "description": "Discord OAuth scopes granted on the token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ],
+        "title": "DiscordProvisionalTokenResponse",
+        "description": "Verbatim response from Discord's bot-token endpoint."
       },
       "GrantType": {
         "type": "string",
@@ -49933,6 +48637,19 @@
         "title": "RankedTeam",
         "description": "One team of players from a match along with their placement in the match, and previous rank data about all of the players"
       },
+      "MatchHTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/MatchValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
       "MatchHostType": {
         "type": "string",
         "enum": [
@@ -50488,7 +49205,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50675,7 +49393,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50818,7 +49537,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50971,7 +49691,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -51145,6 +49866,35 @@
           "session_id"
         ],
         "title": "MatchSession"
+      },
+      "MatchSort": {
+        "type": "string",
+        "enum": [
+          "created:asc",
+          "created:desc",
+          "started:asc",
+          "started:desc",
+          "ended:asc",
+          "ended:desc"
+        ],
+        "title": "MatchSort",
+        "description": "Sort order for matches.",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "created_asc",
+          "created_desc",
+          "started_asc",
+          "started_desc",
+          "ended_asc",
+          "ended_desc"
+        ]
       },
       "MatchState": {
         "type": "string",
@@ -52586,7 +51336,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -52733,7 +51484,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -55936,10 +54688,14 @@
           "Amazon",
           "Twitch",
           "RallyHere",
-          "LegacyName"
+          "LegacyName",
+          "AndroidDevice",
+          "iosDevice"
         ],
         "title": "Platform",
         "x-enum-descriptions": [
+          "",
+          "",
           "",
           "",
           "",
@@ -55973,7 +54729,9 @@
           "AMAZON",
           "TWITCH",
           "RALLYHERE",
-          "LEGACYNAME"
+          "LEGACYNAME",
+          "ANDROID_DEVICE",
+          "IOS_DEVICE"
         ]
       },
       "PlayerMatchReward": {
@@ -56042,6 +54800,46 @@
         "type": "object",
         "title": "RecentlyPlayedWithResponse",
         "description": "List of players that this user recently played with"
+      },
+      "MatchValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       },
       "Body_create_entity_directory_file": {
         "properties": {
@@ -56478,7 +55276,7 @@
               }
             ],
             "title": "Message",
-            "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
+            "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value. Setting this to null or an empty string clears the message."
           },
           "do_not_disturb": {
             "anyOf": [
@@ -59973,182 +58771,6 @@
         ],
         "title": "ValidateEventResponse"
       },
-      "AdOpportunities": {
-        "properties": {
-          "opportunities": {
-            "items": {
-              "$ref": "#/components/schemas/AdOpportunity"
-            },
-            "type": "array",
-            "title": "Opportunities"
-          }
-        },
-        "type": "object",
-        "required": [
-          "opportunities"
-        ],
-        "title": "AdOpportunities"
-      },
-      "AdOpportunity": {
-        "properties": {
-          "ad_url": {
-            "type": "string",
-            "title": "Ad Url",
-            "description": "The URL to the ad"
-          },
-          "seconds": {
-            "type": "integer",
-            "minimum": 0,
-            "title": "Seconds",
-            "description": "The number of seconds the ad is"
-          },
-          "opportunity_id": {
-            "type": "string",
-            "minLength": 1,
-            "title": "Opportunity Id",
-            "description": "The ID of the ad opportunity"
-          }
-        },
-        "type": "object",
-        "required": [
-          "ad_url",
-          "seconds",
-          "opportunity_id"
-        ],
-        "title": "AdOpportunity"
-      },
-      "Body_begin_new_session": {
-        "properties": {
-          "country_code": {
-            "type": "string",
-            "maxLength": 2,
-            "minLength": 2,
-            "title": "Country Code",
-            "description": "[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code for the user"
-          },
-          "device_id": {
-            "type": "string",
-            "maxLength": 256,
-            "minLength": 1,
-            "title": "Device Id",
-            "description": "Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device."
-          }
-        },
-        "type": "object",
-        "required": [
-          "country_code"
-        ],
-        "title": "Body_begin_new_session"
-      },
-      "Body_find_opportunities": {
-        "properties": {
-          "screen_pixel_width": {
-            "type": "integer",
-            "title": "Screen Pixel Width",
-            "description": "Width of the screen in pixels"
-          },
-          "screen_pixel_height": {
-            "type": "integer",
-            "title": "Screen Pixel Height",
-            "description": "Height of the screen in pixels"
-          },
-          "country_code": {
-            "type": "string",
-            "maxLength": 2,
-            "minLength": 2,
-            "title": "Country Code",
-            "description": "[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code for the user"
-          },
-          "language_code": {
-            "type": "string",
-            "maxLength": 3,
-            "minLength": 2,
-            "title": "Language Code",
-            "description": "[ISO 639-2](https://www.loc.gov/standards/iso639-2/php/code_list.php) language code"
-          },
-          "device_id": {
-            "type": "string",
-            "maxLength": 256,
-            "minLength": 1,
-            "title": "Device Id",
-            "description": "Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device."
-          }
-        },
-        "type": "object",
-        "required": [
-          "country_code",
-          "language_code"
-        ],
-        "title": "Body_find_opportunities"
-      },
-      "Body_update_opportunity_by_id": {
-        "properties": {
-          "state": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OpportunityState"
-              }
-            ],
-            "description": "State of the opportunity"
-          },
-          "abort_reason": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OpportunityAbortReason"
-              }
-            ],
-            "description": "Reason for aborting the opportunity"
-          },
-          "abort_seconds": {
-            "type": "integer",
-            "minimum": 0,
-            "title": "Abort Seconds",
-            "description": "Number of seconds into the video when the abort happened"
-          }
-        },
-        "type": "object",
-        "required": [
-          "state"
-        ],
-        "title": "Body_update_opportunity_by_id"
-      },
-      "OpportunityAbortReason": {
-        "type": "string",
-        "enum": [
-          "cancel",
-          "other"
-        ],
-        "title": "OpportunityAbortReason",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CANCEL",
-          "OTHER"
-        ],
-        "x-enum-descriptions": [
-          "Ad was closed by the user",
-          "Ad was closed from a misc cause"
-        ]
-      },
-      "OpportunityState": {
-        "type": "string",
-        "enum": [
-          "start",
-          "complete",
-          "abort"
-        ],
-        "title": "OpportunityState",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "START",
-          "COMPLETE",
-          "ABORT"
-        ],
-        "x-enum-descriptions": [
-          "User started watching the ad",
-          "User finished watching the ad",
-          "User stopped watching the ad partway through"
-        ]
-      },
       "LeaderboardConfig": {
         "properties": {
           "leaderboard_id": {
@@ -60508,1449 +59130,6 @@
         },
         "type": "object",
         "title": "StageSourceFields"
-      },
-      "EntityMMBucketRunStats": {
-        "properties": {
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Type 1 to matchmake against"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Type 2 to matchmake against"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Type 3 to matchmake against"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Type 4 to matchmake against"
-          },
-          "entity_type": {
-            "$ref": "#/components/schemas/StageEntityType",
-            "description": "Entity type"
-          },
-          "entity_id": {
-            "type": "string",
-            "maxLength": 128,
-            "title": "Entity Id",
-            "description": "Entity ID"
-          },
-          "stage_wins": {
-            "type": "integer",
-            "title": "Stage Wins",
-            "description": "Total number of stages won",
-            "default": 0
-          },
-          "stage_losses": {
-            "type": "integer",
-            "title": "Stage Losses",
-            "description": "Total number of stages lost",
-            "default": 0
-          },
-          "stage_incompletes": {
-            "type": "integer",
-            "title": "Stage Incompletes",
-            "description": "Total number of stages incomplete",
-            "default": 0
-          },
-          "run_wins": {
-            "type": "integer",
-            "title": "Run Wins",
-            "description": "Total number of successful runs",
-            "default": 0
-          },
-          "run_losses": {
-            "type": "integer",
-            "title": "Run Losses",
-            "description": "Total number of failed runs",
-            "default": 0
-          },
-          "run_count": {
-            "type": "integer",
-            "title": "Run Count",
-            "description": "Total number of runs",
-            "default": 0
-          },
-          "placements_complete": {
-            "type": "integer",
-            "title": "Placements Complete",
-            "description": "Total number of placement matches this player has played for this MM bucket",
-            "default": 0
-          },
-          "mmr_internal": {
-            "type": "number",
-            "title": "Mmr Internal",
-            "description": "Internal MMR used for comparison against other players during matchmaking",
-            "default": 0
-          },
-          "mmr_vis": {
-            "type": "number",
-            "title": "Mmr Vis",
-            "description": "Visual MMR used for progression tracking in the matchmaking system",
-            "default": 0
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "When was the first run recorded for this entity/mm bucket?",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
-          "modified": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "When was the last run recorded for this entity/mm bucket?",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          }
-        },
-        "type": "object",
-        "required": [
-          "entity_type",
-          "entity_id",
-          "created",
-          "modified"
-        ],
-        "title": "EntityMMBucketRunStats"
-      },
-      "EntityMMBucketRunStatsMulti": {
-        "properties": {
-          "data": {
-            "items": {
-              "$ref": "#/components/schemas/EntityMMBucketRunStats"
-            },
-            "type": "array",
-            "title": "Data",
-            "description": "",
-            "default": []
-          }
-        },
-        "type": "object",
-        "title": "EntityMMBucketRunStatsMulti"
-      },
-      "EntityMMBucketRunStatsUpdate": {
-        "properties": {
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Type 1 to matchmake against"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Type 2 to matchmake against"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Type 3 to matchmake against"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Type 4 to matchmake against"
-          },
-          "entity_type": {
-            "$ref": "#/components/schemas/StageEntityType",
-            "description": "Entity type"
-          },
-          "entity_id": {
-            "type": "string",
-            "maxLength": 128,
-            "title": "Entity Id",
-            "description": "Entity ID"
-          },
-          "stage_wins": {
-            "type": "integer",
-            "title": "Stage Wins",
-            "description": "Total number of stages won",
-            "default": 0
-          },
-          "stage_losses": {
-            "type": "integer",
-            "title": "Stage Losses",
-            "description": "Total number of stages lost",
-            "default": 0
-          },
-          "stage_incompletes": {
-            "type": "integer",
-            "title": "Stage Incompletes",
-            "description": "Total number of stages incomplete",
-            "default": 0
-          },
-          "run_wins": {
-            "type": "integer",
-            "title": "Run Wins",
-            "description": "Total number of successful runs",
-            "default": 0
-          },
-          "run_losses": {
-            "type": "integer",
-            "title": "Run Losses",
-            "description": "Total number of failed runs",
-            "default": 0
-          },
-          "run_count": {
-            "type": "integer",
-            "title": "Run Count",
-            "description": "Total number of runs",
-            "default": 0
-          },
-          "placements_complete": {
-            "type": "integer",
-            "title": "Placements Complete",
-            "description": "Total number of placement matches this player has played for this MM bucket",
-            "default": 0
-          },
-          "mmr_internal": {
-            "type": "number",
-            "title": "Mmr Internal",
-            "description": "Internal MMR used for comparison against other players during matchmaking",
-            "default": 0
-          },
-          "mmr_vis": {
-            "type": "number",
-            "title": "Mmr Vis",
-            "description": "Visual MMR used for progression tracking in the matchmaking system",
-            "default": 0
-          }
-        },
-        "type": "object",
-        "required": [
-          "entity_type",
-          "entity_id"
-        ],
-        "title": "EntityMMBucketRunStatsUpdate"
-      },
-      "EntityRunCompleteRequest": {
-        "properties": {
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Type 1 to matchmake against"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Type 2 to matchmake against"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Type 3 to matchmake against"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Type 4 to matchmake against"
-          },
-          "entity_type": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/StageEntityType"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": ""
-          },
-          "entity_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Entity Id",
-            "description": ""
-          },
-          "stage_wins": {
-            "type": "integer",
-            "title": "Stage Wins",
-            "description": "",
-            "default": 0
-          },
-          "stage_losses": {
-            "type": "integer",
-            "title": "Stage Losses",
-            "description": "",
-            "default": 0
-          },
-          "stage_incompletes": {
-            "type": "integer",
-            "title": "Stage Incompletes",
-            "description": "",
-            "default": 0
-          },
-          "run_win": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Run Win",
-            "description": "Was the run a win?  If set to true, `run_wins` will be incremented.  If set to false, `run_losses` will be incremented.  If not set, neither will be changed."
-          },
-          "run_placement": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Run Placement",
-            "description": "Was the run a placement? If set to true, placement rules are applied.  If set to false, placement rules are skipped.  If not set, placement is determined based on internal configuration"
-          },
-          "mmr_internal_exact": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal Exact",
-            "description": "If set, the exact value to set the entity's internal MMR to after this run."
-          },
-          "mmr_internal_delta": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal Delta",
-            "description": "If set, the delta to apply to the entity's internal MMR after this run."
-          },
-          "mmr_vis_exact": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Vis Exact",
-            "description": "If set, the exact value to set the entity's visual MMR to after this run."
-          },
-          "mmr_vis_delta": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Vis Delta",
-            "description": "If set, the delta to apply to the entity's visual MMR after this run."
-          }
-        },
-        "type": "object",
-        "required": [
-          "entity_type",
-          "entity_id"
-        ],
-        "title": "EntityRunCompleteRequest",
-        "description": "Request to update entity mm bucket run stats with the info from a specific run.\n\nNOTE:\n    - if `mmr_internal_exact` and `mmr_internal_delta` are not provided, the service will modify MMR using an internal algorithm.\n    - if `mmr_vis_exact` and `mmr_vis_delta` are not provided, the service will modify MMR using an internal algorithm.\n    - To not modify MMR at all, provide `mmr_XXX_delta` equal to `0`.\n\nPlacement matches will not allow the MMR value to be lowered, only increased.  For exact updates, it will take the higher of the current/update values.  If delta changes, only positive changes will be applied."
-      },
-      "EntityRunCompleteResponse": {
-        "properties": {},
-        "type": "object",
-        "title": "EntityRunCompleteResponse"
-      },
-      "StageEntityType": {
-        "type": "string",
-        "enum": [
-          "player"
-        ],
-        "title": "EntityType",
-        "x-enum-descriptions": [
-          ""
-        ],
-        "x-enum-varnames": [
-          "player"
-        ]
-      },
-      "MMRStatInfo": {
-        "properties": {
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4"
-          },
-          "mmr_min": {
-            "type": "integer",
-            "title": "Mmr Min"
-          },
-          "mmr_max": {
-            "type": "integer",
-            "title": "Mmr Max"
-          },
-          "num_entities": {
-            "type": "integer",
-            "title": "Num Entities"
-          }
-        },
-        "type": "object",
-        "required": [
-          "mmr_min",
-          "mmr_max",
-          "num_entities"
-        ],
-        "title": "MMRStatInfo"
-      },
-      "MMRStats": {
-        "properties": {
-          "data": {
-            "items": {
-              "$ref": "#/components/schemas/MMRStatInfo"
-            },
-            "type": "array",
-            "title": "Data",
-            "default": []
-          }
-        },
-        "type": "object",
-        "title": "MMRStats"
-      },
-      "Stage": {
-        "properties": {
-          "blob": {
-            "additionalProperties": true,
-            "type": "object",
-            "title": "Blob",
-            "description": "",
-            "default": {}
-          },
-          "game_version": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Game Version",
-            "description": "Game Version"
-          },
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version of this stage"
-          },
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Stage Type 1"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Stage Type 2"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Stage Type 3"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Stage Type 4"
-          },
-          "index": {
-            "type": "integer",
-            "title": "Index",
-            "description": "Index of the stage relative to other stages in the match",
-            "default": 0
-          },
-          "match_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128,
-                "minLength": 1
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Match Id",
-            "description": "The match that this stage was a part of"
-          },
-          "stat_1": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 1",
-            "description": "Custom stat 1 about this stage"
-          },
-          "stat_2": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 2",
-            "description": "Custom stat 2 about this stage"
-          },
-          "stat_3": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 3",
-            "description": "Custom stat 3 about this stage"
-          },
-          "stat_4": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 4",
-            "description": "Custom stat 4 about this stage"
-          },
-          "mmr_internal": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal",
-            "description": "Internal MMR used for comparison against other players during matchmaking"
-          },
-          "mmr_vis": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Vis",
-            "description": "Visual MMR used for progression tracking in the matchmaking system"
-          },
-          "stage_id": {
-            "type": "string",
-            "title": "Stage Id",
-            "description": "Unique ID for this stage."
-          },
-          "owner_entity_type": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/StageEntityType"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Owner of this stage"
-          },
-          "owner_entity_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Owner Entity Id",
-            "description": "Owner of this stage"
-          },
-          "mm_count": {
-            "type": "integer",
-            "title": "Mm Count",
-            "description": "How many times has this stage been matchmade?",
-            "default": 0
-          },
-          "mmr_range_min": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Range Min",
-            "description": "Minimum of the MMR Range this stage is part of"
-          },
-          "mmr_range_max": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Range Max",
-            "description": "Maximum of the MMR Range this stage is part of"
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "When was this stage first created?",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
-          "modified": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "When was this stage last modified?",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          }
-        },
-        "type": "object",
-        "required": [
-          "stage_id",
-          "created",
-          "modified"
-        ],
-        "title": "Stage"
-      },
-      "StageCreate": {
-        "properties": {
-          "blob": {
-            "additionalProperties": true,
-            "type": "object",
-            "title": "Blob",
-            "description": "",
-            "default": {}
-          },
-          "game_version": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Game Version",
-            "description": "Game Version"
-          },
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version of this stage"
-          },
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Stage Type 1"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Stage Type 2"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Stage Type 3"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Stage Type 4"
-          },
-          "index": {
-            "type": "integer",
-            "title": "Index",
-            "description": "Index of the stage relative to other stages in the match",
-            "default": 0
-          },
-          "match_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128,
-                "minLength": 1
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Match Id",
-            "description": "The match that this stage was a part of"
-          },
-          "stat_1": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 1",
-            "description": "Custom stat 1 about this stage"
-          },
-          "stat_2": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 2",
-            "description": "Custom stat 2 about this stage"
-          },
-          "stat_3": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 3",
-            "description": "Custom stat 3 about this stage"
-          },
-          "stat_4": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 4",
-            "description": "Custom stat 4 about this stage"
-          },
-          "mmr_internal": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal",
-            "description": "mmr_internal value for this stage.  If not provided, the value for the given owner entity will be used."
-          },
-          "mmr_vis": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Vis",
-            "description": "mmr_vis value for this stage.  If not provided, the value for the given owner entity will be used."
-          },
-          "owner_entity_type": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/StageEntityType"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Owner of this stage.  If not set, the entity from the providing token will be used."
-          },
-          "owner_entity_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Owner Entity Id",
-            "description": "Owner of this stage.  If not set, the entity from the providing token will be used."
-          },
-          "is_placement": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Is Placement",
-            "description": "Is this stage from a placement run?  If not provided, the value for the given owner entity will be used.  If provided, will follow rules for stage create/updates of placement stages."
-          }
-        },
-        "type": "object",
-        "title": "StageCreate",
-        "description": "Fields to create a stage with.\n\nNOTE: the fields shared between this and the StageMatchmakeParams are used to determine which\n    matchmaking pool this stage will be placed into"
-      },
-      "StageCreateRequest": {
-        "properties": {
-          "stages": {
-            "items": {
-              "$ref": "#/components/schemas/StageCreate"
-            },
-            "type": "array",
-            "title": "Stages",
-            "description": "Stages to create"
-          }
-        },
-        "type": "object",
-        "required": [
-          "stages"
-        ],
-        "title": "StageCreateRequest"
-      },
-      "StageCreateResult": {
-        "properties": {},
-        "type": "object",
-        "title": "StageCreateResult"
-      },
-      "StageMatchmakeParams": {
-        "properties": {
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Type 1 to matchmake against"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Type 2 to matchmake against"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Type 3 to matchmake against"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Type 4 to matchmake against"
-          },
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version required to matchmake against"
-          },
-          "index": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Index",
-            "description": "Stage index to matchmake against"
-          },
-          "mmr_internal_min": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal Min",
-            "description": "if provided, the minimum MMR to consider for other players"
-          },
-          "mmr_internal_max": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal Max",
-            "description": "if provided, the maximum MMR to consider for other players"
-          },
-          "entity_type": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/StageEntityType"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Entity to use for MMR considerations"
-          },
-          "entity_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Entity Id",
-            "description": "Entity to use for MMR considerations"
-          },
-          "mmr_internal_override": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal Override",
-            "description": "if provided, override the current entity's MMR to consider when comparing against other players"
-          }
-        },
-        "type": "object",
-        "title": "StageMatchmakeParams",
-        "description": "Parameters used to select a stage to play against.\n\nMMR considerations:\nif `mmr_internal_min` and `mmr_internal_max` are non-empty, a random stage will be returned within the given range.\nif `mmr_internal_min` and `mmr_internal_max` are empty, internally configured MMR ranges will be used to select a stage."
-      },
-      "StageSearchResults": {
-        "properties": {
-          "stages": {
-            "items": {
-              "$ref": "#/components/schemas/Stage"
-            },
-            "type": "array",
-            "title": "Stages"
-          },
-          "cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Cursor"
-          }
-        },
-        "type": "object",
-        "required": [
-          "stages"
-        ],
-        "title": "StageSearchResults"
-      },
-      "StageSearchSort": {
-        "type": "string",
-        "enum": [
-          "created",
-          "modified",
-          "mm_count",
-          "mm_options"
-        ],
-        "title": "StageSearchSort",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          ""
-        ],
-        "x-enum-varnames": [
-          "created",
-          "modified",
-          "mm_count",
-          "mm_options"
-        ]
-      },
-      "StageUpdate": {
-        "properties": {
-          "blob": {
-            "additionalProperties": true,
-            "type": "object",
-            "title": "Blob",
-            "description": "",
-            "default": {}
-          },
-          "game_version": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Game Version",
-            "description": "Game Version"
-          },
-          "v": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 64
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "V",
-            "description": "Version of this stage"
-          },
-          "type_1": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 1",
-            "description": "Stage Type 1"
-          },
-          "type_2": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 2",
-            "description": "Stage Type 2"
-          },
-          "type_3": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 3",
-            "description": "Stage Type 3"
-          },
-          "type_4": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 256
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Type 4",
-            "description": "Stage Type 4"
-          },
-          "index": {
-            "type": "integer",
-            "title": "Index",
-            "description": "Index of the stage relative to other stages in the match",
-            "default": 0
-          },
-          "match_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 128,
-                "minLength": 1
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Match Id",
-            "description": "The match that this stage was a part of"
-          },
-          "stat_1": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 1",
-            "description": "Custom stat 1 about this stage"
-          },
-          "stat_2": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 2",
-            "description": "Custom stat 2 about this stage"
-          },
-          "stat_3": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 3",
-            "description": "Custom stat 3 about this stage"
-          },
-          "stat_4": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Stat 4",
-            "description": "Custom stat 4 about this stage"
-          },
-          "mmr_internal": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Internal",
-            "description": "Internal MMR used for comparison against other players during matchmaking"
-          },
-          "mmr_vis": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Mmr Vis",
-            "description": "Visual MMR used for progression tracking in the matchmaking system"
-          }
-        },
-        "type": "object",
-        "title": "StageUpdate",
-        "description": "Fields to update a stage with.\n\nNOTE: the fields shared between this and the StageMatchmakeParams are used to determine which\n    matchmaking pool this stage will be placed into"
       }
     }
   }
