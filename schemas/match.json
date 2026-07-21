@@ -5,11 +5,6 @@
     "description": "RallyHere match-api.",
     "version": "0.2.0"
   },
-  "servers": [
-    {
-      "url": "/match"
-    }
-  ],
   "paths": {
     "/v1/match": {
       "get": {
@@ -220,6 +215,135 @@
                 }
               ],
               "title": "State"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/MatchSort",
+              "default": "created:desc"
+            }
+          },
+          {
+            "name": "min_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Start"
+            }
+          },
+          {
+            "name": "max_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Start"
+            }
+          },
+          {
+            "name": "min_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min End"
+            }
+          },
+          {
+            "name": "max_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max End"
+            }
+          },
+          {
+            "name": "min_created",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Created"
+            }
+          },
+          {
+            "name": "max_created",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Created"
             }
           },
           {
@@ -4370,7 +4494,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -4557,7 +4682,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -4700,7 +4826,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -4853,7 +4980,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -5027,6 +5155,35 @@
           "session_id"
         ],
         "title": "MatchSession"
+      },
+      "MatchSort": {
+        "type": "string",
+        "enum": [
+          "created:asc",
+          "created:desc",
+          "started:asc",
+          "started:desc",
+          "ended:asc",
+          "ended:desc"
+        ],
+        "title": "MatchSort",
+        "description": "Sort order for matches.",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "created_asc",
+          "created_desc",
+          "started_asc",
+          "started_desc",
+          "ended_asc",
+          "ended_desc"
+        ]
       },
       "MatchState": {
         "type": "string",
@@ -6468,7 +6625,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -6615,7 +6773,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -9818,10 +9977,14 @@
           "Amazon",
           "Twitch",
           "RallyHere",
-          "LegacyName"
+          "LegacyName",
+          "AndroidDevice",
+          "iosDevice"
         ],
         "title": "Platform",
         "x-enum-descriptions": [
+          "",
+          "",
           "",
           "",
           "",
@@ -9855,7 +10018,9 @@
           "AMAZON",
           "TWITCH",
           "RALLYHERE",
-          "LEGACYNAME"
+          "LEGACYNAME",
+          "ANDROID_DEVICE",
+          "IOS_DEVICE"
         ]
       },
       "PlayerMatchReward": {
@@ -9948,6 +10113,13 @@
           "type": {
             "type": "string",
             "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
           }
         },
         "type": "object",
@@ -9974,6 +10146,11 @@
     {
       "name": "Player Experience",
       "description": "Player Experience (PEX) is a system for Clients/Hosts to post metrics to for top-level analysis."
+    }
+  ],
+  "servers": [
+    {
+      "url": "/match"
     }
   ]
 }
