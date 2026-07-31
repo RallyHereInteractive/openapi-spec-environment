@@ -2628,7 +2628,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -3315,7 +3315,7 @@
           "Sessions"
         ],
         "summary": "Invite Player By Uuid V2",
-        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin",
+        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin",
         "operationId": "invite_player_by_uuid_v2",
         "parameters": [
           {
@@ -3521,7 +3521,7 @@
           "Sessions"
         ],
         "summary": "Move Player By Uuid V2",
-        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin",
+        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin",
         "operationId": "move_player_by_uuid_v2",
         "parameters": [
           {
@@ -3737,7 +3737,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -3844,7 +3844,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -4045,7 +4045,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
