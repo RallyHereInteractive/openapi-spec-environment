@@ -1,4 +1,5 @@
 {
+  "securitySchemesStrategy": "first",
   "inputs": [
     { "inputFile": "./environment-openapi-base-schema.yaml" },
     { "inputFile": "./schemas/users.json", "pathModification": { "prepend": "/users" }, "dispute": { "prefix": "Users" } },
