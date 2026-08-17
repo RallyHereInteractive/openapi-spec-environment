@@ -13,6 +13,10 @@ APIS="users ad settings friends session config inventory presence notification r
 # failing to download is fatal, so a bad download can never be committed as the new spec.
 OPTIONAL_APIS=""
 
+# Pin the merge tool. Unpinned, `npx` takes whatever npm serves, and the 1.x -> 2.x jump changes
+# the merged output. See the merge step below.
+OPENAPI_MERGE_CLI_VERSION="2.0.2"
+
 SKIP_DOWNLOAD=false
 SKIP_MERGE=false
 SKIP_CHANGELOG=false
@@ -128,16 +132,15 @@ fi
 ########################################
 # Run the merge process of the separate API specs
 if [[ "$SKIP_MERGE" = false ]]; then
-    npx openapi-merge-cli --config environment-openapi-merge-config.json
+    # Pinned deliberately, and re-pin only with the output diff reviewed. 2.x decides two
+    # components are identical more strictly than 1.x: the base schema declares
+    # HTTPBearerHeadersOrCookie with a description and each service declares it without, which 1.3.2
+    # merged into one scheme and 2.x treats as a conflict, emitting one prefixed copy per input
+    # (AdHTTPBearerHeadersOrCookie, ConfigHTTPBearerHeadersOrCookie, ...) and changing the scheme
+    # every generated client binds to. securitySchemesStrategy in the merge config keeps the single
+    # shared scheme; see the note there.
+    npx -y openapi-merge-cli@${OPENAPI_MERGE_CLI_VERSION} --config environment-openapi-merge-config.json
     echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
-fi
-
-########################################
-# Update the openapi version based on environment-openapi-base-schema.yaml
-if [[ "$SKIP_MERGE" = false ]]; then
-    VERSION=$(yq -r '.openapi' environment-openapi-base-schema.yaml)
-    jq --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > tmp.json && mv tmp.json environment.openapi.json
-    jq -c --arg VERSION "$VERSION" '.openapi = $VERSION' environment.openapi.json > environment.openapi.min.json
 fi
 
 ########################################
