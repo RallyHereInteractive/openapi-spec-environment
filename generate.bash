@@ -13,6 +13,9 @@ APIS="users ad settings friends session config inventory presence notification r
 # failing to download is fatal, so a bad download can never be committed as the new spec.
 OPTIONAL_APIS=""
 
+# Pin the merge tool. See the merge step below for why an unpinned version is not safe here.
+OPENAPI_MERGE_CLI_VERSION="1.3.2"
+
 SKIP_DOWNLOAD=false
 SKIP_MERGE=false
 SKIP_CHANGELOG=false
@@ -128,7 +131,13 @@ fi
 ########################################
 # Run the merge process of the separate API specs
 if [[ "$SKIP_MERGE" = false ]]; then
-    npx openapi-merge-cli --config environment-openapi-merge-config.json
+    # Pinned deliberately. Unpinned, `npx` takes whatever npm serves, and 2.0.2 (2026-08-08)
+    # changed how it decides two components are identical: the base schema declares
+    # HTTPBearerHeadersOrCookie with a description and each service declares it without, which
+    # 1.3.2 merges into one scheme and 2.0.2 treats as a conflict, emitting one prefixed copy per
+    # input (AdHTTPBearerHeadersOrCookie, ConfigHTTPBearerHeadersOrCookie, ...). That rewrites the
+    # security scheme every generated client binds to. Re-pin only with that diff reviewed.
+    npx -y openapi-merge-cli@${OPENAPI_MERGE_CLI_VERSION} --config environment-openapi-merge-config.json
     echo "$(jq -c . environment.openapi.json)" > environment.openapi.min.json
 fi
 
