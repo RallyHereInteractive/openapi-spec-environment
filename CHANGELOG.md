@@ -1,3 +1,209 @@
+## Changes for Thu Nov 12 03:10:44 PM EST 2026
+### New Endpoints: None
+-----------------------
+
+### Deleted Endpoints: None
+---------------------------
+
+### Modified Endpoints: 10
+--------------------------
+POST /sanctions/v2/player/{player_uuid}/reports
+- Description changed from 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+Otherwise: any of: `sanction:report:create:any`, `sanction:*`' to 'Create a new report for a target player
+Required Permissions:
+If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+Otherwise: any of: `sanction:*`, `sanction:report:create:any`'
+
+GET /users/v1/history/restriction
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: entries
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+
+POST /users/v1/login
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+  - Modified response: 403
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                        - New enum values: [name_violation]
+
+POST /users/v1/oauth/token
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+
+GET /users/v1/person/me/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+
+GET /users/v1/person/{person_id}/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+
+POST /users/v1/person/{person_id}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: reason
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: RestrictionReasonCode
+                - Extensions changed
+                  - Modified extension: x-enum-descriptions
+                    - Added /- with value: ''
+                  - Modified extension: x-enum-varnames
+                    - Added /- with value: 'NAME_VIOLATION'
+                - New enum values: [name_violation]
+
+GET /users/v2/player/me/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+
+GET /users/v2/player/{player_uuid}/restrictions
+- Responses changed
+  - Modified response: 200
+    - Content changed
+      - Modified media type: application/json
+        - Schema changed
+          - Properties changed
+            - Modified property: restrictions
+              - Items changed
+                - Properties changed
+                  - Modified property: reason
+                    - Property 'AllOf' changed
+                      - Modified schema: subschema #1: RestrictionReasonCode
+                        - Extensions changed
+                          - Modified extension: x-enum-descriptions
+                            - Added /- with value: ''
+                          - Modified extension: x-enum-varnames
+                            - Added /- with value: 'NAME_VIOLATION'
+                        - New enum values: [name_violation]
+
+POST /users/v2/player/{player_uuid}/restrictions
+- Request body changed
+  - Content changed
+    - Modified media type: application/json
+      - Schema changed
+        - Properties changed
+          - Modified property: reason
+            - Property 'AllOf' changed
+              - Modified schema: subschema #1: RestrictionReasonCode
+                - Extensions changed
+                  - Modified extension: x-enum-descriptions
+                    - Added /- with value: ''
+                  - Modified extension: x-enum-varnames
+                    - Added /- with value: 'NAME_VIOLATION'
+                - New enum values: [name_violation]
 ## Changes for Mon Aug 17 19:32:01 UTC 2026
 ### New Endpoints: None
 -----------------------
