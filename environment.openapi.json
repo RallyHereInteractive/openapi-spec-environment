@@ -30135,7 +30135,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -37985,7 +37985,8 @@
           "account_migration",
           "user_request",
           "maintenance",
-          "pending_deletion"
+          "pending_deletion",
+          "name_violation"
         ],
         "title": "RestrictionReasonCode",
         "description": "An enumeration.",
@@ -38006,9 +38007,11 @@
           "ACCOUNT_MIGRATION",
           "USER_REQUEST",
           "MAINTENANCE",
-          "PENDING_DELETION"
+          "PENDING_DELETION",
+          "NAME_VIOLATION"
         ],
         "x-enum-descriptions": [
+          "",
           "",
           "",
           "",
@@ -57352,13 +57355,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "latest",
-          "earliest"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
         ]
       },
       "EntityGuideEngagement": {
